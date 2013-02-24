@@ -16,7 +16,7 @@
 
 -(void)cons_x:(float)x y:(float)y x2:(float)x2 y2:(float)y2 {
     [self setPosition:ccp(x,y)];
-    dir_vec = [Vec3D cons_x:x2-x y:y2-y z:0];
+    dir_vec = [VecLib cons_x:x2-x y:y2-y z:0];
     [self cons_img];
     [self setActive:YES];
 }
@@ -89,13 +89,13 @@
     float bwid = [tex pixelsWide]; 
     float bhei = [tex pixelsHigh];
     
-    Vec3D *normal = [dir_vec crossWith:[Vec3D Z_VEC]];
-    [normal normalize];
-    [normal scale:s.width/2];
+    Vec3D normal = [VecLib cross:dir_vec with:[VecLib Z_VEC]];
+    normal = [VecLib normalize:normal];
+    normal = [VecLib scale:normal by:s.width/2];
     
-    Vec3D *r_dirv = [Vec3D cons_x:dir_vec.x y:dir_vec.y z:0];
-    [r_dirv normalize];
-    [r_dirv scale:-s.height];
+    Vec3D r_dirv = [VecLib cons_x:dir_vec.x y:dir_vec.y z:0];
+    r_dirv = [VecLib normalize:r_dirv];
+    r_dirv=[VecLib scale:r_dirv by:-s.height];
     /**        
      (0)   (origin)    (1)  --> normal
      |  r_dirv
@@ -132,8 +132,8 @@
     s = [self get_section_size];
     bwid = [tex pixelsWide];
     bhei = [tex pixelsHigh];
-    [normal normalize];
-    [normal scale:bwid/2];
+    normal=[VecLib normalize:normal];
+    normal=[VecLib scale:normal by:bwid/2];
     
     center = [Common cons_render_obj:tex npts:4];
     
@@ -142,7 +142,7 @@
     center.tri_pts[2] = ccp(-normal.x + dir_vec.x , -normal.y + dir_vec.y);
     center.tri_pts[3] = ccp(normal.x + dir_vec.x  ,normal.y + dir_vec.y);
     
-    float len = [dir_vec length];
+    float len = [VecLib length:dir_vec];
     
     center.tex_pts[0] = ccp(0,0);
     center.tex_pts[1] = ccp(s.width/bwid,0);

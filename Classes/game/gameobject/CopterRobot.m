@@ -331,9 +331,9 @@ static const int DEFAULT_HP = 4;
             CGPoint noz = [self get_nozzle];
             [LauncherRobot explosion:g at:noz];
             
-            Vec3D *rv = [Vec3D cons_x:-1 y:0 z:0];
-            [rv normalize];
-            [rv scale:TRACKINGFIRE_ROCKETSPEED];
+            Vec3D rv = [VecLib cons_x:-1 y:0 z:0];
+            rv = [VecLib normalize:rv];
+            rv = [VecLib scale:rv by:TRACKINGFIRE_ROCKETSPEED];
             LauncherRocket *r = [[RelativePositionLauncherRocket cons_at:noz player:g.player.position vel:ccp(rv.x,rv.y)] set_remlimit:1300];
             
             [g add_gameobject:r];
@@ -362,9 +362,9 @@ static const int DEFAULT_HP = 4;
             CGPoint noz = [self get_nozzle];
             [LauncherRobot explosion:g at:noz];
             
-            Vec3D *rv = [Vec3D cons_x:1 y:0 z:0];
-            [rv normalize];
-            [rv scale:RAPIDFIRE_ROCKETSPEED];
+            Vec3D rv = [VecLib cons_x:1 y:0 z:0];
+            rv = [VecLib normalize:rv];
+            rv = [VecLib scale:rv by:RAPIDFIRE_ROCKETSPEED];
             LauncherRocket *r = [[RelativePositionLauncherRocket cons_at:noz player:g.player.position vel:ccp(rv.x,rv.y)] set_remlimit:1300];
             
             [g add_gameobject:r];
@@ -390,9 +390,9 @@ static const int DEFAULT_HP = 4;
         CGPoint noz = [self get_nozzle];
         [LauncherRobot explosion:g at:noz];
         
-        Vec3D *rv = [Vec3D cons_x:-1 y:-1 z:0];
-        [rv normalize];
-        [rv scale:2.5];
+        Vec3D rv = [VecLib cons_x:-1 y:-1 z:0];
+        rv = [VecLib normalize:rv];
+        rv = [VecLib scale:rv by:2.5];
         LauncherRocket *r = [LauncherRocket cons_at:noz vel:ccp(rv.x,rv.y)];
         
         [g add_gameobject:r];
@@ -496,27 +496,27 @@ static const int DEFAULT_HP = 4;
 }
 
 -(CGPoint)get_nozzle {
-    Vec3D *dirvec = [Vec3D cons_x:1 y:0 z:0];
-    [dirvec scale:100];
+    Vec3D dirvec = [VecLib cons_x:1 y:0 z:0];
+    dirvec = [VecLib scale:dirvec by:100];
     if (scaleX_ < 0) {
         dirvec.y += 40;
     } else {
         dirvec.y -=40;
     }
     
-    [dirvec scale:scaleX_];
-    Vec3D *rdirvec = [dirvec rotate_vec_by_rad:-[Common deg_to_rad:rotation_]];
+    dirvec = [VecLib scale:dirvec by:scaleX_];
+    Vec3D rdirvec = [VecLib rotate:dirvec by_rad:-[Common deg_to_rad:rotation_]];
     
-    CGPoint n = [rdirvec transform_pt:position_];
+    CGPoint n = [VecLib transform_pt:position_ by:rdirvec];
     
     return n;
 }
 
 -(void)apply_recoil {
     CGPoint noz = [self get_nozzle];
-    Vec3D *recoil_dir = [Vec3D cons_x:noz.x-position_.x y:noz.y-position_.y z:0];
-    [recoil_dir normalize];
-    [recoil_dir scale:-RECOIL_DIST];
+    Vec3D recoil_dir = [VecLib cons_x:noz.x-position_.x y:noz.y-position_.y z:0];
+    recoil_dir = [VecLib normalize:recoil_dir];
+    recoil_dir = [VecLib scale:recoil_dir by:-RECOIL_DIST];
     recoil_tar = ccp(recoil_dir.x,recoil_dir.y);
     recoil_ct = RECOIL_CT;
 }

@@ -16,7 +16,7 @@
     @property(readwrite,assign) float vx,vy,scaleX,scaleY,rotation;
     @property(readwrite,assign) int last_ndir, movedir;
     @property(readwrite,assign) Island* current_island;
-    @property(readwrite,strong) Vec3D* up_vec;
+    @property(readwrite,assign) Vec3D up_vec;
     @property(readwrite,assign) BOOL floating;
     @property(readwrite,assign) CGPoint position;
     @property(readwrite,unsafe_unretained) SwingVine* current_swingvine;

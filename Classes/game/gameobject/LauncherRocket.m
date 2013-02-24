@@ -67,10 +67,10 @@
     [super update:player g:g];
     [self update_position];
     
-    Vec3D *dv = [Vec3D cons_x:v.x y:v.y z:0];
-    [dv normalize];
-    [dv scale:-1];
-    [dv scale:90];
+    Vec3D dv = [VecLib cons_x:v.x y:v.y z:0];
+    dv =[VecLib normalize:dv];
+    dv =[VecLib scale:dv by:-1];
+    dv =[VecLib scale:dv by:90];
     ct++;
     ct%PARTICLE_FREQ==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y]]:0;
     
@@ -119,10 +119,10 @@
 
 -(void)flyoff:(CGPoint)pv norm:(int)norm {
     broken_ct = 35;
-    Vec3D *pvec = [Vec3D cons_x:pv.x y:pv.y z:0];
+    Vec3D pvec = [VecLib cons_x:pv.x y:pv.y z:0];
     if (norm > 0) {
-        [pvec normalize];
-        [pvec scale:norm];
+        [VecLib normalize:pvec];
+        [VecLib scale:pvec by:norm];
     }
     v.x = pvec.x;
     v.y = pvec.y;

@@ -36,8 +36,8 @@ typedef struct shadowinfo {
         } else {
             [self setVisible:YES];
             [self setPosition:player.position];
-            Vec3D* tv = [player.current_island get_tangent_vec];
-            [self setRotation:-[Common rad_to_deg:[tv get_angle_in_rad]]];
+            Vec3D tv = [player.current_island get_tangent_vec];
+            [self setRotation:-[Common rad_to_deg:[VecLib get_angle_in_rad:tv]]];
             [self setScale:1];
        }
     } else {
@@ -67,8 +67,8 @@ typedef struct shadowinfo {
         if (ipos != [Island NO_VALUE] && pos.y > ipos && (pos.y - ipos) < dist) {
             dist = pos.y - ipos;
             n.y = ipos;
-            Vec3D *tv = [i get_tangent_vec];
-            n.rotation = -[Common rad_to_deg:[tv get_angle_in_rad]];
+            Vec3D tv = [i get_tangent_vec];
+            n.rotation = -[Common rad_to_deg:[VecLib get_angle_in_rad:tv]];
         }
     }
     
@@ -124,8 +124,8 @@ typedef struct shadowinfo {
         if (ipos != [Island NO_VALUE] && pos.y > ipos && (pos.y - ipos) < dist) {
             dist = pos.y - ipos;
             n.y = ipos;
-            Vec3D *tv = [i get_tangent_vec];
-            n.rotation = -[Common rad_to_deg:[tv get_angle_in_rad]];
+            Vec3D tv = [i get_tangent_vec];
+            n.rotation = -[Common rad_to_deg:[VecLib get_angle_in_rad:tv]];
         }
     }
     n.dist = dist;

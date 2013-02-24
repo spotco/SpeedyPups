@@ -156,7 +156,7 @@ static NSMutableDictionary* cached_json;
             NSDictionary* dir_obj = [j_object objectForKey:@"dir"];
             float dir_x = getflt(dir_obj, @"x");;
             float dir_y = getflt(dir_obj, @"y");;
-            Vec3D* dir_vec = [Vec3D cons_x:dir_x y:dir_y z:0];
+            Vec3D dir_vec = [VecLib cons_x:dir_x y:dir_y z:0];
             [map.game_objects addObject:[JumpPad cons_x:x y:y dirvec:dir_vec]];
             
             
@@ -178,9 +178,9 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
             
             NSDictionary* dir_obj = [j_object objectForKey:@"dir"];
-            float dir_x = getflt(dir_obj, @"x");;
-            float dir_y = getflt(dir_obj, @"y");;
-            Vec3D* dir_vec = [Vec3D cons_x:dir_x y:dir_y z:0];
+            float dir_x = getflt(dir_obj, @"x");
+            float dir_y = getflt(dir_obj, @"y");
+            Vec3D dir_vec = [VecLib cons_x:dir_x y:dir_y z:0];
             [map.game_objects addObject:[SpeedUp cons_x:x y:y dirvec:dir_vec]];
             
             
@@ -244,8 +244,7 @@ static NSMutableDictionary* cached_json;
             NSDictionary* dir_obj = [j_object objectForKey:@"dir"];
             float dir_x = getflt(dir_obj, @"x");
             float dir_y = getflt(dir_obj, @"y");
-            Vec3D* dir_vec = [Vec3D cons_x:dir_x y:dir_y z:0];
-            
+            Vec3D dir_vec = [VecLib cons_x:dir_x y:dir_y z:0];
             [map.game_objects addObject:[LauncherRobot cons_x:x y:y dir:dir_vec]];
             
         } else if ([type isEqualToString:@"labwall"]) {

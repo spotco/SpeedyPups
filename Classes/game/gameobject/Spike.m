@@ -59,15 +59,15 @@
 -(void)attach_toisland:(NSMutableArray*)islands {
     Island* i = [self get_connecting_island:islands];
     if (i != NULL) {
-        Vec3D *tangent_vec = [i get_tangent_vec];
-        [tangent_vec scale:[i ndir]];
-        float tar_rad = -[tangent_vec get_angle_in_rad];
+        Vec3D tangent_vec = [i get_tangent_vec];
+        tangent_vec = [VecLib scale:tangent_vec by:[i ndir]];
+        float tar_rad = -[VecLib get_angle_in_rad:tangent_vec];
         float tar_deg = [Common rad_to_deg:tar_rad];
         img.rotation = tar_deg;
         
-        [tangent_vec normalize];
-        Vec3D *normal_vec = [[Vec3D Z_VEC] crossWith:tangent_vec];
-        [normal_vec scale:15];
+        tangent_vec = [VecLib normalize:tangent_vec ];
+        Vec3D normal_vec = [VecLib cross:[VecLib Z_VEC] with:tangent_vec];
+        normal_vec = [VecLib scale:normal_vec by:15];
         img.position = ccp(normal_vec.x,normal_vec.y);
         
     }

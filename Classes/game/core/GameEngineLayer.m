@@ -495,9 +495,9 @@ static NSMutableArray* particles_tba;
     
     if (player.current_island == NULL) {
         CGPoint a = ccp(verts[2].x,verts[2].y);
-        Vec3D *dv = [Vec3D cons_x:player.vx y:player.vy z:0];
-        [dv normalize];
-        [dv scale:50];
+        Vec3D dv = [VecLib cons_x:player.vx y:player.vy z:0];
+        [VecLib normalize:dv];
+        [VecLib scale:dv by:50];
         CGPoint b = ccp(a.x+dv.x,a.y+dv.y);
         ccDrawLine(a, b);
     }

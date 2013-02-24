@@ -41,10 +41,10 @@ static float avg_y;
     if(touch_move_counter == 3) {
         float avg = touch_dist_sum/touch_move_counter;
         if (avg > 5) {
-            Vec3D* v = [Vec3D cons_x:avg_x/touch_move_counter y:avg_y/touch_move_counter z:0];
-            [v normalize];
+            Vec3D v = [VecLib cons_x:avg_x/touch_move_counter y:avg_y/touch_move_counter z:0];
+            v = [VecLib normalize:v];
             
-            if (ABS([v get_angle_in_rad]) < M_PI*(3.0/4.0)) {
+            if (ABS([VecLib get_angle_in_rad:v]) < M_PI*(3.0/4.0)) {
                 queue_swipe = YES;
                 swipe_dir = ccp(ABS(v.x),v.y);
             }
@@ -81,8 +81,7 @@ static float avg_y;
         CGPoint t_vel = [player.current_swingvine get_tangent_vel];
         [player.current_swingvine temp_disable];
         player.current_swingvine = NULL;
-        player.up_vec.y = 1;
-        player.up_vec.x = 0;
+        player.up_vec  = [VecLib cons_x:0 y:1 z:0];
         
         player.vx = t_vel.x;
         player.vy = t_vel.y;
@@ -176,23 +175,23 @@ static float avg_y;
     
     float mov_speed = sqrtf(powf(player.vx, 2) + powf(player.vy, 2));
     
-    Vec3D *tangent = [player.current_island get_tangent_vec];
-    Vec3D *up = [[Vec3D Z_VEC] crossWith:tangent];
-    [tangent normalize];
-    [up normalize];
+    Vec3D tangent = [player.current_island get_tangent_vec];
+    Vec3D up = [VecLib cross:[VecLib Z_VEC] with:tangent];
+    tangent = [VecLib normalize:tangent];
+    up = [VecLib normalize:up];
     if (player.current_island.ndir == -1) {
-        [up scale:-1];
+        up = [VecLib scale:up by:-1];
     }
     
-    [tangent scale:mov_speed];
-    [up scale:JUMP_POWER];
+    tangent = [VecLib scale:tangent by:mov_speed];
+    up = [VecLib scale:up by:JUMP_POWER];
     
 
-    Vec3D *combined = [up add:tangent];
-    Vec3D *cur_tangent_vec = [player.current_island get_tangent_vec];
-    Vec3D *calc_up = [[Vec3D Z_VEC] crossWith:cur_tangent_vec];
-    [calc_up scale:2];
-    player.position = [calc_up transform_pt:player.position];
+    Vec3D combined = [VecLib add:up to:tangent];
+    Vec3D cur_tangent_vec = [player.current_island get_tangent_vec];
+    Vec3D calc_up = [VecLib cross:[VecLib Z_VEC] with:cur_tangent_vec];
+    calc_up = [VecLib scale:calc_up by:2];
+    player.position = [VecLib transform_pt:player.position by:calc_up];
     
     
     //combined.x = MAX(tangent.x,combined.x);

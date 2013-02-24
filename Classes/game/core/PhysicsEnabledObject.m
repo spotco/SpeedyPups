@@ -72,7 +72,7 @@
 }
 
 -(void)reset_physics_params {
-    up_vec = [Vec3D cons_x:0 y:1 z:0];
+    up_vec = [VecLib cons_x:0 y:1 z:0];
     if (params) {
         [params effect_end:NULL g:NULL];
     }
@@ -105,14 +105,14 @@
         return cached_rect;
     }
     
-    Vec3D *v = [Vec3D cons_x:up_vec.x y:up_vec.y z:0];
-    Vec3D *h = [v crossWith:[Vec3D Z_VEC]];
+    Vec3D v = [VecLib cons_x:up_vec.x y:up_vec.y z:0];
+    Vec3D h = [VecLib cross:v with:[VecLib Z_VEC]];
     float x = self.position.x;
     float y = self.position.y;
-    [h normalize];
-    [v normalize];
-    [h scale:IMGWID/2 * rsc];
-    [v scale:IMGHEI *rsc];
+    h=[VecLib normalize:h];
+    v=[VecLib normalize:v];
+    h=[VecLib scale:h by:IMGWID/2 * rsc];
+    v=[VecLib scale:v by:IMGHEI *rsc];
     CGPoint pts[4];
     pts[0] = ccp(x-h.x , y-h.y);
     pts[1] = ccp(x+h.x , y+h.y);

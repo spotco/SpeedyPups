@@ -102,24 +102,25 @@
         }
         
         CGPoint tip = [self get_tip_relative_pos];
-        Vec3D *dirvec = [Vec3D cons_x:tip.x y:tip.y z:0];
-        [dirvec normalize];
-        Vec3D *offset_v = [dirvec crossWith:[Vec3D Z_VEC]];
-        [dirvec scale:cur_dist];
-        [offset_v normalize];
-        [offset_v scale:15];
+        Vec3D dirvec = [VecLib cons_x:tip.x y:tip.y z:0];
+        dirvec=[VecLib normalize:dirvec];
+        Vec3D offset_v = [VecLib cross:dirvec with:[VecLib Z_VEC]];
+        dirvec= [VecLib scale:dirvec by:cur_dist];
+        offset_v = [VecLib normalize:offset_v];
+        offset_v = [VecLib scale:offset_v by:15];
         
         [player setPosition:ccp(position_.x+dirvec.x+offset_v.x-ins_offset.x,position_.y+dirvec.y+offset_v.y-ins_offset.y)];
         ins_offset.x *= 0.5;
         ins_offset.y *= 0.5;
         
-        [dirvec scale:-1];
-        [dirvec normalize];
-        player.up_vec.x = dirvec.x;
-        player.up_vec.y = dirvec.y;
+        dirvec = [VecLib scale:dirvec by:-1];
+        dirvec=[VecLib normalize:dirvec];
+        //player.up_vec.x = dirvec.x;
+        //player.up_vec.y = dirvec.y;
+        player.up_vec = dirvec;
         
-        Vec3D *tangent_vec = [dirvec crossWith:[Vec3D Z_VEC]];
-        float tar_rad = -[tangent_vec get_angle_in_rad];
+        Vec3D tangent_vec = [VecLib cross:dirvec with:[VecLib Z_VEC]];
+        float tar_rad = -[VecLib get_angle_in_rad:tangent_vec];
         float tar_deg = [Common rad_to_deg:tar_rad];
         
         if (player.current_anim == player._SWING_ANIM) {
@@ -143,18 +144,18 @@
 -(line_seg)get_player_mid_line_seg:(Player*)p { 
     //64 wid,58 hei
     CGPoint base = p.position;
-    Vec3D* up;
+    Vec3D up;
     if (p.current_island != NULL) {
-        Vec3D* nvec = [p.current_island get_normal_vecC];
-        up = [Vec3D cons_x:nvec.x y:nvec.y z:nvec.z];
+        Vec3D nvec = [p.current_island get_normal_vecC];
+        up = [VecLib cons_x:nvec.x y:nvec.y z:nvec.z];
     } else {
-        up = [Vec3D cons_x:0 y:1 z:0];
+        up = [VecLib cons_x:0 y:1 z:0];
     }
-    [up scale:58.0/2.0];
+    up=[VecLib scale:up by:58.0/2.0];
     base.x += up.x;
     base.y += up.y;
-    Vec3D* tangent = [up crossWith:[Vec3D Z_VEC]];
-    [tangent normalize];
+    Vec3D tangent = [VecLib cross:up with:[VecLib Z_VEC]];
+    tangent=[VecLib normalize:tangent];
     float hwid = 64.0/2.0;
     line_seg ret = [Common cons_line_seg_a:ccp(base.x-hwid*tangent.x,base.y-hwid*tangent.y) b:ccp(base.x+hwid*tangent.x,base.y+hwid*tangent.y)];
     return ret;

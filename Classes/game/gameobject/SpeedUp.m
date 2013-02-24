@@ -3,7 +3,7 @@
 
 @implementation SpeedUp
 
-+(SpeedUp*)cons_x:(float)x y:(float)y dirvec:(Vec3D *)vec{
++(SpeedUp*)cons_x:(float)x y:(float)y dirvec:(Vec3D)vec{
     SpeedUp *s = [SpeedUp node];
     s.position = ccp(x,y);
     //s.anchorPoint = ccp(s.anchorPoint.x,0);
@@ -90,11 +90,11 @@
     return [FileCache get_cgrect_from_plist:TEX_SPEEDUP idname:tar];
 }
 
--(void)set_dir:(Vec3D*)vec {
-    normal_vec = [Vec3D cons_x:vec.x y:vec.y z:0];
+-(void)set_dir:(Vec3D)vec {
+    normal_vec = [VecLib cons_x:vec.x y:vec.y z:0];
     
-    Vec3D* tangent = [vec crossWith:[Vec3D Z_VEC]];
-    float tar_rad = -[tangent get_angle_in_rad] - M_PI/2;
+    Vec3D tangent = [VecLib cross:vec with:[VecLib Z_VEC]];
+    float tar_rad = -[VecLib get_angle_in_rad:tangent] - M_PI/2;
     rotation_ = [Common rad_to_deg:tar_rad];
 }
 

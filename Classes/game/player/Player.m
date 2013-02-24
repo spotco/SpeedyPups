@@ -54,7 +54,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 	player_img.anchorPoint = ccp(0,0);
 	player_img.position = ccp(IMG_OFFSET_X,IMG_OFFSET_Y);
 	
-    new_player.up_vec = [Vec3D cons_x:0 y:1 z:0];
+    new_player.up_vec = [VecLib cons_x:0 y:1 z:0];
 	[new_player addChild:player_img];
 	
     [new_player cons_anim];
@@ -139,10 +139,10 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 -(void)mov_center_rotation {
-    Vec3D *dv = [Vec3D cons_x:vx y:vy z:0];
-    [dv normalize];
+    Vec3D dv = [VecLib cons_x:vx y:vy z:0];
+    dv = [VecLib normalize:dv];
     
-    float rot = -[Common rad_to_deg:[dv get_angle_in_rad]];
+    float rot = -[Common rad_to_deg:[VecLib get_angle_in_rad:dv]];
     float sig = [Common sig:rot];
     rot = sig*sqrtf(ABS(rot));
     [self setRotation:rot];
@@ -154,9 +154,9 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     if (vel > TRAIL_MIN) {
         float ch = (vel-TRAIL_MIN)/(TRAIL_MAX - TRAIL_MIN)*100;
         if (arc4random_uniform(100) < ch) {
-            Vec3D *dv = [current_island get_tangent_vec];
-            [dv normalize];
-            [dv scale:-2.5];
+            Vec3D dv = [current_island get_tangent_vec];
+            dv=[VecLib normalize:dv];
+            dv=[VecLib scale:dv by:-2.5];
             dv.x += float_random(-3, 3);
             dv.y += float_random(-3, 3);
             [g add_particle:[StreamParticle cons_x:position_.x y:position_.y vx:dv.x vy:dv.y]];
@@ -234,18 +234,18 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     
     if (particlectr >= 5) {
         particlectr = 0;
-        Vec3D *dv = [Vec3D cons_x:vx y:vy z:0];
-        Vec3D *normal = [[Vec3D Z_VEC] crossWith:dv];
-        [normal normalize];
-        [dv normalize];
+        Vec3D dv = [VecLib cons_x:vx y:vy z:0];
+        Vec3D normal = [VecLib cross:[VecLib Z_VEC] with:dv];
+        normal = [VecLib normalize:normal];
+        dv = [VecLib normalize:dv];
         
-        [normal scale:35];
+        normal = [VecLib scale:normal by:35];
         float x = position_.x+normal.x;
         float y = position_.y+normal.y;
         
-        [normal normalize];
-        [normal scale:float_random(-4, 4)];
-        [dv scale:float_random(-8, -10)];
+        normal = [VecLib normalize:normal];
+        normal = [VecLib scale:normal by:float_random(-4, 4)];
+        dv = [VecLib scale:dv by:float_random(-8, -10)];
         
         JumpPadParticle* pt = [JumpPadParticle cons_x:x y:y vx:dv.x+normal.x vy:dv.y+normal.y];
         [g add_particle:pt];
@@ -283,7 +283,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 -(void) reset {
     position_ = start_pt;
     current_island = NULL;
-    up_vec = [Vec3D cons_x:0 y:1 z:0];
+    up_vec = [VecLib cons_x:0 y:1 z:0];
     vx = 0;
     vy = 0;
     rotation_ = 0;
@@ -357,14 +357,15 @@ HitRect cached_rect;
         return cached_rect;
     }
     
-    Vec3D *v = [Vec3D cons_x:up_vec.x y:up_vec.y z:0];
-    Vec3D *h = [v crossWith:[Vec3D Z_VEC]];
+    Vec3D v = [VecLib cons_x:up_vec.x y:up_vec.y z:0];
+    Vec3D h = [VecLib cross:v with:[VecLib Z_VEC]];
     float x = self.position.x;
     float y = self.position.y;
-    [h normalize];
-    [v normalize];
-    [h scale:IMGWID/2 * HITBOX_RESCALE];
-    [v scale:IMGHEI * HITBOX_RESCALE];
+    h=[VecLib normalize:h];
+    v=[VecLib normalize:v];
+    h=[VecLib scale:h by:IMGWID/2 * HITBOX_RESCALE];
+    v=[VecLib scale:v by:IMGHEI * HITBOX_RESCALE];
+
     CGPoint pts[4];
     pts[0] = ccp(x-h.x , y-h.y);
     pts[1] = ccp(x+h.x , y+h.y);

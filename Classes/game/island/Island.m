@@ -62,30 +62,24 @@ static float NO_VAL = -99999.0;
     
 }
 
--(Vec3D*)calc_normal_vec {
-    Vec3D *normal_vec;
-    Vec3D *line_vec = [Vec3D cons_x:endX-startX y:endY-startY z:0];
-    normal_vec = [[Vec3D Z_VEC] crossWith:line_vec];
-    [normal_vec normalize];
-    [normal_vec scale:ndir];
+-(Vec3D)calc_normal_vec {
+    Vec3D line_vec = [VecLib cons_x:endX-startX y:endY-startY z:0];
+    Vec3D normal_vec = [VecLib cross:[VecLib Z_VEC] with:line_vec];
+    normal_vec = [VecLib normalize:normal_vec];
+    normal_vec = [VecLib scale:normal_vec by:ndir];
     return normal_vec;
 }
 
--(Vec3D*)get_normal_vecC {
-    if (cached_vec==NULL) {
-        cached_vec = [self calc_normal_vec];
-    }
-    return cached_vec;
+-(Vec3D)get_normal_vecC {
+    return [self calc_normal_vec];
 }
 
 -(line_seg)get_line_seg {
     return [Common cons_line_seg_a:ccp(startX,startY) b:ccp(endX,endY)];
 }
 
--(Vec3D*)get_tangent_vec {
-    Vec3D *v = [Vec3D cons_x:endX-startX y:endY-startY z:0];
-    [v normalize];
-    return v;
+-(Vec3D)get_tangent_vec {
+    return [VecLib normalized_x:endX-startX y:endY-startY z:0];
 }
 
 -(float)get_t_given_position:(CGPoint)position {
@@ -100,8 +94,8 @@ static float NO_VAL = -99999.0;
         return ccp([Island NO_VALUE],[Island NO_VALUE]);
     } else {
         float frac = t/t_max;
-        Vec3D *dir_vec = [Vec3D cons_x:endX-startX y:endY-startY z:0];
-        [dir_vec scale:frac];
+        Vec3D dir_vec = [VecLib cons_x:endX-startX y:endY-startY z:0];
+        dir_vec = [VecLib scale:dir_vec by:frac];
         CGPoint pos = ccp(startX+dir_vec.x,startY+dir_vec.y);
         return pos;
     }

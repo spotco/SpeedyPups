@@ -108,8 +108,8 @@
 
 -(void)jump_from_island {
     id<PhysicsObject> player = self;
-    Vec3D *up = [Vec3D cons_x:0 y:1 z:0];
-    [up scale:float_random(10, 11)];
+    Vec3D up = [VecLib cons_x:0 y:1 z:0];
+    up=[VecLib scale:up by:float_random(10, 11)];
     
     player.current_island = NULL;
     player.vx = 0;

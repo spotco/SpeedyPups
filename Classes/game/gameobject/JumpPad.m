@@ -7,7 +7,7 @@
 
 @implementation JumpPad
 
-+(JumpPad*)cons_x:(float)x y:(float)y dirvec:(Vec3D *)vec{
++(JumpPad*)cons_x:(float)x y:(float)y dirvec:(Vec3D )vec{
     JumpPad *j = [JumpPad node];
     j.position = ccp(x,y);
     [j cons_anim];
@@ -62,7 +62,7 @@
 }
 
 -(void)boostjump:(Player*)player g:(GameEngineLayer*)g {
-    Vec3D *jnormal = [Vec3D cons_x:normal_vec.x y:normal_vec.y z:0];
+    Vec3D jnormal = [VecLib cons_x:normal_vec.x y:normal_vec.y z:0];
     [player remove_temp_params:g];
     [[player get_current_params] add_airjump_count];
     
@@ -72,15 +72,15 @@
         player.last_ndir = -1;
     }*/
     
-    [jnormal normalize];
-    [jnormal scale:2];
+    jnormal=[VecLib normalize:jnormal];
+    jnormal=[VecLib scale:jnormal by:2];
     
     player.current_island = NULL;
-    player.position = [jnormal transform_pt:player.position];
+    player.position = [VecLib transform_pt:player.position by:jnormal];
     
     
-    [jnormal normalize];
-    [jnormal scale:JUMP_POWER];
+    jnormal = [VecLib normalize:jnormal ];
+    jnormal = [VecLib scale:jnormal by:JUMP_POWER];
     
     player.vx = jnormal.x;
     player.vy = jnormal.y;
@@ -122,11 +122,11 @@
     return [FileCache get_cgrect_from_plist:TEX_JUMPPAD idname:tar];
 }
 
--(void)set_dir:(Vec3D*)vec {
-    normal_vec = [Vec3D cons_x:vec.x y:vec.y z:0];
+-(void)set_dir:(Vec3D)vec {
+    normal_vec = [VecLib cons_x:vec.x y:vec.y z:0];
     
-    Vec3D* tangent = [vec crossWith:[Vec3D Z_VEC]];
-    float tar_rad = -[tangent get_angle_in_rad];
+    Vec3D tangent = [VecLib cross:vec with:[VecLib Z_VEC]];
+    float tar_rad = -[VecLib get_angle_in_rad:tangent];
     rotation_ = [Common rad_to_deg:tar_rad];
 }
 

@@ -19,7 +19,7 @@
 
 #define DEFAULT_SCALE 0.75
 
-+(LauncherRobot*)cons_x:(float)x y:(float)y dir:(Vec3D*)dir {
++(LauncherRobot*)cons_x:(float)x y:(float)y dir:(Vec3D)dir {
     return [[LauncherRobot node] cons_x:x y:y dir:dir];
 }
 
@@ -34,11 +34,11 @@
 }
 
 //launcher_dead
--(id)cons_x:(float)x y:(float)y dir:(Vec3D*)tdir {
+-(id)cons_x:(float)x y:(float)y dir:(Vec3D)tdir {
     [self setPosition:ccp(x,y)];
     body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_LAUNCHER] 
                                   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_LAUNCHER idname:@"launcher"]];
-    dir = [Vec3D cons_x:tdir.x y:tdir.y z:0];
+    dir = [VecLib cons_x:tdir.x y:tdir.y z:0];
     
     float tara = [self get_tar_angle_deg_self:position_ tar:ccp(position_.x+dir.x,position_.y+dir.y)];
     if (ABS(tara) > 90) {
@@ -101,8 +101,8 @@
         [LauncherRobot explosion:g at:noz];
         [g add_particle:[CannonFireParticle cons_x:noz.x y:noz.y]];
         
-        Vec3D *rv = [Vec3D cons_x:dir.x y:dir.y z:0];
-        [rv scale:ROCKETSPEED];
+        Vec3D rv = [VecLib cons_x:dir.x y:dir.y z:0];
+        [VecLib scale:rv by:ROCKETSPEED];
         LauncherRocket *r = [LauncherRocket cons_at:noz vel:ccp(rv.x,rv.y)];
         
         [g add_gameobject:r];
@@ -149,9 +149,9 @@
 
 -(CGPoint)get_nozzle {
     CGPoint pos = position_;
-    Vec3D *v = [Vec3D cons_x:dir.x y:dir.y z:0];
-    [v scale:110];
-    pos = [v transform_pt:pos];
+    Vec3D v = [VecLib cons_x:dir.x y:dir.y z:0];
+    [VecLib scale:v by:110];
+    pos = [VecLib transform_pt:pos by:v];
     return pos;
 }
 

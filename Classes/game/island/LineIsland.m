@@ -134,8 +134,8 @@
     return 26.0;
 }
 
--(void)scale_ndir:(Vec3D*)v {
-    [v scale:self.ndir];
+-(Vec3D)scale_ndir:(Vec3D)v {
+    return [VecLib scale:v by:self.ndir];
 }
 
 -(void)cons_tex {
@@ -144,11 +144,12 @@
 	
 	CGPoint *tri_pts = main_fill.tri_pts;
     
-    Vec3D *v3t2 = [Vec3D cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
-    Vec3D *vZ = [Vec3D Z_VEC];
-    Vec3D *v3t1 = [v3t2 crossWith:vZ];
-    [v3t1 normalize];
-    [self scale_ndir:v3t1];
+    Vec3D v3t2 = [VecLib cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
+    Vec3D vZ = [VecLib Z_VEC];
+    Vec3D v3t1 = [VecLib cross:v3t2 with:vZ];
+    
+    v3t1 = [VecLib normalize:v3t1];
+    v3t1 = [self scale_ndir:v3t1];
     
     float taille = fill_hei;
     
@@ -171,7 +172,7 @@
     }
 }
 
--(void) cons_LR_line_with_v3t1:(Vec3D*)v3t1 v3t2:(Vec3D*)v3t2 {
+-(void) cons_LR_line_with_v3t1:(Vec3D)v3t1 v3t2:(Vec3D)v3t2 {
     /**
      TL TR
      BL BR
@@ -181,8 +182,8 @@
     tl = main_fill.tri_pts[3];
     tr = main_fill.tri_pts[2];
     
-    [v3t1 normalize];
-    [v3t1 scale:TL_DOWNOFFSET];
+    v3t1 = [VecLib normalize:v3t1];
+    [VecLib scale:v3t1 by:TL_DOWNOFFSET];
     tl = ccp(tl.x + v3t1.x, tl.y + v3t1.y);
     tr = ccp(tr.x + v3t1.x, tr.y + v3t1.y);
     
@@ -204,13 +205,13 @@
 	float dist = sqrt(pow(self.endX-self.startX, 2)+pow(self.endY-self.startY, 2));
     
     
-    Vec3D *v3t2 = [Vec3D cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
-    Vec3D *vZ = [Vec3D Z_VEC];
+    Vec3D v3t2 = [VecLib cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
+    Vec3D vZ = [VecLib Z_VEC];
     
-    Vec3D *v3t1 = [v3t2 crossWith:vZ];
-    [v3t1 normalize];
-    [v3t1 negate];
-    [self scale_ndir:v3t1];
+    Vec3D v3t1 = [VecLib cross:v3t2 with:vZ];
+    v3t1 = [VecLib normalize:v3t1];
+    v3t1 = [VecLib negate:v3t1];
+    v3t1 = [self scale_ndir:v3t1];
     
     float hei = HEI;
     float offset = OFFSET;
@@ -233,37 +234,36 @@
     toppts_fill.tri_pts[0] = ccp(self.endX-self.startX,self.endY-self.startY);
     toppts_fill.tri_pts[1] = ccp(tri_pts[2].x,tri_pts[2].y);
     
-    [v3t2 negate];
-    [v3t2 normalize];
+    v3t2 = [VecLib negate:v3t2];
+    v3t2 = [VecLib normalize:v3t2];
     [self cons_tl_top:tri_pts[1] bot:tri_pts[3] vec:v3t2];
-    [v3t2 negate];
+    v3t2 = [VecLib negate:v3t2];
     [self cons_tr_top:tri_pts[2] bot:tri_pts[0] vec:v3t2];
     
     [self cons_bottom_line_fill];
 }
 
--(GLRenderObject*)cons_TRorTL_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D*)vec {
-    Vec3D *mvr = [Vec3D cons_x:-vec.x y:-vec.y z:0];
-    [mvr scale:MVR_ROUNDED_CORNER_SCALE];
+-(GLRenderObject*)cons_TRorTL_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
+    Vec3D mvr = [VecLib cons_x:-vec.x y:-vec.y z:0];
+    mvr = [VecLib scale:mvr by:MVR_ROUNDED_CORNER_SCALE];
     
-    top = [mvr transform_pt:top];
-    bot = [mvr transform_pt:bot];
+    top = [VecLib transform_pt:top by:mvr];
+    bot = [VecLib transform_pt:bot by:mvr];
     GLRenderObject* o = [Common cons_render_obj:[self get_tex_corner] npts:4];
 	
 	CGPoint* tri_pts = o.tri_pts;
     
-    [vec scale:NORMAL_ROUNDED_CORNER_SCALE];
+    vec = [VecLib scale:vec by:NORMAL_ROUNDED_CORNER_SCALE];
     
     tri_pts[0] = ccp(top.x+vec.x,top.y+vec.y);
     tri_pts[1] = top;
     tri_pts[2] = ccp(bot.x+vec.x,bot.y+vec.y);
     tri_pts[3] = bot;
-    [vec normalize];
     
     return o;
 }
 
--(void)cons_tl_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D*)vec {
+-(void)cons_tl_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
     tl_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
     CGPoint* tex_pts = tl_top_corner.tex_pts;
     
@@ -273,7 +273,7 @@
     tex_pts[2] = ccp(0,1);
 }
 
--(void)cons_tr_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D*)vec {
+-(void)cons_tr_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
     tr_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
     CGPoint* tex_pts = tr_top_corner.tex_pts;
     
@@ -289,18 +289,18 @@
     CGPoint* tri_pts = n.tri_pts;
 	CGPoint* tex_pts = n.tex_pts;
     
-    Vec3D *v = [Vec3D cons_x:b.x-a.x y:b.y-a.y z:0];
-    Vec3D *dirv;
+    Vec3D v = [VecLib cons_x:b.x-a.x y:b.y-a.y z:0];
+    Vec3D dirv;
     
     if (self.ndir == -1) {
-        dirv = [[Vec3D Z_VEC] crossWith:v];
+        dirv = [VecLib cross:[VecLib Z_VEC] with:v];
     } else {
-        dirv = [v crossWith:[Vec3D Z_VEC]];
+        dirv = [VecLib cross:v with:[VecLib Z_VEC]];
     }
     
-    [dirv normalize];
-    [dirv scale:BORDER_LINE_WIDTH];
-    [dirv scale:scale];
+    dirv = [VecLib normalize:dirv];
+    dirv = [VecLib scale:dirv by:BORDER_LINE_WIDTH];
+    dirv = [VecLib scale:dirv by:scale];
     
     tri_pts[0] = a;
     tri_pts[1] = b;
@@ -374,12 +374,13 @@
 -(void)cons_corner_top {
     //called from link_finish, position greenwedge
     
-    Vec3D *v3t2 = [Vec3D cons_x:(self.next.endX - self.next.startX) y:(self.next.endY - self.next.startY) z:0];
-    Vec3D *vZ = [Vec3D Z_VEC];
-    Vec3D *v3t1 = [v3t2 crossWith:vZ];
-    [v3t1 normalize];
-    [v3t1 negate];
-    [self scale_ndir:v3t1];
+    Vec3D v3t2 = [VecLib cons_x:(self.next.endX - self.next.startX) y:(self.next.endY - self.next.startY) z:0];
+    Vec3D vZ = [VecLib Z_VEC];
+    Vec3D v3t1 = [VecLib cross:v3t2 with:vZ];
+    //[v3t2 crossWith:vZ];
+    v3t1 = [VecLib normalize:v3t1];
+    v3t1 = [VecLib negate:v3t1];
+    v3t1 = [self scale_ndir:v3t1];
     
     float offset = OFFSET;
     float d_o_x = offset * v3t1.x;
@@ -392,14 +393,14 @@
      1 2
      */
     //toppts[0,1] already set, set[2] and scale
-    Vec3D *reduce_left = [Vec3D cons_x:toppts_fill.tri_pts[1].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[1].y-toppts_fill.tri_pts[0].y z:0];
-    [reduce_left normalize];
-    [reduce_left scale:corner_top_scale];
+    Vec3D reduce_left = [VecLib cons_x:toppts_fill.tri_pts[1].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[1].y-toppts_fill.tri_pts[0].y z:0];
+    reduce_left = [VecLib normalize:reduce_left];
+    reduce_left = [VecLib scale:reduce_left by:corner_top_scale];
     toppts_fill.tri_pts[1] = ccp( toppts_fill.tri_pts[0].x + reduce_left.x, toppts_fill.tri_pts[0].y + reduce_left.y);
     
-    Vec3D *reduce_right = [Vec3D cons_x:toppts_fill.tri_pts[2].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[2].y-toppts_fill.tri_pts[0].y z:0];
-    [reduce_right normalize];
-    [reduce_right scale:corner_top_scale];
+    Vec3D reduce_right = [VecLib cons_x:toppts_fill.tri_pts[2].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[2].y-toppts_fill.tri_pts[0].y z:0];
+    reduce_right = [VecLib normalize:reduce_right];
+    reduce_right = [VecLib scale:reduce_right by:corner_top_scale];
     toppts_fill.tri_pts[2] = ccp( toppts_fill.tri_pts[0].x + reduce_right.x, toppts_fill.tri_pts[0].y + reduce_right.y);
     
     toppts_fill.tex_pts[0] = ccp(0,0);
@@ -412,19 +413,19 @@
     
     CGPoint* tri_pts = corner_fill.tri_pts;
     
-    Vec3D *v3t2 = [Vec3D cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
-    Vec3D *vZ = [Vec3D Z_VEC];
-    Vec3D *v3t1 = [v3t2 crossWith:vZ];
-    [v3t1 normalize];
+    Vec3D v3t2 = [VecLib cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
+    Vec3D vZ = [VecLib Z_VEC];
+    Vec3D v3t1 = [VecLib cross:v3t2 with:vZ];
+    v3t1 = [VecLib normalize:v3t1];
     [self scale_ndir:v3t1];
     
     tri_pts[0] = ccp(self.endX-self.startX,self.endY-self.startY);
     tri_pts[1] = ccp(self.endX+v3t1.x*fill_hei-self.startX,self.endY+v3t1.y*fill_hei-self.startY);
     
-    v3t2 = [Vec3D cons_x:(self.next.endX - self.next.startX) y:(self.next.endY - self.next.startY) z:0];
-    v3t1 = [v3t2 crossWith:vZ];
-    [v3t1 normalize];
-    [self scale_ndir:v3t1];
+    v3t2 = [VecLib cons_x:(self.next.endX - self.next.startX) y:(self.next.endY - self.next.startY) z:0];
+    v3t1 = [VecLib cross:v3t2 with:vZ];
+    v3t1 = [VecLib normalize:v3t1];
+    v3t1 = [self scale_ndir:v3t1];
     tri_pts[2] = ccp(self.next.startX+v3t1.x*self.next.fill_hei-self.startX, self.next.startY+v3t1.y*self.next.fill_hei-self.startY);
     
     [self corner_fill_tex_map];

@@ -49,9 +49,9 @@
         wait = SPAWN_WAIT_BASE;
     }
     
-    Vec3D *dv = [Vec3D cons_x:vx y:vy z:0];
-    [dv normalize];
-    float rot = -[Common rad_to_deg:[dv get_angle_in_rad]];
+    Vec3D dv = [VecLib cons_x:vx y:vy z:0];
+    dv=[VecLib normalize:dv];
+    float rot = -[Common rad_to_deg:[VecLib get_angle_in_rad:dv]];
     rotation_ = rot;
 }
 -(void)dealloc {

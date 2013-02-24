@@ -34,19 +34,19 @@
     float BCENTER_HEI = 39*2;
     
     CGPoint p2off = ccp(self.endX-self.startX,self.endY-self.startY);
-    Vec3D *linedir = [Vec3D cons_x:p2off.x y:p2off.y z:0];
-    [linedir normalize];
+    Vec3D linedir = [VecLib cons_x:p2off.x y:p2off.y z:0];
+    linedir=[VecLib normalize:linedir];
     
-    Vec3D *linenormal = [linedir crossWith:[Vec3D Z_VEC]];
-    [linenormal normalize];
+    Vec3D linenormal = [VecLib cross:linedir with:[VecLib Z_VEC]];
+    linenormal = [VecLib normalize:linenormal];
     
     /*
      23 --23---23
      
      01   01   01
      */
-    [linedir scale:-BEDGE_WID];
-    [linenormal scale:BEDGE_HEI];
+    linedir = [VecLib scale:linedir by:-BEDGE_WID];
+    linenormal=[VecLib scale:linenormal by:BEDGE_HEI];
     left = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_EDGE] npts:4];
     left.tri_pts[0] = ccp(linedir.x,linenormal.y);
     left.tri_pts[1] = ccp(0,linenormal.y);
@@ -58,8 +58,8 @@
     left.tex_pts[2] = ccp(0,1);
     left.tex_pts[3] = ccp(1,1);
     
-    [linedir normalize];
-    [linedir scale:-BEDGE_WID];
+    linedir=[VecLib normalize:linedir];
+    linedir = [VecLib scale:linedir by:-BEDGE_WID];
     right = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_EDGE] npts:4];
     right.tri_pts[1] = ccp(p2off.x+linedir.x,p2off.y+linenormal.y);
     right.tri_pts[0] = ccp(p2off.x,p2off.y+linenormal.y);
@@ -71,8 +71,8 @@
     right.tex_pts[3] = ccp(0,1);
     right.tex_pts[2] = ccp(1,1);
     
-    [linedir normalize];
-    [linedir scale:2];
+    linedir=[VecLib normalize:linedir];
+    linedir = [VecLib scale:linedir by:2];
     for(int i = 0; i < 4; i++) {
         right.tri_pts[i].x -= linedir.x;
         right.tri_pts[i].y -= linedir.y;
@@ -81,10 +81,10 @@
     }
     
     
-    linedir = [Vec3D cons_x:p2off.x y:p2off.y z:0];
-    linenormal = [linedir crossWith:[Vec3D Z_VEC]];
-    [linenormal normalize];
-    [linenormal scale:BCENTER_HEI];
+    linedir = [VecLib cons_x:p2off.x y:p2off.y z:0];
+    linenormal = [VecLib cross:linedir with:[VecLib Z_VEC]];
+    linenormal = [VecLib normalize:linenormal];
+    linenormal = [VecLib scale:linenormal by:BCENTER_HEI];
     
     center = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_SECTION] npts:4];
     center.tri_pts[0] = ccp(linenormal.x,linenormal.y);
@@ -92,14 +92,14 @@
     center.tri_pts[2] = ccp(0,0);
     center.tri_pts[3] = ccp(linedir.x,linedir.y);
     
-    [linenormal normalize];
-    [linenormal scale:-10];
+    linenormal = [VecLib normalize:linenormal];
+    linenormal = [VecLib scale:linenormal by:-10];
     for(int i = 0; i < 4; i++) {
         center.tri_pts[i].x += linenormal.x;
         center.tri_pts[i].y += linenormal.y;
     }
     
-    float reps = [linedir length] / BCENTER_WID;
+    float reps = [VecLib length:linedir] / BCENTER_WID;
     reps = floorf(reps);
     
     center.tex_pts[2] = ccp(0,0);

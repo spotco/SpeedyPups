@@ -21,11 +21,11 @@
 -(void)link_finish;
 -(void)post_link_finish;
 
--(Vec3D*)get_normal_vecC;
+-(Vec3D)get_normal_vecC;
 -(line_seg)get_line_seg;
 -(float)get_t_given_position:(CGPoint)position;
 -(CGPoint)get_position_given_t:(float)t;
--(Vec3D*)get_tangent_vec;
+-(Vec3D)get_tangent_vec;
 -(float)get_height:(float)pos;
 -(void)set_pt1:(CGPoint)start pt2:(CGPoint)end;
 -(HitRect)get_hitrect;

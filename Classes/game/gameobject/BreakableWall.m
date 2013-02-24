@@ -25,7 +25,7 @@
         activated = YES;
         broken = YES;
         
-        float len = [dir_vec length];
+        float len = [VecLib length:dir_vec];
         for(float i = 0; i < len; i+=float_random(8, 30)) {
             [g add_particle:[BreakableWallRockParticle cons_x:position_.x + (i/len)*dir_vec.x
                                                             y:position_.y + (i/len)*dir_vec.y

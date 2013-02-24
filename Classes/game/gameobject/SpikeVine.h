@@ -4,7 +4,7 @@
 #import "HitEffect.h"
 
 @interface SpikeVine  : GameObject {
-    Vec3D *dir_vec;
+    Vec3D dir_vec;
     GLRenderObject *top,*bottom,*center;
     SATPoly r_hitbox;
     

@@ -21,7 +21,7 @@
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
     if (p.current_island != NULL) {
-        Vec3D *t = [p.current_island get_tangent_vec];
+        Vec3D t = [p.current_island get_tangent_vec];
         self.vx = t.x;
         self.vy = t.y;
     } else {    
