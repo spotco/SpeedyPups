@@ -94,7 +94,7 @@ static float prevy = 0;
 
 -(void)dealloc {
     for (CCNode* n in clouds) {
-        [self removeChild:n cleanup:NO];
+        [self removeChild:n cleanup:YES];
     }
     [clouds removeAllObjects];
 }

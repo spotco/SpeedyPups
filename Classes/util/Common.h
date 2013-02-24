@@ -32,6 +32,7 @@
 	CGPoint tri_pts[4];
 	CGPoint tex_pts[4];
 }
+
     @property(readwrite,unsafe_unretained) CCTexture2D* texture;
     @property(readwrite,assign) int isalloc,pts;
     -(CGPoint*)tri_pts;

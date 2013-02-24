@@ -48,7 +48,4 @@
 
 -(GLRenderObject*)get_main_fill;
 
-
-
-
 @end

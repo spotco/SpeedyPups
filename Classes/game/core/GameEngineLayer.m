@@ -197,6 +197,12 @@ int test;
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
         
     }
+    
+    test++;
+    if (test%20==0) {
+        //NSLog(@"wct:%d",[GLRenderObject get_ict]);
+    }
+    
     [GEventDispatcher dispatch_events];
 }
 
@@ -247,7 +253,7 @@ int test;
 }
 -(void)remove_gameobject:(GameObject *)o {
     [game_objects removeObject:o];
-    [self removeChild:o cleanup:NO];
+    [self removeChild:o cleanup:YES];
 }
 
 /* event dispatch handlers */
@@ -439,7 +445,7 @@ static NSMutableArray* particles_tba;
     for (Particle *i in particles) {
         [i update:self];
         if ([i should_remove]) {
-            [self removeChild:i cleanup:NO];
+            [self removeChild:i cleanup:YES];
             [toremove addObject:i];
         }
     }

@@ -28,7 +28,6 @@
     new_island.can_land = can_land;
 	[new_island cons_tex];
 	[new_island cons_top];
-    
 	return new_island;
 }
 
