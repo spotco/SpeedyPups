@@ -62,7 +62,6 @@
     [GEventDispatcher add_listener:self];
     refresh_viewbox_cache = YES;
     CGPoint player_start_pt = [self loadMap:map_filename];
-    
     [self cons_bones];
     particles = [[NSMutableArray alloc] init];
     player = [Player cons_at:player_start_pt];

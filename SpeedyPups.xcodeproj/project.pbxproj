@@ -1182,6 +1182,28 @@
 			name = libs;
 			sourceTree = "<group>";
 		};
+		7E5BA16E16DA1F0100700BF2 /* evt_anim */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B44916D9FC0900F58961 /* GameStartAnim.h */,
+				7EB8B44A16D9FC0900F58961 /* GameStartAnim.m */,
+				7EB8B44B16D9FC0900F58961 /* UIAnim.h */,
+				7EB8B44C16D9FC0900F58961 /* UIAnim.m */,
+			);
+			name = evt_anim;
+			sourceTree = "<group>";
+		};
+		7E5BA16F16DA1F0E00700BF2 /* ingame_anim */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B44716D9FC0900F58961 /* BoneCollectUIAnimation.h */,
+				7EB8B44816D9FC0900F58961 /* BoneCollectUIAnimation.m */,
+				7EB8B44D16D9FC0900F58961 /* UIIngameAnimation.h */,
+				7EB8B44E16D9FC0900F58961 /* UIIngameAnimation.m */,
+			);
+			name = ingame_anim;
+			sourceTree = "<group>";
+		};
 		7EB8B1E016D9F8E600F58961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1932,14 +1954,8 @@
 		7EB8B44616D9FC0900F58961 /* uilayer */ = {
 			isa = PBXGroup;
 			children = (
-				7EB8B44716D9FC0900F58961 /* BoneCollectUIAnimation.h */,
-				7EB8B44816D9FC0900F58961 /* BoneCollectUIAnimation.m */,
-				7EB8B44916D9FC0900F58961 /* GameStartAnim.h */,
-				7EB8B44A16D9FC0900F58961 /* GameStartAnim.m */,
-				7EB8B44B16D9FC0900F58961 /* UIAnim.h */,
-				7EB8B44C16D9FC0900F58961 /* UIAnim.m */,
-				7EB8B44D16D9FC0900F58961 /* UIIngameAnimation.h */,
-				7EB8B44E16D9FC0900F58961 /* UIIngameAnimation.m */,
+				7E5BA16F16DA1F0E00700BF2 /* ingame_anim */,
+				7E5BA16E16DA1F0100700BF2 /* evt_anim */,
 				7EB8B44F16D9FC0900F58961 /* UILayer.h */,
 				7EB8B45016D9FC0900F58961 /* UILayer.m */,
 			);

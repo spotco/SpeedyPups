@@ -6,7 +6,6 @@
 +(SpeedUp*)cons_x:(float)x y:(float)y dirvec:(Vec3D)vec{
     SpeedUp *s = [SpeedUp node];
     s.position = ccp(x,y);
-    //s.anchorPoint = ccp(s.anchorPoint.x,0);
     [s cons_anim];
     [s set_dir:vec];
     [s setActive:YES];
@@ -96,10 +95,6 @@
     Vec3D tangent = [VecLib cross:vec with:[VecLib Z_VEC]];
     float tar_rad = -[VecLib get_angle_in_rad:tangent] - M_PI/2;
     rotation_ = [Common rad_to_deg:tar_rad];
-}
-
--(void)dealloc {
-    [self stopAllActions];
 }
 
 @end

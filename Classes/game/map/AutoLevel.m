@@ -196,10 +196,8 @@ static NSArray* bossloadertest;
 
 -(void)remove_map_section_from_current:(MapSection*)m {
     [tglayer.islands removeObjectsInArray:m.map.n_islands];
-    
     for (Island* i in m.map.n_islands) {
         if (tglayer.player.current_island == i) tglayer.player.current_island = NULL;
-        [tglayer removeChild:i cleanup:NO];
         if (i.prev != NULL) {
             i.prev.next = NULL;
             i.prev = NULL;
@@ -208,13 +206,14 @@ static NSArray* bossloadertest;
             i.next.prev = NULL;
             i.next = NULL;
         }
+        [tglayer removeChild:i cleanup:YES];
     }
     
     [tglayer.game_objects removeObjectsInArray:m.map.game_objects];
     
     for(GameObject* o in m.map.game_objects) {
-        [tglayer removeChild:o cleanup:NO];
         if (tglayer.player.current_swingvine == o) tglayer.player.current_swingvine = NULL;
+        [tglayer removeChild:o cleanup:YES];
     }
     
     [map_sections removeObject:m];

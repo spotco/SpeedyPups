@@ -1,10 +1,10 @@
 #import "MapLoader.h"
 
 @implementation GameMap
-@synthesize assert_links;
-@synthesize connect_pts_x1,connect_pts_x2,connect_pts_y1,connect_pts_y2;
-@synthesize game_objects,n_islands;
-@synthesize player_start_pt;
+    @synthesize assert_links;
+    @synthesize connect_pts_x1,connect_pts_x2,connect_pts_y1,connect_pts_y2;
+    @synthesize game_objects,n_islands;
+    @synthesize player_start_pt;
 @end
 
 @implementation MapLoader

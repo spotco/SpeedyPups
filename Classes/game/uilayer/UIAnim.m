@@ -8,6 +8,7 @@
     [self removeAllChildrenWithCleanup:YES];
     [GEventDispatcher remove_listener:self];
     [Common run_callback:anim_complete];
+    [self.parent removeChild:self cleanup:YES];
 }
 
 -(void)update {

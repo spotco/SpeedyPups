@@ -8,7 +8,7 @@ typedef enum {
 } AutoLevelMode;
 
 @interface AutoLevel : GameObject <GEventListener> {
-    GameEngineLayer* tglayer;
+    GameEngineLayer* __unsafe_unretained tglayer;
     float cur_x,cur_y;
     NSMutableArray* __strong map_sections; //current ingame mapsections
     NSMutableArray* __strong queued_sections; //next mapsections

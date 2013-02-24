@@ -68,10 +68,11 @@
     }
     
     
-    NSMutableArray *toremove = [NSMutableArray array];
+    NSMutableArray *toremove = [[NSMutableArray alloc] init];
     for (UIIngameAnimation *i in ingame_ui_anims) {
+        [i update];
         if (i.ct <= 0) {
-            [self removeChild:i cleanup:NO];
+            [self removeChild:i cleanup:YES];
             [toremove addObject:i];
         }
     }
@@ -337,6 +338,7 @@
     [self addChild:curanim];
 }
 -(void)end_initial_anim {
+    curanim = NULL;
     game_engine_layer.current_mode = GameEngineLayerMode_GAMEPLAY;
     ingame_ui.visible = YES;
     [self removeChild:curanim cleanup:YES];

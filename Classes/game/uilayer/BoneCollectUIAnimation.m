@@ -8,7 +8,6 @@
 +(BoneCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
     BoneCollectUIAnimation *b = [BoneCollectUIAnimation node];
     [b cons_start:start end:end];
-    [GEventDispatcher add_listener:b];
     return b;
 }
 
@@ -33,7 +32,6 @@
         tarscale = 2*ct/35.0;
     }
     [self setScale:tarscale];    
-    
     ct--;
 }
 
