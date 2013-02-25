@@ -1,4 +1,5 @@
 {
+    "start_x": 117,
     "islands": [
         {"type": "line", "y2": 1251, "x1": 50, "can_fall": true, "x2": 301, "ground": "open", "ndir": "left", "y1": 1249, "hei": 500},
         {"type": "line", "y2": 1232, "x1": 301, "can_fall": true, "x2": 379, "ground": "open", "ndir": "left", "y1": 1251, "hei": 500},
@@ -96,11 +97,9 @@
             "label": "CAM(150,140,120)",
             "camera": {"x": 150, "z": 120, "y": 140}
         },
-        {"type": "ground_detail", "x": 1546.7, "label": "(131)gd_img:3", "img": 3, "y": 2002.2},
-        {"type": "checkpoint", "x": 222, "label": "0", "y": 1251}
+        {"type": "ground_detail", "x": 1546.7, "label": "(131)gd_img:3", "img": 3, "y": 2002.2}
     ],
     "connect_pts": {"y2": 1065, "x1": 50, "y1": 1249, "x2": 2306},
-    "start_x": 117,
     "assert_links": 43,
-    "start_y": 1308
+    "start_y": 1307.9714285714285
 }

@@ -32,6 +32,10 @@
     refresh_cached_hitbox = YES;
 }
 
+-(int)get_render_ord {
+    return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND];
+}
+
 -(HitRect)get_hit_rect {
     if (refresh_cached_hitbox) {
         refresh_cached_hitbox = NO;

@@ -416,7 +416,7 @@
     Vec3D vZ = [VecLib Z_VEC];
     Vec3D v3t1 = [VecLib cross:v3t2 with:vZ];
     v3t1 = [VecLib normalize:v3t1];
-    [self scale_ndir:v3t1];
+    v3t1 = [self scale_ndir:v3t1];
     
     tri_pts[0] = ccp(self.endX-self.startX,self.endY-self.startY);
     tri_pts[1] = ccp(self.endX+v3t1.x*fill_hei-self.startX,self.endY+v3t1.y*fill_hei-self.startY);
@@ -428,12 +428,11 @@
     tri_pts[2] = ccp(self.next.startX+v3t1.x*self.next.fill_hei-self.startX, self.next.startY+v3t1.y*self.next.fill_hei-self.startY);
     
     [self corner_fill_tex_map];
-    //[Common tex_map_to_tri_loc:&corner_fill len:3];
 }
 
 -(void)corner_fill_tex_map {
     for (int i = 0; i < 4; i++) {
-        corner_fill.tex_pts[i] = ccp(( corner_fill.tri_pts[i].x+self.startX)/ corner_fill.texture.pixelsWide,
+        corner_fill.tex_pts[i] = ccp(( corner_fill.tri_pts[i].x+self.startX)/   corner_fill.texture.pixelsWide,
                                      ( corner_fill.tri_pts[i].y+self.startY)/   corner_fill.texture.pixelsHigh);
     }
 }
