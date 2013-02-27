@@ -200,7 +200,7 @@ int test;
     
     test++;
     if (test%20==0) {
-        //NSLog(@"wct:%d",[GLRenderObject get_ict]);
+        
     }
     
     [GEventDispatcher dispatch_events];

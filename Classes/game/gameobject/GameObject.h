@@ -22,4 +22,6 @@
 
 -(Island*)get_connecting_island:(NSMutableArray*)islands;
 
++(void)pct;
+
 @end

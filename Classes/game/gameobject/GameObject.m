@@ -8,6 +8,21 @@
 @synthesize active,do_render;
 @synthesize img;
 
+-(id)init {
+    ct++;
+    return [super init];
+}
+
+int ct;
+
+-(void)dealloc {
+    ct--;
+}
+
++(void)pct {
+    NSLog(@"ct:%d",ct);
+}
+
 -(void)update:(Player*)player g:(GameEngineLayer *)g {}
 
 -(void)check_should_render:(GameEngineLayer *)g {

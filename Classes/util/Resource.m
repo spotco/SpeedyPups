@@ -45,6 +45,9 @@ static NSMutableDictionary* textures = nil;
                         @"BG_cave_spike.png", TEX_CAVE_SPIKE,
 
                         @"BG1_sky.png", TEX_BG_SKY,
+                        @"BG1_sun.png", TEX_BG_SUN,
+                        @"BG1_moon.png", TEX_BG_MOON,
+                        @"BG1_stars.png",TEX_BG_STARS,
                         @"BG1_layer_1.png", TEX_BG_LAYER_1,
                         @"BG1_layer_2.png", TEX_BG_LAYER_2,
                         @"BG1_layer_3.png", TEX_BG_LAYER_3,

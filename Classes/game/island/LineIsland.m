@@ -152,7 +152,10 @@
     
     float taille = fill_hei;
     
-    
+    /**
+     32
+     10
+     **/
     tri_pts[3] = ccp(0,0);
     tri_pts[2] = ccp(self.endX-self.startX,self.endY-self.startY);
     tri_pts[1] = ccp(0+v3t1.x * taille,0+v3t1.y * taille);
@@ -343,7 +346,7 @@
     if (self.next != NULL) {
         
         [self cons_corner_tex];
-        if (corner_fill != NULL) [Common transform_obj:corner_fill by:position_];
+        [Common transform_obj:corner_fill by:position_];
         
         
         if (toppts_fill != NULL && toppts_fill.isalloc == 0) {
@@ -428,15 +431,31 @@
     tri_pts[2] = ccp(self.next.startX+v3t1.x*self.next.fill_hei-self.startX, self.next.startY+v3t1.y*self.next.fill_hei-self.startY);
     
     [self corner_fill_tex_map];
+    /**
+     main fill
+     32
+     10
+     **/
+    
+    /**
+     corner_fill:
+        0
+     cur12next
+     **/
+    corner_fill.tex_pts[0] = main_fill.tex_pts[2];
+    corner_fill.tex_pts[1] = main_fill.tex_pts[0];
+    corner_fill.tex_pts[2] = ccp(
+        (corner_fill.tri_pts[2].x - corner_fill.tri_pts[1].x)/corner_fill.texture.pixelsWide + corner_fill.tex_pts[1].x,
+        (corner_fill.tri_pts[2].y - corner_fill.tri_pts[1].y)/corner_fill.texture.pixelsHigh + corner_fill.tex_pts[1].y
+    );
 }
 
 -(void)corner_fill_tex_map {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 2; i < 4; i++) {
         corner_fill.tex_pts[i] = ccp(( corner_fill.tri_pts[i].x+self.startX)/   corner_fill.texture.pixelsWide,
                                      ( corner_fill.tri_pts[i].y+self.startY)/   corner_fill.texture.pixelsHigh);
     }
 }
-
 
 -(GLRenderObject*)get_main_fill {
     return main_fill;

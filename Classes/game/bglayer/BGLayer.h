@@ -3,6 +3,7 @@
 #import "BackgroundObject.h"
 #import "LabBGObject.h"
 #import "CloudGenerator.h"
+#import "BGTimeManager.h"
 #import "GameEngineLayer.h"
 #import "GameMain.h"
 #import "GEventDispatcher.h"
@@ -20,6 +21,8 @@
     GameEngineLayer* game_engine_layer;
     
     float lastx,lasty, curx,cury;
+    
+    CCSprite* starsbg;
 }
 
 +(BGLayer*)cons_with_gamelayer:(GameEngineLayer*)g;

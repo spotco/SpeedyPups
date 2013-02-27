@@ -44,7 +44,6 @@
     NSMutableArray *a = [[NSMutableArray alloc] init];
     if ([GameMain GET_USE_BG]) {
         [a addObject:[LabBGObject cons]];
-        //[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB_BG] scrollspd_x:1 scrollspd_y:1]];
     }
     
     return a;
@@ -53,15 +52,18 @@
 
 -(NSMutableArray*) load_normal_bg {
 	NSMutableArray *a = [[NSMutableArray alloc] init];
-    
+    starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
+    [starsbg setOpacity:0];
     if ([GameMain GET_USE_BG]) {
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0]];
+        [a addObject:starsbg];
+        [a addObject:[BGTimeManager cons]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.02]];
-        [a addObject:[CloudGenerator cons_from_tex:[Resource get_tex:TEX_CLOUD] scrollspd_x:0.1 scrollspd_y:0.025 baseHeight:250]];
+        [a addObject:[CloudGenerator cons]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_2] scrollspd_x:0.075 scrollspd_y:0.04]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.05]];
+        
     }
-    
     return a;
 }
 
@@ -90,6 +92,9 @@ static const float FADECTR_MAX = 10;
         [self set_opacity_objset:visible_set tar:255];
         fadectr = 0;
         
+    } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
+        [self set_day_night_color:e.i1];
+        
     }
 }
 
@@ -112,10 +117,7 @@ static const float FADECTR_MAX = 10;
                 } else {
                     [self set_opacity_objset:a tar:255 - (fadectr/FADECTR_MAX)*100];
                 }
-                
             }
-            
-            
         }
     }
     
@@ -133,7 +135,6 @@ static const float FADECTR_MAX = 10;
     
 	[self update_objset:normal_bg_elements];
     [self update_objset:lab_bg_elements];
-    
 }
 
 -(void)update_objset:(NSMutableArray*)a {
@@ -163,15 +164,26 @@ static const float FADECTR_MAX = 10;
     [lab_bg_elements removeAllObjects];
 }
 
+
+#define iSKY 0
+#define iBACKHILL 2
+#define iCLOUD 3
+#define iTREEHILL 4
+#define iFRNTHILL 5
+
+-(BackgroundObject*)bgo_at:(int)i {return [normal_bg_elements objectAtIndex:i];}
+
+int pb(int base,float pctm) {return base+(255-base)*pctm;}
+
+//day is 100, night is 0
+-(void)set_day_night_color:(int)val {
+    float pctm = ((float)val) / 100;
+    [[self bgo_at:iSKY] setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
+    [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
+    [[self bgo_at:iBACKHILL] setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
+    [[self bgo_at:iTREEHILL] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
+    [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(160,pctm),pb(160,pctm),pb(200,pctm))];
+    [starsbg setOpacity:255-pctm*255];
+}
+
 @end
-
-
-/*ct--; //TODO -- day/night effect
- if (ct > 0) {
- [bgsky setColor:ccc3(ct,MAX(ct,20),MAX(ct,50))];
- [bghills setColor:ccc3(MAX(70,ct),MAX(ct,70),MAX(ct,70))];
- [bgclouds setColor:ccc3(MAX(150,ct),MAX(ct,150),MAX(ct,200))];
- [bgtrees setColor:ccc3(MAX(110,ct),MAX(ct,110),MAX(ct,110))];
- [bgclosehills setColor:ccc3(MAX(150,ct),MAX(ct,150),MAX(ct,150))];
- [game_engine_layer setColor:ccc3(MAX(200,ct),MAX(200,ct),MAX(200,ct))];
- }*/

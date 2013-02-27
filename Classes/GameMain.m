@@ -2,7 +2,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define ENABLE_BG_PARTICLES YES
 #define DRAW_HITBOX NO
 #define TARGET_FPS 60
@@ -14,7 +14,7 @@
 #define STARTING_LIVES 99
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"swingvine_bounswindodg"
+#define TESTLEVEL @"classic_huegcave"
 
 /**
  TODO --
@@ -48,8 +48,8 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-    [GameMain start_testlevel];
-    //[GameMain start_game_autolevel];
+    //[GameMain start_testlevel];
+    [GameMain start_game_autolevel];
     //[GameMain start_menu];
     //[GameMain start_game_bosstestlevel];
     
