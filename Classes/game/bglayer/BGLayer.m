@@ -86,11 +86,12 @@ static const float FADECTR_MAX = 10;
         fadectr = FADECTR_MAX;
         
     } else if (e.type == GEventType_GAME_RESET) {
-        [self set_visible_objset:lab_bg_elements tar:NO];
+        /*[self set_visible_objset:lab_bg_elements tar:NO];
         visible_set = normal_bg_elements;
         [self set_visible_objset:visible_set tar:YES];
         [self set_opacity_objset:visible_set tar:255];
-        fadectr = 0;
+        fadectr = 0;*/
+        //TODO--lab bg fade out when reset?
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
         [self set_day_night_color:e.i1];
@@ -181,8 +182,8 @@ int pb(int base,float pctm) {return base+(255-base)*pctm;}
     [[self bgo_at:iSKY] setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
     [[self bgo_at:iBACKHILL] setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
-    [[self bgo_at:iTREEHILL] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
-    [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(160,pctm),pb(160,pctm),pb(200,pctm))];
+    [[self bgo_at:iTREEHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
+    [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     [starsbg setOpacity:255-pctm*255];
 }
 
