@@ -106,4 +106,6 @@ CGPoint CGPointAdd(CGPoint a,CGPoint b);
 
 +(CameraZoom)cons_normalcoord_camera_zoom_x:(float)x y:(float)y z:(float)z;
 
++(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale;
+
 @end

@@ -128,21 +128,24 @@ static NSMutableDictionary* textures = nil;
 
                         @"GO.png", TEX_UI_STARTGAME_GO,
                         @"READY.png", TEX_UI_STARTGAME_READY,
-
-                        @"menu_select_dot_small.png",TEX_MENU_TEX_SELECTDOT_SMALL,
+//
+//                        @"menu_select_dot_small.png",TEX_MENU_TEX_SELECTDOT_SMALL,
                         @"menu_back_button.png",TEX_MENU_TEX_BACKBUTTON,
-                        @"menu_bg.png",TEX_MENU_BG,
+//                        @"menu_bg.png",TEX_MENU_BG,
                         @"menu_button_menu.png",TEX_MENU_BUTTON_MENU,
                         @"menu_button_playagain.png",TEX_MENU_BUTTON_PLAYAGAIN,
-                        @"menu_current_character.png",TEX_MENU_CURRENT_CHARACTER,
-                        @"menu_dog_mode_title.png",TEX_MENU_DOG_MODE_TITLE,
-                        @"menu_gray_overlay.png",TEX_MENU_GRAY_OVERLAY,
-                        @"menu_logo.png",TEX_MENU_LOGO,
-                        @"menu_play_button.png",TEX_MENU_PLAYBUTTON,
-                        @"menu_settings_button.png",TEX_MENU_SETTINGS_BUTTON,
-                        @"menu_stats_title.png",TEX_MENU_STATS_TITLE,
-                        @"menu_stats_button.png",TEX_MENU_STATS_BUTTON,
-                        @"menu_settings_title.png",TEX_MENU_SETTINGS_TITLE,
+//                        @"menu_current_character.png",TEX_MENU_CURRENT_CHARACTER,
+//                        @"menu_dog_mode_title.png",TEX_MENU_DOG_MODE_TITLE,
+//                        @"menu_gray_overlay.png",TEX_MENU_GRAY_OVERLAY,
+//                        @"menu_logo.png",TEX_MENU_LOGO,
+//                        @"menu_play_button.png",TEX_MENU_PLAYBUTTON,
+//                        @"menu_settings_button.png",TEX_MENU_SETTINGS_BUTTON,
+//                        @"menu_stats_title.png",TEX_MENU_STATS_TITLE,
+//                        @"menu_stats_button.png",TEX_MENU_STATS_BUTTON,
+//                        @"menu_settings_title.png",TEX_MENU_SETTINGS_TITLE,
+                     
+                        @"nmenu_items.png",TEX_NMENU_ITEMS,
+                        @"nmenu_bg.png",TEX_NMENU_BG,
                      
                      nil];
     [Resource load_tex_from_array:temp];

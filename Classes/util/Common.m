@@ -325,6 +325,4 @@ bool fm_a_gt_b(double a,double b,double delta) {
 }
 
 
-
-
 @end

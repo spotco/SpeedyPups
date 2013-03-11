@@ -7,26 +7,22 @@
 #define DRAW_HITBOX NO
 #define TARGET_FPS 60
 #define RESET_STATS NO
-#define DISPLAY_FPS YES
+#define DISPLAY_FPS NO
 #define DEBUG_UI NO
 #define USE_NSTIMER NO
 #define HOLD_TO_STOP NO
 #define STARTING_LIVES 99
-#define PLAY_SFX NO
+#define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"classic_huegcave"
+#define TESTLEVEL @"jumppad_spikeceil"
 
 /**
  TODO --
- -move water in front of island?
- -nozzle fire, boss explode particles
- 
  -player run in animation from menu
- -sun + day/night
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -item quickslot
- -boss1 sfx, breakage particles
+ -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  **/
 
 /**
@@ -49,8 +45,8 @@
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
     //[GameMain start_testlevel];
-    [GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    //[GameMain start_game_autolevel];
+    [GameMain start_menu];
     //[GameMain start_game_bosstestlevel];
     
 }
