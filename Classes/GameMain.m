@@ -12,13 +12,20 @@
 #define USE_NSTIMER NO
 #define HOLD_TO_STOP NO
 #define STARTING_LIVES 99
-#define PLAY_SFX YES
+#define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"jumppad_spikeceil"
+#define TESTLEVEL @"robotstest"
 
 /**
  TODO --
  -player run in animation from menu
+ -player run in birds
+ -char select make work
+ 
+ -tutorial levels
+ 
+ -auto difficulty adjustment
+ 
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -item quickslot
@@ -47,6 +54,7 @@
     //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
     [GameMain start_menu];
+    
     //[GameMain start_game_bosstestlevel];
     
 }

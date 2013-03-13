@@ -42,6 +42,8 @@
     [m setPosition:ccp(0,0)];
     [self addChild:m];
     
+    [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopsign" pos:[Common screen_pctwid:0.1 pcthei:0.88]]];
+    
     [self addChild:[MenuCommon cons_common_nav_menu]];
     return self;
 }

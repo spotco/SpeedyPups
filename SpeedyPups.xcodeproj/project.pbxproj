@@ -486,6 +486,7 @@
 		7EC5ED1D16D9DDAF00E9D431 /* ZFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EC5416D9DDAF00E9D431 /* ZFont.h */; };
 		7EC5ED1E16D9DDAF00E9D431 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5EC5516D9DDAF00E9D431 /* ZFont.m */; };
 		7EC5ED2316D9DE9300E9D431 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5ED2216D9DE9300E9D431 /* main.m */; };
+		7ECD9EE616F0103900FD0B99 /* CharSelAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD9EE516F0103900FD0B99 /* CharSelAnim.m */; };
 		7EF8A66B16D9BA5C009A1FC5 /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */; };
 		7EF8A66C16D9BA5C009A1FC5 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8A65D16D9BA5C009A1FC5 /* CDataScanner.m */; };
 		7EF8A66D16D9BA5C009A1FC5 /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A65F16D9BA5C009A1FC5 /* CDataScanner_Extensions.h */; };
@@ -1094,6 +1095,8 @@
 		7EC5EC5416D9DDAF00E9D431 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
 		7EC5EC5516D9DDAF00E9D431 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		7EC5ED2216D9DE9300E9D431 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7ECD9EE416F0103900FD0B99 /* CharSelAnim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharSelAnim.h; path = details/CharSelAnim.h; sourceTree = "<group>"; };
+		7ECD9EE516F0103900FD0B99 /* CharSelAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharSelAnim.m; path = details/CharSelAnim.m; sourceTree = "<group>"; };
 		7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		7EF8A65D16D9BA5C009A1FC5 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		7EF8A65F16D9BA5C009A1FC5 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
@@ -1169,6 +1172,8 @@
 		7E0A788216ED6BBC0026C418 /* details */ = {
 			isa = PBXGroup;
 			children = (
+				7ECD9EE416F0103900FD0B99 /* CharSelAnim.h */,
+				7ECD9EE516F0103900FD0B99 /* CharSelAnim.m */,
 				7E0A788316ED6BD80026C418 /* Flowers.h */,
 				7E0A788416ED6BD80026C418 /* Flowers.m */,
 				7E0A788C16ED7AD60026C418 /* Shopkeeper.h */,
@@ -2830,6 +2835,7 @@
 				7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */,
 				7E0A788B16ED781D0026C418 /* NMenuShopPage.m in Sources */,
 				7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */,
+				7ECD9EE616F0103900FD0B99 /* CharSelAnim.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
