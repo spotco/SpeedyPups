@@ -46,18 +46,19 @@
     return max;
 }
 
-#define INIT_X 140
-#define INIT_Y 80
-#define INIT_Z 80
-+(void)reset_camera:(CameraZoom*)c {
-    c->x = INIT_X;
-    c->y = INIT_Y;
-    c->z = INIT_Z;
+#define INIT_X 120
+#define INIT_Y 110
+#define INIT_Z 160
+
++(void)reset_camera:(CameraZoom*)c {    
+    CameraZoom t = [Common cons_normalcoord_camera_zoom_x:INIT_X y:INIT_Y z:INIT_Z];
+    c->x = t.x;
+    c->y = t.y;
+    c->z = t.z;
 }
 
 #define ZOOMSPD 50.0
-//#define YDIR_DEFAULT 80.0
-#define YDIR_ZOOMMAX 180.0
+
 //480x320 
 +(void)update_zoom:(GameEngineLayer*)layer {
     float g_dist = [GameRenderImplementation calc_g_dist:layer.player islands:layer.islands];

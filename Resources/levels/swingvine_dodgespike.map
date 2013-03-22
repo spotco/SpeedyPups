@@ -26,17 +26,16 @@
         {"type": "dogbone", "x": 2404, "label": "BID:4", "bid": 4, "y": 1097},
         {"type": "dogbone", "x": 2880, "label": "BID:5", "bid": 5, "y": 1186},
         {"type": "dogbone", "x": 2877, "label": "BID:6", "bid": 6, "y": 1094},
-        {"x": 3740, "y2": 1101.3999999999999, "y": 1405.7, "x2": 3741.4, "type": "swingvine", "label": "28"},
+        {"x": 3740, "y2": 1101.4, "y": 1405.7, "x2": 3741.4, "type": "swingvine", "label": "28"},
         {"type": "dogbone", "x": 3587.2, "label": "BID:7", "bid": 7, "y": 1270},
         {"type": "dogbone", "x": 3590, "label": "BID:8", "bid": 8, "y": 1184.3},
-        {"type": "ground_detail", "x": 3400, "label": "(34)gd_img:2", "img": 2, "y": 1005.7},
-        {"x": 4181.5, "y2": 1095.7999999999997, "y": 1408.6, "x2": 4184.3, "type": "swingvine", "label": "36"},
+        {"x": 4181.5, "y2": 1095.7999999999995, "y": 1408.6, "x2": 4184.3, "type": "swingvine", "label": "36"},
         {"x": 3498.6, "y2": 1025.7, "y": 1024.3, "x2": 4492.9, "type": "spikevine", "label": "38"},
         {"x": 4777.2, "y2": 1467.1, "y": 1464.3, "x2": 3610, "type": "spikevine", "label": "40"},
         {"type": "dogbone", "x": 4641.5, "label": "BID:11", "bid": 11, "y": 1282.9},
         {"type": "dogbone", "x": 4642.9, "label": "BID:12", "bid": 12, "y": 1198.6},
         {"type": "dogbone", "x": 4641.5, "label": "BID:13", "bid": 13, "y": 1125.7},
-        {"x": 5667.2, "y2": 1015.5999999999999, "y": 1291.4, "x2": 4952.9, "type": "spikevine", "label": "51"},
+        {"x": 5667.2, "y2": 1015.6, "y": 1291.4, "x2": 4952.9, "type": "spikevine", "label": "51"},
         {"x": 5027.2, "y2": 1191.4, "y": 1484.3, "x2": 5034.3, "type": "swingvine", "label": "52"},
         {"x": 5375.7, "y2": 1345.7, "y": 1652.9, "x2": 5382.9, "type": "swingvine", "label": "53"},
         {"x": 5552.9, "y2": 1465.7, "y": 1778.6, "x2": 4815.7, "type": "spikevine", "label": "54"},
@@ -66,10 +65,12 @@
         {"type": "dogbone", "x": 8548.7, "label": "BID:30", "bid": 30, "y": 1484.3},
         {"type": "dogbone", "x": 8550.1, "label": "BID:31", "bid": 31, "y": 1411.4},
         {"type": "ground_detail", "x": 8750.1, "label": "(93)gd_img:6", "img": 6, "y": 1348.6},
-        {"type": "ground_detail", "x": 8950.1, "label": "(94)gd_img:6", "img": 6, "y": 1348.6}
+        {"type": "ground_detail", "x": 8950.1, "label": "(94)gd_img:6", "img": 6, "y": 1348.6},
+        {"type": "checkpoint", "x": 3100, "label": "0", "y": 1004},
+        {"type": "checkpoint", "x": 5949, "label": "1", "y": 1350}
     ],
+    "connect_pts": {"y2": 1342.9, "x1": 49, "y1": 995, "x2": 9601.5},
     "start_x": 348.6,
     "assert_links": 0,
-    "connect_pts": {"y2": 1342.9, "x1": 49, "y1": 995, "x2": 9601.5},
-    "start_y": 1034.2714285714285
+    "start_y": 1034.25
 }

@@ -2,7 +2,7 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define ENABLE_BG_PARTICLES YES
 #define DRAW_HITBOX NO
 #define TARGET_FPS 60
@@ -14,7 +14,7 @@
 #define STARTING_LIVES 99
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"robotstest"
+#define TESTLEVEL @"classic_trickytreas"
 
 /**
  TODO --
@@ -35,7 +35,13 @@
 /**
  Challenges:
  -beat classic_trickytreas with 28 or more bones
+ -beat easy_gottagofast with 60 or more bones
+ 
  -beat swingvine_bounswindodg in 0:20 or less
+ 
+ -find secret in jumppad_crazyloop
+ -find secret in jumppad_jumpislands
+ -find secret in jumppad_spikeceil
  **/
 
 +(void)main {

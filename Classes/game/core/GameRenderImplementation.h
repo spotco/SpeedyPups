@@ -6,6 +6,9 @@
 #import "PlayerEffectParams.h"
 @class GameEngineLayer;
 
+#define _TMP_X_OFFSET 0
+#define _TMP_Z_OFFSET 0
+
 @interface GameRenderImplementation:NSObject
 
 +(void)update_render_on:(GameEngineLayer*)g;

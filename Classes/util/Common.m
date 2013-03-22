@@ -1,6 +1,7 @@
 
 #import "Common.h"
 #import "Island.h"
+#import "GameRenderImplementation.h"
 
 @implementation CallBack
     @synthesize selector;
@@ -304,6 +305,8 @@ bool fm_a_gt_b(double a,double b,double delta) {
 +(CameraZoom)cons_normalcoord_camera_zoom_x:(float)x y:(float)y z:(float)z {
     struct CameraZoom c = {x,y,z};
     [Common normal_to_gl_coord:&c];
+    c.x += _TMP_X_OFFSET;
+    c.z += _TMP_Z_OFFSET;
     return c;
 }
 

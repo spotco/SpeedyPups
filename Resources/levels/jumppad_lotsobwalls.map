@@ -1,4 +1,5 @@
 {
+    "assert_links": 0,
     "islands": [
         {"type": "line", "y2": 1000, "x1": 50, "can_fall": true, "x2": 1522, "ground": "open", "ndir": "left", "y1": 996, "hei": 500},
         {"type": "line", "y2": 1150, "x1": 1849, "can_fall": true, "x2": 2306, "ground": "open", "ndir": "left", "y1": 1149, "hei": 100},
@@ -61,15 +62,6 @@
         {"type": "dogbone", "x": 8361.5, "label": "BID:39", "bid": 39, "y": 1405.7},
         {"type": "ground_detail", "x": 8472.9, "label": "(81)gd_img:6", "img": 6, "y": 1350},
         {"type": "ground_detail", "x": 8670.1, "label": "(82)gd_img:6", "img": 6, "y": 1351.4},
-        {
-            "height": 557.0714285714284,
-            "x": 8317.2,
-            "width": 517.1999999999989,
-            "y": 1302.9,
-            "type": "camera_area",
-            "label": "CAM(140,80,50)",
-            "camera": {"x": 140, "z": 50, "y": 80}
-        },
         {"height": 418.4714285714286, "x": 4401.5, "width": 4254.299999999999, "y": 582.9, "type": "water", "label": "87"},
         {"height": 348.47142857142853, "x": 8152.9, "width": 245.70000000000073, "y": 978.6, "type": "blocker", "label": "89"},
         {"type": "jumppad", "x": 5700, "label": "90", "dir": {"x": 0.2, "y": 0.98}, "y": 1414.3},
@@ -80,16 +72,10 @@
         {"type": "dogbone", "x": 3494, "label": "BID:44", "bid": 44, "y": 1408},
         {"type": "dogbone", "x": 3696, "label": "BID:45", "bid": 45, "y": 1359},
         {"type": "dogbone", "x": 3902, "label": "BID:46", "bid": 46, "y": 1259},
-        {"type": "birdflock", "x": 4098, "label": "7", "y": 1099},
-        {"type": "dogbone", "x": 4104, "label": "BID:47", "bid": 47, "y": 1299},
-        {"type": "dogbone", "x": 4102, "label": "BID:48", "bid": 48, "y": 1152},
-        {"height": 409, "x": 561, "width": 509, "y": 982, "type": "camera_area", "label": "CAM(140,80,80)", "camera": {"x": 140, "z": 80, "y": 80}},
-        {"height": 681, "x": 1564, "width": 247, "y": 882, "type": "camera_area", "label": "CAM(140,80,97)", "camera": {"x": 140, "z": 97, "y": 80}},
-        {"height": 663, "x": 3114, "width": 274, "y": 1053, "type": "camera_area", "label": "CAM(140,80,107)", "camera": {"x": 140, "z": 107, "y": 80}},
-        {"height": 512, "x": 4633, "width": 158, "y": 1322, "type": "camera_area", "label": "CAM(140,80,132)", "camera": {"x": 140, "z": 132, "y": 80}}
+        {"type": "birdflock", "x": 4296.8, "label": "7", "y": 1096.6},
+        {"type": "checkpoint", "x": 4100.1, "label": "0", "y": 1100}
     ],
-    "assert_links": 0,
     "start_x": 390,
     "connect_pts": {"y2": 1350, "x1": 50, "y1": 996, "x2": 9002},
-    "start_y": 1046
+    "start_y": 1046.0333333333335
 }

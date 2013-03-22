@@ -1,6 +1,4 @@
 {
-    "connect_pts": {"y2": 1800, "x1": 51, "y1": 1100, "x2": 15554},
-    "assert_links": 1,
     "islands": [
         {"type": "line", "y2": 1097.5, "x1": 51, "can_fall": true, "x2": 4002.6, "ground": "open", "ndir": "left", "y1": 1100, "hei": 500},
         {"type": "line", "y2": 1303.3, "x1": 1521.7, "can_fall": true, "x2": 2468.4, "ground": "open", "ndir": "left", "y1": 1306.6, "hei": 50},
@@ -145,8 +143,12 @@
         {"type": "dogbone", "x": 13549, "label": "BID:98", "bid": 98, "y": 2048},
         {"type": "dogbone", "x": 13550, "label": "BID:99", "bid": 99, "y": 1955},
         {"type": "dogbone", "x": 13650, "label": "BID:100", "bid": 100, "y": 2048},
-        {"type": "dogbone", "x": 13651, "label": "BID:101", "bid": 101, "y": 1955}
+        {"type": "dogbone", "x": 13651, "label": "BID:101", "bid": 101, "y": 1955},
+        {"type": "checkpoint", "x": 5701.8, "label": "0", "y": 1555},
+        {"type": "checkpoint", "x": 10150.2, "label": "1", "y": 1748.3}
     ],
+    "start_y": 1167.9833333333336,
     "start_x": 440,
-    "start_y": 1168
+    "connect_pts": {"y2": 1800, "x1": 51, "y1": 1100, "x2": 15554},
+    "assert_links": 1
 }
