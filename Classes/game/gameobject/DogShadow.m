@@ -1,10 +1,6 @@
 #import "DogShadow.h"
 #import "GameEngineLayer.h"
 
-typedef struct shadowinfo {
-    float y,dist,rotation;
-} shadowinfo;
-
 @implementation DogShadow
 
 +(DogShadow*)cons {
@@ -93,9 +89,13 @@ typedef struct shadowinfo {
 
 -(id)cons_tar:(GameObject*)o {
     tar = o;
+    [self cons_body];
+    return self;
+}
+
+-(void)cons_body {
     [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_DOG_SHADOW]]];
     [self setOpacity:120];
-    return self;
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
@@ -110,6 +110,10 @@ typedef struct shadowinfo {
     [self setPosition:ccp(tar.position.x,v.y)];
     
     [self setRotation:v.rotation];
+    [self update_scale:v];
+}
+
+-(void)update_scale:(shadowinfo)v {
     [self setScale:MAX(0, (300-v.dist)/300)];
 }
 

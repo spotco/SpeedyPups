@@ -1,12 +1,21 @@
 #import "TutorialProf.h"
 #import "GameEngineLayer.h"
 #import "TutorialAnim.h"
+#import "DogShadow.h"
+
+@interface ProfShadow : ObjectShadow
+@end
+@implementation ProfShadow
++(ObjectShadow*)cons_tar:(GameObject *)o { return [[ProfShadow node] cons_tar:o]; }
+-(void)update_scale:(shadowinfo)v { [super update_scale:v]; [self setScale:self.scale*4]; }
+@end
 
 @implementation TutorialProf
 
 #define TARGET_POS ccp(420,150)
 #define STARTING_POS ccp(720,450)
-#define FLYIN_SPEED 8
+#define FLYIN_SPEED 10
+#define MESSAGELENGTH 250
 
 +(TutorialProf*)cons_msg:(NSString *)msg {
     return [[TutorialProf node] cons_msg:msg];
@@ -38,6 +47,10 @@
     do_render = YES;
 }
 
+-(int)get_render_ord {
+    return [GameRenderImplementation GET_RENDER_ABOVE_FG_ORD];
+}
+
 -(void)update_vibration {
     vibration_ct+=0.1;
     vibration.y = 2.5*sinf(vibration_ct);
@@ -45,19 +58,40 @@
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     [super update:player g:g];
-    [messageanim update];
+    if (shadow == NULL) {
+        shadow = [ProfShadow cons_tar:self];
+        [g add_gameobject:shadow];
+    }
+    
     
     if (curstate == TutorialProf_FLYIN) {
+        [messagebubble setVisible:NO];
         if (CGPointDist(TARGET_POS, body_rel_pos)>10) {
             CGPoint delta = ccp((TARGET_POS.x-body_rel_pos.x)/FLYIN_SPEED,(TARGET_POS.y-body_rel_pos.y)/FLYIN_SPEED);
             body_rel_pos = CGPointAdd(body_rel_pos,delta);
         } else {
             body_rel_pos = TARGET_POS;
             curstate = TutorialProf_MESSAGE;
+            ct = MESSAGELENGTH;
         }
         
     } else if (curstate == TutorialProf_MESSAGE) {
+        [messagebubble setVisible:YES];
+        [messageanim update];
+        ct--;
+        if (ct <= 0) {
+            curstate = TutorialProf_FLYOUT;
+        }
         
+    } else if (curstate == TutorialProf_FLYOUT) {
+        [messagebubble setVisible:NO];
+        if (CGPointDist(STARTING_POS, body_rel_pos)>10) {
+            CGPoint delta = ccp((STARTING_POS.x-body_rel_pos.x)/FLYIN_SPEED,(STARTING_POS.y-body_rel_pos.y)/FLYIN_SPEED);
+            body_rel_pos = CGPointAdd(body_rel_pos,delta);
+        } else {
+            [g remove_gameobject:self];
+            return;
+        }
     }
     
     [self update_vibration];

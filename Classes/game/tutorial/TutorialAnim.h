@@ -1,9 +1,9 @@
 #import "CCSprite.h"
 
 @interface TutorialAnim : CCSprite {
-    CCSprite *body,*hand,*effect;
+    CCSprite *body,*hand,*effect,*nosign;
     CGRect *frames,*effectframes;
-    CGPoint *handposframes;
+    CGPoint *handposframes,*nosignframes,defaulthandpos;
     int animlen,curframe,animspeed;
     
     int animdelayct;

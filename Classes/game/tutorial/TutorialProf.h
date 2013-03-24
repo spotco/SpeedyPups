@@ -13,6 +13,10 @@ typedef enum {
     CGPoint body_rel_pos,vibration;
     float vibration_ct;
     TutorialProfState curstate;
+    
+    GameObject *shadow;
+    
+    int ct;
 }
 
 +(TutorialProf*)cons_msg:(NSString *)msg ;
