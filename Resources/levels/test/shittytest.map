@@ -1,7 +1,6 @@
 {
-    "islands": [{"type": "line", "y2": 301, "x1": 50, "can_fall": true, "x2": 1953, "ground": "open", "ndir": "left", "y1": 298, "hei": 50}],
+    "islands": [{"type": "line", "y2": 301, "x1": 50, "can_fall": true, "x2": 2253, "ground": "open", "ndir": "left", "y1": 298, "hei": 50}],
     "objects": [
-        {"x": 1948, "y2": 398, "y": 402, "x2": 350, "type": "spikevine", "label": "0"}, 
         {"type": "tutorial", "x": 298, "label": "test message", "y": 300}
     ],
     "start_x": 102,

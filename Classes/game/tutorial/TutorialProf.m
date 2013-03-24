@@ -34,7 +34,7 @@
     [messagebubble setPosition:ccp(-250,75)];
     [self addChild:messagebubble];
     
-    messageanim = [TutorialAnim cons_msg:@"doublejump"];
+    messageanim = [TutorialAnim cons_msg:@"splash"];
     [messageanim setPosition:ccp(180,100)];
     [messagebubble addChild:messageanim];
     
