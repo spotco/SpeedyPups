@@ -33,6 +33,7 @@
 #import "LabEntrance.h"
 #import "LabExit.h"
 #import "EnemyAlert.h"
+#import "TutorialLauncher.h"
 
 @interface GameMap : NSObject
     @property(readwrite,strong) NSMutableArray *n_islands, *game_objects;

@@ -40,6 +40,10 @@ CGPoint CGPointAdd(CGPoint a,CGPoint b) {
     return ccp(a.x+b.x,a.y+b.y);
 }
 
+float CGPointDist(CGPoint a,CGPoint b) {
+    return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
+}
+
 +(CGSize)SCREEN {
     return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }

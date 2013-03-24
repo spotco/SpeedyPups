@@ -279,7 +279,13 @@ static NSMutableDictionary* cached_json;
         } else if ([type isEqualToString:@"enemyalert"]) {
             [map.game_objects addObject:[EnemyAlert cons_p1:ccp(getflt(j_object, @"x"),getflt(j_object, @"y"))
                                                        size:ccp(getflt(j_object, @"width"),getflt(j_object, @"height"))]];
-        
+            
+        } else if ([type isEqualToString:@"tutorial"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            NSString *msg = [j_object objectForKey:@"label"];
+            [map.game_objects addObject:[TutorialLauncher cons_pos:ccp(x,y) anim:msg]];
+            
         } else {
             NSLog(@"item read error");
             continue;

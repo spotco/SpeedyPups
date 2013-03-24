@@ -26,6 +26,15 @@
 		7E98648316E874CF00109092 /* nmenu_items.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98648016E874CF00109092 /* nmenu_items.png */; };
 		7E9A784D16FC6D890014B7E0 /* easy_puddles.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A784C16FC6D890014B7E0 /* easy_puddles.map */; };
 		7E9A784F16FC72D50014B7E0 /* easy_gottagofast.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */; };
+		7EA567FF16FF8B200003F2A5 /* tut_anim_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567F916FF8B200003F2A5 /* tut_anim_1.plist */; };
+		7EA5680016FF8B200003F2A5 /* tut_anim_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567FA16FF8B200003F2A5 /* tut_anim_1.png */; };
+		7EA5680116FF8B200003F2A5 /* tut_anim_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567FB16FF8B200003F2A5 /* tut_anim_2.plist */; };
+		7EA5680216FF8B200003F2A5 /* tut_anim_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567FC16FF8B200003F2A5 /* tut_anim_2.png */; };
+		7EA5680316FF8B200003F2A5 /* tutorial_obj.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567FD16FF8B200003F2A5 /* tutorial_obj.plist */; };
+		7EA5680416FF8B200003F2A5 /* tutorial_obj.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA567FE16FF8B200003F2A5 /* tutorial_obj.png */; };
+		7EA5680816FF8C5A0003F2A5 /* TutorialLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680716FF8C5A0003F2A5 /* TutorialLauncher.m */; };
+		7EA5680B16FF8E530003F2A5 /* TutorialProf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680A16FF8E530003F2A5 /* TutorialProf.m */; };
+		7EA5680E16FF9DE90003F2A5 /* TutorialAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */; };
 		7EB8B2D516D9F8E700F58961 /* BG1_bridge_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */; };
 		7EB8B2D616D9F8E700F58961 /* BG1_bridge_section.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E416D9F8E600F58961 /* BG1_bridge_section.png */; };
 		7EB8B2D716D9F8E700F58961 /* BG1_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E516D9F8E600F58961 /* BG1_cloud.png */; };
@@ -544,6 +553,18 @@
 		7E98648016E874CF00109092 /* nmenu_items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_items.png; sourceTree = "<group>"; };
 		7E9A784C16FC6D890014B7E0 /* easy_puddles.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_puddles.map; sourceTree = "<group>"; };
 		7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_gottagofast.map; sourceTree = "<group>"; };
+		7EA567F916FF8B200003F2A5 /* tut_anim_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tut_anim_1.plist; sourceTree = "<group>"; };
+		7EA567FA16FF8B200003F2A5 /* tut_anim_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_anim_1.png; sourceTree = "<group>"; };
+		7EA567FB16FF8B200003F2A5 /* tut_anim_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tut_anim_2.plist; sourceTree = "<group>"; };
+		7EA567FC16FF8B200003F2A5 /* tut_anim_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tut_anim_2.png; sourceTree = "<group>"; };
+		7EA567FD16FF8B200003F2A5 /* tutorial_obj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tutorial_obj.plist; sourceTree = "<group>"; };
+		7EA567FE16FF8B200003F2A5 /* tutorial_obj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_obj.png; sourceTree = "<group>"; };
+		7EA5680616FF8C5A0003F2A5 /* TutorialLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialLauncher.h; path = tutorial/TutorialLauncher.h; sourceTree = "<group>"; };
+		7EA5680716FF8C5A0003F2A5 /* TutorialLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialLauncher.m; path = tutorial/TutorialLauncher.m; sourceTree = "<group>"; };
+		7EA5680916FF8E530003F2A5 /* TutorialProf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialProf.h; path = tutorial/TutorialProf.h; sourceTree = "<group>"; };
+		7EA5680A16FF8E530003F2A5 /* TutorialProf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialProf.m; path = tutorial/TutorialProf.m; sourceTree = "<group>"; };
+		7EA5680C16FF9DE80003F2A5 /* TutorialAnim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialAnim.h; path = tutorial/TutorialAnim.h; sourceTree = "<group>"; };
+		7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialAnim.m; path = tutorial/TutorialAnim.m; sourceTree = "<group>"; };
 		7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_bridge_edge.png; sourceTree = "<group>"; };
 		7EB8B1E416D9F8E600F58961 /* BG1_bridge_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_bridge_section.png; sourceTree = "<group>"; };
 		7EB8B1E516D9F8E600F58961 /* BG1_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_cloud.png; sourceTree = "<group>"; };
@@ -1306,9 +1327,36 @@
 			name = tutorial;
 			sourceTree = "<group>";
 		};
+		7EA567F816FF8B200003F2A5 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				7EA567F916FF8B200003F2A5 /* tut_anim_1.plist */,
+				7EA567FA16FF8B200003F2A5 /* tut_anim_1.png */,
+				7EA567FB16FF8B200003F2A5 /* tut_anim_2.plist */,
+				7EA567FC16FF8B200003F2A5 /* tut_anim_2.png */,
+				7EA567FD16FF8B200003F2A5 /* tutorial_obj.plist */,
+				7EA567FE16FF8B200003F2A5 /* tutorial_obj.png */,
+			);
+			path = tutorial;
+			sourceTree = "<group>";
+		};
+		7EA5680516FF8C170003F2A5 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				7EA5680616FF8C5A0003F2A5 /* TutorialLauncher.h */,
+				7EA5680716FF8C5A0003F2A5 /* TutorialLauncher.m */,
+				7EA5680916FF8E530003F2A5 /* TutorialProf.h */,
+				7EA5680A16FF8E530003F2A5 /* TutorialProf.m */,
+				7EA5680C16FF9DE80003F2A5 /* TutorialAnim.h */,
+				7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
 		7EB8B1E016D9F8E600F58961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7EA567F816FF8B200003F2A5 /* tutorial */,
 				7E98647D16E874CF00109092 /* nmenu */,
 				7EB8B1E116D9F8E600F58961 /* bg */,
 				7EB8B20E16D9F8E600F58961 /* char */,
@@ -1816,6 +1864,7 @@
 		7EB8B3AD16D9FC0800F58961 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				7EA5680516FF8C170003F2A5 /* tutorial */,
 				7EB8B3AE16D9FC0800F58961 /* bglayer */,
 				7EB8B3B716D9FC0900F58961 /* core */,
 				7EB8B3C216D9FC0900F58961 /* gameobject */,
@@ -2781,6 +2830,12 @@
 				7E98648316E874CF00109092 /* nmenu_items.png in Resources */,
 				7E9A784D16FC6D890014B7E0 /* easy_puddles.map in Resources */,
 				7E9A784F16FC72D50014B7E0 /* easy_gottagofast.map in Resources */,
+				7EA567FF16FF8B200003F2A5 /* tut_anim_1.plist in Resources */,
+				7EA5680016FF8B200003F2A5 /* tut_anim_1.png in Resources */,
+				7EA5680116FF8B200003F2A5 /* tut_anim_2.plist in Resources */,
+				7EA5680216FF8B200003F2A5 /* tut_anim_2.png in Resources */,
+				7EA5680316FF8B200003F2A5 /* tutorial_obj.plist in Resources */,
+				7EA5680416FF8B200003F2A5 /* tutorial_obj.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2892,6 +2947,9 @@
 				7E0A788B16ED781D0026C418 /* NMenuShopPage.m in Sources */,
 				7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */,
 				7ECD9EE616F0103900FD0B99 /* CharSelAnim.m in Sources */,
+				7EA5680816FF8C5A0003F2A5 /* TutorialLauncher.m in Sources */,
+				7EA5680B16FF8E530003F2A5 /* TutorialProf.m in Sources */,
+				7EA5680E16FF9DE90003F2A5 /* TutorialAnim.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
