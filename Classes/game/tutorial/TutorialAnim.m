@@ -49,7 +49,7 @@
     } else if ([msg isEqualToString:@"rockbreak"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"rockbreak0",@"rockbreak1",@"rockbreak2"     ,@"rockbreak3"     ,@"rockbreak4"         ,@"rockbreak5"             ,@"rockbreak6",@"rockbreak7",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipestraight"  ,@"swipestraight"  ,@"swipestraight"      ,@"swipestraight"          ,@""         ,@""           ,nil];
-        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(40,0)         ,ccp(80,0)         ,ccp(120,0)            ,ccp(160,0)                  ,ccp(0,0)    ,ccp(0,0)          };
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(20,0)         ,ccp(50,0)         ,ccp(90,0)            ,ccp(160,0)                  ,ccp(0,0)    ,ccp(0,0)          };
         CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      ,NOSHOW            };
         
         [effect setPosition:ccp(50,-50)];
@@ -112,6 +112,72 @@
         
         [body setPosition:ccp(-20,-10)];
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
+        
+    } else if ([msg isEqualToString:@"hover"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"hover0",@"hover1",@"hover2" ,@"hover3" ,@"hover4",@"hover5",@"hover6",@"hover7",@"hover8",@"hover9",@"hover10",@"hover11",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""        ,@"",@"jump"     ,@"hold"     ,@"hold"        ,@"hold"        ,@"hold"    ,@"hold"    ,@"hold"        ,@"hold"        ,@"hold",@""         ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0),ccp(-6,0)  ,ccp(-12,0)  ,ccp(-12,0)   ,ccp(-12,0)   ,ccp(-12,0)  ,ccp(-12,0) ,ccp(-12,0)  ,ccp(-12,0)   ,ccp(-12,0)   ,ccp(-12,0),ccp(-12,0)    };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW,NOSHOW     ,NOSHOW      ,NOSHOW      ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW,NOSHOW      };
+        
+        [body setPosition:ccp(0,15)];
+        [effect setPosition:ccp(50,-50)];
+        defaulthandpos = ccp(100,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"jump"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"jump0",@"jump1",@"jump2" ,@"jump3" ,@"jump4",@"jump5",@"jump6",@"jump7",@"jump8",@"jump9",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""        ,@"",@""     ,@""     ,@"jump"        ,@"jump"        ,@""    ,@""    ,@""        ,@""                ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)  ,ccp(0,0),ccp(-6,0)  ,ccp(-12,0)   ,ccp(-6,0)   ,ccp(0,0)  ,ccp(0,0) ,ccp(0,0)  ,ccp(0,0)   ,ccp(0,0)      };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW     ,NOSHOW,NOSHOW      ,NOSHOW      ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW        };
+        
+        [body setPosition:ccp(0,15)];
+        [effect setPosition:ccp(50,-50)];
+        defaulthandpos = ccp(100,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"swingvine"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swingvine0",@"swingvine1" ,@"swingvine2" ,@"swingvine3",@"swingvine5",@"swingvine6",@"swingvine7",@"swingvine8",@"swingvine9",@"swingvine10",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""        ,@"jump"     ,@"jump"     ,@""        ,@""        ,@"jump"    ,@"jump"    ,@""        ,@""        ,@""         ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(-6,0)  ,ccp(-12,0)  ,ccp(-6,0)   ,ccp(0,0)   ,ccp(-6,0)  ,ccp(-12,0) ,ccp(-6,0)  ,ccp(0,0)   ,ccp(0,0)   ,ccp(0,0)    };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW     ,NOSHOW      ,NOSHOW      ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW     ,NOSHOW      };
+        
+        [body setPosition:ccp(0,15)];
+        [effect setPosition:ccp(50,-50)];
+        defaulthandpos = ccp(100,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"swipe_down"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_down0",@"swipe_down1",@"swipe_down2"     ,@"swipe_down3"     ,@"swipe_down4"         ,@"swipe_down5"             ,@"swipe_down6",@"swipe_down7",@"swipe_down8",@"swipe_down9",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipedown"  ,@"swipedown"  ,@"swipedown"      ,@"swipedown"          ,@""         ,@"",@"",@""           ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(20,-5)         ,ccp(50,-10)         ,ccp(90,-15)            ,ccp(0,0)                  ,ccp(0,0)    ,ccp(0,0),ccp(0,0),ccp(0,0)          };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      ,NOSHOW,NOSHOW,NOSHOW            };
+        
+        [effect setPosition:ccp(50,-75)];
+        [body setPosition:ccp(-20,5)];
+        defaulthandpos = ccp(0,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"swipe_straight"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_straight0",@"swipe_straight1",@"swipe_straight2"     ,@"swipe_straight3"     ,@"swipe_straight4"         ,@"swipe_straight5"             ,@"swipe_straight6",@"swipe_straight7",@"swipe_straight8",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipestraight"  ,@"swipestraight"  ,@"swipestraight"      ,@"swipestraight"          ,@""         ,@"",@""         ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(20,0)         ,ccp(50,0)         ,ccp(90,0)            ,ccp(0,0)                  ,ccp(0,0)    ,ccp(0,0),ccp(0,0)        };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      ,NOSHOW,NOSHOW          };
+        
+        [effect setPosition:ccp(50,-55)];
+        [body setPosition:ccp(-20,15)];
+        defaulthandpos = ccp(0,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"swipe_up"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_up0",@"swipe_up1",@"swipe_up2"     ,@"swipe_up3"     ,@"swipe_up4"         ,@"swipe_up5"             ,@"swipe_up6",@"swipe_up7",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipeup"  ,@"swipeup"  ,@"swipeup"      ,@"swipeup"          ,@""         ,@""       ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(20,15)         ,ccp(50,30)         ,ccp(90,45)            ,ccp(0,0)                  ,ccp(0,0)    ,ccp(0,0)      };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      ,NOSHOW    };
+        
+        [effect setPosition:ccp(50,-25)];
+        [body setPosition:ccp(-20,15)];
+        defaulthandpos = ccp(0,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
         
         
     } else {

@@ -286,6 +286,11 @@ static NSMutableDictionary* cached_json;
             NSString *msg = [j_object objectForKey:@"label"];
             [map.game_objects addObject:[TutorialLauncher cons_pos:ccp(x,y) anim:msg]];
             
+        } else if ([type isEqualToString:@"tutorialend"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            [map.game_objects addObject:[TutorialEnd cons_pos:ccp(x,y)]];
+            
         } else {
             NSLog(@"item read error");
             continue;

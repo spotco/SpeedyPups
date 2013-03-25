@@ -1,5 +1,6 @@
 #import "GameObject.h"
 @class TutorialAnim;
+#import "GEventDispatcher.h"
 
 typedef enum {
     TutorialProf_FLYIN,
@@ -7,14 +8,14 @@ typedef enum {
     TutorialProf_FLYOUT
 } TutorialProfState;
 
-@interface TutorialProf : GameObject {
+@interface TutorialProf : GameObject <GEventListener> {
     CCSprite *body,*messagebubble;
     TutorialAnim *messageanim;
     CGPoint body_rel_pos,vibration;
     float vibration_ct;
     TutorialProfState curstate;
     
-    GameObject *shadow;
+    GameObject __unsafe_unretained *shadow;
     
     int ct;
 }

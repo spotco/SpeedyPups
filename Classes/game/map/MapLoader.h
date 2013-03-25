@@ -34,6 +34,7 @@
 #import "LabExit.h"
 #import "EnemyAlert.h"
 #import "TutorialLauncher.h"
+#import "TutorialEnd.h"
 
 @interface GameMap : NSObject
     @property(readwrite,strong) NSMutableArray *n_islands, *game_objects;

@@ -18,7 +18,9 @@
 #define MESSAGELENGTH 250
 
 +(TutorialProf*)cons_msg:(NSString *)msg {
-    return [[TutorialProf node] cons_msg:msg];
+    TutorialProf *p = [[TutorialProf node] cons_msg:msg];
+    [GEventDispatcher add_listener:p];
+    return p;
 }
 
 -(id)cons_msg:(NSString *)msg {
@@ -34,7 +36,8 @@
     [messagebubble setPosition:ccp(-250,75)];
     [self addChild:messagebubble];
     
-    messageanim = [TutorialAnim cons_msg:@"splash"];
+    //messageanim = [TutorialAnim cons_msg:msg];
+    messageanim = [TutorialAnim cons_msg:[self _tmp_msg_random]];
     [messageanim setPosition:ccp(180,100)];
     [messagebubble addChild:messageanim];
     
@@ -54,6 +57,12 @@
 -(void)update_vibration {
     vibration_ct+=0.1;
     vibration.y = 2.5*sinf(vibration_ct);
+}
+
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_END_TUTORIAL) {
+        curstate = TutorialProf_FLYOUT;
+    }
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
@@ -89,7 +98,7 @@
             CGPoint delta = ccp((STARTING_POS.x-body_rel_pos.x)/FLYIN_SPEED,(STARTING_POS.y-body_rel_pos.y)/FLYIN_SPEED);
             body_rel_pos = CGPointAdd(body_rel_pos,delta);
         } else {
-            [g remove_gameobject:self];
+            [self remove];
             return;
         }
     }
@@ -100,9 +109,16 @@
     [self setPosition:CGPointAdd(player.position, relpos)];
 }
 
+-(void)remove {
+    [((GameEngineLayer*)self.parent) remove_gameobject:shadow];
+    [((GameEngineLayer*)self.parent) remove_gameobject:self];
+    [GEventDispatcher remove_listener:self];
+    
+}
+
 -(void)reset {
     [super reset];
-    [((GameEngineLayer*)self.parent) remove_gameobject:self];
+    [self remove];
 }
 
 -(CCAction*)cons_anim_tar:(NSString*)tar frames:(NSArray*)a speed:(float)speed {
@@ -110,6 +126,14 @@
 	NSMutableArray *animFrames = [NSMutableArray array];
     for (NSString* k in a) [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:k]]];
     return [Common make_anim_frames:animFrames speed:speed];
+}
+
+static NSArray *_tmp_msglist;
+-(NSString*)_tmp_msg_random {
+    if (_tmp_msglist == NULL) {
+        _tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight", nil];
+    }
+    return [_tmp_msglist objectAtIndex:int_random(0, [_tmp_msglist count])];
 }
 
 @end
