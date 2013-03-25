@@ -5,7 +5,8 @@
 #import "FlashEffect.h"
 #import "EnemyBomb.h"
 #import "CannonFireParticle.h"
- 
+#import "TouchTrackingLayer.h"
+
 @implementation GameEngineLayer
 
 @synthesize current_mode;
@@ -26,6 +27,7 @@
     [scene addChild:bglayer];
     [scene addChild:glayer];
     [scene addChild:uilayer];
+    [scene addChild:[TouchTrackingLayer node]];
     
     [uilayer start_initial_anim];
 	return scene;

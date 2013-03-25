@@ -14,13 +14,11 @@ typedef enum {
     GEventType_GAMEOVER,
     GEventType_PLAYAGAIN_AUTOLEVEL,
     GEventType_GAME_RESET,
-    
+    GEventType_DASH,
+    GEventType_JUMP,
     GEventType_END_TUTORIAL,
-    
     GEventType_DAY_NIGHT_UPDATE,
-    
     GEventType_SHOW_ENEMYAPPROACH_WARNING,
-    
     GEventType_ENTER_LABAREA,
     GEventType_EXIT_TO_DEFAULTAREA,
     

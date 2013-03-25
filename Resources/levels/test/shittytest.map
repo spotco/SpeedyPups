@@ -1,7 +1,7 @@
 {
     "islands": [{"type": "line", "y2": 301, "x1": 50, "can_fall": true, "x2": 2653, "ground": "open", "ndir": "left", "y1": 298, "hei": 500}],
     "objects": [
-        {"type": "tutorial", "x": 298, "label": "test message", "y": 300},
+        {"type": "tutorial", "x": 298, "label": "random", "y": 450},
         {"type": "tutorialend", "x": 2650, "label": "lol", "y": 300},
     ],
     "start_x": 102,

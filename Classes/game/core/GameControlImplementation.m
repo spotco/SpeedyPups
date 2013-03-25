@@ -1,5 +1,6 @@
 #import "GameControlImplementation.h"
 #import "GameEngineLayer.h"
+#import "GEventDispatcher.h"
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
@@ -95,6 +96,7 @@ static float avg_y;
     
     if (queue_swipe == YES && player.current_island == NULL && [player get_current_params].cur_dash_count > 0) {
         [GameControlImplementation player_dash:player];
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
     }
     queue_swipe = NO;
     
@@ -109,11 +111,13 @@ static float avg_y;
             [GameControlImplementation player_jump_from_island:player];
             jump_hold_timer = JUMP_HOLD_TIME;
             [[player get_current_params] decr_airjump_count];
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
             
         } else if ([player get_current_params].cur_airjump_count > 0) {
             [GameControlImplementation player_double_jump:player];
             jump_hold_timer = JUMP_HOLD_TIME;
             [[player get_current_params] decr_airjump_count];
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
             
         }
     }

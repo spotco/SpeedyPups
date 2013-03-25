@@ -11,7 +11,7 @@ typedef enum {
 @interface TutorialProf : GameObject <GEventListener> {
     CCSprite *body,*messagebubble;
     TutorialAnim *messageanim;
-    CGPoint body_rel_pos,vibration;
+    CGPoint vibration,START,TAR,curpos;
     float vibration_ct;
     TutorialProfState curstate;
     
@@ -20,6 +20,6 @@ typedef enum {
     int ct;
 }
 
-+(TutorialProf*)cons_msg:(NSString *)msg ;
++(TutorialProf*)cons_msg:(NSString *)msg y:(float)y;
 
 @end

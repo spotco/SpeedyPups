@@ -19,7 +19,7 @@
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     if (!self.active && player.position.x > position_.x) {
         active = YES;
-        [g add_gameobject:[TutorialProf cons_msg:self.anim]];
+        [g add_gameobject:[TutorialProf cons_msg:self.anim y:position_.y]];
     }
 }
 

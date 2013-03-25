@@ -18,9 +18,12 @@
 
 /**
  TODO --
+ -bugfix: add blocker in puddle level
+ -bugfix: add limit to speedup speed
  -player run in animation from menu
  -player run in birds
  -char select make work
+
  
  -tutorial levels
  

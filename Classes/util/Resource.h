@@ -128,6 +128,8 @@
 #define TEX_NMENU_ITEMS @"nmenu_items"
 #define TEX_NMENU_BG @"nmenu_bg"
 
+#define TEX_BLANK @"blank"
+
 //todo -- replace these
 #define TEX_MENU_TEX_BACKBUTTON @"menubackbutton"
 #define TEX_MENU_BUTTON_MENU @"menubuttonmenu"

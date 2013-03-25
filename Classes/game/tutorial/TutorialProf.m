@@ -12,18 +12,18 @@
 
 @implementation TutorialProf
 
-#define TARGET_POS ccp(420,150)
-#define STARTING_POS ccp(720,450)
+//#define TARGET_POS ccp(420,150)
+//#define STARTING_POS ccp(720,450)
 #define FLYIN_SPEED 10
 #define MESSAGELENGTH 250
 
-+(TutorialProf*)cons_msg:(NSString *)msg {
-    TutorialProf *p = [[TutorialProf node] cons_msg:msg];
++(TutorialProf*)cons_msg:(NSString *)msg y:(float)y {
+    TutorialProf *p = [[TutorialProf node] cons_msg:msg y:y];
     [GEventDispatcher add_listener:p];
     return p;
 }
 
--(id)cons_msg:(NSString *)msg {
+-(id)cons_msg:(NSString *)msg y:(float)y{
     body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_TUTORIAL_OBJ]
                                   rect:[FileCache get_cgrect_from_plist:TEX_TUTORIAL_OBJ idname:@"professor"]];
     [body setScale:0.75];
@@ -36,23 +36,70 @@
     [messagebubble setPosition:ccp(-250,75)];
     [self addChild:messagebubble];
     
-    //messageanim = [TutorialAnim cons_msg:msg];
-    messageanim = [TutorialAnim cons_msg:[self _tmp_msg_random]];
+    
+    messageanim = [msg isEqualToString:@"random"]?[TutorialAnim cons_msg:[self _tmp_msg_random]]:[TutorialAnim cons_msg:msg];
+    
     [messageanim setPosition:ccp(180,100)];
     [messagebubble addChild:messageanim];
     
-    body_rel_pos = STARTING_POS;
+    TAR = ccp(420,y);  //x is relative, y is not
+    START = ccp(720,y+450);
+    curpos = START;
+    
     curstate = TutorialProf_FLYIN;
     return self;
+}
+
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+    [super update:player g:g];
+    if (shadow == NULL) {
+        shadow = [ProfShadow cons_tar:self];
+        [g add_gameobject:shadow];
+    }
+    
+    [self update_vibration];
+    
+    
+    if (curstate == TutorialProf_FLYIN) {
+        [messagebubble setVisible:NO];
+        if (CGPointDist(curpos, TAR)>10) {
+            CGPoint delta = ccp((TAR.x-curpos.x)/FLYIN_SPEED,(TAR.y-curpos.y)/FLYIN_SPEED);
+            curpos = CGPointAdd(curpos, delta);
+            [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
+        } else {
+            curstate = TutorialProf_MESSAGE;
+            ct = MESSAGELENGTH;
+            [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
+        }
+        
+        
+    } else if (curstate == TutorialProf_MESSAGE) {
+        [messagebubble setVisible:YES];
+        [messageanim update];
+        ct--;
+        if (ct <= 0) {
+            curstate = TutorialProf_FLYOUT;
+        }
+        
+        [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
+        
+    } else if (curstate == TutorialProf_FLYOUT) {
+        [messagebubble setVisible:NO];
+        if (CGPointDist(curpos, START)>10) {
+            CGPoint delta = ccp((START.x-curpos.x)/FLYIN_SPEED,(START.y-curpos.y)/FLYIN_SPEED);
+            curpos = CGPointAdd(curpos, delta);
+            [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
+        } else {
+            [self remove];
+            return;
+        }
+    }
 }
 
 -(void)check_should_render:(GameEngineLayer *)g {
     do_render = YES;
 }
 
--(int)get_render_ord {
-    return [GameRenderImplementation GET_RENDER_ABOVE_FG_ORD];
-}
 
 -(void)update_vibration {
     vibration_ct+=0.1;
@@ -63,50 +110,6 @@
     if (e.type == GEventType_END_TUTORIAL) {
         curstate = TutorialProf_FLYOUT;
     }
-}
-
--(void)update:(Player *)player g:(GameEngineLayer *)g {
-    [super update:player g:g];
-    if (shadow == NULL) {
-        shadow = [ProfShadow cons_tar:self];
-        [g add_gameobject:shadow];
-    }
-    
-    
-    if (curstate == TutorialProf_FLYIN) {
-        [messagebubble setVisible:NO];
-        if (CGPointDist(TARGET_POS, body_rel_pos)>10) {
-            CGPoint delta = ccp((TARGET_POS.x-body_rel_pos.x)/FLYIN_SPEED,(TARGET_POS.y-body_rel_pos.y)/FLYIN_SPEED);
-            body_rel_pos = CGPointAdd(body_rel_pos,delta);
-        } else {
-            body_rel_pos = TARGET_POS;
-            curstate = TutorialProf_MESSAGE;
-            ct = MESSAGELENGTH;
-        }
-        
-    } else if (curstate == TutorialProf_MESSAGE) {
-        [messagebubble setVisible:YES];
-        [messageanim update];
-        ct--;
-        if (ct <= 0) {
-            curstate = TutorialProf_FLYOUT;
-        }
-        
-    } else if (curstate == TutorialProf_FLYOUT) {
-        [messagebubble setVisible:NO];
-        if (CGPointDist(STARTING_POS, body_rel_pos)>10) {
-            CGPoint delta = ccp((STARTING_POS.x-body_rel_pos.x)/FLYIN_SPEED,(STARTING_POS.y-body_rel_pos.y)/FLYIN_SPEED);
-            body_rel_pos = CGPointAdd(body_rel_pos,delta);
-        } else {
-            [self remove];
-            return;
-        }
-    }
-    
-    [self update_vibration];
-    CGPoint relpos = CGPointAdd(body_rel_pos, vibration);
-    
-    [self setPosition:CGPointAdd(player.position, relpos)];
 }
 
 -(void)remove {

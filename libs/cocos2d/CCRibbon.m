@@ -51,13 +51,13 @@
 @synthesize color=color_;
 @synthesize textureLength = textureLength_;
 
-+(id)ribbonWithWidth:(float)w image:(NSString*)path length:(float)l color:(ccColor4B)color fade:(float)fade
++(id)ribbonWithWidth:(float)w image:(CCTexture2D*)path length:(float)l color:(ccColor4B)color fade:(float)fade
 {
 	self = [[[self alloc] initWithWidth:w image:path length:l color:color fade:fade] autorelease];
 	return self;
 }
 
--(id)initWithWidth:(float)w image:(NSString*)path length:(float)l color:(ccColor4B)color fade:(float)fade
+-(id)initWithWidth:(float)w image:(CCTexture2D*)path length:(float)l color:(ccColor4B)color fade:(float)fade
 {
 	self = [super init];
 	if (self)
@@ -90,7 +90,7 @@
 		blendFunc_.src = GL_SRC_ALPHA;
 		blendFunc_.dst = GL_ONE_MINUS_SRC_ALPHA;
 		
-		self.texture = [[CCTextureCache sharedTextureCache] addImage:path];
+		self.texture = path;
 
 		/* default texture parameter */
 		ccTexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };

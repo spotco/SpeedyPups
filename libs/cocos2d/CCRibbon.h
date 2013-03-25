@@ -87,9 +87,9 @@
 @property (nonatomic,readwrite) ccColor4B color;
 
 /** creates the ribbon */
-+(id)ribbonWithWidth:(float)w image:(NSString*)path length:(float)l color:(ccColor4B)color fade:(float)fade;
++(id)ribbonWithWidth:(float)w image:(CCTexture2D*)path length:(float)l color:(ccColor4B)color fade:(float)fade;
 /** init the ribbon */
--(id)initWithWidth:(float)w image:(NSString*)path length:(float)l color:(ccColor4B)color fade:(float)fade;
+-(id)initWithWidth:(float)w image:(CCTexture2D*)path length:(float)l color:(ccColor4B)color fade:(float)fade;
 /** add a point to the ribbon */
 -(void)addPointAt:(CGPoint)location width:(float)w;
 /** polling function */

@@ -140,6 +140,8 @@ static NSMutableDictionary* textures = nil;
                         @"nmenu_items.png",TEX_NMENU_ITEMS,
                         @"nmenu_bg.png",TEX_NMENU_BG,
                      
+                        @"blank.png",TEX_BLANK,
+                     
                      nil];
     [Resource load_tex_from_array:temp];
 }
