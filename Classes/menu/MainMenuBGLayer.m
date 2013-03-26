@@ -73,7 +73,16 @@
     } else if (e.type == GEventType_MENU_MAKERUNPARTICLE) {
         [self add_particle:[StreamParticle cons_x:e.pt.x y:e.pt.y vx:e.f1 vy:e.f2]];
         
+    } else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
+        [self scrollup_bg_pct:e.f1];
+        
     }
+}
+
+-(void)scrollup_bg_pct:(float)pct {
+    [clouds setPosition:ccp(clouds.position.x,-200*pct)];
+    [hills setPosition:ccp(hills.position.x,-400*pct)];
+    [fg setPosition:ccp(fg.position.x,-500*pct)];
 }
 
 //copied code from gamelayer and bglayer lol

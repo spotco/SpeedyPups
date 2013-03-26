@@ -2,7 +2,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define ENABLE_BG_PARTICLES YES
 #define DRAW_HITBOX NO
 #define TARGET_FPS 60
@@ -18,11 +18,7 @@
 
 /**
  TODO --
- -player run in animation from menu
- -player run in birds
- -char select make work
-
- 
+ -char select make work 
  -tutorial levels
  
  -auto difficulty adjustment

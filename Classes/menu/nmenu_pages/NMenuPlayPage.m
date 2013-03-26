@@ -8,6 +8,9 @@
     return [NMenuPlayPage node];
 }
 
+#define tDHMASK 1
+#define tFLOWER 2
+
 -(id)init {
     self = [super init];
     [GEventDispatcher add_listener:self];
@@ -24,7 +27,7 @@
     nav_menu = [MenuCommon cons_common_nav_menu];
     [self addChild:nav_menu];
     
-    [self addChild:[Flowers cons_pt:[Common screen_pctwid:0.275 pcthei:0.35]]];
+    [self addChild:[Flowers cons_pt:[Common screen_pctwid:0.275 pcthei:0.35]] z:0 tag:tFLOWER];
     
     birds = [BirdFlock cons_x:[Common SCREEN].width*0.8 y:[Common SCREEN].height*0.25];
     [birds setScale:0.75];
@@ -67,11 +70,19 @@
         
         
         if (rundog.position.x > DOG_END_X) {
-            cur_mode = PlayPageMode_EXIT;
+            cur_mode = PlayPageMode_SCROLLUP;
+            [self removeChildByTag:tDHMASK cleanup:YES];
+            [self removeChildByTag:tFLOWER cleanup:YES];
         }
         
-    } else if (cur_mode == PlayPageMode_EXIT) {
-        [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_PLAY_AUTOLEVEL_MODE]];
+    } else if (cur_mode == PlayPageMode_SCROLLUP) {
+        scrollup_pct+=0.04;
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
+        
+        if (scrollup_pct >= 1) {
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_PLAY_AUTOLEVEL_MODE]];
+        }
+        
     }
 }
 
@@ -99,7 +110,7 @@
     
     CCSprite *dhmask = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_DOGHOUSEMASK]];
     [dhmask setAnchorPoint:ccp(0,0)];
-    [self addChild:dhmask];
+    [self addChild:dhmask z:1 tag:tDHMASK];
 }
 
 -(CCAction*)cons_anim:(NSString*)tar {
