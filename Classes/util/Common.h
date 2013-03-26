@@ -67,6 +67,7 @@ int pb(int base,float pctm);
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
 
++(CCSprite*)get_load_scr;
 +(CGSize)SCREEN;
 +(CGPoint)screen_pctwid:(float)pctwid pcthei:(float)pcthei;
 

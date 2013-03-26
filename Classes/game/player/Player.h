@@ -55,6 +55,9 @@ typedef enum {
 -(PlayerEffectParams*) get_current_params;
 -(PlayerEffectParams*) get_default_params;
 
+-(void)do_run_anim;
+-(void)do_stand_anim;
+
 @property(readwrite,strong) CCSprite* player_img;
 @property(readwrite,unsafe_unretained) Island* current_island;
 @property(readwrite,assign) CGPoint start_pt;

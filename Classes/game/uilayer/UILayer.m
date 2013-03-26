@@ -23,7 +23,11 @@
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_GAME_TICK) {
+        [ingame_ui setVisible:YES];
         [self update];
+        
+    } else if (e.type == GEventType_UIANIM_TICK) {
+        [ingame_ui setVisible:NO];
         
     } else if (e.type == GEventType_LOAD_LEVELEND_MENU) {
         [self load_game_end_menu];
@@ -37,6 +41,8 @@
     } else if (e.type == GEventType_SHOW_ENEMYAPPROACH_WARNING) {
         enemy_alert_ui_ct = 75;
     
+    } else if (e.type == GEventType_START_INTIAL_ANIM) {
+        [self start_initial_anim];
     }
 }
 

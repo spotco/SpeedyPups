@@ -9,6 +9,8 @@
 
 @implementation GameEngineLayer
 
+#define tLOADSCR 1
+
 @synthesize current_mode;
 @synthesize game_objects,islands;
 @synthesize player;
@@ -29,7 +31,7 @@
     [scene addChild:uilayer];
     [scene addChild:[TouchTrackingLayer node]];
     
-    [uilayer start_initial_anim];
+    [scene addChild:[Common get_load_scr] z:1 tag:tLOADSCR];
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives {
@@ -45,6 +47,8 @@
     [nobj update:glayer.player g:glayer]; //have first section preloaded
     [glayer update_render];
     
+    [glayer move_player_toground];
+    [glayer prep_runin_anim];
 	return scene;
 }
 
@@ -86,8 +90,6 @@
     for (int i = 0; i < arrlen(draw_ctx_z); i++) {
         [self addChild:[BatchDraw node] z:draw_ctx_z[i]];
     }
-     
-    current_mode = GameEngineLayerMode_GAMEPLAY;
     
     [self reset_camera];
     
@@ -102,6 +104,33 @@
     } else {
         [self schedule:@selector(update)];
     }
+    
+    //current_mode = GameEngineLayerMode_GAMEPLAY;
+    scrollup_pct = 1;
+    current_mode = GameEngineLayerMode_SCROLLDOWN;
+    float tmp;
+    [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
+    
+    player_starting_pos = player_start_pt;
+}
+
+-(void)move_player_toground {
+    CGPoint pos = player.position;
+    for (Island* i in islands) {
+        if (pos.x > i.endX || pos.x < i.startX) continue;
+        float ipos = [i get_height:pos.x];
+        if (ipos != [Island NO_VALUE] && pos.y > ipos && (pos.y - ipos)) {
+            player.position = ccp(player.position.x,ipos);
+            player.current_island = i;
+            player_starting_pos = player.position;
+            return;
+        }
+    }
+}
+
+-(void)prep_runin_anim { //need 1 tick of update to adjust camera
+    [player setVisible:NO];
+    do_runin_anim = YES;
 }
 
 -(void)update_render {
@@ -169,10 +198,8 @@
 	}
 }
 
-int test;
-
-
 -(void)update {
+    [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
     
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
@@ -184,11 +211,7 @@ int test;
         [player update:self];
         [self check_falloff];
         
-        for(int i = [game_objects count]-1; i>=0 ; i--) {
-            GameObject *o = [game_objects objectAtIndex:i];
-            [o update:player g:self];
-        }
-        
+        [self update_gameobjs];
         [self update_particles];
         [self push_added_particles];
         [self update_render];
@@ -198,10 +221,46 @@ int test;
     } else if (current_mode == GameEngineLayerMode_UIANIM) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
         
-    }
+    } else if (current_mode == GameEngineLayerMode_SCROLLDOWN) {
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+        scrollup_pct-=0.02;
+        if (scrollup_pct <= 0) {
+            scrollup_pct = 0;
+            if (do_runin_anim) {
+                current_mode = GameEngineLayerMode_CAMERAFOLLOWTICK;
+            } else {
+                current_mode = GameEngineLayerMode_GAMEPLAY;
+            }
+        }
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
+        float ex,ey,ez,cx,cy,cz;
+        [camera_ eyeX:&ex eyeY:&ey eyeZ:&ez];
+        [camera_ centerX:&cx centerY:&cy centerZ:&cz];
+        
+        [camera_ setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
+        [camera_ setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
+        
+    } else if (current_mode == GameEngineLayerMode_CAMERAFOLLOWTICK) {
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+        [self stopAction:follow_action];
+        current_mode = GameEngineLayerMode_RUNINANIM;
+        [player setPosition:CGPointAdd(player.position, ccp(-300,0))];
+        [player setVisible:YES];
+        [player do_run_anim];
     
-    test++;
-    if (test%20==0) {
+    } else if (current_mode == GameEngineLayerMode_RUNINANIM) {
+        [self update_gameobjs];
+        [self update_particles];
+        [self push_added_particles];
+        if (player.position.x < player_starting_pos.x) {
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+            [player setPosition:ccp(player.position.x+10,player_starting_pos.y)];
+        } else {
+            [self runAction:follow_action];
+            [player do_stand_anim];
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_START_INTIAL_ANIM]];
+        }
         
     }
     
@@ -247,6 +306,13 @@ int test;
     int tb = b.hasgets+b.savedgets;
     [DataStore set_key:STO_totalbones_INT int_value:[DataStore get_int_for_key:STO_totalbones_INT]+tb];
     [DataStore set_key:STO_maxbones_INT int_value:MAX([DataStore get_int_for_key:STO_maxbones_INT],tb)];
+}
+
+-(void)update_gameobjs {
+    for(int i = [game_objects count]-1; i>=0 ; i--) {
+        GameObject *o = [game_objects objectAtIndex:i];
+        [o update:player g:self];
+    }
 }
 
 -(void)add_gameobject:(GameObject*)o {

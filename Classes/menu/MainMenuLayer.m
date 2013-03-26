@@ -111,6 +111,8 @@
     [self unscheduleAllSelectors];
     [self removeAllChildrenWithCleanup:YES];
     [menu_pages removeAllObjects];
+    
+    [self addChild:[Common get_load_scr]];
 }
 
 @end

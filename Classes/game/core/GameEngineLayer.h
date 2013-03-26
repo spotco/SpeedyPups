@@ -21,6 +21,9 @@
 #define GAMEENGINE_INF_LIVES -99
 
 typedef enum {
+    GameEngineLayerMode_SCROLLDOWN,
+    GameEngineLayerMode_RUNINANIM,
+    GameEngineLayerMode_CAMERAFOLLOWTICK,
     GameEngineLayerMode_GAMEPLAY,
     GameEngineLayerMode_PAUSED,
     GameEngineLayerMode_UIANIM,
@@ -50,6 +53,10 @@ typedef struct level_bone_status {
     HitRect cached_viewbox;
     BOOL refresh_worldbounds_cache;
     HitRect cached_worldsbounds;
+    
+    CGPoint player_starting_pos;
+    BOOL do_runin_anim;
+    float scrollup_pct,defcey;
 }
 
 

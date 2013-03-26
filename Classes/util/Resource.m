@@ -36,13 +36,14 @@ static NSMutableDictionary* textures = nil;
                         @"ceil_repeat_labentrance.png",TEX_LAB_ENTRANCE_CEIL_REPEAT,
                         @"lab_wall.png",TEX_LAB_WALL,
 
-                        @"BG_cave_top_fill.png", TEX_CAVE_TOP_TEX,
+                        /*@"BG_cave_top_fill.png", TEX_CAVE_TOP_TEX,
                         @"BG_cave_top_edge.png", TEX_CAVE_CORNER_TEX,
                         @"BG_cave_wall.png", TEX_CAVEWALL,
+                        @"BG_cave_spike.png", TEX_CAVE_SPIKE,*/
                         @"BG_cave_rock_wall_base.png", TEX_CAVE_ROCKWALL_BASE,
                         @"BG_cave_rock_wall_section.png", TEX_CAVE_ROCKWALL_SECTION,
                         @"BG_cave_rock.png", TEX_CAVE_ROCKPARTICLE,
-                        @"BG_cave_spike.png", TEX_CAVE_SPIKE,
+                        
 
                         @"BG1_sky.png", TEX_BG_SKY,
                         @"BG1_sun.png", TEX_BG_SUN,

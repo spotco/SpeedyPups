@@ -18,6 +18,7 @@
 
 /**
  TODO --
+ -ask for: sit anim for all dogs
  -char select make work 
  -tutorial levels
  

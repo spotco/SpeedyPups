@@ -76,6 +76,7 @@
         }
         
     } else if (cur_mode == PlayPageMode_SCROLLUP) {
+        [birds setVisible:NO];
         scrollup_pct+=0.04;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
         

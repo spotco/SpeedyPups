@@ -46,6 +46,13 @@ float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
 }
 
++(CCSprite*)get_load_scr {
+    CCSprite *loadscr = [CCSprite spriteWithFile:@"Default.png"];
+    [loadscr setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];
+    [loadscr setRotation:90];
+    return loadscr;
+}
+
 +(CGSize)SCREEN {
     return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }

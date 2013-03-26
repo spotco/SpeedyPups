@@ -400,6 +400,14 @@ HitRect cached_rect;
     return run;
 }
 
+-(void)do_run_anim {
+    [self start_anim:_RUN_ANIM_FAST];
+}
+
+-(void)do_stand_anim {
+    [self start_anim:_RUN_ANIM_NONE];
+}
+
 -(void)cons_anim {
 	NSArray *run = [self get_run_animstr];
     _RUN_ANIM_SLOW = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.075 frames:run];

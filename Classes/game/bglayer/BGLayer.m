@@ -58,10 +58,10 @@
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0]];
         [a addObject:starsbg];
         [a addObject:[BGTimeManager cons]];
-        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.02]];
+        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005]];
         [a addObject:[CloudGenerator cons]];
-        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_2] scrollspd_x:0.075 scrollspd_y:0.04]];
-        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.05]];
+        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_2] scrollspd_x:0.075 scrollspd_y:0.015]];
+        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03]];
         
     }
     return a;
@@ -95,6 +95,9 @@ static const float FADECTR_MAX = 10;
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
         [self set_day_night_color:e.i1];
+        
+    } else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
+        [self scrollup_bg_pct:e.f1];
         
     }
 }
@@ -167,10 +170,18 @@ static const float FADECTR_MAX = 10;
 
 
 #define iSKY 0
-#define iBACKHILL 2
-#define iCLOUD 3
-#define iTREEHILL 4
-#define iFRNTHILL 5
+#define iBACKHILL 3
+#define iCLOUD 4
+#define iTREEHILL 5
+#define iFRNTHILL 6
+
+-(void)scrollup_bg_pct:(float)pct {
+    [[self bgo_at:iCLOUD] setPosition:ccp([self bgo_at:iCLOUD].position.x,-400*pct)];
+    [[self bgo_at:iBACKHILL] setPosition:ccp([self bgo_at:iBACKHILL].position.x,[self bgo_at:iBACKHILL].position.y-500*pct)];
+    [[self bgo_at:iTREEHILL] setPosition:ccp([self bgo_at:iTREEHILL].position.x,[self bgo_at:iTREEHILL].position.y-600*pct)];
+    [[self bgo_at:iFRNTHILL] setPosition:ccp([self bgo_at:iFRNTHILL].position.x,[self bgo_at:iFRNTHILL].position.y-800*pct)];
+    //[fg setPosition:ccp(fg.position.x,-500*pct)];
+}
 
 -(BackgroundObject*)bgo_at:(int)i {return [normal_bg_elements objectAtIndex:i];}
 
