@@ -1,5 +1,5 @@
 {
-    "connect_pts": {"y2": 250, "x1": 48.6, "y1": 1298.6, "x2": 13186},
+    "assert_links": 15,
     "islands": [
         {"type": "line", "y2": 1300, "x1": 48.6, "can_fall": true, "x2": 1001.5, "ground": "open", "ndir": "left", "y1": 1298.6, "hei": 500},
         {"type": "line", "y2": 1351.4, "x1": 1300, "can_fall": true, "x2": 1752.9, "ground": "open", "ndir": "left", "y1": 1351.4, "hei": 500},
@@ -33,7 +33,7 @@
         {"height": 440.0214285714286, "x": 991.5, "width": 328.5, "y": 811.4, "type": "water", "label": "1"},
         {"type": "checkpoint", "x": 451.5, "label": "2", "y": 1300},
         {"height": 440.02142857142854, "x": 1730, "width": 390, "y": 860, "type": "water", "label": "3"},
-        {"height": 481.4214285714286, "x": 2575.7, "width": 987.2000000000003, "y": 842.9, "type": "water", "label": "4"},
+        {"height": 481.4214285714286, "x": 2575.7, "width": 987.2000000000004, "y": 842.9, "type": "water", "label": "4"},
         {"type": "checkpoint", "x": 5550, "label": "5", "y": 1200},
         {"type": "ground_detail", "x": 901.7, "label": "(7)gd_img:5", "img": 5, "y": 1300},
         {"height": 456.73333333333346, "x": 4126.7, "width": 393.40000000000055, "y": 785, "type": "water", "label": "8"},
@@ -128,9 +128,15 @@
         {"type": "dogbone", "x": 11888, "label": "BID:73", "bid": 73, "y": 880},
         {"type": "dogbone", "x": 11954, "label": "BID:74", "bid": 74, "y": 768},
         {"type": "speedup", "x": 11512, "label": "106", "dir": {"x": 0.93, "y": -0.37}, "y": 1150},
-        {"type": "ground_detail", "x": 12648, "label": "(107)gd_img:1", "img": 1, "y": 248}
+        {"type": "ground_detail", "x": 12648, "label": "(107)gd_img:1", "img": 1, "y": 248},
+        {"height": 163.37222222222238, "x": 1303.4, "width": 104.39999999999986, "y": 1173.3, "type": "blocker", "label": "1"},
+        {"height": 143.27222222222224, "x": 2107.8, "width": 112.19999999999982, "y": 1238.9, "type": "blocker", "label": "2"},
+        {"height": 136.67222222222222, "x": 3557.8, "width": 107.79999999999973, "y": 1248.9, "type": "blocker", "label": "3"},
+        {"height": 103.27222222222224, "x": 4507.9, "width": 97.70000000000073, "y": 1180, "type": "blocker", "label": "4"},
+        {"height": 101.07222222222231, "x": 5259, "width": 96.60000000000036, "y": 1080, "type": "blocker", "label": "5"},
+        {"height": 147.67222222222227, "x": 10811.2, "width": 107.79999999999927, "y": 985.6, "type": "blocker", "label": "7"}
     ],
+    "connect_pts": {"y2": 250, "x1": 48.6, "y1": 1298.6, "x2": 13186},
     "start_x": 220,
-    "assert_links": 15,
-    "start_y": 1374
+    "start_y": 1373.9722222222222
 }

@@ -29,9 +29,9 @@
 @end
 
 @interface GLRenderObject : NSObject {
-	CGPoint tri_pts[4];
-	CGPoint tex_pts[4];
-}
+        CGPoint tri_pts[4];
+        CGPoint tex_pts[4];
+    }
 
     @property(readwrite,unsafe_unretained) CCTexture2D* texture;
     @property(readwrite,assign) int isalloc,pts;
@@ -63,6 +63,7 @@ typedef struct CGRange {
 
 NSString* strf (char* format, ... );
 int SIG(float n);
+int pb(int base,float pctm);
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
 

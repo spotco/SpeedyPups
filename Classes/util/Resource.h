@@ -127,6 +127,7 @@
 
 #define TEX_NMENU_ITEMS @"nmenu_items"
 #define TEX_NMENU_BG @"nmenu_bg"
+#define TEX_NMENU_DOGHOUSEMASK @"doghousemask"
 
 #define TEX_BLANK @"blank"
 

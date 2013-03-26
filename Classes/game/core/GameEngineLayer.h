@@ -37,7 +37,7 @@ typedef struct level_bone_status {
 @interface GameEngineLayer : CCLayer <GEventListener> {
     NSTimer *updater;
     
-    NSMutableArray *particles;
+    NSMutableArray *particles,*particles_tba;
     
     int lives;
     int time;

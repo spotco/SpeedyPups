@@ -425,8 +425,6 @@ int test;
 
 
 /* particle system */
-
-static NSMutableArray* particles_tba;
 -(void)add_particle:(Particle*)p {
     [particles_tba addObject:p];
     

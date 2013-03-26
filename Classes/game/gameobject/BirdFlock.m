@@ -74,6 +74,10 @@
     return b;
 }
 
+-(BOOL)get_activated {
+    return activated;
+}
+
 -(int)get_render_ord {
     return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD];
 }

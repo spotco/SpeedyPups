@@ -27,10 +27,7 @@ typedef enum {
     GEventType_BOSS1_DEFEATED,
     
     GEventType_MENU_TICK,
-    GEventType_MENU_TOUCHDOWN,
-    GEventType_MENU_TOUCHMOVE,
-    GEventType_MENU_TOUCHUP,
-    GEventType_MENU_CANCELDRAG,
+    GEventType_MENU_MAKERUNPARTICLE,
     GEventType_MENU_PLAY_AUTOLEVEL_MODE,
     GEventType_MENU_PLAY_TESTLEVEL_MODE,
     GEventType_MENU_GOTO_PAGE,

@@ -174,7 +174,7 @@ static const float FADECTR_MAX = 10;
 
 -(BackgroundObject*)bgo_at:(int)i {return [normal_bg_elements objectAtIndex:i];}
 
-int pb(int base,float pctm) {return base+(255-base)*pctm;}
+//int pb(int base,float pctm) {return base+(255-base)*pctm;}
 
 //day is 100, night is 0
 -(void)set_day_night_color:(int)val {

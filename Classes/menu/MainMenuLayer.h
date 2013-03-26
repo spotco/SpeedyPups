@@ -3,7 +3,6 @@
 #import "AudioManager.h"
 #import "Common.h"
 #import "GEventDispatcher.h"
-
 #import "MainMenuBGLayer.h"
 
 
@@ -18,9 +17,7 @@
 @interface MainMenuLayer : CCLayer <GEventListener> {
     NSMutableArray* menu_pages;
     int cur_page;
-    
     CGPoint last,dp;
-    
 }
 
 @property(readwrite,strong) MainMenuBGLayer* bg;

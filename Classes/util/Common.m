@@ -40,6 +40,8 @@ CGPoint CGPointAdd(CGPoint a,CGPoint b) {
     return ccp(a.x+b.x,a.y+b.y);
 }
 
+int pb(int base,float pctm) {return base+(255-base)*pctm;}
+
 float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
 }

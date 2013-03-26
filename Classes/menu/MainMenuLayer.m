@@ -8,7 +8,7 @@
 #import "GameMain.h"
 
 @implementation NMenuPage
-- (void)setOpacity:(GLubyte)opacity {
+-(void)setOpacity:(GLubyte)opacity {
 	[super setOpacity:opacity];
 	for(CCSprite *sprite in [self children]) {
 		sprite.opacity = opacity;
@@ -87,6 +87,8 @@
             }
         }
     }
+    
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_TICK]];
     [GEventDispatcher dispatch_events];
 }
 

@@ -18,8 +18,6 @@
 
 /**
  TODO --
- -bugfix: add blocker in puddle level
- -bugfix: add limit to speedup speed
  -player run in animation from menu
  -player run in birds
  -char select make work
@@ -60,9 +58,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-    [GameMain start_testlevel];
+    //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
     //[GameMain start_game_bosstestlevel];
     

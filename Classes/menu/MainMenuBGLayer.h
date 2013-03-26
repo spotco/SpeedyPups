@@ -2,10 +2,15 @@
 #import "GEventDispatcher.h"
 #import "Resource.h"
 #import "BackgroundObject.h"
+#import "BGTimeManager.h"
+#import "GEventDispatcher.h"
 
-@interface MainMenuBGLayer : CCLayer {
+@interface MainMenuBGLayer : CCLayer <GEventListener>  {
     CCSprite *fg;
-    BackgroundObject *sky,*clouds,*hills;
+    BackgroundObject *sky,*clouds,*hills,*starsbg;
+    
+    NSMutableArray *particles,*particles_tba;
+    BGTimeManager *time;
 }
 
 +(MainMenuBGLayer*)cons;
