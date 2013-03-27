@@ -57,7 +57,7 @@ static NSMutableDictionary* textures = nil;
                         @"water.png", TEX_WATER,
                         @"fish_ss.png", TEX_FISH_SS,
                         @"bird_ss.png", TEX_BIRD_SS,
-                        @"superjump_ss.png", TEX_JUMPPAD,
+                        @"jumppad.png", TEX_JUMPPAD,
                         @"speedup_ss.png", TEX_SPEEDUP,
                         @"startbanner_pole.png",TEX_STARTBANNER_POLE,
                         @"startbanner_banner.png",TEX_STARTBANNER_BANNER,
@@ -137,10 +137,12 @@ static NSMutableDictionary* textures = nil;
                         @"menu_back_button.png",TEX_MENU_TEX_BACKBUTTON,
                         @"menu_button_menu.png",TEX_MENU_BUTTON_MENU,
                         @"menu_button_playagain.png",TEX_MENU_BUTTON_PLAYAGAIN,
+                        @"logo_ss.png",TEX_NMENU_LOGO,
                      
                         @"nmenu_items.png",TEX_NMENU_ITEMS,
                         @"nmenu_bg.png",TEX_NMENU_BG,
                         @"doghouse_mask.png",TEX_NMENU_DOGHOUSEMASK,
+                        @"nmenu_levelselectobj.png",TEX_NMENU_LEVELSELOBJ,
                      
                         @"blank.png",TEX_BLANK,
                      

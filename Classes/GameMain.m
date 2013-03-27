@@ -12,9 +12,9 @@
 #define USE_NSTIMER NO
 #define HOLD_TO_STOP NO
 #define STARTING_LIVES 99
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"tutorial_jump"
 
 /**
  TODO --
@@ -55,9 +55,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-    //[GameMain start_testlevel];
+    [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
     //[GameMain start_game_bosstestlevel];
     

@@ -1,0 +1,8 @@
+{
+    "islands": [{"type": "line", "y2": 896.6, "x1": 52, "can_fall": true, "x2": 3950.2, "ground": "open", "ndir": "left", "y1": 890, "hei": 500}],
+    "objects": [{"type": "tutorial", "x": 950, "label": "jump", "y": 1052}, {"type": "tutorialend", "x": 3850, "label": "3", "y": 902}],
+    "assert_links": 0,
+    "start_x": 656,
+    "connect_pts": {"y2": 896.6, "x1": 52, "y1": 890, "x2": 3950.2},
+    "start_y": 950
+}

@@ -37,7 +37,6 @@
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         activated = YES;
-        [self setOpacity:150];
         recharge_ct = RECHARGE_TIME;
         [self boostjump:player g:g];
         
@@ -71,6 +70,8 @@
     if (ABS(ang) > M_PI * (3/4)) {
         player.last_ndir = -1;
     }*/
+    [body stopAllActions];
+    [body runAction:anim];
     
     jnormal=[VecLib normalize:jnormal];
     jnormal=[VecLib scale:jnormal by:2];
@@ -94,28 +95,37 @@
 }
 
 -(void)cons_anim {
-    anim = [self init_anim_ofspeed:0.2];
-    [self runAction:anim];
+    anim = [self make_anim_ofspeed:0.1];
+    
+    body = [CCSprite node];
+    [body runAction:[self make_stand]];
+    [body setScale:2];
+    [body setAnchorPoint:ccp(0.5,0)];
+    [self addChild:body];
 }
 
--(id)init_anim_ofspeed:(float)speed {
-	CCTexture2D *texture = [Resource get_aa_tex:TEX_JUMPPAD];
+-(CCAction*)make_stand {
+    return [JumpPad make_anim_frames:
+            [NSMutableArray arrayWithObject:
+             [CCSpriteFrame frameWithTexture:[Resource get_tex:TEX_JUMPPAD]
+                                        rect:[JumpPad spritesheet_rect_tar:@"jumppad1"]]] speed:10];
+}
+
+-(id)make_anim_ofspeed:(float)speed {
+	CCTexture2D *texture = [Resource get_tex:TEX_JUMPPAD];
 	NSMutableArray *animFrames = [NSMutableArray array];
-    
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad1"]]];
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad2"]]];
 	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad3"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad1"]]];
     
     return [JumpPad make_anim_frames:animFrames speed:speed];
 }
 
 
 
-+(id)make_anim_frames:(NSMutableArray*)animFrames speed:(float)speed {
-	id animate = [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:speed] restoreOriginalFrame:YES];
-    id m = [CCRepeatForever actionWithAction:animate];
-    
-	return m;
++(CCAction*)make_anim_frames:(NSMutableArray*)animFrames speed:(float)speed {
+	id animate = [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:speed] restoreOriginalFrame:NO];
+	return animate;
 }
 
 +(CGRect)spritesheet_rect_tar:(NSString*)tar {

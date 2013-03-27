@@ -27,40 +27,41 @@ static NSArray* bossloadertest;
 
 +(void)cons_levels {
     levelset_classic = [[NSArray alloc] initWithObjects:
-        //@"classic_bridgenbwall",
-        //@"classic_cavewbwall",
-        //@"classic_huegcave",
+        @"classic_bridgenbwall",
+        @"classic_cavewbwall",
+        @"classic_huegcave",
         @"classic_trickytreas",
     nil];
     
     levelset_filler = [[NSArray alloc] initWithObjects:
-        /*@"filler_curvedesc",
+        @"filler_curvedesc",
         @"filler_islandjump",
         @"filler_rollinghills",
-        @"filler_sanicloop",*/
+        @"filler_sanicloop",
          
-         @"easy_puddles",
-         @"easy_world1",
-         @"easy_gottagofast",
+        @"easy_puddles",
+        @"easy_world1",
+        @"easy_gottagofast",
+        @"easy_tomslvl1",
     nil];
     
     levelset_jumppad = [[NSArray alloc] initWithObjects:
-        /*@"jumppad_bigjump",
+        @"jumppad_bigjump",
         @"jumppad_crazyloop",
         @"jumppad_hiddenislands",
         @"jumppad_jumpgap",
         @"jumppad_jumpislands",
         @"jumppad_launch",
         @"jumppad_lotsobwalls",
-        @"jumppad_spikeceil",*/
+        @"jumppad_spikeceil",
      nil];
     
     levelset_swingvine = [[NSArray alloc] initWithObjects:
-        /*@"swingvine_swingintro",
+        @"swingvine_swingintro",
         @"swingvine_dodgespike",
         @"swingvine_swingbreak",
         @"swingvine_bounswindodg",
-        @"swingvine_someswings",*/
+        @"swingvine_someswings",
     nil];
     
     levelset_autostart = [[NSArray alloc] initWithObjects:AUTOLEVEL_STARTLVL, nil];

@@ -30,11 +30,16 @@
                                                    pos:[Common screen_pctwid:0.95 pcthei:0.08]];
     
     CCMenuItem *homebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
-                                                  rect:@"nmenu_backbutton"
+                                                  rect:@"nmenu_homebutton"
                                                    tar:self sel:@selector(goto_home)
                                                    pos:[Common screen_pctwid:0.85 pcthei:0.08]];
     
-    CCMenu* m = [CCMenu menuWithItems:shopbutton,charselbutton,settingsbutton,homebutton, nil];
+    CCMenuItem *invbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
+                                              rect:@"nmenu_inventorybutton"
+                                               tar:self sel:@selector(goto_home)
+                                               pos:[Common screen_pctwid:0.25 pcthei:0.08]];
+    
+    CCMenu* m = [CCMenu menuWithItems:invbutton,shopbutton,charselbutton,settingsbutton,homebutton, nil];
     [m setPosition:ccp(0,0)];
     return m;
 }
@@ -43,7 +48,7 @@
     CCSprite* p_a = [CCSprite spriteWithTexture:[Resource get_tex:tex]
                                            rect:[FileCache get_cgrect_from_plist:tex idname:rect]];
     
-    CCSprite *p_b = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
+    CCSprite *p_b = [CCSprite spriteWithTexture:[Resource get_tex:tex]
                                            rect:[FileCache get_cgrect_from_plist:tex idname:rect]];
     
     

@@ -16,8 +16,12 @@
     [GEventDispatcher add_listener:self];
     cur_mode = PlayPageMode_WAIT;
     
-    logo = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_logo" pos:[Common screen_pctwid:0.5 pcthei:0.8]];
+    logo = [CCSprite node];
+    id reptrig = [CCCallFunc actionWithTarget:self selector:@selector(repeatbounce)];
+    [logo runAction:[CCSequence actions:[self cons_logojump_anim:TEX_NMENU_LOGO],reptrig, nil]];
+    [logo setPosition:[Common screen_pctwid:0.5 pcthei:0.75]];
     [self addChild:logo];
+    
     
     playbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_runbutton"
@@ -39,12 +43,37 @@
     
     rundog = [CCSprite node];
     
+    CCMenuItem *freerunmodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ rect:@"infinitemode" tar:self sel:@selector(freerun_button_pressed) pos:[Common screen_pctwid:0.35 pcthei:0.35]];
+    [freerunmodebutton addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Free Run"]];
+    CCMenuItem *challengemodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ rect:@"challengemodebutton" tar:self sel:@selector(challengemode_button_button_pressed) pos:[Common screen_pctwid:0.65 pcthei:0.35]];
+    [challengemodebutton addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
+    
+    mode_choose_menu = [CCMenu menuWithItems:freerunmodebutton,challengemodebutton,nil];
+    [mode_choose_menu setPosition:ccp(0,0)];
+    [self addChild:mode_choose_menu];
+    [mode_choose_menu setVisible:NO];
+    
+    challengeselect = [ChallengeModeSelect cons];
+    [challengeselect setVisible:NO];
+    [self addChild:challengeselect];
+    
     return self;
+}
+
+-(void)challengemode_button_button_pressed {
+    cur_mode = PlayPageMode_CHALLENGE_SELECT;
+}
+
+-(void)repeatbounce {
+    [logo stopAllActions];
+    [logo runAction:[self cons_logobounce_anim:TEX_NMENU_LOGO]];
 }
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_TICK && self.visible) {
         [self update];
+    } else if (e.type == GEventType_MENU_GOTO_PAGE && e.i1 == MENU_STARTING_PAGE_ID) {
+        cur_mode = PlayPageMode_WAIT;
     }
 }
 
@@ -52,11 +81,24 @@
 #define DOG_END_X 600
 
 -(void)update {
-    if (cur_mode == PlayPageMode_DOGRUN) {
+    if (cur_mode == PlayPageMode_WAIT) {
+        [logo setVisible:YES];
+        [playbutton setVisible:YES];
+        [nav_menu setVisible:YES];
+        [mode_choose_menu setVisible:NO];
+        [challengeselect setVisible:NO];
+    
+    } else if (cur_mode == PlayPageMode_DOGRUN) {
+        [logo setVisible:NO];
+        [playbutton setVisible:NO];
+        [nav_menu setVisible:NO];
+        [mode_choose_menu setVisible:NO];
+        [challengeselect setVisible:NO];
+        
         if (rundog.position.x > 200 && ![birds get_activated]) {
             [birds activate_birds];
         }
-        for(int i=0;i<2;i++)[birds update:NULL g:NULL];
+        [birds update:NULL g:NULL];
         [rundog setPosition:ccp(rundog.position.x+15,rundog.position.y)];
         
         ct++;
@@ -76,7 +118,13 @@
         }
         
     } else if (cur_mode == PlayPageMode_SCROLLUP) {
+        [logo setVisible:NO];
+        [playbutton setVisible:NO];
+        [nav_menu setVisible:NO];
+        [mode_choose_menu setVisible:NO];
         [birds setVisible:NO];
+        [challengeselect setVisible:NO];
+        
         scrollup_pct+=0.04;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
         
@@ -84,14 +132,36 @@
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_PLAY_AUTOLEVEL_MODE]];
         }
         
+    } else if (cur_mode == PlayPageMode_MODE_CHOOSE) {
+        [playbutton setVisible:NO];
+        [nav_menu setVisible:YES];
+        [logo setVisible:YES];
+        [mode_choose_menu setVisible:YES];
+        [challengeselect setVisible:NO];
+        
+    } else if (cur_mode == PlayPageMode_CHALLENGE_SELECT) {
+        [playbutton setVisible:NO];
+        [nav_menu setVisible:YES];
+        [logo setVisible:NO];
+        [mode_choose_menu setVisible:NO];
+        [challengeselect setVisible:YES];
+        
+    } else if (cur_mode == PlayPageMode_CHALLENGE_VIEW) {
+        
+        
     }
 }
 
 -(void)run_button_pressed {
+    cur_mode = PlayPageMode_MODE_CHOOSE;
+}
+
+-(void)freerun_button_pressed {
     cur_mode = PlayPageMode_DOGRUN;
     [logo setVisible:NO];
     [playbutton setVisible:NO];
     [nav_menu setVisible:NO];
+    [mode_choose_menu setVisible:NO];
     
     CCSprite *body = [CCSprite node];
     [body runAction:[self cons_anim:[Player get_character]]];
@@ -122,6 +192,29 @@
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"run_2"]]];
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"run_3"]]];
     return [Common make_anim_frames:animFrames speed:0.025];
+}
+
+-(CCAnimate*)cons_logojump_anim:(NSString*)tar {
+    CCTexture2D *texture = [Resource get_tex:tar];
+    NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation1.png"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation2.png"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation3.png"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation4.png"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation5.png"]]];
+    return [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:0.1] restoreOriginalFrame:NO];
+}
+
+-(CCAnimate*)cons_logobounce_anim:(NSString*)tar {
+    CCTexture2D *texture = [Resource get_tex:tar];
+    NSMutableArray *animFrames = [NSMutableArray array];
+    for (int i = 0; i < 5; i++) {
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation6.png"]]];
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation7.png"]]];
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation8.png"]]];
+    }
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation9.png"]]];
+    return [Common make_anim_frames:animFrames speed:0.15];
 }
 
 @end

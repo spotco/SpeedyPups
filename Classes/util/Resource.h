@@ -65,7 +65,7 @@
 #define TEX_WATER @"Water"
 #define TEX_FISH_SS @"fish_ss"
 #define TEX_BIRD_SS @"bird_ss"
-#define TEX_JUMPPAD @"superjump_ss"
+#define TEX_JUMPPAD @"jumppad"
 #define TEX_SPEEDUP @"speedup_ss"
 #define TEX_STARTBANNER_POLE @"StartBannerPole"
 #define TEX_STARTBANNER_BANNER @"StartBannerBanner"
@@ -128,6 +128,8 @@
 #define TEX_NMENU_ITEMS @"nmenu_items"
 #define TEX_NMENU_BG @"nmenu_bg"
 #define TEX_NMENU_DOGHOUSEMASK @"doghousemask"
+#define TEX_NMENU_LOGO @"logo_ss"
+#define TEX_NMENU_LEVELSELOBJ @"nmenu_levelselectobj"
 
 #define TEX_BLANK @"blank"
 

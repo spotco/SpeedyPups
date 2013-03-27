@@ -96,12 +96,12 @@
     }
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         [self activate_birds];
-        activated = YES;
     }
     return;
 }
 
 -(void)activate_birds {
+    activated = YES;
     [AudioManager playsfx:SFX_BIRD_FLY];
     for (Bird *i in birds) {
         i.flying = YES;
