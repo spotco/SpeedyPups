@@ -2,7 +2,12 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"tutorial_water"
+#define STARTING_LIVES 99
+
 #define ENABLE_BG_PARTICLES YES
 #define DRAW_HITBOX NO
 #define TARGET_FPS 60
@@ -11,10 +16,6 @@
 #define DEBUG_UI NO
 #define USE_NSTIMER NO
 #define HOLD_TO_STOP NO
-#define STARTING_LIVES 99
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"tutorial_jump"
 
 /**
  TODO --
@@ -58,7 +59,6 @@
     [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
     //[GameMain start_menu];
-    
     //[GameMain start_game_bosstestlevel];
     
 }

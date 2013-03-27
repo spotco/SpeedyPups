@@ -22,13 +22,12 @@ static NSMutableDictionary* textures = nil;
                         @"BG1_bridge_edge.png",TEX_BRIDGE_EDGE,
                         @"BG1_bridge_section.png",TEX_BRIDGE_SECTION,
                      
-                        @"lab_alarm.png",TEX_LAB_ALARM,
+                        @"grounddetail_ss.png",TEX_GROUND_DETAILS,
+                     
                         @"lab_bg.png",TEX_LAB_BG,
                         @"lab_ground_1.png",TEX_LAB_GROUND_1,
                         @"lab_ground_top.png",TEX_LAB_GROUND_TOP,
                         @"lab_ground_top_edge.png",TEX_LAB_GROUND_TOP_EDGE,
-                        @"lab_pipe_1.png",TEX_LAB_PIPE_1,
-                        @"lab_pipe_2.png",TEX_LAB_PIPE_2,
                         @"lab_island_corner.png",TEX_LAB_GROUND_CORNER,
                         @"back_labentrance_pillar.png",TEX_LAB_ENTRANCE_BACK,
                         @"front_labentrance_pillar.png",TEX_LAB_ENTRANCE_FORE,
@@ -77,17 +76,6 @@ static NSMutableDictionary* textures = nil;
                         @"robot_particle.png",TEX_ROBOT_PARTICLE,
                         @"explosion_default.png",TEX_EXPLOSION,
                         @"bomb.png",TEX_ENEMY_BOMB,
-                                      
-                        @"BG1_detail_1.png", TEX_GROUND_DETAIL_1,
-                        @"BG1_detail_2.png", TEX_GROUND_DETAIL_2,
-                        @"BG1_detail_3.png", TEX_GROUND_DETAIL_3,
-                        @"BG1_detail_4.png", TEX_GROUND_DETAIL_4,
-                        @"BG1_detail_5.png", TEX_GROUND_DETAIL_5,
-                        @"BG1_detail_6.png", TEX_GROUND_DETAIL_6,
-                        
-                        @"lab_pipe_1.png", TEX_GROUND_DETAIL_7,
-                        @"lab_pipe_2.png", TEX_GROUND_DETAIL_8,
-                        @"lab_alarm.png", TEX_GROUND_DETAIL_9,      
 
                         @"dog1ss.png", TEX_DOG_RUN_1,
                         @"dog2ss.png", TEX_DOG_RUN_2,

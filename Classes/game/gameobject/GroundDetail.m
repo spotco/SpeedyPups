@@ -4,34 +4,36 @@
 @implementation GroundDetail
 @synthesize imgtype;
 
+static NSMutableArray* IDTOKEY;
++(NSString*)id_to_key:(int)gid {
+    if (IDTOKEY==NULL) IDTOKEY = [NSMutableArray arrayWithObjects:
+      @"",
+      @"fence",
+      @"sign_go",
+      @"sign_dog",
+      @"sign_dog2",
+      @"sign_noswim",
+      @"tree1",
+      @"lab_light",
+      @"lab_pipe",
+      @"lab_pipe2",
+      @"sign_vines",
+      @"sign_warning",
+      @"sign_rocks",
+      @"sign_water",
+      @"sign_spikes",
+    nil];
+    return [IDTOKEY objectAtIndex:gid];
+}
+
 +(GroundDetail*)cons_x:(float)posx y:(float)posy type:(int)type islands:(NSMutableArray *)islands{
     GroundDetail *d = [GroundDetail node];
     d.position = ccp(posx,posy);
-    CCTexture2D *texture; 
-    d.imgtype = type;
-    if (type == 1) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_1];
-    } else if (type == 2) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_2];
-    } else if (type == 3) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_3];
-    } else if (type == 4) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_4];
-    } else if (type == 5) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_5];
-    } else if (type == 6) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_6];
-    } else if (type == 7) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_7];
-    } else if (type == 8) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_8];
-    } else if (type == 9) {
-        texture = [Resource get_tex:TEX_GROUND_DETAIL_9];
-    } else {
-        NSLog(@"GroundDetail init type error");
-    }
-    d.img = [CCSprite spriteWithTexture:texture];
-    d.img.position = ccp(0,[d.img boundingBox].size.height / 2.0);
+    
+    CGRect texrect = [FileCache get_cgrect_from_plist:TEX_GROUND_DETAILS idname:[self id_to_key:type]];
+    d.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_GROUND_DETAILS] rect:texrect];
+    [d.img setPosition:ccp(0,texrect.size.height/2)];
+    
     [d addChild:d.img];
     [d attach_toisland:islands];
     return d;

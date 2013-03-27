@@ -176,19 +176,18 @@ static const float FADECTR_MAX = 10;
 #define iFRNTHILL 6
 
 -(void)scrollup_bg_pct:(float)pct {
+    if (![GameMain GET_USE_BG])return;
     [[self bgo_at:iCLOUD] setPosition:ccp([self bgo_at:iCLOUD].position.x,-400*pct)];
     [[self bgo_at:iBACKHILL] setPosition:ccp([self bgo_at:iBACKHILL].position.x,[self bgo_at:iBACKHILL].position.y-500*pct)];
     [[self bgo_at:iTREEHILL] setPosition:ccp([self bgo_at:iTREEHILL].position.x,[self bgo_at:iTREEHILL].position.y-600*pct)];
     [[self bgo_at:iFRNTHILL] setPosition:ccp([self bgo_at:iFRNTHILL].position.x,[self bgo_at:iFRNTHILL].position.y-800*pct)];
-    //[fg setPosition:ccp(fg.position.x,-500*pct)];
 }
 
 -(BackgroundObject*)bgo_at:(int)i {return [normal_bg_elements objectAtIndex:i];}
 
-//int pb(int base,float pctm) {return base+(255-base)*pctm;}
-
 //day is 100, night is 0
 -(void)set_day_night_color:(int)val {
+    if (![GameMain GET_USE_BG])return;
     float pctm = ((float)val) / 100;
     [[self bgo_at:iSKY] setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];

@@ -100,7 +100,7 @@
     body = [CCSprite node];
     [body runAction:[self make_stand]];
     [body setScale:2];
-    [body setAnchorPoint:ccp(0.5,0)];
+    [body setAnchorPoint:ccp(0.5,0.5)];
     [self addChild:body];
 }
 

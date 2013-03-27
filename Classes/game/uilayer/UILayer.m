@@ -19,6 +19,7 @@
     [self cons_game_end_menu];
     ingame_ui_anims = [NSMutableArray array];
     self.isTouchEnabled = YES;
+    [ingame_ui setVisible:NO];
 }
 
 -(void)dispatch_event:(GEvent *)e {

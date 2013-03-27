@@ -16,14 +16,13 @@
 #define TEX_BRIDGE_SECTION @"BridgeSection"
 #define TEX_TOP_EDGE @"GroundTopEdge"
 
-#define TEX_LAB_ALARM @"labalarm"
+#define TEX_GROUND_DETAILS @"grounddetail_ss"
+
 #define TEX_LAB_BG @"labbg"
 #define TEX_LAB_GROUND_1 @"labground1"
 #define TEX_LAB_GROUND_TOP @"labgroundtop"
 #define TEX_LAB_GROUND_TOP_EDGE @"labgroundtopedge"
 #define TEX_LAB_GROUND_CORNER @"labgroundcorner"
-#define TEX_LAB_PIPE_1 @"labpipe1"
-#define TEX_LAB_PIPE_2 @"labpipe2"
 #define TEX_LAB_ENTRANCE_BACK @"labentranceback"
 #define TEX_LAB_ENTRANCE_FORE @"labentrancefore"
 #define TEX_LAB_ENTRANCE_CEIL @"labentranceceil"
@@ -89,16 +88,6 @@
 #define TEX_CHECKPOINT_1 @"CheckPointPre"
 #define TEX_CHECKPOINT_2 @"CheckPointPost"
 #define TEX_CHECKERFLOOR @"CheckerFloor"
-
-#define TEX_GROUND_DETAIL_1 @"GroundDetail1"
-#define TEX_GROUND_DETAIL_2 @"GroundDetail2"
-#define TEX_GROUND_DETAIL_3 @"GroundDetail3"
-#define TEX_GROUND_DETAIL_4 @"GroundDetail4"
-#define TEX_GROUND_DETAIL_5 @"GroundDetail5"
-#define TEX_GROUND_DETAIL_6 @"GroundDetail6"
-#define TEX_GROUND_DETAIL_7 @"GroundDetail7"
-#define TEX_GROUND_DETAIL_8 @"GroundDetail8"
-#define TEX_GROUND_DETAIL_9 @"GroundDetail9"
 
 #define TEX_GREY_PARTICLE @"GreyParticle"
 #define TEX_SMOKE_PARTICLE @"smokeparticle"
