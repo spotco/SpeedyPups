@@ -5,7 +5,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_water"
+#define TESTLEVEL @"tutorial_doublejump"
 #define STARTING_LIVES 99
 
 #define ENABLE_BG_PARTICLES YES
@@ -35,9 +35,11 @@
  Challenges:
  -beat classic_trickytreas with 28 or more bones
  -beat easy_gottagofast with 60 or more bones
+ -get all bones in tutorial_breakrocks
  
  -beat swingvine_bounswindodg in 0:20 or less
  
+ -find secret in tutorial_spikes
  -find secret in jumppad_crazyloop
  -find secret in jumppad_jumpislands
  -find secret in jumppad_spikeceil

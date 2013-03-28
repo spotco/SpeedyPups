@@ -15,7 +15,7 @@
 //#define TARGET_POS ccp(420,150)
 //#define STARTING_POS ccp(720,450)
 #define FLYIN_SPEED 10
-#define MESSAGELENGTH 250
+#define MESSAGELENGTH 330
 
 +(TutorialProf*)cons_msg:(NSString *)msg y:(float)y {
     TutorialProf *p = [[TutorialProf node] cons_msg:msg y:y];
