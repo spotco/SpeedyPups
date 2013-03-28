@@ -31,6 +31,7 @@ static NSArray* bossloadertest;
         @"classic_cavewbwall",
         @"classic_huegcave",
         @"classic_trickytreas",
+        @"classic_tomslvl1",
     nil];
     
     levelset_filler = [[NSArray alloc] initWithObjects:
@@ -42,7 +43,6 @@ static NSArray* bossloadertest;
         @"easy_puddles",
         @"easy_world1",
         @"easy_gottagofast",
-        @"easy_tomslvl1",
     nil];
     
     levelset_jumppad = [[NSArray alloc] initWithObjects:

@@ -5,7 +5,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_spikevine"
+#define TESTLEVEL @"classic_tomslvl1"
 #define STARTING_LIVES 99
 
 #define ENABLE_BG_PARTICLES YES
@@ -40,6 +40,7 @@
  -get all bones in tutorial_swipeget
  
  -beat swingvine_bounswindodg in 0:20 or less
+ -beat tutorial_spikevine in 0:20 or less
  
  -find secret in tutorial_spikes
  -find secret in jumppad_crazyloop

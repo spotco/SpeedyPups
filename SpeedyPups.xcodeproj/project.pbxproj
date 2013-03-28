@@ -312,7 +312,7 @@
 		7EB97768170261FD00459DEF /* jumppad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB97766170261FD00459DEF /* jumppad.png */; };
 		7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB97769170273F100459DEF /* nmenu_levelselectobj.plist */; };
 		7EB9776C170273F200459DEF /* nmenu_levelselectobj.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776A170273F200459DEF /* nmenu_levelselectobj.png */; };
-		7EB9776E17027D9A00459DEF /* easy_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* easy_tomslvl1.map */; };
+		7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */; };
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
 		7EC5EC5616D9DDAF00E9D431 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7916D9DDAF00E9D431 /* CCAction.h */; };
@@ -951,7 +951,7 @@
 		7EB97766170261FD00459DEF /* jumppad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumppad.png; sourceTree = "<group>"; };
 		7EB97769170273F100459DEF /* nmenu_levelselectobj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_levelselectobj.plist; sourceTree = "<group>"; };
 		7EB9776A170273F200459DEF /* nmenu_levelselectobj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_levelselectobj.png; sourceTree = "<group>"; };
-		7EB9776D17027D9A00459DEF /* easy_tomslvl1.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_tomslvl1.map; sourceTree = "<group>"; };
+		7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_tomslvl1.map; sourceTree = "<group>"; };
 		7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeModeSelect.h; sourceTree = "<group>"; };
 		7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeModeSelect.m; sourceTree = "<group>"; };
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
@@ -1305,6 +1305,7 @@
 		7E9A784616FC4D980014B7E0 /* classic */ = {
 			isa = PBXGroup;
 			children = (
+				7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */,
 				7EB8B23E16D9F8E700F58961 /* classic_bridgenbwall.map */,
 				7EB8B23F16D9F8E700F58961 /* classic_cavewbwall.map */,
 				7EB8B24016D9F8E700F58961 /* classic_huegcave.map */,
@@ -1357,7 +1358,6 @@
 				7EB8B26216D9F8E700F58961 /* easy_world1.map */,
 				7E9A784C16FC6D890014B7E0 /* easy_puddles.map */,
 				7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */,
-				7EB9776D17027D9A00459DEF /* easy_tomslvl1.map */,
 			);
 			name = easy;
 			sourceTree = "<group>";
@@ -2895,7 +2895,7 @@
 				7EB97768170261FD00459DEF /* jumppad.png in Resources */,
 				7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */,
 				7EB9776C170273F200459DEF /* nmenu_levelselectobj.png in Resources */,
-				7EB9776E17027D9A00459DEF /* easy_tomslvl1.map in Resources */,
+				7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */,
 				7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */,
 				7EDD63761703AF6300825887 /* tutorial_water.map in Resources */,
 				7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */,
