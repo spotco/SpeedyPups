@@ -1,0 +1,25 @@
+{
+    "assert_links": 0,
+    "islands": [
+        {"type": "line", "y2": 1100, "x1": 51.5, "can_fall": true, "x2": 3052.9, "ground": "open", "ndir": "left", "y1": 1097.1, "hei": 500},
+        {"type": "line", "y2": 1104.3, "x1": 3150, "can_fall": true, "x2": 3854.3, "ground": "open", "ndir": "left", "y1": 1098.6, "hei": 500}
+    ],
+    "objects": [
+        {"type": "checkpoint", "x": 300, "label": "0", "y": 1097.1},
+        {"type": "tutorial", "x": 502.9, "label": "spikevine", "y": 1250},
+        {"type": "ground_detail", "x": 651.5, "label": "(2)gd_img:6", "img": 6, "y": 1098.6},
+        {"type": "ground_detail", "x": 800, "label": "(3)gd_img:6", "img": 6, "y": 1101.4},
+        {"type": "ground_detail", "x": 1101.5, "label": "(4)gd_img:2", "img": 2, "y": 1100},
+        {"type": "ground_detail", "x": 1401.5, "label": "(5)gd_img:6", "img": 6, "y": 1098.6},
+        {"type": "ground_detail", "x": 1552.9, "label": "(6)gd_img:6", "img": 6, "y": 1101.4},
+        {"type": "ground_detail", "x": 1850, "label": "(7)gd_img:2", "img": 2, "y": 1101.4},
+        {"type": "ground_detail", "x": 2151.5, "label": "(8)gd_img:6", "img": 6, "y": 1102.9},
+        {"type": "ground_detail", "x": 2300, "label": "(9)gd_img:6", "img": 6, "y": 1101.4},
+        {"type": "ground_detail", "x": 2801.5, "label": "(10)gd_img:14", "img": 14, "y": 1101.4},
+        {"type": "tutorialend", "x": 2698.6, "label": "11", "y": 1101.4},
+        {"x": 3101.5, "y2": 1231.4, "y": 805.7, "x2": 3102.9, "type": "spikevine", "label": "12"}
+    ],
+    "start_y": 1151.3714285714286,
+    "start_x": 150,
+    "connect_pts": {"y2": 1104.3, "x1": 51.5, "y1": 1097.1, "x2": 3854.3}
+}

@@ -53,8 +53,8 @@
     
     
     if ([rect isEqualToString:@"nmenu_blankbutton"]) {
-        [p_a addChild:[CharSelAnim cons_pos:ccp(25,25)]];
-        [p_b addChild:[CharSelAnim cons_pos:ccp(25,25)]];
+        [p_a addChild:[CharSelAnim cons_pos:ccp(18,20)]];
+        [p_b addChild:[CharSelAnim cons_pos:ccp(18,20)]];
     }
     
     [Common set_zoom_pos_align:p_a zoomed:p_b scale:1.2];

@@ -5,7 +5,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_doublejump"
+#define TESTLEVEL @"tutorial_spikevine"
 #define STARTING_LIVES 99
 
 #define ENABLE_BG_PARTICLES YES
@@ -36,6 +36,8 @@
  -beat classic_trickytreas with 28 or more bones
  -beat easy_gottagofast with 60 or more bones
  -get all bones in tutorial_breakrocks
+ -get most bones in tutorial_swingvine
+ -get all bones in tutorial_swipeget
  
  -beat swingvine_bounswindodg in 0:20 or less
  
