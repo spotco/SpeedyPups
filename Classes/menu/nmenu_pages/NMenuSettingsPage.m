@@ -33,11 +33,23 @@
     [m setPosition:ccp(0,0)];
     [self addChild:m];
     */
+    
+    [GEventDispatcher add_listener:self];
      
     [self addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.85] color:ccc3(0, 0, 0) fontsize:25 str:@"Settings"]];
     
     [self addChild:[MenuCommon cons_common_nav_menu]];
     return self;
+}
+
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_MENU_INVENTORY) {
+        kill = YES;
+        
+    } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
+        kill = NO;
+        
+    }
 }
 
 +(CCMenuItem*)labeleditem_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos text:(NSString*)text textpos:(CGPoint)tpos{

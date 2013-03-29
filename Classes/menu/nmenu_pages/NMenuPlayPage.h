@@ -24,9 +24,10 @@ typedef enum {
 
     CCSprite *rundog;
     
-    
     int ct;
     float scrollup_pct;
+    
+    BOOL kill;
 }
 
 +(NMenuPlayPage*)cons;

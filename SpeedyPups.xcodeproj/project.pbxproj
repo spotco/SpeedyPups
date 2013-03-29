@@ -314,6 +314,11 @@
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
 		7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460E617054D9700656A48 /* AutoLevelState.m */; };
+		7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */; };
+		7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */; };
+		7EC460F017058BC800656A48 /* ingame_ui_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460EE17058BC700656A48 /* ingame_ui_ss.png */; };
+		7EC460F4170590E000656A48 /* item_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460F2170590E000656A48 /* item_ss.plist */; };
+		7EC460F5170590E000656A48 /* item_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460F3170590E000656A48 /* item_ss.png */; };
 		7EC5EC5616D9DDAF00E9D431 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7916D9DDAF00E9D431 /* CCAction.h */; };
 		7EC5EC5716D9DDAF00E9D431 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */; };
 		7EC5EC5816D9DDAF00E9D431 /* CCActionCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */; };
@@ -954,6 +959,12 @@
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
 		7EC460E517054D9600656A48 /* AutoLevelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState.h; sourceTree = "<group>"; };
 		7EC460E617054D9700656A48 /* AutoLevelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState.m; sourceTree = "<group>"; };
+		7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuInventoryLayer.h; sourceTree = "<group>"; };
+		7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuInventoryLayer.m; sourceTree = "<group>"; };
+		7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ingame_ui_ss.plist; sourceTree = "<group>"; };
+		7EC460EE17058BC700656A48 /* ingame_ui_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_ui_ss.png; sourceTree = "<group>"; };
+		7EC460F2170590E000656A48 /* item_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = item_ss.plist; sourceTree = "<group>"; };
+		7EC460F3170590E000656A48 /* item_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_ss.png; sourceTree = "<group>"; };
 		7EC5EB7916D9DDAF00E9D431 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1214,6 +1225,8 @@
 		7E0A787816ED57430026C418 /* nmenu_pages */ = {
 			isa = PBXGroup;
 			children = (
+				7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */,
+				7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */,
 				7E0A787916ED57880026C418 /* NMenuPlayPage.h */,
 				7E0A787A16ED57880026C418 /* NMenuPlayPage.m */,
 				7E0A787F16ED65BB0026C418 /* NMenuSettingsPage.h */,
@@ -1222,8 +1235,6 @@
 				7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */,
 				7E0A788916ED781D0026C418 /* NMenuShopPage.h */,
 				7E0A788A16ED781D0026C418 /* NMenuShopPage.m */,
-				7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */,
-				7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */,
 			);
 			name = nmenu_pages;
 			sourceTree = "<group>";
@@ -1668,6 +1679,7 @@
 		7EB8B27616D9F8E700F58961 /* object */ = {
 			isa = PBXGroup;
 			children = (
+				7EC460F1170590DD00656A48 /* item */,
 				7EB8B27716D9F8E700F58961 /* bird */,
 				7EB8B27A16D9F8E700F58961 /* boost */,
 				7EB8B27F16D9F8E700F58961 /* checkpoint */,
@@ -1851,6 +1863,8 @@
 		7EB8B2C316D9F8E700F58961 /* ingame_ui */ = {
 			isa = PBXGroup;
 			children = (
+				7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */,
+				7EC460EE17058BC700656A48 /* ingame_ui_ss.png */,
 				7EB8B2C416D9F8E700F58961 /* enemy_approach_ui.png */,
 				7EB8B2C516D9F8E700F58961 /* ingame_ui_bone_icon.png */,
 				7EB8B2C616D9F8E700F58961 /* ingame_ui_lives_icon.png */,
@@ -2154,6 +2168,8 @@
 				7EB8B45B16D9FC0900F58961 /* MainMenuLayer.m */,
 				7E0A787C16ED5DEB0026C418 /* MenuCommon.h */,
 				7E0A787D16ED5DEC0026C418 /* MenuCommon.m */,
+				7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */,
+				7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -2198,6 +2214,15 @@
 				7EB8B1F916D9F8E600F58961 /* breakablewall_body.png */,
 			);
 			name = breakablewall;
+			sourceTree = "<group>";
+		};
+		7EC460F1170590DD00656A48 /* item */ = {
+			isa = PBXGroup;
+			children = (
+				7EC460F2170590E000656A48 /* item_ss.plist */,
+				7EC460F3170590E000656A48 /* item_ss.png */,
+			);
+			path = item;
 			sourceTree = "<group>";
 		};
 		7EC5EB7816D9DDAF00E9D431 /* cocos2d */ = {
@@ -2924,6 +2949,10 @@
 				7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */,
 				7E4A2F60170448F9001BD38C /* tutorial_swipeget.map in Resources */,
 				7E4A2F6217044908001BD38C /* tutorial_spikevine.map in Resources */,
+				7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */,
+				7EC460F017058BC800656A48 /* ingame_ui_ss.png in Resources */,
+				7EC460F4170590E000656A48 /* item_ss.plist in Resources */,
+				7EC460F5170590E000656A48 /* item_ss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3042,6 +3071,7 @@
 				7ED5B21C1700D2BF00B22CC4 /* TouchTrackingLayer.m in Sources */,
 				7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */,
 				7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */,
+				7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

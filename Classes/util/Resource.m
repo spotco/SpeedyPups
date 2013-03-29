@@ -60,7 +60,8 @@ static NSMutableDictionary* textures = nil;
                         @"swingvine_tex_loose.png", TEX_SWINGVINE_TEX,
                      
                         @"electric_body.png", TEX_ELECTRIC_BODY,
-                        @"electric_post.png", TEX_ELECTRIC_BASE, 
+                        @"electric_post.png", TEX_ELECTRIC_BASE,
+                        @"item_ss.png",TEX_ITEM_SS,
                      
                         @"robot_default.png",TEX_ENEMY_ROBOT,
                         @"launcher_default.png",TEX_ENEMY_LAUNCHER,
@@ -99,6 +100,8 @@ static NSMutableDictionary* textures = nil;
                         @"ingame_ui_lives_icon.png",TEX_UI_LIVES_ICON,
                         @"ingame_ui_time_icon.png",TEX_UI_TIME_ICON,
                         @"enemy_approach_ui.png",TEX_UI_ENEMY_ALERT,
+                     
+                        @"ingame_ui_ss.png",TEX_UI_INGAMEUI_SS,
                      
                         @"pauseicon.png", TEX_UI_PAUSEICON,
                         @"pause_menu_back.png", TEX_UI_PAUSEMENU_BACK,

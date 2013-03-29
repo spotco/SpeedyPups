@@ -5,6 +5,8 @@
 #import "NMenuCharSelectPage.h"
 #import "NMenuShopPage.h"
 
+#import "MainMenuInventoryLayer.h"
+
 #import "GameMain.h"
 
 @implementation NMenuPage
@@ -28,6 +30,7 @@
     
     [sc addChild:mb];
     [sc addChild:mm];
+    [sc addChild:[MainMenuInventoryLayer cons]];
     
     return sc;
 }

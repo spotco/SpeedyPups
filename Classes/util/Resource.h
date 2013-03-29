@@ -68,6 +68,8 @@
 #define TEX_SPIKE_VINE_BOTTOM @"SpikeVineRight"
 #define TEX_SPIKE_VINE_SECTION @"SpikeVineSection"
 
+#define TEX_ITEM_SS @"item_ss"
+
 #define TEX_ENEMY_ROBOT @"robot_default"
 #define TEX_ENEMY_LAUNCHER @"launcher_default"
 #define TEX_ENEMY_ROCKET @"rocket"
@@ -102,6 +104,8 @@
 #define TEX_UI_PAUSEMENU_BACK @"PauseMenuBack"
 #define TEX_UI_STARTGAME_GO @"UIStartGameGo"
 #define TEX_UI_STARTGAME_READY @"UIStartGameReady"
+
+#define TEX_UI_INGAMEUI_SS @"ingame_ui_ss"
 
 #define TEX_UI_GAMEOVER_TITLE @"UIgameovertitle"
 #define TEX_UI_GAMEOVER_INFO @"UIgameoverinfo"

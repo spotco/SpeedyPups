@@ -72,8 +72,16 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_TICK && self.visible) {
         [self update];
+        
     } else if (e.type == GEventType_MENU_GOTO_PAGE && e.i1 == MENU_STARTING_PAGE_ID) {
         cur_mode = PlayPageMode_WAIT;
+        
+    } else if (e.type == GEventType_MENU_INVENTORY) {
+        kill = YES;
+        
+    } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
+        kill = NO;
+        
     }
 }
 
@@ -81,7 +89,15 @@
 #define DOG_END_X 600
 
 -(void)update {
-    if (cur_mode == PlayPageMode_WAIT) {
+    
+    if (kill) {
+        [logo setVisible:NO];
+        [playbutton setVisible:NO];
+        [nav_menu setVisible:YES];
+        [mode_choose_menu setVisible:NO];
+        [challengeselect setVisible:NO];
+        
+    } else if (cur_mode == PlayPageMode_WAIT) {
         [logo setVisible:YES];
         [playbutton setVisible:YES];
         [nav_menu setVisible:YES];

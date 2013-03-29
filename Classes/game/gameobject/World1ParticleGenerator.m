@@ -9,9 +9,6 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if (![GameMain GET_ENABLE_BG_PARTICLES]) {
-        return;
-    }
     for (GameObject* i in g.game_objects) {
         if ([i class] == [CaveWall class] && [Common hitrect_touch:[i get_hit_rect] b:[player get_hit_rect]]) {
             return;

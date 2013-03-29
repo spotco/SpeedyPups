@@ -36,7 +36,7 @@
     
     CCMenuItem *invbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_inventorybutton"
-                                               tar:self sel:@selector(goto_home)
+                                               tar:self sel:@selector(inventory)
                                                pos:[Common screen_pctwid:0.25 pcthei:0.08]];
     
     CCMenu* m = [CCMenu menuWithItems:invbutton,shopbutton,charselbutton,settingsbutton,homebutton, nil];
@@ -68,7 +68,9 @@
     return p;
 }
 
-
++(void)inventory {
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_INVENTORY]];
+}
 
 +(void)goto_shop {
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SHOP_PAGE i2:0]];

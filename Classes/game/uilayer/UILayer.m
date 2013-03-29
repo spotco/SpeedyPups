@@ -131,6 +131,16 @@
     enemy_alert_ui = [self cons_menuitem_tex:[Resource get_tex:TEX_UI_ENEMY_ALERT] pos:[Common screen_pctwid:0.9 pcthei:0.5]];
     [enemy_alert_ui setVisible:NO];
     
+    CCSprite *itemslot = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"itemslotsmall"]];
+    CCSprite *itemslotzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"itemslotsmall"]];
+    [UILayer set_zoom_pos_align:itemslot zoomed:itemslotzoom scale:1.2];
+    
+    CCMenuItemImage *itemslotic = [CCMenuItemImage itemFromNormalSprite:itemslot
+                                                         selectedSprite:itemslotzoom
+                                                                 target:self
+                                                               selector:@selector(itemslot_use)];
+    [itemslotic setPosition:[Common screen_pctwid:0.07 pcthei:0.09]];
+    
     ingame_ui = [CCMenu menuWithItems:
                  ingamepause,
                  bone_disp_icon,
@@ -140,21 +150,18 @@
                  [self label_cons_menuitem:lives_disp leftalign:YES],
                  [self label_cons_menuitem:time_disp leftalign:YES],
                  enemy_alert_ui,
+                 itemslotic,
                  nil];
-    
-    if ([GameMain GET_DEBUG_UI]) {
-        DEBUG_ctdisp = [self cons_label_pos:ccp([Common SCREEN].width*0.02,[Common SCREEN].height*0.71) color:red fontsize:fntsz];
-        [ingame_ui addChild:[self label_cons_menuitem:DEBUG_ctdisp leftalign:YES]];
-        DEBUG_autolvldisp = [self cons_label_pos:ccp([Common SCREEN].width*0.02,[Common SCREEN].height*0.65) color:red fontsize:fntsz];
-        [ingame_ui addChild:[self label_cons_menuitem:DEBUG_autolvldisp leftalign:YES]];
-    }
-    
-    
     
     ingame_ui.anchorPoint = ccp(0,0);
     ingame_ui.position = ccp(0,0);
     [self addChild:ingame_ui];
 }
+
+-(void)itemslot_use {
+    NSLog(@"use item");
+}
+
 -(void)cons_pause_ui {
     ccColor4B c = {0,0,0,200};
     CGSize s = [[UIScreen mainScreen] bounds].size;

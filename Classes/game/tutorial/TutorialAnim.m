@@ -179,7 +179,26 @@
         defaulthandpos = ccp(0,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
         
+    } else if ([msg isEqualToString:@"collectcoin"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"collectcoin0",@"collectcoin1",@"collectcoin2"     ,@"collectcoin3"     ,@"collectcoin4"         ,@"collectcoin5"             ,@"collectcoin6",@"collectcoin7",@"collectcoin8",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipestraight"  ,@"swipestraight"  ,@"swipestraight"      ,@"swipestraight"          ,@""         ,@"",@""         ,nil];
+        CGPoint handframes[] =                            {ccp(0,0),ccp(0,0),ccp(0,0),ccp(0,0)     ,ccp(0,0)     ,ccp(20,0)         ,ccp(50,0)         ,ccp(90,0)            ,ccp(0,0)                  ,ccp(0,0)    ,ccp(0,0),ccp(0,0)        };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      ,NOSHOW,NOSHOW          };
         
+        [effect setPosition:ccp(50,-55)];
+        [body setPosition:ccp(-20,15)];
+        defaulthandpos = ccp(0,-100);
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+        
+    } else if ([msg isEqualToString:@"upsidedown"]) {
+        NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"upsidedown0",@"upsidedown1",@"upsidedown2",@"upsidedown3",@"upsidedown4",@"upsidedown5",@"upsidedown6",@"upsidedown7",nil];
+        NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""                    ,nil];
+        CGPoint handframes[] =                            {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW      };
+        CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       ,NOSHOW       };
+        
+        [body setPosition:ccp(-20,-10)];
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+    
     } else {
         NSLog(@"ERROR TUTORIAL NOT FOUND:%@",msg);
     }

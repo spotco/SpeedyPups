@@ -8,7 +8,7 @@
 }
 -(id)init {
     self = [super init];
-    
+    [GEventDispatcher add_listener:self];
     [self addChild:[Shopkeeper cons_pt:[Common screen_pctwid:0.1 pcthei:0.45]]];
     [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopmenu" pos:[Common screen_pctwid:0.6 pcthei:0.65]]];
     [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_speechbub" pos:[Common screen_pctwid:0.425 pcthei:0.35]]];
@@ -39,14 +39,24 @@
                                                   text:@"BUY" textpos:ccp(55,22) fntsz:30];
     [buybutton setScale:1.25];
     
-    CCMenu *m = [CCMenu menuWithItems:tab1,tab2,tab3,buybutton, nil];
-    [m setPosition:ccp(0,0)];
-    [self addChild:m];
+    controlm = [CCMenu menuWithItems:tab1,tab2,tab3,buybutton, nil];
+    [controlm setPosition:ccp(0,0)];
+    [self addChild:controlm];
     
     [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopsign" pos:[Common screen_pctwid:0.1 pcthei:0.88]]];
     
     [self addChild:[MenuCommon cons_common_nav_menu]];
     return self;
+}
+
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_MENU_INVENTORY) {
+        [controlm setVisible:NO];
+        
+    } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
+        [controlm setVisible:YES];
+        
+    }
 }
 
 +(CCMenuItem*)labeleditem_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos text:(NSString*)text textpos:(CGPoint)tpos fntsz:(int)fntsz{

@@ -35,7 +35,7 @@ static NSMutableArray* _anim_table;
 -(id)init {
     [self lazy];
     self = [super init];
-    
+    [GEventDispatcher add_listener:self];
     
     cur_dog = 1;
 
@@ -52,9 +52,9 @@ static NSMutableArray* _anim_table;
     
     CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_left" tar:self sel:@selector(arrow_left) pos:[Common screen_pctwid:0.3 pcthei:0.35]];
     CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_right" tar:self sel:@selector(arrow_right) pos:[Common screen_pctwid:0.7 pcthei:0.35]];
-    CCMenu *m = [CCMenu menuWithItems:leftarrow,rightarrow, nil];
-    [m setPosition:ccp(0,0)];
-    [self addChild:m];
+    controlm = [CCMenu menuWithItems:leftarrow,rightarrow, nil];
+    [controlm setPosition:ccp(0,0)];
+    [self addChild:controlm];
     
     spotlight = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_spotlight" pos:[Common screen_pctwid:0.5 pcthei:0.55]];
     [self addChild:spotlight];
@@ -64,6 +64,16 @@ static NSMutableArray* _anim_table;
     [self addChild:[MenuCommon cons_common_nav_menu]];
     
     return self;
+}
+
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_MENU_INVENTORY) {
+        [controlm setVisible:NO];
+        
+    } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
+        [controlm setVisible:YES];
+        
+    }
 }
 
 -(void)arrow_left {

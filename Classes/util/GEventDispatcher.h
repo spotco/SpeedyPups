@@ -33,6 +33,8 @@ typedef enum {
     GEventType_MENU_PLAY_AUTOLEVEL_MODE,
     GEventType_MENU_PLAY_TESTLEVEL_MODE,
     GEventType_MENU_GOTO_PAGE,
+    GEventType_MENU_INVENTORY,
+    GEVentType_MENU_CLOSE_INVENTORY,
     GEventType_CHANGE_CURRENT_DOG
 } GEventType;
 

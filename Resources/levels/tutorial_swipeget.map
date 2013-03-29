@@ -12,7 +12,7 @@
     ],
     "objects": [
         {"type": "checkpoint", "x": 351, "label": "0", "y": 998},
-        {"type": "tutorial", "x": 550, "label": "swipe_straight", "y": 1150},
+        {"type": "tutorial", "x": 550, "label": "collectcoin", "y": 1150},
         {"type": "ground_detail", "x": 650, "label": "(4)gd_img:6", "img": 6, "y": 998},
         {"type": "ground_detail", "x": 799, "label": "(5)gd_img:6", "img": 6, "y": 999},
         {"type": "ground_detail", "x": 1054, "label": "(6)gd_img:2", "img": 2, "y": 1000},
