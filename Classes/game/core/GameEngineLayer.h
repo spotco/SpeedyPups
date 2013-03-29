@@ -30,25 +30,13 @@ typedef enum {
     GameEngineLayerMode_GAMEOVER
 } GameEngineLayerMode;
 
-typedef struct level_bone_status {
-    int togets;
-    int savedgets;
-    int hasgets;
-    int alreadygets;
-} level_bone_status;
-
 @interface GameEngineLayer : CCLayer <GEventListener> {
-    NSTimer *updater;
-    
     NSMutableArray *particles,*particles_tba;
     
     int lives;
     int time;
+    int collected_bones;
     
-    NSMutableDictionary *bones;
-    
-    BOOL refresh_bone_cache;
-    level_bone_status cached_status;
     BOOL refresh_viewbox_cache;
     HitRect cached_viewbox;
     BOOL refresh_worldbounds_cache;
@@ -66,25 +54,22 @@ typedef struct level_bone_status {
 @property(readwrite,assign) CameraZoom camera_state,tar_camera_state;
 @property(readwrite,strong) CCFollow *follow_action;
 
-+(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives;
-+(CCScene*) scene_with_autolevel_lives:(int)lives;
++(CCScene *)scene_with:(NSString *)map_file_name lives:(int)lives;
++(CCScene*)scene_with_autolevel_lives:(int)lives;
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;
 -(void)remove_gameobject:(GameObject*)o;
 
 -(HitRect)get_viewbox;
--(HitRect) get_world_bounds;
+-(HitRect)get_world_bounds;
 
 -(void)set_camera:(CameraZoom)tar;
 -(void)set_target_camera:(CameraZoom)tar;
 
--(void)add_bone:(DogBone*)c autoassign:(BOOL)aa;
--(void)set_bid_tohasget:(int)tbid;
--(level_bone_status)get_bonestatus;
-
 -(int)get_lives;
 -(int)get_time;
 -(int)get_num_particles;
+-(int)get_num_bones;
 
 -(void)setColor:(ccColor3B)color;
 

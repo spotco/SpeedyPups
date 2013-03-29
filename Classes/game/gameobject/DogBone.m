@@ -24,6 +24,7 @@
     initial_pos = start;
     follow = NO;
     refresh_cached_hitbox = YES;
+    active = YES;
 }
 
 -(void)setPosition:(CGPoint)position {
@@ -90,18 +91,12 @@
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         [AudioManager playsfx:SFX_BONE];
-        [g set_bid_tohasget:bid];
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
         [self set_active:NO];
     }
 }
 
--(void)set_active:(BOOL)t_active {
-    [self setVisible:t_active];
-    active = t_active;
-}
-
 -(void)reset {
-    [super reset];
     [self setPosition:initial_pos];
     follow = NO;
     vx = 0;

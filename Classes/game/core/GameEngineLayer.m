@@ -68,7 +68,6 @@
     [GEventDispatcher add_listener:self];
     refresh_viewbox_cache = YES;
     CGPoint player_start_pt = [self loadMap:map_filename];
-    [self cons_bones];
     particles = [[NSMutableArray alloc] init];
     player = [Player cons_at:player_start_pt];
     [self addChild:player z:[GameRenderImplementation GET_RENDER_PLAYER_ORD]];
@@ -98,12 +97,7 @@
     [self runAction:follow_action];
     
     [self update_render];
-    
-    if ([GameMain GET_USE_NSTIMER]) {
-        updater = [NSTimer scheduledTimerWithTimeInterval:[GameMain GET_TARGET_FPS] target:self selector:@selector(update) userInfo:nil repeats:YES];
-    } else {
-        [self schedule:@selector(update)];
-    }
+    [self schedule:@selector(update)];
     
     //current_mode = GameEngineLayerMode_GAMEPLAY;
     scrollup_pct = 1;
@@ -182,14 +176,6 @@
     [self reset_camera];
     [GameControlImplementation reset_control_state];
     current_mode = GameEngineLayerMode_GAMEPLAY;
-    
-    for(NSNumber* bid in [bones allKeys]) {
-        int status = ((NSNumber*)[bones objectForKey:bid]).intValue;
-        if (status == Bone_Status_HASGET) {
-            [bones setObject:[NSNumber numberWithInt:Bone_Status_TOGET] forKey:bid];
-        }
-    }
-    refresh_bone_cache = YES;
 }
 
 -(void)check_falloff {
@@ -279,6 +265,9 @@
     } else if (e.type == GEventType_CHECKPOINT) {
         [self set_checkpoint_to:e.pt];
         
+    } else if (e.type == GEventType_COLLECT_BONE) {
+        collected_bones++;
+        
     } else if (e.type == GEventType_LEVELEND) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_LEVELEND_MENU]];
         
@@ -302,10 +291,8 @@
 }
 
 -(void)set_records {
-    level_bone_status b = [self get_bonestatus];
-    int tb = b.hasgets+b.savedgets;
-    [DataStore set_key:STO_totalbones_INT int_value:[DataStore get_int_for_key:STO_totalbones_INT]+tb];
-    [DataStore set_key:STO_maxbones_INT int_value:MAX([DataStore get_int_for_key:STO_maxbones_INT],tb)];
+    [DataStore set_key:STO_totalbones_INT int_value:[DataStore get_int_for_key:STO_totalbones_INT]+collected_bones];
+    [DataStore set_key:STO_maxbones_INT int_value:MAX([DataStore get_int_for_key:STO_maxbones_INT],collected_bones)];
 }
 
 -(void)update_gameobjs {
@@ -331,11 +318,7 @@
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAMEOVER]];
 }
 -(void)exit {
-    if ([GameMain GET_USE_NSTIMER]) {
-        [updater invalidate];
-    } else {
-        [self unscheduleAllSelectors];
-    }
+    [self unscheduleAllSelectors];
     [self set_records];
     [self stopAction:follow_action];
     follow_action = NULL;
@@ -360,84 +343,14 @@
 }
 
 /* bone system */
-
--(void)cons_bones {
-    bones = [[NSMutableDictionary alloc]init]; //bid -> status
-    for (GameObject *i in game_objects) {
-        if ([i class] == [DogBone class]) {
-            [self add_bone:(DogBone*)i autoassign:NO];
-        }
-    }//NSLog(@"Bones loaded (%i bones total)",[bones count]);
-}
--(void)add_bone:(DogBone*)c autoassign:(BOOL)aa {
-    NSNumber *bid;
-    if (aa == YES) {
-        
-        int max = 0;
-        for (NSNumber* i in bones) {
-            max = MAX(i.intValue,max);
-        }
-        bid = [NSNumber numberWithInt:max+1];
-        c.bid = max+1;
-    } else {
-        bid = [NSNumber numberWithInt:c.bid];
-    }
-    
-    if ([bones objectForKey:bid]) {
-        NSLog(@"ERROR:duplicate (bone)id");
-    } else {
-        [bones setObject:[NSNumber numberWithInt:Bone_Status_TOGET] forKey:bid];
-    }
-}
--(void)set_bid_tohasget:(int)tbid {
-    for(NSNumber* bid in [bones allKeys]) {
-        if (bid.intValue == tbid) {
-            [bones setObject:[NSNumber numberWithInt:Bone_Status_HASGET] forKey:bid]; //NSLog(@"getbid:%i",tbid);
-            [GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
-            refresh_bone_cache = YES;
-            return;
-        }
-    }
-    NSLog(@"ERROR: bid_tohasget_set failed, tar:%i",tbid);
-}
 -(void)set_checkpoint_to:(CGPoint)pt {
     player.start_pt = pt;
-    for(NSNumber* bid in [bones allKeys]) {
-        int status = ((NSNumber*)[bones objectForKey:bid]).intValue;
-        if (status == Bone_Status_HASGET) {
-            [bones setObject:[NSNumber numberWithInt:Bone_Status_SAVEDGET] forKey:bid];
-        }
-    }
 }
 
 /* helpers */
 -(void)addChild:(CCNode *)node z:(NSInteger)z {
     refresh_worldbounds_cache = YES;
     [super addChild:node z:z];
-}
--(level_bone_status)get_bonestatus {
-    if (refresh_bone_cache == YES) {
-        refresh_bone_cache = NO;
-        struct level_bone_status n;
-        n.togets = n.savedgets = n.hasgets = n.alreadygets = 0;
-        for (NSNumber* bid in bones) {
-            NSNumber* status = [bones objectForKey:bid];
-            if (status.intValue == Bone_Status_TOGET) {
-                n.togets++;
-            } else if (status.intValue == Bone_Status_SAVEDGET) {
-                n.savedgets++;
-            } else if (status.intValue == Bone_Status_HASGET) {
-                n.hasgets++;
-            } else if (status.intValue == Bone_Status_ALREADYGET) {
-                n.alreadygets++;
-            }
-        }
-        cached_status = n;
-    }
-    return cached_status;
-}
-+(void)print_bonestatus:(level_bone_status)b {
-    NSLog(@"TOGET:%i SAVEDGET:%i HASGET:%i ALREADYGET:%i",b.togets,b.savedgets,b.hasgets,b.alreadygets);
 }
 -(void)setColor:(ccColor3B)color {
 	for(CCSprite *sprite in islands) {
@@ -478,7 +391,6 @@
 -(HitRect)get_viewbox {
     if (refresh_viewbox_cache) {
         refresh_viewbox_cache = NO;
-        //TODO -- make this scale with camera zoom
         cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1
                                               y1:-self.position.y-[Common SCREEN].height*1
                                              wid:[Common SCREEN].width*3
@@ -488,6 +400,7 @@
 }
 -(int)get_lives { return lives; }
 -(int)get_time { return time; }
+-(int)get_num_bones { return collected_bones; }
 
 
 /* particle system */
@@ -592,8 +505,6 @@
     [islands removeAllObjects];
     [game_objects removeAllObjects];
     [particles removeAllObjects];
-    [bones removeAllObjects];
-    [bones removeAllObjects];
 }
 
 

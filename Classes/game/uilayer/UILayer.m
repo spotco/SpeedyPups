@@ -59,8 +59,7 @@
         [enemy_alert_ui setVisible:NO];
     }
     
-    level_bone_status b = [game_engine_layer get_bonestatus];
-    [self set_label:bones_disp to:strf("%i",b.hasgets+b.savedgets)];
+    [self set_label:bones_disp to:strf("%i",[game_engine_layer get_num_bones])];
     [self set_label:lives_disp to:strf("\u00B7 %s",[game_engine_layer get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[game_engine_layer get_lives]).UTF8String)];
     [self set_label:time_disp to:[self parse_gameengine_time:[game_engine_layer get_time]]];
     
@@ -94,8 +93,7 @@
 -(void)gameover {
     [ingame_ui setVisible:NO];
     [pause_ui setVisible:NO];
-    level_bone_status b = [game_engine_layer get_bonestatus];
-    [self set_label:gameover_bones_disp to:[NSString stringWithFormat:@"Total Bones: %i",b.hasgets+b.savedgets]];
+    [self set_label:gameover_bones_disp to:[NSString stringWithFormat:@"Total Bones: %i",[game_engine_layer get_num_bones]]];
     [self set_label:gameover_time_disp to:[NSString stringWithFormat:@"Time: %@",[self parse_gameengine_time:[game_engine_layer get_time]]]];
     [gameover_ui setVisible:YES];
     

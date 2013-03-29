@@ -105,9 +105,6 @@
     [tglayer.game_objects addObjectsFromArray:m.map.game_objects];
     for (GameObject* o in m.map.game_objects) {
         [tglayer addChild:o z:[o get_render_ord]];
-        if ([o class] == [DogBone class]) {
-            [tglayer add_bone:(DogBone*)o autoassign:YES];
-        }
     }
     
     
