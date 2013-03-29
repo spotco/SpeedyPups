@@ -40,6 +40,8 @@
 		7EA5680B16FF8E530003F2A5 /* TutorialProf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680A16FF8E530003F2A5 /* TutorialProf.m */; };
 		7EA5680E16FF9DE90003F2A5 /* TutorialAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */; };
 		7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5681016FFCE780003F2A5 /* TutorialEnd.m */; };
+		7EB8725F17062A4C00F7C067 /* filler_directdrop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8725E17062A4C00F7C067 /* filler_directdrop.map */; };
+		7EB872611706325B00F7C067 /* filler_smgislands.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB872601706325B00F7C067 /* filler_smgislands.map */; };
 		7EB8B2D516D9F8E700F58961 /* BG1_bridge_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */; };
 		7EB8B2D616D9F8E700F58961 /* BG1_bridge_section.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E416D9F8E600F58961 /* BG1_bridge_section.png */; };
 		7EB8B2D716D9F8E700F58961 /* BG1_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E516D9F8E600F58961 /* BG1_cloud.png */; };
@@ -590,6 +592,8 @@
 		7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialAnim.m; path = tutorial/TutorialAnim.m; sourceTree = "<group>"; };
 		7EA5680F16FFCE780003F2A5 /* TutorialEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialEnd.h; path = tutorial/TutorialEnd.h; sourceTree = "<group>"; };
 		7EA5681016FFCE780003F2A5 /* TutorialEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialEnd.m; path = tutorial/TutorialEnd.m; sourceTree = "<group>"; };
+		7EB8725E17062A4C00F7C067 /* filler_directdrop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_directdrop.map; sourceTree = "<group>"; };
+		7EB872601706325B00F7C067 /* filler_smgislands.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_smgislands.map; sourceTree = "<group>"; };
 		7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_bridge_edge.png; sourceTree = "<group>"; };
 		7EB8B1E416D9F8E600F58961 /* BG1_bridge_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_bridge_section.png; sourceTree = "<group>"; };
 		7EB8B1E516D9F8E600F58961 /* BG1_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_cloud.png; sourceTree = "<group>"; };
@@ -1331,6 +1335,8 @@
 				7EB8B24416D9F8E700F58961 /* filler_islandjump.map */,
 				7EB8B24516D9F8E700F58961 /* filler_rollinghills.map */,
 				7EB8B24616D9F8E700F58961 /* filler_sanicloop.map */,
+				7EB8725E17062A4C00F7C067 /* filler_directdrop.map */,
+				7EB872601706325B00F7C067 /* filler_smgislands.map */,
 			);
 			name = filler;
 			sourceTree = "<group>";
@@ -2953,6 +2959,8 @@
 				7EC460F017058BC800656A48 /* ingame_ui_ss.png in Resources */,
 				7EC460F4170590E000656A48 /* item_ss.plist in Resources */,
 				7EC460F5170590E000656A48 /* item_ss.png in Resources */,
+				7EB8725F17062A4C00F7C067 /* filler_directdrop.map in Resources */,
+				7EB872611706325B00F7C067 /* filler_smgislands.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

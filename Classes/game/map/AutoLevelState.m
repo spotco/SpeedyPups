@@ -42,6 +42,8 @@ static NSMutableDictionary* levelsets;
         @"filler_islandjump",
         @"filler_rollinghills",
         @"filler_sanicloop",
+        @"filler_directdrop",
+        @"filler_smgislands"
     ] forKey:L_FILLER];
     
     [levelsets setObject:@[
@@ -119,7 +121,9 @@ static NSMutableDictionary* levelsets;
     [self set_cur_set_to:s];
 }
 
--(NSString*)get_level {    ct++;
+-(NSString*)get_level {
+    //return @"filler_sanicloop";
+    ct++;
     if (cur_mode == AutoLevelStateMode_BOSS1) {
         return [levelsets[L_BOSS1AREA] random];
         

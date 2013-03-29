@@ -2,23 +2,23 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_swipeget"
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"filler_smgislands"
 #define STARTING_LIVES 99
 
 #define ENABLE_BG_PARTICLES YES
 #define DRAW_HITBOX NO
 #define RESET_STATS NO
-#define DISPLAY_FPS NO
+#define DISPLAY_FPS YES
 #define HOLD_TO_STOP NO
 /**
  levels to make:
  1 upsidedown tutorial
  5 easy levels
  3 swingvine levels
- 6 filler levels
+ 4 filler levels
  3 classic levels
  8 hard levels
  4 lab levels
@@ -70,6 +70,7 @@
  -get all bones in tutorial_breakrocks
  -get most bones in tutorial_swingvine
  -get all bones in tutorial_swipeget
+ -get 52 or more bones in filler_smgislands
  
  -beat swingvine_bounswindodg in 0:20 or less
  -beat tutorial_spikevine in 0:20 or less
@@ -79,6 +80,7 @@
  -find secret in jumppad_jumpislands
  -find secret in jumppad_spikeceil
  -find secret in easy_world1
+ -find secret in filler_directdrop
  **/
 
 +(void)main {
@@ -93,9 +95,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-    [GameMain start_testlevel];
+    //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

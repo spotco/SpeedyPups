@@ -139,7 +139,9 @@
                                                          selectedSprite:itemslotzoom
                                                                  target:self
                                                                selector:@selector(itemslot_use)];
-    [itemslotic setPosition:[Common screen_pctwid:0.07 pcthei:0.09]];
+    [itemslotic setScale:0.75];
+    [itemslotic setPosition:[Common screen_pctwid:0.93 pcthei:0.09]];
+    [itemslotic setOpacity:120];
     
     ingame_ui = [CCMenu menuWithItems:
                  ingamepause,
