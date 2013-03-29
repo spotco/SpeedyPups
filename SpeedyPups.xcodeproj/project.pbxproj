@@ -53,9 +53,9 @@
 		7EB8B2E516D9F8E700F58961 /* BG1_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F316D9F8E600F58961 /* BG1_sky.png */; };
 		7EB8B2E616D9F8E700F58961 /* BG1_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F416D9F8E600F58961 /* BG1_sun.png */; };
 		7EB8B2E716D9F8E700F58961 /* BG1_top_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F516D9F8E600F58961 /* BG1_top_fill.png */; };
-		7EB8B2E816D9F8E700F58961 /* BG_cave_rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F716D9F8E600F58961 /* BG_cave_rock.png */; };
-		7EB8B2E916D9F8E700F58961 /* BG_cave_rock_wall_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F816D9F8E600F58961 /* BG_cave_rock_wall_base.png */; };
-		7EB8B2EA16D9F8E700F58961 /* BG_cave_rock_wall_section.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F916D9F8E600F58961 /* BG_cave_rock_wall_section.png */; };
+		7EB8B2E816D9F8E700F58961 /* rock_particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F716D9F8E600F58961 /* rock_particle.png */; };
+		7EB8B2E916D9F8E700F58961 /* breakablewall_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F816D9F8E600F58961 /* breakablewall_base.png */; };
+		7EB8B2EA16D9F8E700F58961 /* breakablewall_body.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1F916D9F8E600F58961 /* breakablewall_body.png */; };
 		7EB8B2EB16D9F8E700F58961 /* BG_cave_spike.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1FA16D9F8E600F58961 /* BG_cave_spike.png */; };
 		7EB8B2EC16D9F8E700F58961 /* BG_cave_top_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1FB16D9F8E600F58961 /* BG_cave_top_edge.png */; };
 		7EB8B2ED16D9F8E700F58961 /* BG_cave_top_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1FC16D9F8E600F58961 /* BG_cave_top_fill.png */; };
@@ -142,8 +142,6 @@
 		7EB8B35716D9F8E700F58961 /* bird_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B27916D9F8E700F58961 /* bird_ss.png */; };
 		7EB8B35816D9F8E700F58961 /* speedup_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B27B16D9F8E700F58961 /* speedup_ss.plist */; };
 		7EB8B35916D9F8E700F58961 /* speedup_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B27C16D9F8E700F58961 /* speedup_ss.png */; };
-		7EB8B35A16D9F8E700F58961 /* superjump_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B27D16D9F8E700F58961 /* superjump_ss.plist */; };
-		7EB8B35B16D9F8E700F58961 /* superjump_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B27E16D9F8E700F58961 /* superjump_ss.png */; };
 		7EB8B35C16D9F8E700F58961 /* checkerfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B28016D9F8E700F58961 /* checkerfloor.png */; };
 		7EB8B35D16D9F8E700F58961 /* checkpoint1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B28116D9F8E700F58961 /* checkpoint1.png */; };
 		7EB8B35E16D9F8E700F58961 /* checkpoint2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B28216D9F8E700F58961 /* checkpoint2.png */; };
@@ -600,9 +598,9 @@
 		7EB8B1F316D9F8E600F58961 /* BG1_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_sky.png; sourceTree = "<group>"; };
 		7EB8B1F416D9F8E600F58961 /* BG1_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_sun.png; sourceTree = "<group>"; };
 		7EB8B1F516D9F8E600F58961 /* BG1_top_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_top_fill.png; sourceTree = "<group>"; };
-		7EB8B1F716D9F8E600F58961 /* BG_cave_rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_rock.png; sourceTree = "<group>"; };
-		7EB8B1F816D9F8E600F58961 /* BG_cave_rock_wall_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_rock_wall_base.png; sourceTree = "<group>"; };
-		7EB8B1F916D9F8E600F58961 /* BG_cave_rock_wall_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_rock_wall_section.png; sourceTree = "<group>"; };
+		7EB8B1F716D9F8E600F58961 /* rock_particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rock_particle.png; path = ../../bg/BG_cave/rock_particle.png; sourceTree = "<group>"; };
+		7EB8B1F816D9F8E600F58961 /* breakablewall_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = breakablewall_base.png; path = ../../bg/BG_cave/breakablewall_base.png; sourceTree = "<group>"; };
+		7EB8B1F916D9F8E600F58961 /* breakablewall_body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = breakablewall_body.png; path = ../../bg/BG_cave/breakablewall_body.png; sourceTree = "<group>"; };
 		7EB8B1FA16D9F8E600F58961 /* BG_cave_spike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_spike.png; sourceTree = "<group>"; };
 		7EB8B1FB16D9F8E600F58961 /* BG_cave_top_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_top_edge.png; sourceTree = "<group>"; };
 		7EB8B1FC16D9F8E600F58961 /* BG_cave_top_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG_cave_top_fill.png; sourceTree = "<group>"; };
@@ -689,8 +687,6 @@
 		7EB8B27916D9F8E700F58961 /* bird_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird_ss.png; sourceTree = "<group>"; };
 		7EB8B27B16D9F8E700F58961 /* speedup_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = speedup_ss.plist; sourceTree = "<group>"; };
 		7EB8B27C16D9F8E700F58961 /* speedup_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speedup_ss.png; sourceTree = "<group>"; };
-		7EB8B27D16D9F8E700F58961 /* superjump_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = superjump_ss.plist; sourceTree = "<group>"; };
-		7EB8B27E16D9F8E700F58961 /* superjump_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = superjump_ss.png; sourceTree = "<group>"; };
 		7EB8B28016D9F8E700F58961 /* checkerfloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerfloor.png; sourceTree = "<group>"; };
 		7EB8B28116D9F8E700F58961 /* checkpoint1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkpoint1.png; sourceTree = "<group>"; };
 		7EB8B28216D9F8E700F58961 /* checkpoint2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkpoint2.png; sourceTree = "<group>"; };
@@ -1149,8 +1145,8 @@
 		7ECD9EE516F0103900FD0B99 /* CharSelAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharSelAnim.m; path = details/CharSelAnim.m; sourceTree = "<group>"; };
 		7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doghouse_mask.png; sourceTree = "<group>"; };
 		7ED3CE0F1701883B00ED9873 /* loadingicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingicon.png; sourceTree = "<group>"; };
-		7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTrackingLayer.h; sourceTree = "<group>"; };
-		7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTrackingLayer.m; sourceTree = "<group>"; };
+		7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchTrackingLayer.h; path = ../../util/TouchTrackingLayer.h; sourceTree = "<group>"; };
+		7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchTrackingLayer.m; path = ../../util/TouchTrackingLayer.m; sourceTree = "<group>"; };
 		7ED5B21D1700D86400B22CC4 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 		7EDBE79A1703BE7C001D3C93 /* tutorial_spikes.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_spikes.map; sourceTree = "<group>"; };
 		7EDBE79C1703C4D9001D3C93 /* tutorial_breakrocks.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_breakrocks.map; sourceTree = "<group>"; };
@@ -1418,7 +1414,7 @@
 				7EB8B20E16D9F8E600F58961 /* char */,
 				7EB8B22816D9F8E600F58961 /* cover_page */,
 				7EB8B23B16D9F8E700F58961 /* levels */,
-				7EB8B26416D9F8E700F58961 /* menu_resc */,
+				7EB8B26416D9F8E700F58961 /* OLD_menu_resc */,
 				7EB8B27316D9F8E700F58961 /* music */,
 				7EB8B27616D9F8E700F58961 /* object */,
 				7EB8B2A616D9F8E700F58961 /* particle */,
@@ -1431,9 +1427,9 @@
 		7EB8B1E116D9F8E600F58961 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				7EB8B1F616D9F8E600F58961 /* OLD_BG_cave */,
 				7EDD63771703B1B500825887 /* details */,
 				7EB8B1E216D9F8E600F58961 /* BG1 */,
-				7EB8B1F616D9F8E600F58961 /* BG_cave */,
 				7EB8B1FE16D9F8E600F58961 /* BG_lab */,
 			);
 			path = bg;
@@ -1461,17 +1457,15 @@
 			path = BG1;
 			sourceTree = "<group>";
 		};
-		7EB8B1F616D9F8E600F58961 /* BG_cave */ = {
+		7EB8B1F616D9F8E600F58961 /* OLD_BG_cave */ = {
 			isa = PBXGroup;
 			children = (
-				7EB8B1F716D9F8E600F58961 /* BG_cave_rock.png */,
-				7EB8B1F816D9F8E600F58961 /* BG_cave_rock_wall_base.png */,
-				7EB8B1F916D9F8E600F58961 /* BG_cave_rock_wall_section.png */,
 				7EB8B1FA16D9F8E600F58961 /* BG_cave_spike.png */,
 				7EB8B1FB16D9F8E600F58961 /* BG_cave_top_edge.png */,
 				7EB8B1FC16D9F8E600F58961 /* BG_cave_top_fill.png */,
 				7EB8B1FD16D9F8E600F58961 /* BG_cave_wall.png */,
 			);
+			name = OLD_BG_cave;
 			path = BG_cave;
 			sourceTree = "<group>";
 		};
@@ -1609,6 +1603,7 @@
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
+				7EC460E81705780C00656A48 /* lab */,
 				7EB8B26316D9F8E700F58961 /* hard */,
 				7E9A784B16FC68670014B7E0 /* tutorial */,
 				7E9A784A16FC68620014B7E0 /* easy */,
@@ -1650,13 +1645,14 @@
 			path = world1;
 			sourceTree = "<group>";
 		};
-		7EB8B26416D9F8E700F58961 /* menu_resc */ = {
+		7EB8B26416D9F8E700F58961 /* OLD_menu_resc */ = {
 			isa = PBXGroup;
 			children = (
 				7EB8B26516D9F8E700F58961 /* menu_back_button.png */,
 				7EB8B26716D9F8E700F58961 /* menu_button_menu.png */,
 				7EB8B26816D9F8E700F58961 /* menu_button_playagain.png */,
 			);
+			name = OLD_menu_resc;
 			path = menu_resc;
 			sourceTree = "<group>";
 		};
@@ -1699,8 +1695,6 @@
 				7EB97766170261FD00459DEF /* jumppad.png */,
 				7EB8B27B16D9F8E700F58961 /* speedup_ss.plist */,
 				7EB8B27C16D9F8E700F58961 /* speedup_ss.png */,
-				7EB8B27D16D9F8E700F58961 /* superjump_ss.plist */,
-				7EB8B27E16D9F8E700F58961 /* superjump_ss.png */,
 			);
 			path = boost;
 			sourceTree = "<group>";
@@ -1747,11 +1741,12 @@
 			isa = PBXGroup;
 			children = (
 				7EB8B29416D9F8E700F58961 /* bomb.png */,
-				7EB8B29516D9F8E700F58961 /* electric */,
+				7EB8B2A016D9F8E700F58961 /* water.png */,
 				7EB8B29816D9F8E700F58961 /* spikes.png */,
+				7EC460E91705796400656A48 /* breakablewall */,
+				7EB8B29516D9F8E700F58961 /* electric */,
 				7EB8B29916D9F8E700F58961 /* spikevine */,
 				7EB8B29D16D9F8E700F58961 /* swingvine */,
-				7EB8B2A016D9F8E700F58961 /* water.png */,
 			);
 			path = obstacle;
 			sourceTree = "<group>";
@@ -2138,8 +2133,10 @@
 		7EB8B44616D9FC0900F58961 /* uilayer */ = {
 			isa = PBXGroup;
 			children = (
-				7E5BA16F16DA1F0E00700BF2 /* ingame_anim */,
 				7E5BA16E16DA1F0100700BF2 /* evt_anim */,
+				7E5BA16F16DA1F0E00700BF2 /* ingame_anim */,
+				7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */,
+				7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */,
 				7EB8B44F16D9FC0900F58961 /* UILayer.h */,
 				7EB8B45016D9FC0900F58961 /* UILayer.m */,
 			);
@@ -2182,10 +2179,25 @@
 				7EB8B47616D9FC0900F58961 /* Resource.m */,
 				7EB8B47716D9FC0900F58961 /* Vec3D.h */,
 				7EB8B47816D9FC0900F58961 /* Vec3D.m */,
-				7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */,
-				7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		7EC460E81705780C00656A48 /* lab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = lab;
+			sourceTree = "<group>";
+		};
+		7EC460E91705796400656A48 /* breakablewall */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B1F716D9F8E600F58961 /* rock_particle.png */,
+				7EB8B1F816D9F8E600F58961 /* breakablewall_base.png */,
+				7EB8B1F916D9F8E600F58961 /* breakablewall_body.png */,
+			);
+			name = breakablewall;
 			sourceTree = "<group>";
 		};
 		7EC5EB7816D9DDAF00E9D431 /* cocos2d */ = {
@@ -2714,9 +2726,9 @@
 				7EB8B2E516D9F8E700F58961 /* BG1_sky.png in Resources */,
 				7EB8B2E616D9F8E700F58961 /* BG1_sun.png in Resources */,
 				7EB8B2E716D9F8E700F58961 /* BG1_top_fill.png in Resources */,
-				7EB8B2E816D9F8E700F58961 /* BG_cave_rock.png in Resources */,
-				7EB8B2E916D9F8E700F58961 /* BG_cave_rock_wall_base.png in Resources */,
-				7EB8B2EA16D9F8E700F58961 /* BG_cave_rock_wall_section.png in Resources */,
+				7EB8B2E816D9F8E700F58961 /* rock_particle.png in Resources */,
+				7EB8B2E916D9F8E700F58961 /* breakablewall_base.png in Resources */,
+				7EB8B2EA16D9F8E700F58961 /* breakablewall_body.png in Resources */,
 				7EB8B2EB16D9F8E700F58961 /* BG_cave_spike.png in Resources */,
 				7EB8B2EC16D9F8E700F58961 /* BG_cave_top_edge.png in Resources */,
 				7EB8B2ED16D9F8E700F58961 /* BG_cave_top_fill.png in Resources */,
@@ -2803,8 +2815,6 @@
 				7EB8B35716D9F8E700F58961 /* bird_ss.png in Resources */,
 				7EB8B35816D9F8E700F58961 /* speedup_ss.plist in Resources */,
 				7EB8B35916D9F8E700F58961 /* speedup_ss.png in Resources */,
-				7EB8B35A16D9F8E700F58961 /* superjump_ss.plist in Resources */,
-				7EB8B35B16D9F8E700F58961 /* superjump_ss.png in Resources */,
 				7EB8B35C16D9F8E700F58961 /* checkerfloor.png in Resources */,
 				7EB8B35D16D9F8E700F58961 /* checkpoint1.png in Resources */,
 				7EB8B35E16D9F8E700F58961 /* checkpoint2.png in Resources */,

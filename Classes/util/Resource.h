@@ -6,8 +6,6 @@
 +(CCTexture2D*)get_tex:(NSString*)key;
 +(CCTexture2D*)get_aa_tex:(NSString*)key;
 +(void)dealloc_textures;
-+(void)cons_menu_textures:(NSArray *)pic_names;
-+(void)load_tex_from_array:(NSArray*)temp;
 
 #define TEX_GROUND_TEX_1 @"GroundTexture1"
 #define TEX_GROUND_TOP_1 @"GroundTop1"
@@ -35,7 +33,6 @@
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"
 #define TEX_CAVE_ROCKPARTICLE @"RockParticle"
-#define TEX_CAVE_SPIKE @"CaveSpike"
 
 #define TEX_DOG_RUN_1 @"dog1ss"
 #define TEX_DOG_RUN_2 @"dog2ss"
