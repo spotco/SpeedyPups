@@ -7,86 +7,6 @@
 #define REMOVEBUFFER 400
 #define ADDBUFFER 600
 
-static int DEBUG_MODE = 0;
-
-+(void)SET_DEBUG_MODE:(int)t {
-    DEBUG_MODE = t;
-}
-
-static NSArray* levelset_classic;
-static NSArray* levelset_filler;
-static NSArray* levelset_jumppad;
-static NSArray* levelset_swingvine;
-
-static NSArray* levelset_boss1area;
-static NSArray* levelset_autostart;
-
-static NSArray* bossloadertest;
-
-#define AUTOLEVEL_STARTLVL @"autolevel_start"
-
-+(void)cons_levels {
-    levelset_classic = [[NSArray alloc] initWithObjects:
-        @"classic_bridgenbwall",
-        @"classic_cavewbwall",
-        @"classic_huegcave",
-        @"classic_trickytreas",
-        @"classic_tomslvl1",
-    nil];
-    
-    levelset_filler = [[NSArray alloc] initWithObjects:
-        @"filler_curvedesc",
-        @"filler_islandjump",
-        @"filler_rollinghills",
-        @"filler_sanicloop",
-         
-        @"easy_puddles",
-        @"easy_world1",
-        @"easy_gottagofast",
-    nil];
-    
-    levelset_jumppad = [[NSArray alloc] initWithObjects:
-        @"jumppad_bigjump",
-        @"jumppad_crazyloop",
-        @"jumppad_hiddenislands",
-        @"jumppad_jumpgap",
-        @"jumppad_jumpislands",
-        @"jumppad_launch",
-        @"jumppad_lotsobwalls",
-        @"jumppad_spikeceil",
-     nil];
-    
-    levelset_swingvine = [[NSArray alloc] initWithObjects:
-        @"swingvine_swingintro",
-        @"swingvine_dodgespike",
-        @"swingvine_swingbreak",
-        @"swingvine_bounswindodg",
-        @"swingvine_someswings",
-    nil];
-    
-    levelset_autostart = [[NSArray alloc] initWithObjects:AUTOLEVEL_STARTLVL, nil];
-    
-    bossloadertest = [[NSArray alloc] initWithObjects:@"bossloadertest", nil];
-    levelset_boss1area = [[NSArray alloc] initWithObjects:@"boss1_area", nil];
-}
-
-+(NSArray*)random_set1 {
-    NSMutableArray *a = [NSMutableArray array];
-    [a addObjectsFromArray:levelset_classic];
-    [a addObjectsFromArray:levelset_filler];
-    [a addObjectsFromArray:levelset_jumppad];
-    [a addObjectsFromArray:levelset_swingvine];
-    return a;
-}
-
-+(NSArray*)random_boss1test_levels {
-    return bossloadertest;
-}
-
-+(NSArray*)boss1_set {
-    return levelset_boss1area;
-}
-
 +(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer {
     AutoLevel* a = [AutoLevel node];
     [a cons:glayer];
@@ -95,21 +15,17 @@ static NSArray* bossloadertest;
 }
 
 -(void)cons:(GameEngineLayer*)glayer {
-    for (NSString* i in [AutoLevel random_set1]) {
+    cur_state = [AutoLevelState cons];
+    for (NSString* i in [cur_state get_all_levels]) {
         [MapLoader precache_map:i];
     }
     tglayer = glayer;
     
-    NSArray *to_load = levelset_autostart;
+
     map_sections = [[NSMutableArray alloc] init];
     stored = [[NSMutableArray alloc] init];
     queued_sections = [[NSMutableArray alloc] init];
-    
-    cur_mode = AutoLevelMode_Normal;
-    
-    for (NSString* i in to_load) {
-        [self load_into_queue:i];
-    }
+    [self load_into_queue:[cur_state get_level]];
 }
 
 -(void)dispatch_event:(GEvent *)e {
@@ -117,12 +33,12 @@ static NSArray* bossloadertest;
         [self cleanup_start:tglayer.player.start_pt player:tglayer.player.position];
         
     } else if (e.type == GEventType_BOSS1_ACTIVATE) {
-        cur_mode = AutoLevelMode_BOSS1;
+        [cur_state change_mode:AutoLevelStateMode_BOSS1];
         [self remove_all_ahead_but_current:e.pt];
         [self shift_queue_into_current];
         
     } else if (e.type == GEventType_BOSS1_DEFEATED) {
-        cur_mode = AutoLevelMode_Normal;
+        [cur_state change_mode:AutoLevelStateMode_Normal];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
         [tglayer stopAction:tglayer.follow_action];
@@ -173,7 +89,7 @@ static NSArray* bossloadertest;
 
 -(void)shift_queue_into_current { //move top map in queue to current
     if ([queued_sections count] == 0) {
-        [self load_into_queue:[self get_random_map]];
+        [self load_into_queue:[cur_state get_level]];
     }
     MapSection *m = [queued_sections objectAtIndex:0];
     [queued_sections removeObjectAtIndex:0];
@@ -264,7 +180,6 @@ static NSArray* bossloadertest;
         [self shift_queue_into_current];
     }
     
-    //NSLog(@"sto:%i cur:%i que:%i",[stored count],[map_sections count],[queued_sections count]);
     [tostore removeAllObjects];
     return;
 }
@@ -295,33 +210,10 @@ static NSArray* bossloadertest;
     [super reset];
 }
 
-static NSString* lastlvlloaded;
-
--(NSString*)get_random_map {
-    NSArray* tlvls;
-    if (cur_mode == AutoLevelMode_Normal) {
-        if (DEBUG_MODE == 1) {
-            tlvls = [AutoLevel random_boss1test_levels];
-        } else {
-            tlvls = [AutoLevel random_set1];
-        }
-    } else {
-        tlvls = [AutoLevel boss1_set];
-    }
-    NSString* ch = [tlvls objectAtIndex:arc4random_uniform([tlvls count])];
-    lastlvlloaded = ch;
-    NSLog(@"lvl:%@",ch);
-    return ch;
-}
-
 -(void)dealloc {
     [queued_sections removeAllObjects];
     [stored removeAllObjects];
     [map_sections removeAllObjects];
-}
--(NSString*)get_debug_msg {
-    return lastlvlloaded;
-    //return strf("STO:%i CUR:%i QUE:%i",[stored count],[map_sections count],[queued_sections count]);
 }
 @end
 

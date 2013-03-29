@@ -10,12 +10,12 @@
 -(id)init {
     self = [super init];
     
+    /*
     CCMenuItem *tab1 = [NMenuSettingsPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_signtab"
                                                        tar:self sel:@selector(tab1)
                                                        pos:[Common screen_pctwid:0.3 pcthei:0.275]
                                                       text:@"Tab1" textpos:ccp(35,15)];
-    
     
     CCMenuItem *tab2 = [NMenuSettingsPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_signtab"
@@ -32,7 +32,8 @@
     CCMenu *m = [CCMenu menuWithItems:tab1,tab2,tab3, nil];
     [m setPosition:ccp(0,0)];
     [self addChild:m];
-    
+    */
+     
     [self addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.85] color:ccc3(0, 0, 0) fontsize:25 str:@"Settings"]];
     
     [self addChild:[MenuCommon cons_common_nav_menu]];

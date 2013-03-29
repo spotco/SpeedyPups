@@ -13,8 +13,6 @@
 +(void)start_game_autolevel;
 +(void)start_menu;
 +(void)start_testlevel;
-+(void)start_game_bosstestlevel;
-+(void)start_swingtestlevel;
 
 +(BOOL)GET_USE_BG;
 +(BOOL)GET_ENABLE_BG_PARTICLES;

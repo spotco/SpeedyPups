@@ -64,7 +64,7 @@
     [self set_label:lives_disp to:strf("\u00B7 %s",[game_engine_layer get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[game_engine_layer get_lives]).UTF8String)];
     [self set_label:time_disp to:[self parse_gameengine_time:[game_engine_layer get_time]]];
     
-    if ([GameMain GET_DEBUG_UI]) {
+    /*if ([GameMain GET_DEBUG_UI]) {
         [self set_label:DEBUG_ctdisp to:strf("isl:%i objs:%i partc:%i",[game_engine_layer.islands count],[game_engine_layer.game_objects count],[game_engine_layer get_num_particles])];
         for (GameObject* o in game_engine_layer.game_objects) {
             if ([o class] == [AutoLevel class]) {
@@ -72,7 +72,7 @@
                 break;
             }
         }
-    }
+    }*/
     
     
     NSMutableArray *toremove = [[NSMutableArray alloc] init];

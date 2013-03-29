@@ -1,6 +1,4 @@
 {
-    "assert_links": 33,
-    "start_x": 190,
     "islands": [
         {"type": "line", "y2": 2250, "x1": 249, "can_fall": true, "x2": 450, "ground": "open", "ndir": "left", "y1": 2250, "hei": 500},
         {"type": "line", "y2": 2223, "x1": 450, "can_fall": true, "x2": 582, "ground": "open", "ndir": "left", "y1": 2250, "hei": 500},
@@ -65,16 +63,27 @@
         {"type": "ground_detail", "x": 1208, "label": "(32)gd_img:2", "img": 2, "y": 1982},
         {
             "height": 861.6833333333334,
-            "x": 4740.1,
+            "x": 4408.6,
             "width": 245,
-            "y": 946.6,
+            "y": 758.6,
             "type": "camera_area",
             "label": "CAM(120,110,160)",
             "camera": {"x": 120, "z": 160, "y": 110}
         },
-        {"height": 713.2833333333335, "x": 820, "width": 350, "y": 1840, "type": "camera_area", "label": "CAM(142,198,160)", "camera": {"x": 142, "z": 160, "y": 198}},
-        {"height": 388.3333333333335, "x": 4758.4, "width": 383.40000000000055, "y": 150, "type": "island_fill", "label": "4"}
+        {"height": 388.3333333333335, "x": 4758.4, "width": 383.40000000000055, "y": 150, "type": "island_fill", "label": "4"},
+        {"height": 516, "x": 4533, "width": 342, "y": 61, "type": "island_fill", "label": "0"},
+        {
+            "height": 737.1714285714287,
+            "x": 831.5,
+            "width": 222.79999999999995,
+            "y": 1927.1,
+            "type": "camera_area",
+            "label": "CAM(116,192,160)",
+            "camera": {"x": 116, "z": 160, "y": 192}
+        }
     ],
+    "start_y": 2304.9714285714285,
+    "start_x": 190,
     "connect_pts": {"y2": 984, "x1": 16, "y1": 2246, "x2": 5155},
-    "start_y": 2304.9833333333336
+    "assert_links": 33
 }

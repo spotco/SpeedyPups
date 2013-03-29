@@ -2,12 +2,30 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
+
+@interface NSArray (Random)
+-(id)random;
+-(NSArray*)copy_removing:(NSArray*)a;
+@end
+@implementation NSArray (Random)
+-(id)random {
+    uint32_t rnd = arc4random_uniform([self count]);
+    return [self objectAtIndex:rnd];
+}
+-(NSArray*)copy_removing:(NSArray *)a {
+    NSMutableArray *n = [NSMutableArray array];
+    for (id i in self) {
+        if (![a containsObject:i]) [n addObject:i];
+    }
+    return n;
+}
+@end
+
 #define float_random(smallNumber, bigNumber) ((((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * (bigNumber - smallNumber)) + smallNumber)
 #define arrlen(x)  (sizeof(x) / sizeof(x[0]))
 
 //inclusive s, not l
 #define int_random(s,l) arc4random()%l+s
-    
 
 @class PlayerEffectParams;
 @class Island;

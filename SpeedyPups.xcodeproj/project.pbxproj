@@ -315,6 +315,7 @@
 		7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */; };
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
+		7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460E617054D9700656A48 /* AutoLevelState.m */; };
 		7EC5EC5616D9DDAF00E9D431 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7916D9DDAF00E9D431 /* CCAction.h */; };
 		7EC5EC5716D9DDAF00E9D431 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */; };
 		7EC5EC5816D9DDAF00E9D431 /* CCActionCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */; };
@@ -955,6 +956,8 @@
 		7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeModeSelect.h; sourceTree = "<group>"; };
 		7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeModeSelect.m; sourceTree = "<group>"; };
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
+		7EC460E517054D9600656A48 /* AutoLevelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState.h; sourceTree = "<group>"; };
+		7EC460E617054D9700656A48 /* AutoLevelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState.m; sourceTree = "<group>"; };
 		7EC5EB7916D9DDAF00E9D431 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -1603,22 +1606,22 @@
 		7EB8B23B16D9F8E700F58961 /* levels */ = {
 			isa = PBXGroup;
 			children = (
-				7E9A784B16FC68670014B7E0 /* tutorial */,
-				7E9A784A16FC68620014B7E0 /* easy */,
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
+				7EB8B26316D9F8E700F58961 /* hard */,
+				7E9A784B16FC68670014B7E0 /* tutorial */,
+				7E9A784A16FC68620014B7E0 /* easy */,
 				7E9A784916FC4DB50014B7E0 /* swingvine */,
 				7E9A784816FC4DAA0014B7E0 /* jumppad */,
 				7E9A784716FC4DA10014B7E0 /* filler */,
 				7E9A784616FC4D980014B7E0 /* classic */,
-				7EB8B25516D9F8E700F58961 /* test */,
-				7EB8B26316D9F8E700F58961 /* world1 */,
+				7EB8B25516D9F8E700F58961 /* TEST */,
 			);
 			path = levels;
 			sourceTree = "<group>";
 		};
-		7EB8B25516D9F8E700F58961 /* test */ = {
+		7EB8B25516D9F8E700F58961 /* TEST */ = {
 			isa = PBXGroup;
 			children = (
 				7EB8B24916D9F8E700F58961 /* jumppad_bouncyroom.map */,
@@ -1635,13 +1638,15 @@
 				7EB8B26016D9F8E700F58961 /* simple_level_1.map */,
 				7EB8B26116D9F8E700F58961 /* swingvine_test.map */,
 			);
+			name = TEST;
 			path = test;
 			sourceTree = "<group>";
 		};
-		7EB8B26316D9F8E700F58961 /* world1 */ = {
+		7EB8B26316D9F8E700F58961 /* hard */ = {
 			isa = PBXGroup;
 			children = (
 			);
+			name = hard;
 			path = world1;
 			sourceTree = "<group>";
 		};
@@ -2063,6 +2068,8 @@
 				7EB8B41816D9FC0900F58961 /* MapLoader.m */,
 				7EB8B41916D9FC0900F58961 /* MapSection.h */,
 				7EB8B41A16D9FC0900F58961 /* MapSection.m */,
+				7EC460E517054D9600656A48 /* AutoLevelState.h */,
+				7EC460E617054D9700656A48 /* AutoLevelState.m */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -3024,6 +3031,7 @@
 				7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */,
 				7ED5B21C1700D2BF00B22CC4 /* TouchTrackingLayer.m in Sources */,
 				7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */,
+				7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

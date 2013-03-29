@@ -17,26 +17,27 @@
                                                       rect:@"nmenu_shoptab"
                                                        tar:self sel:@selector(tab1)
                                                        pos:[Common screen_pctwid:0.35 pcthei:0.93]
-                                                      text:@"Tab1" textpos:ccp(40,19)];
+                                                      text:@"Items" textpos:ccp(55,19) fntsz:20];
     
     
     CCMenuItem *tab2 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_shoptab"
                                                        tar:self sel:@selector(tab1)
                                                        pos:[Common screen_pctwid:0.6 pcthei:0.93]
-                                                      text:@"Tab2" textpos:ccp(40,19)];
+                                                      text:@"Characters" textpos:ccp(57,19) fntsz:20];
     
     CCMenuItem *tab3 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_shoptab"
                                                        tar:self sel:@selector(tab1)
                                                        pos:[Common screen_pctwid:0.85 pcthei:0.93]
-                                                      text:@"Tab3" textpos:ccp(40,19)];
+                                                      text:@"Misc" textpos:ccp(55,19) fntsz:20];
     
     CCMenuItem *buybutton = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                   rect:@"nmenu_shoptab"
                                                    tar:self sel:@selector(tab1)
-                                                   pos:[Common screen_pctwid:0.85 pcthei:0.30]
-                                                  text:@"BUY" textpos:ccp(55,19)];
+                                                   pos:[Common screen_pctwid:0.84 pcthei:0.31]
+                                                  text:@"BUY" textpos:ccp(55,22) fntsz:30];
+    [buybutton setScale:1.25];
     
     CCMenu *m = [CCMenu menuWithItems:tab1,tab2,tab3,buybutton, nil];
     [m setPosition:ccp(0,0)];
@@ -48,14 +49,14 @@
     return self;
 }
 
-+(CCMenuItem*)labeleditem_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos text:(NSString*)text textpos:(CGPoint)tpos{
++(CCMenuItem*)labeleditem_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos text:(NSString*)text textpos:(CGPoint)tpos fntsz:(int)fntsz{
     CCSprite* p_a = [CCSprite spriteWithTexture:[Resource get_tex:tex]
                                            rect:[FileCache get_cgrect_from_plist:tex idname:rect]];
-    [p_a addChild:[Common cons_label_pos:tpos color:ccc3(0, 0, 0) fontsize:20 str:text]];
+    [p_a addChild:[Common cons_label_pos:tpos color:ccc3(0, 0, 0) fontsize:fntsz str:text]];
     
     CCSprite *p_b = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
                                            rect:[FileCache get_cgrect_from_plist:tex idname:rect]];
-    [p_b addChild:[Common cons_label_pos:tpos color:ccc3(0, 0, 0) fontsize:20 str:text]];
+    [p_b addChild:[Common cons_label_pos:tpos color:ccc3(0, 0, 0) fontsize:fntsz str:text]];
     
     [Common set_zoom_pos_align:p_a zoomed:p_b scale:1.2];
     
