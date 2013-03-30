@@ -13,7 +13,7 @@
     int enemy_alert_ui_ct;
     
     CCLabelTTF *lives_disp, *bones_disp, *time_disp;
-    
+    CCLabelTTF *pause_lives_disp, *pause_bones_disp, *pause_time_disp;
     CCLabelTTF *gameover_bones_disp, *gameover_time_disp;
     
     

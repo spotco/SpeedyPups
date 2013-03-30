@@ -39,7 +39,7 @@
 -(void)set_item:(GameItem)item ct:(int)ct {
     cur_item = item;
     for (CCSprite* s in @[w1,w2]) {
-        [(CCLabelTTF*)[s getChildByTag:k_CTDSP] setString:[NSString stringWithFormat:@"x%d",ct]];
+        [(CCLabelTTF*)[s getChildByTag:k_CTDSP] setString:[NSString stringWithFormat:@"%d",ct]];
         TexRect *tr = [GameItemCommon texrect_from:item];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTexture:tr.tex];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTextureRect:tr.rect];

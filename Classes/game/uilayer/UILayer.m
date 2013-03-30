@@ -1,6 +1,8 @@
 #import "UILayer.h"
 #import "Player.h"
 #import "AutoLevel.h"
+#import "MenuCommon.h"
+#import "InventoryItemPane.h"
 
 @implementation UILayer
 
@@ -62,17 +64,6 @@
     [self set_label:bones_disp to:strf("%i",[game_engine_layer get_num_bones])];
     [self set_label:lives_disp to:strf("\u00B7 %s",[game_engine_layer get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[game_engine_layer get_lives]).UTF8String)];
     [self set_label:time_disp to:[self parse_gameengine_time:[game_engine_layer get_time]]];
-    
-    /*if ([GameMain GET_DEBUG_UI]) {
-        [self set_label:DEBUG_ctdisp to:strf("isl:%i objs:%i partc:%i",[game_engine_layer.islands count],[game_engine_layer.game_objects count],[game_engine_layer get_num_particles])];
-        for (GameObject* o in game_engine_layer.game_objects) {
-            if ([o class] == [AutoLevel class]) {
-                [self set_label:DEBUG_autolvldisp to:[((AutoLevel*)o) get_debug_msg]];
-                break;
-            }
-        }
-    }*/
-    
     
     NSMutableArray *toremove = [[NSMutableArray alloc] init];
     for (UIIngameAnimation *i in ingame_ui_anims) {
@@ -164,38 +155,98 @@
     NSLog(@"use item");
 }
 
+-(void)retry {
+    NSLog(@"retry");
+}
+
 -(void)cons_pause_ui {
-    ccColor4B c = {0,0,0,200};
+    ccColor4B c = {50,50,50,220};
     CGSize s = [[UIScreen mainScreen] bounds].size;
-    pause_ui= [CCLayerColor layerWithColor:c width:s.height height:s.width];
+    pause_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
     pause_ui.anchorPoint = ccp(0,0);
+    [pause_ui setPosition:ccp(0,0)];
     
-    CCSprite *playimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEMENU_PLAY]];
-    CCSprite *playimgzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEMENU_PLAY]];
-    [UILayer set_zoom_pos_align:playimg zoomed:playimgzoom scale:1.4];
+    [pause_ui addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.8]
+                                        color:ccc3(255, 255, 255)
+                                     fontsize:45
+                                          str:@"paused"]];
     
-    CCMenuItemImage *play = [CCMenuItemImage itemFromNormalSprite:playimg 
-                                                   selectedSprite:playimgzoom
-                                                           target:self 
-                                                         selector:@selector(unpause)];
-    play.position = ccp(s.height/2,s.width/2);
+    CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+    [timebg setPosition:[Common screen_pctwid:0.75 pcthei:0.6]];
+    [pause_ui addChild:timebg];
     
-    CCSprite *backimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEMENU_BACK]];
-    CCSprite *backimgzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEMENU_BACK]];
-    [UILayer set_zoom_pos_align:backimg zoomed:backimgzoom scale:1.4];
-    CCMenuItemImage *back = [CCMenuItemImage itemFromNormalSprite:backimg 
-                                                   selectedSprite:backimgzoom 
-                                                           target:self 
-                                                         selector:@selector(exit_to_menu)];
-    back.position = ccp(s.height/2-100,s.width/2);
+    CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
+    [bonesbg setPosition:[Common screen_pctwid:0.75 pcthei:0.45]];
+    [pause_ui addChild:bonesbg];
     
-    CCMenu* pausemenu = [CCMenu menuWithItems:play,back, nil];
-    pausemenu.position = ccp(0,0);
+    CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
+    [livesbg setPosition:[Common screen_pctwid:0.75 pcthei:0.3]];
+    [pause_ui addChild:livesbg];
     
-    [pause_ui addChild:pausemenu];
+    pause_time_disp = [Common cons_label_pos:[Common screen_pctwid:0.75 pcthei:0.6]
+                                               color:ccc3(255, 255, 255)
+                                            fontsize:30
+                                                 str:@"0:00"];
+    [pause_ui addChild:pause_time_disp];
+    
+    pause_bones_disp= [Common cons_label_pos:[Common screen_pctwid:0.75 pcthei:0.45]
+                                       color:ccc3(255, 255, 255)
+                                    fontsize:30
+                                         str:@"0"];
+    [pause_ui addChild:pause_bones_disp];
+    
+    pause_lives_disp= [Common cons_label_pos:[Common screen_pctwid:0.75 pcthei:0.3]
+                                       color:ccc3(255, 255, 255)
+                                    fontsize:30
+                                         str:@"0"];
+    [pause_ui addChild:pause_lives_disp];
+    
+    CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
+                                                pos:[Common screen_pctwid:0.5 pcthei:0.6]];
+    
+    CCMenuItem *playbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"playbutton" tar:self sel:@selector(unpause)
+                                               pos:[Common screen_pctwid:0.35 pcthei:0.6]];
+    
+    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"backbutton" tar:self sel:@selector(exit_to_menu)
+                                               pos:[Common screen_pctwid:0.20 pcthei:0.6]];
+    
+    CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
+    [pausebuttons setPosition:ccp(0,0)];
+    [pause_ui addChild:pausebuttons];
+    
+    NSMutableArray* tslots = [NSMutableArray array];
+    MainSlotItemPane *mainslot = [MainSlotItemPane cons_pt:ccp(-50,-15) cb:[Common cons_callback:self sel:@selector(slotpane0_click)] slot:0];
+    CCMenu *slotitems = [CCMenu menuWithItems:nil];
+    [tslots addObject:mainslot];
+    [slotitems addChild:mainslot];
+    
+    float panewid = [SlotItemPane invpane_size].size.width;
+    float panehei = [SlotItemPane invpane_size].size.height;
+    SEL slotsel[] = {@selector(slotpane0_click),@selector(slotpane1_click),@selector(slotpane2_click),@selector(slotpane3_click),@selector(slotpane4_click),@selector(slotpane5_click),@selector(slotpane6_click)};
+    for(int i = 0; i < 6; i++) {
+        SlotItemPane *slp = [SlotItemPane cons_pt:ccp((panewid+12)*(i%3),-(panehei+12)*(i/3)) cb:[Common cons_callback:self sel:slotsel[i+1]] slot:i+1];
+        [slotitems addChild:slp];
+        [tslots addObject:slp];
+    }
+    [slotitems setPosition:[Common screen_pctwid:0.35 pcthei:0.4]];
+    [pause_ui addChild:slotitems];
+    
     pause_ui.visible = NO;
     [self addChild:pause_ui z:1];
 }
+
+-(void)slotpane0_click {[self slotpane_click:0];}
+-(void)slotpane1_click {[self slotpane_click:1];}
+-(void)slotpane2_click {[self slotpane_click:2];}
+-(void)slotpane3_click {[self slotpane_click:3];}
+-(void)slotpane4_click {[self slotpane_click:4];}
+-(void)slotpane5_click {[self slotpane_click:5];}
+-(void)slotpane6_click {[self slotpane_click:6];}
+
+-(void)slotpane_click:(int)i {
+    NSLog(@"click:%d",i);
+}
+
 -(void)cons_gameover_ui {
     ccColor4B c = {0,0,0,200};
     CGSize s = [[UIScreen mainScreen] bounds].size;
