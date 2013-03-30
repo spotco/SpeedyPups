@@ -2,19 +2,20 @@
 
 @implementation DogRocketEffect
 
-+(DogRocketEffect*)cons_from:(PlayerEffectParams*)base {
++(DogRocketEffect*)cons_from:(PlayerEffectParams*)base time:(int)time {
     DogRocketEffect *n = [[DogRocketEffect alloc] init];
     [PlayerEffectParams copy_params_from:base to:n];
-    n.time_left = 200;
-    n.cur_airjump_count = 0;
-    n.cur_min_speed = 20;
-    n.cur_gravity = 0;
+    n.time_left = time;
+    n.cur_airjump_count = 2;
+    n.cur_gravity = -0.1;
     return n;
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
-    p.vy *= 0.9;
-    if (p.vx < cur_min_speed) {
+    if (p.vy > 0) {
+        p.vy *= 0.9;
+    }
+    if (p.vx < 20) {
         p.vx += 1;
     }
 }
@@ -24,11 +25,15 @@
 }
 
 -(void)add_airjump_count {
-    cur_airjump_count = 0;
+    cur_airjump_count = 2;
 }
 
 -(NSString*)info {
     return [NSString stringWithFormat:@"DogRocketEffect(timeleft:%i)",time_left];
+}
+
+-(BOOL)is_also_dashing {
+    return YES;
 }
 
 @end

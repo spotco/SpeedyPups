@@ -14,7 +14,6 @@
     n.vy = vy;
     
     n.time_left = 20;
-    //n.cur_airjump_count = 0;
     n.cur_gravity = 0;
     return n;
 }

@@ -9,11 +9,7 @@
     float cur_min_speed;
     int cur_airjump_count, cur_dash_count;
     int noclip;
-    
     int time_left;
-    
-    
-    //int TEST1;
 }
 
 /*
@@ -37,6 +33,6 @@
 -(void)decr_dash_count;
 -(NSString*)info;
 
-//-(void)f_dealloc;
+-(BOOL)is_also_dashing;
 
 @end

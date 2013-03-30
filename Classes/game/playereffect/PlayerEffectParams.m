@@ -61,17 +61,11 @@
     [p get_current_params].cur_airjump_count = cur_airjump_count;
     [p get_default_params].cur_dash_count = cur_dash_count;
     [p get_default_params].cur_airjump_count = cur_airjump_count;
-    
-    //TEST1 = 2;
 }
 
-/*
--(void)f_dealloc {
-    TEST1 = 2;
-    [self dealloc];
+-(BOOL)is_also_dashing {
+    return NO;
 }
-*/
-
 
 -(void)effect_begin:(Player *)p {}
 

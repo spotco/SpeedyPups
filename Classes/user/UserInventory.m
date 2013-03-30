@@ -62,4 +62,17 @@
     [DataStore set_key:a[i] int_value:t];
 }
 
+//upgrade system
++(NSString*)gameitem_to_upgrade_level_string:(GameItem)gi {
+    return [NSString stringWithFormat:@"upgrade_%d",gi];
+}
+
++(int)get_upgrade_level:(GameItem)gi {
+    return [DataStore get_int_for_key:[self gameitem_to_upgrade_level_string:gi]];
+}
+
++(void)upgrade:(GameItem)gi {
+    [DataStore set_key:[self gameitem_to_upgrade_level_string:gi] int_value:[self get_upgrade_level:gi]+1];
+}
+
 @end

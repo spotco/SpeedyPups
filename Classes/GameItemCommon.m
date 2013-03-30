@@ -1,6 +1,9 @@
+#import "GameItemCommon.h"
 #import "Resource.h"
 #import "FileCache.h"
-#import "GameItemCommon.h"
+#import "GameEngineLayer.h"
+#import "DogRocketEffect.h"
+#import "UserInventory.h"
 
 @interface NSValue (valueWithGameItem)
 +(NSValue*) valueWithGameItem:(GameItem)g;
@@ -55,11 +58,31 @@ static NSDictionary* descriptions;
 
 
 +(NSString*)name_from:(GameItem)gameitem {
-    return [names objectForKey:[NSValue valueWithGameItem:gameitem]];
+    return [NSString stringWithFormat:@"%@ (lvl %d)",
+            [names objectForKey:[NSValue valueWithGameItem:gameitem]],
+            [UserInventory get_upgrade_level:gameitem]
+    ];
 }
 
 +(NSString*)description_from:(GameItem)gameitem {
     return [descriptions objectForKey:[NSValue valueWithGameItem:gameitem]];
+}
+
++(void)use_item:(GameItem)it on:(GameEngineLayer*)g {
+    if (it == Item_Rocket) {
+        [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it]]];
+    }
+}
+
++(int)get_uselength_for:(GameItem)gi {
+    int lvl = [UserInventory get_upgrade_level:gi];
+    if (gi == Item_Rocket) {
+        int dur[] = {600,1500,3000,99999};
+        return dur[lvl];
+        
+    } else {
+        return 300;
+    }
 }
 
 @end

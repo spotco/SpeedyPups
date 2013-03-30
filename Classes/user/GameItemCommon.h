@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 @class CCTexture2D;
+@class GameEngineLayer;
 
 typedef enum {
     Item_NOITEM = 0,
@@ -19,4 +20,7 @@ typedef enum {
 +(TexRect*)texrect_from:(GameItem)gameitem;
 +(NSString*)name_from:(GameItem)gameitem;
 +(NSString*)description_from:(GameItem)gameitem;
+
++(void)use_item:(GameItem)it on:(GameEngineLayer*)g;
+
 @end

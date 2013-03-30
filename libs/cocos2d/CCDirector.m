@@ -457,8 +457,8 @@ static CCDirector *_sharedDirector = nil;
 
 	oldAnimationInterval_ = animationInterval_;
 	
-	// when paused, don't consume CPU
-	[self setAnimationInterval:1/10.0];
+	// when paused, don't consume CPU PAUSEFRAMERATE
+	[self setAnimationInterval:1/20.0];
 	isPaused_ = YES;
 }
 

@@ -1,11 +1,14 @@
 {
-    "islands": [{"type": "line", "y2": 301, "x1": 50, "can_fall": true, "x2": 2653, "ground": "open", "ndir": "left", "y1": 298, "hei": 500}],
-    "objects": [
-        {"type": "tutorial", "x": 298, "label": "random", "y": 450},
-        {"type": "tutorialend", "x": 2650, "label": "lol", "y": 300},
+    "assert_links": 3,
+    "islands": [
+        {"type": "line", "y2": 227, "x1": 179, "can_fall": true, "x2": 655, "ground": "open", "ndir": "left", "y1": 184, "hei": 50},
+        {"type": "line", "y2": 366, "x1": 655, "can_fall": true, "x2": 841, "ground": "open", "ndir": "left", "y1": 227, "hei": 50},
+        {"type": "line", "y2": 540, "x1": 644, "can_fall": true, "x2": 883, "ground": "open", "ndir": "right", "y1": 405, "hei": 50},
+        {"type": "line", "y2": 482, "x1": 883, "can_fall": true, "x2": 1245, "ground": "open", "ndir": "right", "y1": 540, "hei": 50},
+        {"type": "line", "y2": 249, "x1": 1245, "can_fall": true, "x2": 1341, "ground": "open", "ndir": "right", "y1": 482, "hei": 50}
     ],
-    "start_x": 102,
-    "assert_links": 0,
-    "connect_pts": {"y2": 301, "x1": 50, "y1": 298, "x2": 1953},
-    "start_y": 346
+    "objects": [],
+    "connect_pts": {"y2": 249, "x1": 179, "y1": 184, "x2": 1341},
+    "start_x": 0,
+    "start_y": 0
 }

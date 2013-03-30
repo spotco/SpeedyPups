@@ -98,7 +98,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     
     player_anim_mode cur_anim_mode = [[self get_current_params] get_anim];
     
-    dashing = cur_anim_mode == player_anim_mode_DASH;
+    dashing = (cur_anim_mode == player_anim_mode_DASH) || ([[self get_current_params] is_also_dashing]);
     
     if (current_swingvine != NULL) {
         [self swingvine_attach_anim];
@@ -329,6 +329,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 -(void)remove_temp_params:(GameEngineLayer*)g {
+    //NSLog(@"REMOVE TEMP AT:%@",[NSThread callStackSymbols]);
     if (temp_params != NULL) {
         [temp_params effect_end:self g:g];
         temp_params = NULL;

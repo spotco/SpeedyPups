@@ -13,4 +13,7 @@
 +(GameItem)get_item_at_slot:(int)i;
 +(void)set_item:(GameItem)t to_slot:(int)i;
 
++(int)get_upgrade_level:(GameItem)gi;
++(void)upgrade:(GameItem)gi;
+
 @end

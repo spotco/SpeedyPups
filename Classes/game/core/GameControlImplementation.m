@@ -102,10 +102,10 @@ static float avg_y;
     
     
     if (queue_jump == YES) { //initial jump
-        
-        if (player.dashing) {
+        /*if (player.dashing) { //not a bug?
             [player remove_temp_params:g]; //note bug here is dashing then jump into ndir -1 wall, fix by removing dash param
         }
+         */
         
         if (player.current_island != NULL) {
             [GameControlImplementation player_jump_from_island:player];

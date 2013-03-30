@@ -6,6 +6,7 @@
 #import "EnemyBomb.h"
 #import "CannonFireParticle.h"
 #import "TouchTrackingLayer.h"
+#import "GameItemCommon.h"
 
 @implementation GameEngineLayer
 
@@ -287,6 +288,8 @@
             [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         }
         
+    } else if (e.type == GEventType_USE_ITEM) {
+        [GameItemCommon use_item:e.i1 on:self];
     }
 }
 

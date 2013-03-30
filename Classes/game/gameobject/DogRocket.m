@@ -37,7 +37,7 @@
     
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
-        PlayerEffectParams *e = [DogRocketEffect cons_from:[player get_default_params]];
+        PlayerEffectParams *e = [DogRocketEffect cons_from:[player get_default_params] time:300];
         player.vx += ABS(player.vy);
         player.vy = 0;
         [player add_effect:e];

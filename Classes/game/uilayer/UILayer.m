@@ -1,8 +1,8 @@
 #import "UILayer.h"
 #import "Player.h"
-#import "AutoLevel.h"
 #import "MenuCommon.h"
 #import "InventoryItemPane.h"
+#import "UserInventory.h"
 
 @implementation UILayer
 
@@ -19,6 +19,7 @@
     [self cons_pause_ui];
     [self cons_gameover_ui];
     [self cons_game_end_menu];
+    [self update_items];
     ingame_ui_anims = [NSMutableArray array];
     self.isTouchEnabled = YES;
     [ingame_ui setVisible:NO];
@@ -106,8 +107,7 @@
                                                           selectedSprite:pauseiconzoom
                                                                   target:self 
                                                                 selector:@selector(pause)];
-    ingamepause.position = ccp([Common SCREEN].width - pauseicon.boundingBox.size.width +20, 
-                               [Common SCREEN].height - pauseicon.boundingBox.size.height +20);
+    [ingamepause setPosition:[Common screen_pctwid:0.95 pcthei:0.9]];
     
     CCMenuItem *bone_disp_icon = [self cons_menuitem_tex:[Resource get_tex:TEX_UI_BONE_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.96)];
     CCMenuItem *lives_disp_icon = [self cons_menuitem_tex:[Resource get_tex:TEX_UI_LIVES_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.88)];
@@ -122,17 +122,9 @@
     enemy_alert_ui = [self cons_menuitem_tex:[Resource get_tex:TEX_UI_ENEMY_ALERT] pos:[Common screen_pctwid:0.9 pcthei:0.5]];
     [enemy_alert_ui setVisible:NO];
     
-    CCSprite *itemslot = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"itemslotsmall"]];
-    CCSprite *itemslotzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"itemslotsmall"]];
-    [UILayer set_zoom_pos_align:itemslot zoomed:itemslotzoom scale:1.2];
-    
-    CCMenuItemImage *itemslotic = [CCMenuItemImage itemFromNormalSprite:itemslot
-                                                         selectedSprite:itemslotzoom
-                                                                 target:self
-                                                               selector:@selector(itemslot_use)];
-    [itemslotic setScale:0.75];
-    [itemslotic setPosition:[Common screen_pctwid:0.93 pcthei:0.09]];
-    [itemslotic setOpacity:120];
+    ingame_ui_item_slot = [MainSlotItemPane cons_pt:[Common screen_pctwid:0.93 pcthei:0.09] cb:[Common cons_callback:self sel:@selector(itemslot_use)] slot:0];
+    [ingame_ui_item_slot setScale:0.75];
+    [ingame_ui_item_slot setOpacity:120];
     
     ingame_ui = [CCMenu menuWithItems:
                  ingamepause,
@@ -143,7 +135,7 @@
                  [self label_cons_menuitem:lives_disp leftalign:YES],
                  [self label_cons_menuitem:time_disp leftalign:YES],
                  enemy_alert_ui,
-                 itemslotic,
+                 ingame_ui_item_slot,
                  nil];
     
     ingame_ui.anchorPoint = ccp(0,0);
@@ -151,11 +143,33 @@
     [self addChild:ingame_ui];
 }
 
+-(void)update_items {
+    [ingame_ui_item_slot set_item:[UserInventory get_item_at_slot:0] ct:1];
+    for (SlotItemPane *i in pause_menu_item_slots) {
+        if ([i get_slot] <= [UserInventory get_num_slots_unlocked]) {
+            [i set_item:[UserInventory get_item_at_slot:[i get_slot]] ct:1];
+        } else {
+            [i set_locked:YES];
+        }
+    }
+}
+
+-(void)update_pausemenu_info {
+    [pause_lives_disp setString:[lives_disp string]];
+    [pause_bones_disp setString:[bones_disp string]];
+    [pause_time_disp setString:[time_disp string]];
+}
+
 -(void)itemslot_use {
-    NSLog(@"use item");
+    if ([UserInventory get_item_at_slot:0] != Item_NOITEM) {
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:[UserInventory get_item_at_slot:0] i2:0]];
+        [UserInventory set_item:Item_NOITEM to_slot:0];
+        [self update_items];
+    }
 }
 
 -(void)retry {
+    //TODO: work
     NSLog(@"retry");
 }
 
@@ -230,8 +244,9 @@
     }
     [slotitems setPosition:[Common screen_pctwid:0.35 pcthei:0.4]];
     [pause_ui addChild:slotitems];
+    pause_menu_item_slots = tslots;
     
-    pause_ui.visible = NO;
+    [pause_ui setVisible:NO];
     [self addChild:pause_ui z:1];
 }
 
@@ -244,7 +259,13 @@
 -(void)slotpane6_click {[self slotpane_click:6];}
 
 -(void)slotpane_click:(int)i {
-    NSLog(@"click:%d",i);
+    if (i > 0 && i <= [UserInventory get_num_slots_unlocked]) {
+        GameItem s0 = [UserInventory get_item_at_slot:0];
+        GameItem si = [UserInventory get_item_at_slot:i];
+        [UserInventory set_item:si to_slot:0];
+        [UserInventory set_item:s0 to_slot:i];
+    }
+    [self update_items];
 }
 
 -(void)cons_gameover_ui {
@@ -321,7 +342,7 @@
 
 -(void)pause {
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_PAUSE]];
-    
+    [self update_pausemenu_info];
     ingame_ui.visible = NO;
     pause_ui.visible = YES;
     [[CCDirector sharedDirector] pause];

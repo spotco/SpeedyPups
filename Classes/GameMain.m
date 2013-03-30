@@ -4,10 +4,10 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"filler_smgislands"
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 99
 
 #define DRAW_HITBOX NO
@@ -103,12 +103,16 @@
     [UserInventory unlock_slot];
     
     [UserInventory set_inventory_ct_of:Item_Magnet to:3];
-    [UserInventory set_inventory_ct_of:Item_Rocket to:1];
-    [UserInventory set_inventory_ct_of:Item_Shield to:1];
+    [UserInventory set_inventory_ct_of:Item_Rocket to:3];
+    [UserInventory set_inventory_ct_of:Item_Shield to:3];
     
-    //[GameMain start_testlevel];
+    [UserInventory upgrade:Item_Rocket];
+    [UserInventory upgrade:Item_Rocket];
+    [UserInventory upgrade:Item_Rocket];
+    
+    [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

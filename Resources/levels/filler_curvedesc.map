@@ -62,7 +62,7 @@
         {"type": "ground_detail", "x": 3772, "label": "(31)gd_img:6", "img": 6, "y": 1216},
         {"type": "ground_detail", "x": 1208, "label": "(32)gd_img:2", "img": 2, "y": 1982},
         {
-            "height": 861.6833333333334,
+            "height": 3000.6833333333334,
             "x": 4408.6,
             "width": 245,
             "y": 758.6,
