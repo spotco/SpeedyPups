@@ -5,6 +5,28 @@
 	<key>frames</key>
 	<dict>
 		
+		<key>item_heart</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{1, 2}, {45, 46}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{49, 48}</string>
+			<key>spriteSourceSize</key>
+			<string>{49, 48}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 51}, {49, 48}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>item_magnet</key>
 		<dict>
 			<key>aliases</key>
@@ -23,6 +45,50 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{0, 0}, {50, 49}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>item_rocket</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 2}, {47, 46}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{49, 48}</string>
+			<key>spriteSourceSize</key>
+			<string>{49, 48}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{52, 0}, {49, 48}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>item_shield</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 2}, {43, 46}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{49, 48}</string>
+			<key>spriteSourceSize</key>
+			<string>{49, 48}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{52, 50}, {49, 48}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

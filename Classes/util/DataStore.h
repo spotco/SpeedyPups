@@ -2,13 +2,6 @@
 
 @interface DataStore : NSObject
 
-#define STO_test1_INT @"test1"
-#define STO_test2_FLT @"test2"
-#define STO_test3_STR @"test3"
-
-#define STO_totalbones_INT @"totalbones"
-#define STO_maxbones_INT @"maxbones"
-
 +(void)cons;
 +(BOOL)isset_key:(NSString*)key;
 +(void)reset_key:(NSString*)key;

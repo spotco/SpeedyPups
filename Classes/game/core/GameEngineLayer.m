@@ -290,11 +290,6 @@
     }
 }
 
--(void)set_records {
-    [DataStore set_key:STO_totalbones_INT int_value:[DataStore get_int_for_key:STO_totalbones_INT]+collected_bones];
-    [DataStore set_key:STO_maxbones_INT int_value:MAX([DataStore get_int_for_key:STO_maxbones_INT],collected_bones)];
-}
-
 -(void)update_gameobjs {
     for(int i = [game_objects count]-1; i>=0 ; i--) {
         GameObject *o = [game_objects objectAtIndex:i];
@@ -319,7 +314,7 @@
 }
 -(void)exit {
     [self unscheduleAllSelectors];
-    [self set_records];
+    //[self set_records];
     [self stopAction:follow_action];
     follow_action = NULL;
     
