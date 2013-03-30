@@ -8,10 +8,6 @@
 #define IMG_OFFSET_Y -3
 
 #define DEFAULT_GRAVITY -0.5
-#define DEFAULT_MIN_SPEED 7
-
-#define MIN_SPEED_MAX 14
-#define LIMITSPD_INCR 2
 
 #define HITBOX_RESCALE 0.7
 
@@ -84,6 +80,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 
 -(void)update:(GameEngineLayer*)g {
     game_engine_layer = g;
+    if (new_spd_ct)new_spd_ct--;
     
     if (current_island == NULL && current_swingvine == NULL) {
         [self mov_center_rotation];
@@ -119,6 +116,12 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         [self start_anim:_CAPE_ANIM];
         
     } else if (cur_anim_mode == player_anim_mode_ROCKET) {
+        if (current_island != NULL) {
+            cur_scy = last_ndir;
+        } else {
+            cur_scy = 1;
+            self.last_ndir = 1;
+        }
         [self start_anim:_ROCKET_ANIM];
         [g add_particle:[RocketParticle cons_x:position_.x-40 y:position_.y+20]];
         
@@ -136,6 +139,17 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     [self setScaleY:cur_scy];
     [self update_params:g];
     refresh_hitrect = YES;
+}
+
+#define DEFAULT_SPEED 7
+
+-(int)get_speed {
+    return new_spd_ct > 0 ? new_spd : DEFAULT_SPEED;
+}
+
+-(void)set_new_spd:(int)spd ct:(int)ct {
+    new_spd = spd;
+    new_spd_ct = ct;
 }
 
 -(void)mov_center_rotation {
@@ -260,10 +274,8 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         [temp_params update:self g:g];
         [temp_params decrement_timer];
         if (temp_params.time_left == 0) {
-            [temp_params effect_end:self g:g];
-            if (temp_params.time_left <= 0) {
-                temp_params = NULL;
-            }
+            [temp_params effect_end];
+            temp_params = NULL;
         }
     }
 }
@@ -296,15 +308,15 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 -(void) reset_params {
     if (temp_params != NULL) {
+        [temp_params effect_end];
         temp_params = NULL;
     }
     if (current_params != NULL) {
+        [current_params effect_end];
         current_params = NULL;
     }
     current_params = [[PlayerEffectParams alloc] init];
     current_params.cur_gravity = DEFAULT_GRAVITY;
-    current_params.cur_limit_speed = DEFAULT_MIN_SPEED + LIMITSPD_INCR;
-    current_params.cur_min_speed = DEFAULT_MIN_SPEED;
     current_params.cur_airjump_count = 1;
     current_params.cur_dash_count = 1;
     current_params.time_left = -1;
@@ -312,7 +324,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 -(void)add_effect:(PlayerEffectParams*)effect {
     if (temp_params != NULL) {
         if (game_engine_layer != NULL) {
-            [temp_params effect_end:self g:game_engine_layer];
+            [temp_params effect_end];
         }
         temp_params = NULL;
     }
@@ -331,7 +343,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 -(void)remove_temp_params:(GameEngineLayer*)g {
     //NSLog(@"REMOVE TEMP AT:%@",[NSThread callStackSymbols]);
     if (temp_params != NULL) {
-        [temp_params effect_end:self g:g];
+        [temp_params effect_end];
         temp_params = NULL;
     }
 }
@@ -453,9 +465,7 @@ HitRect cached_rect;
 }
 - (void)setOpacity:(GLubyte)opacity {
 	[super setOpacity:opacity];
-    
 	for(CCSprite *sprite in [self children]) {
-        
 		sprite.opacity = opacity;
 	}
 }
@@ -466,8 +476,6 @@ HitRect cached_rect;
 }
 -(void)cleanup_anims {
     [player_img stopAction:current_anim]; 
-    
-    
     [self removeAllChildrenWithCleanup:YES];
 }
 

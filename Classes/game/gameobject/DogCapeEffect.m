@@ -7,8 +7,6 @@
     [PlayerEffectParams copy_params_from:base to:n];
     n.time_left = 300;
     n.cur_airjump_count = 1;
-    n.cur_min_speed = 14;
-    n.cur_limit_speed = n.cur_min_speed + 2;
     return n;
 }
 

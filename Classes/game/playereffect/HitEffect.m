@@ -33,8 +33,7 @@
     }
 }
 
--(void)effect_end:(Player*)p g:(GameEngineLayer*)g {
-    [super effect_end:p g:g];
+-(void)effect_end {
     [GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
 }
 
@@ -43,7 +42,7 @@
 }
 
 -(NSString*)info {
-    return [NSString stringWithFormat:@"HitEffect(minspd:%1.1f,timeleft:%i)",cur_min_speed,time_left];
+    return [NSString stringWithFormat:@"HitEffect(timeleft:%i)",time_left];
 }
 @end
 

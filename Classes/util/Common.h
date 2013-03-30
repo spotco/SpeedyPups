@@ -39,6 +39,7 @@
     @property(readwrite,assign) CGPoint position;
     @property(readwrite,unsafe_unretained) SwingVine* current_swingvine;
     -(PlayerEffectParams*)get_current_params;
+    -(int)get_speed;
 @end
 
 @interface CallBack : NSObject

@@ -27,7 +27,7 @@
 
 
 +(CGPoint)player_move_along_island:(id<PhysicsObject>)player islands:(NSMutableArray*)islands {
-    float MIN_SPEED = [player get_current_params].cur_min_speed;
+    float MIN_SPEED = [player get_speed];
     
     Island *i = player.current_island;
     Vec3D tangent_vec = [i get_tangent_vec];

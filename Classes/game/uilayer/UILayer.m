@@ -47,6 +47,10 @@
     
     } else if (e.type == GEventType_START_INTIAL_ANIM) {
         [self start_initial_anim];
+        
+    } else if (e.type == GEventType_ITEM_DURATION_PCT) {
+        item_duration_pct = e.f1;
+        
     }
 }
 
@@ -436,6 +440,21 @@
     [pause_ui removeAllChildrenWithCleanup:YES];
     [gameover_ui removeAllChildrenWithCleanup:YES];
     [self removeAllChildrenWithCleanup:YES];
+}
+
+-(void)draw {
+    [super draw];
+    [self draw_item_duration_line];
+}
+
+-(void)draw_item_duration_line {
+    glColor4ub(255,0,0,100);
+    glLineWidth(10.0f);
+    CGPoint a = [Common screen_pctwid:0.885 pcthei:0.18];
+    CGPoint b = [Common screen_pctwid:0.975 pcthei:0.18];
+    CGPoint dab = ccp(b.x-a.x,b.y-a.y);
+    dab.x *= item_duration_pct;
+    ccDrawLine(a,ccp(a.x+dab.x,a.y+dab.y));
 }
 
 

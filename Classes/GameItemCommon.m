@@ -77,7 +77,7 @@ static NSDictionary* descriptions;
 +(int)get_uselength_for:(GameItem)gi {
     int lvl = [UserInventory get_upgrade_level:gi];
     if (gi == Item_Rocket) {
-        int dur[] = {600,1500,3000,99999};
+        int dur[] = {300,600,1600,5000};
         return dur[lvl];
         
     } else {

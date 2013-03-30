@@ -23,6 +23,8 @@
     int inair_ct;
     
     GameEngineLayer* game_engine_layer;
+    
+    int new_spd,new_spd_ct;
 }
 
 typedef enum {
@@ -57,6 +59,8 @@ typedef enum {
 
 -(void)do_run_anim;
 -(void)do_stand_anim;
+
+-(void)set_new_spd:(int)spd ct:(int)ct;
 
 @property(readwrite,strong) CCSprite* player_img;
 @property(readwrite,unsafe_unretained) Island* current_island;

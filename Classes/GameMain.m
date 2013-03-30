@@ -7,7 +7,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"classic_trickytreas"
 #define STARTING_LIVES 99
 
 #define DRAW_HITBOX NO
@@ -106,12 +106,13 @@
     [UserInventory set_inventory_ct_of:Item_Rocket to:3];
     [UserInventory set_inventory_ct_of:Item_Shield to:3];
     
-    [UserInventory upgrade:Item_Rocket];
-    [UserInventory upgrade:Item_Rocket];
-    [UserInventory upgrade:Item_Rocket];
     
-    [GameMain start_testlevel];
-    //[GameMain start_game_autolevel];
+    [UserInventory set_item:Item_Rocket to_slot:0];
+    [UserInventory set_item:Item_Rocket to_slot:1];
+    [UserInventory set_item:Item_Rocket to_slot:2];
+    
+    //[GameMain start_testlevel];
+    [GameMain start_game_autolevel];
     //[GameMain start_menu];
     
 }

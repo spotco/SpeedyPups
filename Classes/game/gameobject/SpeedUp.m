@@ -29,14 +29,9 @@
     
     if (recharge_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {            
         [self particle_effect:g];
-        player.vx += normal_vec.x*6;
-        player.vy += normal_vec.y*6;
-        
-        PlayerEffectParams *e = [PlayerEffectParams cons_copy:player.get_default_params];
-        e.time_left = 100;
-        e.cur_min_speed = 15;
-        [player add_effect:e];
-        
+        player.vx += normal_vec.x*2;
+        player.vy += normal_vec.y*2;
+        [player set_new_spd:15 ct:100];
         recharge_ct = 50;
         [AudioManager playsfx:SFX_SPEEDUP];
     }

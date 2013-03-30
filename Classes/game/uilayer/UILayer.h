@@ -8,6 +8,8 @@
 @class MainSlotItemPane;
 
 @interface UILayer : CCLayer <GEventListener> {
+    float item_duration_pct;
+    
     GameEngineLayer* game_engine_layer;
     CCNode *ingame_ui,*pause_ui,*gameover_ui,*enemy_alert_ui;
     int enemy_alert_ui_ct;

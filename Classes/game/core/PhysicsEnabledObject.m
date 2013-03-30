@@ -71,16 +71,18 @@
     return params;
 }
 
+-(int)get_speed {
+    return 7;
+}
+
 -(void)reset_physics_params {
     up_vec = [VecLib cons_x:0 y:1 z:0];
     if (params) {
-        [params effect_end:NULL g:NULL];
+        [params effect_end];
     }
     
     params = [[PlayerEffectParams alloc] init];
     params.cur_gravity = DEFAULT_GRAVITY;
-    params.cur_limit_speed = DEFAULT_MIN_SPEED + LIMITSPD_INCR;
-    params.cur_min_speed = DEFAULT_MIN_SPEED;
     params.cur_airjump_count = 1;
     params.cur_dash_count = 1;
     params.time_left = -1;

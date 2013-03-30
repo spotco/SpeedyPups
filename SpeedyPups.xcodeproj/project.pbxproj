@@ -818,8 +818,8 @@
 		7EB8B3D416D9FC0900F58961 /* DogBone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogBone.m; sourceTree = "<group>"; };
 		7EB8B3D516D9FC0900F58961 /* DogCape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogCape.h; sourceTree = "<group>"; };
 		7EB8B3D616D9FC0900F58961 /* DogCape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogCape.m; sourceTree = "<group>"; };
-		7EB8B3D716D9FC0900F58961 /* DogCapeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogCapeEffect.h; sourceTree = "<group>"; };
-		7EB8B3D816D9FC0900F58961 /* DogCapeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogCapeEffect.m; sourceTree = "<group>"; };
+		7EB8B3D716D9FC0900F58961 /* DogCapeEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DogCapeEffect.h; path = ../gameobject/DogCapeEffect.h; sourceTree = "<group>"; };
+		7EB8B3D816D9FC0900F58961 /* DogCapeEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DogCapeEffect.m; path = ../gameobject/DogCapeEffect.m; sourceTree = "<group>"; };
 		7EB8B3D916D9FC0900F58961 /* DogRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogRocket.h; sourceTree = "<group>"; };
 		7EB8B3DA16D9FC0900F58961 /* DogRocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DogRocket.m; sourceTree = "<group>"; };
 		7EB8B3DB16D9FC0900F58961 /* DogShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DogShadow.h; sourceTree = "<group>"; };
@@ -2013,8 +2013,6 @@
 				7EB8B3D416D9FC0900F58961 /* DogBone.m */,
 				7EB8B3D516D9FC0900F58961 /* DogCape.h */,
 				7EB8B3D616D9FC0900F58961 /* DogCape.m */,
-				7EB8B3D716D9FC0900F58961 /* DogCapeEffect.h */,
-				7EB8B3D816D9FC0900F58961 /* DogCapeEffect.m */,
 				7EB8B3D916D9FC0900F58961 /* DogRocket.h */,
 				7EB8B3DA16D9FC0900F58961 /* DogRocket.m */,
 				7EB8B3DB16D9FC0900F58961 /* DogShadow.h */,
@@ -2142,6 +2140,8 @@
 		7EB8B43716D9FC0900F58961 /* playereffect */ = {
 			isa = PBXGroup;
 			children = (
+				7EB8B3D716D9FC0900F58961 /* DogCapeEffect.h */,
+				7EB8B3D816D9FC0900F58961 /* DogCapeEffect.m */,
 				7EB8B43816D9FC0900F58961 /* BlockerEffect.h */,
 				7EB8B43916D9FC0900F58961 /* BlockerEffect.m */,
 				7EB8B43A16D9FC0900F58961 /* DashEffect.h */,

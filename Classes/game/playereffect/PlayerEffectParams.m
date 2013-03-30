@@ -3,7 +3,7 @@
 
 @implementation PlayerEffectParams
 
-@synthesize cur_min_speed,cur_gravity,cur_limit_speed,cur_airjump_count,time_left,cur_dash_count;
+@synthesize cur_gravity,cur_airjump_count,time_left,cur_dash_count;
 @synthesize noclip;
 
 
@@ -15,8 +15,6 @@
 
 +(void)copy_params_from:(PlayerEffectParams *)a to:(PlayerEffectParams *)b {
     b.cur_gravity = -0.5;
-    b.cur_limit_speed = a.cur_limit_speed;
-    b.cur_min_speed = a.cur_min_speed;
     b.cur_airjump_count = a.cur_airjump_count;
     b.cur_dash_count = a.cur_dash_count;
 }
@@ -53,15 +51,10 @@
 }
 
 -(NSString*)info {
-    return [NSString stringWithFormat:@"DefaultEffect(minspd:%1.1f,timeleft:%i)",cur_min_speed,time_left];
+    return [NSString stringWithFormat:@"DefaultEffect(timeleft:%i)",time_left];
 }
 
--(void)effect_end:(Player*)p g:(GameEngineLayer*)g{
-    [p get_current_params].cur_dash_count = cur_dash_count;
-    [p get_current_params].cur_airjump_count = cur_airjump_count;
-    [p get_default_params].cur_dash_count = cur_dash_count;
-    [p get_default_params].cur_airjump_count = cur_airjump_count;
-}
+-(void)effect_end{}
 
 -(BOOL)is_also_dashing {
     return NO;
