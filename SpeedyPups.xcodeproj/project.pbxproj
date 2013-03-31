@@ -537,6 +537,7 @@
 		7EF8A67716D9BA5C009A1FC5 /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A66A16D9BA5C009A1FC5 /* JSONRepresentation.h */; };
 		7EF8AA4E16D9DB2D009A1FC5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF8AA4D16D9DB2C009A1FC5 /* libz.dylib */; };
 		7EF8AA4F16D9DB4E009A1FC5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C4A05154AB4DD00B4B727 /* GameKit.framework */; };
+		7EFD034D1707B945002492D6 /* UsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD034C1707B945002492D6 /* UsedItem.m */; };
 		DC0C49F6154AB4DD00B4B727 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C49F5154AB4DD00B4B727 /* QuartzCore.framework */; };
 		DC0C49F8154AB4DD00B4B727 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C49F7154AB4DD00B4B727 /* OpenGLES.framework */; };
 		DC0C49FA154AB4DD00B4B727 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C49F9154AB4DD00B4B727 /* OpenAL.framework */; };
@@ -1192,6 +1193,8 @@
 		7EF8A66916D9BA5C009A1FC5 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		7EF8A66A16D9BA5C009A1FC5 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		7EF8AA4D16D9DB2C009A1FC5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7EFD034B1707B945002492D6 /* UsedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsedItem.h; sourceTree = "<group>"; };
+		7EFD034C1707B945002492D6 /* UsedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsedItem.m; sourceTree = "<group>"; };
 		DC0C49F1154AB4DD00B4B727 /* SpeedyPups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedyPups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0C49F5154AB4DD00B4B727 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC0C49F7154AB4DD00B4B727 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2133,6 +2136,8 @@
 			children = (
 				7EB8B43516D9FC0900F58961 /* Player.h */,
 				7EB8B43616D9FC0900F58961 /* Player.m */,
+				7EFD034B1707B945002492D6 /* UsedItem.h */,
+				7EFD034C1707B945002492D6 /* UsedItem.m */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -3106,6 +3111,7 @@
 				7ECFA6A21706A23A00496002 /* UserInventory.m in Sources */,
 				7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */,
 				7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */,
+				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

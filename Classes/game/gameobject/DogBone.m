@@ -52,7 +52,7 @@
     }
     
     float dist = [Common distanceBetween:position_ and:player.position];
-    if (dist > 100) {
+    if (dist > 500) {
         return;
     }
     
@@ -70,9 +70,9 @@
     }
     [self setRotation:rot];
     
-    float maxdist = 150;
+    float maxdist = [player get_magnet_rad];
     [super setPosition:ccp(position_.x + vx, position_.y+vy)];
-    if (!follow && player.dashing && dist < maxdist) {
+    if (!follow && dist < maxdist) {
         follow = YES;
     }
     

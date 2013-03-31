@@ -7,6 +7,7 @@
 #import "RocketParticle.h"
 #import "FloatingSweatParticle.h"
 #import "FileCache.h"
+@class UsedItem;
 
 @interface Player : CCSprite <PhysicsObject> {
     CGPoint start_pt;
@@ -24,7 +25,9 @@
     
     GameEngineLayer* game_engine_layer;
     
+    UsedItem *used_item;
     int new_spd,new_spd_ct;
+    int new_magnetrad,new_magnetrad_ct;
 }
 
 typedef enum {
@@ -61,6 +64,8 @@ typedef enum {
 -(void)do_stand_anim;
 
 -(void)set_new_spd:(int)spd ct:(int)ct;
+-(void)set_magnet_rad:(int)rad ct:(int)ct;
+-(int)get_magnet_rad;
 
 @property(readwrite,strong) CCSprite* player_img;
 @property(readwrite,unsafe_unretained) Island* current_island;

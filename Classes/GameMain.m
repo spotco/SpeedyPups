@@ -4,9 +4,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"classic_trickytreas"
 #define STARTING_LIVES 99
 
@@ -29,7 +29,6 @@
 /**
  TODO --
  -100 bones = 1up
- -new pause menu
  -new death menu
  
  -secret/25bones item
@@ -102,17 +101,20 @@
     [UserInventory unlock_slot];
     [UserInventory unlock_slot];
     
-    [UserInventory set_inventory_ct_of:Item_Magnet to:3];
-    [UserInventory set_inventory_ct_of:Item_Rocket to:3];
+    [UserInventory upgrade:Item_Rocket];
+    [UserInventory upgrade:Item_Magnet];
+    
+    [UserInventory set_inventory_ct_of:Item_Magnet to:20];
+    [UserInventory set_inventory_ct_of:Item_Rocket to:20];
     [UserInventory set_inventory_ct_of:Item_Shield to:3];
     
     
-    [UserInventory set_item:Item_Rocket to_slot:0];
+    [UserInventory set_item:Item_Magnet to_slot:0];
     [UserInventory set_item:Item_Rocket to_slot:1];
-    [UserInventory set_item:Item_Rocket to_slot:2];
+    [UserInventory set_item:Item_Magnet to_slot:2];
     
-    //[GameMain start_testlevel];
-    [GameMain start_game_autolevel];
+    [GameMain start_testlevel];
+    //[GameMain start_game_autolevel];
     //[GameMain start_menu];
     
 }

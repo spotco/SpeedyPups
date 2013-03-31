@@ -71,6 +71,10 @@ static NSDictionary* descriptions;
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g {
     if (it == Item_Rocket) {
         [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it]]];
+        
+    } else if (it == Item_Magnet) {
+        [g.player set_magnet_rad:250 ct:[self get_uselength_for:Item_Magnet]];
+        
     }
 }
 
@@ -78,6 +82,10 @@ static NSDictionary* descriptions;
     int lvl = [UserInventory get_upgrade_level:gi];
     if (gi == Item_Rocket) {
         int dur[] = {300,600,1600,5000};
+        return dur[lvl];
+        
+    } else if (gi == Item_Magnet) {
+        int dur[] = {300,500,800,1300};
         return dur[lvl];
         
     } else {

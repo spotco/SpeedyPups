@@ -1,6 +1,8 @@
 #import "Player.h"
 #import "PlayerEffectParams.h"
 #import "GameEngineLayer.h"
+#import "GameItemCommon.h"
+#import "UsedItem.h"
 
 #define IMGWID 64
 #define IMGHEI 58
@@ -56,16 +58,16 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     [new_player cons_anim];
 	
     new_player.start_pt = pt;
-	//new_player.anchorPoint = ccp(0.5,0.5);
     new_player.position = new_player.start_pt;
 	return new_player;
 }
 
 -(id)init {
+    self = [super init];
     prevndir = 1;
     cur_scy = 1;
     inair_ct = 0;
-    return [super init];
+    return self;
 }
 
 -(void)start_anim:(id)anim {
@@ -80,7 +82,20 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 
 -(void)update:(GameEngineLayer*)g {
     game_engine_layer = g;
+    
+    if (used_item == NULL) {
+        used_item = [UsedItem cons];
+        [game_engine_layer add_gameobject:used_item];
+    }
+    
     if (new_spd_ct)new_spd_ct--;
+    if (new_magnetrad_ct) {
+        new_magnetrad_ct--;
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet] f2:0]];
+        if (new_magnetrad_ct <= 0) {
+            [used_item setTextureRect:CGRectZero];
+        }
+    }
     
     if (current_island == NULL && current_swingvine == NULL) {
         [self mov_center_rotation];
@@ -142,7 +157,6 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 #define DEFAULT_SPEED 7
-
 -(int)get_speed {
     return new_spd_ct > 0 ? new_spd : DEFAULT_SPEED;
 }
@@ -150,6 +164,23 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 -(void)set_new_spd:(int)spd ct:(int)ct {
     new_spd = spd;
     new_spd_ct = ct;
+}
+
+#define DEFAULT_DASH_MAGNET_RAD 150
+-(void)set_magnet_rad:(int)rad ct:(int)ct {
+    [used_item setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_magnet"]];
+    new_magnetrad = rad;
+    new_magnetrad_ct = ct;
+}
+
+-(int)get_magnet_rad {
+    if (new_magnetrad_ct > 0) {
+        return new_magnetrad;
+    } else if (dashing) {
+        return DEFAULT_DASH_MAGNET_RAD;
+    } else {
+        return 20;
+    }
 }
 
 -(void)mov_center_rotation {
@@ -341,7 +372,6 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 -(void)remove_temp_params:(GameEngineLayer*)g {
-    //NSLog(@"REMOVE TEMP AT:%@",[NSThread callStackSymbols]);
     if (temp_params != NULL) {
         [temp_params effect_end];
         temp_params = NULL;
