@@ -166,8 +166,12 @@
 
 -(void)itemslot_use {
     if ([UserInventory get_item_at_slot:0] != Item_NOITEM) {
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:[UserInventory get_item_at_slot:0] i2:0]];
+        GameItem i = [UserInventory get_item_at_slot:0];
         [UserInventory set_item:Item_NOITEM to_slot:0];
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
+        
+        [GameItemCommon queue_item];
+        
         [self update_items];
     }
 }

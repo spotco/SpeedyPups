@@ -3,6 +3,7 @@
 #import "GameEngineLayer.h"
 #import "GameItemCommon.h"
 #import "UsedItem.h"
+#import "MagnetItemEffect.h"
 
 #define IMGWID 64
 #define IMGHEI 58
@@ -83,19 +84,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 -(void)update:(GameEngineLayer*)g {
     game_engine_layer = g;
     
-    if (used_item == NULL) {
-        used_item = [UsedItem cons];
-        [game_engine_layer add_gameobject:used_item];
-    }
-    
-    if (new_spd_ct)new_spd_ct--;
-    if (new_magnetrad_ct) {
-        new_magnetrad_ct--;
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet] f2:0]];
-        if (new_magnetrad_ct <= 0) {
-            [used_item setTextureRect:CGRectZero];
-        }
-    }
+    [self update_ieffects];
     
     if (current_island == NULL && current_swingvine == NULL) {
         [self mov_center_rotation];
@@ -156,6 +145,19 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     refresh_hitrect = YES;
 }
 
+//internal effects system (for effects that should persist)
+-(void)update_ieffects {
+    if (new_spd_ct)new_spd_ct--;
+    if (new_magnetrad_ct) {
+        new_magnetrad_ct--;
+        if (new_magnetrad_ct) {
+            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet] f2:0] add_i1:Item_Magnet i2:0]];
+        } else {
+            [self reset_magnet_ieffect];
+        }
+    }
+}
+
 #define DEFAULT_SPEED 7
 -(int)get_speed {
     return new_spd_ct > 0 ? new_spd : DEFAULT_SPEED;
@@ -166,11 +168,16 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     new_spd_ct = ct;
 }
 
+-(void)reset_speed_ieffect {
+    new_spd_ct = 0;
+}
+
 #define DEFAULT_DASH_MAGNET_RAD 150
 -(void)set_magnet_rad:(int)rad ct:(int)ct {
-    [used_item setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_magnet"]];
+    [self reset_magnet_ieffect];
     new_magnetrad = rad;
     new_magnetrad_ct = ct;
+    [game_engine_layer add_gameobject:[MagnetItemEffect cons]];
 }
 
 -(int)get_magnet_rad {
@@ -183,6 +190,16 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     }
 }
 
+-(void)reset_all_ieffects {
+    [self reset_magnet_ieffect];
+    [self reset_speed_ieffect];
+}
+
+-(void)reset_magnet_ieffect {
+    new_magnetrad_ct = 0;
+    [GEventDispatcher immediate_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Magnet i2:0]];
+}
+
 -(void)mov_center_rotation {
     Vec3D dv = [VecLib cons_x:vx y:vy z:0];
     dv = [VecLib normalize:dv];
@@ -192,6 +209,11 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     rot = sig*sqrtf(ABS(rot));
     [self setRotation:rot];
     
+}
+
+-(CGPoint)get_center {
+    HitRect phit = [self get_hit_rect_ignore_noclip];
+    return ccp((phit.x2-phit.x1)/2+phit.x1,(phit.y2-phit.y1)/2+phit.y1);
 }
 
 -(void)add_running_dust_particles:(GameEngineLayer*)g {
@@ -335,6 +357,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     dashing = NO;
     dead = NO;
     current_swingvine = NULL;
+    [self reset_all_ieffects];
     [self reset_params];
 }
 -(void) reset_params {

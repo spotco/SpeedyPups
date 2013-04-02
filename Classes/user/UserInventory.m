@@ -34,7 +34,7 @@
     [DataStore set_key:[self gameitem_to_string:t] int_value:val];
 }
 
-+(int)get_num_slots_unlocked {
++(int)get_num_slots_unlocked { //0 is just main slot, 1 is main + a side, etc
     return [DataStore get_int_for_key:STO_SLOTS_UNLOCKED];
 }
 

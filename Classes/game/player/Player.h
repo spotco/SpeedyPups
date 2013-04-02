@@ -25,7 +25,6 @@
     
     GameEngineLayer* game_engine_layer;
     
-    UsedItem *used_item;
     int new_spd,new_spd_ct;
     int new_magnetrad,new_magnetrad_ct;
 }
@@ -56,6 +55,7 @@ typedef enum {
 -(HitRect) get_hit_rect;
 -(HitRect) get_hit_rect_ignore_noclip;
 -(HitRect) get_jump_rect;
+-(CGPoint) get_center;
 -(void)add_effect_suppress_current_end_effect:(PlayerEffectParams *)effect;
 -(PlayerEffectParams*) get_current_params;
 -(PlayerEffectParams*) get_default_params;

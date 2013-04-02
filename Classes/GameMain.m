@@ -101,8 +101,6 @@
     [UserInventory unlock_slot];
     [UserInventory unlock_slot];
     
-    [UserInventory upgrade:Item_Rocket];
-    [UserInventory upgrade:Item_Magnet];
     
     [UserInventory set_inventory_ct_of:Item_Magnet to:20];
     [UserInventory set_inventory_ct_of:Item_Rocket to:20];
@@ -110,11 +108,11 @@
     
     
     [UserInventory set_item:Item_Magnet to_slot:0];
-    [UserInventory set_item:Item_Rocket to_slot:1];
+    [UserInventory set_item:Item_Magnet to_slot:1];
     [UserInventory set_item:Item_Magnet to_slot:2];
     
-    [GameMain start_testlevel];
-    //[GameMain start_game_autolevel];
+    //[GameMain start_testlevel];
+    [GameMain start_game_autolevel];
     //[GameMain start_menu];
     
 }

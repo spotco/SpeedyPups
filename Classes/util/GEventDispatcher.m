@@ -39,6 +39,13 @@ static NSMutableArray* event_queue;
     [GEventDispatcher push_event:e];
 }
 
++(void)immediate_event:(GEvent*)e {
+    for(int li = 0; li < [listeners count]; li++) {
+        id<GEventListener> l = [listeners objectAtIndex:li];
+        [l dispatch_event:e];
+    }
+}
+
 +(void)dispatch_events {
     [GEventDispatcher lazy_alloc];
     if ([event_queue count]==0){return;}

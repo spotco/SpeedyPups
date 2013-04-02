@@ -323,6 +323,7 @@
 		7EC460F017058BC800656A48 /* ingame_ui_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460EE17058BC700656A48 /* ingame_ui_ss.png */; };
 		7EC460F4170590E000656A48 /* item_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460F2170590E000656A48 /* item_ss.plist */; };
 		7EC460F5170590E000656A48 /* item_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460F3170590E000656A48 /* item_ss.png */; };
+		7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4DF57170AA715002E0110 /* MagnetItemEffect.m */; };
 		7EC5EC5616D9DDAF00E9D431 /* CCAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7916D9DDAF00E9D431 /* CCAction.h */; };
 		7EC5EC5716D9DDAF00E9D431 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */; };
 		7EC5EC5816D9DDAF00E9D431 /* CCActionCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */; };
@@ -977,6 +978,8 @@
 		7EC460EE17058BC700656A48 /* ingame_ui_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_ui_ss.png; sourceTree = "<group>"; };
 		7EC460F2170590E000656A48 /* item_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = item_ss.plist; sourceTree = "<group>"; };
 		7EC460F3170590E000656A48 /* item_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = item_ss.png; sourceTree = "<group>"; };
+		7EC4DF56170AA715002E0110 /* MagnetItemEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetItemEffect.h; sourceTree = "<group>"; };
+		7EC4DF57170AA715002E0110 /* MagnetItemEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnetItemEffect.m; sourceTree = "<group>"; };
 		7EC5EB7916D9DDAF00E9D431 /* CCAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAction.h; sourceTree = "<group>"; };
 		7EC5EB7A16D9DDAF00E9D431 /* CCAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAction.m; sourceTree = "<group>"; };
 		7EC5EB7B16D9DDAF00E9D431 /* CCActionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionCamera.h; sourceTree = "<group>"; };
@@ -2138,6 +2141,8 @@
 				7EB8B43616D9FC0900F58961 /* Player.m */,
 				7EFD034B1707B945002492D6 /* UsedItem.h */,
 				7EFD034C1707B945002492D6 /* UsedItem.m */,
+				7EC4DF56170AA715002E0110 /* MagnetItemEffect.h */,
+				7EC4DF57170AA715002E0110 /* MagnetItemEffect.m */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -3112,6 +3117,7 @@
 				7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */,
 				7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */,
 				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
+				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

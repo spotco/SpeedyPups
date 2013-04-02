@@ -78,6 +78,20 @@ static NSDictionary* descriptions;
     }
 }
 
++(void)queue_item {
+    int slots = [UserInventory get_num_slots_unlocked];
+    for (int i = 1; i <= slots; i++) {
+        if ([UserInventory get_item_at_slot:i] != Item_NOITEM) {
+            NSLog(@"swap slot %d",i);
+            GameItem s0 = [UserInventory get_item_at_slot:0];
+            GameItem si = [UserInventory get_item_at_slot:i];
+            [UserInventory set_item:s0 to_slot:i];
+            [UserInventory set_item:si to_slot:0];
+            return;
+        }
+    }
+}
+
 +(int)get_uselength_for:(GameItem)gi {
     int lvl = [UserInventory get_upgrade_level:gi];
     if (gi == Item_Rocket) {

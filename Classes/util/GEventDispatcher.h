@@ -59,12 +59,13 @@ typedef enum {
 @end
 
 @interface GEventDispatcher : NSObject
-    +(void)lazy_alloc;
++(void)lazy_alloc;
 
-    +(void)add_listener:(id<GEventListener>)tar;
-    +(void)remove_all_listeners;
-    +(void)remove_listener:(id<GEventListener>)tar;
-    +(void)push_event:(GEvent*)e;
-    +(void)push_unique_event:(GEvent*)e;
-    +(void)dispatch_events;
++(void)add_listener:(id<GEventListener>)tar;
++(void)remove_all_listeners;
++(void)remove_listener:(id<GEventListener>)tar;
++(void)push_event:(GEvent*)e;
++(void)push_unique_event:(GEvent*)e;
++(void)immediate_event:(GEvent*)e;
++(void)dispatch_events;
 @end

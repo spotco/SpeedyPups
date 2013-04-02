@@ -23,5 +23,6 @@ typedef enum {
 
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g;
 +(int)get_uselength_for:(GameItem)gi;
++(void)queue_item;
 
 @end
