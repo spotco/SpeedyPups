@@ -80,7 +80,7 @@ static const int DEFAULT_HP = 4;
     [self anim_vibration];
     [self anim_recoil];
     
-    if ([self can_hit] && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+    if ([self can_hit] && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         rel_pos = ccp(actual_pos.x - player.position.x,actual_pos.y-player.position.y);
         if (player.dashing) {
             hp--;

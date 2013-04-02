@@ -27,7 +27,7 @@
         return;
     }
     
-    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead) {
         HitRect player_small_rect = [player get_hit_rect]; //watahack :DDD
         float pwid = player_small_rect.x2-player_small_rect.x1;
         float phei = player_small_rect.y2-player_small_rect.y1;

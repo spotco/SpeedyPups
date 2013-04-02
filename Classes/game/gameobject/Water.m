@@ -44,7 +44,7 @@
         return;
     }
     
-    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead) {
         [player reset_params];
         activated = YES;
         [player add_effect:[SplashEffect cons_from:[player get_default_params] time:40]];

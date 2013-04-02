@@ -4,10 +4,10 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"classic_trickytreas"
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 99
 
 #define DRAW_HITBOX NO

@@ -72,7 +72,7 @@
             [g remove_gameobject:self];
         }
         
-    } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+    } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         if (player.dashing) {
             v = ccp(player.vx*1.4,player.vy*1.4);
             knockout = YES;

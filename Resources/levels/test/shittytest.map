@@ -1,14 +1,11 @@
 {
-    "assert_links": 3,
-    "islands": [
-        {"type": "line", "y2": 227, "x1": 179, "can_fall": true, "x2": 655, "ground": "open", "ndir": "left", "y1": 184, "hei": 50},
-        {"type": "line", "y2": 366, "x1": 655, "can_fall": true, "x2": 841, "ground": "open", "ndir": "left", "y1": 227, "hei": 50},
-        {"type": "line", "y2": 540, "x1": 644, "can_fall": true, "x2": 883, "ground": "open", "ndir": "right", "y1": 405, "hei": 50},
-        {"type": "line", "y2": 482, "x1": 883, "can_fall": true, "x2": 1245, "ground": "open", "ndir": "right", "y1": 540, "hei": 50},
-        {"type": "line", "y2": 249, "x1": 1245, "can_fall": true, "x2": 1341, "ground": "open", "ndir": "right", "y1": 482, "hei": 50}
+    "islands": [{"type": "line", "y2": 303, "x1": 125, "can_fall": true, "x2": 654, "ground": "open", "ndir": "left", "y1": 317, "hei": 50}],
+    "objects": [
+        {"height": 176, "x": 468, "width": 372, "y": 106, "type": "water", "label": "2"},
+        {"height": 237, "x": 510, "width": 359, "y": 44, "type": "water", "label": "3"}
     ],
-    "objects": [],
-    "connect_pts": {"y2": 249, "x1": 179, "y1": 184, "x2": 1341},
-    "start_x": 0,
-    "start_y": 0
+    "connect_pts": {"y2": 303, "x1": 125, "y1": 317, "x2": 654},
+    "start_x": 193,
+    "assert_links": 0,
+    "start_y": 359
 }
