@@ -43,7 +43,8 @@
     [GEventDispatcher add_listener:self];
     NSMutableArray* tparticles = [NSMutableArray array];
     for(float i = 0; i < M_PI*2; i+=M_PI/2) {
-        [tparticles addObject:[MagnetItemEffectParticle cons_center:CGPointZero radius:60 phase:i]];
+        //[tparticles addObject:[MagnetItemEffectParticle cons_center:CGPointZero radius:60 phase:i]];
+        [tparticles addObject:[self conspt_center:CGPointZero radius:60 phase:i]];
         particles = tparticles;
     }
     
@@ -52,6 +53,10 @@
     }
     active = YES;
     return self;
+}
+
+-(MagnetItemEffectParticle*)conspt_center:(CGPoint)center radius:(float)radius phase:(float)phase {
+    return [MagnetItemEffectParticle cons_center:center radius:radius phase:phase];
 }
 
 -(void)check_should_render:(GameEngineLayer *)g {
@@ -71,12 +76,37 @@
     }
 }
 
--(void)dispatch_event:(GEvent *)e {
-    if (e.type == GEventType_ITEM_DURATION_PCT && e.f1 ==0) {
-        NSLog(@"f1:0 rocket:%d magnet:%d",e.i1==Item_Rocket,e.i1==Item_Magnet);
-    }
-    
+-(void)dispatch_event:(GEvent *)e {    
     if (e.type == GEventType_ITEM_DURATION_PCT && e.f1 == 0 && e.i1 == Item_Magnet) {
+        kill = YES;
+    }
+}
+
+@end
+
+@interface HeartItemEffectParticle : MagnetItemEffectParticle
++(HeartItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase;
+@end
+
+@implementation HeartItemEffectParticle : MagnetItemEffectParticle
++(HeartItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase {
+    return [[MagnetItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_heart"]] cons_center:center radius:radius phase:phase];
+}
+@end
+
+
+@implementation HeartItemEffect
+
++(HeartItemEffect*)cons {
+    return [HeartItemEffect node];
+}
+
+-(MagnetItemEffectParticle*)conspt_center:(CGPoint)center radius:(float)radius phase:(float)phase {
+    return [HeartItemEffectParticle cons_center:center radius:radius phase:phase];
+}
+
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_ITEM_DURATION_PCT && e.f1 == 0 && e.i1 == Item_Heart) {
         kill = YES;
     }
 }

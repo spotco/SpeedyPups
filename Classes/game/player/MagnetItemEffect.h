@@ -1,4 +1,5 @@
 #import "GameObject.h"
+@class MagnetItemEffectParticle;
 
 @interface MagnetItemEffect : GameObject <GEventListener> {
     NSArray* particles;
@@ -6,5 +7,9 @@
 }
 
 +(MagnetItemEffect*)cons;
+-(MagnetItemEffectParticle*)conspt_center:(CGPoint)center radius:(float)radius phase:(float)phase;
+@end
 
+@interface HeartItemEffect : MagnetItemEffect
++(HeartItemEffect*)cons;
 @end

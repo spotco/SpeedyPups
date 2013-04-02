@@ -75,6 +75,9 @@ static NSDictionary* descriptions;
     } else if (it == Item_Magnet) {
         [g.player set_magnet_rad:250 ct:[self get_uselength_for:Item_Magnet]];
         
+    } else if (it == Item_Shield) {
+        [g.player set_armored:[self get_uselength_for:Item_Shield]];
+        
     }
 }
 
@@ -98,6 +101,10 @@ static NSDictionary* descriptions;
         return dur[lvl];
         
     } else if (gi == Item_Magnet) {
+        int dur[] = {300,500,800,1300};
+        return dur[lvl];
+        
+    } else if (gi == Item_Shield) {
         int dur[] = {300,500,800,1300};
         return dur[lvl];
         

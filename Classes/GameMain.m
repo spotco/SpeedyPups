@@ -28,6 +28,8 @@
 
 /**
  TODO --
+ -make armor actually work
+ -make heart actually work
  -100 bones = 1up
  -new death menu
  
@@ -104,12 +106,13 @@
     
     [UserInventory set_inventory_ct_of:Item_Magnet to:20];
     [UserInventory set_inventory_ct_of:Item_Rocket to:20];
-    [UserInventory set_inventory_ct_of:Item_Shield to:3];
+    [UserInventory set_inventory_ct_of:Item_Shield to:20];
+    [UserInventory set_inventory_ct_of:Item_Heart to:20];
     
     
-    [UserInventory set_item:Item_Magnet to_slot:0];
+    [UserInventory set_item:Item_Shield to_slot:0];
     [UserInventory set_item:Item_Magnet to_slot:1];
-    [UserInventory set_item:Item_Magnet to_slot:2];
+    [UserInventory set_item:Item_Rocket to_slot:2];
     
     [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
