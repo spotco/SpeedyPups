@@ -111,8 +111,8 @@
     [UserInventory set_item:Item_Magnet to_slot:1];
     [UserInventory set_item:Item_Magnet to_slot:2];
     
-    //[GameMain start_testlevel];
-    [GameMain start_game_autolevel];
+    [GameMain start_testlevel];
+    //[GameMain start_game_autolevel];
     //[GameMain start_menu];
     
 }

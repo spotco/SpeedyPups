@@ -82,7 +82,6 @@ static NSDictionary* descriptions;
     int slots = [UserInventory get_num_slots_unlocked];
     for (int i = 1; i <= slots; i++) {
         if ([UserInventory get_item_at_slot:i] != Item_NOITEM) {
-            NSLog(@"swap slot %d",i);
             GameItem s0 = [UserInventory get_item_at_slot:0];
             GameItem si = [UserInventory get_item_at_slot:i];
             [UserInventory set_item:s0 to_slot:i];

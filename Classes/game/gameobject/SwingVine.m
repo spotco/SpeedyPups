@@ -123,7 +123,7 @@
         float tar_rad = -[VecLib get_angle_in_rad:tangent_vec];
         float tar_deg = [Common rad_to_deg:tar_rad];
         
-        if (player.current_anim == player._SWING_ANIM) {
+        if ([player cur_anim_mode] == player_anim_mode_SWING) {
             [player setRotation:tar_deg];
             [headcov setVisible:YES];
             [headcov setPosition:ccp(player.position.x-position_.x,player.position.y-position_.y)];

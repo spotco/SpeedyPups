@@ -1,8 +1,10 @@
 {
     "islands": [{"type": "line", "y2": 303, "x1": 125, "can_fall": true, "x2": 654, "ground": "open", "ndir": "left", "y1": 317, "hei": 50}],
     "objects": [
-        {"height": 176, "x": 468, "width": 372, "y": 106, "type": "water", "label": "2"},
-        {"height": 237, "x": 510, "width": 359, "y": 44, "type": "water", "label": "3"}
+        {"height": 237, "x": 510, "width": 359, "y": 44, "type": "water", "label": "3"},
+        {"x": 554, "y2": 444, "y": 623, "x2": 558, "type": "swingvine", "label": "4"},
+        {"type": "spike", "x": 630, "label": "5", "y": 303},
+        {"x": 810, "y2": 545, "y": 335, "x2": 818, "type": "electricwall", "label": "6"}
     ],
     "connect_pts": {"y2": 303, "x1": 125, "y1": 317, "x2": 654},
     "start_x": 193,

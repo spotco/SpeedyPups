@@ -17,6 +17,26 @@
 #define TRAIL_MIN 8
 #define TRAIL_MAX 15
 
+@interface NSMutableDictionary (hash_with_anim_mode)
+-(id)get:(player_anim_mode)k;
+-(void)set:(player_anim_mode)k v:(id)v;
+@end
+
+@implementation NSMutableDictionary (hash_with_anim_mode)
+
+-(id)get:(player_anim_mode)k {
+    id rtv = [self objectForKey:[NSValue value:&k withObjCType:@encode(player_anim_mode)]];
+    if (rtv == NULL) [NSException raise:@"anim hash get was null" format:@"for mode %d",k];
+    return rtv;
+}
+
+-(void)set:(player_anim_mode)k v:(id)v {
+    if (v == NULL) [NSException raise:@"anim hash set was null" format:@"for mode %d",k];
+    [self setObject:v forKey:[NSValue value:&k withObjCType:@encode(player_anim_mode)]];
+}
+
+@end
+
 
 @implementation Player
 @synthesize vx,vy;
@@ -27,10 +47,6 @@
 @synthesize last_ndir,movedir;
 @synthesize floating,dashing,dead;
 @synthesize current_swingvine;
-
-@synthesize current_anim;
-@synthesize _RUN_ANIM_SLOW,_RUN_ANIM_MED,_RUN_ANIM_FAST,_RUN_ANIM_NONE;
-@synthesize _ROCKET_ANIM,_CAPE_ANIM,_HIT_ANIM,_SPLASH_ANIM, _DASH_ANIM, _SWING_ANIM,_FLASH_ANIM,_FLIP_ANIM;
 
 /* static set player character */
 
@@ -71,14 +87,16 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     return self;
 }
 
--(void)start_anim:(id)anim {
-    if (current_anim == anim) {
+-(void)start_anim:(player_anim_mode)tar {
+    if (tar == anim_mode) {
         return;
-    } else if (current_anim != NULL) {
-        [player_img stopAction:current_anim];
+    } else if (current_anim_action != NULL) {
+        [player_img stopAction:current_anim_action];
     }
-    [player_img runAction:anim];
-    current_anim = anim;
+    anim_mode = tar;
+    current_anim_action = [armored_anims get:anim_mode];
+    [player_img runAction:current_anim_action];
+    
 }
 
 -(void)update:(GameEngineLayer*)g {
@@ -97,17 +115,17 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         [self add_floating_particle:g];
     }
     
-    player_anim_mode cur_anim_mode = [[self get_current_params] get_anim];
+    player_anim_mode cur_param_anim_mode = [[self get_current_params] get_anim];
     
-    dashing = (cur_anim_mode == player_anim_mode_DASH) || ([[self get_current_params] is_also_dashing]);
+    dashing = (cur_param_anim_mode == player_anim_mode_DASH) || ([[self get_current_params] is_also_dashing]);
     
     if (current_swingvine != NULL) {
         [self swingvine_attach_anim];
         
-    } else if (cur_anim_mode == player_anim_mode_RUN) {
+    } else if (cur_param_anim_mode == player_anim_mode_RUN_SLOW || cur_param_anim_mode == player_anim_mode_RUN_MED || cur_param_anim_mode == player_anim_mode_RUN_FAST) {
         [self runanim_update];
         
-    } else if (cur_anim_mode == player_anim_mode_DASH) {
+    } else if (cur_param_anim_mode == player_anim_mode_DASH) {
         if (current_island != NULL) {
             cur_scy = last_ndir;
         } else {
@@ -116,28 +134,28 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         }
         [self dashanim_update:g];
         
-    } else if (cur_anim_mode == player_anim_mode_CAPE) {
-        [self start_anim:_CAPE_ANIM];
+    } else if (cur_param_anim_mode == player_anim_mode_CAPE) {
+        [self start_anim:player_anim_mode_CAPE];
         
-    } else if (cur_anim_mode == player_anim_mode_ROCKET) {
+    } else if (cur_param_anim_mode == player_anim_mode_ROCKET) {
         if (current_island != NULL) {
             cur_scy = last_ndir;
         } else {
             cur_scy = 1;
             self.last_ndir = 1;
         }
-        [self start_anim:_ROCKET_ANIM];
+        [self start_anim:player_anim_mode_ROCKET];
         [g add_particle:[RocketParticle cons_x:position_.x-40 y:position_.y+20]];
         
-    } else if (cur_anim_mode == player_anim_mode_HIT) { 
-        [self start_anim:_HIT_ANIM];
+    } else if (cur_param_anim_mode == player_anim_mode_HIT) { 
+        [self start_anim:player_anim_mode_HIT];
         
-    } else if (cur_anim_mode == player_anim_mode_FLASH) {
-        [self start_anim:_FLASH_ANIM];
+    } else if (cur_param_anim_mode == player_anim_mode_FLASH) {
+        [self start_anim:player_anim_mode_FLASH];
         
-    } else if (cur_anim_mode == player_anim_mode_SPLASH) {
+    } else if (cur_param_anim_mode == player_anim_mode_SPLASH) {
         cur_scy = 1;
-        [self start_anim:_SPLASH_ANIM];
+        [self start_anim:player_anim_mode_SPLASH];
         
     }
     [self setScaleY:cur_scy];
@@ -252,7 +270,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         float dir = [Common shortest_dist_from_cur:rotation_ to:-90]*0.8;
         self.rotation += dir;
     } else {
-        [self start_anim:_SWING_ANIM];
+        [self start_anim:player_anim_mode_SWING];
     }
 }
 
@@ -267,7 +285,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     if (flipctr > 0) {
         cur_scy = last_ndir;
         flipctr--;
-        [self start_anim:_FLIP_ANIM];
+        [self start_anim:player_anim_mode_FLIP];
         
         if (flipctr == 0 && self.current_island == NULL && cur_scy < 0) { //finish jump from reverse flip
             cur_scy = 1;
@@ -276,9 +294,9 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     } else if (current_island == NULL) {
         cur_scy = 1;
         if (floating) {
-            [self start_anim:_RUN_ANIM_FAST];
+            [self start_anim:player_anim_mode_RUN_FAST];
         } else {
-            [self start_anim:_RUN_ANIM_NONE];
+            [self start_anim:player_anim_mode_RUN_NONE];
         }
         
     } else {
@@ -287,17 +305,17 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
         
         float vel = sqrtf(powf(vx,2)+powf(vy,2));
         if (vel > 10) {
-            [self start_anim:_RUN_ANIM_FAST];
+            [self start_anim:player_anim_mode_RUN_FAST];
         } else if (vel > 5) {
-            [self start_anim:_RUN_ANIM_MED];
+            [self start_anim:player_anim_mode_RUN_MED];
         } else {
-            [self start_anim:_RUN_ANIM_SLOW];
+            [self start_anim:player_anim_mode_RUN_SLOW];
         }
     }
 }
 
 -(void)dashanim_update:(GameEngineLayer*)g {
-    [self start_anim:_DASH_ANIM];
+    [self start_anim:player_anim_mode_DASH];
     
     if (particlectr >= 5) {
         particlectr = 0;
@@ -467,29 +485,39 @@ HitRect cached_rect;
 }
 
 -(void)do_run_anim {
-    [self start_anim:_RUN_ANIM_FAST];
+    [self start_anim:player_anim_mode_RUN_FAST];
 }
 
 -(void)do_stand_anim {
-    [self start_anim:_RUN_ANIM_NONE];
+    [self start_anim:player_anim_mode_RUN_NONE];
 }
 
 -(void)cons_anim {
+    normal_anims = [NSMutableDictionary dictionary];
+    armored_anims = [NSMutableDictionary dictionary];
+    [self load_anims_into:normal_anims from_ss:[Player get_character]];
+    [self load_anims_into:armored_anims from_ss:TEX_DOG_RUN_6]; //TODO -- the actual thing
+    [self start_anim:player_anim_mode_RUN_NONE];
+}
+
+-(void)load_anims_into:(NSMutableDictionary*)d from_ss:(NSString*)tar {
 	NSArray *run = [self get_run_animstr];
-    _RUN_ANIM_SLOW = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.075 frames:run];
-    _RUN_ANIM_MED = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.06 frames:run];
-    _RUN_ANIM_FAST = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.05 frames:run];
-    _RUN_ANIM_NONE = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.075 frames:[NSArray arrayWithObjects:@"run_0",nil]];
-    _ROCKET_ANIM = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.1 frames:[NSArray arrayWithObjects:@"rocket_0",@"rocket_1",@"rocket_2",nil]];
-    _CAPE_ANIM = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.1 frames:[NSArray arrayWithObjects:@"cape_0",@"cape_1",@"cape_2",@"cape_3",nil]];
-    _HIT_ANIM = [self cons_anim_once_texstr:CURRENT_CHARACTER speed:0.1 frames:[NSArray arrayWithObjects:@"hit_1",@"hit_2",@"hit_3",nil]];
-    _SPLASH_ANIM = [self cons_anim_once_texstr:TEX_DOG_SPLASH speed:0.1 frames:[NSArray arrayWithObjects:@"splash1",@"splash2",@"splash3",@"",nil]];
-    _DASH_ANIM = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.05 frames:[NSArray arrayWithObjects:@"roll_0",@"roll_1",@"roll_2",@"roll_3",nil]];
-    _SWING_ANIM = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:1 frames:[NSArray arrayWithObjects:@"swing_0",nil]];
-    _FLASH_ANIM = [self cons_anim_repeat_texstr:CURRENT_CHARACTER speed:0.1 frames:[NSArray arrayWithObjects:@"hit_0",@"hit_0_flash",nil]];
-    
-    _FLIP_ANIM = [self cons_anim_once_texstr:CURRENT_CHARACTER speed:0.025 frames:[NSArray arrayWithObjects:@"flip_4",@"flip_3",@"flip_2",@"flip_1",@"flip_0",nil]];
-    [self start_anim:_RUN_ANIM_NONE];
+    [d set:player_anim_mode_RUN_SLOW v:[self cons_anim_repeat_texstr:tar speed:0.075 frames:run]];
+    [d set:player_anim_mode_RUN_MED v:[self cons_anim_repeat_texstr:tar speed:0.06 frames:run]];
+    [d set:player_anim_mode_RUN_FAST v:[self cons_anim_repeat_texstr:tar speed:0.05 frames:run]];
+    [d set:player_anim_mode_RUN_NONE v:[self cons_anim_repeat_texstr:tar speed:0.075 frames:[NSArray arrayWithObjects:@"run_0",nil]]];
+    [d set:player_anim_mode_ROCKET v:[self cons_anim_repeat_texstr:tar speed:0.1 frames:[NSArray arrayWithObjects:@"rocket_0",@"rocket_1",@"rocket_2",nil]]];
+    [d set:player_anim_mode_CAPE v:[self cons_anim_repeat_texstr:tar speed:0.1 frames:[NSArray arrayWithObjects:@"cape_0",@"cape_1",@"cape_2",@"cape_3",nil]]];
+    [d set:player_anim_mode_HIT v:[self cons_anim_once_texstr:tar speed:0.1 frames:[NSArray arrayWithObjects:@"hit_1",@"hit_2",@"hit_3",nil]]];
+    [d set:player_anim_mode_SPLASH v:[self cons_anim_once_texstr:TEX_DOG_SPLASH speed:0.1 frames:[NSArray arrayWithObjects:@"splash1",@"splash2",@"splash3",@"",nil]]];
+    [d set:player_anim_mode_DASH v:[self cons_anim_repeat_texstr:tar speed:0.05 frames:[NSArray arrayWithObjects:@"roll_0",@"roll_1",@"roll_2",@"roll_3",nil]]];
+    [d set:player_anim_mode_SWING v:[self cons_anim_repeat_texstr:tar speed:1 frames:[NSArray arrayWithObjects:@"swing_0",nil]]];
+    [d set:player_anim_mode_FLASH v:[self cons_anim_repeat_texstr:tar speed:0.1 frames:[NSArray arrayWithObjects:@"hit_0",@"hit_0_flash",nil]]];
+    [d set:player_anim_mode_FLIP v:[self cons_anim_once_texstr:tar speed:0.025 frames:[NSArray arrayWithObjects:@"flip_4",@"flip_3",@"flip_2",@"flip_1",@"flip_0",nil]]];
+}
+
+-(player_anim_mode)cur_anim_mode {
+    return anim_mode;
 }
 
 -(id)cons_anim_repeat_texstr:(NSString*)texkey speed:(float)speed frames:(NSArray*)a {
@@ -528,7 +556,7 @@ HitRect cached_rect;
     [self removeAllChildrenWithCleanup:YES];
 }
 -(void)cleanup_anims {
-    [player_img stopAction:current_anim]; 
+    [player_img stopAllActions];
     [self removeAllChildrenWithCleanup:YES];
 }
 

@@ -44,7 +44,7 @@
 }
 
 -(player_anim_mode)get_anim {
-    return player_anim_mode_RUN;
+    return player_anim_mode_RUN_FAST;
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
