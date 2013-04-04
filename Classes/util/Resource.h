@@ -43,6 +43,7 @@
 #define TEX_DOG_RUN_7 @"dog7ss"
 #define TEX_DOG_SPLASH @"splash_ss"
 #define TEX_DOG_SHADOW @"dogshadow"
+#define TEX_DOG_ARMORED @"armored_dog_ss"
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
 #define TEX_CLOUD @"CloudTex"

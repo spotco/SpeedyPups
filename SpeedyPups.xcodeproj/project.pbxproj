@@ -14,6 +14,9 @@
 		7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */; };
 		7E0A788B16ED781D0026C418 /* NMenuShopPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788A16ED781D0026C418 /* NMenuShopPage.m */; };
 		7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788D16ED7AD60026C418 /* Shopkeeper.m */; };
+		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
+		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
+		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
 		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
 		7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491F1706DDFA004EA720 /* GameItemCommon.m */; };
 		7E269C6116DA0000005F446C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6016DA0000005F446C /* Icon.png */; };
@@ -566,6 +569,10 @@
 		7E0A788A16ED781D0026C418 /* NMenuShopPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMenuShopPage.m; sourceTree = "<group>"; };
 		7E0A788C16ED7AD60026C418 /* Shopkeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shopkeeper.h; path = details/Shopkeeper.h; sourceTree = "<group>"; };
 		7E0A788D16ED7AD60026C418 /* Shopkeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shopkeeper.m; path = details/Shopkeeper.m; sourceTree = "<group>"; };
+		7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = armored_dog_ss.plist; sourceTree = "<group>"; };
+		7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armored_dog_ss.png; sourceTree = "<group>"; };
+		7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmorBreakEffect.h; sourceTree = "<group>"; };
+		7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmorBreakEffect.m; sourceTree = "<group>"; };
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
 		7E17491C1706CB09004EA720 /* InventoryItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItemPane.h; sourceTree = "<group>"; };
 		7E17491D1706CB09004EA720 /* InventoryItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItemPane.m; sourceTree = "<group>"; };
@@ -1271,6 +1278,15 @@
 			name = details;
 			sourceTree = "<group>";
 		};
+		7E0F9F9E170D1AEA00F2D342 /* armored */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */,
+				7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */,
+			);
+			path = armored;
+			sourceTree = "<group>";
+		};
 		7E269C6416DA00CD005F446C /* internal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1545,7 @@
 		7EB8B20E16D9F8E600F58961 /* char */ = {
 			isa = PBXGroup;
 			children = (
+				7E0F9F9E170D1AEA00F2D342 /* armored */,
 				7EB8B20F16D9F8E600F58961 /* char1 */,
 				7EB8B21216D9F8E600F58961 /* char2 */,
 				7EB8B21516D9F8E600F58961 /* char3 */,
@@ -2130,6 +2147,8 @@
 				7EB8B43116D9FC0900F58961 /* StreamParticle.m */,
 				7EB8B43216D9FC0900F58961 /* WaveParticle.h */,
 				7EB8B43316D9FC0900F58961 /* WaveParticle.m */,
+				7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */,
+				7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */,
 			);
 			path = particle;
 			sourceTree = "<group>";
@@ -2994,6 +3013,8 @@
 				7EC460F5170590E000656A48 /* item_ss.png in Resources */,
 				7EB8725F17062A4C00F7C067 /* filler_directdrop.map in Resources */,
 				7EB872611706325B00F7C067 /* filler_smgislands.map in Resources */,
+				7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */,
+				7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3118,6 +3139,7 @@
 				7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */,
 				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
 				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
+				7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

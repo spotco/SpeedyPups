@@ -21,7 +21,7 @@
 }
 
 -(void)hit:(Player *)player g:(GameEngineLayer *)g {
-    if (player.dashing) {
+    if (player.dashing || [player is_armored]) {
         activated = YES;
         broken = YES;
         

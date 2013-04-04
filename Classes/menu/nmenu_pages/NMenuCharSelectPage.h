@@ -5,6 +5,8 @@
     CCMenu *controlm;
     int cur_dog;
     
+    CCLabelTTF *infodesc;
+    
     bool kill;
 }
 

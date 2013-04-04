@@ -13,7 +13,7 @@
 @implementation MagnetItemEffectParticle
 
 +(MagnetItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase {
-    return [[MagnetItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_magnet"]] cons_center:center radius:radius phase:phase];
+    return [[MagnetItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"magnet"]] cons_center:center radius:radius phase:phase];
 }
 
 -(id)cons_center:(CGPoint)tcenter radius:(float)tradius phase:(float)tphase {
@@ -90,7 +90,7 @@
 
 @implementation HeartItemEffectParticle : MagnetItemEffectParticle
 +(HeartItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase {
-    return [[MagnetItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_heart"]] cons_center:center radius:radius phase:phase];
+    return [[MagnetItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"heart"]] cons_center:center radius:radius phase:phase];
 }
 @end
 

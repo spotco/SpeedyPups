@@ -78,6 +78,9 @@ static NSDictionary* descriptions;
     } else if (it == Item_Shield) {
         [g.player set_armored:[self get_uselength_for:Item_Shield]];
         
+    } else if (it == Item_Heart) {
+        [g.player set_heart:[self get_uselength_for:Item_Heart]];
+        
     }
 }
 
@@ -108,6 +111,10 @@ static NSDictionary* descriptions;
         int dur[] = {300,500,800,1300};
         return dur[lvl];
         
+    } else if (gi == Item_Heart) {
+        int dur[] = {1000,2000,3000,4000};
+        return dur[lvl];
+    
     } else {
         return 300;
     }

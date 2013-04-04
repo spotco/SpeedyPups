@@ -54,12 +54,14 @@
 }
 
 -(void)hit:(Player *)player g:(GameEngineLayer *)g {
-    [player reset_params];
-    player.current_swingvine = NULL;
-    activated = YES;
-    [player add_effect:[HitEffect cons_from:[player get_default_params] time:40 nograv:YES]];
-    [DazedParticle cons_effect:g tar:player time:40];
-    [AudioManager playsfx:SFX_HIT];
+    if (![player is_armored]) {
+        [player reset_params];
+        player.current_swingvine = NULL;
+        activated = YES;
+        [player add_effect:[HitEffect cons_from:[player get_default_params] time:40 nograv:YES]];
+        [DazedParticle cons_effect:g tar:player time:40];
+        [AudioManager playsfx:SFX_HIT];
+    }
 }
 
 -(void)reset {

@@ -25,10 +25,12 @@
 }
 
 -(void)hit:(Player *)player g:(GameEngineLayer *)g {
-    [player reset_params];
-    activated = YES;
-    [player add_effect:[FlashHitEffect cons_from:[player get_default_params] time:40]];
-    [AudioManager playsfx:SFX_ELECTRIC];
+    if (![player is_armored]) {
+        [player reset_params];
+        activated = YES;
+        [player add_effect:[FlashHitEffect cons_from:[player get_default_params] time:40]];
+        [AudioManager playsfx:SFX_ELECTRIC];
+    }
 }
 
 -(CCTexture2D*)get_base_tex {

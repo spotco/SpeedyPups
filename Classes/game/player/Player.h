@@ -40,6 +40,7 @@ typedef enum {
     int new_spd,new_spd_ct;
     int new_magnetrad,new_magnetrad_ct;
     int armored_ct;
+    int heart_ct;
     
     id current_anim_action;
     NSMutableDictionary *normal_anims, *armored_anims;
@@ -80,6 +81,10 @@ typedef enum {
 -(int)get_magnet_rad;
 -(void)set_armored:(int)time;
 -(BOOL)is_armored;
+
+-(void)set_heart:(int)time;
+-(BOOL)has_heart;
+-(void)reset_heart;
 
 -(player_anim_mode)cur_anim_mode;
 

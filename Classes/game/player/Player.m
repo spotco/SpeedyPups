@@ -4,6 +4,7 @@
 #import "GameItemCommon.h"
 #import "UsedItem.h"
 #import "MagnetItemEffect.h"
+#import "ArmorBreakEffect.h"
 
 #define IMGWID 64
 #define IMGHEI 58
@@ -178,10 +179,19 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
             [self reset_magnet_ieffect];
         }
     }
+    if (heart_ct) {
+        heart_ct--;
+        if (heart_ct) {
+            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)heart_ct)/[GameItemCommon get_uselength_for:Item_Heart] f2:0] add_i1:Item_Heart i2:0]];
+        } else {
+            [self reset_heart];
+        }
+    }
     if (armored_ct) {
         armored_ct--;
         [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)armored_ct)/[GameItemCommon get_uselength_for:Item_Shield] f2:0] add_i1:Item_Shield i2:0]];
         if (armored_ct == 0) {
+            [ArmorBreakEffect cons_at:[self get_center] in:game_engine_layer];
             [self reset_is_armored];
         }
     }
@@ -236,16 +246,33 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 -(void)reset_is_armored {
+    armored_ct = 0;
     player_anim_mode tmp_cur_anim_mode = anim_mode;
     anim_mode = -1;
     [self start_anim:tmp_cur_anim_mode];
-    armored_ct = 0;
+}
+
+-(void)set_heart:(int)time {
+    [self reset_heart];
+    heart_ct = time;
+    [game_engine_layer add_gameobject:[HeartItemEffect cons]];
+}
+
+-(BOOL)has_heart {
+    return heart_ct > 0;
+}
+
+
+-(void)reset_heart {
+    heart_ct = 0;
+    [GEventDispatcher immediate_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Heart i2:0]];
 }
 
 -(void)reset_all_ieffects {
     [self reset_magnet_ieffect];
     [self reset_speed_ieffect];
     [self reset_is_armored];
+    [self reset_heart];
 }
 
 -(void)mov_center_rotation {
@@ -526,7 +553,7 @@ HitRect cached_rect;
     normal_anims = [NSMutableDictionary dictionary];
     armored_anims = [NSMutableDictionary dictionary];
     [self load_anims_into:normal_anims from_ss:[Player get_character]];
-    [self load_anims_into:armored_anims from_ss:TEX_DOG_RUN_6]; //TODO -- the actual thing
+    [self load_anims_into:armored_anims from_ss:TEX_DOG_ARMORED]; //TODO -- the actual thing
     [self start_anim:player_anim_mode_RUN_NONE];
 }
 

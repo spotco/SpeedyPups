@@ -21,7 +21,8 @@
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_CHANGE_CURRENT_DOG) {
-        NSLog(@"change dog");
+        [self stopAllActions];
+        [self runAction:[CharSelAnim cons_run_anim:[Player get_character]]];
     }
 }
 

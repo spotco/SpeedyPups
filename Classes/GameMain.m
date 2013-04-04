@@ -4,7 +4,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -28,18 +28,16 @@
 
 /**
  TODO --
- -make armor actually work
- -make heart actually work
  -100 bones = 1up
  -new death menu
  
  -secret/25bones item
- -char select make work,sit anim for all dogs, fix shadows
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -challenge mode with gameend anim
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -menu to game day/night transition
+ -fix shadows for husky and armored dog
  **/
 
 /**
@@ -102,6 +100,7 @@
     
     [UserInventory unlock_slot];
     [UserInventory unlock_slot];
+    [UserInventory unlock_slot];
     
     
     [UserInventory set_inventory_ct_of:Item_Magnet to:20];
@@ -110,13 +109,14 @@
     [UserInventory set_inventory_ct_of:Item_Heart to:20];
     
     
-    [UserInventory set_item:Item_Shield to_slot:0];
-    [UserInventory set_item:Item_Magnet to_slot:1];
-    [UserInventory set_item:Item_Rocket to_slot:2];
+    [UserInventory set_item:Item_Heart to_slot:0];
+    [UserInventory set_item:Item_Rocket to_slot:1];
+    [UserInventory set_item:Item_Magnet to_slot:2];
+    [UserInventory set_item:Item_Shield to_slot:3];
     
-    [GameMain start_testlevel];
+    //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

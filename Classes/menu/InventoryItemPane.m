@@ -56,6 +56,7 @@
     [i set_w1:w1 w2:w2];
     [i set_slot:s];
     [i setPosition:pt];
+    [i setScale:1.3];
     return i;
 }
 

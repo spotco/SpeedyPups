@@ -120,7 +120,7 @@
         [AudioManager playsfx:SFX_BOP];
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
-        if (player.dashing) {
+        if (player.dashing || [player is_armored]) {
             busted = YES;
             [self set_anim:ANIM_DEAD];
             int ptcnt = arc4random_uniform(4)+4;

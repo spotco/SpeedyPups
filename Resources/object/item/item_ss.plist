@@ -5,6 +5,28 @@
 	<key>frames</key>
 	<dict>
 		
+		<key>heart</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {47, 46}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{49, 48}</string>
+			<key>spriteSourceSize</key>
+			<string>{49, 48}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{102, 50}, {49, 48}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 		<key>item_heart</key>
 		<dict>
 			<key>aliases</key>
@@ -12,7 +34,51 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{1, 2}, {45, 46}}</string>
+			<string>{{0, 0}, {47, 48}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{49, 48}</string>
+			<key>spriteSourceSize</key>
+			<string>{49, 48}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{51, 51}, {49, 48}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>item_magnet</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 1}, {46, 47}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{50, 49}</string>
+			<key>spriteSourceSize</key>
+			<string>{50, 49}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {50, 49}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>item_rocket</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {49, 46}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -27,36 +93,14 @@
 			<false/>
 		</dict>
 		
-		<key>item_magnet</key>
+		<key>item_shield</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {50, 49}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -0}</string>
-			<key>spriteSize</key>
-			<string>{50, 49}</string>
-			<key>spriteSourceSize</key>
-			<string>{50, 49}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 0}, {50, 49}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>item_rocket</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 2}, {47, 46}}</string>
+			<string>{{2, 0}, {47, 48}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -71,14 +115,14 @@
 			<false/>
 		</dict>
 		
-		<key>item_shield</key>
+		<key>magnet</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{3, 2}, {43, 46}}</string>
+			<string>{{1, 0}, {47, 48}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -88,7 +132,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{52, 50}, {49, 48}}</string>
+			<string>{{103, 0}, {49, 48}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -101,7 +145,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{128, 128}</string>
+		<string>{256, 128}</string>
 		<key>name</key>
 		<string>item_ss</string>
 		<key>premultipliedAlpha</key>

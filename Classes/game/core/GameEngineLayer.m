@@ -279,7 +279,9 @@
         current_mode = GameEngineLayerMode_GAMEPLAY;
         
     } else if (e.type == GEventType_PLAYER_DIE) {
-        lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
+        if (![player has_heart]) {
+            lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
+        }
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
             [self game_over];
         } else {

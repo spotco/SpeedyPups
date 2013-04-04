@@ -60,7 +60,7 @@
         [self jump_from_island];
     }
     
-    if (!player.dead && player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_full_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
+    if (player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_full_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
         busted = YES;
         self.vy = -ABS(self.vy);
         [self animmode_dead];
@@ -75,7 +75,7 @@
         player.vy = 8;
         [AudioManager playsfx:SFX_BOP];
     
-    } else if (player.dashing && [Common hitrect_touch:[self get_hit_rect_rescale:0.8] b:[player get_hit_rect]]  && !player.dead) {
+    } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect_rescale:0.8] b:[player get_hit_rect]]  && !player.dead) {
         busted = YES;
         self.vy = -ABS(self.vy);
         [self animmode_dead];

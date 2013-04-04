@@ -4,5 +4,4 @@
 @interface UsedItem : GameObject {
     CGPoint cur_offset;
 }
-//+(UsedItem*)cons;
 @end

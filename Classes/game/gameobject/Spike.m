@@ -37,7 +37,7 @@
         return;
     }
     
-    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead) {
+    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead && ![player is_armored]) {
         [player reset_params];
         player.current_swingvine = NULL;
         activated = YES;

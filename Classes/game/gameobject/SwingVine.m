@@ -38,8 +38,7 @@
     [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_SWINGVINE_BASE]]];
     [vine setAnchorPoint:ccp(vine.anchorPoint.x,1)];
     active = YES;
-    headcov = [CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]] 
-                           rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"swing_head"]];
+    headcov = [CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]] rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"swing_head"]];
     [headcov setAnchorPoint:ccp(0.5-0.05,0+0.05)];
     [headcov setVisible:NO];
     [self addChild:headcov];
@@ -115,8 +114,6 @@
         
         dirvec = [VecLib scale:dirvec by:-1];
         dirvec=[VecLib normalize:dirvec];
-        //player.up_vec.x = dirvec.x;
-        //player.up_vec.y = dirvec.y;
         player.up_vec = dirvec;
         
         Vec3D tangent_vec = [VecLib cross:dirvec with:[VecLib Z_VEC]];
@@ -128,6 +125,15 @@
             [headcov setVisible:YES];
             [headcov setPosition:ccp(player.position.x-position_.x,player.position.y-position_.y)];
             [headcov setRotation:player.rotation];
+            if ([player is_armored]) {
+                [headcov setTexture:[Resource get_tex:TEX_DOG_ARMORED]];
+                [headcov setTextureRect:[FileCache get_cgrect_from_plist:TEX_DOG_ARMORED idname:@"swing_head"]];
+            } else {
+                [headcov setTexture:[Resource get_tex:[Player get_character]]];
+                [headcov setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"swing_head"]];
+                
+            }
+            
         } else {
             [headcov setVisible:NO];
         }
