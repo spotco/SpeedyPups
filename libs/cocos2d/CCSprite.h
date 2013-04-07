@@ -329,4 +329,6 @@ typedef enum {
  */
 -(void) setDisplayFrameWithAnimationName:(NSString*)animationName index:(int) frameIndex;
 
+-(CCSprite*)pos:(CGPoint)pt;
+
 @end

@@ -26,6 +26,7 @@
 		7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3444A516DE01CF007D20F5 /* BGTimeManager.m */; };
 		7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A716DE1850007D20F5 /* BG1_moon.png */; };
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
+		7E4922DC17115FEC0032665B /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4922DB17115FEC0032665B /* Challenge.m */; };
 		7E4A2F5B17043851001BD38C /* tutorial_swipedir.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */; };
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
 		7E4A2F60170448F9001BD38C /* tutorial_swipeget.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */; };
@@ -585,6 +586,8 @@
 		7E3444A516DE01CF007D20F5 /* BGTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTimeManager.m; sourceTree = "<group>"; };
 		7E3444A716DE1850007D20F5 /* BG1_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_moon.png; sourceTree = "<group>"; };
 		7E3444A816DE1850007D20F5 /* BG1_stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_stars.png; sourceTree = "<group>"; };
+		7E4922DA17115FEC0032665B /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = game/challenge/Challenge.h; sourceTree = "<group>"; };
+		7E4922DB17115FEC0032665B /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = game/challenge/Challenge.m; sourceTree = "<group>"; };
 		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipedir.map; sourceTree = "<group>"; };
 		7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swingvine.map; sourceTree = "<group>"; };
 		7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipeget.map; sourceTree = "<group>"; };
@@ -1309,6 +1312,16 @@
 			name = libs;
 			sourceTree = "<group>";
 		};
+		7E4922D917115F8F0032665B /* challenge */ = {
+			isa = PBXGroup;
+			children = (
+				7E4922DA17115FEC0032665B /* Challenge.h */,
+				7E4922DB17115FEC0032665B /* Challenge.m */,
+			);
+			name = challenge;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		7E5BA16E16DA1F0100700BF2 /* evt_anim */ = {
 			isa = PBXGroup;
 			children = (
@@ -1965,6 +1978,7 @@
 		7EB8B3AD16D9FC0800F58961 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				7E4922D917115F8F0032665B /* challenge */,
 				7EA5680516FF8C170003F2A5 /* tutorial */,
 				7EB8B3AE16D9FC0800F58961 /* bglayer */,
 				7EB8B3B716D9FC0900F58961 /* core */,
@@ -3140,6 +3154,7 @@
 				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
 				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
 				7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */,
+				7E4922DC17115FEC0032665B /* Challenge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -80,6 +80,10 @@ static SEL selSortMethod = NULL;
 @synthesize honorParentTransform = honorParentTransform_;
 @synthesize offsetPositionInPixels = offsetPositionInPixels_;
 
+-(CCSprite*)pos:(CGPoint)pt {
+    [self setPosition:pt];
+    return self;
+}
 
 +(id)spriteWithTexture:(CCTexture2D*)texture
 {
