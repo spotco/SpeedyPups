@@ -107,6 +107,8 @@
     float tmp;
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
     
+    current_continue_cost = 100;
+    
     player_starting_pos = player_start_pt;
 }
 
@@ -403,6 +405,9 @@
 -(int)get_lives { return lives; }
 -(int)get_time { return time; }
 -(int)get_num_bones { return collected_bones; }
+
+-(int)get_current_continue_cost {return current_continue_cost;}
+-(void)incr_current_continue_cost {current_continue_cost+=100;}
 
 
 /* particle system */

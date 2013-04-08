@@ -19,10 +19,6 @@
     
     UIAnim *curanim;
     NSMutableArray *ingame_ui_anims;
-        
-    
-
-    
 }
 
 +(UILayer*)cons_with_gamelayer:(GameEngineLayer*)g;

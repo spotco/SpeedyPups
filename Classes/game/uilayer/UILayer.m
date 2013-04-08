@@ -10,10 +10,6 @@
 
 @implementation UILayer
 
--(void)set_gameengine:(GameEngineLayer*)ref {
-    game_engine_layer = ref;
-}
-
 +(UILayer*)cons_with_gamelayer:(GameEngineLayer *)g {
     UILayer* u = [UILayer node];
     [GEventDispatcher add_listener:u];
@@ -68,12 +64,6 @@
     }
 }
 
--(void)set_this_visible:(id)t {
-    for (CCNode *i in @[ingameui,pauseui,askcontinueui]) {
-        [i setVisible:i==t];
-    }
-}
-
 -(void)update {
     [ingameui update:game_engine_layer];
     
@@ -97,6 +87,7 @@
 
 -(void)ask_continue {
     [self set_this_visible:askcontinueui];
+    [askcontinueui start_countdown:[game_engine_layer get_current_continue_cost]];
 }
 
 -(void)update_items {
@@ -164,6 +155,16 @@
     game_engine_layer.current_mode = GameEngineLayerMode_GAMEPLAY;
     [ingameui setVisible:YES];
     [self removeChild:curanim cleanup:YES];
+}
+
+-(void)set_gameengine:(GameEngineLayer*)ref {
+    game_engine_layer = ref;
+}
+
+-(void)set_this_visible:(id)t {
+    for (CCNode *i in @[ingameui,pauseui,askcontinueui]) {
+        [i setVisible:i==t];
+    }
 }
 
 -(void)dealloc {

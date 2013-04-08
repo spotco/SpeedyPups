@@ -36,6 +36,7 @@ typedef enum {
     int lives;
     int time;
     int collected_bones;
+    int current_continue_cost;
     
     BOOL refresh_viewbox_cache;
     HitRect cached_viewbox;
@@ -70,6 +71,9 @@ typedef enum {
 -(int)get_time;
 -(int)get_num_particles;
 -(int)get_num_bones;
+
+-(int)get_current_continue_cost;
+-(void)incr_current_continue_cost;
 
 -(void)setColor:(ccColor3B)color;
 
