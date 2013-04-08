@@ -8,6 +8,7 @@
 #import "TouchTrackingLayer.h"
 #import "GameItemCommon.h"
 #import "UserInventory.h"
+#import "OneUpParticle.h"
 
 @implementation GameEngineLayer
 
@@ -64,6 +65,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+    default_starting_lives = starting_lives;
     [AudioManager play:BGMUSIC_GAMELOOP1];
     
     [GameControlImplementation reset_control_state];
@@ -271,6 +273,10 @@
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         collected_bones++;
+        if (collected_bones%100==0) {
+            [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
+            lives++;
+        }
         [UserInventory add_bones:1];
         
     } else if (e.type == GEventType_LEVELEND) {
@@ -296,6 +302,13 @@
         
     } else if (e.type == GEventType_USE_ITEM) {
         [GameItemCommon use_item:e.i1 on:self];
+        
+    } else if (e.type == GEventType_CONTINUE_GAME) {
+        lives = default_starting_lives;
+        [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_RESET]];
+        [self player_reset];
+        [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
+        
     }
 }
 

@@ -24,6 +24,7 @@ typedef enum {
     GEventType_START_INTIAL_ANIM,
     GEventType_USE_ITEM,
     GEventType_ITEM_DURATION_PCT,
+    GEventType_CONTINUE_GAME,
     
     GEventType_BOSS1_ACTIVATE,
     GEventType_BOSS1_TICK,

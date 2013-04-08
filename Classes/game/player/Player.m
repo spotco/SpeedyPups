@@ -242,7 +242,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
 -(BOOL)is_armored {
-    return armored_ct;
+    return armored_ct > 0;
 }
 
 -(void)reset_is_armored {

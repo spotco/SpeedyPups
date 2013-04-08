@@ -7,7 +7,7 @@
 
 +(void)cons_at:(CGPoint)pos in:(GameEngineLayer *)g {
     for(int i = 0; i < 5; i++ ){
-        [g add_particle:[ArmorBreakEffect cons_pos:pos v:ccp(float_random(-10, 10),float_random(-5, 14)) piece:i]];
+        [g add_particle:[ArmorBreakEffect cons_pos:pos v:ccp(float_random(-10, 10),float_random(0, 14)) piece:i]];
     }
 }
 

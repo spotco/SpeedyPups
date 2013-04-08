@@ -29,9 +29,6 @@
 
 /**
  TODO --
- -100 bones = 1up
- -new death menu
- 
  -secret/25bones item
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
@@ -95,6 +92,7 @@
     
     [ChallengeRecord set_beaten_challenge:0 to:YES];
     [ChallengeRecord set_beaten_challenge:1 to:YES];
+    [UserInventory add_bones:1000];
     
     //[GameMain start_testlevel];
     [GameMain start_game_autolevel];

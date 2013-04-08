@@ -7,6 +7,7 @@
 #import "PauseUI.h"
 #import "AskContinueUI.h"
 #import "UICommon.h"
+#import "GameOverUI.h"
 
 @implementation UILayer
 
@@ -30,6 +31,10 @@
     askcontinueui = [AskContinueUI cons];
     [self addChild:askcontinueui];
     [askcontinueui setVisible:NO];
+    
+    gameoverui = [GameOverUI cons];
+    [self addChild:gameoverui];
+    [gameoverui setVisible:NO];
     
     [self update_items];
     ingame_ui_anims = [NSMutableArray array];
@@ -144,6 +149,17 @@
     NSLog(@"retry:TODO");
 }
 
+-(void)continue_game {
+    [game_engine_layer incr_current_continue_cost];
+    [self set_this_visible:ingameui];
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_CONTINUE_GAME]];
+}
+
+-(void)to_gameover_menu {
+    [gameoverui set_bones:ingameui.bones_disp.string time:ingameui.time_disp.string];
+    [self set_this_visible:gameoverui];
+}
+
 -(void)start_initial_anim {
     game_engine_layer.current_mode = GameEngineLayerMode_UIANIM;
     [ingameui setVisible:NO];
@@ -162,7 +178,7 @@
 }
 
 -(void)set_this_visible:(id)t {
-    for (CCNode *i in @[ingameui,pauseui,askcontinueui]) {
+    for (CCNode *i in @[ingameui,pauseui,askcontinueui,gameoverui]) {
         [i setVisible:i==t];
     }
 }

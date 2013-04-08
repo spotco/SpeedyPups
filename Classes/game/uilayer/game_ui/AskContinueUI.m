@@ -17,7 +17,7 @@
 -(id)init {
     self = [super init];
     
-    ccColor4B c = {0,0,0,200};
+    ccColor4B c = {50,50,50,220};
     CGSize s = [[UIScreen mainScreen] bounds].size;
     CCNode *ask_continue_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
     
@@ -106,12 +106,12 @@
     if ([UserInventory get_current_bones] >= continue_cost) {
         [self stop_countdown];
         [UserInventory add_bones:-continue_cost];
-        NSLog(@"to continue");
+        [(UILayer*)[self parent] continue_game];
     }
 }
 
 -(void)to_gameover_screen {
-    NSLog(@"to gameover");
+    [(UILayer*)[self parent] to_gameover_menu];
 }
 
 @end

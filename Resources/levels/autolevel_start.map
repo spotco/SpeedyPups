@@ -29,8 +29,7 @@
         {"height": 308, "x": 2808, "width": 654, "y": 2, "type": "island_fill", "label": "20"},
         {"type": "ground_detail", "x": 701.7, "label": "(0)gd_img:6", "img": 6, "y": 201.6},
         {"type": "ground_detail", "x": 500, "label": "(1)gd_img:6", "img": 6, "y": 200},
-        {"type": "ground_detail", "x": 300, "label": "(2)gd_img:6", "img": 6, "y": 203.3},
-        {"type": "spike", "x": 809, "label": "0", "y": 198}
+        {"type": "ground_detail", "x": 300, "label": "(2)gd_img:6", "img": 6, "y": 203.3}
     ],
     "connect_pts": {"y2": 706, "x1": 50, "y1": 201.6, "x2": 3906},
     "start_x": 401.7,

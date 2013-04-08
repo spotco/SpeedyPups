@@ -16,6 +16,7 @@
     IngameUI *ingameui;
     PauseUI *pauseui;
     AskContinueUI *askcontinueui;
+    GameOverUI *gameoverui;
     
     UIAnim *curanim;
     NSMutableArray *ingame_ui_anims;
@@ -31,5 +32,8 @@
 -(void)exit_to_menu;
 -(void)play_again;
 -(void)retry;
+-(void)continue_game;
+
+-(void)to_gameover_menu;
 
 @end

@@ -37,6 +37,7 @@ typedef enum {
     int time;
     int collected_bones;
     int current_continue_cost;
+    int default_starting_lives;
     
     BOOL refresh_viewbox_cache;
     HitRect cached_viewbox;
