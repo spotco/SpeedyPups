@@ -1,13 +1,5 @@
-//
-//  AskContinueUI.h
-//  SpeedyPups
-//
-//  Created by spotco on 4/7/13.
-//
-//
-
-#import "CCSprite.h"
+#import "cocos2d.h"
 
 @interface AskContinueUI : CCSprite
-
++(AskContinueUI*)cons;
 @end

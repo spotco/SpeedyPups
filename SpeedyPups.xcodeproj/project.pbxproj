@@ -522,6 +522,7 @@
 		7ED28FAD17124DF30037B916 /* AskContinueUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FAC17124DF30037B916 /* AskContinueUI.m */; };
 		7ED28FB017124E110037B916 /* GameOverUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FAF17124E110037B916 /* GameOverUI.m */; };
 		7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */; };
+		7ED28FB61712547E0037B916 /* UICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB51712547D0037B916 /* UICommon.m */; };
 		7ED3CE0E17017DA700ED9873 /* doghouse_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */; };
 		7ED3CE101701883B00ED9873 /* loadingicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3CE0F1701883B00ED9873 /* loadingicon.png */; };
 		7ED5B21C1700D2BF00B22CC4 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */; };
@@ -1196,6 +1197,8 @@
 		7ED28FAF17124E110037B916 /* GameOverUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameOverUI.m; path = game_ui/GameOverUI.m; sourceTree = "<group>"; };
 		7ED28FB117124E2D0037B916 /* ChallengeEndUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeEndUI.h; path = game_ui/ChallengeEndUI.h; sourceTree = "<group>"; };
 		7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChallengeEndUI.m; path = game_ui/ChallengeEndUI.m; sourceTree = "<group>"; };
+		7ED28FB41712547D0037B916 /* UICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommon.h; sourceTree = "<group>"; };
+		7ED28FB51712547D0037B916 /* UICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommon.m; sourceTree = "<group>"; };
 		7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doghouse_mask.png; sourceTree = "<group>"; };
 		7ED3CE0F1701883B00ED9873 /* loadingicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingicon.png; sourceTree = "<group>"; };
 		7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchTrackingLayer.h; path = ../../util/TouchTrackingLayer.h; sourceTree = "<group>"; };
@@ -2224,10 +2227,12 @@
 				7ED28FA417124D930037B916 /* game_ui */,
 				7E5BA16E16DA1F0100700BF2 /* evt_anim */,
 				7E5BA16F16DA1F0E00700BF2 /* ingame_anim */,
-				7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */,
-				7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */,
 				7EB8B44F16D9FC0900F58961 /* UILayer.h */,
 				7EB8B45016D9FC0900F58961 /* UILayer.m */,
+				7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */,
+				7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */,
+				7ED28FB41712547D0037B916 /* UICommon.h */,
+				7ED28FB51712547D0037B916 /* UICommon.m */,
 			);
 			path = uilayer;
 			sourceTree = "<group>";
@@ -3193,6 +3198,7 @@
 				7ED28FAD17124DF30037B916 /* AskContinueUI.m in Sources */,
 				7ED28FB017124E110037B916 /* GameOverUI.m in Sources */,
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
+				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
