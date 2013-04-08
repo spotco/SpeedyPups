@@ -29,7 +29,7 @@
                                                pos:[Common screen_pctwid:0.5 pcthei:0.45]];
     
     nav_menu = [MenuCommon cons_common_nav_menu];
-    [self addChild:nav_menu];
+    [self addChild:nav_menu z:5];
     
     [self addChild:[Flowers cons_pt:[Common screen_pctwid:0.275 pcthei:0.35]] z:0 tag:tFLOWER];
     

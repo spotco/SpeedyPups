@@ -1,10 +1,11 @@
 #import "GameMain.h"
 
 #import "UserInventory.h"
+#import "Challenge.h"
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -64,28 +65,6 @@
  -upgrades more slots
  **/
 
-/**
- Challenges:
- -beat classic_trickytreas with 28 or more bones
- -beat easy_gottagofast with 60 or more bones
- -get all bones in tutorial_breakrocks
- -get most bones in tutorial_swingvine
- -get all bones in tutorial_swipeget
- -get 52 or more bones in filler_smgislands
- 
- -beat swingvine_bounswindodg in 0:20 or less
- -beat tutorial_spikevine in 0:20 or less
- 
- -find secret in tutorial_spikes
- -find secret in jumppad_crazyloop
- -find secret in jumppad_jumpislands
- -find secret in jumppad_spikeceil
- -find secret in easy_world1
- -find secret in filler_directdrop
- **/
-
-
-
 +(void)main {
     [GEventDispatcher lazy_alloc];
     [DataStore cons];
@@ -113,6 +92,9 @@
     [UserInventory set_item:Item_Rocket to_slot:1];
     [UserInventory set_item:Item_Magnet to_slot:2];
     [UserInventory set_item:Item_Shield to_slot:3];
+    
+    [ChallengeRecord set_beaten_challenge:0 to:YES];
+    [ChallengeRecord set_beaten_challenge:1 to:YES];
     
     //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];

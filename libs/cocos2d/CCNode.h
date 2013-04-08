@@ -552,4 +552,5 @@ enum {
  */
 - (CGPoint)convertTouchToNodeSpaceAR:(UITouch *)touch;
 #endif // __IPHONE_OS_VERSION_MAX_ALLOWED
+
 @end

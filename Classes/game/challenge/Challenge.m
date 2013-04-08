@@ -24,17 +24,17 @@ static NSArray* _CHALLENGES;
 
 +(void)initialize {
     _CHALLENGES = @[
+        [ChallengeInfo cons_name:@"tutorial_breakrocks" type:ChallengeType_COLLECT_BONES ct:1 reward:1], //todo
+        [ChallengeInfo cons_name:@"tutorial_spikes" type:ChallengeType_FIND_SECRET ct:1 reward:1],
+        [ChallengeInfo cons_name:@"tutorial_spikevine" type:ChallengeType_TIMED ct:1 reward:1], //0:20
+        [ChallengeInfo cons_name:@"tutorial_swipeget" type:ChallengeType_COLLECT_BONES ct:1 reward:1],  //todo
+        [ChallengeInfo cons_name:@"easy_world1" type:ChallengeType_FIND_SECRET ct:1 reward:1],
+        [ChallengeInfo cons_name:@"tutorial_swingvine" type:ChallengeType_COLLECT_BONES ct:1 reward:1],  //todo
         [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
-        [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1]
+        [ChallengeInfo cons_name:@"easy_gottagofast" type:ChallengeType_COLLECT_BONES ct:60 reward:1],
+        [ChallengeInfo cons_name:@"filler_directdrop" type:ChallengeType_FIND_SECRET ct:1 reward:1],
+        [ChallengeInfo cons_name:@"filler_smgislands" type:ChallengeType_COLLECT_BONES ct:52 reward:1],
+        [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1 reward:1] //0:20
     ];
 }
 
