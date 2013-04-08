@@ -7,6 +7,7 @@
 #import "CannonFireParticle.h"
 #import "TouchTrackingLayer.h"
 #import "GameItemCommon.h"
+#import "UserInventory.h"
 
 @implementation GameEngineLayer
 
@@ -237,7 +238,7 @@
         [player do_run_anim];
     
     } else if (current_mode == GameEngineLayerMode_RUNINANIM) {
-        [self update_gameobjs];
+        for (GameObject *i in game_objects) if ([i class] == [DogShadow class]) [i update:player g:self];
         [self update_particles];
         [self push_added_particles];
         if (player.position.x < player_starting_pos.x) {
@@ -268,6 +269,7 @@
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         collected_bones++;
+        [UserInventory add_bones:1];
         
     } else if (e.type == GEventType_LEVELEND) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_LEVELEND_MENU]];
@@ -283,7 +285,7 @@
             lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
         }
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
-            [self game_over];
+            [self ask_continue];
         } else {
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_RESET]];
             [self player_reset];
@@ -313,9 +315,9 @@
 
 /* event dispatch handlers */
 
--(void)game_over {
+-(void)ask_continue {
     current_mode = GameEngineLayerMode_GAMEOVER;
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAMEOVER]];
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_ASK_CONTINUE]];
 }
 -(void)exit {
     [self unscheduleAllSelectors];

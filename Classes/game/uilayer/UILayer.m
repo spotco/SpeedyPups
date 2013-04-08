@@ -19,6 +19,7 @@
     [self cons_pause_ui];
     [self cons_gameover_ui];
     [self cons_game_end_menu];
+    [self cons_continue_menu];
     [self update_items];
     ingame_ui_anims = [NSMutableArray array];
     self.isTouchEnabled = YES;
@@ -39,8 +40,8 @@
     } else if (e.type == GEventType_COLLECT_BONE) {
         [self start_bone_collect_anim];
         
-    } else if (e.type == GEventType_GAMEOVER) {
-        [self gameover];
+    } else if (e.type == GEventType_ASK_CONTINUE) {
+        [self ask_continue];
         
     } else if (e.type == GEventType_SHOW_ENEMYAPPROACH_WARNING) {
         enemy_alert_ui_ct = 75;
@@ -86,13 +87,10 @@
     [self addChild:b];
     [ingame_ui_anims addObject:b];
 }
--(void)gameover {
+-(void)ask_continue {
     [ingame_ui setVisible:NO];
     [pause_ui setVisible:NO];
-    [self set_label:gameover_bones_disp to:[NSString stringWithFormat:@"Total Bones: %i",[game_engine_layer get_num_bones]]];
-    [self set_label:gameover_time_disp to:[NSString stringWithFormat:@"Time: %@",[self parse_gameengine_time:[game_engine_layer get_time]]]];
-    [gameover_ui setVisible:YES];
-    
+    [ask_continue_ui setVisible:YES];
 }
 -(void)load_game_end_menu {
     game_end_menu_layer.isTouchEnabled = NO;
@@ -274,6 +272,49 @@
         [UserInventory set_item:s0 to_slot:i];
     }
     [self update_items];
+}
+
+-(void)cons_continue_menu {
+    ccColor4B c = {0,0,0,200};
+    CGSize s = [[UIScreen mainScreen] bounds].size;
+    ask_continue_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
+    
+    [ask_continue_ui addChild:[[CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]]
+                                                      rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]]
+                               pos:[Common screen_pctwid:0.5 pcthei:0.4]]];
+    
+    [ask_continue_ui addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+                                                      rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"spotlight"]]
+                               pos:[Common screen_pctwid:0.5 pcthei:0.6]]];
+    
+    [ask_continue_ui addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+                                                      rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue"]]
+                               pos:[Common screen_pctwid:0.5 pcthei:0.8]]];
+    
+    CCMenuItem *yes = [MenuCommon item_from:TEX_UI_INGAMEUI_SS
+                                       rect:@"yesbutton"
+                                        tar:self sel:@selector(continue_yes)
+                                        pos:[Common screen_pctwid:0.3 pcthei:0.4]];
+    
+    CCMenuItem *no = [MenuCommon item_from:TEX_UI_INGAMEUI_SS
+                                       rect:@"nobutton"
+                                        tar:self sel:@selector(continue_no)
+                                        pos:[Common screen_pctwid:0.7 pcthei:0.4]];
+    
+    CCMenu *m = [CCMenu menuWithItems:yes,no, nil];
+    [m setPosition:CGPointZero];
+    [ask_continue_ui addChild:m];
+    
+    [self addChild:ask_continue_ui];
+    [ask_continue_ui setVisible:YES];
+}
+
+-(void)continue_no {
+    
+}
+
+-(void)continue_yes {
+    
 }
 
 -(void)cons_gameover_ui {

@@ -32,12 +32,16 @@
                                                        pos:[Common screen_pctwid:0.85 pcthei:0.93]
                                                       text:@"Misc" textpos:ccp(55,19) fntsz:20];
     
-    CCMenuItem *buybutton = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
+    /*CCMenuItem *buybutton = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                   rect:@"nmenu_shoptab"
                                                    tar:self sel:@selector(tab1)
                                                    pos:[Common screen_pctwid:0.84 pcthei:0.31]
-                                                  text:@"BUY" textpos:ccp(55,22) fntsz:30];
-    [buybutton setScale:1.25];
+                                                  text:@"BUY" textpos:ccp(55,22) fntsz:30];*/
+    CCMenuItem *buybutton = [MenuCommon item_from:TEX_NMENU_ITEMS
+                                               rect:@"buybutton"
+                                                tar:self sel:@selector(tab1)
+                                                pos:[Common screen_pctwid:0.81 pcthei:0.31]];
+    //[buybutton setScale:1.25];
     
     controlm = [CCMenu menuWithItems:tab1,tab2,tab3,buybutton, nil];
     [controlm setPosition:ccp(0,0)];

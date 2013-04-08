@@ -5,11 +5,11 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 99
+#define STARTING_LIVES 1
 
 #define DRAW_HITBOX NO
 #define RESET_STATS YES
@@ -97,8 +97,8 @@
     [ChallengeRecord set_beaten_challenge:1 to:YES];
     
     //[GameMain start_testlevel];
-    //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    [GameMain start_game_autolevel];
+    //[GameMain start_menu];
     
 }
 

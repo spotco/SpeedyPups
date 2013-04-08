@@ -11,7 +11,7 @@ typedef enum {
     GEventType_LOAD_LEVELEND_MENU,
     GEventType_COLLECT_BONE,
     GEventType_PLAYER_DIE,
-    GEventType_GAMEOVER,
+    GEventType_ASK_CONTINUE,
     GEventType_PLAYAGAIN_AUTOLEVEL,
     GEventType_GAME_RESET,
     GEventType_DASH,
