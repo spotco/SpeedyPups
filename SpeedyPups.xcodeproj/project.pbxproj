@@ -18,7 +18,6 @@
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
 		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
-		7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491F1706DDFA004EA720 /* GameItemCommon.m */; };
 		7E269C6116DA0000005F446C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6016DA0000005F446C /* Icon.png */; };
 		7E269C6816DA00E4005F446C /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6716DA00DE005F446C /* fps_images.png */; };
 		7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6516DA00DE005F446C /* Carton_Six.ttf */; };
@@ -322,7 +321,8 @@
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
 		7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7608171A430700EBEB3C /* ChallengeEnd.m */; };
 		7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBD760A171A454400EBEB3C /* checkerboard_texture.png */; };
-		7EBD760E171A720400EBEB3C /* GameModeCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD760D171A720000EBEB3C /* GameModeCallback.m */; };
+		7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */; };
+		7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7612171A800E00EBEB3C /* GameModeCallback.m */; };
 		7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460E617054D9700656A48 /* AutoLevelState.m */; };
 		7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */; };
 		7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */; };
@@ -587,7 +587,6 @@
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
 		7E17491C1706CB09004EA720 /* InventoryItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItemPane.h; sourceTree = "<group>"; };
 		7E17491D1706CB09004EA720 /* InventoryItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItemPane.m; sourceTree = "<group>"; };
-		7E17491F1706DDFA004EA720 /* GameItemCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemCommon.m; sourceTree = "<group>"; };
 		7E269C6016DA0000005F446C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7E269C6516DA00DE005F446C /* Carton_Six.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Carton_Six.ttf; path = "cocos2d-2.x-ARC-iOS/Resources/Carton_Six.ttf"; sourceTree = "<group>"; };
 		7E269C6616DA00DE005F446C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "cocos2d-2.x-ARC-iOS/Resources/Default.png"; sourceTree = "<group>"; };
@@ -991,8 +990,9 @@
 		7EBD7607171A430700EBEB3C /* ChallengeEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeEnd.h; sourceTree = "<group>"; };
 		7EBD7608171A430700EBEB3C /* ChallengeEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeEnd.m; sourceTree = "<group>"; };
 		7EBD760A171A454400EBEB3C /* checkerboard_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerboard_texture.png; sourceTree = "<group>"; };
-		7EBD760C171A71FE00EBEB3C /* GameModeCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModeCallback.h; sourceTree = "<group>"; };
-		7EBD760D171A720000EBEB3C /* GameModeCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModeCallback.m; sourceTree = "<group>"; };
+		7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameItemCommon.m; path = user/GameItemCommon.m; sourceTree = "<group>"; };
+		7EBD7611171A800E00EBEB3C /* GameModeCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModeCallback.h; sourceTree = "<group>"; };
+		7EBD7612171A800E00EBEB3C /* GameModeCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModeCallback.m; sourceTree = "<group>"; };
 		7EC460E517054D9600656A48 /* AutoLevelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState.h; sourceTree = "<group>"; };
 		7EC460E617054D9700656A48 /* AutoLevelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState.m; sourceTree = "<group>"; };
 		7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuInventoryLayer.h; sourceTree = "<group>"; };
@@ -1997,8 +1997,6 @@
 			children = (
 				7EB8B45116D9FC0900F58961 /* GameMain.h */,
 				7EB8B45216D9FC0900F58961 /* GameMain.m */,
-				7EBD760C171A71FE00EBEB3C /* GameModeCallback.h */,
-				7EBD760D171A720000EBEB3C /* GameModeCallback.m */,
 				7ECFA69F1706A21300496002 /* user */,
 				7EB8B3AD16D9FC0800F58961 /* game */,
 				7EB8B45316D9FC0900F58961 /* menu */,
@@ -2215,6 +2213,8 @@
 		7EB8B46616D9FC0900F58961 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				7EBD7611171A800E00EBEB3C /* GameModeCallback.h */,
+				7EBD7612171A800E00EBEB3C /* GameModeCallback.m */,
 				7EB8B46716D9FC0900F58961 /* AudioManager.h */,
 				7EB8B46816D9FC0900F58961 /* AudioManager.m */,
 				7EB8B46916D9FC0900F58961 /* BatchDraw.h */,
@@ -2616,10 +2616,10 @@
 		7ECFA69F1706A21300496002 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */,
 				7ECFA6A01706A23A00496002 /* UserInventory.h */,
 				7ECFA6A11706A23A00496002 /* UserInventory.m */,
 				7E1749191706C060004EA720 /* GameItemCommon.h */,
-				7E17491F1706DDFA004EA720 /* GameItemCommon.m */,
 			);
 			name = user;
 			sourceTree = "<group>";
@@ -3253,7 +3253,6 @@
 				7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */,
 				7ECFA6A21706A23A00496002 /* UserInventory.m in Sources */,
 				7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */,
-				7E1749201706DDFA004EA720 /* GameItemCommon.m in Sources */,
 				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
 				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
 				7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */,
@@ -3266,7 +3265,8 @@
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
 				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
-				7EBD760E171A720400EBEB3C /* GameModeCallback.m in Sources */,
+				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
+				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
