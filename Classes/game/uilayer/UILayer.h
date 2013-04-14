@@ -17,6 +17,7 @@
     PauseUI *pauseui;
     AskContinueUI *askcontinueui;
     GameOverUI *gameoverui;
+    ChallengeEndUI *challengeendui;
     
     UIAnim *curanim;
     NSMutableArray *ingame_ui_anims;

@@ -8,6 +8,7 @@
 #import "AskContinueUI.h"
 #import "UICommon.h"
 #import "GameOverUI.h"
+#import "ChallengeEndUI.h" 
 
 @implementation UILayer
 
@@ -17,6 +18,12 @@
     [u set_gameengine:g];
     [u cons];
     return u;
+}
+
+-(void)set_this_visible:(id)t {
+    for (CCNode *i in @[ingameui,pauseui,askcontinueui,gameoverui,challengeendui]) {
+        [i setVisible:i==t];
+    }
 }
 
 -(void)cons {
@@ -36,6 +43,10 @@
     [self addChild:gameoverui];
     [gameoverui setVisible:NO];
     
+    challengeendui = [ChallengeEndUI cons];
+    [self addChild:challengeendui];
+    [challengeendui setVisible:NO];
+    
     [self update_items];
     ingame_ui_anims = [NSMutableArray array];
     self.isTouchEnabled = YES;
@@ -43,13 +54,21 @@
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_GAME_TICK) {
-        [ingameui setVisible:YES];
+        [self set_this_visible:ingameui];
         [self update];
         
     } else if (e.type == GEventType_UIANIM_TICK) {
-        [ingameui setVisible:NO];
+        [self set_this_visible:NULL];
         
-    } else if (e.type == GEventType_LOAD_LEVELEND_MENU) {
+    } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
+        [challengeendui update_passed:e.i1
+                                 info:[e get_value:@"challenge"]
+                                bones:ingameui.bones_disp.string
+                                 time:ingameui.time_disp.string
+                              secrets:@"0"];
+    
+    } else if (e.type == GEventType_LOAD_CHALLENGE_COMPLETE_MENU) {
+        [self set_this_visible:challengeendui];
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         [self start_bone_collect_anim];
@@ -175,12 +194,6 @@
 
 -(void)set_gameengine:(GameEngineLayer*)ref {
     game_engine_layer = ref;
-}
-
--(void)set_this_visible:(id)t {
-    for (CCNode *i in @[ingameui,pauseui,askcontinueui,gameoverui]) {
-        [i setVisible:i==t];
-    }
 }
 
 -(void)dealloc {

@@ -17,6 +17,7 @@
 #import "AutoLevel.h"
 #import "World1ParticleGenerator.h"
 #import "BatchDraw.h"
+#import "Challenge.h" 
 
 #define GAMEENGINE_INF_LIVES -99
 
@@ -27,7 +28,8 @@ typedef enum {
     GameEngineLayerMode_GAMEPLAY,
     GameEngineLayerMode_PAUSED,
     GameEngineLayerMode_UIANIM,
-    GameEngineLayerMode_GAMEOVER
+    GameEngineLayerMode_GAMEOVER,
+    GameEngineLayerMode_RUNOUT
 } GameEngineLayerMode;
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
@@ -38,6 +40,8 @@ typedef enum {
     int collected_bones;
     int current_continue_cost;
     int default_starting_lives;
+    
+    int runout_ct;
     
     BOOL refresh_viewbox_cache;
     HitRect cached_viewbox;
@@ -56,8 +60,10 @@ typedef enum {
 @property(readwrite,assign) CameraZoom camera_state,tar_camera_state;
 @property(readwrite,strong) CCFollow *follow_action;
 
-+(CCScene *)scene_with:(NSString *)map_file_name lives:(int)lives;
++(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives;
 +(CCScene*)scene_with_autolevel_lives:(int)lives;
++(CCScene*)scene_with_challenge:(ChallengeInfo*)info;
+
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;
 -(void)remove_gameobject:(GameObject*)o;

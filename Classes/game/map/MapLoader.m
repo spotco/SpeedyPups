@@ -135,7 +135,7 @@ static NSMutableDictionary* cached_json;
         } else if ([type isEqualToString:@"game_end"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[GameEndArea cons_x:x y:y]];
+            [map.game_objects addObject:[ChallengeEnd cons_pt:ccp(x,y)]];
             
         } else if ([type isEqualToString:@"spike"]) {
             float x = getflt(j_object, @"x");

@@ -20,8 +20,6 @@
 @synthesize camera_state,tar_camera_state;
 @synthesize follow_action;
 
-/* static initializers */
-
 +(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives {
     CCScene *scene = [CCScene node];
     GameEngineLayer *glayer = [GameEngineLayer layer_from_file:map_file_name lives:lives];
@@ -53,6 +51,16 @@
     [glayer move_player_toground];
     [glayer prep_runin_anim];
 	return scene;
+}
+
++(CCScene*)scene_with_challenge:(ChallengeInfo*)info {
+    CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES];
+    GameEngineLayer* glayer = [scene.children objectAtIndex:2];
+    [glayer set_challenge:info];
+    [glayer update_render];
+    [glayer move_player_toground];
+    [glayer prep_runin_anim];
+    return scene;
 }
 
 +(GameEngineLayer*)layer_from_file:(NSString*)file lives:(int)lives {
@@ -103,15 +111,20 @@
     [self update_render];
     [self schedule:@selector(update)];
     
-    //current_mode = GameEngineLayerMode_GAMEPLAY;
     scrollup_pct = 1;
     current_mode = GameEngineLayerMode_SCROLLDOWN;
     float tmp;
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
-    
     current_continue_cost = 100;
-    
     player_starting_pos = player_start_pt;
+}
+
+-(void)set_challenge:(ChallengeInfo*)info {
+    NSLog(@"loaded challenge for %@, %@",info.map_name,[info to_string]);
+    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHALLENGE] add_key:@"challenge" value:info]];
+    for (GameObject *o in game_objects) {
+        [o notify_challenge_mode:info];
+    }
 }
 
 -(void)move_player_toground {
@@ -254,6 +267,21 @@
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_START_INTIAL_ANIM]];
         }
         
+    } else if (current_mode == GameEngineLayerMode_RUNOUT) {
+        [self stopAction:follow_action];
+        
+        runout_ct--;
+        if (runout_ct <= 0) {
+            current_mode = GameEngineLayerMode_GAMEOVER;
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_CHALLENGE_COMPLETE_MENU]];
+        } else {        
+            [GamePhysicsImplementation player_move:player with_islands:islands];
+            [player update:self];
+            [self update_gameobjs];
+            [self update_particles];
+            [self push_added_particles];
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+        }
     }
     
     [GEventDispatcher dispatch_events];
@@ -279,8 +307,10 @@
         }
         [UserInventory add_bones:1];
         
-    } else if (e.type == GEventType_LEVELEND) {
-        [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_LEVELEND_MENU]];
+    } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
+        NSLog(@"CHALLENGE COMPLETE (%d)",e.i1);
+        runout_ct = 100;
+        current_mode = GameEngineLayerMode_RUNOUT;
         
     } else if (e.type == GEventType_PAUSE) {
         current_mode = GameEngineLayerMode_PAUSED;
@@ -406,6 +436,10 @@
     return cached_worldsbounds;
 }
 -(HitRect)get_viewbox {
+    if (current_mode == GameEngineLayerMode_SCROLLDOWN || current_mode == GameEngineLayerMode_RUNINANIM) {
+        return [Common hitrect_cons_x1:player.position.x-1500 y1:player.position.y-1500 wid:3000 hei:3000];
+    }
+    
     if (refresh_viewbox_cache) {
         refresh_viewbox_cache = NO;
         cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1

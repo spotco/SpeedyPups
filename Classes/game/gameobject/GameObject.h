@@ -3,6 +3,7 @@
 #import "GameRenderImplementation.h"
 #import "GEventDispatcher.h"
 @class GameEngineLayer;
+@class ChallengeInfo;
 
 @interface GameObject : CCSprite {
     BOOL active,do_render;
@@ -17,8 +18,8 @@
 -(void)set_active:(BOOL)t_active;
 -(int)get_render_ord;
 -(void)reset;
-
 -(void)check_should_render:(GameEngineLayer *)g;
+-(void)notify_challenge_mode:(ChallengeInfo*)c;
 
 -(Island*)get_connecting_island:(NSMutableArray*)islands;
 

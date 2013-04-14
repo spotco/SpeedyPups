@@ -69,6 +69,8 @@
 #define TEX_SPIKE_VINE_BOTTOM @"SpikeVineRight"
 #define TEX_SPIKE_VINE_SECTION @"SpikeVineSection"
 
+#define TEX_CHECKERBOARD @"checkerboard"
+
 #define TEX_PARTICLE_1UP @"1up"
 
 #define TEX_ITEM_SS @"item_ss"

@@ -23,7 +23,7 @@
         [touchb setPosition:lasttouchbegin];
         [touchb setOpacity:255];
         [touchb setScale:5];
-    } else if (e.type == GEventType_GAME_TICK) {
+    } else if (e.type == GEventType_GAME_TICK || e.type == GEventType_UIANIM_TICK) {
         [self update];
     }
 }

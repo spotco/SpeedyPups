@@ -144,9 +144,10 @@
             [self remove_map_section_from_current:i];
         }
     }
-    
+
     [stored removeAllObjects];
 }
+
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     CGPoint pos = player.position;
     NSMutableArray *tostore = [[NSMutableArray alloc] init];

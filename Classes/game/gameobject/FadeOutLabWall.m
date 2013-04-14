@@ -53,4 +53,8 @@
     return [GameRenderImplementation GET_RENDER_ABOVE_FG_ORD];
 }
 
+-(void)cleanup {
+    [GEventDispatcher remove_listener:self];
+}
+
 @end

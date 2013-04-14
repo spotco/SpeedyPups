@@ -16,7 +16,7 @@ static NSMutableArray* _anim_table;
 }
 
 -(CCAction*)cons_anim:(NSString*)tar {
-    NSArray* frames = @[@"sit_0",@"sit_1",@"sit_2"];
+    NSArray* frames = @[@"sit_0",@"sit_1",@"sit_2",@"sit_0",@"sit_1",@"sit_2",@"sit_0",@"sit_1",@"sit_2",@"sit_0",@"sit_1_blink",@"sit_2"];
     CCTexture2D *texture = [Resource get_tex:tar];
     NSMutableArray *animFrames = [NSMutableArray array];
     for (NSString* i in frames) {

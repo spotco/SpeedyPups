@@ -1,14 +1,5 @@
 {
-    "assert_links": 4,
-    "islands": [
-        {"type": "line", "y2": 1147.1, "x1": 51.5, "can_fall": true, "x2": 5857.2, "ground": "open", "ndir": "left", "y1": 1148.6, "hei": 500},
-        {"type": "line", "y2": 1148.6, "x1": 6101.5, "can_fall": true, "x2": 6204.3, "ground": "open", "ndir": "left", "y1": 1150, "hei": 50},
-        {"type": "line", "y2": 1148.6, "x1": 6204.3, "can_fall": true, "x2": 7101.5, "ground": "bridge", "ndir": "left", "y1": 1148.6, "hei": 100},
-        {"type": "line", "y2": 1148.6, "x1": 7101.5, "can_fall": true, "x2": 7352.9, "ground": "open", "ndir": "left", "y1": 1148.6, "hei": 50},
-        {"type": "line", "y2": 1150, "x1": 7352.9, "can_fall": true, "x2": 8308.7, "ground": "bridge", "ndir": "left", "y1": 1148.6, "hei": 100},
-        {"type": "line", "y2": 1150, "x1": 8308.7, "can_fall": true, "x2": 8502.9, "ground": "open", "ndir": "left", "y1": 1150, "hei": 50},
-        {"type": "line", "y2": 1147.1, "x1": 8652.9, "can_fall": true, "x2": 9554.4, "ground": "open", "ndir": "left", "y1": 1147.1, "hei": 500}
-    ],
+    "connect_pts": {"y2": 1148, "x1": 51.5, "y1": 1148.6, "x2": 9700},
     "objects": [
         {"type": "checkpoint", "x": 351.5, "label": "0", "y": 1148.6},
         {"type": "tutorial", "x": 550, "label": "rockbreak", "y": 1298.6},
@@ -60,9 +51,19 @@
         {"type": "dogbone", "x": 8300.1, "label": "BID:18", "bid": 18, "y": 1307.1},
         {"type": "dogbone", "x": 8504.4, "label": "BID:20", "bid": 20, "y": 1382.9},
         {"type": "dogbone", "x": 8617.2, "label": "BID:21", "bid": 21, "y": 1307.1},
-        {"height": 141.47142857142853, "x": 8654.4, "width": 154.3000000000011, "y": 987.1, "type": "blocker", "label": "0"}
+        {"height": 141.47142857142853, "x": 8654.4, "width": 154.3000000000011, "y": 987.1, "type": "blocker", "label": "0"},
+        {"type": "game_end", "x": 9252, "label": "1", "y": 1150}
     ],
-    "connect_pts": {"y2": 1147.1, "x1": 51.5, "y1": 1148.6, "x2": 9554.4},
+    "assert_links": 4,
     "start_x": 198.6,
-    "start_y": 1249.9714285714285
+    "islands": [
+        {"type": "line", "y2": 1147.1, "x1": 51.5, "can_fall": true, "x2": 5857.2, "ground": "open", "ndir": "left", "y1": 1148.6, "hei": 500},
+        {"type": "line", "y2": 1148.6, "x1": 6101.5, "can_fall": true, "x2": 6204.3, "ground": "open", "ndir": "left", "y1": 1150, "hei": 50},
+        {"type": "line", "y2": 1148.6, "x1": 6204.3, "can_fall": true, "x2": 7101.5, "ground": "bridge", "ndir": "left", "y1": 1148.6, "hei": 100},
+        {"type": "line", "y2": 1148.6, "x1": 7101.5, "can_fall": true, "x2": 7352.9, "ground": "open", "ndir": "left", "y1": 1148.6, "hei": 50},
+        {"type": "line", "y2": 1150, "x1": 7352.9, "can_fall": true, "x2": 8308.7, "ground": "bridge", "ndir": "left", "y1": 1148.6, "hei": 100},
+        {"type": "line", "y2": 1150, "x1": 8308.7, "can_fall": true, "x2": 8502.9, "ground": "open", "ndir": "left", "y1": 1150, "hei": 50},
+        {"type": "line", "y2": 1148, "x1": 8652.9, "can_fall": true, "x2": 9700, "ground": "open", "ndir": "left", "y1": 1147.1, "hei": 500}
+    ],
+    "start_y": 1250
 }

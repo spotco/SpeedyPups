@@ -5,10 +5,8 @@ typedef enum {
     GEventType_PAUSE,
     GEventType_UNPAUSE,
     GEventType_QUIT,
-    GEventType_LEVELEND,
     GEventType_UIANIM_TICK,
     GEventType_GAME_TICK,
-    GEventType_LOAD_LEVELEND_MENU,
     GEventType_COLLECT_BONE,
     GEventType_PLAYER_DIE,
     GEventType_ASK_CONTINUE,
@@ -26,6 +24,10 @@ typedef enum {
     GEventType_ITEM_DURATION_PCT,
     GEventType_CONTINUE_GAME,
     
+    GEventType_CHALLENGE,
+    GEventType_CHALLENGE_COMPLETE,
+    GEventType_LOAD_CHALLENGE_COMPLETE_MENU,
+    
     GEventType_BOSS1_ACTIVATE,
     GEventType_BOSS1_TICK,
     GEventType_BOSS1_DEFEATED,
@@ -42,16 +44,17 @@ typedef enum {
 } GEventType;
 
 @interface GEvent : NSObject
-    @property(readwrite,assign) GEventType type;
-    @property(readwrite,strong) NSMutableDictionary* data;
-    @property(readwrite,assign) CGPoint pt;
-    @property(readwrite,assign) int i1,i2;
-    @property(readwrite,assign) float f1,f2;
-    +(GEvent*)cons_type:(GEventType)t;
-    -(GEvent*)add_key:(NSString*)k value:(id)v;
-    -(GEvent*)add_pt:(CGPoint)tpt;
-    -(GEvent*)add_i1:(int)ti1 i2:(int)ti2;
-    -(GEvent*)add_f1:(float)tf1 f2:(float)tf2;
+@property(readwrite,assign) GEventType type;
+@property(readwrite,strong) NSMutableDictionary* data;
+@property(readwrite,assign) CGPoint pt;
+@property(readwrite,assign) int i1,i2;
+@property(readwrite,assign) float f1,f2;
++(GEvent*)cons_type:(GEventType)t;
+-(GEvent*)add_key:(NSString*)k value:(id)v;
+-(GEvent*)add_pt:(CGPoint)tpt;
+-(GEvent*)add_i1:(int)ti1 i2:(int)ti2;
+-(GEvent*)add_f1:(float)tf1 f2:(float)tf2;
+-(id)get_value:(NSString*)key;
 @end
 
 @protocol GEventListener <NSObject>

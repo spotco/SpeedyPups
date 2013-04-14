@@ -16,7 +16,25 @@
     return i;
 }
 
+-(NSString*)to_string {
+    ChallengeInfo *cc = self;
+    if (cc.type == ChallengeType_COLLECT_BONES) {
+        return [NSString stringWithFormat:@"Collect at least %d bones in one run.",cc.ct];
+        
+    } else if (cc.type == ChallengeType_TIMED) {
+        return [NSString stringWithFormat:@"Complete this level in %@ or less.",@"0:00"];
+        
+    } else if (cc.type == ChallengeType_FIND_SECRET) {
+        return [NSString stringWithFormat:@"Find at least %d secrets.",cc.ct];
+        
+    } else {
+        return @"ERROR";
+    }
+}
+
 @end
+
+
 
 @implementation ChallengeRecord
 
@@ -24,7 +42,7 @@ static NSArray* _CHALLENGES;
 
 +(void)initialize {
     _CHALLENGES = @[
-        [ChallengeInfo cons_name:@"tutorial_breakrocks" type:ChallengeType_COLLECT_BONES ct:1 reward:1], //todo
+        [ChallengeInfo cons_name:@"tutorial_breakrocks" type:ChallengeType_COLLECT_BONES ct:18 reward:1], //todo
         [ChallengeInfo cons_name:@"tutorial_spikes" type:ChallengeType_FIND_SECRET ct:1 reward:1],
         [ChallengeInfo cons_name:@"tutorial_spikevine" type:ChallengeType_TIMED ct:1 reward:1], //0:20
         [ChallengeInfo cons_name:@"tutorial_swipeget" type:ChallengeType_COLLECT_BONES ct:1 reward:1],  //todo

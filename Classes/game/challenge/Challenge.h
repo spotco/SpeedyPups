@@ -13,6 +13,8 @@ typedef enum {
 @property(readwrite,assign) ChallengeType type;
 @property(readwrite,assign) int ct,reward;
 
+-(NSString*)to_string;
+
 @end
 
 @interface ChallengeRecord : NSObject

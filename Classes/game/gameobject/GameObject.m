@@ -94,6 +94,6 @@ int ct;
 	}
 }
 
-
+-(void)notify_challenge_mode:(ChallengeInfo *)c{}
 
 @end

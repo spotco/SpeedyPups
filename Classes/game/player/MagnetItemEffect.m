@@ -82,6 +82,10 @@
     }
 }
 
+-(int)get_render_ord {
+    return [GameRenderImplementation GET_RENDER_ABOVE_FG_ORD];
+}
+
 @end
 
 @interface HeartItemEffectParticle : MagnetItemEffectParticle

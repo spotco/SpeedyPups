@@ -6,6 +6,7 @@
 #import "DataStore.h"
 #import "AudioManager.h"
 #import "Common.h"
+@class ChallengeInfo;
 
 @interface GameMain : NSObject
 
@@ -13,6 +14,7 @@
 +(void)start_game_autolevel;
 +(void)start_menu;
 +(void)start_testlevel;
++(void)start_game_challengelevel:(ChallengeInfo*)info;
 
 +(BOOL)GET_USE_BG;
 +(BOOL)GET_DRAW_HITBOX;

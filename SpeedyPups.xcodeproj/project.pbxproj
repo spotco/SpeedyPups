@@ -250,7 +250,6 @@
 		7EB8B49116D9FC0900F58961 /* EnemyBomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3E216D9FC0900F58961 /* EnemyBomb.m */; };
 		7EB8B49216D9FC0900F58961 /* FadeOutLabWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3E416D9FC0900F58961 /* FadeOutLabWall.m */; };
 		7EB8B49316D9FC0900F58961 /* FishGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3E616D9FC0900F58961 /* FishGenerator.m */; };
-		7EB8B49416D9FC0900F58961 /* GameEndArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3E816D9FC0900F58961 /* GameEndArea.m */; };
 		7EB8B49516D9FC0900F58961 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3EA16D9FC0900F58961 /* GameObject.m */; };
 		7EB8B49616D9FC0900F58961 /* GroundDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3EC16D9FC0900F58961 /* GroundDetail.m */; };
 		7EB8B49716D9FC0900F58961 /* IslandFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B3EE16D9FC0900F58961 /* IslandFill.m */; };
@@ -321,6 +320,8 @@
 		7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */; };
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
+		7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7608171A430700EBEB3C /* ChallengeEnd.m */; };
+		7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBD760A171A454400EBEB3C /* checkerboard_texture.png */; };
 		7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460E617054D9700656A48 /* AutoLevelState.m */; };
 		7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */; };
 		7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */; };
@@ -854,8 +855,6 @@
 		7EB8B3E416D9FC0900F58961 /* FadeOutLabWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutLabWall.m; sourceTree = "<group>"; };
 		7EB8B3E516D9FC0900F58961 /* FishGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishGenerator.h; sourceTree = "<group>"; };
 		7EB8B3E616D9FC0900F58961 /* FishGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishGenerator.m; sourceTree = "<group>"; };
-		7EB8B3E716D9FC0900F58961 /* GameEndArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEndArea.h; sourceTree = "<group>"; };
-		7EB8B3E816D9FC0900F58961 /* GameEndArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEndArea.m; sourceTree = "<group>"; };
 		7EB8B3E916D9FC0900F58961 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		7EB8B3EA16D9FC0900F58961 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		7EB8B3EB16D9FC0900F58961 /* GroundDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroundDetail.h; sourceTree = "<group>"; };
@@ -988,6 +987,9 @@
 		7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeModeSelect.h; sourceTree = "<group>"; };
 		7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeModeSelect.m; sourceTree = "<group>"; };
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
+		7EBD7607171A430700EBEB3C /* ChallengeEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeEnd.h; sourceTree = "<group>"; };
+		7EBD7608171A430700EBEB3C /* ChallengeEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeEnd.m; sourceTree = "<group>"; };
+		7EBD760A171A454400EBEB3C /* checkerboard_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerboard_texture.png; sourceTree = "<group>"; };
 		7EC460E517054D9600656A48 /* AutoLevelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState.h; sourceTree = "<group>"; };
 		7EC460E617054D9700656A48 /* AutoLevelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState.m; sourceTree = "<group>"; };
 		7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuInventoryLayer.h; sourceTree = "<group>"; };
@@ -1788,6 +1790,7 @@
 		7EB8B27F16D9F8E700F58961 /* checkpoint */ = {
 			isa = PBXGroup;
 			children = (
+				7EBD760A171A454400EBEB3C /* checkerboard_texture.png */,
 				7EB8B28016D9F8E700F58961 /* checkerfloor.png */,
 				7EB8B28116D9F8E700F58961 /* checkpoint1.png */,
 				7EB8B28216D9F8E700F58961 /* checkpoint2.png */,
@@ -2054,74 +2057,14 @@
 		7EB8B3C216D9FC0900F58961 /* gameobject */ = {
 			isa = PBXGroup;
 			children = (
-				7EB8B3C316D9FC0900F58961 /* BirdFlock.h */,
-				7EB8B3C416D9FC0900F58961 /* BirdFlock.m */,
-				7EB8B3C516D9FC0900F58961 /* Blocker.h */,
-				7EB8B3C616D9FC0900F58961 /* Blocker.m */,
-				7EB8B3C716D9FC0900F58961 /* BreakableWall.h */,
-				7EB8B3C816D9FC0900F58961 /* BreakableWall.m */,
-				7EB8B3C916D9FC0900F58961 /* CameraArea.h */,
-				7EB8B3CA16D9FC0900F58961 /* CameraArea.m */,
-				7EB8B3CB16D9FC0900F58961 /* CaveWall.h */,
-				7EB8B3CC16D9FC0900F58961 /* CaveWall.m */,
-				7EB8B3CD16D9FC0900F58961 /* CheckPoint.h */,
-				7EB8B3CE16D9FC0900F58961 /* CheckPoint.m */,
-				7EB8B3CF16D9FC0900F58961 /* CopterRobot.h */,
-				7EB8B3D016D9FC0900F58961 /* CopterRobot.m */,
-				7EB8B3D116D9FC0900F58961 /* CopterRobotLoader.h */,
-				7EB8B3D216D9FC0900F58961 /* CopterRobotLoader.m */,
-				7EB8B3D316D9FC0900F58961 /* DogBone.h */,
-				7EB8B3D416D9FC0900F58961 /* DogBone.m */,
-				7EB8B3D516D9FC0900F58961 /* DogCape.h */,
-				7EB8B3D616D9FC0900F58961 /* DogCape.m */,
-				7EB8B3D916D9FC0900F58961 /* DogRocket.h */,
-				7EB8B3DA16D9FC0900F58961 /* DogRocket.m */,
-				7EB8B3DB16D9FC0900F58961 /* DogShadow.h */,
-				7EB8B3DC16D9FC0900F58961 /* DogShadow.m */,
-				7EB8B3DD16D9FC0900F58961 /* ElectricWall.h */,
-				7EB8B3DE16D9FC0900F58961 /* ElectricWall.m */,
-				7EB8B3DF16D9FC0900F58961 /* EnemyAlert.h */,
-				7EB8B3E016D9FC0900F58961 /* EnemyAlert.m */,
-				7EB8B3E116D9FC0900F58961 /* EnemyBomb.h */,
-				7EB8B3E216D9FC0900F58961 /* EnemyBomb.m */,
-				7EB8B3E316D9FC0900F58961 /* FadeOutLabWall.h */,
-				7EB8B3E416D9FC0900F58961 /* FadeOutLabWall.m */,
-				7EB8B3E516D9FC0900F58961 /* FishGenerator.h */,
-				7EB8B3E616D9FC0900F58961 /* FishGenerator.m */,
-				7EB8B3E716D9FC0900F58961 /* GameEndArea.h */,
-				7EB8B3E816D9FC0900F58961 /* GameEndArea.m */,
+				7EBD7606171A429500EBEB3C /* obstacle */,
+				7EBD7605171A428F00EBEB3C /* misc */,
+				7EBD7604171A428A00EBEB3C /* internal */,
+				7EBD7603171A427C00EBEB3C /* powerup */,
+				7EBD7602171A425500EBEB3C /* detail */,
+				7EBD7601171A423500EBEB3C /* enemy */,
 				7EB8B3E916D9FC0900F58961 /* GameObject.h */,
 				7EB8B3EA16D9FC0900F58961 /* GameObject.m */,
-				7EB8B3EB16D9FC0900F58961 /* GroundDetail.h */,
-				7EB8B3EC16D9FC0900F58961 /* GroundDetail.m */,
-				7EB8B3ED16D9FC0900F58961 /* IslandFill.h */,
-				7EB8B3EE16D9FC0900F58961 /* IslandFill.m */,
-				7EB8B3EF16D9FC0900F58961 /* JumpPad.h */,
-				7EB8B3F016D9FC0900F58961 /* JumpPad.m */,
-				7EB8B3F116D9FC0900F58961 /* LabEntrance.h */,
-				7EB8B3F216D9FC0900F58961 /* LabEntrance.m */,
-				7EB8B3F316D9FC0900F58961 /* LabExit.h */,
-				7EB8B3F416D9FC0900F58961 /* LabExit.m */,
-				7EB8B3F516D9FC0900F58961 /* LabWall.h */,
-				7EB8B3F616D9FC0900F58961 /* LabWall.m */,
-				7EB8B3F716D9FC0900F58961 /* LauncherRobot.h */,
-				7EB8B3F816D9FC0900F58961 /* LauncherRobot.m */,
-				7EB8B3F916D9FC0900F58961 /* LauncherRocket.h */,
-				7EB8B3FA16D9FC0900F58961 /* LauncherRocket.m */,
-				7EB8B3FB16D9FC0900F58961 /* MinionRobot.h */,
-				7EB8B3FC16D9FC0900F58961 /* MinionRobot.m */,
-				7EB8B3FD16D9FC0900F58961 /* SpeedUp.h */,
-				7EB8B3FE16D9FC0900F58961 /* SpeedUp.m */,
-				7EB8B3FF16D9FC0900F58961 /* Spike.h */,
-				7EB8B40016D9FC0900F58961 /* Spike.m */,
-				7EB8B40116D9FC0900F58961 /* SpikeVine.h */,
-				7EB8B40216D9FC0900F58961 /* SpikeVine.m */,
-				7EB8B40316D9FC0900F58961 /* SwingVine.h */,
-				7EB8B40416D9FC0900F58961 /* SwingVine.m */,
-				7EB8B40516D9FC0900F58961 /* Water.h */,
-				7EB8B40616D9FC0900F58961 /* Water.m */,
-				7EB8B40716D9FC0900F58961 /* World1ParticleGenerator.h */,
-				7EB8B40816D9FC0900F58961 /* World1ParticleGenerator.m */,
 			);
 			path = gameobject;
 			sourceTree = "<group>";
@@ -2287,6 +2230,114 @@
 				7EB8B47816D9FC0900F58961 /* Vec3D.m */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		7EBD7601171A423500EBEB3C /* enemy */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B3E116D9FC0900F58961 /* EnemyBomb.h */,
+				7EB8B3E216D9FC0900F58961 /* EnemyBomb.m */,
+				7EB8B3F716D9FC0900F58961 /* LauncherRobot.h */,
+				7EB8B3F816D9FC0900F58961 /* LauncherRobot.m */,
+				7EB8B3F916D9FC0900F58961 /* LauncherRocket.h */,
+				7EB8B3FA16D9FC0900F58961 /* LauncherRocket.m */,
+				7EB8B3FB16D9FC0900F58961 /* MinionRobot.h */,
+				7EB8B3FC16D9FC0900F58961 /* MinionRobot.m */,
+				7EB8B3CF16D9FC0900F58961 /* CopterRobot.h */,
+				7EB8B3D016D9FC0900F58961 /* CopterRobot.m */,
+				7EB8B3D116D9FC0900F58961 /* CopterRobotLoader.h */,
+				7EB8B3D216D9FC0900F58961 /* CopterRobotLoader.m */,
+			);
+			name = enemy;
+			sourceTree = "<group>";
+		};
+		7EBD7602171A425500EBEB3C /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B3E316D9FC0900F58961 /* FadeOutLabWall.h */,
+				7EB8B3E416D9FC0900F58961 /* FadeOutLabWall.m */,
+				7EB8B3F116D9FC0900F58961 /* LabEntrance.h */,
+				7EB8B3F216D9FC0900F58961 /* LabEntrance.m */,
+				7EB8B3F316D9FC0900F58961 /* LabExit.h */,
+				7EB8B3F416D9FC0900F58961 /* LabExit.m */,
+				7EB8B3F516D9FC0900F58961 /* LabWall.h */,
+				7EB8B3F616D9FC0900F58961 /* LabWall.m */,
+				7EB8B3DB16D9FC0900F58961 /* DogShadow.h */,
+				7EB8B3DC16D9FC0900F58961 /* DogShadow.m */,
+				7EB8B3E516D9FC0900F58961 /* FishGenerator.h */,
+				7EB8B3E616D9FC0900F58961 /* FishGenerator.m */,
+				7EB8B3EB16D9FC0900F58961 /* GroundDetail.h */,
+				7EB8B3EC16D9FC0900F58961 /* GroundDetail.m */,
+				7EB8B3ED16D9FC0900F58961 /* IslandFill.h */,
+				7EB8B3EE16D9FC0900F58961 /* IslandFill.m */,
+				7EB8B3C316D9FC0900F58961 /* BirdFlock.h */,
+				7EB8B3C416D9FC0900F58961 /* BirdFlock.m */,
+				7EB8B3CB16D9FC0900F58961 /* CaveWall.h */,
+				7EB8B3CC16D9FC0900F58961 /* CaveWall.m */,
+			);
+			name = detail;
+			sourceTree = "<group>";
+		};
+		7EBD7603171A427C00EBEB3C /* powerup */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B3D316D9FC0900F58961 /* DogBone.h */,
+				7EB8B3D416D9FC0900F58961 /* DogBone.m */,
+				7EB8B3D516D9FC0900F58961 /* DogCape.h */,
+				7EB8B3D616D9FC0900F58961 /* DogCape.m */,
+				7EB8B3D916D9FC0900F58961 /* DogRocket.h */,
+				7EB8B3DA16D9FC0900F58961 /* DogRocket.m */,
+			);
+			name = powerup;
+			sourceTree = "<group>";
+		};
+		7EBD7604171A428A00EBEB3C /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B3CD16D9FC0900F58961 /* CheckPoint.h */,
+				7EB8B3CE16D9FC0900F58961 /* CheckPoint.m */,
+				7EB8B3C516D9FC0900F58961 /* Blocker.h */,
+				7EB8B3C616D9FC0900F58961 /* Blocker.m */,
+				7EB8B3C916D9FC0900F58961 /* CameraArea.h */,
+				7EB8B3CA16D9FC0900F58961 /* CameraArea.m */,
+				7EBD7607171A430700EBEB3C /* ChallengeEnd.h */,
+				7EBD7608171A430700EBEB3C /* ChallengeEnd.m */,
+			);
+			name = internal;
+			sourceTree = "<group>";
+		};
+		7EBD7605171A428F00EBEB3C /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B40716D9FC0900F58961 /* World1ParticleGenerator.h */,
+				7EB8B40816D9FC0900F58961 /* World1ParticleGenerator.m */,
+				7EB8B3DF16D9FC0900F58961 /* EnemyAlert.h */,
+				7EB8B3E016D9FC0900F58961 /* EnemyAlert.m */,
+			);
+			name = misc;
+			sourceTree = "<group>";
+		};
+		7EBD7606171A429500EBEB3C /* obstacle */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8B3FD16D9FC0900F58961 /* SpeedUp.h */,
+				7EB8B3FE16D9FC0900F58961 /* SpeedUp.m */,
+				7EB8B3FF16D9FC0900F58961 /* Spike.h */,
+				7EB8B40016D9FC0900F58961 /* Spike.m */,
+				7EB8B40116D9FC0900F58961 /* SpikeVine.h */,
+				7EB8B40216D9FC0900F58961 /* SpikeVine.m */,
+				7EB8B40316D9FC0900F58961 /* SwingVine.h */,
+				7EB8B40416D9FC0900F58961 /* SwingVine.m */,
+				7EB8B40516D9FC0900F58961 /* Water.h */,
+				7EB8B40616D9FC0900F58961 /* Water.m */,
+				7EB8B3EF16D9FC0900F58961 /* JumpPad.h */,
+				7EB8B3F016D9FC0900F58961 /* JumpPad.m */,
+				7EB8B3DD16D9FC0900F58961 /* ElectricWall.h */,
+				7EB8B3DE16D9FC0900F58961 /* ElectricWall.m */,
+				7EB8B3C716D9FC0900F58961 /* BreakableWall.h */,
+				7EB8B3C816D9FC0900F58961 /* BreakableWall.m */,
+			);
+			name = obstacle;
 			sourceTree = "<group>";
 		};
 		7EC460E81705780C00656A48 /* lab */ = {
@@ -3076,6 +3127,7 @@
 				7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */,
 				7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */,
 				7EDB544D1712C5DB00218A46 /* 1up.png in Resources */,
+				7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3116,7 +3168,6 @@
 				7EB8B49116D9FC0900F58961 /* EnemyBomb.m in Sources */,
 				7EB8B49216D9FC0900F58961 /* FadeOutLabWall.m in Sources */,
 				7EB8B49316D9FC0900F58961 /* FishGenerator.m in Sources */,
-				7EB8B49416D9FC0900F58961 /* GameEndArea.m in Sources */,
 				7EB8B49516D9FC0900F58961 /* GameObject.m in Sources */,
 				7EB8B49616D9FC0900F58961 /* GroundDetail.m in Sources */,
 				7EB8B49716D9FC0900F58961 /* IslandFill.m in Sources */,
@@ -3209,6 +3260,7 @@
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
+				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

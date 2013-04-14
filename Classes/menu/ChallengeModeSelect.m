@@ -5,6 +5,7 @@
 #import "GEventDispatcher.h"
 #import "MainMenuLayer.h"
 #import "Challenge.h"
+#import "GameMain.h" 
 
 @interface ChallengeButtonIcon : CCSprite {
     CCSprite *locked,*unlocked,*status_star;
@@ -185,7 +186,7 @@
     
     CCMenuItem *play = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
                                         rect:@"runbutton"
-                                         tar:self sel:@selector(back_to_select)
+                                         tar:self sel:@selector(play)
                                          pos:ccp(windowrect.size.width*0.95,windowrect.size.height*0)];
     
     CCMenu *but = [CCMenu menuWithItems:back,play, nil];
@@ -269,18 +270,7 @@
 -(void)update_chosenmenu {
     ChallengeInfo* cc = [ChallengeRecord get_challenge_number:chosen_level];
     [chosen_name setString:[NSString stringWithFormat:@"Challenge %d: %@",chosen_level,cc.map_name]];
-    
-    if (cc.type == ChallengeType_COLLECT_BONES) {
-        [chosen_goal setString:[NSString stringWithFormat:@"Collect at least %d bones in one run.",cc.ct]];
-        
-    } else if (cc.type == ChallengeType_TIMED) {
-        [chosen_goal setString:[NSString stringWithFormat:@"Complete this level in %@ or less.",@"0:00"]];
-        
-    } else if (cc.type == ChallengeType_FIND_SECRET) {
-        [chosen_goal setString:[NSString stringWithFormat:@"Find at least %d secrets.",cc.ct]];
-        
-    }
-    
+    [chosen_goal setString:[cc to_string]];
     [chosen_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
                                                           idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar":@"levelstarbad"]];
     
@@ -294,6 +284,10 @@
     [pagewindow setVisible:YES];
     [selectmenu setVisible:YES];
     [chosenmenu setVisible:NO];
+}
+
+-(void)play {
+    [GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:chosen_level]];
 }
 
 -(void)choose_challenge:(int)i {

@@ -12,7 +12,6 @@
 #import "DogCape.h"
 #import "DogRocket.h"
 #import "CheckPoint.h"
-#import "GameEndArea.h"
 #import "Spike.h"
 #import "Water.h"
 #import "JumpPad.h"
@@ -35,6 +34,7 @@
 #import "EnemyAlert.h"
 #import "TutorialLauncher.h"
 #import "TutorialEnd.h"
+#import "ChallengeEnd.h" 
 
 @interface GameMap : NSObject
     @property(readwrite,strong) NSMutableArray *n_islands, *game_objects;

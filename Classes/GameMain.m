@@ -8,7 +8,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"tutorial_breakrocks"
 #define STARTING_LIVES 1
 
 #define DRAW_HITBOX NO
@@ -95,20 +95,27 @@
     [UserInventory add_bones:1000];
     
     //[GameMain start_testlevel];
-    [GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    //[GameMain start_game_autolevel];
+    [GameMain start_menu];
     
 }
 
 +(void)start_game_autolevel {
     [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES]];
 }
+
++(void)start_game_challengelevel:(ChallengeInfo *)info {
+    [GameMain run_scene:[GameEngineLayer scene_with_challenge:info]];
+}
+
 +(void)start_menu {
     [GameMain run_scene:[MainMenuLayer scene]];
 }
+
 +(void)start_testlevel {
     [GameMain run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
 }
+
 +(void)run_scene:(CCScene*)s {
     [[CCDirector sharedDirector] runningScene]?
     [[CCDirector sharedDirector] replaceScene:s]:

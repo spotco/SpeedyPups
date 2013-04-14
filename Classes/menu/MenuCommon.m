@@ -15,29 +15,29 @@
     CCMenuItem *shopbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_shopbutton"
                                                tar:self sel:@selector(goto_shop)
-                                               pos:[Common screen_pctwid:0.05 pcthei:0.08]];
+                                               pos:[Common screen_pctwid:0.05 pcthei:0.09]];
     
     CCMenuItem *charselbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                  rect:@"nmenu_blankbutton"
                                                   tar:self sel:@selector(goto_charsel)
-                                                  pos:[Common screen_pctwid:0.15 pcthei:0.08]];
+                                                  pos:[Common screen_pctwid:0.175 pcthei:0.09]];
     
     
     
     CCMenuItem *settingsbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                   rect:@"nmenu_settingsbutton"
                                                    tar:self sel:@selector(goto_settings)
-                                                   pos:[Common screen_pctwid:0.95 pcthei:0.08]];
+                                                   pos:[Common screen_pctwid:0.95 pcthei:0.09]];
     
     CCMenuItem *homebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                   rect:@"nmenu_homebutton"
                                                    tar:self sel:@selector(goto_home)
-                                                   pos:[Common screen_pctwid:0.85 pcthei:0.08]];
+                                                   pos:[Common screen_pctwid:0.5 pcthei:0.09]];
     
     CCMenuItem *invbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_inventorybutton"
                                                tar:self sel:@selector(inventory)
-                                               pos:[Common screen_pctwid:0.25 pcthei:0.08]];
+                                               pos:[Common screen_pctwid:0.825 pcthei:0.09]];
     
     CCMenu* m = [CCMenu menuWithItems:invbutton,shopbutton,charselbutton,settingsbutton,homebutton, nil];
     [m setPosition:ccp(0,0)];
