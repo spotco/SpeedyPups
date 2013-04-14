@@ -1,6 +1,7 @@
 #import "AutoLevel.h"
 #import "GameEngineLayer.h"
 #import "DogBone.h"
+#import "SwingVine.h" 
 
 @implementation AutoLevel
 

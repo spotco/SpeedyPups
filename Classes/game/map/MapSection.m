@@ -1,4 +1,6 @@
 #import "MapSection.h"
+#import "Island.h"
+#import "GameObject.h" 
 
 #define DOTMAP @"map"
 

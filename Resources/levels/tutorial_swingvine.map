@@ -1,12 +1,10 @@
 {
-    "connect_pts": {"y2": 1400, "x1": 46, "y1": 999, "x2": 10102.7},
-    "assert_links": 0,
     "islands": [
         {"type": "line", "y2": 999, "x1": 46, "can_fall": true, "x2": 3304, "ground": "open", "ndir": "left", "y1": 999, "hei": 500},
         {"type": "line", "y2": 999, "x1": 3850, "can_fall": true, "x2": 4754, "ground": "open", "ndir": "left", "y1": 998, "hei": 500},
         {"type": "line", "y2": 1100, "x1": 5860.1, "can_fall": true, "x2": 6851.4, "ground": "open", "ndir": "left", "y1": 1105, "hei": 500},
         {"type": "line", "y2": 1200, "x1": 7425.1, "can_fall": true, "x2": 8052.6, "ground": "open", "ndir": "left", "y1": 1206.3, "hei": 500},
-        {"type": "line", "y2": 1400, "x1": 9151.4, "can_fall": true, "x2": 10102.7, "ground": "open", "ndir": "left", "y1": 1397.5, "hei": 800}
+        {"type": "line", "y2": 1398, "x1": 9151.4, "can_fall": true, "x2": 10501, "ground": "open", "ndir": "left", "y1": 1397.5, "hei": 800}
     ],
     "objects": [
         {"type": "checkpoint", "x": 548, "label": "0", "y": 997},
@@ -43,7 +41,7 @@
         {"x": 4808, "y2": 1410, "y": 1411, "x2": 5127, "type": "spikevine", "label": "39"},
         {"x": 5586.3, "y2": 1524.8, "y": 1523.8, "x2": 5426.3, "type": "spikevine", "label": "41"},
         {"height": 737.5, "x": 4737.6, "width": 1137.5, "y": 192.5, "type": "water", "label": "42"},
-        {"height": 183.70000000000005, "x": 5858.9, "width": 98.70000000000073, "y": 898.8, "type": "blocker", "label": "43"},
+        {"height": 183.70000000000005, "x": 5858.9, "width": 98.70000000000071, "y": 898.8, "type": "blocker", "label": "43"},
         {"type": "dogbone", "x": 4983.8, "label": "BID:9", "bid": 9, "y": 1140},
         {"type": "dogbone", "x": 4908.8, "label": "BID:10", "bid": 10, "y": 1182.5},
         {"type": "dogbone", "x": 5106.3, "label": "BID:11", "bid": 11, "y": 1142.5},
@@ -64,7 +62,7 @@
         {"type": "dogbone", "x": 6910.1, "label": "BID:21", "bid": 21, "y": 1257.5},
         {"x": 6947.6, "y2": 1502.5, "y": 1502.5, "x2": 7145.1, "type": "spikevine", "label": "63"},
         {"height": 528.7, "x": 6831.4, "width": 611.2000000000007, "y": 523.8, "type": "water", "label": "64"},
-        {"height": 152.45000000000005, "x": 7428.9, "width": 116.20000000000073, "y": 1031.3, "type": "blocker", "label": "65"},
+        {"height": 152.45000000000005, "x": 7428.9, "width": 116.20000000000071, "y": 1031.3, "type": "blocker", "label": "65"},
         {"type": "dogbone", "x": 7400.1, "label": "BID:22", "bid": 22, "y": 1446.3},
         {"type": "dogbone", "x": 7398.9, "label": "BID:23", "bid": 23, "y": 1352.5},
         {"type": "dogbone", "x": 7501.4, "label": "BID:24", "bid": 24, "y": 1400},
@@ -90,8 +88,11 @@
         {"type": "ground_detail", "x": 9600.2, "label": "(88)gd_img:6", "img": 6, "y": 1398.8},
         {"type": "ground_detail", "x": 9750.2, "label": "(89)gd_img:6", "img": 6, "y": 1400},
         {"height": 772, "x": 8006, "width": 1200, "y": 370, "type": "water", "label": "90"},
-        {"height": 250, "x": 9158, "width": 178, "y": 1122, "type": "blocker", "label": "91"}
+        {"height": 250, "x": 9158, "width": 178, "y": 1122, "type": "blocker", "label": "91"},
+        {"type": "game_end", "x": 10001, "label": "0", "y": 1397}
     ],
+    "assert_links": 0,
     "start_x": 302.5,
+    "connect_pts": {"y2": 1398, "x1": 46, "y1": 999, "x2": 10501},
     "start_y": 1087.5
 }

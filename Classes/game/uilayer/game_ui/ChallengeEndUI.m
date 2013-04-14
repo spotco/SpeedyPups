@@ -74,7 +74,7 @@
                            constrainedToSize:CGSizeMake(1000, 1000)
                                lineBreakMode:UILineBreakModeWordWrap];
     
-    reward_disp = [CCLabelTTF labelWithString:@"Earned 1000 bones!"
+    reward_disp = [CCLabelTTF labelWithString:@""
                                 dimensions:actualSize
                                  alignment:UITextAlignmentLeft
                                   fontName:@"Carton Six"

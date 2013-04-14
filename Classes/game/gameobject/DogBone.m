@@ -90,10 +90,14 @@
     
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
-        [AudioManager playsfx:SFX_BONE];
-        [GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
-        [self set_active:NO];
+        [self hit];
     }
+}
+
+-(void)hit {
+    [AudioManager playsfx:SFX_BONE];
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
+    active=NO;
 }
 
 -(void)notify_challenge_mode:(ChallengeInfo *)c {

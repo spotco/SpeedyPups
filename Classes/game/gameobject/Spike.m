@@ -3,6 +3,7 @@
 #import "GameEngineLayer.h"
 
 @implementation Spike
+@synthesize img;
 
 +(Spike*)cons_x:(float)posx y:(float)posy islands:(NSMutableArray*)islands {
     Spike *s = [Spike node];

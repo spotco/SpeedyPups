@@ -23,6 +23,7 @@ typedef enum {
     GEventType_USE_ITEM,
     GEventType_ITEM_DURATION_PCT,
     GEventType_CONTINUE_GAME,
+    GEventType_GET_COIN,
     
     GEventType_CHALLENGE,
     GEventType_CHALLENGE_COMPLETE,

@@ -7,11 +7,9 @@
 
 @interface GameObject : CCSprite {
     BOOL active,do_render;
-    CCSprite *__strong img;
 }
 
 @property(readwrite,assign) BOOL active,do_render;
-@property(readwrite,strong) CCSprite *img;
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g;
 -(HitRect) get_hit_rect;

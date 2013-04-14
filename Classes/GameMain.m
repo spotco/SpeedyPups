@@ -9,7 +9,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_breakrocks"
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 1
 
 #define DRAW_HITBOX NO
@@ -30,7 +30,9 @@
 
 /**
  TODO --
- -secret/25bones item
+ -Ask for: different secret, coin with shine animation
+ -add coin to leveleditor
+ 
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -challenge mode with gameend anim
@@ -91,13 +93,23 @@
     [UserInventory set_item:Item_Magnet to_slot:2];
     [UserInventory set_item:Item_Shield to_slot:3];
     
-    //[ChallengeRecord set_beaten_challenge:0 to:YES];
-    //[ChallengeRecord set_beaten_challenge:1 to:YES];
-    [UserInventory add_bones:1000];
+    /*
+    [ChallengeRecord set_beaten_challenge:0 to:YES];
+    [ChallengeRecord set_beaten_challenge:1 to:YES];
+    [ChallengeRecord set_beaten_challenge:2 to:YES];
+    [ChallengeRecord set_beaten_challenge:3 to:YES];
+    [ChallengeRecord set_beaten_challenge:4 to:YES];
+    [ChallengeRecord set_beaten_challenge:5 to:YES];
+    [ChallengeRecord set_beaten_challenge:6 to:YES];
+    [ChallengeRecord set_beaten_challenge:7 to:YES];
+    [ChallengeRecord set_beaten_challenge:8 to:YES];
+    [ChallengeRecord set_beaten_challenge:9 to:YES];
+     */
+    //[UserInventory add_bones:1000];
     
-    [GameMain start_testlevel];
+    //[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

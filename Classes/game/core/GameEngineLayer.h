@@ -40,6 +40,7 @@ typedef enum {
     int collected_bones;
     int current_continue_cost;
     int default_starting_lives;
+    int collected_secrets;
     
     int runout_ct;
     ChallengeInfo* challenge;
@@ -79,11 +80,10 @@ typedef enum {
 -(int)get_time;
 -(int)get_num_particles;
 -(int)get_num_bones;
+-(int)get_num_secrets;
 
 -(int)get_current_continue_cost;
 -(void)incr_current_continue_cost;
-
--(void)exit;
 
 -(void)setColor:(ccColor3B)color;
 

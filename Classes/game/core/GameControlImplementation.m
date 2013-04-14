@@ -1,6 +1,7 @@
 #import "GameControlImplementation.h"
 #import "GameEngineLayer.h"
 #import "GEventDispatcher.h"
+#import "SwingVine.h" 
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5

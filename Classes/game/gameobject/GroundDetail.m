@@ -3,6 +3,7 @@
 
 @implementation GroundDetail
 @synthesize imgtype;
+@synthesize img;
 
 static NSMutableArray* IDTOKEY;
 +(NSString*)id_to_key:(int)gid {

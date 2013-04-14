@@ -2,6 +2,9 @@
 #import "LauncherRobot.h"
 #import "JumpPadParticle.h"
 #import "GameEngineLayer.h"
+#import "HitEffect.h" 
+#import "DazedParticle.h"
+#import "ExplosionParticle.h" 
 
 @implementation LauncherRocket
 

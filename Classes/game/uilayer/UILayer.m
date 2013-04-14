@@ -10,6 +10,7 @@
 #import "GameOverUI.h"
 #import "ChallengeEndUI.h" 
 #import "GameModeCallback.h" 
+#import "CoinCollectUIAnimation.h"
 
 @implementation UILayer
 
@@ -71,13 +72,16 @@
                                  info:[e get_value:@"challenge"]
                                 bones:ingameui.bones_disp.string
                                  time:ingameui.time_disp.string
-                              secrets:@"0"];
+                              secrets:[NSString stringWithFormat:@"%d",[game_engine_layer get_num_secrets]]];
     
     } else if (e.type == GEventType_LOAD_CHALLENGE_COMPLETE_MENU) {
         [self set_this_visible:challengeendui];
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         [self start_bone_collect_anim];
+        
+    } else if (e.type == GEventType_GET_COIN) {
+        [self start_coin_collect_anim];
         
     } else if (e.type == GEventType_ASK_CONTINUE) {
         [self ask_continue];
@@ -113,6 +117,12 @@
     BoneCollectUIAnimation* b = [BoneCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
     [self addChild:b];
     [ingame_ui_anims addObject:b];
+}
+
+-(void)start_coin_collect_anim {
+    CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
+    [self addChild:c];
+    [ingame_ui_anims addObject:c];
 }
 
 -(void)ask_continue {

@@ -2,6 +2,10 @@
 #import "GameEngineLayer.h"
 #import "JumpPadParticle.h"
 #import "EnemyBomb.h"
+#import "HitEffect.h"
+#import "DazedParticle.h"
+#import "LauncherRobot.h"
+#import "BrokenMachineParticle.h" 
 
 #define ARM_DEFAULT_POSITION ccp(-35,-55)
 

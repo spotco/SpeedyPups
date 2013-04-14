@@ -9,4 +9,5 @@
 
 +(Spike*)cons_x:(float)posx y:(float)posy islands:(NSMutableArray*)islands;
 
+@property(readwrite,strong)CCSprite* img;
 @end

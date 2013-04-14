@@ -1,4 +1,5 @@
 #import "MapLoader.h"
+#import "Common.h" 
 
 @interface MapSection : NSObject {
     float offset_x,offset_y;

@@ -1,7 +1,7 @@
 #import "DogCape.h"
 
 @implementation DogCape
-
+@synthesize img;
 
 +(DogCape*)cons_x:(float)x y:(float)y {
     DogCape *new_cape = [DogCape node];

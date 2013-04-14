@@ -1,8 +1,17 @@
 {
-    "assert_links": 0,
-    "objects": [{"height": 192, "x": 615, "width": 317, "y": 49, "type": "water", "label": "0"}],
     "connect_pts": {"y2": 253, "x1": 57, "y1": 223, "x2": 666},
-    "start_x": 125,
     "islands": [{"type": "line", "y2": 253, "x1": 57, "can_fall": true, "x2": 666, "ground": "open", "ndir": "left", "y1": 223, "hei": 50}],
+    "objects": [
+        {"height": 192, "x": 615, "width": 317, "y": 49, "type": "water", "label": "0"},
+        {"type": "coin", "x": 533, "label": "0", "y": 399},
+        {"type": "dogbone", "x": 448, "label": "BID:1", "bid": 1, "y": 390},
+        {"type": "dogbone", "x": 378, "label": "BID:2", "bid": 2, "y": 384},
+        {"type": "dogbone", "x": 305, "label": "BID:3", "bid": 3, "y": 376},
+        {"type": "dogbone", "x": 627, "label": "BID:4", "bid": 4, "y": 406},
+        {"type": "dogbone", "x": 701, "label": "BID:5", "bid": 5, "y": 412},
+        {"type": "dogbone", "x": 796, "label": "BID:6", "bid": 6, "y": 416}
+    ],
+    "start_x": 125,
+    "assert_links": 0,
     "start_y": 282
 }

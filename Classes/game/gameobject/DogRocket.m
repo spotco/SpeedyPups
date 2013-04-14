@@ -1,6 +1,7 @@
 #import "DogRocket.h"
 
 @implementation DogRocket
+@synthesize img;
 
 +(DogRocket*)cons_x:(float)x y:(float)y {
     DogRocket *new_rocket = [DogRocket node];

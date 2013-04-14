@@ -62,7 +62,7 @@
         {"type": "ground_detail", "x": 7001.5, "label": "(50)gd_img:6", "img": 6, "y": 1000},
         {"type": "ground_detail", "x": 7501.5, "label": "(51)gd_img:6", "img": 6, "y": 1001.4},
         {"type": "birdflock", "x": 7262.9, "label": "52", "y": 1000},
-        {"height": 581.3714285714285, "x": 7058.6, "width": 412.89999999999964, "y": 354.3, "type": "water", "label": "53"},
+        {"height": 581.3714285714285, "x": 7058.6, "width": 412.8999999999997, "y": 354.3, "type": "water", "label": "53"},
         {"type": "dogbone", "x": 7650.1, "label": "BID:25", "bid": 25, "y": 1202.9},
         {"type": "dogbone", "x": 7748.7, "label": "BID:26", "bid": 26, "y": 1202.9},
         {"type": "dogbone", "x": 7852.9, "label": "BID:27", "bid": 27, "y": 1200},
@@ -83,7 +83,8 @@
         {"type": "ground_detail", "x": 10000.1, "label": "(71)gd_img:6", "img": 6, "y": 950},
         {"height": 544.3214285714286, "x": 7582.9, "width": 2185.800000000001, "y": 347.1, "type": "water", "label": "72"},
         {"height": 170.02142857142854, "x": 9760.1, "width": 108.5, "y": 757.1, "type": "blocker", "label": "73"},
-        {"type": "birdflock", "x": 9195.8, "label": "74", "y": 1051.4}
+        {"type": "birdflock", "x": 9195.8, "label": "74", "y": 1051.4},
+        {"type": "game_end", "x": 10300.1, "label": "0", "y": 948.6}
     ],
     "start_x": 201,
     "connect_pts": {"y2": 948.6, "x1": 52, "y1": 997, "x2": 10907.2},

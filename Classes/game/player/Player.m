@@ -5,6 +5,8 @@
 #import "UsedItem.h"
 #import "MagnetItemEffect.h"
 #import "ArmorBreakEffect.h"
+#import "JumpPadParticle.h" 
+
 
 #define IMGWID 64
 #define IMGHEI 58
@@ -432,6 +434,7 @@ static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
     dashing = NO;
     dead = NO;
     current_swingvine = NULL;
+    [self start_anim:player_anim_mode_RUN_NONE];
     [self reset_all_ieffects];
     [self reset_params];
 }

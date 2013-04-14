@@ -1,5 +1,43 @@
 #import "MapLoader.h"
 
+#import "CJSONDeserializer.h"
+
+#import "LineIsland.h"
+#import "Island.h"
+#import "CaveLineIsland.h"
+#import "BridgeIsland.h"
+#import "LabLineIsland.h"
+
+#import "DogBone.h"
+#import "GroundDetail.h"
+#import "DogCape.h"
+#import "DogRocket.h"
+#import "CheckPoint.h"
+#import "Spike.h"
+#import "Water.h"
+#import "JumpPad.h"
+#import "BirdFlock.h"
+#import "Blocker.h"
+#import "SpeedUp.h"
+#import "CaveWall.h"
+#import "IslandFill.h"
+#import "BreakableWall.h"
+#import "SpikeVine.h"
+#import "CameraArea.h"
+#import "SwingVine.h"
+#import "MinionRobot.h"
+#import "LauncherRobot.h"
+#import "FadeOutLabWall.h"
+#import "CopterRobotLoader.h"
+#import "ElectricWall.h"
+#import "LabEntrance.h"
+#import "LabExit.h"
+#import "EnemyAlert.h"
+#import "TutorialLauncher.h"
+#import "TutorialEnd.h"
+#import "ChallengeEnd.h"
+#import "Coin.h"
+
 @implementation GameMap
     @synthesize assert_links;
     @synthesize connect_pts_x1,connect_pts_x2,connect_pts_y1,connect_pts_y2;
@@ -290,6 +328,11 @@ static NSMutableDictionary* cached_json;
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             [map.game_objects addObject:[TutorialEnd cons_pos:ccp(x,y)]];
+            
+        } else if ([type isEqualToString:@"coin"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            [map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
             
         } else {
             NSLog(@"item read error");

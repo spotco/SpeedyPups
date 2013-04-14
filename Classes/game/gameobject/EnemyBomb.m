@@ -1,6 +1,8 @@
 #import "EnemyBomb.h"
 #import "GameEngineLayer.h"
 #import "Player.h" 
+#import "ExplosionParticle.h" 
+#import "HitEffect.h" 
 
 @interface BombSparkParticle : Particle {
     CGPoint vel;

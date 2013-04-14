@@ -16,15 +16,9 @@
     
 }
 
-typedef enum {
-    Bone_Status_TOGET, //to get
-    Bone_Status_HASGET, //gotten, no checkpoint yet
-    Bone_Status_SAVEDGET, //gotten, then checkpoint
-    Bone_Status_ALREADYGET //already gotten
-} Bone_Status;
-
 +(DogBone*)cons_x:(float)x y:(float)y bid:(int)bid;
+-(void)hit;
 
 @property(readwrite,assign) int bid;
-
+@property(readwrite,strong)CCSprite* img;
 @end

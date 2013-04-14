@@ -1,5 +1,4 @@
 {
-    "assert_links": 25,
     "islands": [
         {"type": "line", "y2": 251, "x1": 2, "can_fall": true, "x2": 3104, "ground": "open", "ndir": "left", "y1": 246, "hei": 300},
         {"type": "line", "y2": 400, "x1": 601, "can_fall": true, "x2": 902, "ground": "open", "ndir": "left", "y1": 399, "hei": 50},
@@ -45,8 +44,9 @@
         {"type": "line", "y2": 2048, "x1": 13898, "can_fall": true, "x2": 14097, "ground": "open", "ndir": "left", "y1": 1947, "hei": 500},
         {"type": "line", "y2": 2057, "x1": 14097, "can_fall": true, "x2": 14502, "ground": "open", "ndir": "left", "y1": 2048, "hei": 500},
         {"type": "line", "y2": 2054, "x1": 14802, "can_fall": true, "x2": 15354, "ground": "open", "ndir": "left", "y1": 2048, "hei": 500},
-        {"type": "line", "y2": 2048, "x1": 15651, "can_fall": true, "x2": 16906, "ground": "open", "ndir": "left", "y1": 2049, "hei": 500}
+        {"type": "line", "y2": 2051, "x1": 15651, "can_fall": true, "x2": 17218, "ground": "open", "ndir": "left", "y1": 2049, "hei": 500}
     ],
+    "connect_pts": {"y2": 2051, "x1": 2, "y1": 246, "x2": 17218},
     "objects": [
         {"type": "dogbone", "x": 851, "label": "BID:1", "bid": 1, "y": 425},
         {"type": "dogbone", "x": 2550, "label": "BID:2", "bid": 2, "y": 740},
@@ -60,7 +60,7 @@
         {"height": 400, "x": 7446, "width": 2907, "y": 100, "type": "water", "label": "10"},
         {"type": "dogbone", "x": 7302, "label": "BID:6", "bid": 6, "y": 2069},
         {"type": "dogbone", "x": 8950, "label": "BID:7", "bid": 7, "y": 2073},
-        {"type": "dogbone", "x": 10152, "label": "BID:8", "bid": 8, "y": 2165},
+        {"type": "dogbone", "x": 10153, "label": "BID:8", "bid": 8, "y": 2200},
         {"type": "dogbone", "x": 6352, "label": "BID:9", "bid": 9, "y": 785},
         {"type": "dogbone", "x": 7071, "label": "BID:10", "bid": 10, "y": 914},
         {"type": "dogbone", "x": 8149, "label": "BID:11", "bid": 11, "y": 2070},
@@ -110,16 +110,14 @@
         {"type": "dogbone", "x": 6323, "label": "BID:28", "bid": 28, "y": 1925},
         {"type": "dogbone", "x": 6367, "label": "BID:29", "bid": 29, "y": 2004},
         {"type": "dogbone", "x": 6479, "label": "BID:30", "bid": 30, "y": 2077},
-        {"type": "dogbone", "x": 6826, "label": "BID:31", "bid": 31, "y": 2206},
-        {"type": "dogbone", "x": 6922, "label": "BID:84", "bid": 84, "y": 2204},
-        {"type": "dogbone", "x": 7522, "label": "BID:33", "bid": 33, "y": 2204},
-        {"type": "dogbone", "x": 7642, "label": "BID:34", "bid": 34, "y": 2204},
-        {"type": "dogbone", "x": 8377, "label": "BID:35", "bid": 35, "y": 2203},
-        {"type": "dogbone", "x": 8497, "label": "BID:36", "bid": 36, "y": 2199},
-        {"type": "dogbone", "x": 9180, "label": "BID:37", "bid": 37, "y": 2198},
-        {"type": "dogbone", "x": 9291, "label": "BID:38", "bid": 38, "y": 2196},
-        {"type": "dogbone", "x": 10364, "label": "BID:39", "bid": 39, "y": 2187},
-        {"type": "dogbone", "x": 10596, "label": "BID:40", "bid": 40, "y": 2101},
+        {"type": "dogbone", "x": 7499, "label": "BID:33", "bid": 33, "y": 2203},
+        {"type": "dogbone", "x": 7671, "label": "BID:34", "bid": 34, "y": 2202},
+        {"type": "dogbone", "x": 8346, "label": "BID:35", "bid": 35, "y": 2204},
+        {"type": "dogbone", "x": 8518, "label": "BID:36", "bid": 36, "y": 2203},
+        {"type": "dogbone", "x": 9142, "label": "BID:37", "bid": 37, "y": 2202},
+        {"type": "dogbone", "x": 9309, "label": "BID:38", "bid": 38, "y": 2202},
+        {"type": "dogbone", "x": 10250, "label": "BID:39", "bid": 39, "y": 2197},
+        {"type": "dogbone", "x": 10450, "label": "BID:40", "bid": 40, "y": 2197},
         {"type": "dogbone", "x": 3758, "label": "BID:41", "bid": 41, "y": 715},
         {"type": "dogbone", "x": 4088, "label": "BID:42", "bid": 42, "y": 889},
         {"type": "dogbone", "x": 3135, "label": "BID:43", "bid": 43, "y": 941},
@@ -149,9 +147,18 @@
         {"type": "dogbone", "x": 15554, "label": "BID:85", "bid": 85, "y": 2224},
         {"type": "dogbone", "x": 14604, "label": "BID:86", "bid": 86, "y": 2236},
         {"type": "dogbone", "x": 12956, "label": "BID:87", "bid": 87, "y": 1882},
-        {"type": "dogbone", "x": 12062, "label": "BID:88", "bid": 88, "y": 1878}
+        {"type": "dogbone", "x": 12062, "label": "BID:88", "bid": 88, "y": 1878},
+        {"type": "dogbone", "x": 6790, "label": "BID:89", "bid": 89, "y": 2219},
+        {"type": "dogbone", "x": 6953, "label": "BID:90", "bid": 90, "y": 2220},
+        {"type": "coin", "x": 6877, "label": "2", "y": 2219},
+        {"type": "coin", "x": 8443, "label": "4", "y": 2202},
+        {"type": "coin", "x": 9240, "label": "5", "y": 2200},
+        {"type": "coin", "x": 10349, "label": "6", "y": 2198},
+        {"type": "dogbone", "x": 10551, "label": "BID:91", "bid": 91, "y": 2196},
+        {"type": "coin", "x": 7592, "label": "8", "y": 2202},
+        {"type": "game_end", "x": 16648, "label": "9", "y": 2049}
     ],
+    "start_y": 291,
     "start_x": 142,
-    "connect_pts": {"y2": 2048, "x1": 2, "y1": 246, "x2": 16906},
-    "start_y": 291
+    "assert_links": 25
 }

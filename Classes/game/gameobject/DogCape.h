@@ -6,5 +6,5 @@
 }
 
 +(DogCape*)cons_x:(float)x y:(float)y;
-
+@property(readwrite,strong)CCSprite* img;
 @end

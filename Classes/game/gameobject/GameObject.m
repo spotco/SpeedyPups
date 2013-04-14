@@ -6,7 +6,6 @@
 @implementation GameObject
 
 @synthesize active,do_render;
-@synthesize img;
 
 -(id)init {
     ct++;

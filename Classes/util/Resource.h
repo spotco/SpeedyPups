@@ -91,7 +91,6 @@
 
 #define TEX_CHECKPOINT_1 @"CheckPointPre"
 #define TEX_CHECKPOINT_2 @"CheckPointPost"
-#define TEX_CHECKERFLOOR @"CheckerFloor"
 
 #define TEX_GREY_PARTICLE @"GreyParticle"
 #define TEX_SMOKE_PARTICLE @"smokeparticle"
@@ -104,17 +103,10 @@
 #define TEX_UI_ENEMY_ALERT @"UIEnemyAlert"
 
 #define TEX_UI_PAUSEICON @"UIPauseIcon"
-#define TEX_UI_PAUSEMENU_RETURN @"PauseMenuReturn"
-#define TEX_UI_PAUSEMENU_PLAY @"PauseMenuPlay"
-#define TEX_UI_PAUSEMENU_BACK @"PauseMenuBack"
 #define TEX_UI_STARTGAME_GO @"UIStartGameGo"
 #define TEX_UI_STARTGAME_READY @"UIStartGameReady"
 
 #define TEX_UI_INGAMEUI_SS @"ingame_ui_ss"
-
-#define TEX_UI_GAMEOVER_TITLE @"UIgameovertitle"
-#define TEX_UI_GAMEOVER_INFO @"UIgameoverinfo"
-#define TEX_UI_GAMEOVER_LOGO @"UIgameoverlogo"
 
 #define TEX_TUTORIAL_OBJ @"tutorial_obj"
 #define TEX_TUTORIAL_ANIM_1 @"tut_anim_1"

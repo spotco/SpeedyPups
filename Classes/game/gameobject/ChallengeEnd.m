@@ -1,6 +1,7 @@
 #import "ChallengeEnd.h"
 #import "Challenge.h" 
 #import "GameEngineLayer.h" 
+#import "UICommon.h" 
 
 @implementation ChallengeEnd
 
@@ -56,6 +57,7 @@
           add_i1:[self did_complete_challenge:g] i2:0]
           add_key:@"challenge" value:info]
          ];
+        NSLog(@"passt:%d",[g get_time]);
     }
     
     return;
@@ -66,10 +68,16 @@
         return [g get_num_bones] >= info.ct;
     
     } else if (info.type == ChallengeType_FIND_SECRET) {
-        return NO;
+        return [g get_num_secrets] >= info.ct;
         
     } else if (info.type == ChallengeType_TIMED) {
-        return [g get_time] <= info.ct;
+        if ([g get_time] <= info.ct) {
+            return YES;
+        } else if ([[UICommon parse_gameengine_time:[g get_time]] isEqualToString:[UICommon parse_gameengine_time:info.ct]]) {
+            return YES;
+        } else {
+            return NO;
+        }
         
     }
     return NO;

@@ -84,10 +84,11 @@
         {"type": "line", "y2": 2688.6, "x1": 1812.9, "can_fall": true, "x2": 1841.5, "ground": "open", "ndir": "left", "y1": 2780, "hei": 100},
         {"type": "line", "y2": 2607.1, "x1": 1841.5, "can_fall": true, "x2": 1802.9, "ground": "open", "ndir": "left", "y1": 2688.6, "hei": 100}
     ],
+    "assert_links": 79,
     "objects": [
         {"type": "checkpoint", "x": 401.5, "label": "0", "y": 1700},
         {"type": "jumppad", "x": 847.2, "label": "1", "dir": {"x": 1, "y": -0.07}, "y": 1295.7},
-        {"height": 237.22142857142856, "x": 1275.7, "width": 375.79999999999995, "y": 1145.7, "type": "island_fill", "label": "2"},
+        {"height": 237.22142857142856, "x": 1275.7, "width": 375.7999999999999, "y": 1145.7, "type": "island_fill", "label": "2"},
         {"type": "dogbone", "x": 1644.3, "label": "BID:4", "bid": 4, "y": 1488.6},
         {"type": "dogbone", "x": 1750, "label": "BID:5", "bid": 5, "y": 1378.6},
         {"type": "dogbone", "x": 1780, "label": "BID:6", "bid": 6, "y": 1231.4},
@@ -98,7 +99,7 @@
         {"type": "ground_detail", "x": 1458.6, "label": "(14)gd_img:6", "img": 6, "y": 1491.4},
         {"type": "ground_detail", "x": 1801.5, "label": "(17)gd_img:5", "img": 5, "y": 700},
         {"height": 594.2214285714285, "x": 1885.7, "width": 328.60000000000014, "y": 62.9, "type": "water", "label": "18"},
-        {"height": 124.32142857142861, "x": 2207.2, "width": 102.79999999999973, "y": 564.3, "type": "blocker", "label": "19"},
+        {"height": 124.3214285714286, "x": 2207.2, "width": 102.79999999999971, "y": 564.3, "type": "blocker", "label": "19"},
         {"type": "jumppad", "x": 2598.6, "label": "20", "dir": {"x": 0.09, "y": 1}, "y": 724.3},
         {"type": "ground_detail", "x": 2347.2, "label": "(21)gd_img:6", "img": 6, "y": 701.4},
         {"type": "dogbone", "x": 2648.6, "label": "BID:9", "bid": 9, "y": 1151.4},
@@ -157,11 +158,11 @@
         {"height": 58.571428571428214, "x": 2562.9, "width": 28.59999999999991, "y": 2784.3, "type": "island_fill", "label": "81"},
         {"height": 42.87142857142851, "x": 2360, "width": 45.69999999999982, "y": 1845.7, "type": "island_fill", "label": "82"},
         {"height": 51.37142857142851, "x": 2267.8, "width": 54.19999999999982, "y": 1834.4, "type": "island_fill", "label": "83"},
-        {"x": 3632, "y2": 1297.3999999999999, "y": 2786, "x2": 3633.5, "type": "spikevine", "label": "86"},
+        {"x": 3632, "y2": 1297.4, "y": 2786, "x2": 3633.5, "type": "spikevine", "label": "86"},
         {"type": "speedup", "x": 2977.2, "label": "87", "dir": {"x": -0.01, "y": 1}, "y": 3347.1},
         {"type": "spike", "x": 3454, "label": "89", "y": 2830},
         {"height": 722.9214285714285, "x": 3070, "width": 474.3000000000002, "y": 85.7, "type": "island_fill", "label": "90"},
-        {"height": 352.9214285714286, "x": 2664.3, "width": 471.39999999999964, "y": 41.4, "type": "island_fill", "label": "91"},
+        {"height": 352.9214285714286, "x": 2664.3, "width": 471.3999999999997, "y": 41.4, "type": "island_fill", "label": "91"},
         {"type": "spike", "x": 3294, "label": "95", "y": 2828},
         {"type": "spike", "x": 3140, "label": "96", "y": 2838},
         {"type": "spike", "x": 3044, "label": "97", "y": 2912},
@@ -187,10 +188,10 @@
         {"type": "dogbone", "x": 1548.4, "label": "BID:56", "bid": 56, "y": 3096.7},
         {"type": "dogbone", "x": 1548.4, "label": "BID:57", "bid": 57, "y": 3000},
         {"type": "dogbone", "x": 1650, "label": "BID:58", "bid": 58, "y": 3100},
-        {"type": "dogbone", "x": 1648.4, "label": "BID:59", "bid": 59, "y": 3001.7}
+        {"type": "dogbone", "x": 1648.4, "label": "BID:59", "bid": 59, "y": 3001.7},
+        {"type": "game_end", "x": 3950.1, "label": "0", "y": 3781.7}
     ],
-    "connect_pts": {"y2": 3782, "x1": 48.6, "y1": 1697.1, "x2": 4642},
     "start_x": 112.9,
-    "assert_links": 79,
+    "connect_pts": {"y2": 3782, "x1": 48.6, "y1": 1697.1, "x2": 4642},
     "start_y": 1751.3833333333334
 }

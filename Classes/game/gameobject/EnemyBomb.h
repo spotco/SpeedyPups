@@ -1,5 +1,4 @@
 #import "GameObject.h"
-#import "PhysicsEnabledObject.h"
 
 @interface EnemyBomb : GameObject {
     CCSprite *body;

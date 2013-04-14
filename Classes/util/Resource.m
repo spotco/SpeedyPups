@@ -93,7 +93,6 @@ static NSMutableDictionary* textures = nil;
                         @"spikes.png", TEX_SPIKE,
 
                         @"checkpoint1.png",TEX_CHECKPOINT_1,
-                        @"checkerfloor.png",TEX_CHECKERFLOOR,
                         @"checkpoint2.png",TEX_CHECKPOINT_2,
 
                         @"grey_particle.png",TEX_GREY_PARTICLE,
@@ -109,12 +108,6 @@ static NSMutableDictionary* textures = nil;
                         @"ingame_ui_ss.png",TEX_UI_INGAMEUI_SS,
                      
                         @"pauseicon.png", TEX_UI_PAUSEICON,
-                        @"pause_menu_back.png", TEX_UI_PAUSEMENU_BACK,
-                        @"pause_menu_play.png", TEX_UI_PAUSEMENU_PLAY,
-                        @"pause_menu_return.png", TEX_UI_PAUSEMENU_RETURN,
-                        @"gameover_title.png",TEX_UI_GAMEOVER_TITLE,
-                        @"gameover_info.png",TEX_UI_GAMEOVER_INFO,
-                        @"gameover_logo.png",TEX_UI_GAMEOVER_LOGO,
 
                         @"GO.png", TEX_UI_STARTGAME_GO,
                         @"READY.png", TEX_UI_STARTGAME_READY,

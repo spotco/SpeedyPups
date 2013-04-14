@@ -718,7 +718,7 @@ CGFloat	__ccContentScaleFactor = 1;
 	// assumes device refreshes at 60 fps
 	int frameInterval = (int) floor(animationInterval_ * 60.0f);
 	
-	CCLOG(@"cocos2d: Frame interval: %d", frameInterval);
+	//CCLOG(@"cocos2d: Frame interval: %d", frameInterval);
 
 	displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(mainLoop:)];
 	[displayLink setFrameInterval:frameInterval];

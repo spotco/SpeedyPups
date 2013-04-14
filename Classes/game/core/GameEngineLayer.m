@@ -196,6 +196,7 @@
     if (challenge != NULL) {
         collected_bones = 0;
         time = 0;
+        collected_secrets = 0;
     }
     for (int i = 0; i < game_objects.count; i++) {
         GameObject *o = [game_objects objectAtIndex:i];
@@ -326,6 +327,15 @@
         }
         [UserInventory add_bones:1];
         
+    } else if (e.type == GEventType_GET_COIN) {
+        if (collected_bones%100 > (collected_bones+10)%100) {
+            [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
+            lives++;
+        }
+        collected_secrets++;
+        collected_bones+=10;
+        [UserInventory add_bones:10];
+    
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
         runout_ct = 100;
         current_mode = GameEngineLayerMode_RUNOUT;
@@ -470,6 +480,7 @@
 -(int)get_lives { return lives; }
 -(int)get_time { return time; }
 -(int)get_num_bones { return collected_bones; }
+-(int)get_num_secrets { return collected_secrets; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
 -(void)incr_current_continue_cost {current_continue_cost+=100;}

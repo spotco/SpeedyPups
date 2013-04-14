@@ -1,5 +1,6 @@
 #import "Challenge.h"
 #import "DataStore.h"
+#import "UICommon.h" 
 
 @implementation ChallengeInfo
 
@@ -19,13 +20,13 @@
 -(NSString*)to_string {
     ChallengeInfo *cc = self;
     if (cc.type == ChallengeType_COLLECT_BONES) {
-        return [NSString stringWithFormat:@"Collect at least %d bones in one run.",cc.ct];
+        return [NSString stringWithFormat:@"Collect at least %d bone(s) in one run.",cc.ct];
         
     } else if (cc.type == ChallengeType_TIMED) {
-        return [NSString stringWithFormat:@"Complete this level in %@ or less.",@"0:00"];
+        return [NSString stringWithFormat:@"Complete this level in %@ or less.",[UICommon parse_gameengine_time:cc.ct]];
         
     } else if (cc.type == ChallengeType_FIND_SECRET) {
-        return [NSString stringWithFormat:@"Find at least %d secrets.",cc.ct];
+        return [NSString stringWithFormat:@"Find %d coin(s).",cc.ct];
         
     } else {
         return @"ERROR";
@@ -42,17 +43,17 @@ static NSArray* _CHALLENGES;
 
 +(void)initialize {
     _CHALLENGES = @[
-        [ChallengeInfo cons_name:@"tutorial_breakrocks" type:ChallengeType_COLLECT_BONES ct:18 reward:1], //todo
+        [ChallengeInfo cons_name:@"tutorial_breakrocks" type:ChallengeType_COLLECT_BONES ct:18 reward:1], 
         [ChallengeInfo cons_name:@"tutorial_spikes" type:ChallengeType_FIND_SECRET ct:1 reward:1],
-        [ChallengeInfo cons_name:@"tutorial_spikevine" type:ChallengeType_TIMED ct:1 reward:1], //0:20
-        [ChallengeInfo cons_name:@"tutorial_swipeget" type:ChallengeType_COLLECT_BONES ct:1 reward:1],  //todo
-        [ChallengeInfo cons_name:@"easy_world1" type:ChallengeType_FIND_SECRET ct:1 reward:1],
-        [ChallengeInfo cons_name:@"tutorial_swingvine" type:ChallengeType_COLLECT_BONES ct:1 reward:1],  //todo
+        [ChallengeInfo cons_name:@"tutorial_spikevine" type:ChallengeType_TIMED ct:915 reward:1], 
+        [ChallengeInfo cons_name:@"tutorial_swipeget" type:ChallengeType_COLLECT_BONES ct:39 reward:1],  
+        [ChallengeInfo cons_name:@"easy_world1" type:ChallengeType_FIND_SECRET ct:5 reward:1],
+        [ChallengeInfo cons_name:@"tutorial_swingvine" type:ChallengeType_COLLECT_BONES ct:36 reward:1],
         [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:1],
         [ChallengeInfo cons_name:@"easy_gottagofast" type:ChallengeType_COLLECT_BONES ct:60 reward:1],
         [ChallengeInfo cons_name:@"filler_directdrop" type:ChallengeType_FIND_SECRET ct:1 reward:1],
         [ChallengeInfo cons_name:@"filler_smgislands" type:ChallengeType_COLLECT_BONES ct:52 reward:1],
-        [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1 reward:1] //0:20
+        [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1000 reward:1]
     ];
 }
 
