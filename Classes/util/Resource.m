@@ -123,9 +123,6 @@ static NSMutableDictionary* textures = nil;
                         @"tut_anim_1.png", TEX_TUTORIAL_ANIM_1,
                         @"tut_anim_2.png", TEX_TUTORIAL_ANIM_2,
                      
-                        @"menu_back_button.png",TEX_MENU_TEX_BACKBUTTON,
-                        @"menu_button_menu.png",TEX_MENU_BUTTON_MENU,
-                        @"menu_button_playagain.png",TEX_MENU_BUTTON_PLAYAGAIN,
                         @"logo_ss.png",TEX_NMENU_LOGO,
                      
                         @"nmenu_items.png",TEX_NMENU_ITEMS,

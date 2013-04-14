@@ -128,11 +128,4 @@
 
 #define TEX_BLANK @"blank"
 
-//todo -- replace these
-#define TEX_MENU_TEX_BACKBUTTON @"menubackbutton"
-#define TEX_MENU_BUTTON_MENU @"menubuttonmenu"
-#define TEX_MENU_BUTTON_PLAYAGAIN @"menubuttonplayagain"
-
-
-
 @end
