@@ -21,6 +21,7 @@ typedef enum {
 
 +(int)get_num_challenges;
 +(ChallengeInfo*)get_challenge_number:(int)i;
++(int)get_number_for_challenge:(ChallengeInfo*)c;
 
 +(BOOL)get_beaten_challenge:(int)i;
 +(void)set_beaten_challenge:(int)i to:(BOOL)k;

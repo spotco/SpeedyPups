@@ -1,18 +1,20 @@
 #import "GameEngineLayer.h"
 #import "BGLayer.h"
 #import "UILayer.h"
-#import "BridgeIsland.h"
 #import "FlashEffect.h"
-#import "EnemyBomb.h"
-#import "CannonFireParticle.h"
 #import "TouchTrackingLayer.h"
 #import "GameItemCommon.h"
 #import "UserInventory.h"
 #import "OneUpParticle.h"
+#import "GameModeCallback.h" 
 
 @implementation GameEngineLayer
 
 #define tLOADSCR 1
+#define tBGLAYER 2
+#define tGLAYER 3
+#define tUILAYER 4
+#define tTTRACKLAYER 5
 
 @synthesize current_mode;
 @synthesize game_objects,islands;
@@ -27,23 +29,26 @@
     UILayer* uilayer = [UILayer cons_with_gamelayer:glayer];
     
     [scene addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)]];
-    [scene addChild:bglayer];
-    [scene addChild:glayer];
-    [scene addChild:uilayer];
-    [scene addChild:[TouchTrackingLayer node]];
+    [scene addChild:bglayer z:0 tag:tBGLAYER];
+    [scene addChild:glayer z:0 tag:tGLAYER];
+    [scene addChild:uilayer z:0 tag:tUILAYER];
+    [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     
     [scene addChild:[Common get_load_scr] z:1 tag:tLOADSCR];
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives {
     CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives];
-    GameEngineLayer* glayer = [scene.children objectAtIndex:2];
+    GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
     [glayer.game_objects addObject:nobj];
     [glayer addChild:nobj];
     [glayer stopAction:glayer.follow_action];
     glayer.follow_action = [CCFollow actionWithTarget:glayer.player];
     [glayer runAction:glayer.follow_action];
+    
+    UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
+    [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_FREERUN n:0]];
     
     [nobj update:glayer.player g:glayer]; //have first section preloaded
     [glayer update_render];
@@ -55,7 +60,11 @@
 
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info {
     CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES];
-    GameEngineLayer* glayer = [scene.children objectAtIndex:2];
+    GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
+    
+    UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
+    [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_CHALLENGE n:[ChallengeRecord get_number_for_challenge:info]]];
+    
     [glayer set_challenge:info];
     [glayer update_render];
     [glayer move_player_toground];
@@ -125,6 +134,7 @@
     for (GameObject *o in game_objects) {
         [o notify_challenge_mode:info];
     }
+    challenge = info;
 }
 
 -(void)move_player_toground {
@@ -183,6 +193,10 @@
 }
 
 -(void)player_reset {
+    if (challenge != NULL) {
+        collected_bones = 0;
+        time = 0;
+    }
     for (int i = 0; i < game_objects.count; i++) {
         GameObject *o = [game_objects objectAtIndex:i];
         [o reset];
@@ -292,6 +306,11 @@
         [self exit];
         [GameMain start_menu];
         
+    } else if (e.type == GEventType_RETRY_WITH_CALLBACK) {
+        [self exit];
+        GameModeCallback *cb = [e get_value:@"callback"];
+        [cb run];
+    
     } else if (e.type == GEventType_PLAYAGAIN_AUTOLEVEL) {
         [self exit];
         [GameMain start_game_autolevel];
@@ -301,14 +320,13 @@
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         collected_bones++;
-        if (collected_bones%100==0) {
+        if (challenge == NULL && collected_bones%100==0) {
             [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
             lives++;
         }
         [UserInventory add_bones:1];
         
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
-        NSLog(@"CHALLENGE COMPLETE (%d)",e.i1);
         runout_ct = 100;
         current_mode = GameEngineLayerMode_RUNOUT;
         

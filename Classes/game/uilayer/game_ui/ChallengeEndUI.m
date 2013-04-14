@@ -4,6 +4,7 @@
 #import "FileCache.h" 
 #import "MenuCommon.h"
 #import "UILayer.h"
+#import "UserInventory.h" 
 
 @implementation ChallengeEndUI
 
@@ -68,6 +69,21 @@
     [infodesc setPosition:ccp(10,67.5)];
     [infopane addChild:infodesc];
     
+    maxstr = @"aaaaaaaa\naaaaaaaa\naaaaaaaa";
+    actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:25]
+                           constrainedToSize:CGSizeMake(1000, 1000)
+                               lineBreakMode:UILineBreakModeWordWrap];
+    
+    reward_disp = [CCLabelTTF labelWithString:@"Earned 1000 bones!"
+                                dimensions:actualSize
+                                 alignment:UITextAlignmentLeft
+                                  fontName:@"Carton Six"
+                                  fontSize:25];
+    [reward_disp setColor:ccc3(220,220,200)];
+    [reward_disp setAnchorPoint:ccp(0,1)];
+    [reward_disp setPosition:[Common screen_pctwid:0.05 pcthei:0.95]];
+    [complete_ui addChild:reward_disp];
+    
     
     CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"backbutton" tar:self sel:@selector(exit_to_menu)
                                                pos:[Common screen_pctwid:0.3 pcthei:0.1]];
@@ -91,6 +107,13 @@
     [bone_disp setString:bones];
     [time_disp setString:time];
     [secrets_disp setString:secrets];
+    
+    int curchallenge = [ChallengeRecord get_number_for_challenge:ci];
+    if (p == YES && ![ChallengeRecord get_beaten_challenge:curchallenge]) {
+        [ChallengeRecord set_beaten_challenge:curchallenge to:YES];
+        [UserInventory add_bones:ci.reward];
+        [reward_disp setString:[NSString stringWithFormat:@"Earned %d bones!",ci.reward]];
+    }
 }
 
 -(void)retry {

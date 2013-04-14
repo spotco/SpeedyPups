@@ -45,7 +45,6 @@
 -(void)notify_challenge_mode:(ChallengeInfo *)c {
     active = YES;
     info = c;
-    NSLog(@"Challenge:%@",[info to_string]);
 }
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g {

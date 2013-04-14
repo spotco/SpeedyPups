@@ -96,11 +96,19 @@
     }
 }
 
+-(void)notify_challenge_mode:(ChallengeInfo *)c {
+    challenge_mode_respawn = YES;
+}
+
 -(void)reset {
     [self setPosition:initial_pos];
     follow = NO;
     vx = 0;
     vy = 0;
+    
+    if (challenge_mode_respawn) {
+        active = YES;
+    }
 }
 
 -(void)dealloc {

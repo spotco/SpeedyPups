@@ -56,6 +56,10 @@ static NSArray* _CHALLENGES;
     ];
 }
 
++(int)get_number_for_challenge:(ChallengeInfo *)c {
+    return [_CHALLENGES indexOfObject:c];
+}
+
 +(int)get_num_challenges {
     return [_CHALLENGES count];
 }

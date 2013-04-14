@@ -10,6 +10,7 @@
 @class AskContinueUI;
 @class GameOverUI;
 @class ChallengeEndUI;
+@class GameModeCallback;
 
 @interface UILayer : CCLayer <GEventListener> {
     GameEngineLayer* game_engine_layer;
@@ -19,11 +20,15 @@
     GameOverUI *gameoverui;
     ChallengeEndUI *challengeendui;
     
+    GameModeCallback *retry_cb;
     UIAnim *curanim;
     NSMutableArray *ingame_ui_anims;
 }
 
 +(UILayer*)cons_with_gamelayer:(GameEngineLayer*)g;
+
+-(void)set_retry_callback:(GameModeCallback*)c;
+
 -(void)start_initial_anim;
 -(void)pause;
 -(void)unpause;

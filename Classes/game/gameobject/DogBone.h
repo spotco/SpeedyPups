@@ -4,6 +4,7 @@
 
 @interface DogBone : GameObject {
     BOOL anim_toggle;
+    BOOL challenge_mode_respawn;
     int bid;
     
     BOOL refresh_cached_hitbox;

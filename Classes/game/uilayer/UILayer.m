@@ -9,6 +9,7 @@
 #import "UICommon.h"
 #import "GameOverUI.h"
 #import "ChallengeEndUI.h" 
+#import "GameModeCallback.h" 
 
 @implementation UILayer
 
@@ -60,6 +61,11 @@
     } else if (e.type == GEventType_UIANIM_TICK) {
         [self set_this_visible:NULL];
         
+    } else if (e.type == GEventType_CHALLENGE) {
+        [pauseui set_challenge_msg:
+         [NSString stringWithFormat:@"Challenge: %@",
+         [((ChallengeInfo*)[e get_value:@"challenge"]) to_string]]];
+    
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
         [challengeendui update_passed:e.i1
                                  info:[e get_value:@"challenge"]
@@ -164,8 +170,17 @@
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_PLAYAGAIN_AUTOLEVEL]];
 }
 
+-(void)set_retry_callback:(GameModeCallback *)c {
+    retry_cb = c;
+}
+
 -(void)retry {
-    NSLog(@"retry:TODO");
+    if (retry_cb != NULL) {
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_RETRY_WITH_CALLBACK] add_key:@"callback" value:retry_cb]];
+        [GEventDispatcher dispatch_events];
+    } else {
+        NSLog(@"retry cb is null");
+    }
 }
 
 -(void)continue_game {

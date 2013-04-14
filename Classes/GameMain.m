@@ -1,4 +1,5 @@
 #import "GameMain.h"
+#import "GameModeCallback.h" 
 
 #import "UserInventory.h"
 #import "Challenge.h"
@@ -90,13 +91,13 @@
     [UserInventory set_item:Item_Magnet to_slot:2];
     [UserInventory set_item:Item_Shield to_slot:3];
     
-    [ChallengeRecord set_beaten_challenge:0 to:YES];
-    [ChallengeRecord set_beaten_challenge:1 to:YES];
+    //[ChallengeRecord set_beaten_challenge:0 to:YES];
+    //[ChallengeRecord set_beaten_challenge:1 to:YES];
     [UserInventory add_bones:1000];
     
-    //[GameMain start_testlevel];
+    [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 
@@ -114,6 +115,18 @@
 
 +(void)start_testlevel {
     [GameMain run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
+}
+
++(void)start_from_callback:(GameModeCallback *)c {
+    if (c.mode == GameMode_FREERUN) {
+        [self start_game_autolevel];
+        
+    } else if (c.mode == GameMode_CHALLENGE) {
+        [self start_game_challengelevel:[ChallengeRecord get_challenge_number:c.val]];
+        
+    } else {
+        NSLog(@"error");
+    }
 }
 
 +(void)run_scene:(CCScene*)s {

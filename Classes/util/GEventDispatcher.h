@@ -28,6 +28,8 @@ typedef enum {
     GEventType_CHALLENGE_COMPLETE,
     GEventType_LOAD_CHALLENGE_COMPLETE_MENU,
     
+    GEventType_RETRY_WITH_CALLBACK,
+    
     GEventType_BOSS1_ACTIVATE,
     GEventType_BOSS1_TICK,
     GEventType_BOSS1_DEFEATED,

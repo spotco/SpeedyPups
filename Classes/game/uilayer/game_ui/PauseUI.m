@@ -90,9 +90,19 @@
     [pause_ui addChild:slotitems];
     pause_menu_item_slots = tslots;
     
+    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.15]
+                                                   color:ccc3(255,255,255)
+                                                fontsize:23
+                                                     str:@""];
+    [pause_ui addChild:challenge_disp];
+    
     [self addChild:pause_ui z:1];
     
     return self;
+}
+
+-(void)set_challenge_msg:(NSString *)msg {
+    [challenge_disp setString:msg];
 }
 
 -(void)update_item_slots {

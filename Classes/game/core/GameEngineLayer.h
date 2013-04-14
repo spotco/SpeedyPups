@@ -42,6 +42,7 @@ typedef enum {
     int default_starting_lives;
     
     int runout_ct;
+    ChallengeInfo* challenge;
     
     BOOL refresh_viewbox_cache;
     HitRect cached_viewbox;
@@ -81,6 +82,8 @@ typedef enum {
 
 -(int)get_current_continue_cost;
 -(void)incr_current_continue_cost;
+
+-(void)exit;
 
 -(void)setColor:(ccColor3B)color;
 

@@ -4,7 +4,7 @@
 
 @interface ChallengeEndUI : CCSprite {
     CCSprite *wlicon;
-    CCLabelTTF *bone_disp, *time_disp, *secrets_disp, *infodesc;
+    CCLabelTTF *bone_disp, *time_disp, *secrets_disp, *infodesc, *reward_disp;
 }
 
 +(ChallengeEndUI*)cons;
