@@ -31,7 +31,7 @@ static NSDictionary* descriptions;
 
 +(void)initialize {
     names = @{
-        [NSValue valueWithGameItem:Item_Heart]: @"Extra Heart",
+        [NSValue valueWithGameItem:Item_Heart]: @"Heart",
         [NSValue valueWithGameItem:Item_Magnet]: @"Magnet",
         [NSValue valueWithGameItem:Item_Rocket]: @"Rocket",
         [NSValue valueWithGameItem:Item_Shield]: @"Shield"

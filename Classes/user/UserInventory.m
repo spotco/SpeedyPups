@@ -47,6 +47,10 @@
     [DataStore set_key:STO_SLOTS_UNLOCKED int_value:[self get_num_slots_unlocked]+1];
 }
 
++(BOOL)can_unlock_slot {
+	return [self get_num_slots_unlocked] < 6;
+}
+
 +(int)get_lowest_empty_slot {
     NSArray* a = @[STO_MAIN_SLOT,STO_SLOT_1,STO_SLOT_2,STO_SLOT_3,STO_SLOT_4,STO_SLOT_5,STO_SLOT_6];
     for (int i = 0; i < [a count]; i++) {
@@ -76,7 +80,12 @@
     return [DataStore get_int_for_key:[self gameitem_to_upgrade_level_string:gi]];
 }
 
++(BOOL)can_upgrade:(GameItem)gi {
+	return [self get_upgrade_level:gi]<3;
+}
+
 +(void)upgrade:(GameItem)gi {
+	if ([self get_upgrade_level:gi]>=3) return;
     [DataStore set_key:[self gameitem_to_upgrade_level_string:gi] int_value:[self get_upgrade_level:gi]+1];
 }
 

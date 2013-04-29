@@ -1,6 +1,7 @@
 #import "NMenuCharSelectPage.h"
 #import "MenuCommon.h"
 #import "Player.h"
+#import "UserInventory.h"
 
 @implementation NMenuCharSelectPage
 
@@ -43,7 +44,7 @@ static NSMutableArray* _anim_table;
     
     CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_left" tar:self sel:@selector(arrow_left) pos:[Common screen_pctwid:0.3 pcthei:0.35]];
     CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_right" tar:self sel:@selector(arrow_right) pos:[Common screen_pctwid:0.7 pcthei:0.35]];
-    CCMenuItem *select = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_checkbutton" tar:self sel:@selector(select_char) pos:[Common screen_pctwid:0.72 pcthei:0.575]];
+    select = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_checkbutton" tar:self sel:@selector(select_char) pos:[Common screen_pctwid:0.72 pcthei:0.575]];
     controlm = [CCMenu menuWithItems:leftarrow,rightarrow,select, nil];
     [controlm setPosition:ccp(0,0)];
     [self addChild:controlm z:1];
@@ -99,7 +100,20 @@ static NSMutableArray* _anim_table;
     } else {
         [spotlight setVisible:NO];
     }
-    [infodesc setString:[NSString stringWithFormat:@"Current:%@\nSelected:%@",_anim_table[cur_dog],[Player get_character]]];
+	
+	if ([UserInventory get_character_unlocked:[_anim_table objectAtIndex:cur_dog]]) {
+		[infodesc setString:[NSString stringWithFormat:@"Name: %@\nAbility: %@",
+							 [Player get_name:_anim_table[cur_dog]],
+							 [Player get_power_desc:_anim_table[cur_dog]]]];
+		[dog_spr setColor:ccc3(255,255,255)];
+		[select setVisible:YES];
+		
+	} else {
+		[infodesc setString:@"Unlock me in the store!"];
+		[dog_spr setColor:ccc3(0,0,0)];
+		[select setVisible:NO];
+	}
+    
 }
 
 -(void)select_char {

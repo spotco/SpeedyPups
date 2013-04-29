@@ -54,6 +54,8 @@ typedef enum {
 
 +(void)set_character:(NSString*)tar;
 +(NSString*)get_character;
++(NSString*)get_name:(NSString*)tar;
++(NSString*)get_power_desc:(NSString*)tar;
 
 +(Player*)cons_at:(CGPoint)pt;
 -(void)cons_anim;

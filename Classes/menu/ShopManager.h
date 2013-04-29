@@ -3,7 +3,7 @@
 
 @interface ShopManager : CCSprite {
 	CCNode *speechbub,*next,*prev,*buy;
-	CCLabelTTF *infotitle,*infodesc,*infoprice;
+	CCLabelTTF *infotitle,*infodesc,*infoprice,*curbones;
 	NSArray *itempanes;
 	
 	ShopTab current_tab;
@@ -14,15 +14,21 @@
 
 +(ShopManager*)cons;
 
--(void)set_speechbub:(CCNode*)tspeechbub infotitle:(CCLabelTTF*)tinfotitle infodesc:(CCLabelTTF*)tinfodesc price:(CCLabelTTF*)tprice itempanes:(NSArray*)titempanes next:(CCNode*)tnext prev:(CCNode*)tprev buy:(CCNode *)tbuy;
+-(void)set_speechbub:(CCNode*)tspeechbub
+		   infotitle:(CCLabelTTF*)tinfotitle
+			infodesc:(CCLabelTTF*)tinfodesc
+			   price:(CCLabelTTF*)tprice
+		   itempanes:(NSArray*)titempanes
+				next:(CCNode*)tnext
+				prev:(CCNode*)tprev
+				 buy:(CCNode *)tbuy
+		curbonesdisp:(CCLabelTTF*)tcurbones;
 
 -(void)reset;
 -(void)pane_next;
 -(void)pane_prev;
 
--(void)tab_items;
--(void)tab_characters;
--(void)tab_misc;
+-(void)tab:(ShopTab)t;
 
 -(void)select_pane:(int)i;
 

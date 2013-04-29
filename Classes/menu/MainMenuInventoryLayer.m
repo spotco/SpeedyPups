@@ -164,7 +164,9 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_INVENTORY) {
         [self open];
-    }
+    } else if (e.type == GeventType_MENU_UPDATE_INVENTORY) {
+		[self update_invpane];
+	}
 }
 
 @end

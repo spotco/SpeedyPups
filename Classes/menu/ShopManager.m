@@ -1,5 +1,7 @@
 #import "ShopManager.h"
 #import "ShopItemPane.h"
+#import "UserInventory.h"
+#import "GEventDispatcher.h"
 
 @implementation ShopManager
 
@@ -14,7 +16,8 @@
 		   itempanes:(NSArray*)titempanes
 				next:(CCNode *)tnext
 				prev:(CCNode *)tprev
-				 buy:(CCNode *)tbuy{
+				 buy:(CCNode *)tbuy
+		curbonesdisp:(CCLabelTTF *)tcurbones{
 	
 	speechbub = tspeechbub;
 	infotitle = tinfotitle;
@@ -24,9 +27,13 @@
 	next = tnext;
 	prev = tprev;
 	buy = tbuy;
+	curbones = tcurbones;
 }
 
 -(void)update {
+	cur_tab_items = [ShopRecord get_items_for_tab:current_tab];
+	[curbones setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+	
 	for(int i = 0; i < [itempanes count]; i++) {
 		ShopItemPane *cur = [itempanes objectAtIndex:i];
 		int irel = cur_tab_offset + i;
@@ -46,8 +53,19 @@
 		[buy setVisible:NO];
 	} else {
 		[speechbub setVisible:YES];
-		[buy setVisible:YES];
-		[infotitle setString:selected_item.name];
+		
+		if (selected_item.price <= [UserInventory get_current_bones]) {
+			[buy setVisible:YES];
+		} else {
+			[buy setVisible:NO];
+		}
+		
+		if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
+			GameItem i = [selected_item.action_key integerValue];
+			[infotitle setString:[GameItemCommon name_from:i]];
+		} else {
+			[infotitle setString:selected_item.name];
+		}
 		[infodesc setString:selected_item.desc];
 		[infoprice setString:[NSString stringWithFormat:@"%d",selected_item.price]];
 	}
@@ -76,29 +94,43 @@
 	[self update];
 }
 
--(void)tab_items {
-	current_tab = ShopTab_ITEMS;
+-(void)tab:(ShopTab)t {
+	current_tab = t;
 	cur_tab_offset = 0;
-	cur_tab_items = [ShopRecord get_items_for_tab:current_tab];
-	[self update];
-}
-
--(void)tab_characters {
-	current_tab = ShopTab_CHARACTERS;
-	cur_tab_offset = 0;
-	cur_tab_items = [ShopRecord get_items_for_tab:current_tab];
-	[self update];
-}
-
--(void)tab_misc {
-	current_tab = ShopTab_MISC;
-	cur_tab_offset = 0;
-	cur_tab_items = [ShopRecord get_items_for_tab:current_tab];
+	selected_item = NULL;
 	[self update];
 }
 
 -(void)buy_current {
-	
+	if (selected_item != NULL) {
+		
+		if ([UserInventory get_current_bones] < selected_item.price) {
+			return;
+		} else {
+			[UserInventory add_bones:-selected_item.price];
+		}
+		
+		if (selected_item.action == ShopAction_BUY_ITEM) {
+			GameItem i = [selected_item.action_key integerValue];
+			[UserInventory set_inventory_ct_of:i to:[UserInventory get_inventory_ct_of:i]+1];
+			
+		} else if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
+			GameItem i = [selected_item.action_key integerValue];
+			[UserInventory upgrade:i];
+			if (![UserInventory can_upgrade:i]) selected_item = NULL;
+			
+		} else if (selected_item.action == ShopAction_BUY_SLOT_UPGRADE) {
+			[UserInventory unlock_slot];
+			if (![UserInventory can_unlock_slot]) selected_item = NULL;
+			
+		} else if (selected_item.action == ShopAction_UNLOCK_CHARACTER) {
+			[UserInventory unlock_character:selected_item.action_key];
+			selected_item = NULL;
+		}
+		
+		[GEventDispatcher push_event:[GEvent cons_type:GeventType_MENU_UPDATE_INVENTORY]];
+		[self update];
+	}
 }
 
 @end

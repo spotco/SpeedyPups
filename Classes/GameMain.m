@@ -86,6 +86,8 @@
     [UserInventory set_inventory_ct_of:Item_Rocket to:0];
     [UserInventory set_inventory_ct_of:Item_Shield to:0];
     [UserInventory set_inventory_ct_of:Item_Heart to:0];
+	
+	[UserInventory add_bones:20000];
     
     /*
     [UserInventory set_item:Item_Heart to_slot:0];

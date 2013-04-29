@@ -14,26 +14,32 @@
     [self addChild:[Shopkeeper cons_pt:[Common screen_pctwid:0.1 pcthei:0.45]]];
     [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopmenu" pos:[Common screen_pctwid:0.6 pcthei:0.65]]];
 	CCSprite *speechbub = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_speechbub" pos:[Common screen_pctwid:0.45 pcthei:0.3]];
-	[self addChild:speechbub];
     
     CCMenuItem *tab1 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_shoptab"
                                                        tar:self sel:@selector(shop_tab_items)
-                                                       pos:[Common screen_pctwid:0.35 pcthei:0.93]
-                                                      text:@"Items" textpos:ccp(55,19) fntsz:20];
+                                                       pos:[Common screen_pctwid:0.32 pcthei:0.93]
+                                                      text:@"Items" textpos:ccp(44,19) fntsz:20];
     
     
     CCMenuItem *tab2 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_shoptab"
                                                        tar:self sel:@selector(shop_tab_characters)
-                                                       pos:[Common screen_pctwid:0.6 pcthei:0.93]
-                                                      text:@"Characters" textpos:ccp(57,19) fntsz:20];
+                                                       pos:[Common screen_pctwid:0.51 pcthei:0.93]
+                                                      text:@"Dogs" textpos:ccp(44,19) fntsz:20];
     
     CCMenuItem *tab3 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
                                                       rect:@"nmenu_shoptab"
-                                                       tar:self sel:@selector(shop_tab_misc)
-                                                       pos:[Common screen_pctwid:0.85 pcthei:0.93]
-                                                      text:@"Misc" textpos:ccp(55,19) fntsz:20];
+                                                       tar:self sel:@selector(shop_tab_upgrades)
+                                                       pos:[Common screen_pctwid:0.7 pcthei:0.93]
+                                                      text:@"Upgrade" textpos:ccp(44,19) fntsz:20];
+	
+	CCMenuItem *tab4 = [NMenuShopPage labeleditem_from:TEX_NMENU_ITEMS
+												  rect:@"nmenu_shoptab"
+												   tar:self sel:@selector(shop_tab_misc)
+												   pos:[Common screen_pctwid:0.89 pcthei:0.93]
+												  text:@"Misc" textpos:ccp(44,19) fntsz:20];
+	
     CCMenuItem *buybutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                rect:@"buybutton"
                                                 tar:self sel:@selector(shop_buy)
@@ -54,12 +60,12 @@
 											  pos:[Common screen_pctwid:0.92 pcthei:0.64]];
 	[leftarrow setScaleX:0.75];
 	[rightarrow setScaleX:0.75];
-    controlm = [CCMenu menuWithItems:tab1,tab2,tab3,buybutton,i1,i2,i3,leftarrow,rightarrow, nil];
+    controlm = [CCMenu menuWithItems:tab1,tab2,tab3,tab4,buybutton,i1,i2,i3,leftarrow,rightarrow,[CCMenuItemSprite itemFromNormalSprite:speechbub selectedSprite:NULL], nil];
     [controlm setPosition:ccp(0,0)];
     [self addChild:controlm];
 	
 	
-	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:UILineBreakModeWordWrap];
@@ -78,20 +84,25 @@
 	[infotitle setAnchorPoint:ccp(0,0.5)];
 	[speechbub addChild:infotitle];
 	
-	CCSprite *boneicon = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"boneicon" pos:ccp(125,67.5)];
+	CCSprite *boneicon = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"boneicon" pos:ccp(135,12.5)];
 	[boneicon setScale:0.7];
 	[speechbub addChild:boneicon];
     
     [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopsign" pos:[Common screen_pctwid:0.1 pcthei:0.88]]];
 	
-	CCLabelTTF *prix = [Common cons_label_pos:ccp(145,67.5) color:ccc3(0,0,0) fontsize:18 str:@"999999"];
+	CCLabelTTF *prix = [Common cons_label_pos:ccp(155,12.5) color:ccc3(0,0,0) fontsize:18 str:@"999999"];
 	[prix setAnchorPoint:ccp(0,0.5)];
 	[speechbub addChild:prix];
+	
+	CCLabelTTF *current_bones = [Common cons_label_pos:[Common screen_pctwid:0.095 pcthei:0.335] color:ccc3(0,0,0) fontsize:20 str:@"000000"];
+	[current_bones setAnchorPoint:ccp(0,0.5)];
+	[current_bones setRotation:-7];
+	[self addChild:current_bones];
     
     [self addChild:[MenuCommon cons_common_nav_menu]];
 	
 	shop = [ShopManager cons];
-	[shop set_speechbub:speechbub infotitle:infotitle infodesc:infodesc price:prix itempanes:@[i1,i2,i3] next:rightarrow prev:leftarrow buy:buybutton];
+	[shop set_speechbub:speechbub infotitle:infotitle infodesc:infodesc price:prix itempanes:@[i1,i2,i3] next:rightarrow prev:leftarrow buy:buybutton curbonesdisp:current_bones];
 	[shop reset];
 	
     return self;
@@ -144,15 +155,19 @@
 }
 
 -(void)shop_tab_items {
-	[shop tab_items];
+	[shop tab:ShopTab_ITEMS];
 }
 
 -(void)shop_tab_characters {
-	[shop tab_characters];
+	[shop tab:ShopTab_CHARACTERS];
 }
 
 -(void)shop_tab_misc {
-	[shop tab_misc];
+	[shop tab:ShopTab_MISC];
+}
+
+-(void)shop_tab_upgrades {
+	[shop tab:ShopTab_UPGRADE];
 }
 
 -(void)pane_next {

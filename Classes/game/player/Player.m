@@ -54,11 +54,42 @@
 /* static set player character */
 
 static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
+static NSDictionary* ID_TO_NAME;
+static NSDictionary* ID_TO_POWERDESC;
+
++(void)initialize {
+	ID_TO_NAME = @{
+		TEX_DOG_RUN_1: @"OG the Mutt",
+		TEX_DOG_RUN_2: @"Cate the Corgi",
+		TEX_DOG_RUN_3: @"Penny the Poodle",
+		TEX_DOG_RUN_4: @"Spot the Dalmation",
+		TEX_DOG_RUN_5: @"Chubs the Pug",
+		TEX_DOG_RUN_6: @"Husky the Husky",
+		TEX_DOG_RUN_7: @"Brock the Lab"
+	};
+	
+	ID_TO_POWERDESC = @{
+		TEX_DOG_RUN_1: @"None",
+		TEX_DOG_RUN_2: @"Dodge Bullets",
+		TEX_DOG_RUN_3: @"Dodge Bullets",
+		TEX_DOG_RUN_4: @"Dodge Bullets",
+		TEX_DOG_RUN_5: @"Dodge Bullets",
+		TEX_DOG_RUN_6: @"Dodge Bullets",
+		TEX_DOG_RUN_7: @"Dodge Bullets"
+	};
+}
+
 +(void)set_character:(NSString*)tar {
     CURRENT_CHARACTER = tar;
 }
 +(NSString*)get_character {
     return CURRENT_CHARACTER;
+}
++(NSString*)get_name:(NSString*)tar {
+	return [ID_TO_NAME objectForKey:tar];
+}
++(NSString*)get_power_desc:(NSString*)tar {
+	return [ID_TO_POWERDESC objectForKey:tar];
 }
 
 +(Player*)cons_at:(CGPoint)pt {

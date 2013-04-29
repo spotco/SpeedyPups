@@ -10,10 +10,12 @@
 +(int)get_num_slots_unlocked;
 +(int)get_lowest_empty_slot;
 +(void)unlock_slot;
++(BOOL)can_unlock_slot;
 +(GameItem)get_item_at_slot:(int)i;
 +(void)set_item:(GameItem)t to_slot:(int)i;
 
 +(int)get_upgrade_level:(GameItem)gi;
++(BOOL)can_upgrade:(GameItem)gi;
 +(void)upgrade:(GameItem)gi;
 
 +(BOOL)get_character_unlocked:(NSString*)character;
