@@ -16,4 +16,7 @@
 +(int)get_upgrade_level:(GameItem)gi;
 +(void)upgrade:(GameItem)gi;
 
++(BOOL)get_character_unlocked:(NSString*)character;
++(void)unlock_character:(NSString*)character;
+
 @end

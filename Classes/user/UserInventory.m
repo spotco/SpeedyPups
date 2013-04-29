@@ -1,5 +1,6 @@
 #import "UserInventory.h"
 #import "DataStore.h"
+#import "Resource.h"
 
 @implementation UserInventory
 
@@ -13,6 +14,10 @@
 #define STO_SLOT_5 @"slot_5"
 #define STO_SLOT_6 @"slot_6"
 #define STO_SLOTS_UNLOCKED @"slots_unlocked"
+
++(void)initialize {
+	valid_characters = @[TEX_DOG_RUN_1,TEX_DOG_RUN_2,TEX_DOG_RUN_3,TEX_DOG_RUN_4,TEX_DOG_RUN_5,TEX_DOG_RUN_6,TEX_DOG_RUN_7];
+}
 
 +(NSString*)gameitem_to_string:(GameItem)t {
     return [NSString stringWithFormat:@"inventory_%d",t];
@@ -73,6 +78,27 @@
 
 +(void)upgrade:(GameItem)gi {
     [DataStore set_key:[self gameitem_to_upgrade_level_string:gi] int_value:[self get_upgrade_level:gi]+1];
+}
+
+static NSArray *valid_characters;
++(void)assert_valid_character:(NSString*)character {
+	BOOL valid = NO;
+	for (NSString *i in valid_characters) {
+		if ([i isEqualToString:character]) valid = YES;
+	}
+	if (!valid) [NSException raise:@"invalid character" format:@""];
+}
+
+//character unlock
++(BOOL)get_character_unlocked:(NSString*)character {
+	[self assert_valid_character:character];
+	[self unlock_character:TEX_DOG_RUN_1];
+	return [DataStore get_int_for_key:character];
+}
+
++(void)unlock_character:(NSString*)character {
+	[self assert_valid_character:character];
+	[DataStore set_key:character int_value:1];
 }
 
 @end

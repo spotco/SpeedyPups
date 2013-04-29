@@ -10,7 +10,7 @@
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 1
+#define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
 #define RESET_STATS YES
@@ -30,7 +30,6 @@
 
 /**
  TODO --
- -Ask for: different secret, coin with shine animation
  -add coin to leveleditor
  
  -different dogs differnt special powers
@@ -63,6 +62,7 @@
     Shield (temp invul) 300
     Heart (extra health) 400
  -upgrades more slots
+ 
  **/
 
 +(void)main {
@@ -82,17 +82,17 @@
     [UserInventory unlock_slot];
     
     
-    [UserInventory set_inventory_ct_of:Item_Magnet to:20];
-    [UserInventory set_inventory_ct_of:Item_Rocket to:20];
-    [UserInventory set_inventory_ct_of:Item_Shield to:20];
-    [UserInventory set_inventory_ct_of:Item_Heart to:20];
+    [UserInventory set_inventory_ct_of:Item_Magnet to:0];
+    [UserInventory set_inventory_ct_of:Item_Rocket to:0];
+    [UserInventory set_inventory_ct_of:Item_Shield to:0];
+    [UserInventory set_inventory_ct_of:Item_Heart to:0];
     
-    
+    /*
     [UserInventory set_item:Item_Heart to_slot:0];
     [UserInventory set_item:Item_Rocket to_slot:1];
     [UserInventory set_item:Item_Magnet to_slot:2];
     [UserInventory set_item:Item_Shield to_slot:3];
-    
+    */
     /*
     [ChallengeRecord set_beaten_challenge:0 to:YES];
     [ChallengeRecord set_beaten_challenge:1 to:YES];

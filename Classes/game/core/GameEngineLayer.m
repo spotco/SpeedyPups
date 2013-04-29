@@ -124,7 +124,7 @@
     current_mode = GameEngineLayerMode_SCROLLDOWN;
     float tmp;
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
-    current_continue_cost = 100;
+    current_continue_cost = 20;
     player_starting_pos = player_start_pt;
 }
 
@@ -483,7 +483,7 @@
 -(int)get_num_secrets { return collected_secrets; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
--(void)incr_current_continue_cost {current_continue_cost+=100;}
+-(void)incr_current_continue_cost {current_continue_cost*=2;}
 
 
 /* particle system */

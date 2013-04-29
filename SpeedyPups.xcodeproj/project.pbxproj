@@ -25,6 +25,9 @@
 		7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3444A516DE01CF007D20F5 /* BGTimeManager.m */; };
 		7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A716DE1850007D20F5 /* BG1_moon.png */; };
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
+		7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA69172DE73A009C43DD /* ShopManager.m */; };
+		7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6C172DE94C009C43DD /* ShopItemPane.m */; };
+		7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6F172DF8D7009C43DD /* ShopRecord.m */; };
 		7E4922DC17115FEC0032665B /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4922DB17115FEC0032665B /* Challenge.m */; };
 		7E4A2F5B17043851001BD38C /* tutorial_swipedir.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */; };
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
@@ -587,6 +590,12 @@
 		7E3444A516DE01CF007D20F5 /* BGTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTimeManager.m; sourceTree = "<group>"; };
 		7E3444A716DE1850007D20F5 /* BG1_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_moon.png; sourceTree = "<group>"; };
 		7E3444A816DE1850007D20F5 /* BG1_stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_stars.png; sourceTree = "<group>"; };
+		7E45DA68172DE73A009C43DD /* ShopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopManager.h; sourceTree = "<group>"; };
+		7E45DA69172DE73A009C43DD /* ShopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopManager.m; sourceTree = "<group>"; };
+		7E45DA6B172DE94C009C43DD /* ShopItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItemPane.h; sourceTree = "<group>"; };
+		7E45DA6C172DE94C009C43DD /* ShopItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemPane.m; sourceTree = "<group>"; };
+		7E45DA6E172DF8D7009C43DD /* ShopRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopRecord.h; sourceTree = "<group>"; };
+		7E45DA6F172DF8D7009C43DD /* ShopRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopRecord.m; sourceTree = "<group>"; };
 		7E4922DA17115FEC0032665B /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = game/challenge/Challenge.h; sourceTree = "<group>"; };
 		7E4922DB17115FEC0032665B /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = game/challenge/Challenge.m; sourceTree = "<group>"; };
 		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipedir.map; sourceTree = "<group>"; };
@@ -1324,6 +1333,19 @@
 				7EF8A65B16D9BA5C009A1FC5 /* TouchJSON */,
 			);
 			name = libs;
+			sourceTree = "<group>";
+		};
+		7E45DA67172DE6E9009C43DD /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				7E45DA68172DE73A009C43DD /* ShopManager.h */,
+				7E45DA69172DE73A009C43DD /* ShopManager.m */,
+				7E45DA6B172DE94C009C43DD /* ShopItemPane.h */,
+				7E45DA6C172DE94C009C43DD /* ShopItemPane.m */,
+				7E45DA6E172DF8D7009C43DD /* ShopRecord.h */,
+				7E45DA6F172DF8D7009C43DD /* ShopRecord.m */,
+			);
+			name = shop;
 			sourceTree = "<group>";
 		};
 		7E4922D917115F8F0032665B /* challenge */ = {
@@ -2155,6 +2177,7 @@
 		7EB8B45316D9FC0900F58961 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				7E45DA67172DE6E9009C43DD /* shop */,
 				7E0A788216ED6BBC0026C418 /* details */,
 				7E0A787816ED57430026C418 /* nmenu_pages */,
 				7EB8B45816D9FC0900F58961 /* MainMenuBGLayer.h */,
@@ -2579,10 +2602,10 @@
 		7ECFA69F1706A21300496002 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				7E1749191706C060004EA720 /* GameItemCommon.h */,
 				7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */,
 				7ECFA6A01706A23A00496002 /* UserInventory.h */,
 				7ECFA6A11706A23A00496002 /* UserInventory.m */,
-				7E1749191706C060004EA720 /* GameItemCommon.h */,
 			);
 			name = user;
 			sourceTree = "<group>";
@@ -3222,6 +3245,9 @@
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
 				7EBD7618171A855F00EBEB3C /* Coin.m in Sources */,
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,
+				7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */,
+				7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */,
+				7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
