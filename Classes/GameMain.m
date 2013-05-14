@@ -18,11 +18,10 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 1 upsidedown tutorial
- 5 easy levels
+ 3 easy levels
  3 swingvine levels
  4 filler levels
- 3 classic levels
+ 2 classic levels
  8 hard levels
  4 lab levels
  boss level
@@ -30,8 +29,6 @@
 
 /**
  TODO --
- -add coin to leveleditor
- 
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -challenge mode with gameend anim
@@ -52,17 +49,11 @@
 
 /**
  Shop:
- -Unlock everything $0.99
- -Unlock dogs (1000,3000,6000,10000,150000,20000)
- -Unlock concept art (500,1000,1500,2000 bones)
- -Unlock debug menu 10000
- -items (single use):
-    Rocket (shoot forward) 100
-    Magnet (get bones) 200
-    Shield (temp invul) 300
-    Heart (extra health) 400
- -upgrades more slots
+ -Unlock art, sound test, debug menu
  
+ Challenge:
+ classic_nubcave secret
+ easy_curvywater get all bones
  **/
 
 +(void)main {
@@ -87,7 +78,7 @@
     [UserInventory set_inventory_ct_of:Item_Shield to:0];
     [UserInventory set_inventory_ct_of:Item_Heart to:0];
 	
-	[UserInventory add_bones:20000];
+		[UserInventory add_bones:20000];
     
     /*
     [UserInventory set_item:Item_Heart to_slot:0];
@@ -109,9 +100,9 @@
      */
     //[UserInventory add_bones:1000];
     
-    //[GameMain start_testlevel];
+    [GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

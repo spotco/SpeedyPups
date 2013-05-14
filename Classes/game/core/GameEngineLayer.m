@@ -465,15 +465,15 @@
 }
 -(HitRect)get_viewbox {
     if (current_mode == GameEngineLayerMode_SCROLLDOWN || current_mode == GameEngineLayerMode_RUNINANIM) {
-        return [Common hitrect_cons_x1:player.position.x-1500 y1:player.position.y-1500 wid:3000 hei:3000];
+        return [Common hitrect_cons_x1:player.position.x-1500 y1:player.position.y-1500 wid:4000 hei:3000];
     }
     
     if (refresh_viewbox_cache) {
         refresh_viewbox_cache = NO;
         cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1
                                               y1:-self.position.y-[Common SCREEN].height*1
-                                             wid:[Common SCREEN].width*3
-                                             hei:[Common SCREEN].height*3];
+                                             wid:[Common SCREEN].width*4
+                                             hei:[Common SCREEN].height*4];
     }
     return cached_viewbox;
 }

@@ -35,6 +35,8 @@ static NSMutableDictionary* levelsets;
         @"classic_huegcave",
         @"classic_trickytreas",
         @"classic_tomslvl1",
+				@"classic_smgislands",
+				@"classic_nubcave"
     ] forKey:L_CLASSIC];
     
     [levelsets setObject:@[
@@ -42,14 +44,15 @@ static NSMutableDictionary* levelsets;
         @"filler_islandjump",
         @"filler_rollinghills",
         @"filler_sanicloop",
-        @"filler_directdrop",
-        @"filler_smgislands"
+        @"filler_directdrop"
     ] forKey:L_FILLER];
     
     [levelsets setObject:@[
         @"easy_puddles",
         @"easy_world1",
-        @"easy_gottagofast"
+        @"easy_gottagofast",
+				@"easy_curvywater",
+				@"easy_simplespikes"
      ] forKey:L_EASY];
     
     [levelsets setObject:@[
