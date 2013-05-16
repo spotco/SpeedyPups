@@ -26,6 +26,7 @@
 #define TEX_LAB_ENTRANCE_CEIL @"labentranceceil"
 #define TEX_LAB_ENTRANCE_CEIL_REPEAT @"labentranceceilrepeat"
 #define TEX_LAB_WALL @"labwall"
+#define TEX_LAB_BG_LAYER @"lab_bg_layer"
 
 #define TEX_CAVE_TOP_TEX @"CaveTopTex"
 #define TEX_CAVE_CORNER_TEX @"CaveCornerTex"
@@ -46,13 +47,13 @@
 #define TEX_DOG_ARMORED @"armored_dog_ss"
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
-#define TEX_CLOUD @"CloudTex"
+#define TEX_CLOUD_SS @"cloud_ss"
+
 #define TEX_BG_SKY @"BgSky"
 #define TEX_BG_SUN @"BgSun"
 #define TEX_BG_MOON @"BgMoon"
 #define TEX_BG_STARS @"BgStars"
 #define TEX_BG_LAYER_1 @"BgLayer1"
-#define TEX_BG_LAYER_2 @"BgLayer2"
 #define TEX_BG_LAYER_3 @"BgLayer3"
 #define TEX_GOLDEN_BONE @"GoldenBone"
 #define TEX_STARCOIN @"StarCoin"

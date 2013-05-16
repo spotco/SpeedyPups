@@ -1,6 +1,7 @@
 #import "CloudGenerator.h"
 #import "Resource.h"
 #import "Common.h"
+#import "FileCache.h"
 
 @interface Cloud : CCSprite {
     float movspd;
@@ -11,8 +12,24 @@
 
 @implementation Cloud
 +(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc {
-    Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:TEX_CLOUD]];
-    [b setPosition:pt];
+	int rnd = int_random(0, 5);
+	NSString *tarcld;
+	if (rnd == 0) {
+		tarcld = @"cloud0";
+	} else if (rnd == 1) {
+		tarcld = @"cloud1";
+	} else if (rnd == 2) {
+		tarcld = @"cloud2";
+	} else if (rnd == 3) {
+		tarcld = @"cloud3";
+	} else if (rnd == 4) {
+		tarcld = @"cloud4";
+	} else {
+		tarcld = @"cloud5";
+	}
+	Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:TEX_CLOUD_SS] rect:[FileCache get_cgrect_from_plist:TEX_CLOUD_SS idname:tarcld]];
+	
+	[b setPosition:pt];
     [b setAnchorPoint:CGPointZero];
     [b setScale:sc];
     [b calc_movspd:sc];

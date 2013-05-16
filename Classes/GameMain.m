@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -50,6 +50,9 @@
 /**
  Shop:
  -Unlock art, sound test, debug menu
+ 
+ lab exit buggy
+ rocket speed buggy
  
  Challenge:
  classic_nubcave secret

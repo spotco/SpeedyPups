@@ -303,6 +303,8 @@
 }
 
 -(void)dispatch_event:(GEvent *)e {
+	
+	
     if (e.type == GEventType_QUIT) {
         [self exit];
         [GameMain start_menu];

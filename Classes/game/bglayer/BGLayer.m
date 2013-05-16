@@ -44,6 +44,7 @@
     NSMutableArray *a = [[NSMutableArray alloc] init];
     if ([GameMain GET_USE_BG]) {
         [a addObject:[LabBGObject cons]];
+		[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB_BG_LAYER] scrollspd_x:0.4 scrollspd_y:0.06]];
     }
     
     return a;
@@ -60,7 +61,6 @@
         [a addObject:[BGTimeManager cons]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005]];
         [a addObject:[CloudGenerator cons]];
-        [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_2] scrollspd_x:0.075 scrollspd_y:0.015]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03]];
         
     }
@@ -172,14 +172,12 @@ static const float FADECTR_MAX = 10;
 #define iSKY 0
 #define iBACKHILL 3
 #define iCLOUD 4
-#define iTREEHILL 5
-#define iFRNTHILL 6
+#define iFRNTHILL 5
 
 -(void)scrollup_bg_pct:(float)pct {
     if (![GameMain GET_USE_BG])return;
     [[self bgo_at:iCLOUD] setPosition:ccp([self bgo_at:iCLOUD].position.x,-400*pct)];
     [[self bgo_at:iBACKHILL] setPosition:ccp([self bgo_at:iBACKHILL].position.x,[self bgo_at:iBACKHILL].position.y-500*pct)];
-    [[self bgo_at:iTREEHILL] setPosition:ccp([self bgo_at:iTREEHILL].position.x,[self bgo_at:iTREEHILL].position.y-600*pct)];
     [[self bgo_at:iFRNTHILL] setPosition:ccp([self bgo_at:iFRNTHILL].position.x,[self bgo_at:iFRNTHILL].position.y-800*pct)];
 }
 
@@ -192,7 +190,6 @@ static const float FADECTR_MAX = 10;
     [[self bgo_at:iSKY] setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
     [[self bgo_at:iBACKHILL] setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
-    [[self bgo_at:iTREEHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     [starsbg setOpacity:255-pctm*255];
 }

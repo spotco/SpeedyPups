@@ -28,6 +28,7 @@ static NSMutableDictionary* textures = nil;
                         @"ceil_labentrance.png",TEX_LAB_ENTRANCE_CEIL,
                         @"ceil_repeat_labentrance.png",TEX_LAB_ENTRANCE_CEIL_REPEAT,
                         @"lab_wall.png",TEX_LAB_WALL,
+						@"lab_bg_layer.png",TEX_LAB_BG_LAYER,
                      
                         @"checkerboard_texture.png",TEX_CHECKERBOARD,
 
@@ -44,10 +45,11 @@ static NSMutableDictionary* textures = nil;
                         @"BG1_moon.png", TEX_BG_MOON,
                         @"BG1_stars.png",TEX_BG_STARS,
                         @"BG1_layer_1.png", TEX_BG_LAYER_1,
-                        @"BG1_layer_2.png", TEX_BG_LAYER_2,
                         @"BG1_layer_3.png", TEX_BG_LAYER_3,
                         @"BG1_island_border.png", TEX_ISLAND_BORDER,
-                        @"BG1_cloud.png", TEX_CLOUD,
+												
+						@"cloud_ss.png", TEX_CLOUD_SS,
+										 
                         @"water.png", TEX_WATER,
                         @"fish_ss.png", TEX_FISH_SS,
                         @"bird_ss.png", TEX_BIRD_SS,
