@@ -7,14 +7,16 @@
 #import "UserInventory.h"
 #import "OneUpParticle.h"
 #import "GameModeCallback.h" 
+#import "FGLayer.h"
 
 @implementation GameEngineLayer
 
 #define tLOADSCR 1
 #define tBGLAYER 2
 #define tGLAYER 3
-#define tUILAYER 4
-#define tTTRACKLAYER 5
+#define tFGLAYER 4
+#define tUILAYER 5
+#define tTTRACKLAYER 6
 
 @synthesize current_mode;
 @synthesize game_objects,islands;
@@ -31,6 +33,7 @@
     [scene addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)]];
     [scene addChild:bglayer z:0 tag:tBGLAYER];
     [scene addChild:glayer z:0 tag:tGLAYER];
+	//[scene addChild:[FGLayer cons:glayer]];
     [scene addChild:uilayer z:0 tag:tUILAYER];
     [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     
@@ -224,6 +227,9 @@
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
         time++;
+		
+		//if (time%140 ==0) [GEventDispatcher push_event:[GEvent cons_type:GEventType_FGITEM_SHOW]];
+		
         refresh_viewbox_cache = YES;
         [GameControlImplementation control_update_player:self];
         [GamePhysicsImplementation player_move:player with_islands:islands];

@@ -48,6 +48,7 @@
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
 #define TEX_CLOUD_SS @"cloud_ss"
+#define TEX_FGSTUFF @"fgstuff"
 
 #define TEX_BG_SKY @"BgSky"
 #define TEX_BG_SUN @"BgSun"

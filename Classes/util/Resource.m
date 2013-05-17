@@ -49,6 +49,7 @@ static NSMutableDictionary* textures = nil;
                         @"BG1_island_border.png", TEX_ISLAND_BORDER,
 												
 						@"cloud_ss.png", TEX_CLOUD_SS,
+						@"fgstuff.png", TEX_FGSTUFF,
 										 
                         @"water.png", TEX_WATER,
                         @"fish_ss.png", TEX_FISH_SS,

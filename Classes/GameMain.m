@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"robotstest"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,7 +18,7 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 3 easy levels
+ 1 easy level - swingvine
  3 swingvine levels
  4 filler levels
  2 classic levels
