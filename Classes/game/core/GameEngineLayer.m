@@ -18,6 +18,8 @@
 #define tUILAYER 5
 #define tTTRACKLAYER 6
 
+//#define DO_FGLAYER
+
 @synthesize current_mode;
 @synthesize game_objects,islands;
 @synthesize player;
@@ -33,7 +35,11 @@
     [scene addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)]];
     [scene addChild:bglayer z:0 tag:tBGLAYER];
     [scene addChild:glayer z:0 tag:tGLAYER];
-	//[scene addChild:[FGLayer cons:glayer]];
+	
+#ifdef DO_FGLAYER
+	[scene addChild:[FGLayer cons:glayer]];
+#endif
+	
     [scene addChild:uilayer z:0 tag:tUILAYER];
     [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     
@@ -228,7 +234,9 @@
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
         time++;
 		
-		//if (time%140 ==0) [GEventDispatcher push_event:[GEvent cons_type:GEventType_FGITEM_SHOW]];
+#ifdef DO_FGLAYER
+		if (time%140 ==0) [GEventDispatcher push_event:[GEvent cons_type:GEventType_FGITEM_SHOW]];
+#endif
 		
         refresh_viewbox_cache = YES;
         [GameControlImplementation control_update_player:self];

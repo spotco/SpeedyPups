@@ -80,7 +80,7 @@
         refresh_cached_hitbox = YES;
         Vec3D vel = [VecLib cons_x:player.position.x-position_.x y:player.position.y-position_.y z:0];
         vel = [VecLib normalize:vel];
-        vel = [VecLib scale:vel by:sqrtf(powf(player.vx, 2) + powf(player.vy, 2))*1.2];
+        vel = [VecLib scale:vel by:MAX(1,sqrtf(powf(player.vx, 2) + powf(player.vy, 2))*1.2)];
         vx = vel.x;
         vy = vel.y;
     } else {

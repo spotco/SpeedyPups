@@ -3,7 +3,7 @@
 #import "FileCache.h"
 #import "Common.h"
 
-#define TMP_FG_PIPE
+//#define TMP_FG_PIPE
 
 @implementation FGLayer
 @synthesize game_engine_layer;
@@ -71,7 +71,7 @@
 	
 #ifndef TMP_FG_PIPE
 		int usepipe = int_random(0, 3);
-		if (usepipe == 20) {
+		if (YES) {
 			[item setTextureRect:[FileCache get_cgrect_from_plist:TEX_FGSTUFF idname:@"grass0"]];
 			[item setScale:1];
 			[item setAnchorPoint:ccp(0.5,0.2)];

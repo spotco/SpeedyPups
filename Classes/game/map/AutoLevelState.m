@@ -54,7 +54,8 @@ static NSMutableDictionary* levelsets;
 		@"easy_curvywater",
 		@"easy_simplespikes",
 		@"easy_curvybreak",
-		@"easy_breakdetail"
+		@"easy_breakdetail",
+		@"easy_hillvine"
      ] forKey:L_EASY];
     
     [levelsets setObject:@[
@@ -74,6 +75,7 @@ static NSMutableDictionary* levelsets;
         @"swingvine_swingbreak",
         @"swingvine_bounswindodg",
         @"swingvine_someswings",
+		@"swingvine_awesome"
     ] forKey:L_SWINGVINE];
     
     [levelsets setObject:@[

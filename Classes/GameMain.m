@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"robotstest"
+#define TESTLEVEL @"swingvine_awesome"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,8 +18,7 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 1 easy level - swingvine
- 3 swingvine levels
+ 2 swingvine levels
  4 filler levels
  2 classic levels
  8 hard levels
@@ -55,8 +54,10 @@
  rocket speed buggy
  
  Challenge:
+ collect all bones in swingvine_awesome (67)
  classic_nubcave secret
  easy_curvywater get all bones
+ easy_hillvine get all secrets
  **/
 
 +(void)main {
