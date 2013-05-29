@@ -9,7 +9,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"swingvine_awesome"
+#define TESTLEVEL @"swingvine_datbounce"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,7 +18,6 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 2 swingvine levels
  4 filler levels
  2 classic levels
  8 hard levels

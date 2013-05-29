@@ -317,6 +317,8 @@
 		7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */; };
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
+		7EBC124C1755DD1600645077 /* swingvine_morecave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124B1755DD1600645077 /* swingvine_morecave.map */; };
+		7EBC124E1755EAA900645077 /* swingvine_datbounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124D1755EAA900645077 /* swingvine_datbounce.map */; };
 		7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7608171A430700EBEB3C /* ChallengeEnd.m */; };
 		7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBD760A171A454400EBEB3C /* checkerboard_texture.png */; };
 		7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */; };
@@ -995,6 +997,8 @@
 		7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeModeSelect.h; sourceTree = "<group>"; };
 		7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeModeSelect.m; sourceTree = "<group>"; };
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
+		7EBC124B1755DD1600645077 /* swingvine_morecave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_morecave.map; sourceTree = "<group>"; };
+		7EBC124D1755EAA900645077 /* swingvine_datbounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_datbounce.map; sourceTree = "<group>"; };
 		7EBD7607171A430700EBEB3C /* ChallengeEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeEnd.h; sourceTree = "<group>"; };
 		7EBD7608171A430700EBEB3C /* ChallengeEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeEnd.m; sourceTree = "<group>"; };
 		7EBD760A171A454400EBEB3C /* checkerboard_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerboard_texture.png; sourceTree = "<group>"; };
@@ -1480,6 +1484,8 @@
 				7EB8B25316D9F8E700F58961 /* swingvine_swingbreak.map */,
 				7EB8B25416D9F8E700F58961 /* swingvine_swingintro.map */,
 				7EF06C0917477C4A009C6102 /* swingvine_awesome.map */,
+				7EBC124B1755DD1600645077 /* swingvine_morecave.map */,
+				7EBC124D1755EAA900645077 /* swingvine_datbounce.map */,
 			);
 			name = swingvine;
 			sourceTree = "<group>";
@@ -3162,6 +3168,8 @@
 				7E511BED17462E4E00B41826 /* fgstuff.png in Resources */,
 				7EF06C0817476E3F009C6102 /* easy_hillvine.map in Resources */,
 				7EF06C0A17477C4A009C6102 /* swingvine_awesome.map in Resources */,
+				7EBC124C1755DD1600645077 /* swingvine_morecave.map in Resources */,
+				7EBC124E1755EAA900645077 /* swingvine_datbounce.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,8 +35,8 @@ static NSMutableDictionary* levelsets;
         @"classic_huegcave",
         @"classic_trickytreas",
         @"classic_tomslvl1",
-		@"classic_smgislands",
-		@"classic_nubcave"
+				@"classic_smgislands",
+				@"classic_nubcave"
     ] forKey:L_CLASSIC];
     
     [levelsets setObject:@[
@@ -51,11 +51,11 @@ static NSMutableDictionary* levelsets;
         @"easy_puddles",
         @"easy_world1",
         @"easy_gottagofast",
-		@"easy_curvywater",
-		@"easy_simplespikes",
-		@"easy_curvybreak",
-		@"easy_breakdetail",
-		@"easy_hillvine"
+				@"easy_curvywater",
+				@"easy_simplespikes",
+				@"easy_curvybreak",
+				@"easy_breakdetail",
+				@"easy_hillvine"
      ] forKey:L_EASY];
     
     [levelsets setObject:@[
@@ -75,7 +75,9 @@ static NSMutableDictionary* levelsets;
         @"swingvine_swingbreak",
         @"swingvine_bounswindodg",
         @"swingvine_someswings",
-		@"swingvine_awesome"
+				@"swingvine_awesome",
+				@"swingvine_morecave",
+				@"swingvine_datbounce"
     ] forKey:L_SWINGVINE];
     
     [levelsets setObject:@[
