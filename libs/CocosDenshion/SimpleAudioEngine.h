@@ -50,6 +50,8 @@
 /** If NO it indicates background music will not be played either because no background music is loaded or the audio session does not permit it.*/
 @property (readonly) BOOL willPlayBackgroundMusic;
 
+-(int) playEffect:(NSString*) file loop:(BOOL) loop;
+
 /** returns the shared instance of the SimpleAudioEngine object */
 + (SimpleAudioEngine*) sharedEngine;
 

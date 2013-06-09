@@ -295,9 +295,9 @@ static BOOL configured = FALSE;
 			CDAsynchInitialiser *initOp = [[[CDAsynchInitialiser alloc] init] autorelease];
 			NSOperationQueue *opQ = [[[NSOperationQueue alloc] init] autorelease];
 			[opQ addOperation:initOp];
-		}	
+		}
 	}
-}	
+}
 
 + (id) alloc
 {

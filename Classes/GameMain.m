@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"swingvine_datbounce"
 #define STARTING_LIVES 10
 
@@ -103,9 +103,9 @@
      */
     //[UserInventory add_bones:1000];
     
-    [GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

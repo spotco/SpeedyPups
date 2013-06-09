@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 #import "SimpleAudioEngine.h"
 
-#define BGMUSIC_GAMELOOP1 @"gameloop1.mp3"
-#define BGMUSIC_MENU1 @"menu1.mp3"
+#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
+#define BGMUSIC_MENU1 @"menu1.aiff"
+#define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"
 
 #define SFX_BONE @"sfx_bone.wav"
 #define SFX_EXPLOSION @"sfx_explosion.wav" 

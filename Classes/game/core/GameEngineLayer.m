@@ -7,7 +7,6 @@
 #import "UserInventory.h"
 #import "OneUpParticle.h"
 #import "GameModeCallback.h" 
-#import "FGLayer.h"
 
 @implementation GameEngineLayer
 
@@ -17,8 +16,6 @@
 #define tFGLAYER 4
 #define tUILAYER 5
 #define tTTRACKLAYER 6
-
-//#define DO_FGLAYER
 
 @synthesize current_mode;
 @synthesize game_objects,islands;
@@ -35,11 +32,6 @@
     [scene addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)]];
     [scene addChild:bglayer z:0 tag:tBGLAYER];
     [scene addChild:glayer z:0 tag:tGLAYER];
-	
-#ifdef DO_FGLAYER
-	[scene addChild:[FGLayer cons:glayer]];
-#endif
-	
     [scene addChild:uilayer z:0 tag:tUILAYER];
     [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     

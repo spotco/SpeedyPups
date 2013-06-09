@@ -2,33 +2,27 @@
 
 @implementation AudioManager
 
-static const float FADE_SPD = 0.15;
+static ALuint cur_bgm;
 
-static NSString* fade_target;
-static BOOL initial_play = NO;
-
-static BOOL play_bgm = YES;
-static BOOL play_sfx = YES;
++(void)initialize {
+}
 
 +(void)set_play_bgm:(BOOL)t {
-    play_bgm = t;
-    if (!play_bgm) {
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-    }
 }
 
 +(void)set_play_sfx:(BOOL)t {
-    play_sfx = t;
 }
 
 +(void)cons {
+	/*
     NSArray *bgm = [NSArray arrayWithObjects:
         BGMUSIC_GAMELOOP1,
         BGMUSIC_MENU1,
+		BGMUSIC_GAMELOOP1_NIGHT,
     nil];
     
     for (NSString *i in bgm) {
-        [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:i];
+        [audioengine_a preloadEffect:i];
     }
     
     NSArray *sfxs = [NSArray arrayWithObjects:
@@ -50,47 +44,27 @@ static BOOL play_sfx = YES;
         SFX_BARK,
     nil];
     for (NSString* i in sfxs) {
-        [[SimpleAudioEngine sharedEngine] preloadEffect:i];
+        [audioengine_a preloadEffect:i];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(update) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(update) userInfo:nil repeats:YES];*/
+	CDSoundEngine *seng = [CDAudioManager sharedManager].soundEngine;
+	[seng defineSourceGroups:@[@1,@31]];
+	[CDAudioManager initAsynchronously:kAMM_FxPlusMusicIfNoOtherAudio];
+	[seng loadBuffer:1 filePath:@"gameloop1.aiff"];
+	[seng loadBuffer:2 filePath:@"gameloop1_night.aiff"];
+	ALuint bgm1 = [[CDAudioManager sharedManager].soundEngine playSound:1 sourceGroupId:0 pitch:1.0f pan:0.0f gain:0.2f loop:YES];
+	ALuint bgm2 = [[CDAudioManager sharedManager].soundEngine playSound:2 sourceGroupId:1 pitch:1.0f pan:0.0f gain:1.0f loop:YES];
 }
 
 +(void)play:(NSString *)tar {
-    if (!play_bgm){
-        return;
-    }
-    
-    if (!initial_play) {
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:tar loop:YES];
-        initial_play = YES;
-        return;
-    }
-    
-    fade_target = tar;
 }
 
 +(void)playsfx:(NSString*)tar {
-    if (!play_sfx) {
-        return;
-    }
-    [[SimpleAudioEngine sharedEngine] playEffect:tar];
 }
 
 +(void)update {
-    if (fade_target == NULL) {
-        return;
-    }
-    
-    float vol = [[SimpleAudioEngine sharedEngine] backgroundMusicVolume];
-    if (vol >= FADE_SPD) {
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:vol-FADE_SPD];
-    } else {
-        [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-        [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:1];
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:fade_target loop:YES];
-        fade_target = NULL;
-    }
+	//[[CDAudioManager sharedManager].soundEngine ]
 }
 
 @end

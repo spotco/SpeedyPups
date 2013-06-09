@@ -31,6 +31,14 @@ static CDSoundEngine* soundEngine = nil;
 static CDAudioManager *am = nil;
 static CDBufferManager *bufferManager = nil;
 
+-(int) playEffect:(NSString*) file loop:(BOOL) loop {
+	int handle = [[SimpleAudioEngine sharedEngine] playEffect:file];
+	if (loop) {
+		alSourcei(handle, AL_LOOPING, 1);
+	}
+	return handle;
+}
+
 // Init
 + (SimpleAudioEngine *) sharedEngine
 {
