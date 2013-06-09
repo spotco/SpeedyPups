@@ -2,12 +2,14 @@
 #import "Resource.h" 
 #import "Common.h"
 #import "GEventDispatcher.h" 
+#import "AudioManager.h"
 
 @implementation BGTimeManager
 
 +(BGTimeManager*)cons {
     BGTimeManager* b = [BGTimeManager node];
     [b cons];
+	[GEventDispatcher add_listener:b];
     return b;
 }
 
@@ -15,7 +17,7 @@
 #define SUN_Y_PCT 0.81
 
 //0 night, 100 day
-#define DAYNIGHT_LENGTH 3000
+#define DAYNIGHT_LENGTH 200
 #define TRANSITION_LENGTH 600
 
 -(void)cons {
@@ -35,8 +37,18 @@
     [self addChild:moon];
 }
 
+-(void)dispatch_event:(GEvent *)e {
+	if (e.type == GEventType_ENTER_LABAREA) {
+		stop = YES;
+	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
+		stop = NO;
+	}
+}
+
 //0 night, 100 day
 -(void)update_posx:(float)posx posy:(float)posy {
+	if (stop) return;
+	
     delayct--;
     if (curmode == MODE_DAY) {
         if (delayct <= 0) {
@@ -51,6 +63,10 @@
         [sun setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT-((100-fpctval)/100.0)]];
         [moon setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT+(fpctval/100.0)]];
         
+		if (delayct == TRANSITION_LENGTH/2) {
+			[AudioManager transition_mode2];
+		}
+		
         if (delayct <= 0) {
             curmode = MODE_NIGHT;
             delayct = DAYNIGHT_LENGTH;
@@ -69,10 +85,13 @@
         [sun setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:((fpctval)/100.0)*SUN_Y_PCT]];
         [moon setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT+(fpctval/100.0)]];
         
+		if (delayct == TRANSITION_LENGTH/2) {
+            [AudioManager transition_mode1];
+		}
+		
         if (delayct <= 0) {
             curmode = MODE_DAY;
             delayct = DAYNIGHT_LENGTH;
-            
         }
         
     }

@@ -2,6 +2,7 @@
 #import "Challenge.h" 
 #import "GameEngineLayer.h" 
 #import "UICommon.h" 
+#import "FileCache.h"
 
 @implementation ChallengeEnd
 
@@ -11,32 +12,24 @@
     return c;
 }
 
+-(id)make_anim{
+	CCTexture2D *texture = [Resource get_tex:TEX_GOAL_SS];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_GOAL_SS idname:@"goal0"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_GOAL_SS idname:@"goal1"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_GOAL_SS idname:@"goal2"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_GOAL_SS idname:@"goal3"]]];
+    return [Common make_anim_frames:animFrames speed:0.2];
+}
+
+
 -(id)init {
     self = [super init];
-    body = [Common cons_render_obj:[Resource get_tex:TEX_CHECKERBOARD] npts:4];
-    /**
-     32
-     10
-     **/
-    body.tri_pts[0] = ccp(50,-1000);
-    body.tri_pts[1] = ccp(0,-1000);
-    body.tri_pts[2] = ccp(50,2000);
-    body.tri_pts[3] = ccp(0,2000);
-    
-    body.tex_pts[0] = ccp(1,body.tri_pts[0].y/body.texture.pixelsHigh);
-    body.tex_pts[1] = ccp(0,body.tri_pts[1].y/body.texture.pixelsHigh);
-    body.tex_pts[2] = ccp(1,body.tri_pts[2].y/body.texture.pixelsHigh);
-    body.tex_pts[3] = ccp(0,body.tri_pts[3].y/body.texture.pixelsHigh);
+	[self setAnchorPoint:ccp(0.5,0)];
+	[self runAction:[self make_anim]];
     procced = NO;
+	[self setVisible:NO];
     return self;
-}
-
--(void)check_should_render:(GameEngineLayer *)g {
-    do_render = YES;
-}
-
--(int)get_render_ord {
-    return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND];
 }
 
 -(HitRect)get_hit_rect {
@@ -45,6 +38,7 @@
 
 -(void)notify_challenge_mode:(ChallengeInfo *)c {
     active = YES;
+	[self setVisible:YES];
     info = c;
 }
 
@@ -81,17 +75,10 @@
         
     }
     return NO;
-
 }
 
 -(void)reset {
     procced = NO;
-}
-
--(void)draw {
-    if(!active)return;
-    [super draw];
-    [Common draw_renderobj:body n_vtx:4];
 }
 
 @end

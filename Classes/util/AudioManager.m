@@ -1,70 +1,188 @@
 #import "AudioManager.h"
+#import "ObjectAL.h"
+#import "Common.h"
 
 @implementation AudioManager
 
-static ALuint cur_bgm;
+static ALChannelSource* channel;
+
+static OALAudioTrack *bgm_1;
+static OALAudioTrack *bgm_2;
+
+static NSMutableDictionary *sfx_buffers;
+static NSDictionary *bgm_groups;
+
+static BOOL playsfx = YES;
+static BOOL playbgm = YES;
 
 +(void)initialize {
+	ALDevice* device = [ALDevice deviceWithDeviceSpecifier:nil];
+	ALContext* context = [ALContext contextOnDevice:device attributes:nil];
+	[OpenALManager sharedInstance].currentContext = context;
+	[OALAudioSession sharedInstance].handleInterruptions = YES;
+	[OALAudioSession sharedInstance].allowIpod = NO;
+	[OALAudioSession sharedInstance].honorSilentSwitch = YES;
+	channel = [ALChannelSource channelWithSources:32];
+	
+	#define enumkey(x) [NSNumber numberWithInt:x]
+	bgm_groups = @{
+		enumkey(BGM_GROUP_WORLD1):@[
+			BGMUSIC_GAMELOOP1,
+			BGMUSIC_GAMELOOP1_NIGHT
+		],
+		enumkey(BGM_GROUP_LAB):@[
+			BGMUSIC_LAB1
+		],
+		enumkey(BGM_GROUP_MENU):@[
+			BGMUSIC_MENU1
+		],
+		enumkey(BGM_GROUP_BOSS1):@[
+			BGMUSIC_BOSS1
+		],
+		enumkey(BGM_GROUP_JINGLE):@[
+			BGMUSIC_JINGLE
+		]
+	};
+	
+	#define BUFFERMAPGEN(x) x: [[OpenALManager sharedInstance] bufferFromFile:x]
+	sfx_buffers = [[NSMutableDictionary alloc] init];
+	[sfx_buffers addEntriesFromDictionary:@{
+		BUFFERMAPGEN(SFX_BONE),
+		BUFFERMAPGEN(SFX_EXPLOSION),
+		BUFFERMAPGEN(SFX_HIT),
+		BUFFERMAPGEN(SFX_JUMP),
+		BUFFERMAPGEN(SFX_SPIN),
+		BUFFERMAPGEN(SFX_SPLASH),
+		BUFFERMAPGEN(SFX_BIRD_FLY),
+		BUFFERMAPGEN(SFX_ROCKBREAK),
+		BUFFERMAPGEN(SFX_ELECTRIC),
+		BUFFERMAPGEN(SFX_JUMPPAD),
+		BUFFERMAPGEN(SFX_ROCKET_SPIN),
+		BUFFERMAPGEN(SFX_SPEEDUP),
+		BUFFERMAPGEN(SFX_BOP),
+		BUFFERMAPGEN(SFX_CHECKPOINT),
+		BUFFERMAPGEN(SFX_SWING),
+		BUFFERMAPGEN(SFX_BARK)
+	 }];
+	
+	bgm_1 = [OALAudioTrack track];
+	bgm_2 = [OALAudioTrack track];
+	
+	for (NSNumber *key in [bgm_groups keyEnumerator]) {
+		NSArray *val = bgm_groups[key];
+		if (val.count >= 1) [bgm_1 preloadFile:val[0]];
+		if (val.count >= 2) [bgm_2 preloadFile:val[1]];
+	}
+	
+	[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(update) userInfo:nil repeats:YES];
 }
 
 +(void)set_play_bgm:(BOOL)t {
+	playbgm = t;
+	if (t == NO) {
+		[bgm_1 stop];
+		[bgm_2 stop];
+	}
 }
 
 +(void)set_play_sfx:(BOOL)t {
+	playsfx = t;
 }
 
-+(void)cons {
-	/*
-    NSArray *bgm = [NSArray arrayWithObjects:
-        BGMUSIC_GAMELOOP1,
-        BGMUSIC_MENU1,
-		BGMUSIC_GAMELOOP1_NIGHT,
-    nil];
-    
-    for (NSString *i in bgm) {
-        [audioengine_a preloadEffect:i];
-    }
-    
-    NSArray *sfxs = [NSArray arrayWithObjects:
-        SFX_BONE,
-        SFX_EXPLOSION,
-        SFX_HIT,
-        SFX_JUMP,
-        SFX_SPIN,
-        SFX_SPLASH,
-        SFX_BIRD_FLY,
-        SFX_ROCKBREAK,
-        SFX_ELECTRIC,
-        SFX_JUMPPAD,
-        SFX_ROCKET_SPIN,
-        SFX_SPEEDUP,
-        SFX_BOP,
-        SFX_CHECKPOINT,
-        SFX_SWING,
-        SFX_BARK,
-    nil];
-    for (NSString* i in sfxs) {
-        [audioengine_a preloadEffect:i];
-    }
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(update) userInfo:nil repeats:YES];*/
-	CDSoundEngine *seng = [CDAudioManager sharedManager].soundEngine;
-	[seng defineSourceGroups:@[@1,@31]];
-	[CDAudioManager initAsynchronously:kAMM_FxPlusMusicIfNoOtherAudio];
-	[seng loadBuffer:1 filePath:@"gameloop1.aiff"];
-	[seng loadBuffer:2 filePath:@"gameloop1_night.aiff"];
-	ALuint bgm1 = [[CDAudioManager sharedManager].soundEngine playSound:1 sourceGroupId:0 pitch:1.0f pan:0.0f gain:0.2f loop:YES];
-	ALuint bgm2 = [[CDAudioManager sharedManager].soundEngine playSound:2 sourceGroupId:1 pitch:1.0f pan:0.0f gain:1.0f loop:YES];
+static BGM_GROUP curgroup;
+static float bgm_1_gain_tar;
+static float bgm_2_gain_tar;
+
+static BGM_GROUP transition_target;
+static int transition_ct;
+
++(BGM_GROUP) get_cur_group { return curgroup; }
+
++(void)playbgm:(BGM_GROUP)tar {
+	if (playbgm == NO) return;
+	if (curgroup == tar) return;
+	
+	if (![bgm_1 playing] && ![bgm_2 playing]) {
+		[self playbgm_imm:tar];
+	} else {
+		transition_target = tar;
+		transition_ct = 10;
+	}
 }
 
-+(void)play:(NSString *)tar {
++(void)playbgm_imm:(BGM_GROUP)tar {
+	[bgm_1 stop];
+	[bgm_2 stop];
+	
+	curgroup = tar;
+	bgm_1_gain_tar = 1;
+	[bgm_1 setGain:bgm_1_gain_tar];
+	bgm_2_gain_tar = 0;
+	[bgm_2 setGain:bgm_2_gain_tar];
+	
+	NSArray *val = bgm_groups[enumkey(tar)];
+	if (val.count >= 1) [bgm_1 playFile:val[0] loops:-1];
+	if (val.count >= 2) [bgm_2 playFile:val[1] loops:-1];
+}
+
++(void)transition_mode1 {
+	NSArray *val = bgm_groups[enumkey(curgroup)];
+	if (val.count >= 1) {
+		bgm_1_gain_tar = 1;
+		bgm_2_gain_tar = 0;
+	} else {
+		NSLog(@"bgm group %d does not have mode1",curgroup);
+	}
+	
+}
+
++(void)transition_mode2 {
+	NSArray *val = bgm_groups[enumkey(curgroup)];
+	if (val.count >= 2) {
+		bgm_1_gain_tar = 0;
+		bgm_2_gain_tar = 1;
+	} else {
+		NSLog(@"bgm group %d does not have mode2",curgroup);
+	}
 }
 
 +(void)playsfx:(NSString*)tar {
+	if (playsfx == NO) return;
+	if (sfx_buffers[tar]) [channel play:sfx_buffers[tar]];
 }
 
 +(void)update {
-	//[[CDAudioManager sharedManager].soundEngine ]
+	if (transition_ct > 0) {
+		float pct = ((float)transition_ct)/10.0f;
+		if ([bgm_1 gain] != 0) {
+			[bgm_1 setGain:pct];
+		} else {
+			if ([bgm_2 gain] != 0) {
+				[bgm_2 setGain:pct];
+			}
+		}
+		transition_ct--;
+		if (transition_ct == 0) {
+			[self playbgm_imm:transition_target];
+		}
+		
+		
+	} else {
+		if (ABS([bgm_1 gain]-bgm_1_gain_tar) >= 0.01) {
+			float sign = [Common sig:bgm_1_gain_tar-[bgm_1 gain]];
+			[bgm_1 setGain:[bgm_1 gain] + sign*0.1];
+		} else {
+			[bgm_1 setGain:bgm_1_gain_tar];
+		}
+		
+		if (ABS([bgm_2 gain]-bgm_2_gain_tar) >= 0.01) {
+			float sign = [Common sig:bgm_2_gain_tar-[bgm_2 gain]];
+			[bgm_2 setGain:[bgm_2 gain] + sign*0.1];
+		} else {
+			[bgm_2 setGain:bgm_2_gain_tar];
+		}
+		
+	}
 }
 
 @end

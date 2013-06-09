@@ -49,6 +49,8 @@
 #define TEX_ISLAND_BORDER @"IslandBorder"
 #define TEX_CLOUD_SS @"cloud_ss"
 
+#define TEX_GOAL_SS @"goal_ss"
+
 #define TEX_BG_SKY @"BgSky"
 #define TEX_BG_SUN @"BgSun"
 #define TEX_BG_MOON @"BgMoon"
@@ -65,12 +67,8 @@
 #define TEX_BIRD_SS @"bird_ss"
 #define TEX_JUMPPAD @"jumppad"
 #define TEX_SPEEDUP @"speedup_ss"
-#define TEX_STARTBANNER_POLE @"StartBannerPole"
-#define TEX_STARTBANNER_BANNER @"StartBannerBanner"
 #define TEX_SPIKE_VINE_BOTTOM @"SpikeVineRight"
 #define TEX_SPIKE_VINE_SECTION @"SpikeVineSection"
-
-#define TEX_CHECKERBOARD @"checkerboard"
 
 #define TEX_PARTICLE_1UP @"1up"
 

@@ -38,7 +38,7 @@
 -(id)init {
     self = [super init];
     [GEventDispatcher add_listener:self];
-    [AudioManager play:BGMUSIC_MENU1];
+    [AudioManager playbgm:BGM_GROUP_MENU];
     
     cur_page = MENU_STARTING_PAGE_ID;
     

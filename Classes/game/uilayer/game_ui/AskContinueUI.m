@@ -74,7 +74,14 @@
     return self;
 }
 
+
+static BGM_GROUP prev_group;
+
 -(void)start_countdown:(int)cost {
+	
+	prev_group = [AudioManager get_cur_group];
+	[AudioManager playbgm:BGM_GROUP_JINGLE];
+	
     countdown_ct = 10;
     continue_cost = cost;
     [self schedule:@selector(update) interval:1];
@@ -104,6 +111,9 @@
 
 -(void)continue_yes {
     if ([UserInventory get_current_bones] >= continue_cost) {
+		
+		[AudioManager playbgm:prev_group];
+		
         [self stop_countdown];
         [UserInventory add_bones:-continue_cost];
         [(UILayer*)[self parent] continue_game];

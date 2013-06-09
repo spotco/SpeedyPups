@@ -623,7 +623,7 @@ HitRect cached_rect;
 -(NSArray*)cons_texstr:(NSString*)tar framestrs:(NSArray*)a {
     NSMutableArray* animFrames = [NSMutableArray array];
     for (NSString* key in a) {
-        [animFrames addObject:[CCSpriteFrame frameWithTexture:[Resource get_tex:tar]
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:[Resource get_aa_tex:tar]
                                                          rect:[FileCache get_cgrect_from_plist:tar idname:key]]];
     }
     return animFrames;

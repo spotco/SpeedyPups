@@ -28,10 +28,8 @@ static NSMutableDictionary* textures = nil;
                         @"ceil_labentrance.png",TEX_LAB_ENTRANCE_CEIL,
                         @"ceil_repeat_labentrance.png",TEX_LAB_ENTRANCE_CEIL_REPEAT,
                         @"lab_wall.png",TEX_LAB_WALL,
-												@"lab_bg_layer.png",TEX_LAB_BG_LAYER,
+						@"lab_bg_layer.png",TEX_LAB_BG_LAYER,
                      
-                        @"checkerboard_texture.png",TEX_CHECKERBOARD,
-
                         @"BG_cave_top_fill.png", TEX_CAVE_TOP_TEX,
                         @"BG_cave_top_edge.png", TEX_CAVE_CORNER_TEX,
                         @"BG_cave_wall.png", TEX_CAVEWALL,
@@ -47,18 +45,17 @@ static NSMutableDictionary* textures = nil;
                         @"BG1_layer_1.png", TEX_BG_LAYER_1,
                         @"BG1_layer_3.png", TEX_BG_LAYER_3,
                         @"BG1_island_border.png", TEX_ISLAND_BORDER,
-												
-												@"cloud_ss.png", TEX_CLOUD_SS,
+						@"cloud_ss.png", TEX_CLOUD_SS,
 										 
                         @"water.png", TEX_WATER,
                         @"fish_ss.png", TEX_FISH_SS,
                         @"bird_ss.png", TEX_BIRD_SS,
                         @"jumppad.png", TEX_JUMPPAD,
                         @"speedup_ss.png", TEX_SPEEDUP,
-                        @"startbanner_pole.png",TEX_STARTBANNER_POLE,
-                        @"startbanner_banner.png",TEX_STARTBANNER_BANNER,
                         @"spike_vine_bottom.png", TEX_SPIKE_VINE_BOTTOM,
                         @"spike_vine_section.png", TEX_SPIKE_VINE_SECTION,
+					 
+						@"goal_ss.png",TEX_GOAL_SS,
                      
                         @"1up.png",TEX_PARTICLE_1UP,
                      

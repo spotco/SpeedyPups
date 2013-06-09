@@ -3,7 +3,9 @@
 #import "CaveWall.h"
 #import "GameMain.h"
 
-@interface World1ParticleGenerator : GameObject
+@interface World1ParticleGenerator : GameObject <GEventListener> {
+	bool stop;
+}
 
 +(World1ParticleGenerator*)cons;
 

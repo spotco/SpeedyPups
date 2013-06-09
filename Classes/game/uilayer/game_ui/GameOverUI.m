@@ -80,4 +80,11 @@
     [(UILayer*)[self parent] exit_to_menu];
 }
 
+-(void)setVisible:(BOOL)visible {
+	[super setVisible:visible];
+	if (visible) {
+		[AudioManager playbgm:BGM_GROUP_JINGLE];
+	}
+}
+
 @end

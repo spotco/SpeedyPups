@@ -2,7 +2,6 @@
 @class ChallengeInfo;
 
 @interface ChallengeEnd : GameObject {
-    GLRenderObject *body;
     ChallengeInfo *info;
     BOOL procced;
 }

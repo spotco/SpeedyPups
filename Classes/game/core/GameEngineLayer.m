@@ -84,7 +84,7 @@
         particles_tba = [[NSMutableArray alloc] init];
     }
     default_starting_lives = starting_lives;
-    [AudioManager play:BGMUSIC_GAMELOOP1];
+    [AudioManager playbgm:BGM_GROUP_WORLD1];
     
     [GameControlImplementation reset_control_state];
     [GEventDispatcher add_listener:self];

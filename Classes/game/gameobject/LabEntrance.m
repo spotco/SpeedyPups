@@ -109,6 +109,7 @@ static const float ENTR_HEI = 3000;
 
 -(void)entrance_event {
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_ENTER_LABAREA]];
+	[AudioManager playbgm:BGM_GROUP_LAB];
 }
 
 -(void)reset {

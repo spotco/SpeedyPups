@@ -6,11 +6,11 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM YES
-#define TESTLEVEL @"swingvine_datbounce"
-#define STARTING_LIVES 10
+#define TESTLEVEL @"shittytest"
+#define STARTING_LIVES 1
 
 #define DRAW_HITBOX NO
 #define RESET_STATS YES
@@ -57,12 +57,18 @@
  classic_nubcave secret
  easy_curvywater get all bones
  easy_hillvine get all secrets
+ 
+ SFX:
+ goal
+ rocket
+ armor
+ 1up
+ boss sounds
  **/
 
 +(void)main {
     [GEventDispatcher lazy_alloc];
     [DataStore cons];
-    [AudioManager cons];
     [AudioManager set_play_bgm:PLAY_BGM];
     [AudioManager set_play_sfx:PLAY_SFX];
     [Resource cons_textures];
@@ -71,6 +77,7 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
+	/*
     [UserInventory unlock_slot];
     [UserInventory unlock_slot];
     [UserInventory unlock_slot];
@@ -81,9 +88,9 @@
     [UserInventory set_inventory_ct_of:Item_Shield to:0];
     [UserInventory set_inventory_ct_of:Item_Heart to:0];
 	
-		[UserInventory add_bones:20000];
+	[UserInventory add_bones:20000];
     
-    /*
+    
     [UserInventory set_item:Item_Heart to_slot:0];
     [UserInventory set_item:Item_Rocket to_slot:1];
     [UserInventory set_item:Item_Magnet to_slot:2];
@@ -103,9 +110,9 @@
      */
     //[UserInventory add_bones:1000];
     
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

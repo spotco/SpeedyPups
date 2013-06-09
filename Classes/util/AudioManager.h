@@ -1,8 +1,22 @@
 #import <Foundation/Foundation.h>
 #import "SimpleAudioEngine.h"
 
-#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
+typedef enum {
+	BGM_GROUP_WORLD1 = 0,
+	BGM_GROUP_LAB = 1,
+	BGM_GROUP_MENU = 2,
+	BGM_GROUP_BOSS1 = 3,
+	BGM_GROUP_JINGLE = 4
+} BGM_GROUP;
+
+//bgm_1
 #define BGMUSIC_MENU1 @"menu1.aiff"
+#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
+#define BGMUSIC_BOSS1 @"boss1.aiff"
+#define BGMUSIC_LAB1 @"lab1.aiff"
+#define BGMUSIC_JINGLE @"jingle.aiff"
+
+//bgm_2
 #define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"
 
 #define SFX_BONE @"sfx_bone.wav"
@@ -24,11 +38,15 @@
 
 @interface AudioManager : NSObject
 
-+(void)cons;
-+(void)play:(NSString*)tar;
++(void)playbgm:(BGM_GROUP)tar;
 +(void)playsfx:(NSString*)tar;
+
++(BGM_GROUP) get_cur_group;
 
 +(void)set_play_bgm:(BOOL)t;
 +(void)set_play_sfx:(BOOL)t;
+
++(void)transition_mode1;
++(void)transition_mode2;
 
 @end

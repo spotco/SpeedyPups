@@ -5,20 +5,27 @@
 @implementation World1ParticleGenerator
 
 +(World1ParticleGenerator*)cons {
-    return [World1ParticleGenerator node];
+	World1ParticleGenerator *p = [World1ParticleGenerator node];
+	[GEventDispatcher add_listener:p];
+    return p;
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    for (GameObject* i in g.game_objects) {
-        if ([i class] == [CaveWall class] && [Common hitrect_touch:[i get_hit_rect] b:[player get_hit_rect]]) {
-            return;
-        }
-    }
-    
+	
+	if (stop) return;
+	
     if (arc4random_uniform(25) == 0) {
         [g add_particle:[WaveParticle cons_x:player.position.x+500 y:player.position.y+float_random(100, 300) vx:float_random(-2, -5) vtheta:float_random(0.01, 0.075)]];
     }
     return;
+}
+
+-(void)dispatch_event:(GEvent *)e {
+	if (e.type == GEventType_ENTER_LABAREA) {
+		stop = YES;
+	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
+		stop = NO;
+	}
 }
 
 @end

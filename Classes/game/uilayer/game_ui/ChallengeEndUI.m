@@ -102,7 +102,10 @@
 }
 
 -(void)update_passed:(BOOL)p info:(ChallengeInfo*)ci bones:(NSString*)bones time:(NSString*)time secrets:(NSString*)secrets {
-    [wlicon setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:p?@"challengecomplete":@"challengefailed"]];
+    
+	[AudioManager playbgm:BGM_GROUP_JINGLE];
+	
+	[wlicon setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:p?@"challengecomplete":@"challengefailed"]];
     [infodesc setString:[ci to_string]];
     [bone_disp setString:bones];
     [time_disp setString:time];

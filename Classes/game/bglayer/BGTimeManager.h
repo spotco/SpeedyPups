@@ -1,4 +1,5 @@
 #import "BackgroundObject.h"
+#import "GEventDispatcher.h"
 
 typedef enum {
     MODE_DAY,
@@ -8,10 +9,11 @@ typedef enum {
 } BGTimeManagerMode;
 
 
-@interface BGTimeManager : BackgroundObject {
+@interface BGTimeManager : BackgroundObject <GEventListener> {
     CCSprite *sun,*moon;
     int delayct;
     BGTimeManagerMode curmode;
+	bool stop;
 }
 
 +(BGTimeManager*)cons;
