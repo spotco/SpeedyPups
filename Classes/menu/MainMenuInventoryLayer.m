@@ -56,7 +56,7 @@
     [player setPosition:ccp(windowsize.size.width*0.475,windowsize.size.height*0.3)];
     [inventory_window addChild:player];
     
-    CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_aa_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"boneicon"]];
+    CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"boneicon"]];
     [boneicon setPosition:ccp(windowsize.size.width*0.46,windowsize.size.height*0.15)];
     [boneicon setScale:0.6];
     [inventory_window addChild:boneicon];

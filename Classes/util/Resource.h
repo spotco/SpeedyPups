@@ -4,7 +4,6 @@
 
 +(void)cons_textures;
 +(CCTexture2D*)get_tex:(NSString*)key;
-+(CCTexture2D*)get_aa_tex:(NSString*)key;
 +(void)dealloc_textures;
 
 #define TEX_GROUND_TEX_1 @"GroundTexture1"

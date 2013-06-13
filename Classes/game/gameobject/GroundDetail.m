@@ -112,7 +112,10 @@ static NSArray* ABOVE;
         if ([self is_above]) {
             normal_vec = [VecLib scale:normal_vec by:-10];
             [self setPosition:[VecLib transform_pt:position_ by:normal_vec]];
-        }
+        } else {
+			normal_vec = [VecLib scale:normal_vec by:-5];
+            [self setPosition:[VecLib transform_pt:position_ by:normal_vec]];
+		}
     }
 }
 

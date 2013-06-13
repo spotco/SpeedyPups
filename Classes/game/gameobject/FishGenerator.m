@@ -72,7 +72,7 @@
     bwidth = wid;
     bheight = hei;
     
-    CCTexture2D *tex = [Resource get_aa_tex:TEX_FISH_SS];
+    CCTexture2D *tex = [Resource get_tex:TEX_FISH_SS];
     NSMutableArray *names = [NSMutableArray arrayWithObjects:@"green_%i",@"purple_%i",@"red_%i",@"yellow_%i", nil];
     fishes = [NSMutableArray array];
     

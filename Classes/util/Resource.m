@@ -9,6 +9,7 @@ static NSMutableDictionary* textures = nil;
 +(void)cons_textures {
     textures = [NSMutableDictionary dictionary];
     NSArray *temp = [[NSArray alloc] initWithObjects:
+						
                         @"BG1_island_fill.png", TEX_GROUND_TEX_1,
                         @"BG1_top_fill.png", TEX_GROUND_TOP_1,
                         @"BG1_island_corner.png", TEX_GROUND_CORNER_TEX_1,
@@ -129,12 +130,13 @@ static NSMutableDictionary* textures = nil;
 }
 
 +(void)load_tex_from_array:(NSArray*)temp {
-    ccTexParams texParams = { GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT };
     for(int i = 0; i < [temp count]-1; i+=2) {
         CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:[temp objectAtIndex:i]];
         
+		[tex generateMipmap];
+		[tex setAntiAliasTexParameters];
+		
         [textures setObject:tex forKey:[temp objectAtIndex:(i+1)]];
-        [tex setTexParameters: &texParams];
     }
 }
 
@@ -144,14 +146,6 @@ static NSMutableDictionary* textures = nil;
         NSLog(@"Failed to get texture %@",key);
     }
     return ret;
-}
-
-+(CCTexture2D*)get_aa_tex:(NSString*)key {
-    CCTexture2D* tex = [Resource get_tex:key];
-    [tex setAntiAliasTexParameters];
-    ccTexParams texParams = { GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT };
-    [tex setTexParameters:&texParams];
-    return tex;
 }
 
 +(void)dealloc_textures {

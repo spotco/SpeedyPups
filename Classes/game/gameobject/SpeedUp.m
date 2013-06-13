@@ -61,7 +61,7 @@
 }
 
 -(id)cons_anim_ofspeed:(float)speed {
-	CCTexture2D *texture = [Resource get_aa_tex:TEX_SPEEDUP];
+	CCTexture2D *texture = [Resource get_tex:TEX_SPEEDUP];
 	NSMutableArray *animFrames = [NSMutableArray array];
     
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[SpeedUp spritesheet_rect_tar:@"speedup3"]]];

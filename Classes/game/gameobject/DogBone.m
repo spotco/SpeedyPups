@@ -12,7 +12,7 @@
     [new_coin cons:ccp(posx,posy)];
     new_coin.bid = bid;
     
-    CCTexture2D *texture = [Resource get_aa_tex:TEX_GOLDEN_BONE];
+    CCTexture2D *texture = [Resource get_tex:TEX_GOLDEN_BONE];
     new_coin.img = [CCSprite spriteWithTexture:texture];
     [new_coin addChild:new_coin.img];
     

@@ -182,7 +182,6 @@ static SEL selSortMethod = NULL;
 		selSortMethod = @selector(sortAllChildren);
 		sortMethod = (__typeof__(sortMethod))[self methodForSelector:selSortMethod];
 	}
-	
 	return self;
 }
 

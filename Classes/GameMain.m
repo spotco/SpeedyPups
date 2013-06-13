@@ -6,11 +6,11 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 1
+#define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
 #define RESET_STATS YES
@@ -31,7 +31,6 @@
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
  -challenge mode with gameend anim
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
- -menu to game day/night transition
  -fix shadows for husky and armored dog
  **/
 
@@ -108,11 +107,11 @@
     [ChallengeRecord set_beaten_challenge:8 to:YES];
     [ChallengeRecord set_beaten_challenge:9 to:YES];
      */
-    //[UserInventory add_bones:1000];
+    [UserInventory add_bones:30000];
     
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+     [GameMain start_menu];
     
 }
 

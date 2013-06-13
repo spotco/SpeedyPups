@@ -12,7 +12,7 @@
 }
 
 -(void)cons_start:(CGPoint)tstart end:(CGPoint)tend {
-    [self addChild:[CCSprite spriteWithTexture:[Resource get_aa_tex:TEX_GOLDEN_BONE]]];
+    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_GOLDEN_BONE]]];
     start = tstart;
     end = tend;
     [self setPosition:start];

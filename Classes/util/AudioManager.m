@@ -102,6 +102,8 @@ static int transition_ct;
 	if (playbgm == NO) return;
 	if (curgroup == tar) return;
 	
+	curgroup = tar;
+	
 	if (![bgm_1 playing] && ![bgm_2 playing]) {
 		[self playbgm_imm:tar];
 	} else {

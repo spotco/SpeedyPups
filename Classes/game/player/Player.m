@@ -623,7 +623,12 @@ HitRect cached_rect;
 -(NSArray*)cons_texstr:(NSString*)tar framestrs:(NSArray*)a {
     NSMutableArray* animFrames = [NSMutableArray array];
     for (NSString* key in a) {
-        [animFrames addObject:[CCSpriteFrame frameWithTexture:[Resource get_aa_tex:tar]
+		CCTexture2D *tex = [Resource get_tex:tar];
+		//[self setBlendFunc: (ccBlendFunc){GL_ONE,GL_ZERO}];
+		//[tex generateMipmap];
+		//[tex setAntiAliasTexParameters];
+		
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:tex
                                                          rect:[FileCache get_cgrect_from_plist:tar idname:key]]];
     }
     return animFrames;

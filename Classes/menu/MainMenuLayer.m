@@ -37,6 +37,7 @@
 
 -(id)init {
     self = [super init];
+	
     [GEventDispatcher add_listener:self];
     [AudioManager playbgm:BGM_GROUP_MENU];
     
