@@ -121,9 +121,9 @@ static NSDictionary* ID_TO_POWERDESC;
     return self;
 }
 
--(void)start_anim:(player_anim_mode)tar {
+-(BOOL)start_anim:(player_anim_mode)tar {
     if (tar == anim_mode) {
-        return;
+        return NO;
     } else if (current_anim_action != NULL) {
         [player_img stopAction:current_anim_action];
     }
@@ -134,7 +134,7 @@ static NSDictionary* ID_TO_POWERDESC;
         current_anim_action = [normal_anims get:anim_mode];
     }
     [player_img runAction:current_anim_action];
-    
+    return YES;
 }
 
 -(void)update:(GameEngineLayer*)g {
@@ -364,6 +364,8 @@ static NSDictionary* ID_TO_POWERDESC;
     }
 }
 
+static int lastswap = 0;
+
 -(void)runanim_update {
     if (self.last_ndir != prevndir && self.last_ndir < 0) { //if land on reverse, start flip
         flipctr = 10;
@@ -371,6 +373,8 @@ static NSDictionary* ID_TO_POWERDESC;
         flipctr = 10;
     }
     prevndir = self.last_ndir;
+    
+    lastswap--;
     
     if (flipctr > 0) {
         cur_scy = last_ndir;
@@ -393,13 +397,15 @@ static NSDictionary* ID_TO_POWERDESC;
         last_ndir = current_island.ndir;
         cur_scy = last_ndir;
         
+        if (lastswap > 0) return;
+        
         float vel = sqrtf(powf(vx,2)+powf(vy,2));
         if (vel > 10) {
-            [self start_anim:player_anim_mode_RUN_FAST];
+            if([self start_anim:player_anim_mode_RUN_FAST]) lastswap = 10;
         } else if (vel > 5) {
-            [self start_anim:player_anim_mode_RUN_MED];
+            if([self start_anim:player_anim_mode_RUN_MED]) lastswap = 10;
         } else {
-            [self start_anim:player_anim_mode_RUN_SLOW];
+            if([self start_anim:player_anim_mode_RUN_SLOW]) lastswap = 10;
         }
     }
 }
@@ -624,10 +630,6 @@ HitRect cached_rect;
     NSMutableArray* animFrames = [NSMutableArray array];
     for (NSString* key in a) {
 		CCTexture2D *tex = [Resource get_tex:tar];
-		//[self setBlendFunc: (ccBlendFunc){GL_ONE,GL_ZERO}];
-		//[tex generateMipmap];
-		//[tex setAntiAliasTexParameters];
-		
         [animFrames addObject:[CCSpriteFrame frameWithTexture:tex
                                                          rect:[FileCache get_cgrect_from_plist:tar idname:key]]];
     }

@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"filler_genome"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,10 +18,12 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 4 filler levels
+ 1 filler levels
+ filler_randomislands
  2 classic levels
- 8 hard levels
- 4 lab levels
+ 8 hard lab levels
+ 
+ 8 easy lab levels
  boss level
  **/
 
@@ -56,6 +58,7 @@
  classic_nubcave secret
  easy_curvywater get all bones
  easy_hillvine get all secrets
+ filler_genome get 57 bones
  
  SFX:
  goal
@@ -109,9 +112,9 @@
      */
     [UserInventory add_bones:30000];
     
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-     [GameMain start_menu];
+     //[GameMain start_menu];
     
 }
 
