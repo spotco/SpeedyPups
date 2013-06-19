@@ -132,8 +132,6 @@ static NSMutableDictionary* textures = nil;
 +(void)load_tex_from_array:(NSArray*)temp {
     for(int i = 0; i < [temp count]-1; i+=2) {
         CCTexture2D* tex = [[CCTextureCache sharedTextureCache] addImage:[temp objectAtIndex:i]];
-        
-		[tex generateMipmap];
 		[tex setAntiAliasTexParameters];
 		
         [textures setObject:tex forKey:[temp objectAtIndex:(i+1)]];

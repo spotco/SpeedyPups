@@ -10,6 +10,8 @@
 		4512282E17704A760088D298 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512282D17704A760088D298 /* Default-568h@2x.png */; };
 		4512283017704C300088D298 /* filler_steepdec.map in Resources */ = {isa = PBXBuildFile; fileRef = 4512282F17704C300088D298 /* filler_steepdec.map */; };
 		4512283217705E7F0088D298 /* filler_genome.map in Resources */ = {isa = PBXBuildFile; fileRef = 4512283117705E7F0088D298 /* filler_genome.map */; };
+		45528CD71771A054002EF02E /* filler_manyopt.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD61771A054002EF02E /* filler_manyopt.map */; };
+		45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */; };
 		7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787A16ED57880026C418 /* NMenuPlayPage.m */; };
 		7E0A787E16ED5DEC0026C418 /* MenuCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787D16ED5DEC0026C418 /* MenuCommon.m */; };
 		7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */; };
@@ -605,6 +607,8 @@
 		4512282D17704A760088D298 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4512282F17704C300088D298 /* filler_steepdec.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_steepdec.map; sourceTree = "<group>"; };
 		4512283117705E7F0088D298 /* filler_genome.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_genome.map; sourceTree = "<group>"; };
+		45528CD61771A054002EF02E /* filler_manyopt.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_manyopt.map; sourceTree = "<group>"; };
+		45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_cuhrazyloop.map; sourceTree = "<group>"; };
 		7E0A787916ED57880026C418 /* NMenuPlayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuPlayPage.h; path = nmenu_pages/NMenuPlayPage.h; sourceTree = "<group>"; };
 		7E0A787A16ED57880026C418 /* NMenuPlayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuPlayPage.m; path = nmenu_pages/NMenuPlayPage.m; sourceTree = "<group>"; };
 		7E0A787C16ED5DEB0026C418 /* MenuCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCommon.h; sourceTree = "<group>"; };
@@ -1540,6 +1544,8 @@
 				7EB8725E17062A4C00F7C067 /* filler_directdrop.map */,
 				4512282F17704C300088D298 /* filler_steepdec.map */,
 				4512283117705E7F0088D298 /* filler_genome.map */,
+				45528CD61771A054002EF02E /* filler_manyopt.map */,
+				45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */,
 			);
 			name = filler;
 			sourceTree = "<group>";
@@ -3367,6 +3373,8 @@
 				4512282E17704A760088D298 /* Default-568h@2x.png in Resources */,
 				4512283017704C300088D298 /* filler_steepdec.map in Resources */,
 				4512283217705E7F0088D298 /* filler_genome.map in Resources */,
+				45528CD71771A054002EF02E /* filler_manyopt.map in Resources */,
+				45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3662,7 +3670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -3672,6 +3680,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos6.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

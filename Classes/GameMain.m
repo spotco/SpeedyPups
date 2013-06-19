@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"filler_genome"
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"filler_cuhrazyloop"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,12 +18,12 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 1 filler levels
- filler_randomislands
- 2 classic levels
- 8 hard lab levels
+ classicc randomislandswithspikes
+ classic spikes and rock
  
- 8 easy lab levels
+ 2 enemy intro levels
+ 
+ 8 hard lab levels
  boss level
  **/
 
@@ -110,11 +110,11 @@
     [ChallengeRecord set_beaten_challenge:8 to:YES];
     [ChallengeRecord set_beaten_challenge:9 to:YES];
      */
-    [UserInventory add_bones:30000];
+    //[UserInventory add_bones:0];
     
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-     //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

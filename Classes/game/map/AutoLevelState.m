@@ -46,7 +46,9 @@ static NSMutableDictionary* levelsets;
         @"filler_sanicloop",
         @"filler_directdrop",
         @"filler_steepdec",
-        @"filler_genome"
+        @"filler_genome",
+        @"filler_manyopt",
+        @"filler_cuhrazyloop"
     ] forKey:L_FILLER];
     
     [levelsets setObject:@[

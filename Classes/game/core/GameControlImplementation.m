@@ -42,7 +42,7 @@ static float avg_y;
     
     if(touch_move_counter == 3) {
         float avg = touch_dist_sum/touch_move_counter;
-        if (avg > 5) {
+        if (avg > 3) {
             Vec3D v = [VecLib cons_x:avg_x/touch_move_counter y:avg_y/touch_move_counter z:0];
             v = [VecLib normalize:v];
             
