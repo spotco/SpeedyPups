@@ -213,13 +213,13 @@
     game_engine_layer.current_mode = GameEngineLayerMode_UIANIM;
     [ingameui setVisible:NO];
     curanim = [GameStartAnim cons_with_callback:[Common cons_callback:self sel:@selector(end_initial_anim)]];
-    [ingameuianimholder addChild:curanim];
+    [self addChild:curanim];
 }
 -(void)end_initial_anim {
     curanim = NULL;
     game_engine_layer.current_mode = GameEngineLayerMode_GAMEPLAY;
     [ingameui setVisible:YES];
-    [ingameuianimholder removeChild:curanim cleanup:YES];
+    [self removeChild:curanim cleanup:YES];
 }
 
 -(void)set_gameengine:(GameEngineLayer*)ref {

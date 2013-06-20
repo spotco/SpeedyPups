@@ -17,7 +17,7 @@
 #define SUN_Y_PCT 0.81
 
 //0 night, 100 day
-#define DAYNIGHT_LENGTH 3000
+#define DAYNIGHT_LENGTH 6000
 #define TRANSITION_LENGTH 600
 
 static int bgtime_delayct;
