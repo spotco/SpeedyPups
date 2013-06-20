@@ -1,8 +1,21 @@
 {
-    "islands": [{"y1": 251, "hei": 50, "y2": 291, "x1": 65, "can_fall": true, "type": "line", "x2": 827, "ground": "open", "ndir": "left"}],
-    "start_y": 336,
-    "assert_links": 0,
-    "connect_pts": {"y1": 251, "x2": 827, "y2": 291, "x1": 65},
-    "objects": [{"x": 603, "type": "game_end", "y": 278, "label": "0"}],
-    "start_x": 234
+    "islands": [
+        {"type": "line", "x2": 363, "ground": "open", "y1": 305, "ndir": "left", "y2": 351, "hei": 50, "can_fall": true, "x1": 100},
+        {"type": "line", "x2": 936, "ground": "bridge", "y1": 351, "ndir": "left", "y2": 392, "hei": 50, "can_fall": true, "x1": 363}
+    ],
+    "start_x": 150,
+    "start_y": 365,
+    "objects": [
+        {"x": 358, "y": 44, "height": 278, "type": "water", "width": 562, "label": "0"},
+        {"type": "dogbone", "x": 509, "bid": 3, "y": 386, "label": "BID:3"},
+        {"type": "dogbone", "x": 614, "bid": 4, "y": 391, "label": "BID:4"},
+        {"type": "dogbone", "x": 570, "bid": 5, "y": 390, "label": "BID:5"},
+        {"type": "dogbone", "x": 675, "bid": 6, "y": 402, "label": "BID:6"},
+        {"type": "dogbone", "x": 733, "bid": 7, "y": 407, "label": "BID:7"},
+        {"type": "dogbone", "x": 781, "bid": 8, "y": 407, "label": "BID:8"},
+        {"type": "dogbone", "x": 849, "bid": 9, "y": 416, "label": "BID:9"},
+        {"type": "dogbone", "x": 896, "bid": 10, "y": 415, "label": "BID:10"}
+    ],
+    "connect_pts": {"x2": 936, "y1": 305, "x1": 100, "y2": 392},
+    "assert_links": 1
 }

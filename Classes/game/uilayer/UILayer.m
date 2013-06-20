@@ -26,6 +26,7 @@
     for (CCNode *i in @[ingameui,pauseui,askcontinueui,gameoverui,challengeendui]) {
         [i setVisible:i==t];
     }
+    [ingameuianimholder setVisible:t == ingameui];
 }
 
 -(void)cons {
@@ -48,6 +49,10 @@
     challengeendui = [ChallengeEndUI cons];
     [self addChild:challengeendui];
     [challengeendui setVisible:NO];
+    
+    ingameuianimholder = [CCSprite node];
+    [self addChild:ingameuianimholder];
+    
     
     [self update_items];
     ingame_ui_anims = [NSMutableArray array];
@@ -105,7 +110,7 @@
     for (UIIngameAnimation *i in ingame_ui_anims) {
         [i update];
         if (i.ct <= 0) {
-            [self removeChild:i cleanup:YES];
+            [ingameuianimholder removeChild:i cleanup:YES];
             [toremove addObject:i];
         }
     }
@@ -115,13 +120,13 @@
 
 -(void)start_bone_collect_anim {
     BoneCollectUIAnimation* b = [BoneCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
-    [self addChild:b];
+    [ingameuianimholder addChild:b];
     [ingame_ui_anims addObject:b];
 }
 
 -(void)start_coin_collect_anim {
     CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
-    [self addChild:c];
+    [ingameuianimholder addChild:c];
     [ingame_ui_anims addObject:c];
 }
 
@@ -208,13 +213,13 @@
     game_engine_layer.current_mode = GameEngineLayerMode_UIANIM;
     [ingameui setVisible:NO];
     curanim = [GameStartAnim cons_with_callback:[Common cons_callback:self sel:@selector(end_initial_anim)]];
-    [self addChild:curanim];
+    [ingameuianimholder addChild:curanim];
 }
 -(void)end_initial_anim {
     curanim = NULL;
     game_engine_layer.current_mode = GameEngineLayerMode_GAMEPLAY;
     [ingameui setVisible:YES];
-    [self removeChild:curanim cleanup:YES];
+    [ingameuianimholder removeChild:curanim cleanup:YES];
 }
 
 -(void)set_gameengine:(GameEngineLayer*)ref {

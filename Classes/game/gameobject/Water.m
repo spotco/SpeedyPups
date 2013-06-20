@@ -84,6 +84,7 @@
 /*0 1
   2 3*/
 -(GLRenderObject*)cons_drawbody_ofwidth:(float)width {
+    [[Resource get_tex:TEX_WATER] setClampTexParameters];
     GLRenderObject* o = [Common cons_render_obj:[Resource get_tex:TEX_WATER] npts:4];
     
     int twid = o.texture.pixelsWide;

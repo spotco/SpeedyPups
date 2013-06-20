@@ -19,6 +19,7 @@
     AskContinueUI *askcontinueui;
     GameOverUI *gameoverui;
     ChallengeEndUI *challengeendui;
+    CCSprite *ingameuianimholder;
     
     GameModeCallback *retry_cb;
     UIAnim *curanim;

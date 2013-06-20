@@ -6,24 +6,21 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"filler_cuhrazyloop"
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"classic_totalmix"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
-#define RESET_STATS YES
+#define RESET_STATS NO
 #define DISPLAY_FPS NO
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- classicc randomislandswithspikes
- classic spikes and rock
- 
  2 enemy intro levels
- 
- 8 hard lab levels
+ 2 hard levels
+ 8 lab levels
  boss level
  **/
 
@@ -59,6 +56,8 @@
  easy_curvywater get all bones
  easy_hillvine get all secrets
  filler_genome get 57 bones
+ classic_manyoptredux beat fast
+ classic_totalmix get 54 bones
  
  SFX:
  goal
@@ -112,9 +111,9 @@
      */
     //[UserInventory add_bones:0];
     
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

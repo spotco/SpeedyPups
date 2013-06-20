@@ -45,6 +45,7 @@ static BGTimeManagerMode bgtime_curmode;
 		
 	} else if (bgtime_curmode == MODE_NIGHT) {
 		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_DAY_NIGHT_UPDATE] add_i1:0 i2:0]];
+        [AudioManager transition_mode2];
 		
 	} else if (bgtime_curmode == MODE_DAY_TO_NIGHT) {
         int pctval = (((float)bgtime_delayct)/TRANSITION_LENGTH)*100;

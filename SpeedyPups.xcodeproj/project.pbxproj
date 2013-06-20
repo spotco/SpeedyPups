@@ -22,6 +22,8 @@
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
+		7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667C1772E85B001B03EC /* classic_manyoptredux.map */; };
+		7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667E1772F755001B03EC /* classic_totalmix.map */; };
 		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
 		7E269C6116DA0000005F446C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6016DA0000005F446C /* Icon.png */; };
 		7E269C6816DA00E4005F446C /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6716DA00DE005F446C /* fps_images.png */; };
@@ -627,6 +629,8 @@
 		7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armored_dog_ss.png; sourceTree = "<group>"; };
 		7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmorBreakEffect.h; sourceTree = "<group>"; };
 		7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmorBreakEffect.m; sourceTree = "<group>"; };
+		7E10667C1772E85B001B03EC /* classic_manyoptredux.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_manyoptredux.map; sourceTree = "<group>"; };
+		7E10667E1772F755001B03EC /* classic_totalmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_totalmix.map; sourceTree = "<group>"; };
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
 		7E17491C1706CB09004EA720 /* InventoryItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItemPane.h; sourceTree = "<group>"; };
 		7E17491D1706CB09004EA720 /* InventoryItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItemPane.m; sourceTree = "<group>"; };
@@ -1530,6 +1534,8 @@
 				7EB8B24016D9F8E700F58961 /* classic_huegcave.map */,
 				7EB8B24116D9F8E700F58961 /* classic_trickytreas.map */,
 				7ECFADEF174222D4009EEBB0 /* classic_nubcave.map */,
+				7E10667C1772E85B001B03EC /* classic_manyoptredux.map */,
+				7E10667E1772F755001B03EC /* classic_totalmix.map */,
 			);
 			name = classic;
 			sourceTree = "<group>";
@@ -3375,6 +3381,8 @@
 				4512283217705E7F0088D298 /* filler_genome.map in Resources */,
 				45528CD71771A054002EF02E /* filler_manyopt.map in Resources */,
 				45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */,
+				7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */,
+				7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3691,6 +3699,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3703,6 +3712,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "76C88796-301B-442B-B3D7-AD0C2D6F5BBE";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3713,6 +3723,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
@@ -3724,6 +3735,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "76C88796-301B-442B-B3D7-AD0C2D6F5BBE";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

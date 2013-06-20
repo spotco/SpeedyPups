@@ -86,6 +86,7 @@
     linenormal = [VecLib normalize:linenormal];
     linenormal = [VecLib scale:linenormal by:BCENTER_HEI];
     
+    [[Resource get_tex:TEX_BRIDGE_SECTION] setClampTexParameters];
     center = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_SECTION] npts:4];
     center.tri_pts[0] = ccp(linenormal.x,linenormal.y);
     center.tri_pts[1] = ccp(linedir.x+linenormal.x,linedir.y+linenormal.y);

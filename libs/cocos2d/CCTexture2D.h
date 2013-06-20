@@ -290,6 +290,7 @@ typedef struct _ccTexParams {
  @since v0.8
  */
 - (void) setAntiAliasTexParameters;
+-(void) setClampTexParameters;
 
 /** sets alias texture parameters:
   - GL_TEXTURE_MIN_FILTER = GL_NEAREST

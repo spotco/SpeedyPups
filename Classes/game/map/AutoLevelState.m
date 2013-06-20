@@ -36,7 +36,9 @@ static NSMutableDictionary* levelsets;
         @"classic_trickytreas",
         @"classic_tomslvl1",
         @"classic_smgislands",
-        @"classic_nubcave"
+        @"classic_nubcave",
+        @"classic_manyoptredux",
+        @"classic_totalmix"
     ] forKey:L_CLASSIC];
     
     [levelsets setObject:@[

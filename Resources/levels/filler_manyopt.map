@@ -42,8 +42,9 @@
         {"type": "line", "x2": 11202.7, "ground": "open", "y1": 1150, "ndir": "left", "y2": 1150, "hei": 500, "can_fall": true, "x1": 9956.9}
     ],
     "start_x": 448.8,
-    "assert_links": 0,
+    "start_y": 1098.75,
     "connect_pts": {"x2": 11202.7, "y1": 1045, "x1": 50, "y2": 1150},
+    "assert_links": 0,
     "objects": [
         {"type": "checkpoint", "x": 605, "y": 1045, "label": "0"},
         {"x": 698.4, "camera": {"x": 120, "y": 110, "z": 219}, "y": 1025, "height": 539.9833333333335, "type": "camera_area", "width": 255, "label": "CAM(120,110,219)"},
@@ -125,7 +126,7 @@
             "y": 1376.7,
             "height": 413.2833333333334,
             "type": "camera_area",
-            "width": 108.29999999999973,
+            "width": 108.29999999999971,
             "label": "CAM(114,172,219)"
         },
         {"x": 7550.1, "y": 197.5, "height": 690, "type": "water", "width": 2460.1000000000004, "label": "14"},
@@ -150,7 +151,7 @@
             "y": 987.5,
             "height": 680,
             "type": "camera_area",
-            "width": 105.09999999999945,
+            "width": 105.09999999999944,
             "label": "CAM(114,138,219)"
         },
         {
@@ -159,7 +160,7 @@
             "y": 982.5,
             "height": 682.5,
             "type": "camera_area",
-            "width": 92.50000000000091,
+            "width": 92.50000000000092,
             "label": "CAM(114,138,219)"
         },
         {"x": 7337.6, "camera": {"x": 114, "y": 138, "z": 219}, "y": 1122.5, "height": 400, "type": "camera_area", "width": 135, "label": "CAM(114,138,219)"},
@@ -253,7 +254,7 @@
         {"type": "ground_detail", "x": 7850.1, "y": 1005, "label": "(115)gd_img:5", "img": 5},
         {"type": "ground_detail", "x": 7805.1, "y": 1605, "label": "(116)gd_img:1", "img": 1},
         {"type": "ground_detail", "x": 7001.8, "y": 1756.7, "label": "(117)gd_img:6", "img": 6},
-        {"type": "ground_detail", "x": 6976.8, "y": 1753.3, "label": "(118)gd_img:18", "img": 18}
-    ],
-    "start_y": 1098.7833333333335
+        {"type": "ground_detail", "x": 6976.8, "y": 1753.3, "label": "(118)gd_img:18", "img": 18},
+        {"x": 10162.7, "camera": {"x": 120, "y": 110, "z": 160}, "y": 1145, "height": 566.3, "type": "camera_area", "width": 232.5, "label": "CAM(120,110,160)"}
+    ]
 }
