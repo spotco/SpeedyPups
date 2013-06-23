@@ -9,7 +9,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"classic_totalmix"
+#define TESTLEVEL @"labintro_tutorialbop" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -31,6 +31,7 @@
  -challenge mode with gameend anim
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -fix shadows for husky and armored dog
+ -cavewall to rocketwall in editor
  **/
 
 /**
@@ -58,6 +59,7 @@
  filler_genome get 57 bones
  classic_manyoptredux beat fast
  classic_totalmix get 54 bones
+ labintro_tutoriallauncher get all bones
  
  SFX:
  goal

@@ -104,6 +104,10 @@
         player.vy = 6;
         [AudioManager playsfx:SFX_BOP];
         
+        [player remove_temp_params:g];
+        [[player get_current_params] add_airjump_count];
+        player.dashing = NO;
+        
     } else if (broken_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         if (player.dashing || [player is_armored]) {
             [self flyoff:ccp(player.vx,player.vy) norm:0];

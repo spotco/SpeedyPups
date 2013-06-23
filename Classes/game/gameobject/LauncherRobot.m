@@ -103,7 +103,7 @@
         [g add_particle:[CannonFireParticle cons_x:noz.x y:noz.y]];
         
         Vec3D rv = [VecLib cons_x:dir.x y:dir.y z:0];
-        [VecLib scale:rv by:ROCKETSPEED];
+        rv = [VecLib scale:rv by:ROCKETSPEED];
         LauncherRocket *r = [LauncherRocket cons_at:noz vel:ccp(rv.x,rv.y)];
         
         [g add_gameobject:r];
@@ -119,6 +119,10 @@
         }
         player.vy = 8;
         [AudioManager playsfx:SFX_BOP];
+        
+        [player remove_temp_params:g];
+        [[player get_current_params] add_airjump_count];
+        player.dashing = NO;
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         if (player.dashing || [player is_armored]) {

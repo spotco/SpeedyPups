@@ -19,7 +19,8 @@
 #import "BirdFlock.h"
 #import "Blocker.h"
 #import "SpeedUp.h"
-#import "CaveWall.h"
+//#import "CaveWall.h"
+#import "RocketWall.h"
 #import "IslandFill.h"
 #import "BreakableWall.h"
 #import "SpikeVine.h"
@@ -222,12 +223,12 @@ static NSMutableDictionary* cached_json;
             [map.game_objects addObject:[SpeedUp cons_x:x y:y dirvec:dir_vec]];
             
             
-        } else if ([type isEqualToString:@"cavewall"]) {
+        } else if ([type isEqualToString:@"cavewall"] || [type isEqualToString:@"rocketwall"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             float width = getflt(j_object, @"width");
             float hei = getflt(j_object, @"height");
-            [map.game_objects addObject:[CaveWall cons_x:x y:y width:width height:hei]];
+            [map.game_objects addObject:[RocketWall cons_x:x y:y width:width height:hei]];
             
         } else if ([type isEqualToString:@"island_fill"]) {
             float x = getflt(j_object, @"x");

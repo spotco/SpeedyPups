@@ -74,6 +74,10 @@
         }
         player.vy = 8;
         [AudioManager playsfx:SFX_BOP];
+        
+        [player remove_temp_params:g];
+        [[player get_current_params] add_airjump_count];
+        player.dashing = NO;
     
     } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect_rescale:0.8] b:[player get_hit_rect]]  && !player.dead) {
         busted = YES;
