@@ -9,6 +9,7 @@
 }
 
 +(MinionRobot*)cons_x:(float)x y:(float)y;
++(void)player_do_bop:(Player*)player g:(GameEngineLayer*)g;
 
 @property(readwrite,strong) CCSprite* body;
 

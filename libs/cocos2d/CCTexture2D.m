@@ -801,6 +801,11 @@ static BOOL PVRHaveAlphaPremultiplied_ = NO;
     [self setTexParameters:&texParams];
 }
 
+-(void) setHorizClampTexParameters {
+    ccTexParams texParams = {GL_NEAREST, GL_NEAREST, GL_CLAMP_TO_EDGE, GL_REPEAT };
+    [self setTexParameters:&texParams];
+}
+
 -(void) setAntiAliasTexParameters
 {
 	ccTexParams texParams = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };

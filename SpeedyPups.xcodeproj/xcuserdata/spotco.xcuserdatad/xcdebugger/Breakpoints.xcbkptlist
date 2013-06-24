@@ -2,4 +2,19 @@
 <Bucket
    type = "1"
    version = "1.0">
+   <FileBreakpoints>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "libs/cocos2d/CCTexture2D.h"
+         timestampString = "393753390.186373"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "300"
+         endingLineNumber = "300"
+         landmarkName = "@interface CCTexture2D(GLFilter)"
+         landmarkType = "2">
+      </FileBreakpoint>
+   </FileBreakpoints>
 </Bucket>

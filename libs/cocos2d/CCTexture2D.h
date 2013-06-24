@@ -298,8 +298,8 @@ typedef struct _ccTexParams {
  
  @since v0.8
  */
-- (void) setAliasTexParameters;
-
+-(void) setAliasTexParameters;
+-(void) setHorizClampTexParameters;
 
 /** Generates mipmap images for the texture.
  It only works if the texture size is POT (power of 2).

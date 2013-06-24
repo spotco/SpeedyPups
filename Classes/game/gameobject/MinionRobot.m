@@ -72,12 +72,10 @@
                                                        vx:float_random(-5, 5)
                                                        vy:float_random(-3, 10)]];
         }
-        player.vy = 8;
+        
         [AudioManager playsfx:SFX_BOP];
         
-        [player remove_temp_params:g];
-        [[player get_current_params] add_airjump_count];
-        player.dashing = NO;
+        [MinionRobot player_do_bop:player g:g];
     
     } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect_rescale:0.8] b:[player get_hit_rect]]  && !player.dead) {
         busted = YES;
@@ -93,12 +91,21 @@
         }
         [AudioManager playsfx:SFX_ROCKBREAK];
         
+        [MinionRobot player_do_bop:player g:g];
+        
     } else if (!player.dead && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
         [DazedParticle cons_effect:g tar:player time:40];
         [AudioManager playsfx:SFX_HIT];
 
     }
+}
+
++(void)player_do_bop:(Player*)player g:(GameEngineLayer*)g {
+    player.vy = 8;
+    [player remove_temp_params:g];
+    [[player get_current_params] add_airjump_count];
+    player.dashing = NO;
 }
 
 -(void)reset {

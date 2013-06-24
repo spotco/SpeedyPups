@@ -9,7 +9,7 @@
 #define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"labintro_tutorialbop" 
+#define TESTLEVEL @"lab_basicmix" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,8 +18,6 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 2 enemy intro levels
- 2 hard levels
  8 lab levels
  boss level
  **/
@@ -31,7 +29,11 @@
  -challenge mode with gameend anim
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -fix shadows for husky and armored dog
- -cavewall to rocketwall in editor
+
+ would like to make:
+ 4 enemy intro levels
+ 8 hard ffa levels
+ 8 MORE lab levels
  **/
 
 /**

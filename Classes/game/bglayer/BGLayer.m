@@ -86,11 +86,6 @@ static const float FADECTR_MAX = 10;
         fadectr = FADECTR_MAX;
         
     } else if (e.type == GEventType_GAME_RESET) {
-        /*[self set_visible_objset:lab_bg_elements tar:NO];
-        visible_set = normal_bg_elements;
-        [self set_visible_objset:visible_set tar:YES];
-        [self set_opacity_objset:visible_set tar:255];
-        fadectr = 0;*/
         //TODO--lab bg fade out when reset?
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
@@ -147,6 +142,8 @@ static const float FADECTR_MAX = 10;
 	}
 }
 
+static int last_star_opacity;
+
 -(void)set_visible_objset:(NSMutableArray*)a tar:(BOOL)t {
 	for (BackgroundObject* s in a) {
         [s setVisible:t];
@@ -155,7 +152,11 @@ static const float FADECTR_MAX = 10;
 
 -(void)set_opacity_objset:(NSMutableArray*)a tar:(int)t {
     for (BackgroundObject* s in a) {
-        [s setOpacity:t];
+        if (t != 0 && s == starsbg) {
+            [s setOpacity:last_star_opacity];
+        } else {
+            [s setOpacity:t];
+        }
     }
 }
 
@@ -191,7 +192,8 @@ static const float FADECTR_MAX = 10;
     [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
     [[self bgo_at:iBACKHILL] setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
     [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
-    [starsbg setOpacity:255-pctm*255];
+    last_star_opacity = 255-pctm*255;
+    [starsbg setOpacity:last_star_opacity];
 }
 
 @end

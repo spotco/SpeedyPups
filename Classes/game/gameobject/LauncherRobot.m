@@ -1,7 +1,8 @@
 #import "LauncherRobot.h"
 #import "GameEngineLayer.h"
 #import "CannonFireParticle.h"
-#import "BrokenMachineParticle.h" 
+#import "BrokenMachineParticle.h"
+#import "MinionRobot.h" 
 
 @implementation LauncherRobot
 
@@ -117,12 +118,9 @@
         for(float i = 0; i < ptcnt; i++) {
             [g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
         }
-        player.vy = 8;
         [AudioManager playsfx:SFX_BOP];
         
-        [player remove_temp_params:g];
-        [[player get_current_params] add_airjump_count];
-        player.dashing = NO;
+        [MinionRobot player_do_bop:player g:g];
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         if (player.dashing || [player is_armored]) {
@@ -133,6 +131,8 @@
                 [g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
             }
             [AudioManager playsfx:SFX_ROCKBREAK];
+            
+            [MinionRobot player_do_bop:player g:g];
             
         }/* else if (!player.dead) {
             [player add_effect:[HitEffect init_from:[player get_default_params] time:40]];

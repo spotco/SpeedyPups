@@ -576,6 +576,8 @@
 		7EDD63761703AF6300825887 /* tutorial_water.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63751703AF6300825887 /* tutorial_water.map */; };
 		7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63781703B1B500825887 /* grounddetail_ss.plist */; };
 		7EDD637B1703B1B500825887 /* grounddetail_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63791703B1B500825887 /* grounddetail_ss.png */; };
+		7EE2224C1778325000174B92 /* labintro_entrance.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224B1778325000174B92 /* labintro_entrance.map */; };
+		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
 		7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE955B1776F98500474FD3 /* RocketWall.m */; };
 		7EF06C0817476E3F009C6102 /* easy_hillvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF06C0717476E3F009C6102 /* easy_hillvine.map */; };
@@ -1343,6 +1345,8 @@
 		7EDD63751703AF6300825887 /* tutorial_water.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_water.map; sourceTree = "<group>"; };
 		7EDD63781703B1B500825887 /* grounddetail_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grounddetail_ss.plist; sourceTree = "<group>"; };
 		7EDD63791703B1B500825887 /* grounddetail_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grounddetail_ss.png; sourceTree = "<group>"; };
+		7EE2224B1778325000174B92 /* labintro_entrance.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labintro_entrance.map; sourceTree = "<group>"; };
+		7EE2224D177837B100174B92 /* lab_basicmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_basicmix.map; sourceTree = "<group>"; };
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
 		7EEE955A1776F98500474FD3 /* RocketWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketWall.h; sourceTree = "<group>"; };
 		7EEE955B1776F98500474FD3 /* RocketWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketWall.m; sourceTree = "<group>"; };
@@ -1520,6 +1524,7 @@
 			children = (
 				7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */,
 				7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */,
+				7EE2224B1778325000174B92 /* labintro_entrance.map */,
 			);
 			name = labintro;
 			path = ..;
@@ -2497,6 +2502,7 @@
 		7EC460E81705780C00656A48 /* lab */ = {
 			isa = PBXGroup;
 			children = (
+				7EE2224D177837B100174B92 /* lab_basicmix.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3405,6 +3411,8 @@
 				7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */,
 				7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */,
 				7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */,
+				7EE2224C1778325000174B92 /* labintro_entrance.map in Resources */,
+				7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

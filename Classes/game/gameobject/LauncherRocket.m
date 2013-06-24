@@ -4,7 +4,8 @@
 #import "GameEngineLayer.h"
 #import "HitEffect.h" 
 #import "DazedParticle.h"
-#import "ExplosionParticle.h" 
+#import "ExplosionParticle.h"
+#import "MinionRobot.h" 
 
 @implementation LauncherRocket
 
@@ -101,12 +102,9 @@
         
     } else if (broken_ct == 0 && !player.dead && !player.dashing && player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
         [self flyoff:ccp(player.vx,player.vy) norm:6];
-        player.vy = 6;
         [AudioManager playsfx:SFX_BOP];
         
-        [player remove_temp_params:g];
-        [[player get_current_params] add_airjump_count];
-        player.dashing = NO;
+        [MinionRobot player_do_bop:player g:g];
         
     } else if (broken_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         if (player.dashing || [player is_armored]) {
