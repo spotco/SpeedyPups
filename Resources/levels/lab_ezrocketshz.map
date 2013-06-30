@@ -1,5 +1,5 @@
 {
-    "start_y": 1098.3,
+    "start_y": 1095,
     "connect_pts": {"y1": 996.6, "x2": 20374.4, "y2": 1071.4, "x1": 50},
     "islands": [
         {"can_fall": true, "x2": 1701.3, "y2": 1000, "ground": "lab", "y1": 1000, "ndir": "left", "hei": 500, "type": "line", "x1": 1348.4},
@@ -68,7 +68,6 @@
         {"x": 4725.1, "x2": 4981.3, "label": "16", "y": 1333.8, "y2": 1335, "type": "electricwall"},
         {"x": 1025, "x2": 1371.7, "label": "17", "y": 918.3, "y2": 921.6, "type": "electricwall"},
         {"x": 5703.9, "label": "21", "dir": {"x": -1, "y": 0}, "y": 1437.7, "type": "launcherrobot"},
-        {"x": 703, "label": "22", "y": 1001, "type": "labentrance"},
         {"x": 7165, "height": 450, "label": "CAM(48,126,252)", "y": 1077, "camera": {"x": 48, "z": 252, "y": 126}, "width": 163, "type": "camera_area"},
         {"x": 6961.2, "height": 338, "label": "24", "y": 1315.6, "width": 237, "type": "enemyalert"},
         {"x": 6215.6, "x2": 6530.1, "label": "25", "y": 1340, "y2": 1345.6, "type": "electricwall"},
@@ -97,10 +96,10 @@
         {"x": 15900.1, "label": "50", "y": 1848.6, "type": "robotminion"},
         {"x": 16494.4, "label": "51", "dir": {"x": 0.11, "y": 0.99}, "y": 1815.7, "type": "jumppad"},
         {"x": 16705.3, "label": "52", "dir": {"x": -1, "y": 0}, "y": 1845, "type": "launcherrobot"},
-        {"x": 17102.9, "label": "53", "y": 2148.6, "type": "robotminion"},
+        {"x": 16952.8, "label": "53", "y": 2147.5, "type": "robotminion"},
         {"x": 13570.1, "height": 317.07142857142844, "label": "54", "y": 1542.9, "width": 262.7999999999993, "type": "rocketwall"},
         {"x": 14807.2, "height": 375.67142857142846, "label": "55", "y": 1805.7, "width": 294.2999999999993, "type": "rocketwall"},
-        {"x": 17300.1, "label": "57", "y": 2151.4, "type": "robotminion"},
+        {"x": 17347.8, "label": "57", "y": 2152.5, "type": "robotminion"},
         {
             "x": 10565.8,
             "height": 512.8714285714285,
@@ -233,6 +232,6 @@
         {"x": 2012.5, "height": 130, "label": "185", "y": 845, "width": 172.5999999999999, "type": "blocker"},
         {"x": 1367.5, "height": 125, "label": "187", "y": 857.5, "width": 95, "type": "blocker"}
     ],
-    "start_x": 401.7,
+    "start_x": 357.5,
     "assert_links": 20
 }
