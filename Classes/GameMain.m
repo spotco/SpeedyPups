@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest" 
+#define TESTLEVEL @"lab_ezshiz" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -26,14 +26,9 @@
  TODO --
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
- -challenge mode with gameend anim
+ -more challenge mode ui
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -fix shadows for husky and armored dog
-
- would like to make:
- 4 enemy intro levels
- 8 hard ffa levels
- 8 MORE lab levels
  **/
 
 /**

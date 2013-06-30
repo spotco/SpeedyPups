@@ -64,6 +64,9 @@
 		7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5681016FFCE780003F2A5 /* TutorialEnd.m */; };
 		7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */; };
 		7EAE854C177FEFE4005AB868 /* labbreakablewall_body.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE854A177FEFE4005AB868 /* labbreakablewall_body.png */; };
+		7EAE854E177FF647005AB868 /* lab_minionwalls.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE854D177FF647005AB868 /* lab_minionwalls.map */; };
+		7EAE8550177FFF2F005AB868 /* lab_ezshiz.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE854F177FFF2F005AB868 /* lab_ezshiz.map */; };
+		7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE8551178011FA005AB868 /* lab_ezrocketshz.map */; };
 		7EB8725F17062A4C00F7C067 /* filler_directdrop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8725E17062A4C00F7C067 /* filler_directdrop.map */; };
 		7EB872611706325B00F7C067 /* classic_smgislands.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB872601706325B00F7C067 /* classic_smgislands.map */; };
 		7EB8B2D516D9F8E700F58961 /* BG1_bridge_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */; };
@@ -690,6 +693,9 @@
 		7EA5681016FFCE780003F2A5 /* TutorialEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialEnd.m; path = tutorial/TutorialEnd.m; sourceTree = "<group>"; };
 		7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labbreakablewall_base.png; sourceTree = "<group>"; };
 		7EAE854A177FEFE4005AB868 /* labbreakablewall_body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labbreakablewall_body.png; sourceTree = "<group>"; };
+		7EAE854D177FF647005AB868 /* lab_minionwalls.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_minionwalls.map; sourceTree = "<group>"; };
+		7EAE854F177FFF2F005AB868 /* lab_ezshiz.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_ezshiz.map; sourceTree = "<group>"; };
+		7EAE8551178011FA005AB868 /* lab_ezrocketshz.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_ezrocketshz.map; sourceTree = "<group>"; };
 		7EB8725E17062A4C00F7C067 /* filler_directdrop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_directdrop.map; sourceTree = "<group>"; };
 		7EB872601706325B00F7C067 /* classic_smgislands.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_smgislands.map; sourceTree = "<group>"; };
 		7EB8B1E316D9F8E600F58961 /* BG1_bridge_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_bridge_edge.png; sourceTree = "<group>"; };
@@ -2512,6 +2518,9 @@
 			isa = PBXGroup;
 			children = (
 				7EE2224D177837B100174B92 /* lab_basicmix.map */,
+				7EAE854D177FF647005AB868 /* lab_minionwalls.map */,
+				7EAE854F177FFF2F005AB868 /* lab_ezshiz.map */,
+				7EAE8551178011FA005AB868 /* lab_ezrocketshz.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3425,6 +3434,9 @@
 				7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */,
 				7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */,
 				7EAE854C177FEFE4005AB868 /* labbreakablewall_body.png in Resources */,
+				7EAE854E177FF647005AB868 /* lab_minionwalls.map in Resources */,
+				7EAE8550177FFF2F005AB868 /* lab_ezshiz.map in Resources */,
+				7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
