@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"lab_ezshiz" 
+#define TESTLEVEL @"lab_ezrocketshz" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
