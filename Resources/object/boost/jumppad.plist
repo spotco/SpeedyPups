@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {42, 40}}</string>
+			<string>{{53, 46}, {42, 40}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 42}, {42, 40}}</string>
+			<string>{{97, 46}, {42, 40}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -66,7 +66,73 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{44, 0}, {42, 40}}</string>
+			<string>{{53, 88}, {42, 40}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>labjumppad1</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 2}, {51, 42}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{51, 44}</string>
+			<key>spriteSourceSize</key>
+			<string>{51, 44}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{53, 0}, {51, 44}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>labjumppad2</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 4}, {51, 40}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{51, 44}</string>
+			<key>spriteSourceSize</key>
+			<string>{51, 44}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 46}, {51, 44}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>labjumppad3</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {51, 44}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{51, 44}</string>
+			<key>spriteSourceSize</key>
+			<string>{51, 44}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {51, 44}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -79,7 +145,7 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{128, 128}</string>
+		<string>{256, 128}</string>
 		<key>name</key>
 		<string>jumppad</string>
 		<key>premultipliedAlpha</key>

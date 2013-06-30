@@ -32,6 +32,8 @@
 #define TEX_CAVEWALL @"CaveWall"
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"
+#define TEX_LAB_ROCKWALL_BASE @"LabRockWallBase"
+#define TEX_LAB_ROCKWALL_SECTION @"LabRockWallSection"
 #define TEX_CAVE_ROCKPARTICLE @"RockParticle"
 
 #define TEX_DOG_RUN_1 @"dog1ss"
@@ -83,6 +85,7 @@
 
 #define TEX_SWINGVINE_BASE @"SwingVineBase"
 #define TEX_SWINGVINE_TEX @"SwingVineTex"
+#define TEX_LABSWINGVINE_BASE @"LABSwingVineBase"
 
 #define TEX_ELECTRIC_BODY @"electricbody"
 #define TEX_ELECTRIC_BASE @"electricbase"

@@ -24,6 +24,10 @@
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g{
     [super update:player g:g];
+	
+	[body setVisible:[g get_cur_bg_mode] == BGMode_LAB ? NO : YES];
+	[labbody setVisible:[g get_cur_bg_mode] == BGMode_LAB ? YES : NO];
+	
     if (recharge_ct > 0) {
         recharge_ct--;
         if (recharge_ct == 0) {
@@ -70,8 +74,13 @@
     if (ABS(ang) > M_PI * (3/4)) {
         player.last_ndir = -1;
     }*/
-    [body stopAllActions];
-    [body runAction:anim];
+	if ([labbody visible]) {
+		[labbody stopAllActions];
+		[labbody runAction:labanim];
+	} else {
+		[body stopAllActions];
+		[body runAction:anim];
+	}
     
     jnormal=[VecLib normalize:jnormal];
     jnormal=[VecLib scale:jnormal by:2];
@@ -96,12 +105,19 @@
 
 -(void)cons_anim {
     anim = [self make_anim_ofspeed:0.1];
+	labanim = [self lab_make_anim_ofspeed:0.1];
     
     body = [CCSprite node];
     [body runAction:[self make_stand]];
     [body setScale:2];
     [body setAnchorPoint:ccp(0.5,0.5)];
     [self addChild:body];
+	
+	labbody = [CCSprite node];
+	[labbody runAction:[self lab_make_stand]];
+	[labbody setScale:2];
+	[labbody setAnchorPoint:ccp(0.5,0.5)];
+	[self addChild:labbody];
 }
 
 -(CCAction*)make_stand {
@@ -117,7 +133,22 @@
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad2"]]];
 	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad3"]]];
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"jumppad1"]]];
-    
+    return [JumpPad make_anim_frames:animFrames speed:speed];
+}
+
+-(CCAction*)lab_make_stand {
+    return [JumpPad make_anim_frames:
+            [NSMutableArray arrayWithObject:
+             [CCSpriteFrame frameWithTexture:[Resource get_tex:TEX_JUMPPAD]
+                                        rect:[JumpPad spritesheet_rect_tar:@"labjumppad1"]]] speed:10];
+}
+
+-(id)lab_make_anim_ofspeed:(float)speed {
+	CCTexture2D *texture = [Resource get_tex:TEX_JUMPPAD];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"labjumppad2"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"labjumppad3"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[JumpPad spritesheet_rect_tar:@"labjumppad1"]]];
     return [JumpPad make_anim_frames:animFrames speed:speed];
 }
 

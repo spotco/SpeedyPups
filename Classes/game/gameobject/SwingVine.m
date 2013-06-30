@@ -1,5 +1,6 @@
 #import "SwingVine.h"
-#import "AudioManager.h" 
+#import "AudioManager.h"
+#import "GameEngineLayer.h"
 
 @interface VineBody : CCSprite {
     
@@ -24,6 +25,8 @@
 
 @implementation SwingVine
 
+#define BASEID 9
+
 +(SwingVine*)cons_x:(float)x y:(float)y len:(float)len{
     SwingVine *s = [SwingVine node];
     [s setPosition:ccp(x,y)];
@@ -35,7 +38,7 @@
     length = len;
     vine = [VineBody cons_tex:[Resource get_tex:TEX_SWINGVINE_TEX] len:len];
     [self addChild:vine];
-    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_SWINGVINE_BASE]]];
+    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_SWINGVINE_BASE]] z:0 tag:BASEID];
     [vine setAnchorPoint:ccp(vine.anchorPoint.x,1)];
     active = YES;
     headcov = [CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]] rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"swing_head"]];
@@ -52,6 +55,13 @@
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     //fix satpoly hitbox for moving position, see spikevine update
     
+	CCSprite *base = (CCSprite*)[self getChildByTag:BASEID];
+	if ([g get_cur_bg_mode] == BGMode_LAB) {
+		[base setTexture:[Resource get_tex:TEX_LABSWINGVINE_BASE]];
+	} else {
+		[base setTexture:[Resource get_tex:TEX_SWINGVINE_BASE]];
+	}
+	
     if (vine.rotation > 0) {
         vr -= 0.1;
     } else {

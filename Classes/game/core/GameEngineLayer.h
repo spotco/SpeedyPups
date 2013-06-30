@@ -32,6 +32,11 @@ typedef enum {
     GameEngineLayerMode_RUNOUT
 } GameEngineLayerMode;
 
+typedef enum {
+	BGMode_NORMAL,
+	BGMode_LAB
+} BGMode;
+
 @interface GameEngineLayer : CCLayer <GEventListener> {
     NSMutableArray *particles,*particles_tba;
     
@@ -53,6 +58,8 @@ typedef enum {
     CGPoint player_starting_pos;
     BOOL do_runin_anim;
     float scrollup_pct,defcey;
+	
+	BGMode cur_bg_mode;
 }
 
 
@@ -65,6 +72,8 @@ typedef enum {
 +(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives;
 +(CCScene*)scene_with_autolevel_lives:(int)lives;
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info;
+
+-(BGMode)get_cur_bg_mode;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

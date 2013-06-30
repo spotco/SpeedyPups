@@ -1,21 +1,8 @@
 {
-    "islands": [
-        {"type": "line", "x2": 363, "ground": "open", "y1": 305, "ndir": "left", "y2": 351, "hei": 50, "can_fall": true, "x1": 100},
-        {"type": "line", "x2": 936, "ground": "bridge", "y1": 351, "ndir": "left", "y2": 392, "hei": 50, "can_fall": true, "x1": 363}
-    ],
-    "start_x": 150,
-    "start_y": 365,
-    "objects": [
-        {"x": 358, "y": 44, "height": 278, "type": "water", "width": 562, "label": "0"},
-        {"type": "dogbone", "x": 509, "bid": 3, "y": 386, "label": "BID:3"},
-        {"type": "dogbone", "x": 614, "bid": 4, "y": 391, "label": "BID:4"},
-        {"type": "dogbone", "x": 570, "bid": 5, "y": 390, "label": "BID:5"},
-        {"type": "dogbone", "x": 675, "bid": 6, "y": 402, "label": "BID:6"},
-        {"type": "dogbone", "x": 733, "bid": 7, "y": 407, "label": "BID:7"},
-        {"type": "dogbone", "x": 781, "bid": 8, "y": 407, "label": "BID:8"},
-        {"type": "dogbone", "x": 849, "bid": 9, "y": 416, "label": "BID:9"},
-        {"type": "dogbone", "x": 896, "bid": 10, "y": 415, "label": "BID:10"}
-    ],
-    "connect_pts": {"x2": 936, "y1": 305, "x1": 100, "y2": 392},
-    "assert_links": 1
+    "start_y": 301,
+    "islands": [{"can_fall": true, "x2": 1715, "y2": 348.8, "ground": "open", "y1": 263, "ndir": "left", "hei": 50, "type": "line", "x1": 177}],
+    "assert_links": 0,
+    "objects": [{"x": 716.3, "label": "2", "y": 293.8, "type": "labentrance"}, {"x": 1353.8, "x2": 1352.5, "label": "5", "y": 327.5, "y2": 615, "type": "breakable_wall"}],
+    "connect_pts": {"y1": 263, "x2": 1715, "y2": 348.8, "x1": 177},
+    "start_x": 305
 }

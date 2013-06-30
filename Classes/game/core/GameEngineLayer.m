@@ -375,7 +375,17 @@
         [self player_reset];
         [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         
-    }
+    } else if (e.type == GEventType_ENTER_LABAREA) {
+		cur_bg_mode = BGMode_LAB;
+		
+	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
+		cur_bg_mode = BGMode_NORMAL;
+		
+	}
+}
+
+-(BGMode)get_cur_bg_mode {
+	return cur_bg_mode;
 }
 
 -(void)update_gameobjs {

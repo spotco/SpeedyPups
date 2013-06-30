@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"lab_basicmix" 
+#define TESTLEVEL @"shittytest" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO

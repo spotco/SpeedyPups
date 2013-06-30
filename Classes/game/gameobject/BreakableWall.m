@@ -20,6 +20,22 @@
     broken = NO;
 }
 
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+	if ([g get_cur_bg_mode] == BGMode_LAB) {
+		top.texture = [Resource get_tex:TEX_LAB_ROCKWALL_BASE];
+		bottom.texture = [Resource get_tex:TEX_LAB_ROCKWALL_BASE];
+		center.texture = [Resource get_tex:TEX_LAB_ROCKWALL_SECTION];
+		
+	} else {
+		top.texture = [Resource get_tex:TEX_CAVE_ROCKWALL_BASE];
+		bottom.texture = [Resource get_tex:TEX_CAVE_ROCKWALL_BASE];
+		center.texture = [Resource get_tex:TEX_CAVE_ROCKWALL_SECTION];
+		
+	}
+	
+	[super update:player g:g];
+}
+
 -(void)hit:(Player *)player g:(GameEngineLayer *)g {
     if (player.dashing || [player is_armored]) {
         activated = YES;
