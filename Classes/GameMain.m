@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"lab_ezrocketshz" 
+#define TESTLEVEL @"lab_alladat" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,8 +18,7 @@
 #define HOLD_TO_STOP NO
 /**
  levels to make:
- 8 lab levels
- boss level
+ 2 lab filler levels
  **/
 
 /**
@@ -29,6 +28,7 @@
  -more challenge mode ui
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -fix shadows for husky and armored dog
+ -SLOWDOWN powerup
  **/
 
 /**
@@ -57,6 +57,7 @@
  classic_manyoptredux beat fast
  classic_totalmix get 54 bones
  labintro_tutoriallauncher get all bones
+ lab_alladat speedrun
  
  SFX:
  goal

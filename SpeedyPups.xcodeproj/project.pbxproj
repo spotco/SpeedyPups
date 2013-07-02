@@ -525,6 +525,8 @@
 		7EC5ED1D16D9DDAF00E9D431 /* ZFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC5EC5416D9DDAF00E9D431 /* ZFont.h */; };
 		7EC5ED1E16D9DDAF00E9D431 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5EC5516D9DDAF00E9D431 /* ZFont.m */; };
 		7EC5ED2316D9DE9300E9D431 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5ED2216D9DE9300E9D431 /* main.m */; };
+		7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EC7B8A01782B41E00C26314 /* lab_swingers.map */; };
+		7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EC7B8A21782BF7600C26314 /* lab_alladat.map */; };
 		7ECADE0F17646AF00032A1E6 /* OALAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDCF17646AF00032A1E6 /* OALAction.m */; };
 		7ECADE1017646AF00032A1E6 /* OALActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDD117646AF00032A1E6 /* OALActionManager.m */; };
 		7ECADE1117646AF00032A1E6 /* OALAudioActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDD317646AF00032A1E6 /* OALAudioActions.m */; };
@@ -1254,6 +1256,8 @@
 		7EC5EC5416D9DDAF00E9D431 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
 		7EC5EC5516D9DDAF00E9D431 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		7EC5ED2216D9DE9300E9D431 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7EC7B8A01782B41E00C26314 /* lab_swingers.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_swingers.map; sourceTree = "<group>"; };
+		7EC7B8A21782BF7600C26314 /* lab_alladat.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_alladat.map; sourceTree = "<group>"; };
 		7ECADDCD17646AF00032A1E6 /* OALAction+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OALAction+Private.h"; sourceTree = "<group>"; };
 		7ECADDCE17646AF00032A1E6 /* OALAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OALAction.h; sourceTree = "<group>"; };
 		7ECADDCF17646AF00032A1E6 /* OALAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OALAction.m; sourceTree = "<group>"; };
@@ -1864,7 +1868,6 @@
 				7EB8B24216D9F8E700F58961 /* connector.map */,
 				7E8A53331773F8F7006F6114 /* labintro */,
 				7EC460E81705780C00656A48 /* lab */,
-				7EB8B26316D9F8E700F58961 /* hard */,
 				7E9A784B16FC68670014B7E0 /* tutorial */,
 				7E9A784A16FC68620014B7E0 /* easy */,
 				7E9A784916FC4DB50014B7E0 /* swingvine */,
@@ -1895,14 +1898,6 @@
 			);
 			name = TEST;
 			path = test;
-			sourceTree = "<group>";
-		};
-		7EB8B26316D9F8E700F58961 /* hard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = hard;
-			path = world1;
 			sourceTree = "<group>";
 		};
 		7EB8B27316D9F8E700F58961 /* music */ = {
@@ -2521,6 +2516,8 @@
 				7EAE854D177FF647005AB868 /* lab_minionwalls.map */,
 				7EAE854F177FFF2F005AB868 /* lab_ezshiz.map */,
 				7EAE8551178011FA005AB868 /* lab_ezrocketshz.map */,
+				7EC7B8A01782B41E00C26314 /* lab_swingers.map */,
+				7EC7B8A21782BF7600C26314 /* lab_alladat.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3437,6 +3434,8 @@
 				7EAE854E177FF647005AB868 /* lab_minionwalls.map in Resources */,
 				7EAE8550177FFF2F005AB868 /* lab_ezshiz.map in Resources */,
 				7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */,
+				7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */,
+				7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
