@@ -6,20 +6,16 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"lab_alladat" 
+#define TESTLEVEL @"lab_muhfiller" 
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
 #define RESET_STATS NO
 #define DISPLAY_FPS NO
 #define HOLD_TO_STOP NO
-/**
- levels to make:
- 2 lab filler levels
- **/
 
 /**
  TODO --

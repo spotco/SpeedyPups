@@ -588,6 +588,8 @@
 		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
 		7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE955B1776F98500474FD3 /* RocketWall.m */; };
+		7EF02D1F17856B6200C2DD50 /* lab_tube.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D1E17856B6200C2DD50 /* lab_tube.map */; };
+		7EF02D2117857D7100C2DD50 /* lab_muhfiller.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */; };
 		7EF06C0817476E3F009C6102 /* easy_hillvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF06C0717476E3F009C6102 /* easy_hillvine.map */; };
 		7EF06C0A17477C4A009C6102 /* swingvine_awesome.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF06C0917477C4A009C6102 /* swingvine_awesome.map */; };
 		7EF8A66B16D9BA5C009A1FC5 /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */; };
@@ -1366,6 +1368,8 @@
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
 		7EEE955A1776F98500474FD3 /* RocketWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketWall.h; sourceTree = "<group>"; };
 		7EEE955B1776F98500474FD3 /* RocketWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketWall.m; sourceTree = "<group>"; };
+		7EF02D1E17856B6200C2DD50 /* lab_tube.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_tube.map; sourceTree = "<group>"; };
+		7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_muhfiller.map; sourceTree = "<group>"; };
 		7EF06C0717476E3F009C6102 /* easy_hillvine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_hillvine.map; sourceTree = "<group>"; };
 		7EF06C0917477C4A009C6102 /* swingvine_awesome.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_awesome.map; sourceTree = "<group>"; };
 		7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
@@ -2518,6 +2522,8 @@
 				7EAE8551178011FA005AB868 /* lab_ezrocketshz.map */,
 				7EC7B8A01782B41E00C26314 /* lab_swingers.map */,
 				7EC7B8A21782BF7600C26314 /* lab_alladat.map */,
+				7EF02D1E17856B6200C2DD50 /* lab_tube.map */,
+				7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3436,6 +3442,8 @@
 				7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */,
 				7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */,
 				7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */,
+				7EF02D1F17856B6200C2DD50 /* lab_tube.map in Resources */,
+				7EF02D2117857D7100C2DD50 /* lab_muhfiller.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

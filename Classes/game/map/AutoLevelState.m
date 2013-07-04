@@ -12,6 +12,9 @@
 #define L_BOSS1AREA @"levelset_boss1area"
 #define L_AUTOSTART @"levelset_autostart"
 
+#define L_LABINTRO @"levelset_labintro"
+#define L_LAB @"levelset_lab"
+
 static NSMutableDictionary* levelsets;
 
 +(void)initialize {
@@ -93,6 +96,23 @@ static NSMutableDictionary* levelsets;
     [levelsets setObject:@[
         @"boss1_area",
     ] forKey:L_BOSS1AREA];
+	
+	[levelsets setObject:@[
+		@"labintro_tutorialbop",
+		@"labintro_tutoriallauncher",
+		@"labintro_entrance"
+	] forKey:L_LABINTRO];
+	
+	[levelsets setObject:@[
+		@"lab_basicmix",
+		@"lab_minionwalls",
+		@"lab_ezshiz",
+		@"lab_ezrocketshz",
+		@"lab_swingers",
+		@"lab_alladat",
+		@"lab_tube",
+		@"lab_muhfiller"
+	] forKey:L_LAB];
 }
 
 +(AutoLevelState*)cons {
