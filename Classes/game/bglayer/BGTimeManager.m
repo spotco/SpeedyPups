@@ -23,6 +23,10 @@
 static int bgtime_delayct;
 static BGTimeManagerMode bgtime_curmode;
 
++(BGTimeManagerMode)get_global_time {
+	return bgtime_curmode;
+}
+
 +(void)initialize {
 	bgtime_delayct = DAYNIGHT_LENGTH;
 	bgtime_curmode = MODE_DAY;

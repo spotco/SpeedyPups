@@ -110,6 +110,7 @@ static NSDictionary* ID_TO_POWERDESC;
 	
     new_player.start_pt = pt;
     new_player.position = new_player.start_pt;
+	
 	return new_player;
 }
 
@@ -118,7 +119,24 @@ static NSDictionary* ID_TO_POWERDESC;
     prevndir = 1;
     cur_scy = 1;
     inair_ct = 0;
+	
+	sweatanim = [CCSprite node];
+	[sweatanim runAction:[self make_sweatanim]];
+	[sweatanim setPosition:ccp(-30,45)];
+	[sweatanim setVisible:NO];
+	[self addChild:sweatanim z:10];
+	
     return self;
+}
+
+-(id)make_sweatanim{
+	CCTexture2D *texture = [Resource get_tex:TEX_SWEATANIM_SS];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_SWEATANIM_SS idname:@"sweat0"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_SWEATANIM_SS idname:@"sweat1"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_SWEATANIM_SS idname:@"sweat2"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_SWEATANIM_SS idname:@"sweat3"]]];
+    return [Common make_anim_frames:animFrames speed:0.1];
 }
 
 -(BOOL)start_anim:(player_anim_mode)tar {
@@ -149,9 +167,11 @@ static NSDictionary* ID_TO_POWERDESC;
         [self add_running_dust_particles:g];
     }
     
-    if (floating && !dead) {
-        [self add_floating_particle:g];
-    }
+	if ([self get_current_params].cur_airjump_count == 0 && [self get_current_params].cur_dash_count == 0 && current_island == NULL) {
+		[sweatanim setVisible:YES];
+    } else {
+		[sweatanim setVisible:NO];
+	}
     
     player_anim_mode cur_param_anim_mode = [[self get_current_params] get_anim];
     
@@ -336,21 +356,6 @@ static NSDictionary* ID_TO_POWERDESC;
             dv.y += float_random(-3, 3);
             [g add_particle:[StreamParticle cons_x:position_.x y:position_.y vx:dv.x vy:dv.y]];
         }
-    }
-}
-
--(void)add_floating_particle:(GameEngineLayer*)g {
-    if (particlectr >= 10) {
-        particlectr = 0;
-        float pvx;
-        if (arc4random_uniform(2) == 0) {
-            pvx = float_random(4, 6);
-        } else {
-            pvx = float_random(-4, -6);
-        }
-        [g add_particle:[FloatingSweatParticle cons_x:position_.x+6 y:position_.y+29 vx:pvx+vx vy:float_random(3, 6)+vy]];
-    } else {
-        particlectr++;
     }
 }
 

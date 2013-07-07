@@ -157,11 +157,10 @@ static NSMutableDictionary* levelsets;
 }
 
 -(NSString*)get_level {
-    //return @"filler_sanicloop";
     ct++;
     if (cur_mode == AutoLevelStateMode_BOSS1) {
         return [levelsets[L_BOSS1AREA] random];
-        
+		
     } else if (ct == 1) {
         [self set_cur_set_to:L_TUTORIAL];
         return [levelsets[L_AUTOSTART] random];

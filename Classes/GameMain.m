@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"lab_muhfiller" 
 #define STARTING_LIVES 10
 
@@ -20,7 +20,12 @@
  TODO
  -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -different dogs differnt special powers
-    ideas: higher jump, more float power, longer dash, faster, auto item magnet
+	-corgi -- auto magnet stuff
+	-pug -- higher jump
+	-poodle -- slower fall speed
+	-dalmation -- triple jump
+	-husky -- longer duration dash
+	-lab -- double dash (set cur_airjump_count to 2)
  -more challenge ingame ui, better challenge menu
  -SLOWDOWN powerup, remove heart
  -item revamp -- recharging items instead

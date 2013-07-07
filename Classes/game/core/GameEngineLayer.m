@@ -6,7 +6,8 @@
 #import "GameItemCommon.h"
 #import "UserInventory.h"
 #import "OneUpParticle.h"
-#import "GameModeCallback.h" 
+#import "GameModeCallback.h"
+#import "BGTimeManager.h"
 
 @implementation GameEngineLayer
 
@@ -84,7 +85,11 @@
         particles_tba = [[NSMutableArray alloc] init];
     }
     default_starting_lives = starting_lives;
+	
     [AudioManager playbgm:BGM_GROUP_WORLD1];
+	if ([BGTimeManager get_global_time] == MODE_NIGHT) {
+		[AudioManager transition_mode2];
+	}
     
     [GameControlImplementation reset_control_state];
     [GEventDispatcher add_listener:self];

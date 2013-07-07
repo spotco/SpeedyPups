@@ -2,6 +2,23 @@
 
 @implementation FloatingSweatParticle
 
+/*
+-(void)add_floating_particle:(GameEngineLayer*)g {
+    if (particlectr >= 10) {
+        particlectr = 0;
+        float pvx;
+        if (arc4random_uniform(2) == 0) {
+            pvx = float_random(4, 6);
+        } else {
+            pvx = float_random(-4, -6);
+        }
+        [g add_particle:[FloatingSweatParticle cons_x:position_.x+6 y:position_.y+29 vx:pvx+vx vy:float_random(3, 6)+vy]];
+    } else {
+        particlectr++;
+    }
+}
+*/
+ 
 +(FloatingSweatParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
     FloatingSweatParticle* p = [FloatingSweatParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
     p.position = ccp(x,y);

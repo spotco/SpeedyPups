@@ -15,5 +15,6 @@ typedef enum {
 }
 
 +(BGTimeManager*)cons;
++(BGTimeManagerMode)get_global_time;
 
 @end
