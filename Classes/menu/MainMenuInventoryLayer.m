@@ -27,12 +27,15 @@
     CCMenuItem *closebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                              rect:@"nmenu_closebutton"
                                               tar:self sel:@selector(close)
-                                              pos:ccp(windowsize.size.width/2.25,windowsize.size.height/4)];
-    
-    [inventory_window addChild:[CCMenu menuWithItems:closebutton, nil]];
+                                              pos:CGPointZero];
+    [closebutton setPosition:[Common pct_of_obj:inventory_window pctx:0.975 pcty:0.95]];
+	CCMenu *invmh = [CCMenu menuWithItems:closebutton, nil];
+	[invmh setPosition:CGPointZero];
+    [inventory_window addChild:invmh];
     [inventory_window setVisible:NO];
     
     CCMenu *itempanes = [CCMenu menuWithItems:nil];
+	[itempanes setPosition:[Common pct_of_obj:inventory_window pctx:0.55 pcty:0.7]];
     float panewid = [InventoryItemPane invpane_size].size.width;
     SEL invpanesel[] = {@selector(invpane1_click),@selector(invpane2_click),@selector(invpane3_click),@selector(invpane4_click)};
     GameItem defaultpaneitem[] = {Item_Magnet,Item_Rocket,Item_Heart,Item_Shield};

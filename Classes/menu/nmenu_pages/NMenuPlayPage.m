@@ -197,6 +197,8 @@
     
     CCSprite *dhmask = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_DOGHOUSEMASK]];
     [dhmask setAnchorPoint:ccp(0,0)];
+	[dhmask setScaleX:[Common scale_from_default].x];
+	[dhmask setScaleY:[Common scale_from_default].y];
     [self addChild:dhmask z:1 tag:tDHMASK];
 }
 

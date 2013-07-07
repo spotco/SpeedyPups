@@ -50,6 +50,8 @@ float CGPointDist(CGPoint a,CGPoint b) {
     CCSprite *loadscr = [CCSprite spriteWithFile:@"Default.png"];
     [loadscr setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];
     [loadscr setRotation:90];
+	[loadscr setScaleX:loadscr.boundingBoxInPixels.size.width/[Common scale_from_default].x];
+	[loadscr setScaleY:loadscr.boundingBoxInPixels.size.height/[Common scale_from_default].y];
     return loadscr;
 }
 
@@ -330,8 +332,8 @@ bool fm_a_gt_b(double a,double b,double delta) {
     gwid*=2;
     ghei*=2;
     
-    float escrwid = 480.0;
-    float escrhei = 320.0;
+    float escrwid = [Common SCREEN].width;
+    float escrhei = [Common SCREEN].height;
     
     float outx = (escrwid/2 - glzd->x)*(gwid/escrwid);
     float outy = (escrhei/2 - glzd->y)*(ghei/escrhei);
@@ -340,5 +342,13 @@ bool fm_a_gt_b(double a,double b,double delta) {
     glzd->y = outy;
 }
 
++(CGPoint)scale_from_default {
+	return CGPointMake([Common SCREEN].width/480.0, [Common SCREEN].height/320.0);
+}
+
++(CGPoint)pct_of_obj:(CCSprite *)obj pctx:(float)pctx pcty:(float)pcty {
+	CGRect rct = [obj boundingBoxInPixels];
+	return ccp(rct.size.width*pctx,rct.size.height*pcty);
+}
 
 @end

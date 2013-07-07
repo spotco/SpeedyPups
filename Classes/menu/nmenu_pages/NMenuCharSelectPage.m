@@ -41,18 +41,44 @@ static NSMutableArray* _anim_table;
     [self dog_spr_anim];
     [dog_spr setPosition:[Common screen_pctwid:0.5 pcthei:0.35]];
     [self addChild:dog_spr];
-    
-    CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_left" tar:self sel:@selector(arrow_left) pos:[Common screen_pctwid:0.3 pcthei:0.35]];
-    CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_arrow_right" tar:self sel:@selector(arrow_right) pos:[Common screen_pctwid:0.7 pcthei:0.35]];
-    select = [MenuCommon item_from:TEX_NMENU_ITEMS rect:@"nmenu_checkbutton" tar:self sel:@selector(select_char) pos:[Common screen_pctwid:0.72 pcthei:0.575]];
+	
+#define t_CHARSELMENU 123901
+	[self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_charselmenu" pos:[Common screen_pctwid:0.5 pcthei:0.75]] z:10 tag:t_CHARSELMENU];
+    CCSprite *charselmenu = (CCSprite*)[self getChildByTag:t_CHARSELMENU];
+	
+    CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
+											 rect:@"nmenu_arrow_left"
+											  tar:self
+											  sel:@selector(arrow_left)
+											  pos:[Common pct_of_obj:charselmenu pctx:0 pcty:-0.5]
+							 ];
+	
+    CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
+											  rect:@"nmenu_arrow_right"
+											   tar:self
+											   sel:@selector(arrow_right)
+											   pos:[Common pct_of_obj:charselmenu pctx:1 pcty:-0.5]
+							  ];
+	
+    select = [MenuCommon item_from:TEX_NMENU_ITEMS
+							  rect:@"nmenu_checkbutton"
+							   tar:self
+							   sel:@selector(select_char)
+							   pos:[Common pct_of_obj:charselmenu pctx:1 pcty:0]
+			  ];
+	
     controlm = [CCMenu menuWithItems:leftarrow,rightarrow,select, nil];
-    [controlm setPosition:ccp(0,0)];
-    [self addChild:controlm z:1];
+    [controlm setPosition:CGPointZero];
+    [charselmenu addChild:controlm z:1];
     
     spotlight = [MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_spotlight" pos:[Common screen_pctwid:0.5 pcthei:0.55]];
     [self addChild:spotlight];
-    [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_curtains" pos:[Common screen_pctwid:0.5 pcthei:0.95]]];
-    [self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_charselmenu" pos:[Common screen_pctwid:0.5 pcthei:0.75]]];
+    
+#define t_CURTAINS 12345
+	[self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_curtains" pos:[Common screen_pctwid:0.5 pcthei:0.95]] z:0 tag:t_CURTAINS];
+    [[self getChildByTag:t_CURTAINS] setScaleX:[Common scale_from_default].x];
+	
+	
     
     [self addChild:[MenuCommon cons_common_nav_menu]];
     
@@ -68,10 +94,9 @@ static NSMutableArray* _anim_table;
                                   fontName:@"Carton Six"
                                   fontSize:15];
     [infodesc setColor:ccc3(0,0,0)];
-    [infodesc setAnchorPoint:ccp(0,1)];
-    [infodesc setPosition:[Common screen_pctwid:0.32 pcthei:0.81]];
-    [self addChild:infodesc];
-    
+    [charselmenu addChild:infodesc];
+	[infodesc setPosition:[Common pct_of_obj:charselmenu pctx:0.5 pcty:0.45]];
+	
     for(int i = 0; i < [_anim_table count]; i++) {
         if ([_anim_table[i] isEqualToString:[Player get_character]]) {
             cur_dog = i;

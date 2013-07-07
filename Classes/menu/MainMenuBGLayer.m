@@ -43,6 +43,9 @@
     
     fg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_BG]];
     [fg setAnchorPoint:ccp(0,0)];
+	[fg setScaleX:[Common scale_from_default].x];
+	[fg setScaleY:[Common scale_from_default].y];
+	
     [self addChild:fg z:ORD_FG];
     
     particles = [[NSMutableArray alloc] init];

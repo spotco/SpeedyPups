@@ -11,8 +11,8 @@
     float outx = game_engine_layer.camera_state.x;
     float outy = game_engine_layer.camera_state.y;
     float outz = game_engine_layer.camera_state.z;
-    float playerscrx = (480/2.0)-outx/( (2*(0.907*outz + 237.819)) / (480.0) );
-    float playerscry = (320/2.0)-outy/( (2*(0.515*outz + 203.696)) / (320.0) );
+    float playerscrx = ([Common SCREEN].width/2.0)-outx/( (2*(0.907*outz + 237.819)) / ([Common SCREEN].width) );
+    float playerscry = ([Common SCREEN].height/2.0)-outy/( (2*(0.515*outz + 203.696)) / ([Common SCREEN].height) );
     return ccp(playerscrx,playerscry);
 }
 +(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale {

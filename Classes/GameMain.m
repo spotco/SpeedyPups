@@ -15,16 +15,20 @@
 #define DRAW_HITBOX NO
 #define RESET_STATS NO
 #define DISPLAY_FPS NO
-#define HOLD_TO_STOP NO
 
 /**
- TODO --
+ TODO
+ -boss1 sfx, breakage particles, nozzle fire, boss explode particles
  -different dogs differnt special powers
     ideas: higher jump, more float power, longer dash, faster, auto item magnet
- -more challenge mode ui
- -boss1 sfx, breakage particles, nozzle fire, boss explode particles
- -fix shadows for husky and armored dog
- -SLOWDOWN powerup
+ -more challenge ingame ui, better challenge menu
+ -SLOWDOWN powerup, remove heart
+ -item revamp -- recharging items instead
+ -infinite runner -- thrown in a lab group every 3 groups or so
+ -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
+					 def show some "high quality" levels early on (trickytreas)
+ -better continue and game over menu ui
+ -better challenge menu ui, with continue to next after success and reorganized (centered star) selector panes
  **/
 
 /**
@@ -35,16 +39,12 @@
  -left/right/disable item slot
  -total bones collected
  -total deaths
+ 
+ -infinite runner skip tutorial settings
  **/
 
 /**
- Shop:
- -Unlock art, sound test, debug menu
- 
- lab exit buggy
- rocket speed buggy
- 
- Challenge:
+ More Challenges:
  collect all bones in swingvine_awesome (67)
  classic_nubcave secret
  easy_curvywater get all bones
@@ -54,6 +54,7 @@
  classic_totalmix get 54 bones
  labintro_tutoriallauncher get all bones
  lab_alladat speedrun
+ double helicopter boss final challenge
  
  SFX:
  goal
@@ -61,6 +62,10 @@
  armor
  1up
  boss sounds
+ 
+ 
+ LAST BIT:
+ credits, game end message, loop (after boss in infinite runner or double helicopter)
  **/
 
 +(void)main {
@@ -74,42 +79,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-	/*
-    [UserInventory unlock_slot];
-    [UserInventory unlock_slot];
-    [UserInventory unlock_slot];
-    
-    
-    [UserInventory set_inventory_ct_of:Item_Magnet to:0];
-    [UserInventory set_inventory_ct_of:Item_Rocket to:0];
-    [UserInventory set_inventory_ct_of:Item_Shield to:0];
-    [UserInventory set_inventory_ct_of:Item_Heart to:0];
-	
-	[UserInventory add_bones:20000];
-    
-    
-    [UserInventory set_item:Item_Heart to_slot:0];
-    [UserInventory set_item:Item_Rocket to_slot:1];
-    [UserInventory set_item:Item_Magnet to_slot:2];
-    [UserInventory set_item:Item_Shield to_slot:3];
-    */
-    /*
-    [ChallengeRecord set_beaten_challenge:0 to:YES];
-    [ChallengeRecord set_beaten_challenge:1 to:YES];
-    [ChallengeRecord set_beaten_challenge:2 to:YES];
-    [ChallengeRecord set_beaten_challenge:3 to:YES];
-    [ChallengeRecord set_beaten_challenge:4 to:YES];
-    [ChallengeRecord set_beaten_challenge:5 to:YES];
-    [ChallengeRecord set_beaten_challenge:6 to:YES];
-    [ChallengeRecord set_beaten_challenge:7 to:YES];
-    [ChallengeRecord set_beaten_challenge:8 to:YES];
-    [ChallengeRecord set_beaten_challenge:9 to:YES];
-     */
-    //[UserInventory add_bones:0];
-    
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 
@@ -149,5 +121,4 @@
 
 +(BOOL)GET_USE_BG {return USE_BG;}
 +(BOOL)GET_DRAW_HITBOX {return DRAW_HITBOX;}
-+(BOOL)GET_HOLD_TO_STOP {return HOLD_TO_STOP;}
 @end
