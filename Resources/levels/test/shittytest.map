@@ -1,8 +1,11 @@
 {
-    "start_y": 301,
-    "islands": [{"can_fall": true, "x2": 1715, "y2": 348.8, "ground": "open", "y1": 263, "ndir": "left", "hei": 50, "type": "line", "x1": 177}],
+    "start_y": 597.1214285714286,
+    "connect_pts": {"y1": 502.9, "x2": 798.6, "y2": 502.9, "x1": 50},
+    "islands": [{"can_fall": true, "x2": 798.6, "y2": 502.9, "ground": "open", "y1": 502.9, "ndir": "left", "hei": 50, "type": "line", "x1": 50}],
+    "objects": [
+        {"x": 600, "label": "0", "dir": {"x": -1, "y": -0.02}, "y": 548.6, "type": "launcherrobot"},
+        {"x": 800, "x2": 814.3, "label": "1", "y": 194.3, "y2": 864.3, "type": "spikevine"}
+    ],
     "assert_links": 0,
-    "objects": [{"x": 716.3, "label": "2", "y": 293.8, "type": "labentrance"}, {"x": 1353.8, "x2": 1352.5, "label": "5", "y": 327.5, "y2": 615, "type": "breakable_wall"}],
-    "connect_pts": {"y1": 263, "x2": 1715, "y2": 348.8, "x1": 177},
-    "start_x": 305
+    "start_x": 152.9
 }

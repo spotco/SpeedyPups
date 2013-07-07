@@ -157,6 +157,16 @@ static NSMutableDictionary* levelsets;
 }
 
 -(NSString*)get_level {
+	
+	NSArray *tmp = @[@"autolevel_start",@"labintro_entrance",@"bossloadertest",@"bossloadertest",@"bossloadertest"];
+	if (cur_mode == AutoLevelStateMode_BOSS1) {
+        return [levelsets[L_BOSS1AREA] random];
+	} else {
+		NSString *pick = tmp[ct];
+		ct++;
+		return pick;
+	}
+	
     ct++;
     if (cur_mode == AutoLevelStateMode_BOSS1) {
         return [levelsets[L_BOSS1AREA] random];

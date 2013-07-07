@@ -30,7 +30,8 @@
     CCSprite *body = [CCSprite spriteWithTexture:tex rect:rect];
     t.body = body;
     body.position = ccp(0,t.IMGHEI/2);
-    [t addChild:body];
+    //[t setAnchorPoint:ccp(0.5,1)];
+	[t addChild:body];
     [body setScale:DEFAULT_SCALE];
     [t setScale:DEFAULT_SCALE];
     return t;

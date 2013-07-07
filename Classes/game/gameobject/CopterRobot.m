@@ -7,7 +7,7 @@
 #import "LauncherRobot.h"
 #import "BrokenMachineParticle.h" 
 
-#define ARM_DEFAULT_POSITION ccp(-35,-55)
+#define ARM_DEFAULT_POSITION ccp(-38,-47)
 
 @implementation CopterRobot
 
@@ -586,7 +586,7 @@ static const int DEFAULT_HP = 4;
     
     aux_prop = [CCSprite node];
     [aux_prop runAction:[self cons_anim:[NSArray arrayWithObjects:@"aux_prop_0",@"aux_prop_1",@"aux_prop_2",nil] speed:0.05]];
-    [aux_prop setPosition:ccp(-86,-10)];
+    [aux_prop setPosition:ccp(-92,0)];
     [self addChild:aux_prop];
     
     main_prop = [CCSprite node];
@@ -601,7 +601,7 @@ static const int DEFAULT_HP = 4;
     
     aux_nut = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_COPTER] 
                                      rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_COPTER idname:@"aux_bolt"]];
-    [aux_nut setPosition:ccp(-86,-10)];
+    [aux_nut setPosition:ccp(-92,-0)];
     [self addChild:aux_nut];
     
     arm = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_COPTER] 

@@ -27,6 +27,7 @@ static const float MAXSCALE = 0.75;
     [self setPosition:ccp(x,y)];
     ct = TIME;
     [self setScale:MINSCALE];
+	[self setAnchorPoint:ccp(1,0.5)];
     
     return self;
 }

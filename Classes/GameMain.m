@@ -7,9 +7,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"lab_muhfiller" 
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,7 +18,7 @@
 
 /**
  TODO
- -boss1 sfx, breakage particles, nozzle fire, boss explode particles
+ -boss explode particles
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
 	-pug -- higher jump
@@ -84,9 +84,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 
