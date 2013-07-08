@@ -6,14 +6,14 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
-#define RESET_STATS NO
+#define RESET_STATS YES
 #define DISPLAY_FPS NO
 
 /**
@@ -83,9 +83,11 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-	[GameMain start_testlevel];
+	[UserInventory add_bones:1000];
+	
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

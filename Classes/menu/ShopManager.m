@@ -109,19 +109,11 @@
 		} else {
 			[UserInventory add_bones:-selected_item.price];
 		}
-		
-		if (selected_item.action == ShopAction_BUY_ITEM) {
-			GameItem i = [selected_item.action_key integerValue];
-			[UserInventory set_inventory_ct_of:i to:[UserInventory get_inventory_ct_of:i]+1];
 			
-		} else if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
+		if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
 			GameItem i = [selected_item.action_key integerValue];
 			[UserInventory upgrade:i];
-			if (![UserInventory can_upgrade:i]) selected_item = NULL;
-			
-		} else if (selected_item.action == ShopAction_BUY_SLOT_UPGRADE) {
-			[UserInventory unlock_slot];
-			if (![UserInventory can_unlock_slot]) selected_item = NULL;
+			//TODO -- check if can upgrade
 			
 		} else if (selected_item.action == ShopAction_UNLOCK_CHARACTER) {
 			[UserInventory unlock_character:selected_item.action_key];

@@ -1,6 +1,7 @@
 #import "InventoryItemPane.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "UserInventory.h"
 
 @implementation InventoryItemPane
 
@@ -17,13 +18,9 @@
 }
 
 +(CCSprite*)cons_window {
-    float wid = [self invpane_size].size.width, hei = [self invpane_size].size.height;
     CCSprite *window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]];
-    CCLabelTTF *ctdsp = [Common cons_label_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:30 str:@"x0"];
-    [ctdsp setPosition:ccp(wid*0.75,hei*0.3)];
-    [window addChild:ctdsp z:1 tag:k_CTDSP];
-    CCSprite *obj = [CCSprite node];
-    [obj setPosition:ccp(wid*0.4,hei*0.6)];
+	CCSprite *obj = [CCSprite node];
+    [obj setPosition:[Common pct_of_obj:window pctx:0.5 pcty:0.5]];
     [window addChild:obj z:0 tag:k_OBJ];
     return window;
 }
@@ -36,14 +33,13 @@
     return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"];
 }
 
--(void)set_item:(GameItem)item ct:(int)ct {
+-(void)set_item:(GameItem)item{
     cur_item = item;
     for (CCSprite* s in @[w1,w2]) {
-        [(CCLabelTTF*)[s getChildByTag:k_CTDSP] setString:[NSString stringWithFormat:@"%d",ct]];
         TexRect *tr = [GameItemCommon texrect_from:item];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTexture:tr.tex];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTextureRect:tr.rect];
-        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:ct==0?100:255];
+        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:[UserInventory get_upgrade_level:item]==0?100:255];
     }
 }
 @end
@@ -93,13 +89,13 @@
     return window;
 }
 
--(void)set_item:(GameItem)item ct:(int)ct {
+-(void)set_item:(GameItem)item {
     cur_item = item;
     for (CCSprite* s in @[w1,w2]) {
         TexRect *tr = [GameItemCommon texrect_from:item];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTexture:tr.tex];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTextureRect:tr.rect];
-        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:ct==0?100:255];
+        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:[UserInventory get_upgrade_level:item]==0?100:255];
     }
 }
 @end
@@ -124,13 +120,13 @@
 +(CGRect)invpane_size {
     return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"itemslot_small"];
 }
--(void)set_item:(GameItem)item ct:(int)ct {
+-(void)set_item:(GameItem)item {
     cur_item = item;
     for (CCSprite* s in @[w1,w2]) {
         TexRect *tr = [GameItemCommon texrect_from:item];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTexture:tr.tex];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTextureRect:tr.rect];
-        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:ct==0?100:255];
+        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:255];
     }
 }
 @end

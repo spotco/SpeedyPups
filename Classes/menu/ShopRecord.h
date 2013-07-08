@@ -10,9 +10,7 @@ typedef enum {
 
 typedef enum {
 	ShopAction_UNLOCK_CHARACTER,
-	ShopAction_BUY_ITEM,
-	ShopAction_BUY_ITEM_UPGRADE,
-	ShopAction_BUY_SLOT_UPGRADE
+	ShopAction_BUY_ITEM_UPGRADE
 } ShopAction;
 
 @interface ItemInfo : NSObject

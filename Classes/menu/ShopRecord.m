@@ -46,34 +46,27 @@
 +(void)fill_items_tab:(NSMutableArray*)a {
 	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
 							 rectid:@"item_magnet"
-							   name:@"magnet"
-							   desc:[GameItemCommon description_from:Item_Magnet]
-							  price:40
-							 action:ShopAction_BUY_ITEM
+							   name:[GameItemCommon name_from:Item_Magnet]
+							   desc:@"Magnet that does shit"
+							  price:1
+							 action:ShopAction_BUY_ITEM_UPGRADE
 								key:[NSNumber numberWithInt:Item_Magnet]]];
 	
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS rectid:@"item_rocket"
-							   name:@"rocket"
-							   desc:[GameItemCommon description_from:Item_Rocket]
-							  price:40
-							 action:ShopAction_BUY_ITEM
+	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+							 rectid:@"item_rocket"
+							   name:[GameItemCommon name_from:Item_Rocket]
+							   desc:@"Rocket that does shit"
+							  price:1
+							 action:ShopAction_BUY_ITEM_UPGRADE
 								key:[NSNumber numberWithInt:Item_Rocket]]];
 	
 	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
 							 rectid:@"item_shield"
-							   name:@"armor"
-							   desc:[GameItemCommon description_from:Item_Shield]
-							  price:40
-							 action:ShopAction_BUY_ITEM
+							   name:[GameItemCommon name_from:Item_Shield]
+							   desc:@"Shield that does shit"
+							  price:1
+							 action:ShopAction_BUY_ITEM_UPGRADE
 								key:[NSNumber numberWithInt:Item_Shield]]];
-	
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-							 rectid:@"item_heart"
-							   name:@"heart"
-							   desc:[GameItemCommon description_from:Item_Heart]
-							  price:40
-							 action:ShopAction_BUY_ITEM
-								key:[NSNumber numberWithInt:Item_Heart]]];
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
@@ -95,29 +88,6 @@
 }
 
 +(void)fill_upgrade_tab:(NSMutableArray*)a {
-	if ([UserInventory can_unlock_slot]) {
-		[a addObject:[ItemInfo cons_tex:TEX_NMENU_ITEMS
-								 rectid:@"subinventory_empty"
-								   name:@"Unlock Slot"
-								   desc:@"Unlock an additional item slot to hold items."
-								  price:2000
-								 action:ShopAction_BUY_SLOT_UPGRADE
-									key:NULL]];
-	}
-	
-	GameItem items[] = {Item_Magnet,Item_Rocket,Item_Shield,Item_Heart};
-	for(int i = 0; i < 4; i++) {
-		GameItem item = items[i];
-		if ([UserInventory can_upgrade:item]) {
-			[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-									 rectid:[self gameitem_to_upgradeid:item]
-									   name:[GameItemCommon name_from:item]
-									   desc:@"Upgrade to last longer!"
-									  price:2000
-									 action:ShopAction_BUY_ITEM_UPGRADE
-										key:[NSNumber numberWithInt:item]]];
-		}
-	}
 }
 
 +(void)fill_misc_tab:(NSMutableArray*)a {

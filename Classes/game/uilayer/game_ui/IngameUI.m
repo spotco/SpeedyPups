@@ -104,7 +104,7 @@
 }
 
 -(void)update_item_slot {
-    [ingame_ui_item_slot set_item:[UserInventory get_item_at_slot:0] ct:1];
+    [ingame_ui_item_slot set_item:[UserInventory get_current_gameitem]];
 }
 
 -(void)draw {

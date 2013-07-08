@@ -4,8 +4,10 @@
 
 @interface MainMenuInventoryLayer : CCLayer <GEventListener> {
     CCSprite *inventory_window;
-    NSArray *inventory_panes,*slot_panes;
+    NSArray *inventory_panes;
     CCLabelTTF *bonectdsp, *infoname,*infodesc;
+
+	MainSlotItemPane *mainslot;
 }
 
 +(MainMenuInventoryLayer*)cons;

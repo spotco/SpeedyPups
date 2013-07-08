@@ -137,30 +137,19 @@
 
 -(void)update_items {
     [ingameui update_item_slot];
-    [pauseui update_item_slots];
+    [pauseui update_item_slot];
 
 }
 
 -(void)itemslot_use {
-    if ([UserInventory get_item_at_slot:0] != Item_NOITEM) {
-        GameItem i = [UserInventory get_item_at_slot:0];
-        [UserInventory set_item:Item_NOITEM to_slot:0];
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
-        
-        [GameItemCommon queue_item];
-        
-        [self update_items];
-    }
+	if ([UserInventory get_current_gameitem] != Item_NOITEM) {
+		GameItem i = [UserInventory get_current_gameitem];
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
+	}
 }
 
 -(void)slotpane_use:(int)i {
-    if (i > 0 && i <= [UserInventory get_num_slots_unlocked]) {
-        GameItem s0 = [UserInventory get_item_at_slot:0];
-        GameItem si = [UserInventory get_item_at_slot:i];
-        [UserInventory set_item:si to_slot:0];
-        [UserInventory set_item:s0 to_slot:i];
-    }
-    [self update_items];
+    NSLog(@"slotpane use, removeme");
 }
 
 -(void)pause {

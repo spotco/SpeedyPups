@@ -7,7 +7,7 @@
     GameItem cur_item;
 }
 +(InventoryItemPane*)cons_pt:(CGPoint)pt cb:(CallBack*)cb;
--(void)set_item:(GameItem)item ct:(int)ct;
+-(void)set_item:(GameItem)item;
 -(GameItem)cur_item;
 +(CGRect)invpane_size;
 @end

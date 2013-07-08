@@ -5,18 +5,12 @@
 
 +(int)get_current_bones;
 +(void)add_bones:(int)ct;
-+(void)set_inventory_ct_of:(GameItem)t to:(int)val;
-+(int)get_inventory_ct_of:(GameItem)t;
-+(int)get_num_slots_unlocked;
-+(int)get_lowest_empty_slot;
-+(void)unlock_slot;
-+(BOOL)can_unlock_slot;
-+(GameItem)get_item_at_slot:(int)i;
-+(void)set_item:(GameItem)t to_slot:(int)i;
 
++(GameItem)get_current_gameitem;
++(void)set_current_gameitem:(GameItem)g;
 +(int)get_upgrade_level:(GameItem)gi;
-+(BOOL)can_upgrade:(GameItem)gi;
 +(void)upgrade:(GameItem)gi;
++(BOOL)can_upgrade:(GameItem)g;
 
 +(BOOL)get_character_unlocked:(NSString*)character;
 +(void)unlock_character:(NSString*)character;

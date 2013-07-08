@@ -58,6 +58,11 @@ static NSDictionary* descriptions;
 
 
 +(NSString*)name_from:(GameItem)gameitem {
+	if ([UserInventory get_upgrade_level:gameitem] == 0)
+		return [NSString stringWithFormat:@"%@ (Locked)",
+				[names objectForKey:[NSValue valueWithGameItem:gameitem]]
+		];
+	
     return [NSString stringWithFormat:@"%@ (lvl %d)",
             [names objectForKey:[NSValue valueWithGameItem:gameitem]],
             [UserInventory get_upgrade_level:gameitem]
@@ -84,20 +89,9 @@ static NSDictionary* descriptions;
     }
 }
 
-+(void)queue_item {
-    int slots = [UserInventory get_num_slots_unlocked];
-    for (int i = 1; i <= slots; i++) {
-        if ([UserInventory get_item_at_slot:i] != Item_NOITEM) {
-            GameItem s0 = [UserInventory get_item_at_slot:0];
-            GameItem si = [UserInventory get_item_at_slot:i];
-            [UserInventory set_item:s0 to_slot:i];
-            [UserInventory set_item:si to_slot:0];
-            return;
-        }
-    }
-}
-
 +(int)get_uselength_for:(GameItem)gi {
+	return 1000;
+	/*
     int lvl = [UserInventory get_upgrade_level:gi];
     if (gi == Item_Rocket) {
         int dur[] = {300,600,1600,5000};
@@ -118,6 +112,11 @@ static NSDictionary* descriptions;
     } else {
         return 300;
     }
+	 */
+}
+
++(int)get_cooldown_for:(GameItem)gi {
+	return 5000;
 }
 
 @end

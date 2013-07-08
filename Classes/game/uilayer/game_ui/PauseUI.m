@@ -71,7 +71,8 @@
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
     [pausebuttons setPosition:ccp(0,0)];
     [pause_ui addChild:pausebuttons];
-    
+   
+	/*
     NSMutableArray* tslots = [NSMutableArray array];
     MainSlotItemPane *mainslot = [MainSlotItemPane cons_pt:ccp(-50,-15) cb:[Common cons_callback:self sel:@selector(slotpane0_click)] slot:0];
     CCMenu *slotitems = [CCMenu menuWithItems:nil];
@@ -89,6 +90,7 @@
     [slotitems setPosition:[Common screen_pctwid:0.35 pcthei:0.4]];
     [pause_ui addChild:slotitems];
     pause_menu_item_slots = tslots;
+	 */
     
     challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.15]
                                                    color:ccc3(255,255,255)
@@ -103,16 +105,6 @@
 
 -(void)set_challenge_msg:(NSString *)msg {
     [challenge_disp setString:msg];
-}
-
--(void)update_item_slots {
-    for (SlotItemPane *i in pause_menu_item_slots) {
-        if ([i get_slot] <= [UserInventory get_num_slots_unlocked]) {
-            [i set_item:[UserInventory get_item_at_slot:[i get_slot]] ct:1];
-        } else {
-            [i set_locked:YES];
-        }
-    }
 }
 
 -(void)update_labels_lives:(NSString *)lives bones:(NSString *)bones time:(NSString *)time {
@@ -133,17 +125,8 @@
     [(UILayer*)[self parent] exit_to_menu];
 }
 
--(void)slotpane_click:(int)i {
-    UILayer *p = (UILayer*)[self parent];
-    [p slotpane_use:i];
+-(void)update_item_slot {
+	
 }
-
--(void)slotpane0_click {[self slotpane_click:0];}
--(void)slotpane1_click {[self slotpane_click:1];}
--(void)slotpane2_click {[self slotpane_click:2];}
--(void)slotpane3_click {[self slotpane_click:3];}
--(void)slotpane4_click {[self slotpane_click:4];}
--(void)slotpane5_click {[self slotpane_click:5];}
--(void)slotpane6_click {[self slotpane_click:6];}
 
 @end
