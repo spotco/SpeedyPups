@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"labintro_tutoriallauncher"
@@ -18,7 +18,6 @@
 
 /**
  TODO
- -boss explode particles
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
 	-pug -- higher jump

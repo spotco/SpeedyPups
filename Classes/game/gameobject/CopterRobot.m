@@ -77,7 +77,7 @@ static const int DEFAULT_HP = 4;
         setbroke = YES;
         [body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_COPTER idname:BODY_BROKEN]];
         [arm setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_COPTER idname:ARM_BROKEN]];
-        NSLog(@"setbroken");
+        //NSLog(@"setbroken");
     }
     
     [self anim_arm];
@@ -312,8 +312,13 @@ static const int DEFAULT_HP = 4;
     ct--;
     if (ct <= 0) {
         cur_mode = CopterMode_ToRemove;
-        for(float i = 0; i < 10; i++) {
-            [g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 10) vy:float_random(-10, 10)]];
+        for(float i = 0; i < 5; i++) {
+			[g add_particle:[BrokenCopterMachineParticle cons_x:position_.x
+															  y:position_.y
+															 vx:float_random(-5, 10)
+															 vy:float_random(-10, 10)
+														   pimg:i]];
+            //[g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 10) vy:float_random(-10, 10)]];
         }
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_DEFEATED] add_pt:g.player.position]];
     }
