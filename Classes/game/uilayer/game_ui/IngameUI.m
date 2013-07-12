@@ -60,7 +60,37 @@
     ingame_ui.anchorPoint = ccp(0,0);
     ingame_ui.position = ccp(0,0);
     [self addChild:ingame_ui];
-    
+	
+	CCSprite *itemlenbarroot = [CCSprite node];
+	CCSprite *itemlenbarback = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					 idname:@"item_timebaremptytex"]];
+	[itemlenbarroot addChild:itemlenbarback];
+	CCSprite *itemlenbarfill = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					 idname:@"item_timebarfulltex"]];
+	[itemlenbarroot addChild:itemlenbarfill];
+	
+	[itemlenbarback setAnchorPoint:ccp(0,0.5)];
+	[itemlenbarfill setAnchorPoint:ccp(0,0.5)];
+	
+	[itemlenbarback setPosition:ccp(-72,0)];
+	[itemlenbarfill setPosition:ccp(-72,0)];
+	
+	[itemlenbarroot addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																				   idname:@"item_timebar"]]];
+	[itemlenbarroot setPosition:[Common screen_pctwid:0.81 pcthei:0.1]];
+    [self addChild:itemlenbarroot];
+	[itemlenbarfill setScaleX:0.5];
+	
+	CCSprite *readynotif = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+												  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																				 idname:@"item_ready"]];
+	[readynotif setPosition:[Common screen_pctwid:0.845 pcthei:0.185]];
+	[readynotif setOpacity:220];
+	[self addChild:readynotif];
+	
     return self;
 }
 

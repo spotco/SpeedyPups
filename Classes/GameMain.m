@@ -6,18 +6,30 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
-#define RESET_STATS YES
+#define RESET_STATS NO
 #define DISPLAY_FPS NO
 
 /**
  TODO
+ -item revamp -- recharging items instead
+ -SLOWDOWN powerup, remove heart
+
+ -more challenge ingame ui, better challenge menu
+ -better challenge menu ui, with continue to next after success and reorganized (centered star) selector panes
+ 
+ -infinite runner -- thrown in a lab group every 3 groups or so
+ -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
+ def show some "high quality" levels early on (trickytreas)
+ 
+ -better continue and game over menu ui
+ 
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
 	-pug -- higher jump
@@ -25,14 +37,6 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
- -more challenge ingame ui, better challenge menu
- -SLOWDOWN powerup, remove heart
- -item revamp -- recharging items instead
- -infinite runner -- thrown in a lab group every 3 groups or so
- -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
-					 def show some "high quality" levels early on (trickytreas)
- -better continue and game over menu ui
- -better challenge menu ui, with continue to next after success and reorganized (centered star) selector panes
  **/
 
 /**
@@ -83,11 +87,11 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
     
-	[UserInventory add_bones:1000];
+	//[UserInventory add_bones:1000];
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 
