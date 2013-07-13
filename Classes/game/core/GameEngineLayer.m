@@ -85,6 +85,7 @@
         particles_tba = [[NSMutableArray alloc] init];
     }
     default_starting_lives = starting_lives;
+	[UserInventory set_item_cooldown:0];
 	
     [AudioManager playbgm:BGM_GROUP_WORLD1];
 	if ([BGTimeManager get_global_time] == MODE_NIGHT) {
@@ -124,8 +125,8 @@
     [self runAction:follow_action];
     
     [self update_render];
-    [self schedule:@selector(update)];
-    
+    [self schedule:@selector(update:)];
+	
     scrollup_pct = 1;
     current_mode = GameEngineLayerMode_SCROLLDOWN;
     float tmp;
@@ -224,30 +225,35 @@
 	}
 }
 
--(void)update {
+-(void)update:(ccTime)delta {
     [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
-    
+    [UserInventory cooldown_tick];
+	
+	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY) {
+		[CCDirectorDisplayLink set_framemodct:2];
+	} else {
+		[CCDirectorDisplayLink set_framemodct:1];
+	}
+	
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
         time++;
 		
-#ifdef DO_FGLAYER
-		if (time%140 ==0) [GEventDispatcher push_event:[GEvent cons_type:GEventType_FGITEM_SHOW]];
-#endif
+		refresh_viewbox_cache = YES;
+		[GameControlImplementation control_update_player:self];
+		[GamePhysicsImplementation player_move:player with_islands:islands];
 		
-        refresh_viewbox_cache = YES;
-        [GameControlImplementation control_update_player:self];
-        [GamePhysicsImplementation player_move:player with_islands:islands];
-        
-        [player update:self];
-        [self check_falloff];
-        
-        [self update_gameobjs];
-        [self update_particles];
-        [self push_added_particles];
-        [self update_render];
-        [GameRenderImplementation update_render_on:self];
-        [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
+		[player update:self];
+		[self check_falloff];
+		
+		[self update_gameobjs];
+		[self update_particles];
+		[self push_added_particles];
+		[self update_render];
+		[GameRenderImplementation update_render_on:self];
+		[GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
+		
+
         
     } else if (current_mode == GameEngineLayerMode_UIANIM) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];

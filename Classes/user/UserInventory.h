@@ -15,4 +15,8 @@
 +(BOOL)get_character_unlocked:(NSString*)character;
 +(void)unlock_character:(NSString*)character;
 
++(void)set_item_cooldown:(int)i;
++(int)get_item_cooldown;
++(void)cooldown_tick;
+
 @end

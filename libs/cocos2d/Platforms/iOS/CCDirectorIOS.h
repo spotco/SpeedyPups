@@ -230,6 +230,7 @@ typedef enum {
 	id displayLink;
 }
 -(void) mainLoop:(id)sender;
++(void)set_framemodct:(int)i;
 @end
 
 /** TimerDirector is a Director that calls the main loop from an NSTimer object

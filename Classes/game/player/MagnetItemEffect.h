@@ -13,3 +13,7 @@
 @interface HeartItemEffect : MagnetItemEffect
 +(HeartItemEffect*)cons;
 @end
+
+@interface ClockItemEffect : MagnetItemEffect
++(ClockItemEffect*)cons;
+@end

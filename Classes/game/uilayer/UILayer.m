@@ -99,6 +99,9 @@
         
     } else if (e.type == GEventType_ITEM_DURATION_PCT) {
         [ingameui set_item_duration_pct:e.f1];
+		if (e.f1 == 0) {
+			[UserInventory set_item_cooldown:[GameItemCommon get_cooldown_for:[UserInventory get_current_gameitem]]];
+		}
         
     }
 }

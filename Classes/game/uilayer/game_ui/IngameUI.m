@@ -26,8 +26,12 @@
                                                           selectedSprite:pauseiconzoom
                                                                   target:self
                                                                 selector:@selector(pause)];
-    [ingamepause setPosition:[Common screen_pctwid:0.95 pcthei:0.9]];
+    [ingamepause setPosition:ccp(
+		[Common SCREEN].width-pauseicon.boundingBoxInPixels.size.width+10,
+		[Common SCREEN].height-pauseicon.boundingBoxInPixels.size.height+10
+	)];
     
+	
     CCMenuItem *bone_disp_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_BONE_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.96)];
     CCMenuItem *lives_disp_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_LIVES_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.88)];
     CCMenuItem *time_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_TIME_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.80)];
@@ -61,12 +65,12 @@
     ingame_ui.position = ccp(0,0);
     [self addChild:ingame_ui];
 	
-	CCSprite *itemlenbarroot = [CCSprite node];
+	itemlenbarroot = [CCSprite node];
 	CCSprite *itemlenbarback = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					 idname:@"item_timebaremptytex"]];
 	[itemlenbarroot addChild:itemlenbarback];
-	CCSprite *itemlenbarfill = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+	itemlenbarfill = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					 idname:@"item_timebarfulltex"]];
 	[itemlenbarroot addChild:itemlenbarfill];
@@ -80,16 +84,25 @@
 	[itemlenbarroot addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																				   idname:@"item_timebar"]]];
-	[itemlenbarroot setPosition:[Common screen_pctwid:0.81 pcthei:0.1]];
+	[itemlenbarroot setPosition:[Common screen_pctwid:0.82 pcthei:0.09]];
     [self addChild:itemlenbarroot];
 	[itemlenbarfill setScaleX:0.5];
+	for (CCSprite *i in [itemlenbarroot children]) {
+		[i setOpacity:175];
+	}
+	itemlenbaricon = [CCSprite node];
+	[itemlenbaricon setPosition:ccp(52,0)];
+	[itemlenbaricon setScale:0.8];
+	[itemlenbaricon setOpacity:200];
+	[itemlenbarroot addChild:itemlenbaricon];
 	
-	CCSprite *readynotif = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+	readynotif = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 												  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																				 idname:@"item_ready"]];
-	[readynotif setPosition:[Common screen_pctwid:0.845 pcthei:0.185]];
+	[readynotif setPosition:[Common screen_pctwid:0.855 pcthei:0.18]];
 	[readynotif setOpacity:220];
 	[self addChild:readynotif];
+	[readynotif setVisible:NO];
 	
     return self;
 }
@@ -117,6 +130,32 @@
     [self set_label:bones_disp to:strf("%i",[g get_num_bones])];
     [self set_label:lives_disp to:strf("\u00B7 %s",[g get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[g get_lives]).UTF8String)];
     [self set_label:time_disp to:[UICommon parse_gameengine_time:[g get_time]]];
+	
+	
+	if (item_duration_pct > 0) {
+		[itemlenbarroot setVisible:YES];
+		[ingame_ui_item_slot setVisible:NO];
+		[readynotif setVisible:NO];
+		[itemlenbarfill setScaleX:item_duration_pct];
+		
+	} else if ([UserInventory get_item_cooldown] > 0) {
+		[itemlenbarroot setVisible:NO];
+		[ingame_ui_item_slot setVisible:YES];
+		[ingame_ui_item_slot set_locked:YES];
+		[readynotif setVisible:NO];
+		
+	} else {
+		[itemlenbarroot setVisible:NO];
+		[ingame_ui_item_slot setVisible:YES];
+		[ingame_ui_item_slot set_locked:NO];
+		if ([UserInventory get_current_gameitem] != Item_NOITEM) {
+			[readynotif setVisible:YES];
+		} else {
+			[ingame_ui_item_slot set_locked:YES];
+			[readynotif setVisible:NO];
+		}
+	}
+	
 }
 
 -(void)set_label:(CCLabelTTF*)l to:(NSString*)s {
@@ -135,6 +174,9 @@
 
 -(void)update_item_slot {
     [ingame_ui_item_slot set_item:[UserInventory get_current_gameitem]];
+	TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
+	itemlenbaricon.texture = curitem.tex;
+	itemlenbaricon.textureRect = curitem.rect;
 }
 
 -(void)draw {
@@ -148,7 +190,7 @@
     CGPoint a = [Common screen_pctwid:0.885 pcthei:0.18];
     CGPoint b = [Common screen_pctwid:0.975 pcthei:0.18];
     CGPoint dab = ccp(b.x-a.x,b.y-a.y);
-    dab.x *= item_duration_pct;
+    dab.x *= ((float)[UserInventory get_item_cooldown])/[GameItemCommon get_cooldown_for:[UserInventory get_current_gameitem]];
     ccDrawLine(a,ccp(a.x+dab.x,a.y+dab.y));
 }
 

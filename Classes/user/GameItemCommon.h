@@ -7,7 +7,8 @@ typedef enum {
     Item_Magnet = 1,
     Item_Rocket = 2,
     Item_Shield = 3,
-    Item_Heart = 4
+    Item_Heart = 4,
+	Item_Clock = 5
 } GameItem;
 
 @interface TexRect : NSObject

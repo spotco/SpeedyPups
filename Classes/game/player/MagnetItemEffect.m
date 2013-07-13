@@ -100,7 +100,6 @@
 
 
 @implementation HeartItemEffect
-
 +(HeartItemEffect*)cons {
     return [HeartItemEffect node];
 }
@@ -114,5 +113,30 @@
         kill = YES;
     }
 }
+@end
 
+
+
+@interface ClockItemEffectParticle: MagnetItemEffectParticle
++(ClockItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase;
+@end
+
+@implementation ClockItemEffectParticle : MagnetItemEffectParticle
++(ClockItemEffectParticle*)cons_center:(CGPoint)center radius:(float)radius phase:(float)phase {
+    return [[ClockItemEffectParticle spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_clock"]] cons_center:center radius:radius phase:phase];
+}
+@end
+
+@implementation ClockItemEffect
++(ClockItemEffect*)cons {
+    return [ClockItemEffect node];
+}
+-(MagnetItemEffectParticle*)conspt_center:(CGPoint)center radius:(float)radius phase:(float)phase {
+    return [ClockItemEffectParticle cons_center:center radius:radius phase:phase];
+}
+-(void)dispatch_event:(GEvent *)e {
+    if (e.type == GEventType_ITEM_DURATION_PCT && e.f1 == 0 && e.i1 == Item_Clock) {
+        kill = YES;
+    }
+}
 @end

@@ -22,14 +22,14 @@ static NSMutableDictionary* levelsets;
     
     [levelsets setObject:@[
         @"tutorial_jump",
-        @"tutorial_breakrocks",
+		@"tutorial_swipeget",
+		@"tutorial_spikes",
+		@"tutorial_breakrocks",
         @"tutorial_water",
-        @"tutorial_spikes",
         @"tutorial_doublejump",
         @"tutorial_swipedir",
         @"tutorial_swingvine",
-        @"tutorial_swipeget",
-        @"tutorial_spikevine",
+        @"tutorial_spikevine"
     ] forKey:L_TUTORIAL];
     
     [levelsets setObject:@[
@@ -45,10 +45,10 @@ static NSMutableDictionary* levelsets;
     ] forKey:L_CLASSIC];
     
     [levelsets setObject:@[
+		@"filler_sanicloop",
         @"filler_curvedesc",
         @"filler_islandjump",
         @"filler_rollinghills",
-        @"filler_sanicloop",
         @"filler_directdrop",
         @"filler_steepdec",
         @"filler_genome",
@@ -157,17 +157,6 @@ static NSMutableDictionary* levelsets;
 }
 
 -(NSString*)get_level {
-	/*
-	NSArray *tmp = @[@"autolevel_start",@"labintro_entrance",@"bossloadertest",@"bossloadertest",@"bossloadertest"];
-	if (cur_mode == AutoLevelStateMode_BOSS1) {
-        return [levelsets[L_BOSS1AREA] random];
-	} else {
-		NSString *pick = tmp[ct];
-		ct++;
-		return pick;
-	}
-	 */
-	
     ct++;
     if (cur_mode == AutoLevelStateMode_BOSS1) {
         return [levelsets[L_BOSS1AREA] random];
@@ -186,7 +175,13 @@ static NSMutableDictionary* levelsets;
             picked = [levelsets[L_TUTORIAL] objectAtIndex:1];
             
         } else if (cur_set_ct%3 == 0) {
-            return [levelsets[L_FILLER] random];
+            return [levelsets[L_FILLER] objectAtIndex:0];
+			
+		} else if (cur_set_ct%4 == 0) {
+			picked = [levelsets[L_TUTORIAL] objectAtIndex:2];
+			
+		} else if (cur_set_ct%5 == 0) {
+			picked = [levelsets[L_TUTORIAL] objectAtIndex:3];
         
         } else {
             NSArray *tuts_left = [levelsets[cur_set] copy_removing:cur_used];

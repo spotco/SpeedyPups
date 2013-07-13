@@ -34,14 +34,16 @@ static NSDictionary* descriptions;
         [NSValue valueWithGameItem:Item_Heart]: @"Heart",
         [NSValue valueWithGameItem:Item_Magnet]: @"Magnet",
         [NSValue valueWithGameItem:Item_Rocket]: @"Rocket",
-        [NSValue valueWithGameItem:Item_Shield]: @"Shield"
+        [NSValue valueWithGameItem:Item_Shield]: @"Shield",
+		[NSValue valueWithGameItem:Item_Clock]: @"Clock"
     };
     
     descriptions = @{
         [NSValue valueWithGameItem:Item_Heart]: @"Carry it to take an extra hit from any obstable.",
         [NSValue valueWithGameItem:Item_Magnet]: @"Bones and other goodies will come your way!",
         [NSValue valueWithGameItem:Item_Rocket]: @"Zoom past your troubles!",
-        [NSValue valueWithGameItem:Item_Shield]: @"Brief invincibility. Run past anything!"
+        [NSValue valueWithGameItem:Item_Shield]: @"Brief invincibility. Run past anything!",
+		[NSValue valueWithGameItem:Item_Clock]: @"Slow down time"
     };
 }
 
@@ -51,6 +53,7 @@ static NSDictionary* descriptions;
     if (gameitem == Item_Rocket) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_rocket"]];
     if (gameitem == Item_Shield) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_shield"]];
     if (gameitem == Item_Heart) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_heart"]];
+	if (gameitem == Item_Clock) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_clock"]];
     if (gameitem == Item_NOITEM) return [TexRect cons_tex:tex rect:CGRectZero];
     [NSException raise:@"unknown gameitem" format:@"%d",gameitem];
     return NULL;
@@ -86,37 +89,18 @@ static NSDictionary* descriptions;
     } else if (it == Item_Heart) {
         [g.player set_heart:[self get_uselength_for:Item_Heart]];
         
-    }
+    } else if (it == Item_Clock) {
+		[g.player set_clockeffect:[self get_uselength_for:Item_Clock]];
+		
+	}
 }
 
 +(int)get_uselength_for:(GameItem)gi {
-	return 1000;
-	/*
-    int lvl = [UserInventory get_upgrade_level:gi];
-    if (gi == Item_Rocket) {
-        int dur[] = {300,600,1600,5000};
-        return dur[lvl];
-        
-    } else if (gi == Item_Magnet) {
-        int dur[] = {300,500,800,1300};
-        return dur[lvl];
-        
-    } else if (gi == Item_Shield) {
-        int dur[] = {300,500,800,1300};
-        return dur[lvl];
-        
-    } else if (gi == Item_Heart) {
-        int dur[] = {1000,2000,3000,4000};
-        return dur[lvl];
-    
-    } else {
-        return 300;
-    }
-	 */
+	return 100;
 }
 
 +(int)get_cooldown_for:(GameItem)gi {
-	return 5000;
+	return 100;
 }
 
 @end

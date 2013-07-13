@@ -112,6 +112,9 @@
 }
 -(void)set_locked:(BOOL)t {
     [self setIsEnabled:!t];
+	for (CCSprite* c in @[w1,w2]) {
+		[(CCSprite*)[c getChildByTag:k_OBJ] setOpacity:t?150:255];
+	}
     [self setOpacity:t?150:255];
 }
 +(float)objscale {

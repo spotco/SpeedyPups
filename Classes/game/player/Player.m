@@ -248,6 +248,13 @@ static NSDictionary* ID_TO_POWERDESC;
             [self reset_is_armored];
         }
     }
+	if (clock_ct > 0) {
+		clock_ct--;
+		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)clock_ct)/[GameItemCommon get_uselength_for:Item_Clock] f2:0] add_i1:Item_Clock i2:0]];
+		if (clock_ct == 0) {
+			[self reset_clockeffect];
+		}
+	}
 }
 
 #define DEFAULT_SPEED 7
@@ -315,10 +322,23 @@ static NSDictionary* ID_TO_POWERDESC;
     return heart_ct > 0;
 }
 
-
 -(void)reset_heart {
     heart_ct = 0;
     [GEventDispatcher immediate_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Heart i2:0]];
+}
+
+-(void)set_clockeffect:(int)time {
+	clock_ct = time;
+	[game_engine_layer add_gameobject:[ClockItemEffect cons]];
+}
+
+-(BOOL)is_clockeffect {
+	return clock_ct > 0;
+}
+
+-(void)reset_clockeffect {
+	clock_ct = 0;
+	[GEventDispatcher immediate_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Clock i2:0]];
 }
 
 -(void)reset_all_ieffects {
@@ -326,6 +346,7 @@ static NSDictionary* ID_TO_POWERDESC;
     [self reset_speed_ieffect];
     [self reset_is_armored];
     [self reset_heart];
+	[self reset_clockeffect];
 }
 
 -(void)mov_center_rotation {

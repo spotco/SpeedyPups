@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
@@ -18,15 +18,12 @@
 
 /**
  TODO
- -item revamp -- recharging items instead
- -SLOWDOWN powerup, remove heart
-
  -more challenge ingame ui, better challenge menu
  -better challenge menu ui, with continue to next after success and reorganized (centered star) selector panes
  
  -infinite runner -- thrown in a lab group every 3 groups or so
  -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
- def show some "high quality" levels early on (trickytreas)
+  def show some "high quality" levels early on (trickytreas)
  
  -better continue and game over menu ui
  
@@ -86,12 +83,11 @@
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-    
 	//[UserInventory add_bones:1000];
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 
@@ -124,6 +120,7 @@
 }
 
 +(void)run_scene:(CCScene*)s {
+	[CCDirectorDisplayLink set_framemodct:1];
     [[CCDirector sharedDirector] runningScene]?
     [[CCDirector sharedDirector] replaceScene:s]:
     [[CCDirector sharedDirector] runWithScene:s];

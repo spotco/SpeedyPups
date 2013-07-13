@@ -595,7 +595,6 @@ CGFloat	__ccContentScaleFactor = 1;
 -(void) mainLoop
 {
 	while (isRunning) {
-	
 		NSAutoreleasePool *loopPool = [NSAutoreleasePool new];
 
 #if CC_DIRECTOR_DISPATCH_FAST_EVENTS
@@ -725,9 +724,18 @@ CGFloat	__ccContentScaleFactor = 1;
 	[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
+static int mainloopct;
+static int modct = 1;
++(void)set_framemodct:(int)i {
+	modct = i;
+}
+
 -(void) mainLoop:(id)sender
 {
-	[self drawScene];	
+	mainloopct++;
+	if (mainloopct%modct==0) {
+		[self drawScene];
+	}
 }
 
 - (void) stopAnimation

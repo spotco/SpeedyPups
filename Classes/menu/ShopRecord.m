@@ -67,6 +67,14 @@
 							  price:1
 							 action:ShopAction_BUY_ITEM_UPGRADE
 								key:[NSNumber numberWithInt:Item_Shield]]];
+	
+	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+							 rectid:@"item_clock"
+							   name:[GameItemCommon name_from:Item_Clock]
+							   desc:@"Clock that does shit"
+							  price:1
+							 action:ShopAction_BUY_ITEM_UPGRADE
+								key:[NSNumber numberWithInt:Item_Clock]]];
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
@@ -80,7 +88,7 @@
 									   desc:[NSString stringWithFormat:@"Unlock %@.\nSpecial ability:%@",
 												[Player get_name:dog],
 												[Player get_power_desc:dog]]
-									  price:5000
+									  price:1
 									 action:ShopAction_UNLOCK_CHARACTER
 										key:dog]];
 		}

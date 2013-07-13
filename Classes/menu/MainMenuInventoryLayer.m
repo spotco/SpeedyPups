@@ -39,7 +39,7 @@
     
 	float panewid = [InventoryItemPane invpane_size].size.width;
     SEL invpanesel[] = {@selector(invpane1_click),@selector(invpane2_click),@selector(invpane3_click),@selector(invpane4_click)};
-    GameItem defaultpaneitem[] = {Item_Magnet,Item_Rocket,Item_Heart,Item_Shield};
+    GameItem defaultpaneitem[] = {Item_Magnet,Item_Rocket,Item_Clock,Item_Shield};
     NSMutableArray *itempanesarr = [NSMutableArray array];
     for(int i = 0; i < 4; i++) {
         InventoryItemPane *ip = [InventoryItemPane cons_pt:ccp(-panewid*1.75+(panewid+5)*i,0)

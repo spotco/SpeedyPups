@@ -234,15 +234,15 @@
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {105, 20}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{0, -0}</string>
 			<key>spriteSize</key>
 			<string>{105, 20}</string>
 			<key>spriteSourceSize</key>
 			<string>{105, 20}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{492, 158}, {105, 20}}</string>
+			<string>{{267, 362}, {105, 20}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -254,17 +254,17 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {105, 20}}</string>
+			<string>{{0, 1}, {105, 18}}</string>
 			<key>spriteOffset</key>
-			<string>{0, 0}</string>
+			<string>{0, -0}</string>
 			<key>spriteSize</key>
-			<string>{105, 20}</string>
+			<string>{105, 18}</string>
 			<key>spriteSourceSize</key>
 			<string>{105, 20}</string>
 			<key>spriteTrimmed</key>
-			<false/>
+			<true/>
 			<key>textureRect</key>
-			<string>{{267, 362}, {105, 20}}</string>
+			<string>{{492, 158}, {105, 18}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
