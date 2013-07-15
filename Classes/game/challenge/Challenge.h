@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+@class TexRect;
 
 typedef enum {
     ChallengeType_COLLECT_BONES,
@@ -19,6 +20,7 @@ typedef enum {
 
 @interface ChallengeRecord : NSObject
 
++(TexRect*)get_for:(ChallengeType)type;
 +(int)get_num_challenges;
 +(ChallengeInfo*)get_challenge_number:(int)i;
 +(int)get_number_for_challenge:(ChallengeInfo*)c;

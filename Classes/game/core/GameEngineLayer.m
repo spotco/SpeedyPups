@@ -88,9 +88,6 @@
 	[UserInventory set_item_cooldown:0];
 	
     [AudioManager playbgm:BGM_GROUP_WORLD1];
-	if ([BGTimeManager get_global_time] == MODE_NIGHT) {
-		[AudioManager transition_mode2];
-	}
     
     [GameControlImplementation reset_control_state];
     [GEventDispatcher add_listener:self];

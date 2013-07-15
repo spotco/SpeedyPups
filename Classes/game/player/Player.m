@@ -273,7 +273,6 @@ static NSDictionary* ID_TO_POWERDESC;
 
 #define DEFAULT_DASH_MAGNET_RAD 150
 -(void)set_magnet_rad:(int)rad ct:(int)ct {
-    [self reset_magnet_ieffect];
     new_magnetrad = rad;
     new_magnetrad_ct = ct;
     [game_engine_layer add_gameobject:[MagnetItemEffect cons]];

@@ -15,15 +15,6 @@
 }
 @end
 
-@implementation TexRect
-@synthesize tex;
-@synthesize rect;
-+(TexRect*)cons_tex:(CCTexture2D *)tex rect:(CGRect)rect {
-    TexRect *r = [[TexRect alloc] init]; [r setTex:tex]; [r setRect:rect]; return r;
-}
-@end
-
-
 @implementation GameItemCommon
 
 static NSDictionary* names;

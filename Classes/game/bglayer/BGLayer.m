@@ -90,6 +90,9 @@ static const float FADECTR_MAX = 10;
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
         [self set_day_night_color:e.i1];
+		if ([BGTimeManager get_global_time] == MODE_NIGHT) {
+			[AudioManager transition_mode2];
+		}
         
     } else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
         [self scrollup_bg_pct:e.f1];

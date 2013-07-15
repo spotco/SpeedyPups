@@ -1,6 +1,9 @@
 #import "Challenge.h"
 #import "DataStore.h"
-#import "UICommon.h" 
+#import "UICommon.h"
+#import "Common.h"
+#import "Resource.h"
+#import "FileCache.h"
 
 @implementation ChallengeInfo
 
@@ -55,6 +58,20 @@ static NSArray* _CHALLENGES;
         [ChallengeInfo cons_name:@"filler_smgislands" type:ChallengeType_COLLECT_BONES ct:52 reward:1],
         [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1000 reward:1]
     ];
+}
+
++(TexRect*)get_for:(ChallengeType)type {
+	NSString *tar = @"";
+	if (type == ChallengeType_COLLECT_BONES) {
+		tar = @"challengeicon_bone";
+	} else if (type == ChallengeType_FIND_SECRET) {
+		tar = @"challengeicon_coin";
+	} else if (type == ChallengeType_TIMED) {
+		tar = @"challengeicon_time";
+	}
+	
+	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:tar]];
 }
 
 +(int)get_number_for_challenge:(ChallengeInfo *)c {

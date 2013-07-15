@@ -1,4 +1,3 @@
-
 #import "Common.h"
 #import "Island.h"
 #import "GameRenderImplementation.h"
@@ -13,6 +12,14 @@
     @synthesize texture;
     -(CGPoint*)tex_pts {return tex_pts;}
     -(CGPoint*)tri_pts {return tri_pts;}
+@end
+
+@implementation TexRect
+@synthesize tex;
+@synthesize rect;
++(TexRect*)cons_tex:(CCTexture2D *)tex rect:(CGRect)rect {
+    TexRect *r = [[TexRect alloc] init]; [r setTex:tex]; [r setRect:rect]; return r;
+}
 @end
 
 @implementation Common

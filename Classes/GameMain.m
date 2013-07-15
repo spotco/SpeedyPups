@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
@@ -18,8 +18,11 @@
 
 /**
  TODO
- -more challenge ingame ui, better challenge menu
- -better challenge menu ui, with continue to next after success and reorganized (centered star) selector panes
+ -challenge mode ingame ui
+ -challenge mode continue to next ui
+ -challenge mode finish anims
+ -reposition item use slot closer to edge
+ -check day/night run music bug
  
  -infinite runner -- thrown in a lab group every 3 groups or so
  -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
@@ -34,6 +37,7 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
+ - buy item sound + anim
  **/
 
 /**

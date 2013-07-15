@@ -8,7 +8,7 @@
 #import "GameMain.h" 
 
 @interface ChallengeButtonIcon : CCSprite {
-    CCSprite *locked,*unlocked,*status_star;
+    CCSprite *locked,*unlocked,*status_star,*disp_type_icon;
 }
 @end
 
@@ -34,15 +34,21 @@
     [self addChild:locked];
     
     unlocked = [CCSprite node];
-    [unlocked addChild:[Common cons_label_pos:ccp(40,50)
+    [unlocked addChild:[Common cons_label_pos:ccp(55,60)
                                       color:ccc3(153, 0, 0)
-                                   fontsize:45
+                                   fontsize:34
                                         str:@"-1"] z:0 tag:tcbi_sub_text];
     [self addChild:unlocked];
+	
+	disp_type_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+											rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"challengeicon_coin"]];
+	[disp_type_icon setPosition:ccp(30,60)];
+	[self addChild:disp_type_icon];
     
     status_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-                                          rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar"]]
-                   pos:ccp(16,16)];
+                                          rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
+                   pos:[Common pct_of_obj:self pctx:0.53 pcty:0.27]];
+	[status_star setScale:0.25];
     [self addChild:status_star];
     
     [locked setVisible:NO];
@@ -58,10 +64,16 @@
     [unlocked setVisible:!l];
     if (l) {
         [status_star setVisible:NO];
+		[disp_type_icon setVisible:NO];
     } else {
         [status_star setVisible:YES];
-        [status_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:[ChallengeRecord get_beaten_challenge:i]?@"levelstar":@"levelstarbad"]];
-    }
+        [status_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
+															  idname:[ChallengeRecord get_beaten_challenge:i]?@"levelstar_hr":@"levelstar_locked_hr"]];
+		[disp_type_icon setVisible:YES];
+		TexRect *tr = [ChallengeRecord get_for:[ChallengeRecord get_challenge_number:i].type];
+		[disp_type_icon setTexture:tr.tex];
+		[disp_type_icon setTextureRect:tr.rect];
+	}
 }
 
 @end
@@ -71,7 +83,6 @@
 @end
 
 @implementation ChallengeButton
-
 +(ChallengeButton*)cons_pos:(CGPoint)pos tar:(id)tar sel:(SEL)sel {
     ChallengeButtonIcon *p_a = [ChallengeButtonIcon node];
     ChallengeButtonIcon *p_b = [ChallengeButtonIcon node];
@@ -82,7 +93,6 @@
     p.p_b = p_b;
     return p;
 }
-
 -(void)set_num:(int)i locked:(BOOL)l {
     [self.p_a set_num:i locked:l];
     [self.p_b set_num:i locked:l];
@@ -95,108 +105,6 @@
 
 +(ChallengeModeSelect*)cons {
     return [ChallengeModeSelect node];
-}
-
--(void)cons_selectmenu {
-    selectmenu = [CCSprite node];
-    [self addChild:selectmenu];
-    //[selectmenu addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.875] color:ccc3(0, 0, 0) fontsize:25 str:@"Challenge Select"] z:2];
-    leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
-                                 rect:@"nmenu_arrow_left"
-                                  tar:self sel:@selector(arrow_left)
-                                  pos:[Common screen_pctwid:0.145 pcthei:0.5]];
-    
-    rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
-                                  rect:@"nmenu_arrow_right"
-                                   tar:self sel:@selector(arrow_right)
-                                   pos:[Common screen_pctwid:0.885 pcthei:0.5]];
-    
-    CCMenu *selmenu = [CCMenu menuWithItems:leftarrow,rightarrow, nil];
-    [selmenu setPosition:ccp(0,0)];
-    [selectmenu addChild:selmenu];
-    
-    panes = [[NSMutableArray alloc] init];
-    
-    SEL clk[] = {@selector(click0),@selector(click1),@selector(click2),@selector(click3),@selector(click4),@selector(click5),@selector(click6),@selector(click7)};
-    for(int i = 0; i < 8; i++) {
-        float wid = (i%4)*0.17-0.29;
-        float hei = (i/4)*(-0.3)+0.02;
-        [panes addObject:[ChallengeButton cons_pos:[Common screen_pctwid:wid pcthei:hei] tar:self sel:clk[i]]];
-    }
-    
-    CCMenu *lvls = [CCMenu menuWithItems:nil];
-    for (CCMenuItem *i in panes) {
-        [lvls addChild:i];
-    }
-    [selectmenu addChild:lvls];
-    [lvls setPosition:ccp(lvls.position.x+23,lvls.position.y+50)];
-}
-
--(void)cons_chosenmenu {
-    chosenmenu = [CCSprite node];
-    [self addChild:chosenmenu];
-    CGRect windowrect = [FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"leveldescriptionpanel"];
-    CCSprite *chosen_window = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-                                                      rect:windowrect]
-                               pos:[Common screen_pctwid:0.5 pcthei:0.57]];
-    
-    NSString* maxstr = @"aaaaaaaaaaaa\naaaaaaaaaaaa\naaaaaaaaaaaa";
-    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
-                           constrainedToSize:CGSizeMake(500, 700)
-                               lineBreakMode:UILineBreakModeWordWrap];
-    
-    chosen_name = [CCLabelTTF labelWithString:maxstr
-                                dimensions:actualSize
-                                 alignment:UITextAlignmentLeft
-                                  fontName:@"Carton Six"
-                                  fontSize:15];
-    [chosen_name setAnchorPoint:ccp(0,1)];
-    [chosen_name setColor:ccc3(190,0,0)];
-    [chosen_name setPosition:ccp(windowrect.size.width*0.67,windowrect.size.height*0.83)];
-    [chosen_window addChild:chosen_name];
-    
-    maxstr = @"aaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa";
-    actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:12]
-                    constrainedToSize:CGSizeMake(500, 700)
-                        lineBreakMode:UILineBreakModeWordWrap];
-    chosen_goal = [CCLabelTTF labelWithString:maxstr
-                                   dimensions:actualSize
-                                    alignment:UITextAlignmentLeft
-                                     fontName:@"Carton Six"
-                                     fontSize:12];
-    [chosen_goal setColor:ccc3(0, 0, 0)];
-    [chosen_goal setAnchorPoint:ccp(0,1)];
-    [chosen_goal setPosition:ccp(windowrect.size.width*0.67,windowrect.size.height*0.52)];
-    [chosen_window addChild:chosen_goal];
-    
-    chosen_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-                                         rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar"]]
-                   pos:ccp(windowrect.size.width*0.7,windowrect.size.height*0.18)];
-    [chosen_window addChild:chosen_star];
-    
-    chosen_preview = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-                                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"preview_generic"]]
-                      pos:ccp(windowrect.size.width*0.35,windowrect.size.height*0.46)];
-    [chosen_window addChild:chosen_preview];
-    
-    CCMenuItem *back = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
-                                        rect:@"gobackbutton"
-                                         tar:self sel:@selector(back_to_select)
-                                         pos:ccp(windowrect.size.width*0.1,windowrect.size.height*0)];
-    
-    CCMenuItem *play = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
-                                        rect:@"runbutton"
-                                         tar:self sel:@selector(play)
-                                         pos:ccp(windowrect.size.width*0.95,windowrect.size.height*0)];
-    
-    CCMenu *but = [CCMenu menuWithItems:back,play, nil];
-    [but setPosition:CGPointZero];
-    [chosen_window addChild:but];
-    
-    [chosen_name setString:@"Challenge 1: classic_trickytreas"];
-    [chosen_goal setString:@"goal: collect 28 or more bones"];
-    
-    [chosenmenu addChild:chosen_window];
 }
 
 -(id)init {
@@ -229,6 +137,125 @@
     [self update_selectmenu];
     
     return self;
+}
+
+-(void)cons_selectmenu {
+    selectmenu = [CCSprite node];
+    [pagewindow addChild:selectmenu];
+	leftarrow = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+                                 rect:@"challengeselectnextarrow"
+                                  tar:self sel:@selector(arrow_left)
+                                  pos:[Common pct_of_obj:pagewindow pctx:0.025 pcty:0.5]];
+	[leftarrow setScaleX:-1];
+    
+    rightarrow = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+                                  rect:@"challengeselectnextarrow"
+                                   tar:self sel:@selector(arrow_right)
+                                   pos:[Common pct_of_obj:pagewindow pctx:0.975 pcty:0.5]];
+    
+    CCMenu *selmenu = [CCMenu menuWithItems:leftarrow,rightarrow, nil];
+    [selmenu setPosition:ccp(0,0)];
+    [selectmenu addChild:selmenu];
+    
+    panes = [[NSMutableArray alloc] init];
+    
+    SEL clk[] = {@selector(click0),@selector(click1),@selector(click2),@selector(click3),@selector(click4),@selector(click5),@selector(click6),@selector(click7)};
+    for(int i = 0; i < 8; i++) {
+        float wid = (i%4)*0.2+0.2;
+        float hei = -(i/4)*0.4+0.7;
+        [panes addObject:[ChallengeButton cons_pos:[Common pct_of_obj:pagewindow pctx:wid pcty:hei]
+											   tar:self
+											   sel:clk[i]]];
+    }
+    
+    CCMenu *lvls = [CCMenu menuWithItems:nil];
+    for (CCMenuItem *i in panes) {
+        [lvls addChild:i];
+    }
+	[lvls setPosition:CGPointZero];
+    [selectmenu addChild:lvls];
+	
+	CCSprite *titlebarback = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+													rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
+																				   idname:@"challengeselecttitlebar"]];
+	[titlebarback setPosition:[Common pct_of_obj:pagewindow pctx:0.5 pcty:0.985]];
+	[pagewindow addChild:titlebarback];
+	
+	[titlebarback addChild:[Common cons_label_pos:[Common pct_of_obj:titlebarback pctx:0.5 pcty:0.5]
+											color:ccc3(0,0,0)
+										 fontsize:20
+											  str:@"Challenge Select"]];
+}
+
+-(void)cons_chosenmenu {
+    chosenmenu = [CCSprite node];
+    [self addChild:chosenmenu];
+    CCSprite *chosen_window = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+                                                      rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"leveldescriptionpanel"]]
+                               pos:[Common screen_pctwid:0.5 pcthei:0.57]];
+    
+    NSString* maxstr = @"aaaaaaaaaaaa\naaaaaaaaaaaa\naaaaaaaaaaaa";
+    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
+                           constrainedToSize:CGSizeMake(500, 700)
+                               lineBreakMode:UILineBreakModeWordWrap];
+    
+    chosen_name = [CCLabelTTF labelWithString:maxstr
+                                dimensions:actualSize
+                                 alignment:UITextAlignmentLeft
+                                  fontName:@"Carton Six"
+                                  fontSize:15];
+    [chosen_name setAnchorPoint:ccp(0,1)];
+    [chosen_name setColor:ccc3(190,0,0)];
+    [chosen_name setPosition:[Common pct_of_obj:chosen_window pctx:0.67 pcty:0.83]];
+    [chosen_window addChild:chosen_name];
+    
+    maxstr = @"aaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa";
+    actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:12]
+                    constrainedToSize:CGSizeMake(500, 700)
+                        lineBreakMode:UILineBreakModeWordWrap];
+    chosen_goal = [CCLabelTTF labelWithString:maxstr
+                                   dimensions:actualSize
+                                    alignment:UITextAlignmentLeft
+                                     fontName:@"Carton Six"
+                                     fontSize:12];
+    [chosen_goal setColor:ccc3(0, 0, 0)];
+    [chosen_goal setAnchorPoint:ccp(0,1)];
+    [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.67 pcty:0.52]];
+    [chosen_window addChild:chosen_goal];
+    
+    chosen_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+                                         rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
+                   pos:[Common pct_of_obj:chosen_window pctx:0.98 pcty:0.92]];
+	[chosen_star setScale:0.35];
+    [chosen_window addChild:chosen_star];
+    
+    chosen_preview = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+                                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"preview_generic"]]
+                      pos:[Common pct_of_obj:chosen_window pctx:0.35 pcty:0.46]];
+    [chosen_window addChild:chosen_preview];
+    
+    CCMenuItem *back = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+                                        rect:@"gobackbutton"
+                                         tar:self sel:@selector(back_to_select)
+                                         pos:[Common pct_of_obj:chosen_window pctx:0.1 pcty:0]];
+    
+    CCMenuItem *play = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+                                        rect:@"runbutton"
+                                         tar:self sel:@selector(play)
+                                         pos:[Common pct_of_obj:chosen_window pctx:0.95 pcty:0]];
+    
+    CCMenu *but = [CCMenu menuWithItems:back,play, nil];
+    [but setPosition:CGPointZero];
+    [chosen_window addChild:but];
+    
+    [chosen_name setString:@""];
+    [chosen_goal setString:@""];
+	
+	chosen_icon = [CCSprite node];
+	[chosen_icon setPosition:[Common pct_of_obj:chosen_window pctx:0.81 pcty:0.22]];
+	[chosen_window addChild:chosen_icon];
+    
+    [chosenmenu addChild:chosen_window];
 }
 
 -(void)close {
@@ -272,8 +299,11 @@
     [chosen_name setString:[NSString stringWithFormat:@"Challenge %d: %@",chosen_level,cc.map_name]];
     [chosen_goal setString:[cc to_string]];
     [chosen_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
-                                                          idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar":@"levelstarbad"]];
+                                                          idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar_hr":@"levelstar_locked_hr"]];
     
+	TexRect *tar = [ChallengeRecord get_for:cc.type];
+	[chosen_icon setTexture:tar.tex];
+	[chosen_icon setTextureRect:tar.rect];
 }
 
 -(void)clicked:(int)i{

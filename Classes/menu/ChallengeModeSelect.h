@@ -9,7 +9,7 @@
     CCSprite *selectmenu, *chosenmenu;
     
     CCLabelTTF *chosen_name, *chosen_goal;
-    CCSprite *chosen_star,*chosen_preview;
+    CCSprite *chosen_star,*chosen_preview, *chosen_icon;
     int chosen_level;
 }
 

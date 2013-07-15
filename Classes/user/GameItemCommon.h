@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+@class TexRect;
 @class CCTexture2D;
 @class GameEngineLayer;
 
@@ -10,12 +11,6 @@ typedef enum {
     Item_Heart = 4,
 	Item_Clock = 5
 } GameItem;
-
-@interface TexRect : NSObject
-@property(readwrite,strong) CCTexture2D* tex;
-@property(readwrite,assign) CGRect rect;
-+(TexRect*)cons_tex:(CCTexture2D*)tex rect:(CGRect)rect;
-@end
 
 @interface GameItemCommon : NSObject
 +(TexRect*)texrect_from:(GameItem)gameitem;
