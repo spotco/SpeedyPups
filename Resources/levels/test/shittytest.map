@@ -1,11 +1,13 @@
 {
-    "start_y": 597.1214285714286,
-    "connect_pts": {"y1": 502.9, "x2": 798.6, "y2": 502.9, "x1": 50},
-    "islands": [{"can_fall": true, "x2": 798.6, "y2": 502.9, "ground": "open", "y1": 502.9, "ndir": "left", "hei": 50, "type": "line", "x1": 50}],
-    "objects": [
-        {"x": 600, "label": "0", "dir": {"x": -1, "y": -0.02}, "y": 548.6, "type": "launcherrobot"},
-        {"x": 800, "x2": 814.3, "label": "1", "y": 194.3, "y2": 864.3, "type": "spikevine"}
+    "start_y": 318,
+    "connect_pts": {"y1": 132, "x2": 731, "y2": 643, "x1": 233},
+    "islands": [
+        {"can_fall": true, "x2": 651, "y2": 190, "ground": "open", "y1": 132, "ndir": "left", "hei": 50, "type": "line", "x1": 233},
+        {"can_fall": true, "x2": 721, "y2": 358, "ground": "open", "y1": 190, "ndir": "left", "hei": 50, "type": "line", "x1": 651},
+        {"can_fall": true, "x2": 729, "y2": 587, "ground": "open", "y1": 358, "ndir": "left", "hei": 50, "type": "line", "x1": 721},
+        {"can_fall": true, "x2": 731, "y2": 643, "ground": "open", "y1": 587, "ndir": "left", "hei": 50, "type": "line", "x1": 729}
     ],
-    "assert_links": 0,
-    "start_x": 152.9
+    "objects": [],
+    "start_x": 312,
+    "assert_links": 3
 }

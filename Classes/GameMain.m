@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG NO
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"labintro_tutoriallauncher"
+#define USE_BG YES
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,6 +18,8 @@
 
 /**
  TODO
+ -fix play at night bug
+ 
  -challenge mode ingame ui
  -challenge mode continue to next ui
  -challenge mode finish anims
@@ -75,6 +77,9 @@
  
  LAST BIT:
  credits, game end message, loop (after boss in infinite runner or double helicopter)
+ 
+ 
+ - infinite runner - unlimited swipe mechanic
  **/
 
 +(void)main {
@@ -88,6 +93,13 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	//[UserInventory add_bones:1000];
+	
+	/*
+	AutoLevelState *s = [AutoLevelState cons];
+	for (int i = 0; i < 20; i++) {
+		NSLog([s get_level]);
+	}
+	 */
 	
 	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];

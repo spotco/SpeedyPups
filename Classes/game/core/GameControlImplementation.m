@@ -1,7 +1,8 @@
 #import "GameControlImplementation.h"
 #import "GameEngineLayer.h"
 #import "GEventDispatcher.h"
-#import "SwingVine.h" 
+#import "SwingVine.h"
+#import "JumpParticle.h"
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
@@ -68,6 +69,8 @@ static float avg_y;
 
 +(void)control_update_player:(GameEngineLayer*)g {
     Player* player = g.player;
+	
+	//NSLog(@"jmp:%d dash:%d type:%@",[player get_current_params].cur_airjump_count,[player get_current_params].cur_dash_count,[player get_current_params]);
     
     if (player.dead){
         return;
@@ -103,17 +106,23 @@ static float avg_y;
          */
         
         if (player.current_island != NULL) {
+			
+			[g add_particle:[JumpParticle cons_pt:player.position
+											  vel:ccp([player.current_island get_tangent_vec].x,[player.current_island get_tangent_vec].y)
+											   up:ccp([player.current_island get_normal_vecC].x,[player.current_island get_normal_vecC].y)]];
+            
             [GameControlImplementation player_jump_from_island:player];
             jump_hold_timer = JUMP_HOLD_TIME;
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
-            
+			
         } else if ([player get_current_params].cur_airjump_count > 0) {
             [GameControlImplementation player_double_jump:player];
             jump_hold_timer = JUMP_HOLD_TIME;
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
-            
+			[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
+			
         }
     }
     queue_jump = NO;

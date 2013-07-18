@@ -31,6 +31,7 @@
     if (nograv || p.current_island != NULL) {
         p.vy = 0;
     }
+	self.player = p;
 }
 
 -(void)effect_end {

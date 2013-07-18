@@ -68,6 +68,8 @@ static NSDictionary* descriptions;
 }
 
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g {
+	if (g.player.dead) return;
+	
     if (it == Item_Rocket) {
         [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it]]];
         

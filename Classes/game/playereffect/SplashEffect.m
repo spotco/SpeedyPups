@@ -20,6 +20,7 @@
     p.rotation = 0;
     p.dead = YES;
     p.vy = 0;
+	self.player = p;
 }
 
 -(void)effect_begin:(Player *)p {

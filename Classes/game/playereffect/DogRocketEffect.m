@@ -19,6 +19,7 @@
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
+	self.player = p;
     if (p.vy > 0) {
         p.vy *= 0.9;
     }
@@ -34,10 +35,6 @@
 
 -(player_anim_mode)get_anim {
     return player_anim_mode_ROCKET;
-}
-
--(void)add_airjump_count {
-    cur_airjump_count = 2;
 }
 
 -(NSString*)info {

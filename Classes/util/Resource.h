@@ -47,6 +47,7 @@
 #define TEX_DOG_SHADOW @"dogshadow"
 #define TEX_DOG_ARMORED @"armored_dog_ss"
 #define TEX_SWEATANIM_SS @"sweatanim_ss"
+#define TEX_DASHJUMPPARTICLES_SS @"dashjumpparticles_ss"
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
 #define TEX_CLOUD_SS @"cloud_ss"

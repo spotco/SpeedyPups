@@ -11,6 +11,7 @@
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
+	self.player = p;
     if(p.vx < 13) {
         p.vx = 13;
     }

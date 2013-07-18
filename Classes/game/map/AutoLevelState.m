@@ -21,22 +21,16 @@ static NSMutableDictionary* levelsets;
     levelsets = [NSMutableDictionary dictionary];
     
     [levelsets setObject:@[
-        @"tutorial_jump",
-		@"tutorial_swipeget",
-		@"tutorial_spikes",
-		@"tutorial_breakrocks",
-        @"tutorial_water",
-        @"tutorial_doublejump",
         @"tutorial_swipedir",
         @"tutorial_swingvine",
-        @"tutorial_spikevine"
+        @"tutorial_spikevine",
     ] forKey:L_TUTORIAL];
     
     [levelsets setObject:@[
+		@"classic_trickytreas",
         @"classic_bridgenbwall",
         @"classic_cavewbwall",
         @"classic_huegcave",
-        @"classic_trickytreas",
         @"classic_tomslvl1",
         @"classic_smgislands",
         @"classic_nubcave",
@@ -169,20 +163,29 @@ static NSMutableDictionary* levelsets;
         cur_set_ct++;
         NSString* picked;
         if (cur_set_ct == 1) {
-            picked = [levelsets[L_TUTORIAL] objectAtIndex:0];
+            picked = @"tutorial_jump";
             
         } else if (cur_set_ct == 2) {
-            picked = [levelsets[L_TUTORIAL] objectAtIndex:1];
+            picked = @"tutorial_swipeget";
             
-        } else if (cur_set_ct%3 == 0) {
-            return [levelsets[L_FILLER] objectAtIndex:0];
+        } else if (cur_set_ct == 3) {
+			picked = @"tutorial_water";
 			
-		} else if (cur_set_ct%4 == 0) {
-			picked = [levelsets[L_TUTORIAL] objectAtIndex:2];
+		} else if (cur_set_ct == 4) {
+			picked = @"filler_sanicloop";
 			
-		} else if (cur_set_ct%5 == 0) {
-			picked = [levelsets[L_TUTORIAL] objectAtIndex:3];
-        
+		} else if (cur_set_ct == 5) {
+			picked = @"tutorial_spikes";
+			
+		} else if (cur_set_ct == 6) {
+			picked = @"tutorial_breakrocks";
+			
+		} else if (cur_set_ct == 7) {
+			picked = @"tutorial_doublejump";
+			
+		} else if (cur_set_ct == 8) {
+			picked = @"classic_trickytreas";
+			
         } else {
             NSArray *tuts_left = [levelsets[cur_set] copy_removing:cur_used];
             if ([tuts_left count] == 0) {

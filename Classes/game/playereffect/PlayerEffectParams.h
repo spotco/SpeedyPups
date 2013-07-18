@@ -15,6 +15,7 @@
 @property(readwrite,assign) float cur_gravity;
 @property(readwrite,assign) int time_left,cur_airjump_count,cur_dash_count;
 @property(readwrite,assign) int noclip;
+@property(readwrite,assign) Player* player;
 
 +(PlayerEffectParams*)cons_copy:(PlayerEffectParams*)p;
 +(void)copy_params_from:(PlayerEffectParams*)a to:(PlayerEffectParams*)b;

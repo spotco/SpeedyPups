@@ -12,6 +12,7 @@
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
+	self.player = p;
     if (p.current_island != NULL) {
         time_left = 0;
     } else {

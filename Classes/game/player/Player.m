@@ -126,7 +126,25 @@ static NSDictionary* ID_TO_POWERDESC;
 	[sweatanim setVisible:NO];
 	[self addChild:sweatanim z:10];
 	
+	dashlines = [CCSprite node];
+	[dashlines runAction:[self make_dashlines_anim]];
+	[dashlines setAnchorPoint:ccp(0.5,0)];
+	[dashlines setScale:1.4];
+	[dashlines setPosition:ccp(0,-10)];
+	[dashlines setVisible:NO];
+	[self addChild:dashlines];
+	
     return self;
+}
+
+-(id)make_dashlines_anim {
+	CCTexture2D *texture = [Resource get_tex:TEX_DASHJUMPPARTICLES_SS];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"dashline_1"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"dashline_2"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"dashline_3"]]];
+	[animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"dashline_2"]]];
+    return [Common make_anim_frames:animFrames speed:0.1];
 }
 
 -(id)make_sweatanim{
@@ -176,6 +194,11 @@ static NSDictionary* ID_TO_POWERDESC;
     player_anim_mode cur_param_anim_mode = [[self get_current_params] get_anim];
     
     dashing = (cur_param_anim_mode == player_anim_mode_DASH) || ([[self get_current_params] is_also_dashing]);
+	[dashlines setVisible:dashing];
+	if ([[self get_current_params] class] == [DashEffect class]) {
+		float pct = [self get_current_params].time_left / ((float)[DashEffect dash_effect_length]);
+		[dashlines setOpacity:200*pct + 55];
+	}
     
     if (current_swingvine != NULL) {
         [self swingvine_attach_anim];
@@ -190,7 +213,7 @@ static NSDictionary* ID_TO_POWERDESC;
             cur_scy = 1;
             self.last_ndir = 1;
         }
-        [self dashanim_update:g];
+		[self start_anim:player_anim_mode_DASH];
         
     } else if (cur_param_anim_mode == player_anim_mode_CAPE) {
         [self start_anim:player_anim_mode_CAPE];
@@ -435,32 +458,6 @@ static int lastswap = 0;
     }
 }
 
--(void)dashanim_update:(GameEngineLayer*)g {
-    [self start_anim:player_anim_mode_DASH];
-    
-    if (particlectr >= 5) {
-        particlectr = 0;
-        Vec3D dv = [VecLib cons_x:vx y:vy z:0];
-        Vec3D normal = [VecLib cross:[VecLib Z_VEC] with:dv];
-        normal = [VecLib normalize:normal];
-        dv = [VecLib normalize:dv];
-        
-        normal = [VecLib scale:normal by:35];
-        float x = position_.x+normal.x;
-        float y = position_.y+normal.y;
-        
-        normal = [VecLib normalize:normal];
-        normal = [VecLib scale:normal by:float_random(-4, 4)];
-        dv = [VecLib scale:dv by:float_random(-8, -10)];
-        
-        JumpPadParticle* pt = [JumpPadParticle cons_x:x y:y vx:dv.x+normal.x vy:dv.y+normal.y];
-        [g add_particle:pt];
-        
-    } else {
-        particlectr++;
-    }
-}
-
 -(void)update_params:(GameEngineLayer*)g {
     if (temp_params != NULL) {
         [temp_params update:self g:g];
@@ -469,7 +466,9 @@ static int lastswap = 0;
             [temp_params effect_end];
             temp_params = NULL;
         }
-    }
+    } else {
+		[current_params update:self g:g];
+	}
 }
 
 /* playerparam system */
@@ -510,6 +509,7 @@ static int lastswap = 0;
         current_params = NULL;
     }
     current_params = [[PlayerEffectParams alloc] init];
+	current_params.player = self;
     current_params.cur_gravity = DEFAULT_GRAVITY;
     current_params.cur_airjump_count = 1;
     current_params.cur_dash_count = 1;

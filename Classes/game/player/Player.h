@@ -47,7 +47,7 @@ typedef enum {
     NSMutableDictionary *normal_anims, *armored_anims;
     player_anim_mode anim_mode;
 	
-	CCSprite *sweatanim;
+	CCSprite *sweatanim, *dashlines;
 }
 
 @property(readwrite,strong) CCSprite* player_img;

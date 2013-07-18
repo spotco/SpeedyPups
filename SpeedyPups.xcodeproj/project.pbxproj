@@ -607,6 +607,9 @@
 		7EF8A67716D9BA5C009A1FC5 /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A66A16D9BA5C009A1FC5 /* JSONRepresentation.h */; };
 		7EF8AA4E16D9DB2D009A1FC5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF8AA4D16D9DB2C009A1FC5 /* libz.dylib */; };
 		7EF8AA4F16D9DB4E009A1FC5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C4A05154AB4DD00B4B727 /* GameKit.framework */; };
+		7EF8CA581797E4A900BD4476 /* dashjumpparticles_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF8CA561797E4A900BD4476 /* dashjumpparticles_ss.plist */; };
+		7EF8CA591797E4A900BD4476 /* dashjumpparticles_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF8CA571797E4A900BD4476 /* dashjumpparticles_ss.png */; };
+		7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */; };
 		7EFD034D1707B945002492D6 /* UsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD034C1707B945002492D6 /* UsedItem.m */; };
 		7EFD3E5C17894FEB00A6F383 /* sweatanim_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */; };
 		7EFD3E5D17894FEB00A6F383 /* sweatanim_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5B17894FEB00A6F383 /* sweatanim_ss.png */; };
@@ -1388,6 +1391,10 @@
 		7EF8A66916D9BA5C009A1FC5 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		7EF8A66A16D9BA5C009A1FC5 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		7EF8AA4D16D9DB2C009A1FC5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7EF8CA561797E4A900BD4476 /* dashjumpparticles_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dashjumpparticles_ss.plist; sourceTree = "<group>"; };
+		7EF8CA571797E4A900BD4476 /* dashjumpparticles_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashjumpparticles_ss.png; sourceTree = "<group>"; };
+		7EF8CA5A1797EB0900BD4476 /* JumpParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpParticle.h; sourceTree = "<group>"; };
+		7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpParticle.m; sourceTree = "<group>"; };
 		7EFD034B1707B945002492D6 /* UsedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsedItem.h; sourceTree = "<group>"; };
 		7EFD034C1707B945002492D6 /* UsedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsedItem.m; sourceTree = "<group>"; };
 		7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sweatanim_ss.plist; sourceTree = "<group>"; };
@@ -1861,6 +1868,8 @@
 		7EB8B22416D9F8E600F58961 /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				7EF8CA561797E4A900BD4476 /* dashjumpparticles_ss.plist */,
+				7EF8CA571797E4A900BD4476 /* dashjumpparticles_ss.png */,
 				7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */,
 				7EFD3E5B17894FEB00A6F383 /* sweatanim_ss.png */,
 				7EB8B22516D9F8E600F58961 /* dog_shadow.png */,
@@ -2304,6 +2313,8 @@
 				7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */,
 				7EDB54491712C4F000218A46 /* OneUpParticle.h */,
 				7EDB544A1712C4F000218A46 /* OneUpParticle.m */,
+				7EF8CA5A1797EB0900BD4476 /* JumpParticle.h */,
+				7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */,
 			);
 			path = particle;
 			sourceTree = "<group>";
@@ -3452,6 +3463,8 @@
 				7EF02D2117857D7100C2DD50 /* lab_muhfiller.map in Resources */,
 				7EFD3E5C17894FEB00A6F383 /* sweatanim_ss.plist in Resources */,
 				7EFD3E5D17894FEB00A6F383 /* sweatanim_ss.png in Resources */,
+				7EF8CA581797E4A900BD4476 /* dashjumpparticles_ss.plist in Resources */,
+				7EF8CA591797E4A900BD4476 /* dashjumpparticles_ss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3618,6 +3631,7 @@
 				7ECADE2717646AF00032A1E6 /* OALAudioFile.m in Sources */,
 				7ECADE2817646AF00032A1E6 /* OALTools.m in Sources */,
 				7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */,
+				7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

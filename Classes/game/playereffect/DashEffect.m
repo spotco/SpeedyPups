@@ -13,12 +13,17 @@
     n.vx = vx;
     n.vy = vy;
     
-    n.time_left = 20;
+    n.time_left = [self dash_effect_length];
     n.cur_gravity = 0;
     return n;
 }
 
++(int)dash_effect_length {
+	return 30;
+}
+
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
+	self.player = p;
     if (p.current_island != NULL) {
         Vec3D t = [p.current_island get_tangent_vec];
         self.vx = t.x;
@@ -28,6 +33,8 @@
         p.vy = self.vy*12;
     }
 }
+
+
 
 -(player_anim_mode)get_anim {
     return player_anim_mode_DASH;
