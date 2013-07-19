@@ -18,13 +18,13 @@
 
 /**
  TODO
- -fix play at night bug
- 
  -challenge mode ingame ui
  -challenge mode continue to next ui
  -challenge mode finish anims
  -reposition item use slot closer to edge
  -check day/night run music bug
+ -sense of progress -- lab every once in a while, idea of 3 castles and final boss
+ 
  
  -infinite runner -- thrown in a lab group every 3 groups or so
  -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),

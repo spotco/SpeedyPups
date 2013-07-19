@@ -166,10 +166,10 @@ static NSMutableDictionary* levelsets;
             picked = @"tutorial_jump";
             
         } else if (cur_set_ct == 2) {
-            picked = @"tutorial_swipeget";
+			picked = @"tutorial_water";
             
         } else if (cur_set_ct == 3) {
-			picked = @"tutorial_water";
+			picked = @"tutorial_swipeget";
 			
 		} else if (cur_set_ct == 4) {
 			picked = @"filler_sanicloop";
@@ -184,7 +184,7 @@ static NSMutableDictionary* levelsets;
 			picked = @"tutorial_doublejump";
 			
 		} else if (cur_set_ct == 8) {
-			picked = @"classic_trickytreas";
+			picked = @"tutorial_upsidebounce";
 			
         } else {
             NSArray *tuts_left = [levelsets[cur_set] copy_removing:cur_used];
