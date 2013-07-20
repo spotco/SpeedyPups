@@ -93,7 +93,7 @@
     }
     
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_TICK]];
-    [GEventDispatcher dispatch_events];
+	[GEventDispatcher dispatch_events]; //breaks if you do immediate_event in menu->freerun, dunno why
 }
 
 -(CGPoint)get_target_bg_pt {

@@ -133,12 +133,17 @@
 }
 
 -(void)set_challenge:(ChallengeInfo*)info {
-    NSLog(@"loaded challenge for %@, %@",info.map_name,[info to_string]);
-    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHALLENGE] add_key:@"challenge" value:info]];
+    //NSLog(@"loaded challenge for %@, %@",info.map_name,[info to_string]);
+    [GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_CHALLENGE] add_key:@"challenge" value:info]];
+	//[GEventDispatcher dispatch_events];
     for (GameObject *o in game_objects) {
         [o notify_challenge_mode:info];
     }
     challenge = info;
+}
+
+-(ChallengeInfo*)get_challenge {
+	return challenge;
 }
 
 -(void)move_player_toground {

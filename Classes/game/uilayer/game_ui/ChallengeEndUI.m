@@ -5,6 +5,7 @@
 #import "MenuCommon.h"
 #import "UILayer.h"
 #import "UserInventory.h" 
+#import "GameModeCallback.h"
 
 @implementation ChallengeEndUI
 
@@ -85,13 +86,16 @@
     [complete_ui addChild:reward_disp];
     
     
-    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"backbutton" tar:self sel:@selector(exit_to_menu)
+    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
                                                pos:[Common screen_pctwid:0.3 pcthei:0.1]];
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
+                                                pos:[Common screen_pctwid:0.5 pcthei:0.1]];
+	
+	nextbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"nextbutton" tar:self sel:@selector(next)
                                                 pos:[Common screen_pctwid:0.7 pcthei:0.1]];
-    
-    CCMenu *m = [CCMenu menuWithItems:backbutton,retrybutton, nil];
+    [nextbutton setVisible:NO];
+    CCMenu *m = [CCMenu menuWithItems:backbutton,retrybutton,nextbutton, nil];
     [m setPosition:CGPointZero];
     [complete_ui addChild:m];
     
@@ -102,7 +106,6 @@
 }
 
 -(void)update_passed:(BOOL)p info:(ChallengeInfo*)ci bones:(NSString*)bones time:(NSString*)time secrets:(NSString*)secrets {
-    
 	[AudioManager playbgm:BGM_GROUP_JINGLE];
 	
 	[wlicon setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:p?@"challengecomplete":@"challengefailed"]];
@@ -111,12 +114,23 @@
     [time_disp setString:time];
     [secrets_disp setString:secrets];
     
-    int curchallenge = [ChallengeRecord get_number_for_challenge:ci];
+    curchallenge = [ChallengeRecord get_number_for_challenge:ci];
     if (p == YES && ![ChallengeRecord get_beaten_challenge:curchallenge]) {
         [ChallengeRecord set_beaten_challenge:curchallenge to:YES];
         [UserInventory add_bones:ci.reward];
         [reward_disp setString:[NSString stringWithFormat:@"Earned %d bones!",ci.reward]];
     }
+	
+	if ([ChallengeRecord get_beaten_challenge:curchallenge] &&
+		curchallenge + 1 < [ChallengeRecord get_num_challenges]
+		) {
+		[nextbutton setVisible:YES];
+	}
+}
+
+-(void)next {
+	if (curchallenge+1<[ChallengeRecord get_num_challenges])
+		[(UILayer*)[self parent] run_cb:[GameModeCallback cons_mode:GameMode_CHALLENGE n:curchallenge+1]];
 }
 
 -(void)retry {

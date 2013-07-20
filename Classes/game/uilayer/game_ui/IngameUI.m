@@ -104,6 +104,27 @@
 	[self addChild:readynotif];
 	[readynotif setVisible:NO];
 	
+	challengedescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"challengedescbg"]]
+								 pos:[Common screen_pctwid:0.01 pcthei:0.07]];
+	[challengedescbg setAnchorPoint:ccp(0,0.5)];
+	[challengedescbg setOpacity:180];
+	[self addChild:challengedescbg];
+	
+	challengedesc = [Common cons_label_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:25 str:@""];
+	[challengedesc setPosition:[Common pct_of_obj:challengedescbg pctx:0.32 pcty:0.5]];
+	[challengedesc setAnchorPoint:ccp(0,0.5)];
+	[challengedescbg addChild:challengedesc];
+	
+	TexRect *challengetr = [ChallengeRecord get_for:ChallengeType_COLLECT_BONES];
+	challengedescincon = [[CCSprite spriteWithTexture:challengetr.tex rect:challengetr.rect]
+									pos:[Common pct_of_obj:challengedescbg pctx:0.05 pcty:0.5]];
+	[challengedescincon setAnchorPoint:ccp(0,0.5)];
+	[challengedescbg addChild:challengedescincon];
+	
+	[challengedescbg setVisible:NO];
+	
     return self;
 }
 
@@ -115,6 +136,18 @@
 -(void)itemslot_use {
     UILayer *p = (UILayer*)[self parent];
     [p itemslot_use];
+}
+
+-(void)enable_challengedesc_type:(ChallengeType)type {
+	[challengedescbg setVisible:YES];
+	TexRect *challengetr = [ChallengeRecord get_for:type];
+	challengedescincon.texture = challengetr.tex;
+	challengedescincon.textureRect = challengetr.rect;
+	challengedesc.string = @"";
+}
+
+-(void)set_challengedesc_string:(NSString*)str {
+	[challengedesc setString:str];
 }
 
 -(void)update:(GameEngineLayer*)g {
@@ -153,6 +186,41 @@
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
 			[readynotif setVisible:NO];
+		}
+	}
+	
+	if (challengedescbg.visible) {
+		ChallengeInfo *cinfo = [g get_challenge];
+		NSString *tar_str = @"top lel";
+		if (cinfo.type == ChallengeType_COLLECT_BONES) {
+			if ([g get_num_bones] >= cinfo.ct) {
+				[challengedesc setColor:ccc3(0,255,0)];
+			}
+			tar_str = strf("%i/%i",[g get_num_bones],cinfo.ct);
+			
+		} else if (cinfo.type == ChallengeType_FIND_SECRET) {
+			if ([g get_num_secrets] >= cinfo.ct) {
+				[challengedesc setColor:ccc3(0,255,0)];
+			}
+			tar_str = strf("%i/%i",[g get_num_secrets],cinfo.ct);
+			
+		} else if (cinfo.type == ChallengeType_TIMED) {
+			int tm = cinfo.ct - [g get_time];
+			if (tm <= 0) {
+				if ([[UICommon parse_gameengine_time:tm] isEqualToString:@"0:00"]) {
+					[challengedesc setColor:ccc3(255,186,0)];
+					tar_str = @"0:00";
+				} else {
+					[challengedesc setColor:ccc3(255,0,0)];
+					tar_str = @"failed";
+				}
+			} else {
+				tar_str = [UICommon parse_gameengine_time:tm];
+			}
+			
+		}
+		if (![tar_str isEqualToString:challengedesc.string]) {
+			[challengedesc setString:tar_str];
 		}
 	}
 	

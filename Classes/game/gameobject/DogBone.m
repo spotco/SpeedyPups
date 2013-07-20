@@ -110,9 +110,9 @@
     vx = 0;
     vy = 0;
     
-    if (challenge_mode_respawn) {
-        active = YES;
-    }
+    //if (challenge_mode_respawn) {
+	active = YES;
+    //}
 }
 
 -(void)dealloc {

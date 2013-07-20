@@ -73,6 +73,8 @@ typedef enum {
 +(CCScene*)scene_with_autolevel_lives:(int)lives;
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info;
 
+-(ChallengeInfo*)get_challenge;
+
 -(BGMode)get_cur_bg_mode;
 
 -(void)add_particle:(Particle*)p;

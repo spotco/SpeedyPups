@@ -1,10 +1,13 @@
 #import "CCSprite.h"
 @class CCLabelTTF;
 @class ChallengeInfo;
+@class CCMenuItem;
 
 @interface ChallengeEndUI : CCSprite {
     CCSprite *wlicon;
     CCLabelTTF *bone_disp, *time_disp, *secrets_disp, *infodesc, *reward_disp;
+	CCMenuItem *nextbutton;
+	int curchallenge;
 }
 
 +(ChallengeEndUI*)cons;

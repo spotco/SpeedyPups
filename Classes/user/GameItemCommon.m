@@ -52,6 +52,7 @@ static NSDictionary* descriptions;
 
 
 +(NSString*)name_from:(GameItem)gameitem {
+	if (gameitem == Item_NOITEM) return @"None";
 	if ([UserInventory get_upgrade_level:gameitem] == 0)
 		return [NSString stringWithFormat:@"%@ (Locked)",
 				[names objectForKey:[NSValue valueWithGameItem:gameitem]]

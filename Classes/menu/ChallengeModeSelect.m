@@ -223,11 +223,20 @@
     [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.67 pcty:0.52]];
     [chosen_window addChild:chosen_goal];
     
+	/*
     chosen_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                          rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
                    pos:[Common pct_of_obj:chosen_window pctx:0.98 pcty:0.92]];
 	[chosen_star setScale:0.35];
     [chosen_window addChild:chosen_star];
+	 */
+    CCMenuItem *closebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
+                                               rect:@"nmenu_closebutton"
+                                                tar:self sel:@selector(close)
+                                                pos:[Common pct_of_obj:chosen_window pctx:0.975 pcty:0.91]];
+    CCMenu *m = [CCMenu menuWithItems:closebutton, nil];
+    [m setPosition:CGPointZero];
+	[chosen_window addChild:m];
     
     chosen_preview = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                              rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"preview_generic"]]
@@ -298,9 +307,10 @@
     ChallengeInfo* cc = [ChallengeRecord get_challenge_number:chosen_level];
     [chosen_name setString:[NSString stringWithFormat:@"Challenge %d: %@",chosen_level,cc.map_name]];
     [chosen_goal setString:[cc to_string]];
-    [chosen_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
-                                                          idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar_hr":@"levelstar_locked_hr"]];
     
+	/*chosen_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
+                                                          idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar_hr":@"levelstar_locked_hr"]];
+    */
 	TexRect *tar = [ChallengeRecord get_for:cc.type];
 	[chosen_icon setTexture:tar.tex];
 	[chosen_icon setTextureRect:tar.rect];

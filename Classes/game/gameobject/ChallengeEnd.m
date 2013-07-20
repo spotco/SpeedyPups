@@ -51,7 +51,7 @@
           add_i1:[self did_complete_challenge:g] i2:0]
           add_key:@"challenge" value:info]
          ];
-        NSLog(@"passt:%d",[g get_time]);
+        //NSLog(@"passt:%d",[g get_time]);
     }
     
     return;

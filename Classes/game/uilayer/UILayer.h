@@ -39,6 +39,7 @@
 -(void)exit_to_menu;
 -(void)play_again;
 -(void)retry;
+-(void)run_cb:(GameModeCallback*)cb;
 -(void)continue_game;
 
 -(void)to_gameover_menu;

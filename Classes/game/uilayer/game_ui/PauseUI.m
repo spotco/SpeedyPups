@@ -40,6 +40,10 @@
     CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
     [livesbg setPosition:[Common screen_pctwid:0.75 pcthei:0.3]];
     [pause_ui addChild:livesbg];
+	
+	for (CCSprite *c in @[timebg,bonesbg,livesbg]) {
+		[c setOpacity:200];
+	}
     
     pause_time_disp = [Common cons_label_pos:[Common screen_pctwid:0.75 pcthei:0.6]
                                        color:ccc3(255, 255, 255)
@@ -71,32 +75,46 @@
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
     [pausebuttons setPosition:ccp(0,0)];
     [pause_ui addChild:pausebuttons];
-   
-	/*
-    NSMutableArray* tslots = [NSMutableArray array];
-    MainSlotItemPane *mainslot = [MainSlotItemPane cons_pt:ccp(-50,-15) cb:[Common cons_callback:self sel:@selector(slotpane0_click)] slot:0];
-    CCMenu *slotitems = [CCMenu menuWithItems:nil];
-    [tslots addObject:mainslot];
-    [slotitems addChild:mainslot];
-    
-    float panewid = [SlotItemPane invpane_size].size.width;
-    float panehei = [SlotItemPane invpane_size].size.height;
-    SEL slotsel[] = {@selector(slotpane0_click),@selector(slotpane1_click),@selector(slotpane2_click),@selector(slotpane3_click),@selector(slotpane4_click),@selector(slotpane5_click),@selector(slotpane6_click)};
-    for(int i = 0; i < 6; i++) {
-        SlotItemPane *slp = [SlotItemPane cons_pt:ccp((panewid+12)*(i%3),-(panehei+12)*(i/3)) cb:[Common cons_callback:self sel:slotsel[i+1]] slot:i+1];
-        [slotitems addChild:slp];
-        [tslots addObject:slp];
-    }
-    [slotitems setPosition:[Common screen_pctwid:0.35 pcthei:0.4]];
-    [pause_ui addChild:slotitems];
-    pause_menu_item_slots = tslots;
-	 */
     
     challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.15]
                                                    color:ccc3(255,255,255)
                                                 fontsize:23
                                                      str:@""];
     [pause_ui addChild:challenge_disp];
+	
+	
+	CCSprite *equipeditemslot = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"itemslotsmall"]]
+								 pos:ccp(0,0)];
+	TexRect *equipitemtr = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
+	[equipeditemslot addChild:[[CCSprite spriteWithTexture:equipitemtr.tex rect:equipitemtr.rect]
+							   pos:[Common pct_of_obj:equipeditemslot pctx:0.5 pcty:0.5]]];
+	[equipeditemslot setPosition:[Common screen_pctwid:0.17 pcthei:0.31]];
+	[equipeditemslot setOpacity:180];
+	for (CCSprite *c in equipeditemslot.children) [c setOpacity:180];
+	[pause_ui addChild:equipeditemslot];
+	
+	
+	CCSprite *equipeditemdescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+														  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																						 idname:@"pauseitemdescbg"]]
+								 pos:[Common screen_pctwid:0.4 pcthei:0.31]];
+	[equipeditemdescbg setOpacity:200];
+	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.86]
+												 color:ccc3(255,255,255)
+											  fontsize:15
+												   str:@"Equipped item:"]];
+	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.55]
+												 color:ccc3(255,255,255)
+											  fontsize:25
+												   str:[GameItemCommon name_from:[UserInventory get_current_gameitem]]]];
+	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.2]
+												 color:ccc3(255,255,255)
+											  fontsize:10
+												   str:@"Unlock and upgrade at store!"]];
+	
+	[pause_ui addChild:equipeditemdescbg];
     
     [self addChild:pause_ui z:1];
     

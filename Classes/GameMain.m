@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -18,8 +18,6 @@
 
 /**
  TODO
- -challenge mode ingame ui
- -challenge mode continue to next ui
  -challenge mode finish anims
  -reposition item use slot closer to edge
  -check day/night run music bug

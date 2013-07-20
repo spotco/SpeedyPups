@@ -68,9 +68,12 @@
         [self set_this_visible:NULL];
         
     } else if (e.type == GEventType_CHALLENGE) {
+		ChallengeInfo *cinfo = ((ChallengeInfo*)[e get_value:@"challenge"]);
         [pauseui set_challenge_msg:
          [NSString stringWithFormat:@"Challenge: %@",
-         [((ChallengeInfo*)[e get_value:@"challenge"]) to_string]]];
+         [cinfo to_string]]];
+		
+		[ingameui enable_challengedesc_type:cinfo.type];
     
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
         [challengeendui update_passed:e.i1
@@ -170,7 +173,7 @@
 
 -(void)exit_to_menu {
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_QUIT]];
-    [GEventDispatcher dispatch_events];
+	[GEventDispatcher dispatch_events];
 }
 
 -(void)play_again {
@@ -184,10 +187,15 @@
 -(void)retry {
     if (retry_cb != NULL) {
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_RETRY_WITH_CALLBACK] add_key:@"callback" value:retry_cb]];
-        [GEventDispatcher dispatch_events];
-    } else {
+		[GEventDispatcher dispatch_events];
+	} else {
         NSLog(@"retry cb is null");
     }
+}
+
+-(void)run_cb:(GameModeCallback*)cb {
+	[GEventDispatcher push_event:[[GEvent cons_type:GEventType_RETRY_WITH_CALLBACK] add_key:@"callback" value:cb]];
+	[GEventDispatcher dispatch_events];
 }
 
 -(void)continue_game {

@@ -1,5 +1,6 @@
 #import "cocos2d.h"
 #import "InventoryItemPane.h"
+#import "Challenge.h"
 
 @interface IngameUI : CCSprite {
     int enemy_alert_ui_ct;
@@ -8,6 +9,9 @@
     float item_duration_pct;
 	
 	CCSprite *itemlenbarfill, *readynotif, *itemlenbarroot,*itemlenbaricon;
+
+	CCSprite *challengedescbg,*challengedescincon;
+	CCLabelTTF *challengedesc;
 }
 
 @property(readwrite,strong) CCLabelTTF *lives_disp, *bones_disp, *time_disp;
@@ -15,10 +19,11 @@
 +(IngameUI*)cons;
 
 -(void)set_enemy_alert_ui_ct:(int)i;
-
 -(void)set_item_duration_pct:(float)f;
-
 -(void)update_item_slot;
 -(void)update:(GameEngineLayer*)g;
+
+-(void)enable_challengedesc_type:(ChallengeType)type;
+-(void)set_challengedesc_string:(NSString*)str;
 
 @end
