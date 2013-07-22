@@ -11,6 +11,7 @@
 #import "ChallengeEndUI.h" 
 #import "GameModeCallback.h" 
 #import "CoinCollectUIAnimation.h"
+#import "ChallengeInfoTitleCardAnimation.h"
 
 @implementation UILayer
 
@@ -66,6 +67,7 @@
         
     } else if (e.type == GEventType_UIANIM_TICK) {
         [self set_this_visible:NULL];
+		[self update];
         
     } else if (e.type == GEventType_CHALLENGE) {
 		ChallengeInfo *cinfo = ((ChallengeInfo*)[e get_value:@"challenge"]);
@@ -134,6 +136,14 @@
     CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
     [ingameuianimholder addChild:c];
     [ingame_ui_anims addObject:c];
+}
+
+-(void)start_challengeinfocard_anim {
+	if (game_engine_layer.get_challenge != NULL) {
+		UIIngameAnimation *ua = [ChallengeInfoTitleCardAnimation cons_g:game_engine_layer];
+		[self addChild:ua];
+		[ingame_ui_anims addObject:ua];
+	}
 }
 
 -(void)ask_continue {

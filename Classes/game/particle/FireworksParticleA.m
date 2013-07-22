@@ -8,6 +8,7 @@
 @end
 
 @implementation SubFireworksParticleA
+#define SUBCT 25.0
 +(SubFireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
     SubFireworksParticleA* p = [SubFireworksParticleA spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
     p.position = ccp(x,y);
@@ -17,14 +18,18 @@
 -(void)cons_vx:(float)tvx vy:(float)tvy {
     vx = tvx;
     vy = tvy;
-    ct = 15;
+    ct = SUBCT;
     [self setColor:ccc3(251, 232, 52)];
-    [self setScale:float_random(0.25, 0.75)];
+    [self setScale:float_random(0.5, 1.5)];
 }
+//251,232,52
+//255,156,0
 -(void)update:(GameEngineLayer *)g {
     [self setPosition:ccp(position_.x+vx,position_.y+vy)];
     ct--;
-    [self setOpacity:((int)(ct/15.0*255))];
+    [self setOpacity:((int)(ct/SUBCT*255))];
+	float pct = ct/SUBCT;
+	[self setColor:ccc3(251,156+pct*(232-156),52*pct)];
 }
 -(BOOL)should_remove {
     return ct <= 0;
@@ -53,7 +58,10 @@
     ct--;
     if (ct == 0) {
         for (float i = 0; i < M_PI * 2; i+= (M_PI*2)/14) {
-            [g add_particle:[SubFireworksParticleA cons_x:position_.x y:position_.y vx:cosf(i)*8+float_random(0, 1) vy:sinf(i)*8+float_random(0, 1)]];
+            [g add_particle:[SubFireworksParticleA cons_x:position_.x
+														y:position_.y
+													   vx:cosf(i)*8+float_random(-1, 1)
+													   vy:sinf(i)*8+float_random(-1, 1)]];
         }
     }
 }

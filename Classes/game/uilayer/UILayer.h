@@ -31,6 +31,7 @@
 -(void)set_retry_callback:(GameModeCallback*)c;
 
 -(void)start_initial_anim;
+-(void)start_challengeinfocard_anim;
 -(void)pause;
 -(void)unpause;
 -(void)itemslot_use;

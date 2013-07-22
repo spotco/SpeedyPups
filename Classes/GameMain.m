@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -18,7 +18,7 @@
 
 /**
  TODO
- -challenge mode finish anims
+ -challenge mode finish anims (lots of fireworks)
  -reposition item use slot closer to edge
  -check day/night run music bug
  -sense of progress -- lab every once in a while, idea of 3 castles and final boss
@@ -29,6 +29,7 @@
   def show some "high quality" levels early on (trickytreas)
  
  -better continue and game over menu ui
+ -text in tutorial
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -99,9 +100,9 @@
 	}
 	 */
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

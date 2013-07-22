@@ -67,10 +67,13 @@
     UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
     [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_CHALLENGE n:[ChallengeRecord get_number_for_challenge:info]]];
     
-    [glayer set_challenge:info];
-    [glayer update_render];
+	[glayer set_challenge:info];
+	[glayer update_render];
     [glayer move_player_toground];
     [glayer prep_runin_anim];
+	
+	[uil start_challengeinfocard_anim];
+	
     return scene;
 }
 

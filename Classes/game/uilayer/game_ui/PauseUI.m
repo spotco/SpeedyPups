@@ -76,7 +76,7 @@
     [pausebuttons setPosition:ccp(0,0)];
     [pause_ui addChild:pausebuttons];
     
-    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.15]
+    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.13]
                                                    color:ccc3(255,255,255)
                                                 fontsize:23
                                                      str:@""];
@@ -90,7 +90,7 @@
 	TexRect *equipitemtr = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
 	[equipeditemslot addChild:[[CCSprite spriteWithTexture:equipitemtr.tex rect:equipitemtr.rect]
 							   pos:[Common pct_of_obj:equipeditemslot pctx:0.5 pcty:0.5]]];
-	[equipeditemslot setPosition:[Common screen_pctwid:0.17 pcthei:0.31]];
+	[equipeditemslot setPosition:[Common screen_pctwid:0.17 pcthei:0.345]];
 	[equipeditemslot setOpacity:180];
 	for (CCSprite *c in equipeditemslot.children) [c setOpacity:180];
 	[pause_ui addChild:equipeditemslot];
@@ -99,7 +99,7 @@
 	CCSprite *equipeditemdescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 														  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																						 idname:@"pauseitemdescbg"]]
-								 pos:[Common screen_pctwid:0.4 pcthei:0.31]];
+								 pos:[Common screen_pctwid:0.4 pcthei:0.345]];
 	[equipeditemdescbg setOpacity:200];
 	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.86]
 												 color:ccc3(255,255,255)
