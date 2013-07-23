@@ -1,8 +1,15 @@
 {
-    "start_y": 289,
-    "assert_links": 0,
-    "connect_pts": {"y1": 244, "x2": 799, "y2": 278, "x1": 73},
-    "objects": [{"x": 350, "label": "0", "y": 253, "type": "checkpoint"}],
-    "start_x": 162,
-    "islands": [{"can_fall": true, "x2": 799, "y2": 278, "ground": "open", "y1": 244, "ndir": "left", "hei": 50, "type": "line", "x1": 73}]
+    "start_y": 296,
+    "connect_pts": {"y1": 244, "x2": 882, "y2": 404, "x1": 73},
+    "islands": [
+        {"can_fall": true, "x2": 831, "y2": 248, "ground": "open", "y1": 244, "ndir": "left", "hei": 50, "type": "line", "x1": 73},
+        {"can_fall": true, "x2": 871, "y2": 275, "ground": "open", "y1": 248, "ndir": "left", "hei": 50, "type": "line", "x1": 831},
+        {"can_fall": true, "x2": 882, "y2": 404, "ground": "open", "y1": 275, "ndir": "left", "hei": 50, "type": "line", "x1": 871},
+        {"can_fall": true, "x2": 866, "y2": 459, "ground": "open", "y1": 404, "ndir": "left", "hei": 50, "type": "line", "x1": 882},
+        {"can_fall": true, "x2": 718, "y2": 492, "ground": "open", "y1": 459, "ndir": "left", "hei": 50, "type": "line", "x1": 866},
+        {"can_fall": true, "x2": 604, "y2": 492, "ground": "open", "y1": 492, "ndir": "left", "hei": 50, "type": "line", "x1": 718}
+    ],
+    "objects": [{"x": 677, "label": "0", "y": 246, "type": "game_end"}],
+    "assert_links": 5,
+    "start_x": 268
 }

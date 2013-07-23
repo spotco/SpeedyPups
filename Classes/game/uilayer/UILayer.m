@@ -83,9 +83,10 @@
                                 bones:ingameui.bones_disp.string
                                  time:ingameui.time_disp.string
                               secrets:[NSString stringWithFormat:@"%d",[game_engine_layer get_num_secrets]]];
-    
+		
     } else if (e.type == GEventType_LOAD_CHALLENGE_COMPLETE_MENU) {
         [self set_this_visible:challengeendui];
+		if (challengeendui.get_sto_passed) [challengeendui start_fireworks_effect];
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         [self start_bone_collect_anim];
@@ -124,6 +125,7 @@
     }
     [ingame_ui_anims removeObjectsInArray:toremove];
     [toremove removeAllObjects];
+	
 }
 
 -(void)start_bone_collect_anim {

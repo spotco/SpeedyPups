@@ -6,6 +6,7 @@
 #import "UILayer.h"
 #import "UserInventory.h" 
 #import "GameModeCallback.h"
+#import "FireworksParticleA.h"
 
 @implementation ChallengeEndUI
 
@@ -97,11 +98,16 @@
     [nextbutton setVisible:NO];
     CCMenu *m = [CCMenu menuWithItems:backbutton,retrybutton,nextbutton, nil];
     [m setPosition:CGPointZero];
-    [complete_ui addChild:m];
+    [complete_ui addChild:m z:1];
     
-    [complete_ui addChild:infopane];
+    [complete_ui addChild:infopane z:1];
     [self addChild:complete_ui];
-    
+	
+	particleholder = [[CCSprite node] pos:CGPointZero];
+	[complete_ui addChild:particleholder];
+	particles = [NSMutableArray array];
+    particles_tba = [NSMutableArray array];
+	
     return self;
 }
 
@@ -126,6 +132,12 @@
 		) {
 		[nextbutton setVisible:YES];
 	}
+	
+	sto_passed = p;
+}
+
+-(BOOL)get_sto_passed {
+	return sto_passed;
 }
 
 -(void)next {
@@ -139,6 +151,64 @@
 
 -(void)exit_to_menu {
     [(UILayer*)[self parent] exit_to_menu];
+}
+
+static int delayfwct;
+-(void)start_fireworks_effect {
+	if (!has_scheduler) {
+		[self schedule:@selector(update_particles)];
+		has_scheduler = YES;
+	}
+	
+	[self add_firework_at_xpct:0.15];
+	[self add_firework_at_xpct:0.85];
+	delayfwct = 0;
+}
+-(void)add_firework_at_xpct:(float)xpct {
+	[self add_particle:[FireworksParticleA cons_x:[Common SCREEN].width*xpct + float_random(-50, 50)
+												y:0
+											   vx:0
+											   vy:float_random(9,14)
+											   ct:arc4random_uniform(8)+17]];
+}
+-(void)add_particle:(Particle*)p {
+    [particles_tba addObject:p];
+}
+-(int)get_num_particles {
+    return [particles count];
+}
+-(void)push_added_particles {
+    for (Particle *p in particles_tba) {
+        [particles addObject:p];
+        [particleholder addChild:p z:[p get_render_ord]];
+    }
+    [particles_tba removeAllObjects];
+}
+-(void)update_particles {
+	delayfwct++;
+	if (delayfwct==10) {
+		[self add_firework_at_xpct:0.15];
+	} else if (delayfwct == 17) {
+		[self add_firework_at_xpct:0.85];
+	} else if (delayfwct == 23) {
+		[self add_firework_at_xpct:0.15];
+	} else if (delayfwct == 29) {
+		[self add_firework_at_xpct:0.85];
+	}
+	[self push_added_particles];
+    NSMutableArray *toremove = [NSMutableArray array];
+    for (Particle *i in particles) {
+        [i update:(id)self]; //don't do this at home
+        if ([i should_remove]) {
+            [particleholder removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+    [particles removeObjectsInArray:toremove];
+	if (particles.count == 0) {
+		[self unschedule:@selector(update_particles)];
+		has_scheduler = NO;
+	}
 }
 
 @end

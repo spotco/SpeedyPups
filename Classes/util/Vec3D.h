@@ -22,6 +22,7 @@ typedef struct Vec3D {
 +(float)get_angle_in_rad:(Vec3D)v;
 +(void) print:(Vec3D)v;
 +(Vec3D)Z_VEC;
++(float)get_rotation:(Vec3D)dirvec offset:(float)offset;
 
 +(Vec3D)normalized_x:(float)x y:(float)y z:(float)z;
 @end

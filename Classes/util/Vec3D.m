@@ -1,4 +1,5 @@
 #import "Vec3D.h"
+#import "Common.h"
 
 @implementation VecLib
 
@@ -92,6 +93,11 @@
 +(Vec3D)normalized_x:(float)x y:(float)y z:(float)z {
     float len = sqrt((x * x) + (y * y) + (z * z));
     return [VecLib cons_x:x/len y:y/len z:z/len];
+}
+
++(float)get_rotation:(Vec3D)dirvec offset:(float)offset {
+	float ccwt = [Common rad_to_deg:[VecLib get_angle_in_rad:dirvec]+offset];
+	return ccwt > 0 ? 180-ccwt : -(180-ABS(ccwt));
 }
 
 @end

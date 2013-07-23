@@ -523,8 +523,6 @@
 /* particle system */
 -(void)add_particle:(Particle*)p {
     [particles_tba addObject:p];
-    
-
 }
 -(int)get_num_particles {
     return [particles count];

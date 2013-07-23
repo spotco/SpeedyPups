@@ -138,4 +138,6 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(CGPoint)scale_from_default;
 +(CGPoint)pct_of_obj:(CCSprite*)obj pctx:(float)pctx pcty:(float)pcty;
 
++(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct;
+
 @end

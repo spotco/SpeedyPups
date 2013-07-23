@@ -358,4 +358,8 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return ccp(rct.size.width*pctx,rct.size.height*pcty);
 }
 
++(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct {
+	return ccc3(a.r+(b.r-a.r)*pct,a.g+(b.g-a.g)*pct,a.b+(b.b-a.b)*pct);
+}
+
 @end

@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -18,18 +18,13 @@
 
 /**
  TODO
- -challenge mode finish anims (lots of fireworks)
- -reposition item use slot closer to edge
  -check day/night run music bug
+ -text in tutorial
  -sense of progress -- lab every once in a while, idea of 3 castles and final boss
- 
- 
  -infinite runner -- thrown in a lab group every 3 groups or so
  -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
   def show some "high quality" levels early on (trickytreas)
- 
  -better continue and game over menu ui
- -text in tutorial
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -38,6 +33,7 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
+ 
  - buy item sound + anim
  **/
 
@@ -77,7 +73,6 @@
  LAST BIT:
  credits, game end message, loop (after boss in infinite runner or double helicopter)
  
- 
  - infinite runner - unlimited swipe mechanic
  **/
 
@@ -100,9 +95,9 @@
 	}
 	 */
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 

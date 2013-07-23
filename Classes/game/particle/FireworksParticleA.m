@@ -20,16 +20,15 @@
     vy = tvy;
     ct = SUBCT;
     [self setColor:ccc3(251, 232, 52)];
-    [self setScale:float_random(0.5, 1.5)];
+    [self setScale:float_random(0.2, 0.7)];
 }
-//251,232,52
-//255,156,0
+//ccc3(251,232,52)->ccc3(255,156,0)
 -(void)update:(GameEngineLayer *)g {
     [self setPosition:ccp(position_.x+vx,position_.y+vy)];
     ct--;
     [self setOpacity:((int)(ct/SUBCT*255))];
 	float pct = ct/SUBCT;
-	[self setColor:ccc3(251,156+pct*(232-156),52*pct)];
+	[self setColor:[Common color_from:ccc3(251,245,52) to:ccc3(255,156,0) pct:1-pct]];
 }
 -(BOOL)should_remove {
     return ct <= 0;
@@ -50,7 +49,7 @@
     vx = tvx;
     vy = tvy;
     ct = tct;
-    [self setColor:ccc3(251, 232, 52)];
+    [self setColor:ccc3(251, 245, 52)];
 }
 
 -(void)update:(GameEngineLayer*)g {
@@ -60,15 +59,66 @@
         for (float i = 0; i < M_PI * 2; i+= (M_PI*2)/14) {
             [g add_particle:[SubFireworksParticleA cons_x:position_.x
 														y:position_.y
-													   vx:cosf(i)*8+float_random(-1, 1)
-													   vy:sinf(i)*8+float_random(-1, 1)]];
+													   vx:cosf(i+float_random(-0.2, 0.2))*6
+													   vy:sinf(i+float_random(-0.2, 0.2))*6]];
+			
+            [g add_particle:[SubFireworksParticleA cons_x:position_.x
+														y:position_.y
+													   vx:cosf(i+float_random(-0.2, 0.2))*4
+													   vy:sinf(i+float_random(-0.2, 0.2))*4]];
+			
+            [g add_particle:[SubFireworksParticleA cons_x:position_.x
+														y:position_.y
+													   vx:cosf(i+float_random(-0.2, 0.2))*2
+													   vy:sinf(i+float_random(-0.2, 0.2))*2]];
+			
+            [g add_particle:[SubFireworksParticleA cons_x:position_.x
+														y:position_.y
+													   vx:cosf(i+float_random(-0.2, 0.2))*0.5
+													   vy:sinf(i+float_random(-0.2, 0.2))*0.5]];
         }
     }
 }
-
 -(BOOL)should_remove {
     return ct <= 0;
 }
-
+-(int)get_render_ord {
+	return [GameRenderImplementation GET_BEHIND_GAMEOBJ_ORD];
+}
 @end
 
+@implementation FireworksGroundFlower
+#define FWGFCT 60.0
++(FireworksGroundFlower*)cons_pt:(CGPoint)pt {
+	return [[FireworksGroundFlower spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]] cons_pt:pt];
+}
+-(id)cons_pt:(CGPoint)pt {
+	ct = FWGFCT;
+	vel = ccp(float_random(-0.5,0.5),float_random(9,10));
+	acel = ccp(float_random(-0.1,0.1),float_random(-0.2, -0.1));
+	[self setScale:float_random(0.4, 0.9)];
+	[self setScaleY:scaleY_*1.25];
+	[self setColor:[Common color_from:ccc3(251,232,52) to:ccc3(255,156,0) pct:1-ct/FWGFCT]];
+	[self setPosition:CGPointAdd(pt, ccp(float_random(-5, 5),0))];
+	return self;
+}
+-(void)update:(GameEngineLayer*)g {
+	ct--;
+	[self setPosition:CGPointAdd(position_, vel)];
+	[self setColor:[Common color_from:ccc3(251,232,52) to:ccc3(255,156,0) pct:1-ct/FWGFCT]];
+	[self setOpacity:
+	 ct>10?150+105*(ct/FWGFCT):171*(ct/10.0)
+	];
+
+	[self setRotation:[VecLib get_rotation:[VecLib cons_x:vel.x y:vel.y z:0] offset:-90]];
+	
+	vel = CGPointAdd(vel, acel);
+	
+}
+-(int)get_render_ord {
+	return [GameRenderImplementation GET_BEHIND_GAMEOBJ_ORD];
+}
+-(BOOL)should_remove {
+    return ct <= 0;
+}
+@end

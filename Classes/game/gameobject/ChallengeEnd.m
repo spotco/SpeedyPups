@@ -3,6 +3,7 @@
 #import "GameEngineLayer.h" 
 #import "UICommon.h" 
 #import "FileCache.h"
+#import "FireworksParticleA.h"
 
 @implementation ChallengeEnd
 
@@ -51,8 +52,26 @@
           add_i1:[self did_complete_challenge:g] i2:0]
           add_key:@"challenge" value:info]
          ];
-        //NSLog(@"passt:%d",[g get_time]);
     }
+	
+	if (procced) {
+		if (particlect%40==0) {
+			CGPoint center = CGPointAdd(position_,ccp(float_random(-30, 30),0));
+			for(int i = 0; i < 5; i++) {
+				[g add_particle:[FireworksParticleA cons_x:center.x
+														 y:center.y
+														vx:float_random(-3,3)
+														vy:float_random(9,14)
+														ct:arc4random_uniform(25)+15]];
+			}
+		}
+		
+		if (particlect%3==0) {
+			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd(position_, ccp(200,0))]];
+			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd(position_, ccp(320,0))]];
+		}
+		particlect++;
+	}
     
     return;
 }

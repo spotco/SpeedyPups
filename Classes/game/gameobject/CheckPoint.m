@@ -57,7 +57,7 @@
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g{
     if (challenge_disable) return;
-    
+	
     [super update:player g:g];
     if (!activated && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         activated = YES;
