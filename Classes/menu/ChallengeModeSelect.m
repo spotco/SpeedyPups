@@ -307,10 +307,6 @@
     ChallengeInfo* cc = [ChallengeRecord get_challenge_number:chosen_level];
     [chosen_name setString:[NSString stringWithFormat:@"Challenge %d: %@",chosen_level,cc.map_name]];
     [chosen_goal setString:[cc to_string]];
-    
-	/*chosen_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
-                                                          idname:[ChallengeRecord get_beaten_challenge:chosen_level]?@"levelstar_hr":@"levelstar_locked_hr"]];
-    */
 	TexRect *tar = [ChallengeRecord get_for:cc.type];
 	[chosen_icon setTexture:tar.tex];
 	[chosen_icon setTextureRect:tar.rect];
@@ -327,7 +323,9 @@
 }
 
 -(void)play {
-    [GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:chosen_level]];
+    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_SELECTED_CHALLENGELEVEL]
+								  add_i1:chosen_level i2:0]];
+	//[GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:chosen_level]];
 }
 
 -(void)choose_challenge:(int)i {

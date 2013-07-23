@@ -148,6 +148,12 @@
 	}
 }
 
+-(void)start_freeruninfocard_anim {
+	UIIngameAnimation *ua = [FreerunInfoTitleCardAniation cons_g:game_engine_layer];
+	[self addChild:ua];
+	[ingame_ui_anims addObject:ua];
+}
+
 -(void)ask_continue {
     [self set_this_visible:askcontinueui];
     [askcontinueui start_countdown:[game_engine_layer get_current_continue_cost]];

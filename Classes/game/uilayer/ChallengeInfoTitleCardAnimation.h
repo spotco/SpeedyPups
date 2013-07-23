@@ -14,3 +14,7 @@ typedef enum {
 }
 +(ChallengeInfoTitleCardAnimation*)cons_g:(GameEngineLayer*)g;
 @end
+
+@interface FreerunInfoTitleCardAniation : ChallengeInfoTitleCardAnimation
++(FreerunInfoTitleCardAniation*)cons_g:(GameEngineLayer*)g;
+@end

@@ -32,6 +32,7 @@
 
 -(void)start_initial_anim;
 -(void)start_challengeinfocard_anim;
+-(void)start_freeruninfocard_anim;
 -(void)pause;
 -(void)unpause;
 -(void)itemslot_use;

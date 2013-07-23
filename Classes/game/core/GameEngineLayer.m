@@ -57,6 +57,7 @@
     
     [glayer move_player_toground];
     [glayer prep_runin_anim];
+	[uil start_freeruninfocard_anim];
 	return scene;
 }
 

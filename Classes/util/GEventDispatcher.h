@@ -41,6 +41,9 @@ typedef enum {
     GEventType_MENU_SCROLLBGUP_PCT,
     GEventType_MENU_PLAY_AUTOLEVEL_MODE,
     GEventType_MENU_PLAY_TESTLEVEL_MODE,
+	GEventType_MENU_PLAY_CHALLENGELEVEL_MODE,
+	GEventType_SELECTED_CHALLENGELEVEL,
+	
     GEventType_MENU_GOTO_PAGE,
     GEventType_MENU_INVENTORY,
 	GeventType_MENU_UPDATE_INVENTORY,
@@ -63,8 +66,8 @@ typedef enum {
 @end
 
 @protocol GEventListener <NSObject>
-    @required
-    -(void)dispatch_event:(GEvent*)e;
+@required
+-(void)dispatch_event:(GEvent*)e;
 @end
 
 @interface GEventDispatcher : NSObject

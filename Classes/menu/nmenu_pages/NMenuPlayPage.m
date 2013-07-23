@@ -82,7 +82,11 @@
     } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
         kill = NO;
         
-    }
+    } else if (e.type == GEventType_SELECTED_CHALLENGELEVEL) {
+		play_mode_type = [[GEvent cons_type:GEventType_MENU_PLAY_CHALLENGELEVEL_MODE] add_i1:e.i1 i2:0];
+		[self prep_runout_anim];
+		
+	}
 }
 
 #define DOG_START ccp(0,80)
@@ -145,7 +149,8 @@
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
         
         if (scrollup_pct >= 1) {
-            [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_PLAY_AUTOLEVEL_MODE]];
+			if (play_mode_type == NULL) NSLog(@"error, play_mode_type in NMenuPlayPage is null at end of runout anim");
+            [GEventDispatcher push_event:play_mode_type];
         }
         
     } else if (cur_mode == PlayPageMode_MODE_CHOOSE) {
@@ -173,7 +178,12 @@
 }
 
 -(void)freerun_button_pressed {
-    cur_mode = PlayPageMode_DOGRUN;
+	play_mode_type = [GEvent cons_type:GEventType_MENU_PLAY_AUTOLEVEL_MODE];
+	[self prep_runout_anim];
+}
+
+-(void)prep_runout_anim {
+	 cur_mode = PlayPageMode_DOGRUN;
     [logo setVisible:NO];
     [playbutton setVisible:NO];
     [nav_menu setVisible:NO];

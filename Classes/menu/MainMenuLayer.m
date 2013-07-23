@@ -106,7 +106,11 @@
     } else if (e.type == GEventType_MENU_PLAY_AUTOLEVEL_MODE) {
         [self exit];
         [GameMain start_game_autolevel];
-    }
+		
+    } else if (e.type == GEventType_MENU_PLAY_CHALLENGELEVEL_MODE) {
+		[self exit];
+		[GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:e.i1]];
+	}
 }
 
 

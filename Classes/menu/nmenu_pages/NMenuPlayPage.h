@@ -28,6 +28,8 @@ typedef enum {
     float scrollup_pct;
     
     BOOL kill;
+	
+	GEvent *play_mode_type;
 }
 
 +(NMenuPlayPage*)cons;
