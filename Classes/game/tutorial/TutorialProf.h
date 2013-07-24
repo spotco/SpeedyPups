@@ -22,4 +22,6 @@ typedef enum {
 
 +(TutorialProf*)cons_msg:(NSString *)msg y:(float)y;
 
++(NSString*)msg_for_tutorial:(NSString*)tut;
+
 @end

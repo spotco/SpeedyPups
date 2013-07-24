@@ -109,7 +109,10 @@
 			[UserInventory set_item_cooldown:[GameItemCommon get_cooldown_for:[UserInventory get_current_gameitem]]];
 		}
         
-    }
+    } else if (e.type == GEventType_TUTORIAL_MESSAGE) {
+		[self start_tutorialmessage_anim:[e get_value:@"msg"]];
+		
+	}
 }
 
 -(void)update {
@@ -149,7 +152,7 @@
 }
 
 -(void)start_freeruninfocard_anim {
-	UIIngameAnimation *ua = [FreerunInfoTitleCardAniation cons_g:game_engine_layer];
+	UIIngameAnimation *ua = [FreerunInfoTitleCardAnimation cons_g:game_engine_layer];
 	[self addChild:ua];
 	[ingame_ui_anims addObject:ua];
 }
@@ -239,7 +242,11 @@
     [ingameui setVisible:YES];
     [self removeChild:curanim cleanup:YES];
 }
-
+-(void)start_tutorialmessage_anim:(NSString*)msg {
+	UIIngameAnimation *ua = [TutorialInfoTitleCardAnimation cons_g:game_engine_layer msg:msg];
+	[self addChild:ua];
+	[ingame_ui_anims addObject:ua];
+}
 -(void)set_gameengine:(GameEngineLayer*)ref {
     game_engine_layer = ref;
 }

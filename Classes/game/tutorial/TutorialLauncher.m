@@ -17,9 +17,15 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if (!self.active && player.position.x > position_.x) {
+    if (!self.active && player.position.x > position_.x && player.position.x - position_.x < 1000) {
         active = YES;
         [g add_gameobject:[TutorialProf cons_msg:self.anim y:position_.y]];
+		[GEventDispatcher push_event:
+			[[GEvent cons_type:GEventType_TUTORIAL_MESSAGE]
+				add_key:@"msg"
+				value:[TutorialProf msg_for_tutorial:anim]
+			]
+		];
     }
 }
 

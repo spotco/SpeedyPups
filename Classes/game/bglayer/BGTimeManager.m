@@ -20,6 +20,7 @@
 #define DAYNIGHT_LENGTH 10000
 #define TRANSITION_LENGTH 600
 
+
 static int bgtime_delayct;
 static BGTimeManagerMode bgtime_curmode;
 

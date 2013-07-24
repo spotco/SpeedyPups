@@ -133,10 +133,34 @@
 
 static NSArray *_tmp_msglist;
 -(NSString*)_tmp_msg_random {
-    if (_tmp_msglist == NULL) {
-        _tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight", nil];
-    }
     return [_tmp_msglist objectAtIndex:int_random(0, [_tmp_msglist count])];
 }
 
+static NSDictionary *_tutorial_msglist;
++(void)initialize {
+	_tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight", nil];
+
+	_tutorial_msglist = @{
+		@"doublejump" :		@"tap twice double jump",
+		@"minionhit" :		@"don't get hit by the minions",
+		@"minionjump" :		@"jump on the minions",
+		@"rockbreak" :		@"swipe to break rocks",
+		@"rockethit" :		@"don't get hit by rockets",
+		@"rocketjump" :		@"jump on the rockets",
+		@"rockhit" :		@"don't touch the rocks",
+		@"spikehit" :		@"don't touch the spikes",
+		@"spikevine" :		@"don't touch the spikes",
+		@"splash" :			@"don't fall in the water",
+		@"hover" :			@"hold down to fall slower",
+		@"jump" :			@"tap to jump",
+		@"swingvine" :		@"swing on vines, tap to jump off",
+		@"swipe_down" :		@"swipe down to roll downwards",
+		@"swipe_straight" : @"swipe straight to roll straight",
+		@"collectcoin" :	@"swipe to grab bones"
+   };
+}
++(NSString*)msg_for_tutorial:(NSString*)tut {
+	NSString *rtv = _tutorial_msglist[tut];
+	return rtv == NULL ? @"message goes here" : rtv;
+}
 @end

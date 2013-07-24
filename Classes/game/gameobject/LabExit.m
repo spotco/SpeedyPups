@@ -14,7 +14,7 @@
 
 -(void)entrance_event {
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_EXIT_TO_DEFAULTAREA]];
-	[AudioManager playbgm:BGM_GROUP_WORLD1];
+	[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 	
 	if ([BGTimeManager get_global_time] == MODE_NIGHT) {
 		[AudioManager transition_mode2];

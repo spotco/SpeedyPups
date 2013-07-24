@@ -18,12 +18,8 @@
 
 /**
  TODO
- -check day/night run music bug
- -text in tutorial
  -sense of progress -- lab every once in a while, idea of 3 castles and final boss
- -infinite runner -- thrown in a lab group every 3 groups or so
- -infinite runner -- hardcode more level order into the game, remove a couple tutorials (swipedir),
-  def show some "high quality" levels early on (trickytreas)
+ -remove a couple tutorials (swipedir),
  -better continue and game over menu ui
  
  -different dogs differnt special powers

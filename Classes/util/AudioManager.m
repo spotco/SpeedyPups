@@ -113,6 +113,9 @@ static int transition_ct;
 }
 
 +(void)playbgm_imm:(BGM_GROUP)tar {
+	if (playbgm == NO) return;
+	if (curgroup == tar) return;
+	
 	[bgm_1 stop];
 	[bgm_2 stop];
 	

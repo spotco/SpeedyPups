@@ -80,7 +80,7 @@ static BGM_GROUP prev_group;
 -(void)start_countdown:(int)cost {
 	
 	prev_group = [AudioManager get_cur_group];
-	[AudioManager playbgm:BGM_GROUP_JINGLE];
+	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
 	
     countdown_ct = 10;
     continue_cost = cost;
@@ -112,7 +112,10 @@ static BGM_GROUP prev_group;
 -(void)continue_yes {
     if ([UserInventory get_current_bones] >= continue_cost) {
 		
-		[AudioManager playbgm:prev_group];
+		[AudioManager playbgm_imm:prev_group];
+		if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
+			[AudioManager transition_mode2];
+		}
 		
         [self stop_countdown];
         [UserInventory add_bones:-continue_cost];

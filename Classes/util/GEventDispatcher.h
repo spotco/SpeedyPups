@@ -25,6 +25,7 @@ typedef enum {
     GEventType_CONTINUE_GAME,
     GEventType_GET_COIN,
 	GEventType_FGITEM_SHOW,
+	GEventType_TUTORIAL_MESSAGE,
     
     GEventType_CHALLENGE,
     GEventType_CHALLENGE_COMPLETE,

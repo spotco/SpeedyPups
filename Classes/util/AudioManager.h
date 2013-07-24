@@ -39,6 +39,7 @@ typedef enum {
 @interface AudioManager : NSObject
 
 +(void)playbgm:(BGM_GROUP)tar;
++(void)playbgm_imm:(BGM_GROUP)tar;
 +(void)playsfx:(NSString*)tar;
 
 +(BGM_GROUP) get_cur_group;

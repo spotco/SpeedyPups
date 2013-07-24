@@ -91,7 +91,10 @@
     default_starting_lives = starting_lives;
 	[UserInventory set_item_cooldown:0];
 	
-    [AudioManager playbgm:BGM_GROUP_WORLD1];
+    [AudioManager playbgm_imm:BGM_GROUP_WORLD1];
+	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
+		[AudioManager transition_mode2];
+	}
     
     [GameControlImplementation reset_control_state];
     [GEventDispatcher add_listener:self];

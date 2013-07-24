@@ -12,7 +12,7 @@
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{18, 22}, {31, 25}}</string>
+			<string>{{0, 0}, {65, 73}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
 			<key>spriteSize</key>
@@ -34,6 +34,94 @@
 			
 			</array>
 			<key>spriteColorRect</key>
+			<string>{{0, 9}, {65, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{134, 75}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>fly3</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{12, 21}, {49, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 75}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>fly4</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{8, 34}, {57, 39}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{67, 75}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>old_fly1</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{18, 22}, {31, 25}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{268, 0}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>old_fly2</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
 			<string>{{18, 12}, {31, 37}}</string>
 			<key>spriteOffset</key>
 			<string>{0, 0}</string>
@@ -49,7 +137,7 @@
 			<false/>
 		</dict>
 		
-		<key>fly3</key>
+		<key>old_fly3</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -66,12 +154,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{134, 0}, {65, 73}}</string>
+			<string>{{201, 75}, {65, 73}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>fly4</key>
+		<key>old_fly4</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -88,12 +176,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{268, 0}, {65, 73}}</string>
+			<string>{{335, 75}, {65, 73}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>sit1</key>
+		<key>old_sit1</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -110,12 +198,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{67, 0}, {65, 73}}</string>
+			<string>{{268, 75}, {65, 73}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>sit2</key>
+		<key>old_sit2</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -132,12 +220,12 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{402, 0}, {65, 73}}</string>
+			<string>{{134, 0}, {65, 73}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>sit3</key>
+		<key>old_sit3</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -159,19 +247,83 @@
 			<false/>
 		</dict>
 		
+		<key>sit1</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{25, 23}, {23, 27}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{67, 0}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>sit2</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{19, 28}, {33, 23}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{402, 0}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>sit3</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{16, 32}, {37, 21}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 73}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 73}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{402, 75}, {65, 73}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5.5</string>
+		<string>1.6.0</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{512, 128}</string>
+		<string>{512, 256}</string>
 		<key>name</key>
 		<string>bird_zwopexport</string>
-		<key>premultipliedAlpha</key>
-		<false/>
 		<key>target</key>
 		<dict>
 			<key>name</key>

@@ -83,7 +83,7 @@
 -(void)setVisible:(BOOL)visible {
 	[super setVisible:visible];
 	if (visible) {
-		[AudioManager playbgm:BGM_GROUP_JINGLE];
+		[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
 	}
 }
 

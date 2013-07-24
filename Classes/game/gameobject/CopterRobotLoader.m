@@ -18,7 +18,7 @@
         active = YES;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_ACTIVATE] add_pt:player.position]];
         [g add_gameobject:[CopterRobot cons_with_playerpos:player.position]];
-		[AudioManager playbgm:BGM_GROUP_BOSS1];
+		[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
     }
 }
 
