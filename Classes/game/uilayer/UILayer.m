@@ -112,6 +112,9 @@
     } else if (e.type == GEventType_TUTORIAL_MESSAGE) {
 		[self start_tutorialmessage_anim:[e get_value:@"msg"]];
 		
+	} else if (e.type == GEventType_FREERUN_PROGRESS) {
+		[self start_freerunprogress_anim:e.i1];
+		
 	}
 }
 
@@ -173,10 +176,6 @@
 		GameItem i = [UserInventory get_current_gameitem];
 		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
 	}
-}
-
--(void)slotpane_use:(int)i {
-    NSLog(@"slotpane use, removeme");
 }
 
 -(void)pause {
@@ -244,13 +243,17 @@
 }
 -(void)start_tutorialmessage_anim:(NSString*)msg {
 	UIIngameAnimation *ua = [TutorialInfoTitleCardAnimation cons_g:game_engine_layer msg:msg];
-	[self addChild:ua];
+	[ingameuianimholder addChild:ua];
+	[ingame_ui_anims addObject:ua];
+}
+-(void)start_freerunprogress_anim:(FreeRunProgress)p {
+	UIIngameAnimation *ua = [FreeRunProgressAnimation cons_at:p];
+	[ingameuianimholder addChild:ua];
 	[ingame_ui_anims addObject:ua];
 }
 -(void)set_gameengine:(GameEngineLayer*)ref {
     game_engine_layer = ref;
 }
-
 -(void)dealloc {
     [ingame_ui_anims removeAllObjects];
     [pauseui removeAllChildrenWithCleanup:YES];

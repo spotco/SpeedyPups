@@ -21,9 +21,8 @@ static NSMutableDictionary* levelsets;
     levelsets = [NSMutableDictionary dictionary];
     
     [levelsets setObject:@[
-        @"tutorial_swipedir",
         @"tutorial_swingvine",
-        @"tutorial_spikevine",
+        @"tutorial_spikevine"
     ] forKey:L_TUTORIAL];
     
     [levelsets setObject:@[

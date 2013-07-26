@@ -6,9 +6,9 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define USE_BG NO
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -19,8 +19,10 @@
 /**
  TODO
  -sense of progress -- lab every once in a while, idea of 3 castles and final boss
- -remove a couple tutorials (swipedir),
  -better continue and game over menu ui
+ 
+ -level difficulty ranking, with selection based on current score
+ -skippable tutorial
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -66,10 +68,10 @@
  boss sounds
  
  
- LAST BIT:
- credits, game end message, loop (after boss in infinite runner or double helicopter)
- 
- - infinite runner - unlimited swipe mechanic
+ Stretch goal:
+ credits screen after boss
+ cloud cape flying minigame
+ 2nd and 3rd reskin world
  **/
 
 +(void)main {
@@ -91,9 +93,9 @@
 	}
 	 */
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

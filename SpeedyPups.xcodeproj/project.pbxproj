@@ -40,6 +40,7 @@
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
 		7E4A2F60170448F9001BD38C /* tutorial_swipeget.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */; };
 		7E4A2F6217044908001BD38C /* tutorial_spikevine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F6117044908001BD38C /* tutorial_spikevine.map */; };
+		7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */; };
 		7E511BE7174623E200B41826 /* easy_curvybreak.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E511BE6174623E200B41826 /* easy_curvybreak.map */; };
 		7E511BE917462B0F00B41826 /* easy_breakdetail.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E511BE817462B0F00B41826 /* easy_breakdetail.map */; };
 		7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */; };
@@ -672,10 +673,12 @@
 		7E45DA6F172DF8D7009C43DD /* ShopRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopRecord.m; sourceTree = "<group>"; };
 		7E4922DA17115FEC0032665B /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = game/challenge/Challenge.h; sourceTree = "<group>"; };
 		7E4922DB17115FEC0032665B /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = game/challenge/Challenge.m; sourceTree = "<group>"; };
-		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipedir.map; sourceTree = "<group>"; };
+		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tutorial_swipedir.map; path = ../tutorial_swipedir.map; sourceTree = "<group>"; };
 		7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swingvine.map; sourceTree = "<group>"; };
 		7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipeget.map; sourceTree = "<group>"; };
 		7E4A2F6117044908001BD38C /* tutorial_spikevine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_spikevine.map; sourceTree = "<group>"; };
+		7E50B27117A2608E00E0C408 /* FreeRunProgressAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeRunProgressAnimation.h; sourceTree = "<group>"; };
+		7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunProgressAnimation.m; sourceTree = "<group>"; };
 		7E511BE6174623E200B41826 /* easy_curvybreak.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_curvybreak.map; sourceTree = "<group>"; };
 		7E511BE817462B0F00B41826 /* easy_breakdetail.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_breakdetail.map; sourceTree = "<group>"; };
 		7E52834F179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeInfoTitleCardAnimation.h; sourceTree = "<group>"; };
@@ -1553,6 +1556,8 @@
 				7EBD761A171A8B6B00EBEB3C /* CoinCollectUIAnimation.m */,
 				7E52834F179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.h */,
 				7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */,
+				7E50B27117A2608E00E0C408 /* FreeRunProgressAnimation.h */,
+				7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */,
 			);
 			name = ingame_anim;
 			sourceTree = "<group>";
@@ -1669,7 +1674,6 @@
 				7EDBE79A1703BE7C001D3C93 /* tutorial_spikes.map */,
 				7EDBE79C1703C4D9001D3C93 /* tutorial_breakrocks.map */,
 				7EDBE79E1703D4F4001D3C93 /* tutorial_doublejump.map */,
-				7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */,
 				7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */,
 				7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */,
 				7E4A2F6117044908001BD38C /* tutorial_spikevine.map */,
@@ -1909,6 +1913,7 @@
 		7EB8B25516D9F8E700F58961 /* TEST */ = {
 			isa = PBXGroup;
 			children = (
+				7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */,
 				7EB8B24916D9F8E700F58961 /* jumppad_bouncyroom.map */,
 				7EB8B25616D9F8E700F58961 /* bossloadertest.map */,
 				7EB8B25716D9F8E700F58961 /* bridge_test.map */,
@@ -3642,6 +3647,7 @@
 				7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */,
 				7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */,
 				7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */,
+				7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

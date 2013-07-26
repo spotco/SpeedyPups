@@ -5,6 +5,8 @@
 #import "UIIngameAnimation.h"
 #import "BoneCollectUIAnimation.h"
 #import "GEventDispatcher.h"
+#import "FreeRunProgressAnimation.h"
+
 @class IngameUI;
 @class PauseUI;
 @class AskContinueUI;
@@ -36,7 +38,6 @@
 -(void)pause;
 -(void)unpause;
 -(void)itemslot_use;
--(void)slotpane_use:(int)i;
 
 -(void)exit_to_menu;
 -(void)play_again;
