@@ -38,6 +38,7 @@
 #import "TutorialEnd.h"
 #import "ChallengeEnd.h"
 #import "Coin.h"
+#import "FreeRunProgressDisplay.h"
 
 @implementation GameMap
     @synthesize assert_links;
@@ -334,7 +335,12 @@ static NSMutableDictionary* cached_json;
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             [map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
-            
+			
+		} else if ([type isEqualToString:@"progressdisp"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            [map.game_objects addObject:[FreeRunProgressDisplay cons_pt:ccp(x,y)]];
+			
         } else {
             NSLog(@"item read error");
             continue;

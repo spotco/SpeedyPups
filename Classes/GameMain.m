@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -18,7 +18,6 @@
 
 /**
  TODO
- -sense of progress -- lab every once in a while, idea of 3 castles and final boss
  -better continue and game over menu ui
  
  -level difficulty ranking, with selection based on current score
@@ -85,17 +84,18 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	//[UserInventory add_bones:1000];
-	
+
 	/*
 	AutoLevelState *s = [AutoLevelState cons];
-	for (int i = 0; i < 20; i++) {
-		NSLog([s get_level]);
+	for (int i = 0; i < 30; i++) {
+		//NSLog(@"status:%@\nlvl:%@\n\n",[s status],[s get_level]);
+		NSLog(@"lvl:%@",[s get_level]);
 	}
-	 */
+	*/
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 
@@ -136,4 +136,12 @@
 
 +(BOOL)GET_USE_BG {return USE_BG;}
 +(BOOL)GET_DRAW_HITBOX {return DRAW_HITBOX;}
+
+static BOOL DO_TUTORIAL = YES;
++(BOOL)GET_DO_TUTORIAL {
+	return DO_TUTORIAL;
+}
++(void)SET_DO_TUTORIAL:(BOOL)t {
+	DO_TUTORIAL = t;
+}
 @end

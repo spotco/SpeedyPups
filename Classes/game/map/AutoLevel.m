@@ -17,11 +17,10 @@
 
 -(void)cons:(GameEngineLayer*)glayer {
     cur_state = [AutoLevelState cons];
-    for (NSString* i in [cur_state get_all_levels]) {
+    for (NSString* i in [AutoLevelState get_all_levels]) {
         [MapLoader precache_map:i];
     }
     tglayer = glayer;
-    
 
     map_sections = [[NSMutableArray alloc] init];
     stored = [[NSMutableArray alloc] init];
@@ -34,12 +33,17 @@
         [self cleanup_start:tglayer.player.start_pt player:tglayer.player.position];
         
     } else if (e.type == GEventType_BOSS1_ACTIVATE) {
-        [cur_state change_mode:AutoLevelStateMode_BOSS1];
+        //[cur_state change_mode:AutoLevelStateMode_BOSS1];
+		[cur_state to_boss1_mode];
+		
         [self remove_all_ahead_but_current:e.pt];
         [self shift_queue_into_current];
         
     } else if (e.type == GEventType_BOSS1_DEFEATED) {
-        [cur_state change_mode:AutoLevelStateMode_Normal];
+        //[cur_state change_mode:AutoLevelStateMode_Normal];
+		//[cur_state to_progress_mode];
+		[cur_state to_labexit_mode];
+		
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
         [tglayer stopAction:tglayer.follow_action];
@@ -207,6 +211,10 @@
     [self shift_queue_into_current];
     
     [super reset];
+}
+
+-(FreeRunProgress)get_freerun_progress {
+	return [cur_state get_freerun_progress];
 }
 
 -(void)dealloc {

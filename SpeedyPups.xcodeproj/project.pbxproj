@@ -12,6 +12,10 @@
 		4512283217705E7F0088D298 /* filler_genome.map in Resources */ = {isa = PBXBuildFile; fileRef = 4512283117705E7F0088D298 /* filler_genome.map */; };
 		45528CD71771A054002EF02E /* filler_manyopt.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD61771A054002EF02E /* filler_manyopt.map */; };
 		45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */; };
+		7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07524B17A5072B001FAE5F /* WeightedSorter.m */; };
+		7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524D17A5191A001FAE5F /* labintro_labexit.map */; };
+		7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524F17A51AD5001FAE5F /* boss1_start.map */; };
+		7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */; };
 		7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787A16ED57880026C418 /* NMenuPlayPage.m */; };
 		7E0A787E16ED5DEC0026C418 /* MenuCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787D16ED5DEC0026C418 /* MenuCommon.m */; };
 		7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */; };
@@ -43,6 +47,7 @@
 		7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */; };
 		7E511BE7174623E200B41826 /* easy_curvybreak.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E511BE6174623E200B41826 /* easy_curvybreak.map */; };
 		7E511BE917462B0F00B41826 /* easy_breakdetail.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E511BE817462B0F00B41826 /* easy_breakdetail.map */; };
+		7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */; };
 		7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */; };
 		7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E717A11177FE9A800141E3D /* labswingvine_base.png */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
@@ -634,6 +639,12 @@
 		4512283117705E7F0088D298 /* filler_genome.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_genome.map; sourceTree = "<group>"; };
 		45528CD61771A054002EF02E /* filler_manyopt.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_manyopt.map; sourceTree = "<group>"; };
 		45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_cuhrazyloop.map; sourceTree = "<group>"; };
+		7E07524A17A5072B001FAE5F /* WeightedSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightedSorter.h; sourceTree = "<group>"; };
+		7E07524B17A5072B001FAE5F /* WeightedSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightedSorter.m; sourceTree = "<group>"; };
+		7E07524D17A5191A001FAE5F /* labintro_labexit.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_labexit.map; path = levels/labintro_labexit.map; sourceTree = "<group>"; };
+		7E07524F17A51AD5001FAE5F /* boss1_start.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss1_start.map; sourceTree = "<group>"; };
+		7E07525117A527DA001FAE5F /* FreeRunProgressDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeRunProgressDisplay.h; sourceTree = "<group>"; };
+		7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunProgressDisplay.m; sourceTree = "<group>"; };
 		7E0A787916ED57880026C418 /* NMenuPlayPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuPlayPage.h; path = nmenu_pages/NMenuPlayPage.h; sourceTree = "<group>"; };
 		7E0A787A16ED57880026C418 /* NMenuPlayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuPlayPage.m; path = nmenu_pages/NMenuPlayPage.m; sourceTree = "<group>"; };
 		7E0A787C16ED5DEB0026C418 /* MenuCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCommon.h; sourceTree = "<group>"; };
@@ -681,6 +692,7 @@
 		7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunProgressAnimation.m; sourceTree = "<group>"; };
 		7E511BE6174623E200B41826 /* easy_curvybreak.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_curvybreak.map; sourceTree = "<group>"; };
 		7E511BE817462B0F00B41826 /* easy_breakdetail.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_breakdetail.map; sourceTree = "<group>"; };
+		7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = freerun_progress.map; sourceTree = "<group>"; };
 		7E52834F179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeInfoTitleCardAnimation.h; sourceTree = "<group>"; };
 		7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeInfoTitleCardAnimation.m; sourceTree = "<group>"; };
 		7E717A11177FE9A800141E3D /* labswingvine_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labswingvine_base.png; sourceTree = "<group>"; };
@@ -1568,6 +1580,7 @@
 				7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */,
 				7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */,
 				7EE2224B1778325000174B92 /* labintro_entrance.map */,
+				7E07524D17A5191A001FAE5F /* labintro_labexit.map */,
 			);
 			name = labintro;
 			path = ..;
@@ -1894,8 +1907,10 @@
 		7EB8B23B16D9F8E700F58961 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				7E07524F17A51AD5001FAE5F /* boss1_start.map */,
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
+				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
 				7E8A53331773F8F7006F6114 /* labintro */,
 				7EC460E81705780C00656A48 /* lab */,
@@ -2427,6 +2442,8 @@
 				7EB8B47616D9FC0900F58961 /* Resource.m */,
 				7EB8B47716D9FC0900F58961 /* Vec3D.h */,
 				7EB8B47816D9FC0900F58961 /* Vec3D.m */,
+				7E07524A17A5072B001FAE5F /* WeightedSorter.h */,
+				7E07524B17A5072B001FAE5F /* WeightedSorter.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -2505,6 +2522,8 @@
 				7EB8B3CA16D9FC0900F58961 /* CameraArea.m */,
 				7EBD7607171A430700EBEB3C /* ChallengeEnd.h */,
 				7EBD7608171A430700EBEB3C /* ChallengeEnd.m */,
+				7E07525117A527DA001FAE5F /* FreeRunProgressDisplay.h */,
+				7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -3479,6 +3498,9 @@
 				7EF8CA581797E4A900BD4476 /* dashjumpparticles_ss.plist in Resources */,
 				7EF8CA591797E4A900BD4476 /* dashjumpparticles_ss.png in Resources */,
 				7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */,
+				7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */,
+				7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */,
+				7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3648,6 +3670,8 @@
 				7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */,
 				7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */,
 				7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */,
+				7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */,
+				7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

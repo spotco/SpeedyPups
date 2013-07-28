@@ -1,111 +1,176 @@
 #import "AutoLevelState.h"
 #import "Common.h"
+#import "GameMain.h" 
 
 @implementation AutoLevelState
 
 #define L_TUTORIAL @"levelset_tutorial"
+#define L_LAB_TUTORIAL @"levelset_lab_tutorial"
+
 #define L_CLASSIC @"levelset_classic"
 #define L_FILLER @"levelset_filler"
 #define L_JUMPPAD @"levelset_jumppad"
 #define L_SWINGVINE @"levelset_swingvine"
 #define L_EASY @"levelset_easy"
+
+#define L_FREERUN_PROGRESS @"levelset_freerun_progress"
+
+#define L_BOSS1START @"levelset_boss1start"
 #define L_BOSS1AREA @"levelset_boss1area"
 #define L_AUTOSTART @"levelset_autostart"
 
 #define L_LABINTRO @"levelset_labintro"
 #define L_LAB @"levelset_lab"
+#define L_LABEXIT @"levelset_labexit"
 
-static NSMutableDictionary* levelsets;
+static NSDictionary *levelsets;
+static NSArray *pickable_sets;
+
+static NSArray *tutorial_levels;
+static NSArray *lab_tutorial_levels;
 
 +(void)initialize {
-    levelsets = [NSMutableDictionary dictionary];
-    
-    [levelsets setObject:@[
-        @"tutorial_swingvine",
-        @"tutorial_spikevine"
-    ] forKey:L_TUTORIAL];
-    
-    [levelsets setObject:@[
-		@"classic_trickytreas",
-        @"classic_bridgenbwall",
-        @"classic_cavewbwall",
-        @"classic_huegcave",
-        @"classic_tomslvl1",
-        @"classic_smgislands",
-        @"classic_nubcave",
-        @"classic_manyoptredux",
-        @"classic_totalmix"
-    ] forKey:L_CLASSIC];
-    
-    [levelsets setObject:@[
+	tutorial_levels = @[
+		@"tutorial_jump",
+		@"tutorial_water",
+		@"tutorial_swipeget",
 		@"filler_sanicloop",
-        @"filler_curvedesc",
-        @"filler_islandjump",
-        @"filler_rollinghills",
-        @"filler_directdrop",
-        @"filler_steepdec",
-        @"filler_genome",
-        @"filler_manyopt",
-        @"filler_cuhrazyloop"
-    ] forKey:L_FILLER];
-    
-    [levelsets setObject:@[
-        @"easy_puddles",
-        @"easy_world1",
-        @"easy_gottagofast",
-        @"easy_curvywater",
-        @"easy_simplespikes",
-        @"easy_curvybreak",
-        @"easy_breakdetail",
-        @"easy_hillvine"
-     ] forKey:L_EASY];
-    
-    [levelsets setObject:@[
-        @"jumppad_bigjump",
-        @"jumppad_crazyloop",
-        @"jumppad_hiddenislands",
-        @"jumppad_jumpgap",
-        @"jumppad_jumpislands",
-        @"jumppad_launch",
-        @"jumppad_lotsobwalls",
-        @"jumppad_spikeceil",
-    ] forKey:L_JUMPPAD];
-    
-    [levelsets setObject:@[
-        @"swingvine_swingintro",
-        @"swingvine_dodgespike",
-        @"swingvine_swingbreak",
-        @"swingvine_bounswindodg",
-        @"swingvine_someswings",
-        @"swingvine_awesome",
-        @"swingvine_morecave",
-        @"swingvine_datbounce"
-    ] forKey:L_SWINGVINE];
-    
-    [levelsets setObject:@[
-        @"autolevel_start",
-    ] forKey:L_AUTOSTART];
-    
-    [levelsets setObject:@[
-        @"boss1_area",
-    ] forKey:L_BOSS1AREA];
+		@"tutorial_spikes",
+		@"tutorial_breakrocks",
+		@"tutorial_doublejump",
+		@"tutorial_upsidebounce",
+        @"tutorial_spikevine",
+		@"tutorial_swingvine"
+	];
 	
-	[levelsets setObject:@[
+	lab_tutorial_levels = @[
 		@"labintro_tutorialbop",
-		@"labintro_tutoriallauncher",
-		@"labintro_entrance"
-	] forKey:L_LABINTRO];
+		@"labintro_tutoriallauncher"
+	];
 	
-	[levelsets setObject:@[
-		@"lab_basicmix",
-		@"lab_minionwalls",
-		@"lab_ezshiz",
-		@"lab_ezrocketshz",
-		@"lab_swingers",
-		@"lab_alladat",
-		@"lab_tube",
-		@"lab_muhfiller"
-	] forKey:L_LAB];
+	pickable_sets = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE];
+	
+	levelsets = @{
+		L_TUTORIAL: @{
+			@"tutorial_jump" : @1,
+			@"tutorial_water" : @1,
+			@"tutorial_swipeget" : @1,
+			@"filler_sanicloop" : @1 ,
+			@"tutorial_spikes" : @2,
+			@"tutorial_breakrocks" : @2,
+			@"tutorial_doublejump" : @2,
+			@"tutorial_upsidebounce" : @3,
+			@"tutorial_spikevine" : @3,
+			@"tutorial_swingvine" : @3
+		},
+		L_LAB_TUTORIAL: @{
+			@"labintro_tutorialbop" : @1,
+			@"labintro_tutoriallauncher" : @1
+		},
+		L_CLASSIC: @{
+			@"classic_trickytreas" : @3,
+			@"classic_bridgenbwall" : @2,
+			@"classic_cavewbwall" : @2,
+			@"classic_huegcave" : @2,
+			@"classic_tomslvl1" : @2,
+			@"classic_smgislands" : @3,
+			@"classic_nubcave" : @2,
+			@"classic_manyoptredux" : @3,
+			@"classic_totalmix" : @3
+		},
+		L_FILLER: @{
+			@"filler_sanicloop" : @1,
+			@"filler_curvedesc" : @1,
+			@"filler_islandjump" : @1,
+			@"filler_rollinghills" : @1,
+			@"filler_directdrop" : @1,
+			@"filler_steepdec" : @1,
+			@"filler_genome" : @1,
+			@"filler_manyopt" : @1,
+			@"filler_cuhrazyloop" : @1
+		},
+		L_EASY: @{
+			@"easy_puddles" : @1,
+			@"easy_world1" : @1,
+			@"easy_gottagofast" : @1,
+			@"easy_curvywater" : @1,
+			@"easy_simplespikes" : @1,
+			@"easy_curvybreak" : @2,
+			@"easy_breakdetail" : @2,
+			@"easy_hillvine" : @1
+		},
+		L_JUMPPAD: @{
+			@"jumppad_bigjump" : @2,
+			@"jumppad_crazyloop" : @2,
+			@"jumppad_hiddenislands" : @1,
+			@"jumppad_jumpgap" : @3,
+			@"jumppad_jumpislands" : @3,
+			@"jumppad_launch" : @2,
+			@"jumppad_lotsobwalls" : @3,
+			@"jumppad_spikeceil" : @3
+		},
+		L_SWINGVINE: @{
+			@"swingvine_swingintro" : @2,
+			@"swingvine_dodgespike" : @3,
+			@"swingvine_swingbreak" : @3,
+			@"swingvine_bounswindodg" : @4,
+			@"swingvine_someswings" : @2,
+			@"swingvine_awesome" : @4,
+			@"swingvine_morecave" : @3,
+			@"swingvine_datbounce" : @2
+		},
+		L_AUTOSTART: @{
+			@"autolevel_start": @1
+		},
+		L_FREERUN_PROGRESS: @{
+			@"freerun_progress": @1
+		},
+		L_BOSS1START: @{
+			@"boss1_start": @1
+		},
+		L_BOSS1AREA: @{
+			@"boss1_area": @1
+		},
+		L_LABINTRO: @{
+			@"labintro_entrance" : @1
+		},
+		L_LABEXIT: @{
+			@"labintro_labexit" : @1
+		},
+		L_LAB: @{
+			@"lab_basicmix" : @3,
+			@"lab_minionwalls" : @3,
+			@"lab_ezshiz" : @3,
+			@"lab_ezrocketshz" : @4,
+			@"lab_swingers" : @4,
+			@"lab_alladat" : @4,
+			@"lab_tube" : @2,
+			@"lab_muhfiller" : @2
+		}
+		
+	};
+}
+
++(int)get_level_difficulty:(NSString*)tarlvl {
+	for (NSDictionary *set in levelsets) {
+		for (NSString *lvl in set.keyEnumerator) {
+			if ([tarlvl isEqualToString:lvl]) {
+				NSNumber *val = set[lvl];
+				return val.integerValue;
+			}
+		}
+	}
+	return 1;
+}
+
++(NSArray*)get_all_levels {
+	NSMutableArray *lvls = [[NSMutableArray alloc] init];
+	for (NSString *setname in [levelsets allKeys]) {
+		for (NSString *lvl in [levelsets[setname] allKeys]) {
+			[lvls addObject:lvl];
+		}
+	}
+	return lvls;
 }
 
 +(AutoLevelState*)cons {
@@ -114,109 +179,222 @@ static NSMutableDictionary* levelsets;
 
 -(id)init {
     self = [super init];
-    cur_used = [NSMutableArray array];
-    [self set_cur_set_to:L_AUTOSTART];
+	ct = 0;
+	has_done_lab_tutorial = ![GameMain GET_DO_TUTORIAL];
+	sets_until_next_lab = 0;
+	cur_set_completed = 0;
+	
+	setgen = [WeightedSorter cons_vals:levelsets use:pickable_sets];
+	fillersetgen = [WeightedSorter cons_vals:levelsets use:@[L_FILLER]];
+	labsetgen = [WeightedSorter cons_vals:levelsets use:@[L_LAB]];
+	
+	recently_picked_sets = [NSMutableArray array];
+	if (tutorial_levels == NULL || lab_tutorial_levels == NULL) [AutoLevelState initialize];
+	
     return self;
 }
 
--(void)change_mode:(AutoLevelStateMode)t {
-    cur_mode = t;
+-(NSString*)setgen_get:(NSString*)key {
+	return [setgen get_from_bucket:key];
 }
 
--(NSArray*)get_all_levels {
-    NSMutableArray *all = [NSMutableArray array];
-    for (NSString* key in levelsets) {
-        NSArray* set = [levelsets objectForKey:key];
-        [all addObjectsFromArray:set];
-    }
-    return all;
+-(void)to_boss1_mode {
+	cur_set = L_BOSS1AREA;
 }
 
--(void)set_cur_set_to:(NSString*)t {
-    if (levelsets[t]==NULL) [NSException raise:@"ERROR:" format:@"invalid cur levelset %@",t];
-    cur_set = t;
-    cur_set_ct = 0;
-    [cur_used removeAllObjects];
+-(void)to_labexit_mode {
+	cur_set = L_LABEXIT;
 }
 
--(NSArray*)cur_levelset_get_unused {
-    return [(NSArray*)levelsets[cur_set] copy_removing:cur_used];
+-(void)to_progress_mode {
+	cur_set = L_FREERUN_PROGRESS;
 }
 
--(void)set_next_levelset {
-    NSArray* a = [@[L_CLASSIC,L_JUMPPAD,L_SWINGVINE,L_EASY] copy_removing:@[cur_set]];
-    NSString *s = [a random];
-    [self set_cur_set_to:s];
+-(NSString*)pick_set {
+	NSArray *available;
+	if (ct < 13) {
+		available = @[L_EASY];
+	} else if (ct < 20) {
+		available = @[L_EASY,L_CLASSIC];
+	} else {
+		available = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE];
+	}
+	NSArray *usem = [available copy_removing:recently_picked_sets];
+	if (usem.count == 0) {
+		[recently_picked_sets removeAllObjects];
+		usem = available;
+	}
+	NSString *tar = usem.random;
+	[recently_picked_sets addObject:tar];
+	return tar;
 }
 
 -(NSString*)get_level {
-    ct++;
-    if (cur_mode == AutoLevelStateMode_BOSS1) {
-        return [levelsets[L_BOSS1AREA] random];
+	ct++;
+	if (ct == 1) {
+		if ([GameMain GET_DO_TUTORIAL]) {
+			cur_set = L_TUTORIAL;
+		} else {
+			tutorial_ct = 0;
+			ct = 10;
+			cur_set = L_FREERUN_PROGRESS;
+		}
+		return [[levelsets[L_AUTOSTART] allKeys] random];
 		
-    } else if (ct == 1) {
-        [self set_cur_set_to:L_TUTORIAL];
-        return [levelsets[L_AUTOSTART] random];
-    
-    } else if ([cur_set isEqualToString:L_TUTORIAL]) {
-        cur_set_ct++;
-        NSString* picked;
-        if (cur_set_ct == 1) {
-            picked = @"tutorial_jump";
-            
-        } else if (cur_set_ct == 2) {
-			picked = @"tutorial_water";
-            
-        } else if (cur_set_ct == 3) {
-			picked = @"tutorial_swipeget";
+	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
+		return [[levelsets[L_BOSS1AREA] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:L_TUTORIAL]) {
+		NSString *tar = [tutorial_levels get:tutorial_ct];
+		tutorial_ct++;
+		if (tutorial_ct >= tutorial_levels.count) {
+			cur_set = L_FREERUN_PROGRESS;
+		}
+		return tar;
+		
+	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
+		if (!has_done_lab_tutorial) {
+			sets_until_next_lab = 2;
+		} else {
+			sets_until_next_lab = 4;
+		}
+		cur_set_completed = 0;
+		cur_set = [self pick_set];
+		nth_freerunprogress++;
+		nth_freerunprogress = nth_freerunprogress>7?1:nth_freerunprogress;
+		
+		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:L_LAB_TUTORIAL]) {
+		NSString *tar = [lab_tutorial_levels get:tutorial_ct];
+		tutorial_ct++;
+		if (tutorial_ct >= lab_tutorial_levels.count) {
+			cur_set = L_LABINTRO;
+			sets_until_next_lab = 3;
+			tutorial_ct = 0;
+		}
+		return tar;
+		
+	} else if ([cur_set isEqualToString:L_LABINTRO]) {
+		if (tutorial_ct == 0) {
+			tutorial_ct++;
+			return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
+		} else {
+			cur_set = L_LAB;
+			tutorial_ct = 0;
+			nth_lab++;
+			sets_until_next_lab = 3;
+			return [[levelsets[L_LABINTRO] allKeys] random];
+		}
+	
+	} else if ([cur_set isEqualToString:L_LABEXIT]) {
+		cur_set = L_FREERUN_PROGRESS;
+		return [[levelsets[L_LABEXIT] allKeys] random];
+	
+	} else if ([cur_set isEqualToString:L_LAB]) {
+		sets_until_next_lab--;
+		if (sets_until_next_lab < 0) {
+			//cur_set = L_LABEXIT; //if doing this, set back to <= 0
+			return [[levelsets[L_BOSS1START] allKeys] random];
+		}
+		return [labsetgen get_from_bucket:L_LAB];
+		
+	} else if ([cur_set isEqualToString:L_FILLER]) {
+		cur_set_completed = 0;
+		sets_until_next_lab--;
+		if (sets_until_next_lab == 0) {
+			if (!has_done_lab_tutorial) {
+				cur_set = L_LAB_TUTORIAL;
+				tutorial_ct = 0;
+				has_done_lab_tutorial = true;
+				
+			} else {
+				cur_set = L_LABINTRO;
+				tutorial_ct = 0;
+				
+			}
 			
-		} else if (cur_set_ct == 4) {
-			picked = @"filler_sanicloop";
-			
-		} else if (cur_set_ct == 5) {
-			picked = @"tutorial_spikes";
-			
-		} else if (cur_set_ct == 6) {
-			picked = @"tutorial_breakrocks";
-			
-		} else if (cur_set_ct == 7) {
-			picked = @"tutorial_doublejump";
-			
-		} else if (cur_set_ct == 8) {
-			picked = @"tutorial_upsidebounce";
-			
-        } else {
-            NSArray *tuts_left = [levelsets[cur_set] copy_removing:cur_used];
-            if ([tuts_left count] == 0) {
-                [self set_cur_set_to:L_EASY];
-                goto PICK_REGULAR;
-            }
-            picked = [tuts_left random];
-            
-        }
-        [cur_used addObject:picked];
-        return picked;
+		} else {
+			cur_set = [self pick_set];
+		}
+		return [fillersetgen get_from_bucket:L_FILLER];
+		
+	} else if ([pickable_sets contains_str:cur_set]) {
+		cur_set_completed++;
+		NSString *tar_set = cur_set;
+		if (cur_set_completed >= 3) cur_set = L_FILLER;
+		return [setgen get_from_bucket:tar_set];
+		
+	} else {
+		NSLog(@"ERROR: autolevel state fallthrough, curset:%@",cur_set);
+		return @"ERROR";
+	
+	}
+}
 
-    } else {
-        PICK_REGULAR:
-        cur_set_ct++;
-        while(true) {
-            NSArray* possible_set = [self cur_levelset_get_unused];
-            if (cur_set_ct%3==0) {
-                return [levelsets[L_FILLER] random];
-                
-            } else if ([possible_set count] == 0 || cur_set_ct >= 4) {
-                [self set_next_levelset];
-                cur_set_ct++;
-                
-            } else {
-                NSString* picked = [possible_set random];
-                [cur_used addObject:picked];
-                return picked;
-            }
-        }
-        
-    }
+-(NSString*)status {
+	return [NSString stringWithFormat:
+		@"(ct:%d cur_set:%@ cursetcompl:%d setsnextlab:%d hasdonelabtut:%d)",
+		ct,
+		cur_set,
+		cur_set_completed,
+		sets_until_next_lab,
+		has_done_lab_tutorial
+	];
+}
+
+-(FreeRunProgress)get_freerun_progress {
+	if (nth_freerunprogress <= 1) {
+		return FreeRunProgress_PRE_1;
+		
+	} else if (nth_freerunprogress == 2) {
+		return FreeRunProgress_1;
+		
+	} else if (nth_freerunprogress == 3) {
+		return FreeRunProgress_PRE_2;
+		
+	} else if (nth_freerunprogress == 4) {
+		return FreeRunProgress_2;
+		
+	} else if (nth_freerunprogress == 5) {
+		return FreeRunProgress_PRE_3;
+		
+	} else if (nth_freerunprogress == 6) {
+		return FreeRunProgress_3;
+		
+	} else if (nth_freerunprogress == 7) {
+		return FreeRunProgress_POST_3;
+		
+	} else {
+		return FreeRunProgress_PRE_1;
+		
+	}
+}
+
+-(NSString*)debug_boss_only {
+	ct++;
+	if (ct == 1) {
+		cur_set = @"no";
+		return [[levelsets[L_AUTOSTART] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
+		return [[levelsets[L_BOSS1AREA] allKeys] random];
+	
+	} else if ([cur_set isEqualToString:L_LABEXIT]) {
+		cur_set = @"no";
+		return [[levelsets[L_LABEXIT] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:@"no"]) {
+		cur_set = @"yes";
+		return [[levelsets[L_LABINTRO] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:@"yes"]) {
+		return [[levelsets[L_BOSS1START] allKeys] random];
+		
+	} else {
+		NSLog(@"error fb");
+		return @"";
+	}
 }
 
 @end

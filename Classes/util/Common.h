@@ -2,15 +2,22 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
-
 @interface NSArray (Random)
 -(id)random;
 -(NSArray*)copy_removing:(NSArray*)a;
+-(BOOL)contains_str:(NSString*)tar;
+-(id)get:(int)i;
 @end
 @implementation NSArray (Random)
 -(id)random {
     uint32_t rnd = arc4random_uniform([self count]);
     return [self objectAtIndex:rnd];
+}
+-(BOOL)contains_str:(NSString *)tar {
+	for (id i in self) {
+		if ([i isEqualToString:tar]) return YES;
+	}
+	return NO;
 }
 -(NSArray*)copy_removing:(NSArray *)a {
     NSMutableArray *n = [NSMutableArray array];
@@ -18,6 +25,14 @@
         if (![a containsObject:i]) [n addObject:i];
     }
     return n;
+}
+-(id)get:(int)i {
+	if (i >= [self count]) {
+		NSLog(@"error getting nsarray[%d] (size %d)",i,self.count);
+		return NULL;
+	} else {
+		return [self objectAtIndex:i];
+	}
 }
 @end
 
