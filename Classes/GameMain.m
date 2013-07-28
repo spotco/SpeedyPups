@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -18,9 +18,11 @@
 
 /**
  TODO
- -better continue and game over menu ui
+ -minions reset broken in autolevel, swap out to use minimal physics instead
  
- -level difficulty ranking, with selection based on current score
+ -tutorialend make message disparu
+ -better continue and game over menu ui
+ -item revamp (again lel)
  -skippable tutorial
  
  -different dogs differnt special powers
@@ -89,7 +91,7 @@
 	AutoLevelState *s = [AutoLevelState cons];
 	for (int i = 0; i < 30; i++) {
 		//NSLog(@"status:%@\nlvl:%@\n\n",[s status],[s get_level]);
-		NSLog(@"lvl:%@",[s get_level]);
+		NSLog(@"lvl:%@ prog:%d",[s get_level],[s get_freerun_progress]);
 	}
 	*/
 	

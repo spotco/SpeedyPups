@@ -126,9 +126,6 @@
     player.current_island = NULL;
     player.vx = 0;
     player.vy = up.y;
-    
-    
-    
 }
 
 -(HitRect)get_full_hit_rect { return [Common hitrect_cons_x1:position_.x-20 y1:position_.y wid:50 hei:80];}

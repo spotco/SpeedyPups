@@ -64,7 +64,7 @@
         i.endY +=ty;
     }
     for (GameObject* o in map.game_objects) {
-        [o setPosition:ccp(o.position.x+tx,o.position.y+ty)];
+        [o autolevel_set_position:ccp(o.position.x+tx,o.position.y+ty)];
     }
 }
 

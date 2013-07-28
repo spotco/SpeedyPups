@@ -7,22 +7,11 @@
 
 @synthesize active,do_render;
 
--(id)init {
-    ct++;
-    return [super init];
-}
-
-int ct;
-
--(void)dealloc {
-    ct--;
-}
-
-+(void)pct {
-    NSLog(@"ct:%d",ct);
-}
-
 -(void)update:(Player*)player g:(GameEngineLayer *)g {}
+
+-(void)autolevel_set_position:(CGPoint)pt {
+	[self setPosition:pt];
+}
 
 -(void)check_should_render:(GameEngineLayer *)g {
     if (self.active && [Common hitrect_touch:[g get_viewbox] b:[self get_hit_rect]]) {

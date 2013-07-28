@@ -1,15 +1,16 @@
 {
-    "start_y": 296,
-    "connect_pts": {"y1": 244, "x2": 882, "y2": 404, "x1": 73},
     "islands": [
-        {"can_fall": true, "x2": 831, "y2": 248, "ground": "open", "y1": 244, "ndir": "left", "hei": 50, "type": "line", "x1": 73},
-        {"can_fall": true, "x2": 871, "y2": 275, "ground": "open", "y1": 248, "ndir": "left", "hei": 50, "type": "line", "x1": 831},
-        {"can_fall": true, "x2": 882, "y2": 404, "ground": "open", "y1": 275, "ndir": "left", "hei": 50, "type": "line", "x1": 871},
-        {"can_fall": true, "x2": 866, "y2": 459, "ground": "open", "y1": 404, "ndir": "left", "hei": 50, "type": "line", "x1": 882},
-        {"can_fall": true, "x2": 718, "y2": 492, "ground": "open", "y1": 459, "ndir": "left", "hei": 50, "type": "line", "x1": 866},
-        {"can_fall": true, "x2": 604, "y2": 492, "ground": "open", "y1": 492, "ndir": "left", "hei": 50, "type": "line", "x1": 718}
+        {"can_fall": true, "x2": 708, "ground": "lab", "ndir": "left", "type": "line", "y1": 235.7, "hei": 500, "y2": 230, "x1": 51.5},
+        {"can_fall": true, "x2": 1007, "ground": "lab", "ndir": "left", "type": "line", "y1": 230, "hei": 500, "y2": 490, "x1": 708},
+        {"can_fall": true, "x2": 2500, "ground": "lab", "ndir": "left", "type": "line", "y1": 490, "hei": 500, "y2": 481.4, "x1": 1007}
     ],
-    "objects": [{"x": 677, "label": "0", "y": 246, "type": "game_end"}],
-    "assert_links": 5,
-    "start_x": 268
+    "assert_links": 2,
+    "objects": [
+        {"type": "checkpoint", "x": 551.5, "y": 230, "label": "0"},
+        {"type": "robotminion", "x": 1198.6, "y": 547.1, "label": "1"},
+        {"type": "launcherrobot", "x": 1602.9, "dir": {"x": -1, "y": 0.01}, "y": 647.1, "label": "2"}
+    ],
+    "start_x": 250,
+    "connect_pts": {"y1": 235.7, "x2": 2500, "y2": 481.4, "x1": 51.5},
+    "start_y": 298.0214285714286
 }

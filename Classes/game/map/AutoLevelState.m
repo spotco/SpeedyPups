@@ -138,13 +138,13 @@ static NSArray *lab_tutorial_levels;
 			@"labintro_labexit" : @1
 		},
 		L_LAB: @{
-			@"lab_basicmix" : @3,
-			@"lab_minionwalls" : @3,
+			@"lab_basicmix" : @2,
+			@"lab_minionwalls" : @2,
 			@"lab_ezshiz" : @3,
-			@"lab_ezrocketshz" : @4,
+			@"lab_ezrocketshz" : @3,
 			@"lab_swingers" : @4,
 			@"lab_alladat" : @4,
-			@"lab_tube" : @2,
+			@"lab_tube" : @4,
 			@"lab_muhfiller" : @2
 		}
 		
@@ -183,6 +183,7 @@ static NSArray *lab_tutorial_levels;
 	has_done_lab_tutorial = ![GameMain GET_DO_TUTORIAL];
 	sets_until_next_lab = 0;
 	cur_set_completed = 0;
+	nth_freerunprogress = 0;
 	
 	setgen = [WeightedSorter cons_vals:levelsets use:pickable_sets];
 	fillersetgen = [WeightedSorter cons_vals:levelsets use:@[L_FILLER]];
@@ -231,6 +232,12 @@ static NSArray *lab_tutorial_levels;
 
 -(NSString*)get_level {
 	ct++;
+	if (ct==1) {
+		return @"autolevel_start";
+	} else {
+		return @"shittytest";
+	}
+	
 	if (ct == 1) {
 		if ([GameMain GET_DO_TUTORIAL]) {
 			cur_set = L_TUTORIAL;
@@ -278,6 +285,7 @@ static NSArray *lab_tutorial_levels;
 	} else if ([cur_set isEqualToString:L_LABINTRO]) {
 		if (tutorial_ct == 0) {
 			tutorial_ct++;
+			nth_freerunprogress++;
 			return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		} else {
 			cur_set = L_LAB;
