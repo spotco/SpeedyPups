@@ -232,11 +232,6 @@ static NSArray *lab_tutorial_levels;
 
 -(NSString*)get_level {
 	ct++;
-	if (ct==1) {
-		return @"autolevel_start";
-	} else {
-		return @"shittytest";
-	}
 	
 	if (ct == 1) {
 		if ([GameMain GET_DO_TUTORIAL]) {
@@ -246,6 +241,7 @@ static NSArray *lab_tutorial_levels;
 			ct = 10;
 			cur_set = L_FREERUN_PROGRESS;
 		}
+		
 		return [[levelsets[L_AUTOSTART] allKeys] random];
 		
 	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {

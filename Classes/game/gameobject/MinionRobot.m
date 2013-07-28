@@ -3,38 +3,35 @@
 
 @implementation MinionRobot
 
-#define DEFAULT_SCALE 0.83
-
-@synthesize body;
-
 +(MinionRobot*)cons_x:(float)x y:(float)y {
-    MinionRobot *r = [MinionRobot spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROBOT] 
-                                               rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"]];
-    [r setPosition:ccp(x,y)];
-    [r setStarting_position:ccp(x,y)];
-    r.active = YES;
-    return r;
+	return [[MinionRobot node] cons_x:x y:y];
 }
 
--(id)init {
-    self = [super init];
-    self.scaleX = -DEFAULT_SCALE;
-    self.movedir = -1;
-    [self setIMGWID:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"].size.width*DEFAULT_SCALE];
-    [self setIMGHEI:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"].size.height*DEFAULT_SCALE];
+-(void)autolevel_set_position:(CGPoint)pt {
+	starting_pos = pt;
+	[self setPosition:pt];
+}
+
+-(id)cons_x:(float)x y:(float)y {
+	body = [CCSprite node];
+	bodyimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROBOT]
+									 rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"]];
+				
+	[bodyimg setScale:0.83];
+	[body setPosition:[Common pct_of_obj:bodyimg pctx:0 pcty:0.5]];
+	[body addChild:bodyimg];
+	[self addChild:body];
+	
+	[self setPosition:ccp(x,y)];
+	[self autolevel_set_position:ccp(x,y)];
+	self.active = YES;
+	[self setVisible:YES];
+	
+	vx = 0;
+	vy = 0;
+	current_island = NULL;
+	
     return self;
-}
-
-+(CCSprite*)spriteWithTexture:(CCTexture2D*)tex rect:(CGRect)rect {
-    MinionRobot *t = [MinionRobot node];
-    CCSprite *body = [CCSprite spriteWithTexture:tex rect:rect];
-    t.body = body;
-    body.position = ccp(0,t.IMGHEI/2);
-    //[t setAnchorPoint:ccp(0.5,1)];
-	[t addChild:body];
-    [body setScale:DEFAULT_SCALE];
-    [t setScale:DEFAULT_SCALE];
-    return t;
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
@@ -42,28 +39,43 @@
        [g add_gameobject:[ObjectShadow cons_tar:self]];
         has_shadow = YES;
     }
-    
-    self.vx = 0;
-    [super update:player g:g];
-    
-    BOOL see = player.position.x < position_.x;
+	
+	if (current_island == NULL) {
+		CGPoint ins;
+		Island *ins_isl;
+		if ([self has_hit_ground:g rtv_ins:&ins rtv_isl:&ins_isl]) {
+			current_island = ins_isl;
+			[self setPosition:ins];
+			vx = 0;
+			vy = 0;
+			
+		} else {
+			[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+			vx = 0;
+			vy -=0.5;
+		
+		}
+		
+	} else if (player.position.x < position_.x && current_island != NULL && !busted) {
+        vx = 0;
+		vy = float_random(10, 11);
+		current_island = NULL;
+		[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+		
+    }
     
     if (busted) {
-        if (self.current_island == NULL) {
-            body.rotation+=25;
+        if (current_island == NULL) {
+            bodyimg.rotation+=25;
         }
         return;
     } else {
         [self animmode_angry];
     }
     
-    if (see && self.current_island != NULL) {
-        [self jump_from_island];
-    }
-    
-    if (player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_full_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
+    if (player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
         busted = YES;
-        self.vy = -ABS(self.vy);
+        vy = -ABS(vy);
         [self animmode_dead];
         
         int ptcnt = arc4random_uniform(4)+4;
@@ -78,9 +90,9 @@
         
         [MinionRobot player_do_bop:player g:g];
     
-    } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect_rescale:0.8] b:[player get_hit_rect]]  && !player.dead) {
+    } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         busted = YES;
-        self.vy = -ABS(self.vy);
+        vy = -ABS(vy);
         [self animmode_dead];
         
         int ptcnt = arc4random_uniform(4)+4;
@@ -102,6 +114,20 @@
     }
 }
 
+-(BOOL)has_hit_ground:(GameEngineLayer*)g rtv_ins:(CGPoint*)rtins rtv_isl:(Island**)rtisl {
+    line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, ccp(vx,vy))];
+    for (Island* i in g.islands) {
+        line_seg li = [i get_line_seg];
+        CGPoint ins = [Common line_seg_intersection_a:li b:mv];
+        if (ins.x != [Island NO_VALUE]) {
+			*rtins = ins;
+			*rtisl = i;
+            return YES;
+        }
+    }
+    return NO;
+}
+
 +(void)player_do_bop:(Player*)player g:(GameEngineLayer*)g {
     player.vy = 8;
     [player remove_temp_params:g];
@@ -111,27 +137,19 @@
 
 -(void)reset {
     [super reset];
-    [self setPosition:self.starting_position];
+    [self setPosition:starting_pos];
     [self animmode_normal];
-    self.movex = 0;
     busted = NO;
-    body.rotation = 0;
+	bodyimg.rotation = 0;
 }
 
--(void)jump_from_island {
-    id<PhysicsObject> player = self;
-    Vec3D up = [VecLib cons_x:0 y:1 z:0];
-    up=[VecLib scale:up by:float_random(10, 11)];
-    
-    player.current_island = NULL;
-    player.vx = 0;
-    player.vy = up.y;
+-(HitRect)get_hit_rect {
+	return [Common hitrect_cons_x1:position_.x-20 y1:position_.y wid:50 hei:80];
 }
 
--(HitRect)get_full_hit_rect { return [Common hitrect_cons_x1:position_.x-20 y1:position_.y wid:50 hei:80];}
--(void)animmode_normal {[body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"]];}
--(void)animmode_angry {[body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot_angry"]];}
--(void)animmode_dead {[body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot_dead"]];}
+-(void)animmode_normal {[bodyimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"]];}
+-(void)animmode_angry {[bodyimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot_angry"]];}
+-(void)animmode_dead {[bodyimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot_dead"]];}
 -(int)get_render_ord {return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND];}
 
 @end

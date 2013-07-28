@@ -1,4 +1,5 @@
 #import "UIIngameAnimation.h"
+#import "GEventDispatcher.h"
 @class GameEngineLayer;
 
 typedef enum {
@@ -21,7 +22,7 @@ typedef enum {
 +(FreerunInfoTitleCardAnimation*)cons_g:(GameEngineLayer*)g;
 @end
 
-@interface TutorialInfoTitleCardAnimation : ChallengeInfoTitleCardAnimation {
+@interface TutorialInfoTitleCardAnimation : ChallengeInfoTitleCardAnimation <GEventListener> {
 	NSString *msg;
 }
 +(TutorialInfoTitleCardAnimation*)cons_g:(GameEngineLayer*)g msg:(NSString*)msg;

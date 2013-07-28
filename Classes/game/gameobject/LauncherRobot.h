@@ -3,7 +3,7 @@
 #import "PhysicsEnabledObject.h"
 #import "LauncherRocket.h"
 
-@interface LauncherRobot : PhysicsEnabledObject {
+@interface LauncherRobot : GameObject {
     CCSprite* body;
     int ct,animtoggle,recoilanim_timer;
     float starting_rot;
@@ -12,6 +12,10 @@
     Vec3D dir;
     
     BOOL has_shadow;
+	
+	
+	float vx,vy;
+	Island *current_island;
 }
 
 +(LauncherRobot*)cons_x:(float)x y:(float)y dir:(Vec3D)dir;

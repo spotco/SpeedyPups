@@ -43,7 +43,16 @@
     [infodesc setPosition:[Common pct_of_obj:base pctx:0.5 pcty:0.825]];
 	[base addChild:infodesc];
 	
+	[GEventDispatcher add_listener:self];
+	
 	return self;
+}
+-(void)dispatch_event:(GEvent *)e {
+	if (e.type == GEventType_END_TUTORIAL) {
+		mode = TitleCardMode_UP;
+		animct = DEFAULT_TRANS_LEN;
+		[GEventDispatcher remove_listener:self];
+	}
 }
 @end
 
@@ -142,7 +151,7 @@
 			animct = TRANS_LEN;
 		}
 		
-	} else {
+	} else if (mode == TitleCardMode_UP) {
 		[base setPosition:[Common screen_pctwid:XPOS
 										 pcthei:YPOS_END + ((1-((float)animct) / TRANS_LEN)) * (YPOS_START-YPOS_END)
 						   ]];

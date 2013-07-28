@@ -37,7 +37,6 @@
 
 //launcher_dead
 -(id)cons_x:(float)x y:(float)y dir:(Vec3D)tdir {
-    [self setPosition:ccp(x,y)];
     body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_LAUNCHER] 
                                   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_LAUNCHER idname:@"launcher"]];
     dir = [VecLib cons_x:tdir.x y:tdir.y z:0];
@@ -54,9 +53,28 @@
     [self setRotation:tara];
     
     [self addChild:body];
-    starting_pos = ccp(x,y);
+    [self autolevel_set_position:ccp(x,y)];
     active = YES;
     return self;
+}
+
+-(void)autolevel_set_position:(CGPoint)pt {
+	starting_pos = pt;
+	[self setPosition:pt];
+}
+
+-(BOOL)has_hit_ground:(GameEngineLayer*)g rtv_ins:(CGPoint*)rtins rtv_isl:(Island**)rtisl {
+    line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, ccp(vx,vy))];
+    for (Island* i in g.islands) {
+        line_seg li = [i get_line_seg];
+        CGPoint ins = [Common line_seg_intersection_a:li b:mv];
+        if (ins.x != [Island NO_VALUE]) {
+			*rtins = ins;
+			*rtisl = i;
+            return YES;
+        }
+    }
+    return NO;
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
@@ -66,9 +84,22 @@
     }
     
     if (busted) {
-        if (self.current_island == NULL) {
-            [GamePhysicsImplementation player_move:self with_islands:g.islands];
-            [self setRotation:rotation_+25];
+        if (current_island == NULL) {
+			[self setRotation:self.rotation+25];
+			CGPoint ins;
+			Island *ins_isl;
+			if ([self has_hit_ground:g rtv_ins:&ins rtv_isl:&ins_isl]) {
+				current_island = ins_isl;
+				[self setPosition:ins];
+				vx = 0;
+				vy = 0;
+				
+			} else {
+				[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+				vx = 0;
+				vy -=0.5;
+			
+			}
         }
         return;
     }
@@ -165,8 +196,9 @@
     ct = 0;
     busted = NO;
     [self setRotation:starting_rot];
-    self.current_island = NULL;
+    current_island = NULL;
     [self set_anim:ANIM_NORMAL];
+	[self setPosition:starting_pos];
 }
 
 -(void)toggle {
@@ -184,7 +216,5 @@
 
 -(void)set_active:(BOOL)t_active {active = t_active;}
 -(HitRect)get_hit_rect {return [Common hitrect_cons_x1:position_.x-50 y1:position_.y-20 wid:100 hei:40];}
-//-(HitRect)get_hit_rect { return [Common hitrect_cons_x1:position_.x-50 y1:position_.y-20 wid:100 hei:40];}
-
 @end
 

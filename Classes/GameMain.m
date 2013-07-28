@@ -6,10 +6,10 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"labintro_entrance"
 #define STARTING_LIVES 10
 
 #define DRAW_HITBOX NO
@@ -18,9 +18,7 @@
 
 /**
  TODO
- -minions reset broken in autolevel, swap out to use minimal physics instead
- 
- -tutorialend make message disparu
+ -bug, lab bg looks bad on the device?
  -better continue and game over menu ui
  -item revamp (again lel)
  -skippable tutorial
@@ -95,9 +93,9 @@
 	}
 	*/
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 
