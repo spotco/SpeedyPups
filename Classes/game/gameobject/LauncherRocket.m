@@ -47,8 +47,8 @@
 }
 
 -(void)update_position {
-    actual_pos.x += v.x;
-    actual_pos.y += v.y;
+    actual_pos.x += v.x * [Common get_dt_Scale];
+    actual_pos.y += v.y * [Common get_dt_Scale];
     [self setPosition:ccp(actual_pos.x+vibration.x,actual_pos.y+vibration.y)];
 }
 
@@ -188,7 +188,7 @@
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     player_pos = player.position;
-    rel_pos.x += v.x;
+    rel_pos.x += v.x * [Common get_dt_Scale];
     [super update:player g:g];
 }
 
@@ -201,7 +201,7 @@
     //only for horizontal relative, todo: make general
     //[self setPosition:ccp(rel_pos.x+player_pos.x,position_.y+v.y)];
     actual_pos.x = rel_pos.x+player_pos.x;
-    actual_pos.y = position_.y+v.y;
+    actual_pos.y = position_.y+v.y * [Common get_dt_Scale];
     [self setPosition:ccp(actual_pos.x+vibration.x,actual_pos.y+vibration.y)];
 }
 

@@ -52,7 +52,7 @@
 		} else {
 			[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
 			vx = 0;
-			vy -=0.5;
+			vy -= 0.5 * [Common get_dt_Scale];
 		
 		}
 		
@@ -60,7 +60,7 @@
         vx = 0;
 		vy = float_random(10, 11);
 		current_island = NULL;
-		[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+		[self setPosition:CGPointAdd(position_, ccp(vx * [Common get_dt_Scale],vy * [Common get_dt_Scale]))];
 		
     }
     

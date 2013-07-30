@@ -231,6 +231,7 @@ typedef enum {
 }
 -(void) mainLoop:(id)sender;
 +(void)set_framemodct:(int)i;
++(BOOL)is_framemodct_modified;
 @end
 
 /** TimerDirector is a Director that calls the main loop from an NSTimer object

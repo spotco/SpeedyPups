@@ -47,12 +47,12 @@
         MIN_SPEED += (ABS_MAX_SPEED - MIN_SPEED)*(pct);
     }
     
-    float mov_speed = sqrtf(powf(player.vx, 2) + powf(player.vy, 2));
+    float mov_speed = sqrtf(powf(player.vx, 2) + powf(player.vy, 2)) * [Common get_dt_Scale];
     
-    if (mov_speed > ABS_MAX_SPEED) {
+    if (mov_speed > ABS_MAX_SPEED * [Common get_dt_Scale]) {
         mov_speed = ABS_MAX_SPEED;
     }
-    if (mov_speed > MIN_SPEED) {
+    if (mov_speed > MIN_SPEED  * [Common get_dt_Scale]) {
         player.vx *= FRICTION;
         player.vy *= FRICTION;
     }
@@ -94,8 +94,8 @@
                 position_final = ccp(player.position.x + tangent_vec.x*mov_speed, player.position.y + tangent_vec.y*mov_speed);
                 
                 player.current_island = NULL;
-                player.vx = tangent_vec.x * mov_speed;
-                player.vy = tangent_vec.y * mov_speed;
+                player.vx = tangent_vec.x * mov_speed / [Common get_dt_Scale];
+                player.vy = tangent_vec.y * mov_speed / [Common get_dt_Scale];
             }
         }
         
@@ -122,7 +122,10 @@
                     
                 } else {
                     player.current_island = NULL;
-                    position_final = ccp(player.position.x + tangent_vec.x*mov_speed*player.movedir, player.position.y + tangent_vec.y*mov_speed*player.movedir);
+                    position_final = ccp(
+						player.position.x + tangent_vec.x*mov_speed*player.movedir,
+						player.position.y + tangent_vec.y*mov_speed*player.movedir
+					);
                     player.vx = tangent_vec.x * mov_speed * player.movedir;
                     player.vy = tangent_vec.y * mov_speed * player.movedir;
                     break;
@@ -145,7 +148,7 @@
     player.up_vec = [VecLib cons_x:0 y:1 z:0];
     
     CGPoint player_pre = player.position;
-    CGPoint player_post = ccp(player.position.x+player.vx,player.position.y+player.vy);
+    CGPoint player_post = ccp(player.position.x+player.vx * [Common get_dt_Scale],player.position.y+player.vy * [Common get_dt_Scale]);
     line_seg player_mov = [Common cons_line_seg_a:player_pre b:player_post];
     Vec3D player_mov_vec = [VecLib cons_x:player_mov.b.x - player_mov.a.x y:player_mov.b.y - player_mov.a.y z:0];
     
@@ -165,7 +168,7 @@
     }
     
     if (contact_island != NULL) {
-        float extrat = sqrtf(powf(player_post.x - contact_intersection.x,2)+ powf(player_post.y - contact_intersection.y,2));
+        float extrat = sqrtf(powf(player_post.x - contact_intersection.x,2)+ powf(player_post.y - contact_intersection.y,2))/[Common get_dt_Scale];
         float cur_t = [contact_island get_t_given_position:contact_intersection];
         
         if (extrat+cur_t > contact_island.t_max) {
@@ -182,14 +185,14 @@
             player.vx *= MAX((M_PI - theta)/(M_PI),MAX_LOSS);
             player.vy *= MAX((M_PI - theta)/(M_PI),MAX_LOSS);
         } else {
-            player.vx *= MAX_LOSS;
-            player.vy *= MAX_LOSS;
+            player.vx *= MAX_LOSS * [Common get_dt_Scale];
+            player.vy *= MAX_LOSS * [Common get_dt_Scale];
         }
         
     } else {
         float grav_const = GRAVITY;
-        player.vx += grav_const * player.up_vec.x;
-        player.vy += grav_const * player.up_vec.y;
+        player.vx += grav_const * player.up_vec.x * [Common get_dt_Scale];
+        player.vy += grav_const * player.up_vec.y * [Common get_dt_Scale];
     }
     
     return player_post;

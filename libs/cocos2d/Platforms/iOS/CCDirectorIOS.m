@@ -730,6 +730,10 @@ static int modct = 1;
 	modct = i;
 }
 
++(BOOL)is_framemodct_modified {
+	return modct != 1;
+}
+
 -(void) mainLoop:(id)sender
 {
 	mainloopct++;

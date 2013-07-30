@@ -220,7 +220,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:-1];
     ct++;
     if (rel_pos.x > -300) {
-        rel_pos.x -= 2.5;
+        rel_pos.x -= 2.5 * [Common get_dt_Scale];
         actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
         if (ct%40==0) {
             CGPoint noz = [self get_nozzle];
@@ -240,7 +240,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:1];
     ct++;
     if (rel_pos.x < 500) {
-        rel_pos.x += 2.5;
+        rel_pos.x += 2.5 * [Common get_dt_Scale];
         actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
         if (ct%40==0) {
             CGPoint noz = [self get_nozzle];
@@ -260,7 +260,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:1];
     
     if (rel_pos.x < -400) {
-        rel_pos.x += 5;
+        rel_pos.x += 5 * [Common get_dt_Scale];
         [self setRotation:-45];
     } else if (ct > 0) {
         ct--;
@@ -281,7 +281,7 @@ static const int DEFAULT_HP = 4;
         
     } else {
         [self setRotation:rotation_*0.9];
-        rel_pos.x+=DASHSPEED;
+        rel_pos.x+=DASHSPEED * [Common get_dt_Scale];
         if (rel_pos.x > 500) {
             [self get_random_action:Side_Right];
         }
@@ -329,7 +329,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:-1];
     
     if (rel_pos.x > TRACKINGFIRE_DIST) {
-        rel_pos.x -= (DASHSPEED+2);
+        rel_pos.x -= (DASHSPEED+2) * [Common get_dt_Scale];
         [self track_y];
         
     } else if (ct > 0) {
@@ -350,7 +350,7 @@ static const int DEFAULT_HP = 4;
         }
         
     } else {
-        rel_pos.x -= DASHSPEED;
+        rel_pos.x -= DASHSPEED * [Common get_dt_Scale];
     }
     
     actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
@@ -364,7 +364,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:1];
     
     if (rel_pos.x < -DASHWAITDIST) {
-        rel_pos.x += DASHSPEED;
+        rel_pos.x += DASHSPEED * [Common get_dt_Scale];
     } else if (ct > 0) {
         ct--;
         if(ct%RAPIDFIRE_RELOAD_SPEED==0 && ct > RAPIDFIRE_RELOAD_SPEED) {
@@ -380,7 +380,7 @@ static const int DEFAULT_HP = 4;
             [self apply_recoil];
         }
     } else {
-        rel_pos.x += DASHSPEED;
+        rel_pos.x += DASHSPEED * [Common get_dt_Scale];
     }
     
     actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
@@ -409,7 +409,7 @@ static const int DEFAULT_HP = 4;
     }
     
     if (rel_pos.x > -300) {
-        rel_pos.x-=SLOWSPEED;
+        rel_pos.x-=SLOWSPEED * [Common get_dt_Scale];
         actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
         
     } else {
@@ -422,7 +422,7 @@ static const int DEFAULT_HP = 4;
     [g set_target_camera:[Common cons_normalcoord_camera_zoom_x:90 y:80 z:131]];
     [self setScaleX:-1];
     if (rel_pos.x > DASHWAITDIST) {
-        rel_pos.x -= (DASHSPEED+2);
+        rel_pos.x -= (DASHSPEED+2) * [Common get_dt_Scale];
         [self track_y];
         
     } else if (ct > 0) {
@@ -444,13 +444,13 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:1];
     
     if (rel_pos.x < -DASHWAITDIST) {
-        rel_pos.x += DASHSPEED;
+        rel_pos.x += DASHSPEED * [Common get_dt_Scale];
         [self track_y];
     } else if (ct > 0) {
         ct--;
         [self track_y];
     } else {
-        rel_pos.x += DASHSPEED;
+        rel_pos.x += DASHSPEED * [Common get_dt_Scale];
     }
     
     actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
@@ -465,7 +465,7 @@ static const int DEFAULT_HP = 4;
     [self setScaleX:-1];
     
     if (rel_pos.x > -300) {
-        rel_pos.x-=SLOWSPEED;
+        rel_pos.x-=SLOWSPEED * [Common get_dt_Scale];
         actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
         
     } else {
@@ -474,10 +474,10 @@ static const int DEFAULT_HP = 4;
 }
 
 -(void)got_hit_flyoff:(GameEngineLayer*)g {
-    [self setRotation:rotation_+25];
+    [self setRotation:rotation_+25*[Common get_dt_Scale]];
     [self setOpacity:160];
-    rel_pos.x += flyoffdir.x;
-    rel_pos.y += flyoffdir.y;
+    rel_pos.x += flyoffdir.x * [Common get_dt_Scale];
+    rel_pos.y += flyoffdir.y * [Common get_dt_Scale];
     [self apply_rel_pos];
     ct++;
     ct%6==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x

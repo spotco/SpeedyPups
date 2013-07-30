@@ -1,7 +1,5 @@
 #import "GameStartAnim.h"
 
-#define ANIM_LENGTH 75.0
-
 @implementation GameStartAnim
 
 +(GameStartAnim*)cons_with_callback:(CallBack*)cb {
@@ -11,6 +9,8 @@
     [GEventDispatcher add_listener:n];
     return n;
 }
+
+static float ANIM_LENGTH = 75.0;
 
 -(void)cons_anim {
     readyimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_STARTGAME_READY]];
@@ -22,6 +22,8 @@
     
     [readyimg setOpacity:0];
     [goimg setOpacity:0];
+	
+	ANIM_LENGTH = 75.0 / [Common get_dt_Scale];
     
     ct = ANIM_LENGTH;
 }

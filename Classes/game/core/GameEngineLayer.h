@@ -41,7 +41,7 @@ typedef enum {
     NSMutableArray *particles,*particles_tba;
     
     int lives;
-    int time;
+    float time;
     int collected_bones;
     int current_continue_cost;
     int default_starting_lives;

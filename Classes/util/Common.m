@@ -1,6 +1,7 @@
 #import "Common.h"
 #import "Island.h"
 #import "GameRenderImplementation.h"
+#import "GameMain.h"
 
 @implementation CallBack
     @synthesize selector;
@@ -53,12 +54,29 @@ float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
 }
 
-static ccTime sdt;
+static BOOL has_set_sdt = NO;
+static ccTime sdt = 1;
+static ccTime last_sdt = 1;
 +(void)set_dt:(ccTime)dt {
+	if (!has_set_sdt) {
+		has_set_sdt = YES;
+		sdt = dt;
+		last_sdt = dt;
+		return;
+	}
+
+	last_sdt = sdt;
 	sdt = dt;
+	if (ABS(sdt-last_sdt) > 0.01) {
+		sdt = last_sdt + 0.01 * SIG(sdt-last_sdt);
+	}
+	
+	
 }
 
+
 +(float)get_dt_Scale {
+	if ([GameMain GET_DO_CONSTANT_DT] || [CCDirectorDisplayLink is_framemodct_modified]) return 1;
 	return sdt/(1/60.0f);
 }
 

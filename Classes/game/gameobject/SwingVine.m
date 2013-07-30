@@ -63,11 +63,11 @@
 	}
 	
     if (vine.rotation > 0) {
-        vr -= 0.1;
+        vr -= 0.1 * [Common get_dt_Scale];
     } else {
-        vr += 0.1;
+        vr += 0.1 * [Common get_dt_Scale];
     }
-    [vine setRotation:vine.rotation+vr];
+    [vine setRotation:vine.rotation+vr*[Common get_dt_Scale]];
     
     if (disable_timer >0) {
         disable_timer--;

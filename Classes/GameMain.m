@@ -7,14 +7,15 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"labintro_entrance"
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"labintro_tutoriallauncher"
 #define STARTING_LIVES 10
 
+#define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 #define RESET_STATS NO
-#define DISPLAY_FPS YES
+#define DISPLAY_FPS NO
 
 /**
  TODO
@@ -97,8 +98,6 @@
 	}
 	*/
 	
-	[[CCDirector sharedDirector] setAnimationInterval:1/60.0];
-	
 	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
     //[GameMain start_menu];
@@ -142,6 +141,7 @@
 
 +(BOOL)GET_USE_BG {return USE_BG;}
 +(BOOL)GET_DRAW_HITBOX {return DRAW_HITBOX;}
++(BOOL)GET_DO_CONSTANT_DT { return SET_CONSTANT_DT; }
 
 static BOOL DO_TUTORIAL = YES;
 +(BOOL)GET_DO_TUTORIAL {

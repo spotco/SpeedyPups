@@ -47,7 +47,7 @@
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g{
     [super update:player g:g];
-    if (!active) {
+    if (!active || player.dead) {
         return;
     }
     
@@ -71,7 +71,7 @@
     [self setRotation:rot];
     
     float maxdist = [player get_magnet_rad];
-    [super setPosition:ccp(position_.x + vx, position_.y+vy)];
+    [super setPosition:ccp(position_.x + vx * [Common get_dt_Scale], position_.y + vy * [Common get_dt_Scale])];
     if (!follow && dist < maxdist) {
         follow = YES;
     }

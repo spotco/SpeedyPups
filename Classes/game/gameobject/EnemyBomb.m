@@ -95,8 +95,8 @@
         
     } else {
         [self move:g];
-        v.y-=0.25;
-        v.y = MAX(-10,v.y);
+        v.y-=0.25*[Common get_dt_Scale];
+        v.y = MAX(-10*[Common get_dt_Scale],v.y);
         ct%2==0?[g add_particle:[BombSparkParticle cons_pt:[self get_tip] v:ccp(float_random(-5,5),float_random(-5, 5))]]:0;
         [body setRotation:body.rotation+vtheta];
         

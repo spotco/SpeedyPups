@@ -247,7 +247,7 @@
 	
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
-        time++;
+        time+=[Common get_dt_Scale];
 		
 		refresh_viewbox_cache = YES;
 		[GameControlImplementation control_update_player:self];
@@ -271,7 +271,7 @@
     } else if (current_mode == GameEngineLayerMode_SCROLLDOWN) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
-        scrollup_pct-=0.02;
+        scrollup_pct-=0.02*[Common get_dt_Scale];
         if (scrollup_pct <= 0) {
             scrollup_pct = 0;
             if (do_runin_anim) {
@@ -302,7 +302,7 @@
         [self push_added_particles];
         if (player.position.x < player_starting_pos.x) {
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
-            [player setPosition:ccp(player.position.x+10,player_starting_pos.y)];
+            [player setPosition:ccp(player.position.x+10*[Common get_dt_Scale],player_starting_pos.y)];
         } else {
             [self runAction:follow_action];
             [player do_stand_anim];

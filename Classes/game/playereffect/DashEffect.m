@@ -19,7 +19,7 @@
 }
 
 +(int)dash_effect_length {
-	return 30;
+	return 30 * 1/[Common get_dt_Scale];
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{

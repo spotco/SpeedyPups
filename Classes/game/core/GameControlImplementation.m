@@ -144,7 +144,7 @@ static float avg_y;
         touch_timer++;
     }
         
-    if (is_touch_down && touch_timer > 25 && player.current_island == NULL) { //hold to float
+    if (is_touch_down && touch_timer > (25/[Common get_dt_Scale]) && player.current_island == NULL) { //hold to float
         player.floating = YES;
     } else {
         player.floating = NO;
