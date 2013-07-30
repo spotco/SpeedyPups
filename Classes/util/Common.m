@@ -53,6 +53,15 @@ float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
 }
 
+static ccTime sdt;
++(void)set_dt:(ccTime)dt {
+	sdt = dt;
+}
+
++(float)get_dt_Scale {
+	return sdt/(1/60.0f);
+}
+
 +(CCSprite*)get_load_scr {
     CCSprite *loadscr = [CCSprite spriteWithFile:@"Default.png"];
     [loadscr setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];

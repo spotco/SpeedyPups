@@ -14,10 +14,13 @@
 
 #define DRAW_HITBOX NO
 #define RESET_STATS NO
-#define DISPLAY_FPS NO
+#define DISPLAY_FPS YES
 
 /**
  TODO
+ -new breakable rock particle in lab
+ -fix lab lines with labfillarea
+ -tutorial jump swipe and jump inair
  -bug, lab bg looks bad on the device?
  -better continue and game over menu ui
  -item revamp (again lel)
@@ -68,6 +71,7 @@
  
  
  Stretch goal:
+  lab background higher
  credits screen after boss
  cloud cape flying minigame
  2nd and 3rd reskin world
@@ -92,6 +96,8 @@
 		NSLog(@"lvl:%@ prog:%d",[s get_level],[s get_freerun_progress]);
 	}
 	*/
+	
+	[[CCDirector sharedDirector] setAnimationInterval:1/60.0];
 	
 	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];

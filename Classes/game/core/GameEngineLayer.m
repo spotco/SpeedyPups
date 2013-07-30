@@ -235,6 +235,7 @@
 }
 
 -(void)update:(ccTime)delta {
+	[Common set_dt:delta];
     [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
     [UserInventory cooldown_tick];
 	
