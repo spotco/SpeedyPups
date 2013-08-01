@@ -150,7 +150,7 @@
         
         if (scrollup_pct >= 1) {
 			if (play_mode_type == NULL) NSLog(@"error, play_mode_type in NMenuPlayPage is null at end of runout anim");
-            [GEventDispatcher push_event:play_mode_type];
+			[GEventDispatcher push_event:play_mode_type];
         }
         
     } else if (cur_mode == PlayPageMode_MODE_CHOOSE) {

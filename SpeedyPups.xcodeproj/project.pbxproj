@@ -3781,8 +3781,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3794,8 +3793,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PROVISIONING_PROFILE = "056F99A6-5F8E-4880-889D-650FA9481583";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "056F99A6-5F8E-4880-889D-650FA9481583";
 				SDKROOT = iphoneos6.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3805,8 +3802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -3816,8 +3812,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PROVISIONING_PROFILE = "056F99A6-5F8E-4880-889D-650FA9481583";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "056F99A6-5F8E-4880-889D-650FA9481583";
 				SDKROOT = iphoneos6.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3828,8 +3822,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3842,8 +3836,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "6B0F0B27-825E-48F0-A161-EAE35A39BAD4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B0F0B27-825E-48F0-A161-EAE35A39BAD4";
+				PROVISIONING_PROFILE = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3854,8 +3848,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
@@ -3867,8 +3861,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

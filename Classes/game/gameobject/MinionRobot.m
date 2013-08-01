@@ -31,6 +31,8 @@
 	vy = 0;
 	current_island = NULL;
 	
+	[self animmode_angry];
+	
     return self;
 }
 
@@ -70,7 +72,7 @@
         }
         return;
     } else {
-        [self animmode_angry];
+        //[self animmode_angry];
     }
     
     if (player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]  && !player.dead) {

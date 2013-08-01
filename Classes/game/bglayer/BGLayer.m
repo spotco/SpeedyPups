@@ -44,7 +44,11 @@
     NSMutableArray *a = [[NSMutableArray alloc] init];
     if ([GameMain GET_USE_BG]) {
         [a addObject:[LabBGObject cons]];
-		[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB_BG_LAYER] scrollspd_x:0.4 scrollspd_y:0.06]];
+		[a addObject:[[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB_BG_LAYER]
+											  scrollspd_x:0.4
+											  scrollspd_y:0.06]
+											  set_clamp_y_min:0
+											  max:-150]];
     }
     
     return a;
@@ -62,7 +66,7 @@
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005]];
         [a addObject:[CloudGenerator cons]];
         [a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03]];
-        
+		
     }
     return a;
 }
@@ -86,7 +90,7 @@ static const float FADECTR_MAX = 10;
         fadectr = FADECTR_MAX;
         
     } else if (e.type == GEventType_GAME_RESET) {
-        //TODO--lab bg fade out when reset?
+        //dont lab bg fade out when reset
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
         [self set_day_night_color:e.i1];

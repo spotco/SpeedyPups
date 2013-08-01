@@ -230,8 +230,21 @@ static NSArray *lab_tutorial_levels;
 	return tar;
 }
 
+bool sur = NO;
 -(NSString*)get_level {
 	ct++;
+	
+	/*
+	if (ct == 1) {
+		return @"autolevel_start";
+	} else if (!sur) {
+		sur = !sur;
+		return @"labintro_entrance";
+	} else {
+		sur = !sur;
+		return @"labintro_labexit";
+	}
+	*/
 	
 	if (ct == 1) {
 		if ([GameMain GET_DO_TUTORIAL]) {

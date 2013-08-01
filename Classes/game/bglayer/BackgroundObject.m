@@ -1,6 +1,7 @@
 
 #import "Resource.h"
 #import "BackgroundObject.h"
+#import "Common.h"
 
 @implementation BackgroundObject
 @synthesize scrollspd_x, scrollspd_y;
@@ -13,16 +14,32 @@
     bg.position = CGPointZero;
     ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
     [bg.texture setTexParameters:&par];
+	[bg.texture setAntiAliasTexParameters];
     return bg;
 }
 
+-(id)init {
+	self = [super init];
+	clamp_y_min = -600;
+	clamp_y_max = 0;
+	return self;
+}
+
+-(BackgroundObject*)set_clamp_y_min:(float)min max:(float)max {
+	clamp_y_min = min;
+	clamp_y_max = max;
+	return self;
+}
+
 -(void)update_posx:(float)posx posy:(float)posy {
-    CGSize textureSize = [self textureRect].size;
-    [self setTextureRect:CGRectMake(posx*scrollspd_x, 0, [[UIScreen mainScreen] bounds].size.width*2 , textureSize.height)];
+    [self setTextureRect:CGRectMake(
+		posx*scrollspd_x,
+		0,
+		[Common SCREEN].width*2 ,
+		[self textureRect].size.height
+	)];
 	
-    self.position = ccp(0,MIN(0,-posy*scrollspd_y));
-	self.position = ccp(0,MAX(-600,self.position.y));
-	
+	self.position = ccp(0,clampf(-posy*scrollspd_y, clamp_y_min, clamp_y_max));
 }
 
 @end

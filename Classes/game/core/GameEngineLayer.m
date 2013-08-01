@@ -22,7 +22,6 @@
 @synthesize game_objects,islands;
 @synthesize player;
 @synthesize camera_state,tar_camera_state;
-@synthesize follow_action;
 
 +(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives {
     CCScene *scene = [CCScene node];
@@ -45,9 +44,6 @@
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
     [glayer.game_objects addObject:nobj];
     [glayer addChild:nobj];
-    [glayer stopAction:glayer.follow_action];
-    glayer.follow_action = [CCFollow actionWithTarget:glayer.player];
-    [glayer runAction:glayer.follow_action];
     
     UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
     [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_FREERUN n:0]];
@@ -102,6 +98,7 @@
     CGPoint player_start_pt = [self loadMap:map_filename];
     particles = [[NSMutableArray alloc] init];
     player = [Player cons_at:player_start_pt];
+	[self follow_player];
     [self addChild:player z:[GameRenderImplementation GET_RENDER_PLAYER_ORD]];
     
     DogShadow *d = [DogShadow cons];
@@ -125,8 +122,6 @@
     [self reset_camera];
     
     lives = starting_lives;
-    follow_action = [CCFollow actionWithTarget:player worldBoundary:[Common hitrect_to_cgrect:[self get_world_bounds]]];
-    [self runAction:follow_action];
     
     [self update_render];
     [self schedule:@selector(update:)];
@@ -218,13 +213,11 @@
         GameObject *o = [game_objects objectAtIndex:i];
         [o reset];
     }
-    [self stopAction:follow_action];
-    follow_action = [CCFollow actionWithTarget:player];
-    [self runAction:follow_action];
     
     [player reset];
     [self reset_camera];
     [GameControlImplementation reset_control_state];
+	[self follow_player];
     current_mode = GameEngineLayerMode_GAMEPLAY;
 }
 
@@ -234,8 +227,28 @@
 	}
 }
 
+-(void)frame_set_follow_clamp_y_min:(float)min max:(float)max {
+	follow_clamp_y_max = -min;
+	follow_clamp_y_min = -(max - [[CCDirector sharedDirector] winSize].height);
+}
+
+-(void)reset_follow_clamp_y {
+	follow_clamp_y_min = -INFINITY;
+	follow_clamp_y_max = INFINITY;
+}
+
+-(void)follow_player {
+	CGSize s = [[CCDirector sharedDirector] winSize];
+	CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+	[self setPosition:ccp(
+		clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
+		clampf(halfScreenSize.y-player.position.y,follow_clamp_y_min,follow_clamp_y_max)
+	)];
+}
+
 -(void)update:(ccTime)delta {
 	[Common set_dt:delta];
+	[self reset_follow_clamp_y];
     [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
     [UserInventory cooldown_tick];
 	
@@ -262,11 +275,11 @@
 		[self update_render];
 		[GameRenderImplementation update_render_on:self];
 		[GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
-		
-
+		[self follow_player];
         
     } else if (current_mode == GameEngineLayerMode_UIANIM) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+		[self follow_player];
         
     } else if (current_mode == GameEngineLayerMode_SCROLLDOWN) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
@@ -287,11 +300,12 @@
         
         [camera_ setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
         [camera_ setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
+		[self follow_player];
         
     } else if (current_mode == GameEngineLayerMode_CAMERAFOLLOWTICK) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
-        [self stopAction:follow_action];
         current_mode = GameEngineLayerMode_RUNINANIM;
+		[self follow_player];
         [player setPosition:CGPointAdd(player.position, ccp(-300,0))];
         [player setVisible:YES];
         [player do_run_anim];
@@ -304,14 +318,12 @@
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
             [player setPosition:ccp(player.position.x+10*[Common get_dt_Scale],player_starting_pos.y)];
         } else {
-            [self runAction:follow_action];
+            player.position = ccp(player_starting_pos.x,player.position.y);
             [player do_stand_anim];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_START_INTIAL_ANIM]];
         }
         
     } else if (current_mode == GameEngineLayerMode_RUNOUT) {
-        [self stopAction:follow_action];
-        
         runout_ct--;
         if (runout_ct <= 0) {
             current_mode = GameEngineLayerMode_GAMEOVER;
@@ -330,8 +342,6 @@
 }
 
 -(void)dispatch_event:(GEvent *)e {
-	
-	
     if (e.type == GEventType_QUIT) {
         [self exit];
         [GameMain start_menu];
@@ -434,8 +444,6 @@
 -(void)exit {
     [self unscheduleAllSelectors];
     //[self set_records];
-    [self stopAction:follow_action];
-    follow_action = NULL;
     
     [GEventDispatcher remove_all_listeners];
     [[CCDirector sharedDirector] resume];

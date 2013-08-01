@@ -15,7 +15,7 @@
 	if (stop) return;
 	
     if (arc4random_uniform(25) == 0) {
-        [g add_particle:[WaveParticle cons_x:player.position.x+500 y:player.position.y+float_random(100, 300) vx:float_random(-2, -5) vtheta:float_random(0.01, 0.075)]];
+        [g add_particle:[WaveParticle cons_x:player.position.x+900 y:player.position.y+float_random(100, 300) vx:float_random(-2, -5) vtheta:float_random(0.01, 0.075)]];
     }
     return;
 }

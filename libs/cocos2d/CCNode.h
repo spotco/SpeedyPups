@@ -206,7 +206,7 @@ enum {
 /** The scale factor of the node. 1.0 is the default scale factor. It only modifies the Y scale factor. */
 @property(nonatomic,readwrite,assign) float scaleY;
 /** Position (x,y) of the node in points. (0,0) is the left-bottom corner. */
-@property(nonatomic,readwrite,assign) CGPoint position;
+@property(readwrite,assign) CGPoint position;
 /** Position (x,y) of the node in points. (0,0) is the left-bottom corner. */
 @property(nonatomic,readwrite,assign) CGPoint positionInPixels;
 /** A CCCamera object that lets you move the node using a gluLookAt

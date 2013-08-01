@@ -60,6 +60,8 @@ typedef enum {
     float scrollup_pct,defcey;
 	
 	BGMode cur_bg_mode;
+	
+	float follow_clamp_y_min,follow_clamp_y_max;
 }
 
 
@@ -67,7 +69,6 @@ typedef enum {
 @property(readwrite,strong) NSMutableArray *islands, *game_objects;
 @property(readwrite,strong) Player *player;
 @property(readwrite,assign) CameraZoom camera_state,tar_camera_state;
-@property(readwrite,strong) CCFollow *follow_action;
 
 +(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives;
 +(CCScene*)scene_with_autolevel_lives:(int)lives;
@@ -87,6 +88,8 @@ typedef enum {
 -(void)set_camera:(CameraZoom)tar;
 -(void)set_target_camera:(CameraZoom)tar;
 
+-(void)follow_player;
+
 -(int)get_lives;
 -(int)get_time;
 -(int)get_num_particles;
@@ -95,6 +98,8 @@ typedef enum {
 
 -(int)get_current_continue_cost;
 -(void)incr_current_continue_cost;
+
+-(void)frame_set_follow_clamp_y_min:(float)min max:(float)max;
 
 -(void)setColor:(ccColor3B)color;
 

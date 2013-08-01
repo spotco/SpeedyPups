@@ -1,15 +1,13 @@
 #import "LabBGObject.h"
 #import "Resource.h"
+#import "Common.h"
 
 @implementation LabBGObject
 
 +(LabBGObject*)cons {
-    float spdx = 0.7;
-    float spdy = 0.4;
-    
     LabBGObject* bg = [LabBGObject spriteWithTexture:[Resource get_tex:TEX_LAB_BG]];
-    bg.scrollspd_x = spdx;
-    bg.scrollspd_y = spdy;
+    bg.scrollspd_x = 0.7;
+    bg.scrollspd_y = 0.4;
     bg.anchorPoint = CGPointZero;
     bg.position = CGPointZero;
     ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
@@ -18,8 +16,7 @@
 }
 
 -(void)update_posx:(float)posx posy:(float)posy {
-    CGSize textureSize = [self textureRect].size;
-    [self setTextureRect:CGRectMake(posx*scrollspd_x*0.1, -posy*scrollspd_y*0, [[UIScreen mainScreen] bounds].size.width*2 , textureSize.height)];
+    [self setTextureRect:CGRectMake(posx*scrollspd_x*0.1, 50, [Common SCREEN].width*2 ,[Common SCREEN].height)];
 }
 
 @end

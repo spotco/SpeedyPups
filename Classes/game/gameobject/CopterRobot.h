@@ -47,6 +47,6 @@ typedef enum {
     CGPoint flyoffdir;
 }
 
-+(CopterRobot*)cons_with_playerpos:(CGPoint)p;
++(CopterRobot*)cons_with_g:(GameEngineLayer*)g;
 
 @end

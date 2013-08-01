@@ -17,9 +17,6 @@
 
 -(void)cons:(GameEngineLayer*)glayer {
     cur_state = [AutoLevelState cons];
-    for (NSString* i in [AutoLevelState get_all_levels]) {
-        [MapLoader precache_map:i];
-    }
     tglayer = glayer;
 
     map_sections = [[NSMutableArray alloc] init];
@@ -46,9 +43,7 @@
 		
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
-        [tglayer stopAction:tglayer.follow_action];
-        tglayer.follow_action = [CCFollow actionWithTarget:tglayer.player];
-        [tglayer runAction:tglayer.follow_action];
+        [tglayer follow_player];
         
     }
 }

@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"labintro_tutoriallauncher"
+#define TESTLEVEL @"labintro_entrance"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -21,11 +21,8 @@
  TODO
  -new breakable rock particle in lab
  -fix lab lines with labfillarea
- -tutorial jump swipe and jump inair
- -bug, lab bg looks bad on the device?
- -better continue and game over menu ui
+ 
  -item revamp (again lel)
- -skippable tutorial
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -34,6 +31,10 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
+ 
+ -better continue and game over menu ui
+ 
+ -skippable tutorial and worlds
  
  - buy item sound + anim
  **/
@@ -72,7 +73,8 @@
  
  
  Stretch goal:
-  lab background higher
+ tutorial jump swipe and jump inair
+ lab background higher
  credits screen after boss
  cloud cape flying minigame
  2nd and 3rd reskin world
@@ -83,8 +85,13 @@
     [DataStore cons];
     [AudioManager set_play_bgm:PLAY_BGM];
     [AudioManager set_play_sfx:PLAY_SFX];
-    [Resource cons_textures];
     [BatchDraw cons];
+	
+	//todo -- loadscreen this, this is slow
+	[Resource cons_textures];
+	for (NSString* i in [AutoLevelState get_all_levels]) {
+        [MapLoader precache_map:i];
+    }
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
@@ -98,9 +105,9 @@
 	}
 	*/
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
     
 }
 
@@ -132,6 +139,7 @@
     }
 }
 
+//todo -- instead have a loading scene
 +(void)run_scene:(CCScene*)s {
 	[CCDirectorDisplayLink set_framemodct:1];
     [[CCDirector sharedDirector] runningScene]?

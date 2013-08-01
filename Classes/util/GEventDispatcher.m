@@ -61,6 +61,16 @@ static NSMutableArray* event_queue;
     
     [event_queue removeAllObjects];
 }
+
++(void)print_queue_events {
+	for (GEvent *e in event_queue) {
+		NSLog(@"event:%d",e.type);
+	}
+}
+
++(void)remove_all_events {
+	[event_queue removeAllObjects];
+}
 @end
 
 @implementation GEvent

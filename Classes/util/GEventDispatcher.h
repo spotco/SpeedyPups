@@ -5,41 +5,44 @@ typedef enum {
     GEventType_PAUSE,
     GEventType_UNPAUSE,
     GEventType_QUIT,
-    GEventType_UIANIM_TICK,
+    GEventType_UIANIM_TICK, //4
+	
     GEventType_GAME_TICK,
     GEventType_COLLECT_BONE,
     GEventType_PLAYER_DIE,
     GEventType_ASK_CONTINUE,
-    GEventType_PLAYAGAIN_AUTOLEVEL,
+    GEventType_PLAYAGAIN_AUTOLEVEL, //9
+	
     GEventType_GAME_RESET,
     GEventType_DASH,
     GEventType_JUMP,
     GEventType_END_TUTORIAL,
-    GEventType_DAY_NIGHT_UPDATE,
+    GEventType_DAY_NIGHT_UPDATE, //14
+	
     GEventType_SHOW_ENEMYAPPROACH_WARNING,
     GEventType_ENTER_LABAREA,
     GEventType_EXIT_TO_DEFAULTAREA,
     GEventType_START_INTIAL_ANIM,
-    GEventType_USE_ITEM,
+    GEventType_USE_ITEM, //19
+	
     GEventType_ITEM_DURATION_PCT,
     GEventType_CONTINUE_GAME,
     GEventType_GET_COIN,
 	GEventType_FGITEM_SHOW,
-	GEventType_TUTORIAL_MESSAGE,
+	GEventType_TUTORIAL_MESSAGE, //24
+	
 	GEventType_FREERUN_PROGRESS,
-    
     GEventType_CHALLENGE,
     GEventType_CHALLENGE_COMPLETE,
     GEventType_LOAD_CHALLENGE_COMPLETE_MENU,
-    
-    GEventType_RETRY_WITH_CALLBACK,
+    GEventType_RETRY_WITH_CALLBACK, //29
     
     GEventType_BOSS1_ACTIVATE,
     GEventType_BOSS1_TICK,
     GEventType_BOSS1_DEFEATED,
-    
     GEventType_MENU_TICK,
-    GEventType_MENU_MAKERUNPARTICLE,
+    GEventType_MENU_MAKERUNPARTICLE, //34
+	
     GEventType_MENU_SCROLLBGUP_PCT,
     GEventType_MENU_PLAY_AUTOLEVEL_MODE,
     GEventType_MENU_PLAY_TESTLEVEL_MODE,
@@ -82,4 +85,7 @@ typedef enum {
 +(void)push_unique_event:(GEvent*)e;
 +(void)immediate_event:(GEvent*)e;
 +(void)dispatch_events;
+
++(void)remove_all_events;
++(void)print_queue_events;
 @end

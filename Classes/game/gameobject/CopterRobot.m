@@ -45,18 +45,20 @@ static const int DEFAULT_HP = 4;
 #define ARM @"arm"
 #define ARM_BROKEN @"arm_broken"
 
-+(CopterRobot*)cons_with_playerpos:(CGPoint)p {
-    return [[CopterRobot node] cons_at:p];
++(CopterRobot*)cons_with_g:(GameEngineLayer *)g {
+    return [[CopterRobot node] cons_with_g:g];
 }
 
--(CopterRobot*)cons_at:(CGPoint)p {
+-(CopterRobot*)cons_with_g:(GameEngineLayer*)g {
     [self cons_anims];
     hp = DEFAULT_HP;
     active = YES;
-    player_pos = p;
+    player_pos = g.player.position;
     cur_mode = CopterMode_IntroAnim;
-    rel_pos = ccp(800,360);
-    [self apply_rel_pos];
+    rel_pos = ccp(800,0);
+	[self apply_rel_pos];
+	[self set_bounds_and_ground:g];
+    actual_pos.y = groundlevel+360;
     [self setPosition:actual_pos];
     
     return self;
@@ -551,20 +553,21 @@ static const int DEFAULT_HP = 4;
 }
 
 -(void)set_bounds_and_ground:(GameEngineLayer*)g {
-    [g stopAction:g.follow_action];
-    HitRect r = [g get_world_bounds];
     float yl_min = g.player.position.y;
-    for (Island *i in g.islands) {
-        if (i.endX > g.player.position.x) {
-            yl_min = MIN(i.endY,yl_min);
-        }
-    }
-    r.y1 = yl_min-500;
-    r.y2 = yl_min+300;
-    g.follow_action = [CCFollow actionWithTarget:g.player worldBoundary:[Common hitrect_to_cgrect:r]];
-    [g runAction:g.follow_action];
+	Island *lowest = NULL;
+	for (Island *i in g.islands) {
+		if (i.endX > g.player.position.x && i.startX < g.player.position.x) {
+			if (lowest == NULL || lowest.startY > i.startY) {
+				lowest = i;
+			}
+		}
+	}
+	if (lowest != NULL) {
+		yl_min = lowest.startY;
+	}
     
-    groundlevel = yl_min;
+	[g frame_set_follow_clamp_y_min:yl_min-500 max:yl_min+300];
+	groundlevel = yl_min;
 }
 
 -(void)anim_arm {
