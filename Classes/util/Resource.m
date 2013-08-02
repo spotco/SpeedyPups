@@ -30,6 +30,7 @@ static NSMutableDictionary* textures = nil;
                         @"ceil_repeat_labentrance.png",TEX_LAB_ENTRANCE_CEIL_REPEAT,
                         @"lab_wall.png",TEX_LAB_WALL,
 						@"lab_bg_layer.png",TEX_LAB_BG_LAYER,
+						@"lab_rock_particle.png",TEX_LAB_ROCK_PARTICLE,
                      
                         @"BG_cave_top_fill.png", TEX_CAVE_TOP_TEX,
                         @"BG_cave_top_edge.png", TEX_CAVE_CORNER_TEX,

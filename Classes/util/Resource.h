@@ -26,6 +26,7 @@
 #define TEX_LAB_ENTRANCE_CEIL_REPEAT @"labentranceceilrepeat"
 #define TEX_LAB_WALL @"labwall"
 #define TEX_LAB_BG_LAYER @"lab_bg_layer"
+#define TEX_LAB_ROCK_PARTICLE @"lab_rock_particle"
 
 #define TEX_CAVE_TOP_TEX @"CaveTopTex"
 #define TEX_CAVE_CORNER_TEX @"CaveCornerTex"

@@ -341,8 +341,15 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
             [map.game_objects addObject:[FreeRunProgressDisplay cons_pt:ccp(x,y)]];
 			
+		} else if ([type isEqualToString:@"labfill"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            float width = getflt(j_object, @"width");
+            float hei = getflt(j_object, @"height");
+            [map.game_objects addObject:[LabFill cons_x:x y:y width:width height:hei]];
+			
         } else {
-            NSLog(@"item read error");
+            NSLog(@"item read error of %@",type);
             continue;
         }
     }

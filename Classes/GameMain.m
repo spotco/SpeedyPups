@@ -7,9 +7,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"labintro_entrance"
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -19,11 +19,7 @@
 
 /**
  TODO
- -new breakable rock particle in lab
- -fix lab lines with labfillarea
- 
  -item revamp (again lel)
- 
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
 	-pug -- higher jump
@@ -31,11 +27,8 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
- 
  -better continue and game over menu ui
- 
  -skippable tutorial and worlds
- 
  - buy item sound + anim
  **/
 
@@ -105,9 +98,9 @@
 	}
 	*/
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
     //[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
     
 }
 

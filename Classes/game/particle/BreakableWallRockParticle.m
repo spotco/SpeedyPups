@@ -11,6 +11,13 @@
     return p;
 }
 
++(BreakableWallRockParticle*)cons_lab_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
+    BreakableWallRockParticle* p = [BreakableWallRockParticle spriteWithTexture:[Resource get_tex:TEX_LAB_ROCK_PARTICLE]];
+    p.position = ccp(x,y);
+    [p cons_vx:vx vy:vy];
+    return p;
+}
+
 -(void)cons_vx:(float)tvx vy:(float)tvy {
     vx = tvx;
     vy = tvy;

@@ -43,10 +43,21 @@
         
         float len = [VecLib length:dir_vec];
         for(float i = 0; i < len; i+=float_random(8, 30)) {
-            [g add_particle:[BreakableWallRockParticle cons_x:position_.x + (i/len)*dir_vec.x
-                                                            y:position_.y + (i/len)*dir_vec.y
-                                                           vx:float_random(-5, 5) 
-                                                           vy:float_random(-5, 5)]];
+			if ([g get_cur_bg_mode] == BGMode_LAB) {
+				[g add_particle:
+					[BreakableWallRockParticle cons_lab_x:position_.x + (i/len)*dir_vec.x
+													y:position_.y + (i/len)*dir_vec.y
+												   vx:float_random(-5, 5) 
+												   vy:float_random(-5, 5)]
+				];
+			} else {
+				[g add_particle:
+					[BreakableWallRockParticle cons_x:position_.x + (i/len)*dir_vec.x
+													y:position_.y + (i/len)*dir_vec.y
+												   vx:float_random(-5, 5) 
+												   vy:float_random(-5, 5)]
+				];
+			}
         }
         [AudioManager playsfx:SFX_ROCKBREAK];
         

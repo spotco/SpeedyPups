@@ -3,7 +3,6 @@
 #import "Island.h"
 
 @implementation IslandFill
-
 +(IslandFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
     IslandFill* n = [IslandFill node];
     n.active = YES;
@@ -31,6 +30,21 @@
 
 -(int)get_render_ord {
     return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND];
+}
+@end
+
+@implementation LabFill
+
++(LabFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
+    LabFill* n = [LabFill node];
+    n.active = YES;
+    [n cons_x:x y:y width:width height:height];
+    
+    return n;
+}
+
+-(CCTexture2D*)get_tex {
+    return [Resource get_tex:TEX_LAB_GROUND_1];
 }
 
 @end

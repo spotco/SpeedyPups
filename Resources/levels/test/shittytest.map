@@ -1,16 +1,12 @@
 {
-    "islands": [
-        {"can_fall": true, "x2": 708, "ground": "lab", "ndir": "left", "type": "line", "y1": 235.7, "hei": 500, "y2": 230, "x1": 51.5},
-        {"can_fall": true, "x2": 1007, "ground": "lab", "ndir": "left", "type": "line", "y1": 230, "hei": 500, "y2": 490, "x1": 708},
-        {"can_fall": true, "x2": 2500, "ground": "lab", "ndir": "left", "type": "line", "y1": 490, "hei": 500, "y2": 481.4, "x1": 1007}
-    ],
-    "assert_links": 2,
+    "islands": [{"can_fall": true, "x2": 1573.4, "ground": "open", "ndir": "left", "type": "line", "y1": 1241.7, "hei": 50, "y2": 1251.7, "x1": 195}],
     "objects": [
-        {"type": "checkpoint", "x": 551.5, "y": 230, "label": "0"},
-        {"type": "robotminion", "x": 1198.6, "y": 547.1, "label": "1"},
-        {"type": "launcherrobot", "x": 1602.9, "dir": {"x": -1, "y": 0.01}, "y": 647.1, "label": "2"}
+        {"x": 1370, "x2": 1381.7, "y": 1251.7, "label": "0", "type": "breakable_wall", "y2": 1645},
+        {"x": 495, "x2": 498.4, "y": 1245, "label": "1", "type": "breakable_wall", "y2": 1650},
+        {"type": "labentrance", "x": 920, "y": 1246.7, "label": "2"}
     ],
-    "start_x": 250,
-    "connect_pts": {"y1": 235.7, "x2": 2500, "y2": 481.4, "x1": 51.5},
-    "start_y": 298.0214285714286
+    "assert_links": 0,
+    "start_x": 281.7,
+    "start_y": 1363.2833333333335,
+    "connect_pts": {"y1": 1241.7, "x2": 1573.4, "y2": 1251.7, "x1": 195}
 }
