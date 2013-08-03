@@ -39,6 +39,7 @@
 		7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA69172DE73A009C43DD /* ShopManager.m */; };
 		7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6C172DE94C009C43DD /* ShopItemPane.m */; };
 		7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6F172DF8D7009C43DD /* ShopRecord.m */; };
+		7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E47433B17AD02AF00A664CE /* ItemGen.m */; };
 		7E4922DC17115FEC0032665B /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4922DB17115FEC0032665B /* Challenge.m */; };
 		7E4A2F5B17043851001BD38C /* tutorial_swipedir.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */; };
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
@@ -683,6 +684,8 @@
 		7E45DA6C172DE94C009C43DD /* ShopItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItemPane.m; sourceTree = "<group>"; };
 		7E45DA6E172DF8D7009C43DD /* ShopRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopRecord.h; sourceTree = "<group>"; };
 		7E45DA6F172DF8D7009C43DD /* ShopRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopRecord.m; sourceTree = "<group>"; };
+		7E47433A17AD02AF00A664CE /* ItemGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemGen.h; sourceTree = "<group>"; };
+		7E47433B17AD02AF00A664CE /* ItemGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemGen.m; sourceTree = "<group>"; };
 		7E4922DA17115FEC0032665B /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = game/challenge/Challenge.h; sourceTree = "<group>"; };
 		7E4922DB17115FEC0032665B /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = game/challenge/Challenge.m; sourceTree = "<group>"; };
 		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tutorial_swipedir.map; path = ../tutorial_swipedir.map; sourceTree = "<group>"; };
@@ -2510,6 +2513,8 @@
 				7EB8B3DA16D9FC0900F58961 /* DogRocket.m */,
 				7EBD7616171A855F00EBEB3C /* Coin.h */,
 				7EBD7617171A855F00EBEB3C /* Coin.m */,
+				7E47433A17AD02AF00A664CE /* ItemGen.h */,
+				7E47433B17AD02AF00A664CE /* ItemGen.m */,
 			);
 			name = powerup;
 			sourceTree = "<group>";
@@ -3676,6 +3681,7 @@
 				7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */,
 				7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */,
 				7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */,
+				7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3852,8 +3858,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
@@ -3865,8 +3871,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
+				PROVISIONING_PROFILE = "FC15B56D-779C-42B2-9C42-9BB17A4763AF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC15B56D-779C-42B2-9C42-9BB17A4763AF";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -88,8 +88,9 @@
 																					  idname:@"itemslotsmall"]]
 								 pos:ccp(0,0)];
 	TexRect *equipitemtr = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
-	[equipeditemslot addChild:[[CCSprite spriteWithTexture:equipitemtr.tex rect:equipitemtr.rect]
-							   pos:[Common pct_of_obj:equipeditemslot pctx:0.5 pcty:0.5]]];
+	item_icon = [[CCSprite spriteWithTexture:equipitemtr.tex rect:equipitemtr.rect]
+							   pos:[Common pct_of_obj:equipeditemslot pctx:0.5 pcty:0.5]];
+	[equipeditemslot addChild:item_icon];
 	[equipeditemslot setPosition:[Common screen_pctwid:0.17 pcthei:0.345]];
 	[equipeditemslot setOpacity:180];
 	for (CCSprite *c in equipeditemslot.children) [c setOpacity:180];
@@ -105,14 +106,16 @@
 												 color:ccc3(255,255,255)
 											  fontsize:15
 												   str:@"Equipped item:"]];
-	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.55]
+	item_desc_name = [Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.55]
 												 color:ccc3(255,255,255)
 											  fontsize:25
-												   str:[GameItemCommon name_from:[UserInventory get_current_gameitem]]]];
+												   str:[GameItemCommon name_from:[UserInventory get_current_gameitem]]];
+	[equipeditemdescbg addChild:item_desc_name];
+	
 	[equipeditemdescbg addChild:[Common cons_label_pos:[Common pct_of_obj:equipeditemdescbg pctx:0.5 pcty:0.2]
 												 color:ccc3(255,255,255)
 											  fontsize:10
-												   str:@"Unlock and upgrade at store!"]];
+												   str:@"Upgrade at the store!"]];
 	
 	[pause_ui addChild:equipeditemdescbg];
     
@@ -144,7 +147,10 @@
 }
 
 -(void)update_item_slot {
-	
+	TexRect *tr = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
+	item_icon.texture = tr.tex;
+	item_icon.textureRect = tr.rect;
+	[item_desc_name setString:[GameItemCommon name_from:[UserInventory get_current_gameitem]]];
 }
 
 @end

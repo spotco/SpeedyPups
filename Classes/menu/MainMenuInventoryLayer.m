@@ -100,6 +100,9 @@
     [inventory_window addChild:infodesc];
     
     [self update_invpane];
+	
+	pane_anim_scale = 1;
+	
     return self;
 }
 
@@ -131,6 +134,7 @@
 	}
 	
     [self update_invpane];
+	pane_anim_scale = 2;
 }
 
 -(void)open {
@@ -145,8 +149,14 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_INVENTORY) {
         [self open];
+		
     } else if (e.type == GeventType_MENU_UPDATE_INVENTORY) {
 		[self update_invpane];
+		
+	} else if (e.type == GEventType_MENU_TICK) {
+		pane_anim_scale = pane_anim_scale - (pane_anim_scale-1)/3;
+		[mainslot setScale:pane_anim_scale];
+		
 	}
 }
 

@@ -9,4 +9,6 @@
 +(CCMenuItem*)item_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos;
 +(CCMenu*)cons_common_nav_menu;
 
++(CCMenuItem*)nav_menu_get_charselbutton:(CCMenu*)menu;
+
 @end

@@ -125,6 +125,8 @@
 	
 	[challengedescbg setVisible:NO];
 	
+	item_slot_notify_anim_sc = 1;
+	
     return self;
 }
 
@@ -151,6 +153,10 @@
 }
 
 -(void)update:(GameEngineLayer*)g {
+	
+	item_slot_notify_anim_sc = item_slot_notify_anim_sc - (item_slot_notify_anim_sc-1)/3;
+	[ingame_ui_item_slot setScale:item_slot_notify_anim_sc];
+
     if (enemy_alert_ui_ct > 0) {
         enemy_alert_ui_ct--;
         if (enemy_alert_ui_ct % 10 == 0) {
@@ -171,21 +177,16 @@
 		[readynotif setVisible:NO];
 		[itemlenbarfill setScaleX:item_duration_pct];
 		
-	} else if ([UserInventory get_item_cooldown] > 0) {
-		[itemlenbarroot setVisible:NO];
-		[ingame_ui_item_slot setVisible:YES];
-		[ingame_ui_item_slot set_locked:YES];
-		[readynotif setVisible:NO];
-		
 	} else {
 		[itemlenbarroot setVisible:NO];
-		[ingame_ui_item_slot setVisible:YES];
 		[ingame_ui_item_slot set_locked:NO];
 		if ([UserInventory get_current_gameitem] != Item_NOITEM) {
 			[readynotif setVisible:YES];
+			[ingame_ui_item_slot setVisible:YES];
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
 			[readynotif setVisible:NO];
+			[ingame_ui_item_slot setVisible:NO];
 		}
 	}
 	
@@ -247,19 +248,8 @@
 	itemlenbaricon.textureRect = curitem.rect;
 }
 
--(void)draw {
-    [super draw];
-    [self draw_item_duration_line];
-}
-
--(void)draw_item_duration_line {
-    glColor4ub(255,0,0,100);
-    glLineWidth(10.0f);
-    CGPoint a = [Common screen_pctwid:0.885 pcthei:0.18];
-    CGPoint b = [Common screen_pctwid:0.975 pcthei:0.18];
-    CGPoint dab = ccp(b.x-a.x,b.y-a.y);
-    dab.x *= ((float)[UserInventory get_item_cooldown])/[GameItemCommon get_cooldown_for:[UserInventory get_current_gameitem]];
-    ccDrawLine(a,ccp(a.x+dab.x,a.y+dab.y));
+-(void)animslot_notification {
+	item_slot_notify_anim_sc = 2;
 }
 
 @end

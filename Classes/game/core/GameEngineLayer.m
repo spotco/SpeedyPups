@@ -85,7 +85,6 @@
         particles_tba = [[NSMutableArray alloc] init];
     }
     default_starting_lives = starting_lives;
-	[UserInventory set_item_cooldown:0];
 	
     [AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
@@ -250,7 +249,6 @@
 	[Common set_dt:delta];
 	[self reset_follow_clamp_y];
     [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
-    [UserInventory cooldown_tick];
 	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY) {
 		[CCDirectorDisplayLink set_framemodct:2];

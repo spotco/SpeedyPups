@@ -79,8 +79,8 @@ static NSMutableArray* _anim_table;
     [[self getChildByTag:t_CURTAINS] setScaleX:[Common scale_from_default].x];
 	
 	
-    
-    [self addChild:[MenuCommon cons_common_nav_menu]];
+    nav_menu = [MenuCommon cons_common_nav_menu];
+    [self addChild:nav_menu];
     
     
     NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaa";
@@ -104,6 +104,8 @@ static NSMutableArray* _anim_table;
         }
     }
     [self refresh];
+	
+	charselfbutton_anim_scale = 1;
     
     return self;
 }
@@ -115,15 +117,22 @@ static NSMutableArray* _anim_table;
     } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
         [controlm setVisible:YES];
         
-    }
+    } else if (e.type == GEventType_MENU_TICK) {
+		charselfbutton_anim_scale = charselfbutton_anim_scale - (charselfbutton_anim_scale - 1)/3;
+		CCMenuItem *charbtn = [MenuCommon nav_menu_get_charselbutton:nav_menu];
+		[charbtn setScale:charselfbutton_anim_scale];
+		
+	}
 }
 
 -(void)refresh {
     [self dog_spr_anim];
     if ([((NSString*)[_anim_table objectAtIndex:cur_dog]) isEqualToString:[Player get_character]]) {
         [spotlight setVisible:YES];
+		[select setVisible:NO];
     } else {
         [spotlight setVisible:NO];
+		[select setVisible:YES];
     }
 	
 	if ([UserInventory get_character_unlocked:[_anim_table objectAtIndex:cur_dog]]) {
@@ -131,7 +140,7 @@ static NSMutableArray* _anim_table;
 							 [Player get_name:_anim_table[cur_dog]],
 							 [Player get_power_desc:_anim_table[cur_dog]]]];
 		[dog_spr setColor:ccc3(255,255,255)];
-		[select setVisible:YES];
+		
 		
 	} else {
 		[infodesc setString:@"Unlock me in the store!"];
@@ -145,6 +154,7 @@ static NSMutableArray* _anim_table;
     [Player set_character:_anim_table[cur_dog]];
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_CHANGE_CURRENT_DOG]];
     [self refresh];
+	charselfbutton_anim_scale = 3;
 }
 
 -(void)arrow_left {

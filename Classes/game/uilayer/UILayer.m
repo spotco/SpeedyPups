@@ -106,7 +106,7 @@
     } else if (e.type == GEventType_ITEM_DURATION_PCT) {
         [ingameui set_item_duration_pct:e.f1];
 		if (e.f1 == 0) {
-			[UserInventory set_item_cooldown:[GameItemCommon get_cooldown_for:[UserInventory get_current_gameitem]]];
+			[ingameui update_item_slot];
 		}
         
     } else if (e.type == GEventType_TUTORIAL_MESSAGE) {
@@ -114,6 +114,10 @@
 		
 	} else if (e.type == GEventType_FREERUN_PROGRESS) {
 		[self start_freerunprogress_anim:e.i1];
+		
+	} else if (e.type == GEVentType_PICKUP_ITEM) {
+		[self update_items];
+		[ingameui animslot_notification];
 		
 	}
 }

@@ -39,6 +39,7 @@
 #import "ChallengeEnd.h"
 #import "Coin.h"
 #import "FreeRunProgressDisplay.h"
+#import "ItemGen.h"
 
 @implementation GameMap
     @synthesize assert_links;
@@ -347,6 +348,11 @@ static NSMutableDictionary* cached_json;
             float width = getflt(j_object, @"width");
             float hei = getflt(j_object, @"height");
             [map.game_objects addObject:[LabFill cons_x:x y:y width:width height:hei]];
+			
+		} else if ([type isEqualToString:@"itemgen"]) {
+			float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[ItemGen cons_pt:ccp(x,y)]];
 			
         } else {
             NSLog(@"item read error of %@",type);

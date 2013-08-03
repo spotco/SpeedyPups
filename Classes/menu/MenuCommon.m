@@ -11,6 +11,8 @@
     return s;
 }
 
+#define t_CHARSELBUTTON 3
+
 +(CCMenu*)cons_common_nav_menu {
     CCMenuItem *shopbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_shopbutton"
@@ -39,9 +41,14 @@
                                                tar:self sel:@selector(inventory)
                                                pos:[Common screen_pctwid:0.825 pcthei:0.09]];
     
-    CCMenu* m = [CCMenu menuWithItems:invbutton,shopbutton,charselbutton,settingsbutton,homebutton, nil];
-    [m setPosition:ccp(0,0)];
+    CCMenu* m = [CCMenu menuWithItems:invbutton,shopbutton,settingsbutton,homebutton, nil];
+    [m addChild:charselbutton z:0 tag:t_CHARSELBUTTON];
+	[m setPosition:ccp(0,0)];
     return m;
+}
+
++(CCMenuItem*)nav_menu_get_charselbutton:(CCMenu*)menu {
+	return (CCMenuItem*)[menu getChildByTag:t_CHARSELBUTTON];
 }
 
 +(CCMenuItem*)item_from:(NSString*)tex rect:(NSString*)rect tar:(id)tar sel:(SEL)sel pos:(CGPoint)pos {

@@ -12,6 +12,16 @@ typedef enum {
 	Item_Clock = 5
 } GameItem;
 
+@interface NSValue (valueWithGameItem)
++(NSValue*) valueWithGameItem:(GameItem)g;
+@end
+
+@implementation NSValue (valueWithETest)
++(NSValue*) valueWithGameItem:(GameItem)g {
+    return [NSValue value:&g withObjCType: @encode(GameItem)];
+}
+@end
+
 @interface GameItemCommon : NSObject
 +(TexRect*)texrect_from:(GameItem)gameitem;
 +(NSString*)name_from:(GameItem)gameitem;
@@ -19,6 +29,5 @@ typedef enum {
 
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g;
 +(int)get_uselength_for:(GameItem)gi;
-+(int)get_cooldown_for:(GameItem)gi;
 
 @end

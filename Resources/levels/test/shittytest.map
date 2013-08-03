@@ -1,12 +1,8 @@
 {
-    "islands": [{"can_fall": true, "x2": 1573.4, "ground": "open", "ndir": "left", "type": "line", "y1": 1241.7, "hei": 50, "y2": 1251.7, "x1": 195}],
-    "objects": [
-        {"x": 1370, "x2": 1381.7, "y": 1251.7, "label": "0", "type": "breakable_wall", "y2": 1645},
-        {"x": 495, "x2": 498.4, "y": 1245, "label": "1", "type": "breakable_wall", "y2": 1650},
-        {"type": "labentrance", "x": 920, "y": 1246.7, "label": "2"}
-    ],
+    "islands": [{"can_fall": true, "x2": 954, "ground": "open", "ndir": "left", "type": "line", "y1": 305, "hei": 50, "y2": 312, "x1": 70}],
+    "objects": [{"type": "itemgen", "x": 597, "y": 392, "label": "0"}],
     "assert_links": 0,
-    "start_x": 281.7,
-    "start_y": 1363.2833333333335,
-    "connect_pts": {"y1": 1241.7, "x2": 1573.4, "y2": 1251.7, "x1": 195}
+    "start_x": 163,
+    "start_y": 360,
+    "connect_pts": {"y1": 305, "x2": 954, "y2": 312, "x1": 70}
 }

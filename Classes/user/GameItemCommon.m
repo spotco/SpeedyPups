@@ -5,16 +5,6 @@
 #import "DogRocketEffect.h"
 #import "UserInventory.h"
 
-@interface NSValue (valueWithGameItem)
-+(NSValue*) valueWithGameItem:(GameItem)g;
-@end
-
-@implementation NSValue (valueWithETest)
-+(NSValue*) valueWithGameItem:(GameItem)g {
-    return [NSValue value:&g withObjCType: @encode(GameItem)];
-}
-@end
-
 @implementation GameItemCommon
 
 static NSDictionary* names;
@@ -54,14 +44,9 @@ static NSDictionary* descriptions;
 +(NSString*)name_from:(GameItem)gameitem {
 	if (gameitem == Item_NOITEM) return @"None";
 	if ([UserInventory get_upgrade_level:gameitem] == 0)
-		return [NSString stringWithFormat:@"%@ (Locked)",
-				[names objectForKey:[NSValue valueWithGameItem:gameitem]]
-		];
+		return [names objectForKey:[NSValue valueWithGameItem:gameitem]];
 	
-    return [NSString stringWithFormat:@"%@ (lvl %d)",
-            [names objectForKey:[NSValue valueWithGameItem:gameitem]],
-            [UserInventory get_upgrade_level:gameitem]
-    ];
+    return [names objectForKey:[NSValue valueWithGameItem:gameitem]];
 }
 
 +(NSString*)description_from:(GameItem)gameitem {
@@ -87,13 +72,11 @@ static NSDictionary* descriptions;
 		[g.player set_clockeffect:[self get_uselength_for:Item_Clock]];
 		
 	}
+	
+	[UserInventory set_current_gameitem:Item_NOITEM];
 }
 
 +(int)get_uselength_for:(GameItem)gi {
-	return 100;
-}
-
-+(int)get_cooldown_for:(GameItem)gi {
 	return 100;
 }
 

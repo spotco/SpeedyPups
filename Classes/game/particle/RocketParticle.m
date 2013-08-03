@@ -13,7 +13,7 @@
 
 -(void)cons {
     [super cons];
-    vx = float_random(-2, -4);
+    vx = float_random(0, 0.1);
     vy = float_random(-2, 2);
     [self setColor:ccc3(255, 0, 0)];
 }

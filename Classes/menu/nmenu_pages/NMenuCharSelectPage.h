@@ -9,6 +9,9 @@
     CCLabelTTF *infodesc;
     
     bool kill;
+	
+	CCMenu *nav_menu;
+	float charselfbutton_anim_scale;
 }
 
 +(NMenuCharSelectPage*)cons;

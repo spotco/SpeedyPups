@@ -69,16 +69,4 @@ static NSArray *valid_characters;
 	[DataStore set_key:character int_value:1];
 }
 
-//item global cooldown
-static int item_cooldown;
-+(void)set_item_cooldown:(int)i {
-	item_cooldown = i;
-}
-+(int)get_item_cooldown {
-	return item_cooldown;
-}
-+(void)cooldown_tick {
-	item_cooldown > 0 ? item_cooldown-- : 0;
-}
-
 @end

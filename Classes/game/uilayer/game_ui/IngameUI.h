@@ -7,6 +7,7 @@
     CCNode *enemy_alert_ui;
     MainSlotItemPane *ingame_ui_item_slot;
     float item_duration_pct;
+	float item_slot_notify_anim_sc;
 	
 	CCSprite *itemlenbarfill, *readynotif, *itemlenbarroot,*itemlenbaricon;
 
@@ -25,5 +26,7 @@
 
 -(void)enable_challengedesc_type:(ChallengeType)type;
 -(void)set_challengedesc_string:(NSString*)str;
+
+-(void)animslot_notification;
 
 @end

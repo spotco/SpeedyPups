@@ -19,7 +19,8 @@
 
 /**
  TODO
- -item revamp (again lel)
+ -add itemgen to levels
+ 
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
 	-pug -- higher jump
@@ -28,6 +29,7 @@
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
  -better continue and game over menu ui
+ 
  -skippable tutorial and worlds
  - buy item sound + anim
  **/

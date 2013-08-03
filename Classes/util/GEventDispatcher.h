@@ -24,6 +24,7 @@ typedef enum {
     GEventType_EXIT_TO_DEFAULTAREA,
     GEventType_START_INTIAL_ANIM,
     GEventType_USE_ITEM, //19
+	GEVentType_PICKUP_ITEM,
 	
     GEventType_ITEM_DURATION_PCT,
     GEventType_CONTINUE_GAME,

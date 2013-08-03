@@ -8,6 +8,8 @@
     CCLabelTTF *bonectdsp, *infoname,*infodesc;
 
 	MainSlotItemPane *mainslot;
+	
+	float pane_anim_scale;
 }
 
 +(MainMenuInventoryLayer*)cons;
