@@ -50,7 +50,7 @@ static NSArray* _CHALLENGES;
         [ChallengeInfo cons_name:@"tutorial_spikes" type:ChallengeType_FIND_SECRET ct:1 reward:300],
         [ChallengeInfo cons_name:@"tutorial_spikevine" type:ChallengeType_TIMED ct:915 reward:400],
         [ChallengeInfo cons_name:@"tutorial_swipeget" type:ChallengeType_COLLECT_BONES ct:39 reward:500],
-        [ChallengeInfo cons_name:@"easy_world1" type:ChallengeType_FIND_SECRET ct:5 reward:600],
+        [ChallengeInfo cons_name:@"easy_world1" type:ChallengeType_FIND_SECRET ct:1 reward:600],
         [ChallengeInfo cons_name:@"tutorial_swingvine" type:ChallengeType_COLLECT_BONES ct:36 reward:700],
         [ChallengeInfo cons_name:@"classic_trickytreas" type:ChallengeType_COLLECT_BONES ct:28 reward:800],
         [ChallengeInfo cons_name:@"easy_gottagofast" type:ChallengeType_COLLECT_BONES ct:60 reward:900],

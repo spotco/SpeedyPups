@@ -19,7 +19,9 @@
 
 /**
  TODO
- -add itemgen to levels
+ -shuffle autolevel
+ -fix armored to work all
+ -explode rockets in rocketremover
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff

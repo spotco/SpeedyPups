@@ -19,6 +19,9 @@
 		for (NSString *lvlname in lvl_to_dif) {
 			[buckets[key] addObject:lvlname];
 		}
+		
+		[buckets[key] shuffle];
+		
 		[buckets[key] sortUsingComparator:^(id a, id b) {
 			NSNumber *va = lvl_to_dif[a];
 			NSNumber *vb = lvl_to_dif[b];

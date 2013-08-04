@@ -3,37 +3,50 @@
 #import "Vec3D.h"
 
 @interface NSArray (Random)
--(id)random;
--(NSArray*)copy_removing:(NSArray*)a;
--(BOOL)contains_str:(NSString*)tar;
--(id)get:(int)i;
+	-(id)random;
+	-(NSArray*)copy_removing:(NSArray*)a;
+	-(BOOL)contains_str:(NSString*)tar;
+	-(id)get:(int)i;
 @end
 @implementation NSArray (Random)
--(id)random {
-    uint32_t rnd = arc4random_uniform([self count]);
-    return [self objectAtIndex:rnd];
-}
--(BOOL)contains_str:(NSString *)tar {
-	for (id i in self) {
-		if ([i isEqualToString:tar]) return YES;
+	-(id)random {
+		uint32_t rnd = arc4random_uniform([self count]);
+		return [self objectAtIndex:rnd];
 	}
-	return NO;
-}
--(NSArray*)copy_removing:(NSArray *)a {
-    NSMutableArray *n = [NSMutableArray array];
-    for (id i in self) {
-        if (![a containsObject:i]) [n addObject:i];
-    }
-    return n;
-}
--(id)get:(int)i {
-	if (i >= [self count]) {
-		NSLog(@"error getting nsarray[%d] (size %d)",i,self.count);
-		return NULL;
-	} else {
-		return [self objectAtIndex:i];
+	-(BOOL)contains_str:(NSString *)tar {
+		for (id i in self) {
+			if ([i isEqualToString:tar]) return YES;
+		}
+		return NO;
 	}
-}
+	-(NSArray*)copy_removing:(NSArray *)a {
+		NSMutableArray *n = [NSMutableArray array];
+		for (id i in self) {
+			if (![a containsObject:i]) [n addObject:i];
+		}
+		return n;
+	}
+	-(id)get:(int)i {
+		if (i >= [self count]) {
+			NSLog(@"error getting nsarray[%d] (size %d)",i,self.count);
+			return NULL;
+		} else {
+			return [self objectAtIndex:i];
+		}
+	}
+@end
+
+@interface NSMutableArray (Shuffle)
+	-(void)shuffle;
+@end
+
+@implementation NSMutableArray (Shuffle)
+	-(void)shuffle {
+		for (NSUInteger i = [self count] - 1; i >= 1; i--){
+			u_int32_t j = arc4random_uniform(i + 1);
+			[self exchangeObjectAtIndex:j withObjectAtIndex:i];
+		}
+	}
 @end
 
 #define float_random(smallNumber, bigNumber) ((((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * (bigNumber - smallNumber)) + smallNumber)
