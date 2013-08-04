@@ -40,6 +40,20 @@ static NSDictionary* descriptions;
     return NULL;
 }
 
++(TexRect*)object_textrect_from:(GameItem)type {
+	CCTexture2D *tex = [Resource get_tex:TEX_ITEM_SS];
+	NSString *tar = @"";
+	if (type == Item_Magnet) {
+		tar = @"pickup_magnet";
+	} else if (type == Item_Clock) {
+		tar = @"pickup_clock";
+	} else if (type == Item_Rocket) {
+		tar = @"pickup_rocket";
+	} else if (type == Item_Shield) {
+		tar = @"pickup_shield";
+	}
+	return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:tar]];
+}
 
 +(NSString*)name_from:(GameItem)gameitem {
 	if (gameitem == Item_NOITEM) return @"None";

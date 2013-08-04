@@ -24,6 +24,7 @@ typedef enum {
 
 @interface GameItemCommon : NSObject
 +(TexRect*)texrect_from:(GameItem)gameitem;
++(TexRect*)object_textrect_from:(GameItem)type;
 +(NSString*)name_from:(GameItem)gameitem;
 +(NSString*)description_from:(GameItem)gameitem;
 

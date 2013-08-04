@@ -88,7 +88,7 @@ static const int DEFAULT_HP = 4;
     
     if ([self can_hit] && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         rel_pos = ccp(actual_pos.x - player.position.x,actual_pos.y-player.position.y);
-        if (player.dashing) {
+        if (player.dashing || [player is_armored]) {
             hp--;
             if (hp <= 0) {
                 cur_mode = Coptermode_DeathExplode;

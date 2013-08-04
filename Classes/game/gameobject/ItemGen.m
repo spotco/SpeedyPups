@@ -16,7 +16,7 @@
 	] random];
 	[pickedvalue getValue:&item];
 	
-	TexRect *img = [GameItemCommon texrect_from:item];
+	TexRect *img = [GameItemCommon object_textrect_from:item];
 	[self setTexture:img.tex];
 	[self setTextureRect:img.rect];
 	[self setPosition:pt];

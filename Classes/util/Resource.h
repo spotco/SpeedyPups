@@ -61,6 +61,7 @@
 #define TEX_BG_STARS @"BgStars"
 #define TEX_BG_LAYER_1 @"BgLayer1"
 #define TEX_BG_LAYER_3 @"BgLayer3"
+#define TEX_ONEUP_OBJECT @"oneupobject"
 #define TEX_GOLDEN_BONE @"GoldenBone"
 #define TEX_STARCOIN @"StarCoin"
 #define TEX_DOG_CAPE @"DogCape"

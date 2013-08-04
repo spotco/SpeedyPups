@@ -58,7 +58,9 @@
 }
 
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info {
+	[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
     CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES];
+	[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     
     UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
@@ -360,14 +362,14 @@
         collected_bones++;
         if (challenge == NULL && collected_bones%100==0) {
             [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
-            lives++;
+            [self incr_lives];
         }
         [UserInventory add_bones:1];
         
     } else if (e.type == GEventType_GET_COIN) {
         if (collected_bones%100 > (collected_bones+10)%100) {
             [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
-            lives++;
+            [self incr_lives];
         }
         collected_secrets++;
         collected_bones+=10;
@@ -625,6 +627,10 @@
     ccDrawPoly(verts, 4, YES);
     free(verts);
  }
+
+-(void)incr_lives {
+	lives = lives == GAMEENGINE_INF_LIVES ? lives : lives+1;
+}
 
 -(void)dealloc {
     [self removeAllChildrenWithCleanup:YES];

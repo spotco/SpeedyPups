@@ -593,6 +593,8 @@
 		7EDD63761703AF6300825887 /* tutorial_water.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63751703AF6300825887 /* tutorial_water.map */; };
 		7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63781703B1B500825887 /* grounddetail_ss.plist */; };
 		7EDD637B1703B1B500825887 /* grounddetail_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63791703B1B500825887 /* grounddetail_ss.png */; };
+		7EDEFB1617AE2A9000F07C76 /* 1upobject.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1517AE2A9000F07C76 /* 1upobject.png */; };
+		7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */; };
 		7EE2224C1778325000174B92 /* labintro_entrance.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224B1778325000174B92 /* labintro_entrance.map */; };
 		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
@@ -1392,6 +1394,9 @@
 		7EDD63751703AF6300825887 /* tutorial_water.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_water.map; sourceTree = "<group>"; };
 		7EDD63781703B1B500825887 /* grounddetail_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = grounddetail_ss.plist; sourceTree = "<group>"; };
 		7EDD63791703B1B500825887 /* grounddetail_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grounddetail_ss.png; sourceTree = "<group>"; };
+		7EDEFB1517AE2A9000F07C76 /* 1upobject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1upobject.png; sourceTree = "<group>"; };
+		7EDEFB1717AE2B2700F07C76 /* OneUpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneUpObject.h; sourceTree = "<group>"; };
+		7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneUpObject.m; sourceTree = "<group>"; };
 		7EE2224B1778325000174B92 /* labintro_entrance.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labintro_entrance.map; sourceTree = "<group>"; };
 		7EE2224D177837B100174B92 /* lab_basicmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_basicmix.map; sourceTree = "<group>"; };
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
@@ -2085,6 +2090,7 @@
 		7EB8B2A116D9F8E700F58961 /* powerup */ = {
 			isa = PBXGroup;
 			children = (
+				7EDEFB1517AE2A9000F07C76 /* 1upobject.png */,
 				7EB8B2A216D9F8E700F58961 /* dogcape.png */,
 				7EB8B2A316D9F8E700F58961 /* dogrocket.png */,
 				7EB8B2A416D9F8E700F58961 /* goldenbone.png */,
@@ -2515,6 +2521,8 @@
 				7EBD7617171A855F00EBEB3C /* Coin.m */,
 				7E47433A17AD02AF00A664CE /* ItemGen.h */,
 				7E47433B17AD02AF00A664CE /* ItemGen.m */,
+				7EDEFB1717AE2B2700F07C76 /* OneUpObject.h */,
+				7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */,
 			);
 			name = powerup;
 			sourceTree = "<group>";
@@ -3510,6 +3518,7 @@
 				7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */,
 				7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */,
 				7EFED6A317ABA5710061C919 /* lab_rock_particle.png in Resources */,
+				7EDEFB1617AE2A9000F07C76 /* 1upobject.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3682,6 +3691,7 @@
 				7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */,
 				7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */,
 				7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */,
+				7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

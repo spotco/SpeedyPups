@@ -19,7 +19,6 @@
 #import "BirdFlock.h"
 #import "Blocker.h"
 #import "SpeedUp.h"
-//#import "CaveWall.h"
 #import "RocketWall.h"
 #import "IslandFill.h"
 #import "BreakableWall.h"
@@ -40,6 +39,7 @@
 #import "Coin.h"
 #import "FreeRunProgressDisplay.h"
 #import "ItemGen.h"
+#import "OneUpObject.h"
 
 @implementation GameMap
     @synthesize assert_links;
@@ -51,6 +51,12 @@
 @implementation MapLoader
 
 #define DOTMAP @"map"
+
+static MapLoaderMode cur_mode = MapLoaderMode_AUTO;
+
++(void)set_maploader_mode:(MapLoaderMode)m {
+	cur_mode = m;
+}
 
 static NSMutableDictionary* cached_json;
 
@@ -142,6 +148,7 @@ static NSMutableDictionary* cached_json;
     NSArray *coins_array = [j_map_data objectForKey:@"objects"];
     
     for(int i = 0; i < [coins_array count]; i++){
+		int cur_size = [map.game_objects count];
         NSDictionary *j_object = (NSDictionary *)[coins_array objectAtIndex:i];
         NSString *type = (NSString *)[j_object objectForKey:@"type"];
         
@@ -172,11 +179,6 @@ static NSMutableDictionary* cached_json;
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             [map.game_objects addObject:[CheckPoint cons_x:x y:y]];
-            
-        } else if ([type isEqualToString:@"game_end"]) {
-            float x = getflt(j_object, @"x");
-            float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[ChallengeEnd cons_pt:ccp(x,y)]];
             
         } else if ([type isEqualToString:@"spike"]) {
             float x = getflt(j_object, @"x");
@@ -331,11 +333,6 @@ static NSMutableDictionary* cached_json;
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             [map.game_objects addObject:[TutorialEnd cons_pos:ccp(x,y)]];
-            
-        } else if ([type isEqualToString:@"coin"]) {
-            float x = getflt(j_object, @"x");
-            float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
 			
 		} else if ([type isEqualToString:@"progressdisp"]) {
             float x = getflt(j_object, @"x");
@@ -354,10 +351,39 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
 			[map.game_objects addObject:[ItemGen cons_pt:ccp(x,y)]];
 			
-        } else {
-            NSLog(@"item read error of %@",type);
-            continue;
         }
+		
+		if (cur_mode == MapLoaderMode_AUTO) {
+			if ([type isEqualToString:@"coin"]) {
+				float x = getflt(j_object, @"x");
+				float y = getflt(j_object, @"y");
+				[map.game_objects addObject:[OneUpObject cons_pt:ccp(x,y)]];
+				
+			} else if ([type isEqualToString:@"1upobject"]) {
+				float x = getflt(j_object, @"x");
+				float y = getflt(j_object, @"y");
+				[map.game_objects addObject:[OneUpObject cons_pt:ccp(x,y)]];
+				
+			}
+			
+		} else if (cur_mode == MapLoaderMode_CHALLENGE) {
+			if ([type isEqualToString:@"game_end"]) {
+				float x = getflt(j_object, @"x");
+				float y = getflt(j_object, @"y");
+				[map.game_objects addObject:[ChallengeEnd cons_pt:ccp(x,y)]];
+				
+			} else if ([type isEqualToString:@"coin"]) {
+				float x = getflt(j_object, @"x");
+				float y = getflt(j_object, @"y");
+				[map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
+				
+			}
+		}
+		
+		if ([map.game_objects count] == cur_size) {
+			NSLog(@"map loader error on:%@",type);
+		}
+		
     }
 
     //NSLog(@"finish parse");

@@ -96,6 +96,8 @@ typedef enum {
 -(int)get_num_bones;
 -(int)get_num_secrets;
 
+-(void)incr_lives;
+
 -(int)get_current_continue_cost;
 -(void)incr_current_continue_cost;
 

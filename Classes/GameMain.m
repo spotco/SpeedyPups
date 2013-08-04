@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"tutorial_upsidebounce"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -19,9 +19,7 @@
 
 /**
  TODO
- -shuffle autolevel
- -fix armored to work all
- -explode rockets in rocketremover
+ -better continue and game over menu ui
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -30,10 +28,10 @@
 	-dalmation -- triple jump
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
- -better continue and game over menu ui
+ 
  
  -skippable tutorial and worlds
- - buy item sound + anim
+ -buy item sound + anim
  **/
 
 /**

@@ -1,6 +1,7 @@
 #import "RocketWall.h"
 #import "GameEngineLayer.h"
 #import "LauncherRocket.h"
+#import "ExplosionParticle.h"
 
 @implementation RocketWall
 
@@ -18,6 +19,7 @@
     NSMutableArray *to_remove = [NSMutableArray array];
     for (GameObject *o in g.game_objects) {
         if ([[o class] isSubclassOfClass:[LauncherRocket class]] && [Common hitrect_touch:[self get_hit_rect] b:[o get_hit_rect]]) {
+			[g add_particle:[ExplosionParticle cons_x:o.position.x y:o.position.y]];
             [to_remove addObject:o];
         }
     }
