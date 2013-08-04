@@ -10,7 +10,7 @@
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"tutorial_upsidebounce"
-#define STARTING_LIVES 10
+#define STARTING_LIVES 1
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -20,6 +20,7 @@
 /**
  TODO
  -better continue and game over menu ui
+ -spike is in autolevel start
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -91,17 +92,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	//[UserInventory add_bones:1000];
-
-	/*
-	AutoLevelState *s = [AutoLevelState cons];
-	for (int i = 0; i < 30; i++) {
-		//NSLog(@"status:%@\nlvl:%@\n\n",[s status],[s get_level]);
-		NSLog(@"lvl:%@ prog:%d",[s get_level],[s get_freerun_progress]);
-	}
-	*/
 	
-	[GameMain start_testlevel];
-    //[GameMain start_game_autolevel];
+	//[GameMain start_testlevel];
+    [GameMain start_game_autolevel];
     //[GameMain start_menu];
     
 }

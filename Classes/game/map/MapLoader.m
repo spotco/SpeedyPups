@@ -175,11 +175,6 @@ static NSMutableDictionary* cached_json;
             int type = ((NSString*)[j_object  objectForKey:@"img"]).intValue;
             [map.game_objects addObject:[GroundDetail cons_x:x y:y type:type islands:map.n_islands]];
             
-        } else if ([type isEqualToString:@"checkpoint"]) {
-            float x = getflt(j_object, @"x");
-            float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[CheckPoint cons_x:x y:y]];
-            
         } else if ([type isEqualToString:@"spike"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
@@ -364,6 +359,10 @@ static NSMutableDictionary* cached_json;
 				float y = getflt(j_object, @"y");
 				[map.game_objects addObject:[OneUpObject cons_pt:ccp(x,y)]];
 				
+			} else if ([type isEqualToString:@"checkpoint"]) {
+				float x = getflt(j_object, @"x");
+				float y = getflt(j_object, @"y");
+				[map.game_objects addObject:[CheckPoint cons_x:x y:y]];
 			}
 			
 		} else if (cur_mode == MapLoaderMode_CHALLENGE) {

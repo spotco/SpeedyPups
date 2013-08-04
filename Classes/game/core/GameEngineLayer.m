@@ -18,6 +18,8 @@
 #define tUILAYER 5
 #define tTTRACKLAYER 6
 
+#define DEFAULT_CONTINUE_COST 100
+
 @synthesize current_mode;
 @synthesize game_objects,islands;
 @synthesize player;
@@ -131,7 +133,7 @@
     current_mode = GameEngineLayerMode_SCROLLDOWN;
     float tmp;
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
-    current_continue_cost = 20;
+    current_continue_cost = DEFAULT_CONTINUE_COST;
     player_starting_pos = player_start_pt;
 }
 

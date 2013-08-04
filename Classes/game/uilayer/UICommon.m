@@ -37,4 +37,10 @@
     [i setPosition:pos];
     return i;
 }
++(void)button:(CCNode *)btn add_desctext:(NSString *)txt color:(ccColor3B)color fntsz:(int)fntsz {
+	[btn addChild:[Common cons_label_pos:[Common pct_of_obj:btn pctx:0.5 pcty:-0.1]
+										color:color
+									 fontsize:fntsz
+										  str:txt]];
+}
 @end

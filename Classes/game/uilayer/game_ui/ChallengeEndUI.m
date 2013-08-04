@@ -7,6 +7,7 @@
 #import "UserInventory.h" 
 #import "GameModeCallback.h"
 #import "FireworksParticleA.h"
+#import "UICommon.h"
 
 @implementation ChallengeEndUI
 
@@ -88,13 +89,18 @@
     
     
     CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
-                                               pos:[Common screen_pctwid:0.3 pcthei:0.1]];
+                                               pos:[Common screen_pctwid:0.3 pcthei:0.135]];
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
-                                                pos:[Common screen_pctwid:0.5 pcthei:0.1]];
+                                                pos:[Common screen_pctwid:0.5 pcthei:0.135]];
 	
 	nextbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"nextbutton" tar:self sel:@selector(next)
-                                                pos:[Common screen_pctwid:0.7 pcthei:0.1]];
+                                                pos:[Common screen_pctwid:0.7 pcthei:0.135]];
+				
+	[UICommon button:backbutton add_desctext:@"to menu" color:ccc3(255,255,255) fntsz:13];
+	[UICommon button:retrybutton add_desctext:@"retry" color:ccc3(255,255,255) fntsz:13];
+	[UICommon button:nextbutton add_desctext:@"next" color:ccc3(255,255,255) fntsz:13];
+				
     [nextbutton setVisible:NO];
     CCMenu *m = [CCMenu menuWithItems:backbutton,retrybutton,nextbutton, nil];
     [m setPosition:CGPointZero];

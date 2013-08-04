@@ -167,7 +167,7 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale;
 
 +(CGPoint)scale_from_default;
-+(CGPoint)pct_of_obj:(CCSprite*)obj pctx:(float)pctx pcty:(float)pcty;
++(CGPoint)pct_of_obj:(CCNode*)obj pctx:(float)pctx pcty:(float)pcty;
 
 +(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct;
 

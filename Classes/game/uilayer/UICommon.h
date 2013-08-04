@@ -9,4 +9,6 @@
 +(CCMenuItemLabel*)label_cons_menuitem:(CCLabelTTF*)l leftalign:(BOOL)leftalign;
 +(CCMenuItem*)cons_menuitem_tex:(CCTexture2D*)tex pos:(CGPoint)pos;
 +(CGPoint)player_approx_position:(GameEngineLayer*)game_engine_layer;
+
++(void)button:(CCNode *)btn add_desctext:(NSString *)txt color:(ccColor3B)color fntsz:(int)fntsz ;
 @end

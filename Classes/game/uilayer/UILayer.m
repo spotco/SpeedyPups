@@ -171,7 +171,7 @@
 
 -(void)update_items {
     [ingameui update_item_slot];
-    [pauseui update_item_slot];
+    //[pauseui update_item_slot];
 
 }
 

@@ -380,7 +380,7 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return CGPointMake([Common SCREEN].width/480.0, [Common SCREEN].height/320.0);
 }
 
-+(CGPoint)pct_of_obj:(CCSprite *)obj pctx:(float)pctx pcty:(float)pcty {
++(CGPoint)pct_of_obj:(CCNode *)obj pctx:(float)pctx pcty:(float)pcty {
 	CGRect rct = [obj boundingBoxInPixels];
 	return ccp(rct.size.width*pctx,rct.size.height*pcty);
 }

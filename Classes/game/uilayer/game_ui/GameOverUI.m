@@ -46,16 +46,19 @@
     [time_disp setAnchorPoint:ccp(0,0.5)];
     [infopane addChild:time_disp];
     
-    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"backbutton" tar:self sel:@selector(exit_to_menu)
-                                               pos:[Common screen_pctwid:0.3 pcthei:0.1]];
+    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
+                                               pos:[Common screen_pctwid:0.3 pcthei:0.135]];
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
-                                               pos:[Common screen_pctwid:0.7 pcthei:0.1]];
+                                               pos:[Common screen_pctwid:0.7 pcthei:0.135]];
     
     CCMenu *m = [CCMenu menuWithItems:backbutton,retrybutton, nil];
     [m setPosition:CGPointZero];
     [gameover_ui addChild:m];
     
+	[UICommon button:backbutton add_desctext:@"to menu" color:ccc3(255,255,255) fntsz:13];
+	[UICommon button:retrybutton add_desctext:@"retry" color:ccc3(255,255,255) fntsz:13];
+	
     [infopane addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TUTORIAL_ANIM_1]
                                                   rect:[FileCache get_cgrect_from_plist:TEX_TUTORIAL_ANIM_1 idname:@"spikehit6"]]
                            pos:ccp(210,65)]];

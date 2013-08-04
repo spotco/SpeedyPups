@@ -45,10 +45,11 @@
         {"type": "ground_detail", "x": 3136, "img": 20, "y": 699, "label": "(14)gd_img:20"},
         {"type": "ground_detail", "x": 3199, "img": 32, "y": 701, "label": "(15)gd_img:32"},
         {"type": "ground_detail", "x": 3628, "img": 28, "y": 702, "label": "(16)gd_img:28"},
-        {"type": "ground_detail", "x": 3678, "img": 29, "y": 703, "label": "(17)gd_img:29"}
+        {"type": "ground_detail", "x": 3678, "img": 29, "y": 703, "label": "(17)gd_img:29"},
+        {"type": "spike", "x": 1848.9, "y": 194.4, "label": "0"}
     ],
-    "connect_pts": {"y1": 201.6, "x2": 3906, "y2": 706, "x1": 50},
+    "start_y": 296.6222222222219,
     "start_x": 401.7,
-    "start_y": 296.6,
-    "assert_links": 7
+    "assert_links": 7,
+    "connect_pts": {"y1": 201.6, "x2": 3906, "y2": 706, "x1": 50}
 }
