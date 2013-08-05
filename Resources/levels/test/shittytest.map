@@ -1,8 +1,11 @@
 {
-    "islands": [{"can_fall": true, "x2": 857, "ground": "open", "ndir": "left", "type": "line", "y1": 221, "hei": 50, "y2": 258, "x1": 67}],
-    "assert_links": 0,
-    "start_y": 276,
-    "start_x": 154,
-    "objects": [{"type": "1upobject", "x": 696, "y": 337, "label": "0"}],
-    "connect_pts": {"y1": 221, "x2": 857, "y2": 258, "x1": 67}
+    "islands": [
+        {"can_fall": true, "x2": 438.6, "ground": "open", "ndir": "left", "type": "line", "y1": 480, "hei": 50, "y2": 477.1, "x1": 98.6},
+        {"can_fall": true, "x2": 1177.2, "ground": "bridge", "ndir": "left", "type": "line", "y1": 477.1, "hei": 50, "y2": 474.3, "x1": 438.6}
+    ],
+    "connect_pts": {"y1": 480, "x2": 1177.2, "y2": 474.3, "x1": 98.6},
+    "objects": [],
+    "start_x": 181.5,
+    "assert_links": 1,
+    "start_y": 535.7214285714285
 }

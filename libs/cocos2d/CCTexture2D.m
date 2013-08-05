@@ -797,12 +797,12 @@ static BOOL PVRHaveAlphaPremultiplied_ = NO;
 }
 
 -(void) setClampTexParameters {
-    ccTexParams texParams = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_CLAMP_TO_EDGE };
+    ccTexParams texParams = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_CLAMP_TO_EDGE };
     [self setTexParameters:&texParams];
 }
 
 -(void) setHorizClampTexParameters {
-    ccTexParams texParams = {GL_NEAREST, GL_NEAREST, GL_CLAMP_TO_EDGE, GL_REPEAT };
+    ccTexParams texParams = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT };
     [self setTexParameters:&texParams];
 }
 

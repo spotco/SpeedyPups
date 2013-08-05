@@ -9,7 +9,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"classic_huegcave"
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -20,7 +20,6 @@
 /**
  TODO
  -better continue and game over menu ui
- -spike is in autolevel start
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff
@@ -91,7 +90,7 @@
 	//[UserInventory add_bones:10000];
 	
 	//[GameMain start_testlevel];
-	// [GameMain start_game_autolevel];
+	//[GameMain start_game_autolevel];
     [GameMain start_menu];
     
 }

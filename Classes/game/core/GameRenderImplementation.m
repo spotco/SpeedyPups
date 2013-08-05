@@ -1,5 +1,6 @@
 #import "GameRenderImplementation.h"
 #import "GameEngineLayer.h"
+#import "DogRocketEffect.h"
 
 #define RENDER_PLAYER_ON_FG_ORD 9
 #define RENDER_ABOVE_FG_ORD 8
@@ -60,48 +61,53 @@
 
 #define ZOOMSPD 50.0
 
-//480x320 
+//480x320
+//rocket target {"x": 120, "z": 276, "y": 110}
 +(void)update_zoom:(GameEngineLayer*)layer {
     float g_dist = [GameRenderImplementation calc_g_dist:layer.player islands:layer.islands];
-    CameraZoom state = layer.camera_state; 
-    
-    if (![Common fuzzyeq_a:layer.camera_state.x b:layer.tar_camera_state.x delta:0.1]) {
-        state.x += (layer.tar_camera_state.x - layer.camera_state.x)/ZOOMSPD;
-    }
-    
-    if (![Common fuzzyeq_a:layer.camera_state.y b:layer.tar_camera_state.y delta:0.1]) {
-        state.y += (layer.tar_camera_state.y - layer.camera_state.y)/ZOOMSPD;
-    }
-    
-    if (![Common fuzzyeq_a:layer.camera_state.z b:layer.tar_camera_state.z delta:0.1]) {
-        state.z += (layer.tar_camera_state.z - layer.camera_state.z)/ZOOMSPD;
-    }
-    
-    
-    float YDIR_DEFAULT = layer.tar_camera_state.y;
-    if (g_dist > 0) {
-        float tmp = g_dist > 500.0 ? 500.0 : g_dist;
-        float tar_yoff = 80.0 + (tmp / 500.0)*60.0;
-        
-        if (state.y > YDIR_DEFAULT-tar_yoff) {
-            state.y -= (state.y - (YDIR_DEFAULT-tar_yoff))/ZOOMSPD;
-        } else {
-            state.y += ((YDIR_DEFAULT-tar_yoff)-state.y)/ZOOMSPD;
-        }
-        
-    } else {
-        if (state.y < YDIR_DEFAULT) {
-            state.y += (YDIR_DEFAULT-state.y)/ (ZOOMSPD/2.0);
-        }
-    }
-    
-    [layer set_camera:state];
-    
-    //NSLog(@"(%f,%f,%f)",layer.tar_camera_state.x,layer.tar_camera_state.y,layer.tar_camera_state.z);
-    [GameRenderImplementation update_camera_on:layer zoom:layer.camera_state];
+    CameraZoom state = layer.camera_state;
+    CameraZoom target = layer.tar_camera_state;
+	
+	if ([[layer.player get_current_params] class] == [DogRocketEffect class]) {
+		target = [Common cons_normalcoord_camera_zoom_x:140 y:110 z:290];
+	}
+	
+	if (![Common fuzzyeq_a:layer.camera_state.x b:target.x delta:0.1]) {
+		state.x += (target.x - layer.camera_state.x)/ZOOMSPD;
+	}
+	
+	if (![Common fuzzyeq_a:layer.camera_state.y b:target.y delta:0.1]) {
+		state.y += (target.y - layer.camera_state.y)/ZOOMSPD;
+	}
+	
+	if (![Common fuzzyeq_a:layer.camera_state.z b:target.z delta:0.1]) {
+		state.z += (target.z - layer.camera_state.z)/ZOOMSPD;
+	}
+	
+	float YDIR_DEFAULT = layer.tar_camera_state.y;
+	if (g_dist > 0) {
+		float tmp = g_dist > 500.0 ? 500.0 : g_dist;
+		float tar_yoff = 80.0 + (tmp / 500.0)*60.0;
+		
+		if (state.y > YDIR_DEFAULT-tar_yoff) {
+			state.y -= (state.y - (YDIR_DEFAULT-tar_yoff))/ZOOMSPD;
+		} else {
+			state.y += ((YDIR_DEFAULT-tar_yoff)-state.y)/ZOOMSPD;
+		}
+		
+	} else {
+		if (state.y < YDIR_DEFAULT) {
+			state.y += (YDIR_DEFAULT-state.y)/ (ZOOMSPD/2.0);
+		}
+	}
+	
+	[layer set_camera:state];
+	[GameRenderImplementation update_camera_on:layer zoom:layer.camera_state];
+	//NSLog(@"camera(%f,%f,%f)",layer.camera_state.x,layer.camera_state.y,layer.camera_state.z);
+		
 }
 
-+(void)update_camera_on:(CCLayer*)layer zoom:(CameraZoom)state {  
++(void)update_camera_on:(CCLayer*)layer zoom:(CameraZoom)state {
     [layer.camera setCenterX:state.x centerY:state.y centerZ:0];
     [layer.camera setEyeX:state.x  eyeY:state.y eyeZ:state.z];
 }

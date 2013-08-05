@@ -12,9 +12,6 @@
     bg.scrollspd_y = spdy;
     bg.anchorPoint = CGPointZero;
     bg.position = CGPointZero;
-    ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
-    [bg.texture setTexParameters:&par];
-	[bg.texture setAntiAliasTexParameters];
     return bg;
 }
 
@@ -32,8 +29,10 @@
 }
 
 -(void)update_posx:(float)posx posy:(float)posy {
+	float xpos = ((int)(posx*scrollspd_x))%self.texture.pixelsWide + ((posx*scrollspd_x) - ((int)(posx*scrollspd_x)));
+	
     [self setTextureRect:CGRectMake(
-		posx*scrollspd_x,
+		xpos,
 		0,
 		[Common SCREEN].width*2 ,
 		[self textureRect].size.height
