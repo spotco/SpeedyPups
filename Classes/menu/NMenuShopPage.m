@@ -8,6 +8,7 @@
 +(NMenuShopPage*)cons {
     return [NMenuShopPage node];
 }
+
 -(id)init {
     self = [super init];
     [GEventDispatcher add_listener:self];
@@ -49,17 +50,21 @@
 	ShopItemPane *i2 = [ShopItemPane cons_pt:[Common screen_pctwid:0.6 pcthei:0.65] cb:[Common cons_callback:self sel:@selector(shop_pane2)]];
 	ShopItemPane *i3 = [ShopItemPane cons_pt:[Common screen_pctwid:0.8 pcthei:0.65] cb:[Common cons_callback:self sel:@selector(shop_pane3)]];
     
-	CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
-											 rect:@"nmenu_arrow_left"
+	CCMenuItem *leftarrow = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+											 rect:@"challengeselectnextarrow"
 											  tar:self sel:@selector(pane_prev)
-											  pos:[Common screen_pctwid:0.285 pcthei:0.64]];
+											  pos:[Common screen_pctwid:0.265 pcthei:0.64]];
 	
-	CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_ITEMS
-											 rect:@"nmenu_arrow_right"
+	CCMenuItem *rightarrow = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+											 rect:@"challengeselectnextarrow"
 											  tar:self sel:@selector(pane_next)
-											  pos:[Common screen_pctwid:0.92 pcthei:0.64]];
-	[leftarrow setScaleX:0.75];
-	[rightarrow setScaleX:0.75];
+											  pos:[Common screen_pctwid:0.94 pcthei:0.64]];
+	#define ARROW_SCALE 0.75
+	[leftarrow setScaleX:-ARROW_SCALE];
+	[leftarrow setScaleY:ARROW_SCALE];
+	
+	[rightarrow setScaleX:ARROW_SCALE];
+	[rightarrow setScaleY:ARROW_SCALE];
     controlm = [CCMenu menuWithItems:tab1,tab2,tab3,tab4,buybutton,i1,i2,i3,leftarrow,rightarrow,[CCMenuItemSprite itemFromNormalSprite:speechbub selectedSprite:NULL], nil];
     [controlm setPosition:ccp(0,0)];
     [self addChild:controlm];

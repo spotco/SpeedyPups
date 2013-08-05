@@ -44,37 +44,45 @@
 }
 
 +(void)fill_items_tab:(NSMutableArray*)a {
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-							 rectid:@"item_magnet"
-							   name:[GameItemCommon name_from:Item_Magnet]
-							   desc:@"Magnet that does shit"
-							  price:1
-							 action:ShopAction_BUY_ITEM_UPGRADE
-								key:[NSNumber numberWithInt:Item_Magnet]]];
+	if ([UserInventory get_upgrade_level:Item_Magnet] == 0) {
+		[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+								 rectid:@"item_magnet"
+								   name:[GameItemCommon name_from:Item_Magnet]
+								   desc:@"Unlock the rocket to equip in the inventory!"
+								  price:1000
+								 action:ShopAction_BUY_ITEM_UPGRADE
+									key:[NSNumber numberWithInt:Item_Magnet]]];
+	}
 	
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-							 rectid:@"item_rocket"
-							   name:[GameItemCommon name_from:Item_Rocket]
-							   desc:@"Rocket that does shit"
-							  price:1
-							 action:ShopAction_BUY_ITEM_UPGRADE
-								key:[NSNumber numberWithInt:Item_Rocket]]];
+	if ([UserInventory get_upgrade_level:Item_Rocket] == 0) {
+		[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+								 rectid:@"item_rocket"
+								   name:[GameItemCommon name_from:Item_Rocket]
+								   desc:@"Unlock the rocket to equip in the inventory!"
+								  price:2000
+								 action:ShopAction_BUY_ITEM_UPGRADE
+									key:[NSNumber numberWithInt:Item_Rocket]]];
+	}
 	
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-							 rectid:@"item_shield"
-							   name:[GameItemCommon name_from:Item_Shield]
-							   desc:@"Shield that does shit"
-							  price:1
-							 action:ShopAction_BUY_ITEM_UPGRADE
-								key:[NSNumber numberWithInt:Item_Shield]]];
+	if ([UserInventory get_upgrade_level:Item_Shield] == 0) {
+		[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+								 rectid:@"item_shield"
+								   name:[GameItemCommon name_from:Item_Shield]
+								   desc:@"Unlock the shield to equip in the inventory!"
+								  price:3000
+								 action:ShopAction_BUY_ITEM_UPGRADE
+									key:[NSNumber numberWithInt:Item_Shield]]];
+	}
 	
-	[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
-							 rectid:@"item_clock"
-							   name:[GameItemCommon name_from:Item_Clock]
-							   desc:@"Clock that does shit"
-							  price:1
-							 action:ShopAction_BUY_ITEM_UPGRADE
-								key:[NSNumber numberWithInt:Item_Clock]]];
+	if ([UserInventory get_upgrade_level:Item_Clock] == 0) {
+		[a addObject:[ItemInfo cons_tex:TEX_ITEM_SS
+								 rectid:@"item_clock"
+								   name:[GameItemCommon name_from:Item_Clock]
+								   desc:@"Unlock the clock to equip in the inventory!"
+								  price:4000
+								 action:ShopAction_BUY_ITEM_UPGRADE
+									key:[NSNumber numberWithInt:Item_Clock]]];
+	}
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
@@ -88,7 +96,7 @@
 									   desc:[NSString stringWithFormat:@"Unlock %@.\nSpecial ability:%@",
 												[Player get_name:dog],
 												[Player get_power_desc:dog]]
-									  price:1
+									  price:1000+i*1000
 									 action:ShopAction_UNLOCK_CHARACTER
 										key:dog]];
 		}

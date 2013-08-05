@@ -1,17 +1,6 @@
 {
-    "islands": [
-        {"can_fall": true, "x2": 2354, "ground": "open", "ndir": "left", "type": "line", "y1": 194, "hei": 400, "y2": 196, "x1": 1300},
-        {"can_fall": true, "x2": 2454, "ground": "open", "ndir": "left", "type": "line", "y1": 196, "hei": 400, "y2": 208, "x1": 2354},
-        {"can_fall": true, "x2": 2526, "ground": "open", "ndir": "left", "type": "line", "y1": 208, "hei": 400, "y2": 248, "x1": 2454},
-        {"can_fall": true, "x2": 2748, "ground": "open", "ndir": "left", "type": "line", "y1": 248, "hei": 400, "y2": 602, "x1": 2526},
-        {"can_fall": true, "x2": 2800, "ground": "open", "ndir": "left", "type": "line", "y1": 602, "hei": 400, "y2": 648, "x1": 2748},
-        {"can_fall": true, "x2": 2891.7, "ground": "open", "ndir": "left", "type": "line", "y1": 648, "hei": 400, "y2": 698.3, "x1": 2800},
-        {"can_fall": true, "x2": 3906, "ground": "open", "ndir": "left", "type": "line", "y1": 698.3, "hei": 400, "y2": 706, "x1": 2891.7},
-        {"can_fall": true, "x2": 1300, "ground": "open", "ndir": "left", "type": "line", "y1": 201.6, "hei": 400, "y2": 194, "x1": 50},
-        {"can_fall": true, "x2": 1500, "ground": "open", "ndir": "left", "type": "line", "y1": 344, "hei": 50, "y2": 348, "x1": 1102},
-        {"can_fall": true, "x2": 2004, "ground": "open", "ndir": "left", "type": "line", "y1": 550, "hei": 50, "y2": 548, "x1": 1650},
-        {"can_fall": true, "x2": 2450, "ground": "open", "ndir": "left", "type": "line", "y1": 750, "hei": 50, "y2": 750, "x1": 2148}
-    ],
+    "assert_links": 7,
+    "connect_pts": {"y1": 201.6, "x2": 3906, "y2": 706, "x1": 50},
     "objects": [
         {"type": "dogbone", "x": 1512, "bid": 3, "y": 514, "label": "BID:3"},
         {"type": "dogbone", "x": 2036, "bid": 4, "y": 726, "label": "BID:4"},
@@ -45,11 +34,21 @@
         {"type": "ground_detail", "x": 3136, "img": 20, "y": 699, "label": "(14)gd_img:20"},
         {"type": "ground_detail", "x": 3199, "img": 32, "y": 701, "label": "(15)gd_img:32"},
         {"type": "ground_detail", "x": 3628, "img": 28, "y": 702, "label": "(16)gd_img:28"},
-        {"type": "ground_detail", "x": 3678, "img": 29, "y": 703, "label": "(17)gd_img:29"},
-        {"type": "spike", "x": 1848.9, "y": 194.4, "label": "0"}
+        {"type": "ground_detail", "x": 3678, "img": 29, "y": 703, "label": "(17)gd_img:29"}
     ],
-    "start_y": 296.6222222222219,
     "start_x": 401.7,
-    "assert_links": 7,
-    "connect_pts": {"y1": 201.6, "x2": 3906, "y2": 706, "x1": 50}
+    "islands": [
+        {"can_fall": true, "x2": 2354, "ground": "open", "ndir": "left", "type": "line", "y1": 194, "hei": 400, "y2": 196, "x1": 1300},
+        {"can_fall": true, "x2": 2454, "ground": "open", "ndir": "left", "type": "line", "y1": 196, "hei": 400, "y2": 208, "x1": 2354},
+        {"can_fall": true, "x2": 2526, "ground": "open", "ndir": "left", "type": "line", "y1": 208, "hei": 400, "y2": 248, "x1": 2454},
+        {"can_fall": true, "x2": 2748, "ground": "open", "ndir": "left", "type": "line", "y1": 248, "hei": 400, "y2": 602, "x1": 2526},
+        {"can_fall": true, "x2": 2800, "ground": "open", "ndir": "left", "type": "line", "y1": 602, "hei": 400, "y2": 648, "x1": 2748},
+        {"can_fall": true, "x2": 2891.7, "ground": "open", "ndir": "left", "type": "line", "y1": 648, "hei": 400, "y2": 698.3, "x1": 2800},
+        {"can_fall": true, "x2": 3906, "ground": "open", "ndir": "left", "type": "line", "y1": 698.3, "hei": 400, "y2": 706, "x1": 2891.7},
+        {"can_fall": true, "x2": 1300, "ground": "open", "ndir": "left", "type": "line", "y1": 201.6, "hei": 400, "y2": 194, "x1": 50},
+        {"can_fall": true, "x2": 1500, "ground": "open", "ndir": "left", "type": "line", "y1": 344, "hei": 50, "y2": 348, "x1": 1102},
+        {"can_fall": true, "x2": 2004, "ground": "open", "ndir": "left", "type": "line", "y1": 550, "hei": 50, "y2": 548, "x1": 1650},
+        {"can_fall": true, "x2": 2450, "ground": "open", "ndir": "left", "type": "line", "y1": 750, "hei": 50, "y2": 750, "x1": 2148}
+    ],
+    "start_y": 296.6
 }

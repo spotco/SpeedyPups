@@ -1,5 +1,6 @@
 #import "NMenuSettingsPage.h"
 #import "MenuCommon.h"
+#import "GameMain.h"
 
 @implementation NMenuSettingsPage
 
@@ -9,30 +10,22 @@
 
 -(id)init {
     self = [super init];
-    
-    /*
-    CCMenuItem *tab1 = [NMenuSettingsPage labeleditem_from:TEX_NMENU_ITEMS
-                                                      rect:@"nmenu_signtab"
-                                                       tar:self sel:@selector(tab1)
-                                                       pos:[Common screen_pctwid:0.3 pcthei:0.275]
-                                                      text:@"Tab1" textpos:ccp(35,15)];
-    
-    CCMenuItem *tab2 = [NMenuSettingsPage labeleditem_from:TEX_NMENU_ITEMS
-                                                      rect:@"nmenu_signtab"
-                                                       tar:self sel:@selector(tab1)
-                                                       pos:[Common screen_pctwid:0.5 pcthei:0.275]
-                                                      text:@"Tab2" textpos:ccp(35,15)];
-    
-    CCMenuItem *tab3 = [NMenuSettingsPage labeleditem_from:TEX_NMENU_ITEMS
-                                                      rect:@"nmenu_signtab"
-                                                       tar:self sel:@selector(tab1)
-                                                       pos:[Common screen_pctwid:0.7 pcthei:0.275]
-                                                      text:@"Tab3" textpos:ccp(35,15)];
-    
-    CCMenu *m = [CCMenu menuWithItems:tab1,tab2,tab3, nil];
-    [m setPosition:ccp(0,0)];
-    [self addChild:m];
-    */
+	
+	do_tutorial = (CCMenuItemSprite*)[MenuCommon item_from:TEX_NMENU_ITEMS
+													  rect:@"nmenu_checkbutton"
+													   tar:self
+													   sel:@selector(do_tutorial_button)
+													   pos:[Common screen_pctwid:0.3 pcthei:0.6]];
+	CCMenu *settings_btn_menu = [CCMenu menuWithItems:do_tutorial, nil];
+	[settings_btn_menu setPosition:CGPointZero];
+	[self addChild:settings_btn_menu];
+	
+	do_tutorial_label = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.6]
+										 color:ccc3(0,0,0)
+									  fontsize:18
+										   str:@""];
+	[self addChild:do_tutorial_label];
+	[self update_tutorial_button];
     
     [GEventDispatcher add_listener:self];
      
@@ -40,6 +33,28 @@
     
     [self addChild:[MenuCommon cons_common_nav_menu]];
     return self;
+}
+
+-(void)do_tutorial_button {
+	[GameMain SET_DO_TUTORIAL:![GameMain GET_DO_TUTORIAL]];
+	[self update_tutorial_button];
+}
+
+-(void)update_tutorial_button {
+	CCSprite *normalimg = (CCSprite*)((CCMenuItemSprite*)do_tutorial).normalImage;
+	CCSprite *selectedimg = (CCSprite*)((CCMenuItemSprite*)do_tutorial).selectedImage;
+	
+	if ([GameMain GET_DO_TUTORIAL]) {
+		[do_tutorial_label setString:@"Tutorial On"];
+		[normalimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_checkbutton"]];
+		[selectedimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_checkbutton"]];
+		
+	} else {
+		[do_tutorial_label setString:@"Tutorial Off"];
+		[normalimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_xbutton"]];
+		[selectedimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_xbutton"]];
+		
+	}
 }
 
 -(void)dispatch_event:(GEvent *)e {

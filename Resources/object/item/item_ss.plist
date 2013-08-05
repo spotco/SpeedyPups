@@ -159,7 +159,7 @@
 			<false/>
 		</dict>
 		
-		<key>pickup_clock.png</key>
+		<key>pickup_clock</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -181,7 +181,7 @@
 			<false/>
 		</dict>
 		
-		<key>pickup_magnet.png</key>
+		<key>pickup_magnet</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -203,7 +203,7 @@
 			<false/>
 		</dict>
 		
-		<key>pickup_rocket.png</key>
+		<key>pickup_rocket</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -225,7 +225,7 @@
 			<false/>
 		</dict>
 		
-		<key>pickup_shield.png</key>
+		<key>pickup_shield</key>
 		<dict>
 			<key>aliases</key>
 			<array>

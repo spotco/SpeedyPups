@@ -91,7 +91,7 @@ static NSDictionary* descriptions;
 }
 
 +(int)get_uselength_for:(GameItem)gi {
-	return 100;
+	return 300;
 }
 
 @end

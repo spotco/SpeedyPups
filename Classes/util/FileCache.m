@@ -19,7 +19,9 @@ static NSMutableDictionary* files;
         }
     }
     NSDictionary *tar = [files objectForKey:file];
-    return [Common ssrect_from_dict:tar tar:idname];
+    CGRect rtv = [Common ssrect_from_dict:tar tar:idname];
+	if (rtv.size.height == 0 && rtv.size.width == 0) NSLog(@"Empty cgrect for file(%@) tar(%@)",file,idname);
+	return rtv;
 }
 
 @end

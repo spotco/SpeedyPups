@@ -237,7 +237,7 @@ bool sur = NO;
 	if (ct == 1) {
 		if ([GameMain GET_DO_TUTORIAL]) {
 			cur_set = L_TUTORIAL;
-		
+			
 		} else {
 			tutorial_ct = 0;
 			ct = 10;

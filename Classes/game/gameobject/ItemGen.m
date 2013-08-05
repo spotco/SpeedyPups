@@ -23,6 +23,8 @@
 	
 	active = YES;
 	
+	[self setScale:1.5];
+	
 	return self;
 }
 

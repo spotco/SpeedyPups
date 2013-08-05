@@ -131,10 +131,10 @@
 	
     if ([UserInventory get_upgrade_level:t] > 0) {
 		[UserInventory set_current_gameitem:t];
+		pane_anim_scale = 2;
 	}
 	
     [self update_invpane];
-	pane_anim_scale = 2;
 }
 
 -(void)open {

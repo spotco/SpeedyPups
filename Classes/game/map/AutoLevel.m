@@ -6,7 +6,7 @@
 @implementation AutoLevel
 
 #define REMOVEBUFFER 400
-#define ADDBUFFER 600
+#define ADDBUFFER 900
 
 +(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer {
     AutoLevel* a = [AutoLevel node];

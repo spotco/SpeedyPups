@@ -7,10 +7,10 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_upsidebounce"
-#define STARTING_LIVES 1
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"classic_huegcave"
+#define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -30,8 +30,6 @@
 	-husky -- longer duration dash
 	-lab -- double dash (set cur_airjump_count to 2)
  
- 
- -skippable tutorial and worlds
  -buy item sound + anim
  **/
 
@@ -70,7 +68,6 @@
  
  Stretch goal:
  tutorial jump swipe and jump inair
- lab background higher
  credits screen after boss
  cloud cape flying minigame
  2nd and 3rd reskin world
@@ -91,11 +88,11 @@
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	//[UserInventory add_bones:1000];
+	//[UserInventory add_bones:10000];
 	
 	//[GameMain start_testlevel];
-    [GameMain start_game_autolevel];
-    //[GameMain start_menu];
+	// [GameMain start_game_autolevel];
+    [GameMain start_menu];
     
 }
 

@@ -140,7 +140,7 @@
 -(void)reset {
     [super reset];
     [self setPosition:starting_pos];
-    [self animmode_normal];
+    [self animmode_angry];
     busted = NO;
 	bodyimg.rotation = 0;
 }

@@ -48,7 +48,7 @@
 											  scrollspd_x:0.4
 											  scrollspd_y:0.06]
 											  set_clamp_y_min:0
-											  max:-150]];
+											  max:-50]];
     }
     
     return a;

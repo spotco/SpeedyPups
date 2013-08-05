@@ -318,7 +318,10 @@
         [self push_added_particles];
         if (player.position.x < player_starting_pos.x) {
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
-            [player setPosition:ccp(player.position.x+10*[Common get_dt_Scale],player_starting_pos.y)];
+            [player setPosition:ccp(
+				MIN(player_starting_pos.x,player.position.x+10*[Common get_dt_Scale]),
+				player_starting_pos.y
+			)];
         } else {
             player.position = ccp(player_starting_pos.x,player.position.y);
             [player do_stand_anim];

@@ -200,8 +200,9 @@ static float avg_y;
     Vec3D calc_up = [VecLib cross:[VecLib Z_VEC] with:cur_tangent_vec];
     calc_up = [VecLib scale:calc_up by:2];
     player.position = [VecLib transform_pt:player.position by:calc_up];
-    
-    
+	
+    combined.x = SIG(combined.x)*MIN(14,ABS(combined.x));
+	combined.y = SIG(combined.y)*MIN(14,ABS(combined.y));
     //combined.x = MAX(tangent.x,combined.x);
     
     player.vx = combined.x;
