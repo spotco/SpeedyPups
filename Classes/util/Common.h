@@ -121,6 +121,7 @@ float CGPointDist(CGPoint a,CGPoint b);
 
 +(void)set_dt:(ccTime)dt;
 +(float)get_dt_Scale;
++(void)unset_dt;
 
 +(CCSprite*)get_load_scr;
 +(CGSize)SCREEN;

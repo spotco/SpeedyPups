@@ -89,9 +89,6 @@ static const float FADECTR_MAX = 10;
         [self set_opacity_objset:visible_set tar:255];
         fadectr = FADECTR_MAX;
         
-    } else if (e.type == GEventType_GAME_RESET) {
-        //dont lab bg fade out when reset
-        
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
         [self set_day_night_color:e.i1];
 		if ([BGTimeManager get_global_time] == MODE_NIGHT) {

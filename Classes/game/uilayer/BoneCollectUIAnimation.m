@@ -1,8 +1,6 @@
 
 #import "BoneCollectUIAnimation.h"
 
-#define CTMAX 50
-
 @implementation BoneCollectUIAnimation
 
 +(BoneCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
@@ -16,7 +14,13 @@
     start = tstart;
     end = tend;
     [self setPosition:start];
-    ct = CTMAX;
+	[self set_ctmax:50];
+}
+
+-(id)set_ctmax:(int)ctm {
+	CTMAX = ctm;
+	ct = CTMAX;
+	return self;
 }
 
 -(void)update {
@@ -32,7 +36,7 @@
         tarscale = 2*ct/35.0;
     }
     [self setScale:tarscale];    
-    ct--;
+    ct-=[Common get_dt_Scale];
 }
 
 - (void)setOpacity:(GLubyte)opacity {

@@ -85,6 +85,11 @@ static SEL selSortMethod = NULL;
     return self;
 }
 
+-(CCSprite*)scale:(float)sc {
+	[self setScale:sc];
+	return self;
+}
+
 +(id)spriteWithTexture:(CCTexture2D*)texture
 {
 	return [[[self alloc] initWithTexture:texture] autorelease];

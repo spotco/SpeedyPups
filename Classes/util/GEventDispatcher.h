@@ -5,25 +5,24 @@ typedef enum {
     GEventType_PAUSE,
     GEventType_UNPAUSE,
     GEventType_QUIT,
-    GEventType_UIANIM_TICK, //4
+    GEventType_UIANIM_TICK, 
 	
-    GEventType_GAME_TICK,
+    GEventType_GAME_TICK, //5
     GEventType_COLLECT_BONE,
     GEventType_PLAYER_DIE,
     GEventType_ASK_CONTINUE,
     GEventType_PLAYAGAIN_AUTOLEVEL, //9
 	
-    GEventType_GAME_RESET,
     GEventType_DASH,
     GEventType_JUMP,
     GEventType_END_TUTORIAL,
-    GEventType_DAY_NIGHT_UPDATE, //14
+    GEventType_DAY_NIGHT_UPDATE, //13
 	
     GEventType_SHOW_ENEMYAPPROACH_WARNING,
     GEventType_ENTER_LABAREA,
     GEventType_EXIT_TO_DEFAULTAREA,
     GEventType_START_INTIAL_ANIM,
-    GEventType_USE_ITEM, //19
+    GEventType_USE_ITEM, //18
 	GEVentType_PICKUP_ITEM,
 	
     GEventType_ITEM_DURATION_PCT,

@@ -135,6 +135,7 @@
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
     current_continue_cost = DEFAULT_CONTINUE_COST;
     player_starting_pos = player_start_pt;
+	[Common unset_dt];
 }
 
 -(void)set_challenge:(ChallengeInfo*)info {
@@ -262,7 +263,7 @@
 	
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
-        time+=[Common get_dt_Scale];
+		time+=[Common get_dt_Scale];
 		
 		refresh_viewbox_cache = YES;
 		[GameControlImplementation control_update_player:self];
@@ -397,7 +398,6 @@
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
             [self ask_continue];
         } else {
-            [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_RESET]];
             [self player_reset];
             [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         }
@@ -407,7 +407,6 @@
         
     } else if (e.type == GEventType_CONTINUE_GAME) {
         lives = default_starting_lives;
-        [GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_RESET]];
         [self player_reset];
         [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         

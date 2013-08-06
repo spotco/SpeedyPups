@@ -70,10 +70,11 @@ static ccTime last_sdt = 1;
 	if (ABS(sdt-last_sdt) > 0.01) {
 		sdt = last_sdt + 0.01 * SIG(sdt-last_sdt);
 	}
-	
-	
 }
 
++(void)unset_dt {
+	has_set_sdt = NO;
+}
 
 +(float)get_dt_Scale {
 	if ([GameMain GET_DO_CONSTANT_DT] || [CCDirectorDisplayLink is_framemodct_modified]) return 1;

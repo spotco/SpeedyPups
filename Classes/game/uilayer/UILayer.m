@@ -226,6 +226,7 @@
     [game_engine_layer incr_current_continue_cost];
     [self set_this_visible:ingameui];
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_CONTINUE_GAME]];
+	[Common unset_dt];
 }
 
 -(void)to_gameover_menu {

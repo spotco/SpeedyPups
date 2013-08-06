@@ -49,7 +49,9 @@ static NSMutableArray* event_queue;
 +(void)dispatch_events {
     [GEventDispatcher lazy_alloc];
     if ([event_queue count]==0){return;}
-    
+	
+	//[self print_queue_events];
+	
     for(int ei = 0; ei < [event_queue count]; ei++) {
         GEvent* e = [event_queue objectAtIndex:ei];
         
@@ -63,9 +65,13 @@ static NSMutableArray* event_queue;
 }
 
 +(void)print_queue_events {
-	for (GEvent *e in event_queue) {
-		NSLog(@"event:%d",e.type);
+	NSMutableString *evts = [NSMutableString stringWithFormat:@"events["];
+	for(int ei = 0; ei < [event_queue count]; ei++) {
+		GEvent* e = [event_queue objectAtIndex:ei];
+		[evts appendString:[NSString stringWithFormat:@"%d ",e.type]];
 	}
+	[evts appendString:@"]"];
+	NSLog(@"%@",evts);
 }
 
 +(void)remove_all_events {
