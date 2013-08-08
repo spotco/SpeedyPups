@@ -21,6 +21,26 @@
     ccColor4B c = {50,50,50,220};
     CGSize s = [[UIScreen mainScreen] bounds].size;
     CCNode *complete_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
+	
+	
+	left_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	right_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	bg_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
+	[right_curtain setScaleX:-1];
+	[bg_curtain setAnchorPoint:ccp(0.5,0)];
+	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	
+	[self set_curtain_anim_positions];
+	
+	[complete_ui addChild:bg_curtain];
+	[complete_ui addChild:right_curtain];
+	[complete_ui addChild:left_curtain];
+	
+	
     complete_ui.anchorPoint = ccp(0,0);
     [complete_ui setPosition:ccp(0,0)];
     
@@ -114,7 +134,26 @@
 	particles = [NSMutableArray array];
     particles_tba = [NSMutableArray array];
 	
+	[self start_update];
+	
     return self;
+}
+
+-(void)set_curtain_anim_positions {
+	[left_curtain setPosition:ccp(-left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+    [right_curtain setPosition:ccp([Common SCREEN].width + left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,[Common SCREEN].height)];
+	
+	left_curtain_tpos = ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	right_curtain_tpos = ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
+}
+
+-(void)setVisible:(BOOL)visible {
+	if (visible) {
+		[self set_curtain_anim_positions];
+	}
+	[super setVisible:visible];
 }
 
 -(void)update_passed:(BOOL)p info:(ChallengeInfo*)ci bones:(NSString*)bones time:(NSString*)time secrets:(NSString*)secrets {
@@ -146,26 +185,39 @@
 	return sto_passed;
 }
 
--(void)next {
-	if (curchallenge+1<[ChallengeRecord get_num_challenges])
-		[(UILayer*)[self parent] run_cb:[GameModeCallback cons_mode:GameMode_CHALLENGE n:curchallenge+1]];
-}
-
--(void)retry {
-    [(UILayer*)[self parent] retry];
-}
-
--(void)exit_to_menu {
-    [(UILayer*)[self parent] exit_to_menu];
-}
-
-static int delayfwct;
--(void)start_fireworks_effect {
+-(void)start_update {
 	if (!has_scheduler) {
 		[self schedule:@selector(update_particles)];
 		has_scheduler = YES;
 	}
-	
+}
+
+-(void)end_update {
+	if (has_scheduler) {
+		[self unschedule:@selector(update_particles)];
+		has_scheduler = NO;
+	}
+}
+
+-(void)next {
+	if (curchallenge+1<[ChallengeRecord get_num_challenges]) {
+		[self end_update];
+		[(UILayer*)[self parent] run_cb:[GameModeCallback cons_mode:GameMode_CHALLENGE n:curchallenge+1]];
+	}
+}
+
+-(void)retry {
+	[self end_update];
+    [(UILayer*)[self parent] retry];
+}
+
+-(void)exit_to_menu {
+	[self end_update];
+    [(UILayer*)[self parent] exit_to_menu];
+}
+
+static int delayfwct;
+-(void)start_fireworks_effect {	
 	[self add_firework_at_xpct:0.15];
 	[self add_firework_at_xpct:0.85];
 	delayfwct = 0;
@@ -192,6 +244,22 @@ static int delayfwct;
 }
 -(void)update_particles {
 	delayfwct++;
+	
+	[left_curtain setPosition:ccp(
+		left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
+		left_curtain.position.y + (left_curtain_tpos.y - left_curtain.position.y)/4.0
+	)];
+	[right_curtain setPosition:ccp(
+		right_curtain.position.x + (right_curtain_tpos.x - right_curtain.position.x)/4.0,
+		right_curtain.position.y + (right_curtain_tpos.y - right_curtain.position.y)/4.0
+	)];
+	[bg_curtain setPosition:ccp(
+		bg_curtain.position.x + (bg_curtain_tpos.x - bg_curtain.position.x)/4.0,
+		bg_curtain.position.y + (bg_curtain_tpos.y - bg_curtain.position.y)/4.0
+	)];
+	
+	if (!sto_passed) return;
+	
 	if (delayfwct==10) {
 		[self add_firework_at_xpct:0.15];
 	} else if (delayfwct == 17) {
@@ -211,10 +279,6 @@ static int delayfwct;
         }
     }
     [particles removeObjectsInArray:toremove];
-	if (particles.count == 0) {
-		[self unschedule:@selector(update_particles)];
-		has_scheduler = NO;
-	}
 }
 
 @end

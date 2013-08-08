@@ -9,8 +9,6 @@
         {"can_fall": true, "x2": 9850, "ground": "open", "ndir": "left", "type": "line", "y1": 1147.1, "hei": 500, "y2": 1148, "x1": 8802.9}
     ],
     "connect_pts": {"y1": 1149, "x2": 9850, "y2": 1148, "x1": 47},
-    "assert_links": 4,
-    "start_x": 402,
     "objects": [
         {"type": "checkpoint", "x": 501.5, "y": 1148.6, "label": "0"},
         {"type": "tutorial", "x": 700, "y": 1298.6, "label": "rockbreak"},
@@ -87,7 +85,11 @@
         {"type": "ground_detail", "x": 9039, "img": 26, "y": 1149, "label": "(48)gd_img:26"},
         {"type": "ground_detail", "x": 9077, "img": 23, "y": 1148, "label": "(49)gd_img:23"},
         {"type": "1upobject", "x": 3283, "y": 1362, "label": "3"},
-        {"type": "1upobject", "x": 6450, "y": 1350, "label": "5"}
+        {"type": "1upobject", "x": 6115, "y": 1349, "label": "5"},
+        {"type": "dogbone", "x": 6404, "bid": 22, "y": 1350, "label": "BID:22"},
+        {"type": "dogbone", "x": 6499, "bid": 23, "y": 1299, "label": "BID:23"}
     ],
+    "assert_links": 4,
+    "start_x": 402,
     "start_y": 1249
 }

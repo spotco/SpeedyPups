@@ -15,6 +15,9 @@
 	BOOL has_scheduler;
 	NSMutableArray *particles;
 	NSMutableArray *particles_tba;
+	
+	CCSprite *left_curtain, *right_curtain, *bg_curtain;
+	CGPoint left_curtain_tpos, right_curtain_tpos, bg_curtain_tpos;
 }
 
 +(ChallengeEndUI*)cons;

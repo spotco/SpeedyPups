@@ -333,3 +333,14 @@ typedef enum {
 -(CCSprite*)scale:(float)sc;
 
 @end
+
+/** Restricts (clips) drawing of all children to a specific region. */
+@interface ClippingNode : CCNode
+{
+	CGRect clippingRegionInNodeCoordinates;
+	CGRect clippingRegion;
+}
+
+@property (nonatomic) CGRect clippingRegion;
+
+@end
