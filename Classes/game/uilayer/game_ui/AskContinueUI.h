@@ -9,6 +9,7 @@ typedef enum {
 } AskContinueUI_MODE;
 
 @interface AskContinueUI : CCSprite {
+	CCNode *ask_continue_ui;
 	CCMenu *yesnomenu;
 	CCSprite *playericon;
 	int player_anim_ct;
@@ -30,6 +31,9 @@ typedef enum {
 	CCLabelTTF *continue_price;
 	CCLabelTTF *total_disp;
 	NSMutableArray *bone_anims;
+	
+	CCSprite *left_curtain, *right_curtain, *bg_curtain;
+	CGPoint left_curtain_tpos, right_curtain_tpos, bg_curtain_tpos;
 }
 
 +(AskContinueUI*)cons;

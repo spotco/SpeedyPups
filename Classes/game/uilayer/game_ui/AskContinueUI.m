@@ -20,12 +20,28 @@
     
     ccColor4B c = {50,50,50,220};
     CGSize s = [[UIScreen mainScreen] bounds].size;
-    CCNode *ask_continue_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
-    
+    ask_continue_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
+	
 	playericon = [[CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]]
 										 rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]]
 				  pos:[Common screen_pctwid:0.5 pcthei:0.4]];
     [ask_continue_ui addChild:playericon];
+	
+	left_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	right_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	bg_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
+	[right_curtain setScaleX:-1];
+	[bg_curtain setAnchorPoint:ccp(0.5,0)];
+	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	[self set_curtain_animstart_positions];
+	
+	[ask_continue_ui addChild:bg_curtain];
+	[ask_continue_ui addChild:right_curtain];
+	[ask_continue_ui addChild:left_curtain];
     
     [ask_continue_ui addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
                                                       rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"spotlight"]]
@@ -92,8 +108,18 @@
 	 
     [self addChild:ask_continue_ui];
 	bone_anims = [NSMutableArray array];
-    
+	
     return self;
+}
+
+-(void)set_curtain_animstart_positions {
+	[left_curtain setPosition:ccp(-left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+    [right_curtain setPosition:ccp([Common SCREEN].width + left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,[Common SCREEN].height)];
+	
+	left_curtain_tpos = ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	right_curtain_tpos = ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
 }
 
 
@@ -104,6 +130,7 @@ static BGM_GROUP prev_group;
 	prev_group = [AudioManager get_cur_group];
 	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
 	
+	[self set_curtain_animstart_positions];
     countdown_ct = 10;
 	mod_ct = 1;
 	countdown_disp_scale = 3;
@@ -128,84 +155,33 @@ static BGM_GROUP prev_group;
 	[Common set_dt:delta];
 	mod_ct++;
 	
+	[left_curtain setPosition:ccp(
+		left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
+		left_curtain.position.y + (left_curtain_tpos.y - left_curtain.position.y)/4.0
+	)];
+	[right_curtain setPosition:ccp(
+		right_curtain.position.x + (right_curtain_tpos.x - right_curtain.position.x)/4.0,
+		right_curtain.position.y + (right_curtain_tpos.y - right_curtain.position.y)/4.0
+	)];
+	[bg_curtain setPosition:ccp(
+		bg_curtain.position.x + (bg_curtain_tpos.x - bg_curtain.position.x)/4.0,
+		bg_curtain.position.y + (bg_curtain_tpos.y - bg_curtain.position.y)/4.0
+	)];
+	
 	if (curmode == AskContinueUI_COUNTDOWN) {
 		[self update_countdown];
 		
 	} else if (curmode == AskContinueUI_YES_TRANSFER_MONEY) {
-		
-		NSMutableArray *toremove = [NSMutableArray array];
-		for (UIIngameAnimation *i in bone_anims) {
-			[i update];
-			if (i.ct <= 0) {
-				[self removeChild:i cleanup:YES];
-				[toremove addObject:i];
-			}
-		}
-		[bone_anims removeObjectsInArray:toremove];
-		[toremove removeAllObjects];
-		
-		if (bone_anims.count != 0) {
-			if (mod_ct % 3 == 0) {
-				player_anim_ct++;
-				if (player_anim_ct%2==0) {
-					[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]];
-				} else {
-					[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_2"]];
-				}
-			}
-		}
-		
-		if (continue_cost > 0) {
-			int neutotal = total_disp.string.integerValue-countdown_ct;
-			int neuprix = continue_price.string.integerValue+countdown_ct;
-			continue_cost-=countdown_ct;
-			if (mod_ct%10==0) countdown_ct *= 2;
-			[continue_price setString:[NSString stringWithFormat:@"%d",neuprix]];
-			[total_disp setString:[NSString stringWithFormat:@"%d",neutotal]];
-			
-			if (mod_ct%2==0) {
-				BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
-																				 end:CGPointAdd(playericon.position,ccp(-30,15))];
-				[bone_anims addObject:neuanim];
-				[self addChild:neuanim];
-			}
-			
-		} else if (bone_anims.count != 0) {
-			[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
-			[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
-			
-		} else {
-			[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]];
-			[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
-			[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
-			continue_cost = 10; //used as pause ct now
-			[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
-			curmode = AskContinueUI_YES_RUNOUT;
-			
-		}
+		[self update_transfer_bones];
 		
 	} else if (curmode == AskContinueUI_YES_RUNOUT) {
-		if (continue_cost > 0) {
-			continue_cost--;
-			
-		} else if (playericon.position.x < [Common SCREEN].width) {
-			playericon.position = CGPointAdd(playericon.position, ccp(15,0));
-			if (mod_ct % 2 == 0) {
-				player_anim_ct = (player_anim_ct + 1) % 4;
-				[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character]
-																	 idname:[NSString stringWithFormat:@"run_%d",player_anim_ct]]];
-			}
-			
-		} else {
-			[AudioManager playbgm_imm:prev_group];
-			if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
-				[AudioManager transition_mode2];
-			}
-			[(UILayer*)[self parent] continue_game];
-			[self stop_countdown];
-			
-		}
+		[self update_runout];
 	
+	} else if (curmode == AskContinueUI_TRANSITION_TO_GAMEOVER) {
+		if ([Common fuzzyeq_a:bg_curtain.position.y b:bg_curtain_tpos.y delta:1]) {
+			[self to_gameover_screen];
+		}
+		
 	}
 }
 
@@ -214,8 +190,14 @@ static BGM_GROUP prev_group;
 }
 
 -(void)continue_no {
-    [self stop_countdown];
-    [self to_gameover_screen];
+	curmode = AskContinueUI_TRANSITION_TO_GAMEOVER;
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,0);
+	for (CCNode *i in ask_continue_ui.children) {
+		if (i != left_curtain && i != right_curtain && i != bg_curtain) {
+			[i setVisible:NO];
+		}
+	}
+	
 }
 
 -(void)continue_yes {
@@ -265,14 +247,90 @@ static BGM_GROUP prev_group;
 		[countdown_disp setString:[NSString stringWithFormat:@"%d",countdown_ct]];
 		countdown_disp_scale = 3;
 		if (countdown_ct <= 0) {
-			[self stop_countdown];
-			[self to_gameover_screen];
+			[self continue_no];
 			return;
 		}
 	}
 }
 
+-(void)update_transfer_bones {
+	NSMutableArray *toremove = [NSMutableArray array];
+	for (UIIngameAnimation *i in bone_anims) {
+		[i update];
+		if (i.ct <= 0) {
+			[self removeChild:i cleanup:YES];
+			[toremove addObject:i];
+		}
+	}
+	[bone_anims removeObjectsInArray:toremove];
+	[toremove removeAllObjects];
+	
+	if (bone_anims.count != 0) {
+		if (mod_ct % 3 == 0) {
+			player_anim_ct++;
+			if (player_anim_ct%2==0) {
+				[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]];
+			} else {
+				[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_2"]];
+			}
+		}
+	}
+	
+	if (continue_cost > 0) {
+		int neutotal = total_disp.string.integerValue-countdown_ct;
+		int neuprix = continue_price.string.integerValue+countdown_ct;
+		continue_cost-=countdown_ct;
+		if (mod_ct%10==0) countdown_ct *= 2;
+		[continue_price setString:[NSString stringWithFormat:@"%d",neuprix]];
+		[total_disp setString:[NSString stringWithFormat:@"%d",neutotal]];
+		
+		if (mod_ct%2==0) {
+			BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
+																			 end:CGPointAdd(playericon.position,ccp(-30,15))];
+			[bone_anims addObject:neuanim];
+			[self addChild:neuanim];
+		}
+		
+	} else if (bone_anims.count != 0) {
+		[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
+		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+		
+	} else {
+		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]];
+		[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
+		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+		continue_cost = 10; //used as pause ct now
+		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
+		curmode = AskContinueUI_YES_RUNOUT;
+		
+	}
+}
+
+-(void)update_runout {
+	if (continue_cost > 0) {
+		continue_cost--;
+		
+	} else if (playericon.position.x < [Common SCREEN].width) {
+		playericon.position = CGPointAdd(playericon.position, ccp(15,0));
+		if (mod_ct % 2 == 0) {
+			player_anim_ct = (player_anim_ct + 1) % 4;
+			[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character]
+																 idname:[NSString stringWithFormat:@"run_%d",player_anim_ct]]];
+		}
+		
+	} else {
+		[AudioManager playbgm_imm:prev_group];
+		if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
+			[AudioManager transition_mode2];
+		}
+		[(UILayer*)[self parent] continue_game];
+		[self stop_countdown];
+		
+	}
+}
+
 -(void)to_gameover_screen {
+	[self stop_countdown];
     [(UILayer*)[self parent] to_gameover_menu];
 }
 

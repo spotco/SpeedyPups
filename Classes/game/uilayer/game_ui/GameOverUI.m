@@ -22,6 +22,24 @@
     CCNode *gameover_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
     gameover_ui.anchorPoint = ccp(0,0);
     [gameover_ui setPosition:ccp(0,0)];
+	
+	
+	CCSprite *left_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	CCSprite *right_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	CCSprite *bg_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+												  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
+	[right_curtain setScaleX:-1];
+	[bg_curtain setAnchorPoint:ccp(0.5,0)];
+	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	[left_curtain setPosition:ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0)];
+	[right_curtain setPosition:ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0)];
+	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,0)];
+	[gameover_ui addChild:bg_curtain];
+	[gameover_ui addChild:left_curtain];
+	[gameover_ui addChild:right_curtain];
     
     [gameover_ui addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
                                                   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"gameover"]]
