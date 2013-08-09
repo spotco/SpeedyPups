@@ -575,6 +575,7 @@
 		7ECFADF0174222D4009EEBB0 /* classic_nubcave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7ECFADEF174222D4009EEBB0 /* classic_nubcave.map */; };
 		7ECFADF2174228D6009EEBB0 /* easy_curvywater.map in Resources */ = {isa = PBXBuildFile; fileRef = 7ECFADF1174228D6009EEBB0 /* easy_curvywater.map */; };
 		7ECFADF417422D1F009EEBB0 /* easy_simplespikes.map in Resources */ = {isa = PBXBuildFile; fileRef = 7ECFADF317422D1F009EEBB0 /* easy_simplespikes.map */; };
+		7ED0F8BF17B4F981003D0014 /* GameEngineStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0F8BE17B4F981003D0014 /* GameEngineStats.m */; };
 		7ED28FA717124DBD0037B916 /* IngameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FA617124DBD0037B916 /* IngameUI.m */; };
 		7ED28FAA17124DDE0037B916 /* PauseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FA917124DDE0037B916 /* PauseUI.m */; };
 		7ED28FAD17124DF30037B916 /* AskContinueUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FAC17124DF30037B916 /* AskContinueUI.m */; };
@@ -1368,6 +1369,8 @@
 		7ECFADEF174222D4009EEBB0 /* classic_nubcave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_nubcave.map; sourceTree = "<group>"; };
 		7ECFADF1174228D6009EEBB0 /* easy_curvywater.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_curvywater.map; sourceTree = "<group>"; };
 		7ECFADF317422D1F009EEBB0 /* easy_simplespikes.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_simplespikes.map; sourceTree = "<group>"; };
+		7ED0F8BD17B4F981003D0014 /* GameEngineStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineStats.h; sourceTree = "<group>"; };
+		7ED0F8BE17B4F981003D0014 /* GameEngineStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineStats.m; sourceTree = "<group>"; };
 		7ED28FA517124DBC0037B916 /* IngameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IngameUI.h; path = game_ui/IngameUI.h; sourceTree = "<group>"; };
 		7ED28FA617124DBD0037B916 /* IngameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IngameUI.m; path = game_ui/IngameUI.m; sourceTree = "<group>"; };
 		7ED28FA817124DDE0037B916 /* PauseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseUI.h; path = game_ui/PauseUI.h; sourceTree = "<group>"; };
@@ -2271,6 +2274,8 @@
 				7EB8B3BF16D9FC0900F58961 /* GameRenderImplementation.m */,
 				7EB8B3C016D9FC0900F58961 /* PhysicsEnabledObject.h */,
 				7EB8B3C116D9FC0900F58961 /* PhysicsEnabledObject.m */,
+				7ED0F8BD17B4F981003D0014 /* GameEngineStats.h */,
+				7ED0F8BE17B4F981003D0014 /* GameEngineStats.m */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -3692,6 +3697,7 @@
 				7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */,
 				7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */,
 				7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */,
+				7ED0F8BF17B4F981003D0014 /* GameEngineStats.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

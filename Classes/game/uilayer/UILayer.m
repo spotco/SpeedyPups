@@ -230,8 +230,9 @@
 }
 
 -(void)to_gameover_menu {
-    [gameoverui set_bones:ingameui.bones_disp.string time:ingameui.time_disp.string];
-    [self set_this_visible:gameoverui];
+    //[gameoverui set_bones:ingameui.bones_disp.string time:ingameui.time_disp.string];
+    [gameoverui set_stats:game_engine_layer];
+	[self set_this_visible:gameoverui];
 }
 
 -(void)start_initial_anim {
@@ -265,6 +266,22 @@
     [ingameui removeAllChildrenWithCleanup:YES];
     [askcontinueui removeAllChildrenWithCleanup:YES];
     [self removeAllChildrenWithCleanup:YES];
+}
+
+-(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {
+    CGPoint touch;
+    for (UITouch *t in pTouches) touch = [t locationInView:[t view]];
+	[gameoverui touch_begin:touch];
+}
+-(void) ccTouchesMoved:(NSSet *)pTouches withEvent:(UIEvent *)event {
+    CGPoint touch;
+    for (UITouch *t in pTouches) touch = [t locationInView:[t view]];
+	[gameoverui touch_move:touch];
+}
+-(void) ccTouchesEnded:(NSSet*)pTouches withEvent:(UIEvent*)event {
+    CGPoint touch;
+    for (UITouch *t in pTouches) touch = [t locationInView:[t view]];
+	[gameoverui touch_end:touch];
 }
 
 

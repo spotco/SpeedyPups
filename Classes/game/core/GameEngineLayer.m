@@ -84,10 +84,15 @@
     return g;
 }
 
+-(GameEngineStats*)get_stats {
+	return stats;
+}
+
 -(void)cons:(NSString*)map_filename lives:(int)starting_lives {
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	stats = [GameEngineStats cons];
     default_starting_lives = starting_lives;
 	
     [AudioManager playbgm_imm:BGM_GROUP_WORLD1];

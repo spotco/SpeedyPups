@@ -1079,7 +1079,7 @@ static SEL selSortMethod = NULL;
 {
 	// keep the original region coordinates in case the user wants them back unchanged
 	clippingRegionInNodeCoordinates = region;
-	self.position = clippingRegionInNodeCoordinates.origin;
+	//self.position = clippingRegionInNodeCoordinates.origin;
 	self.contentSize = clippingRegionInNodeCoordinates.size;
 	
 	CCDirector* director = [CCDirector sharedDirector];
@@ -1115,6 +1115,8 @@ static SEL selSortMethod = NULL;
 	// respect scaling
 	clippingRegion = CGRectMake(region.origin.x * scaleX_, region.origin.y * scaleY_,
 								region.size.width * scaleX_, region.size.height * scaleY_);
+	
+
 }
 
 -(void) setScale:(float)newScale
@@ -1134,7 +1136,7 @@ static SEL selSortMethod = NULL;
 {
 	glPushMatrix();
 	glEnable(GL_SCISSOR_TEST);
-	glScissor(clippingRegion.origin.x + positionInPixels_.x, clippingRegion.origin.y + positionInPixels_.y,
+	glScissor(clippingRegion.origin.x, clippingRegion.origin.y,
 			  clippingRegion.size.width, clippingRegion.size.height);
 	
 	[super visit];

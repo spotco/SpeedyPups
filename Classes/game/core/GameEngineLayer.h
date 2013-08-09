@@ -9,6 +9,7 @@
 #import "GEventDispatcher.h"
 @class BGLayer;
 @class UILayer;
+#import "GameEngineStats.h" 
 #import "Resource.h"
 #import "MapLoader.h"
 #import "GamePhysicsImplementation.h"
@@ -62,6 +63,8 @@ typedef enum {
 	BGMode cur_bg_mode;
 	
 	float follow_clamp_y_min,follow_clamp_y_max;
+	
+	GameEngineStats *stats;
 }
 
 
@@ -104,5 +107,7 @@ typedef enum {
 -(void)frame_set_follow_clamp_y_min:(float)min max:(float)max;
 
 -(void)setColor:(ccColor3B)color;
+
+-(GameEngineStats*)get_stats;
 
 @end
