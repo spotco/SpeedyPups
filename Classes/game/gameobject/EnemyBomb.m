@@ -86,6 +86,7 @@
             
             [AudioManager playsfx:SFX_EXPLOSION];
             [g remove_gameobject:self];
+            [g.get_stats increment:GEStat_ROBOT];
         }
         
     } else if ([self has_hit_ground:g]) {

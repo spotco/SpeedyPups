@@ -1,5 +1,6 @@
 #import "GameEngineStats.h"
 #import "GameEngineLayer.h" 
+#import "UICommon.h" 
 
 @implementation GameEngineStats
 
@@ -26,6 +27,18 @@ NSValue* NSV(GEStat t) { return [NSValue value:&t withObjCType:@encode(GEStat)];
 }
 
 -(NSString*)get_disp_str_for_stat:(GEStat)type g:(GameEngineLayer *)g {
+    if (type == GEStat_TIME) {
+        return [UICommon parse_gameengine_time:g.get_time];
+        
+    } else if (type == GEStat_BONES_COLLECTED) {
+        return [NSString stringWithFormat:@"%d",g.get_num_bones];
+        
+    } else if (type == GEStat_DISTANCE) {
+        return [NSString stringWithFormat:@"%.1fm",(g.player.position.x/100)];
+        
+    }
+    
+    
 	NSValue *kv = NSV(type);
 	if ([stats objectForKey:kv]) {
 		NSNumber *v = stats[kv];

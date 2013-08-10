@@ -1,5 +1,6 @@
 #import "Water.h"
 #import "AudioManager.h" 
+#import "GameEngineLayer.h" 
 
 #define ANIM_SPEED 0.0025
 #define OFFSET_V 10
@@ -49,12 +50,14 @@
         activated = YES;
         [player add_effect:[SplashEffect cons_from:[player get_default_params] time:40]];
         [AudioManager playsfx:SFX_SPLASH];
+        [g.get_stats increment:GEStat_DROWNED];
         
     } else if ([player get_current_params].noclip &&
                [player get_current_params].noclip < 2 &&
                [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect_ignore_noclip]]) {
         activated = YES;
         [player add_effect_suppress_current_end_effect:[SplashEffect cons_from:[player get_default_params] time:40]];
+        [g.get_stats increment:GEStat_DROWNED];
         
     }
     

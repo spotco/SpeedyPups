@@ -232,6 +232,7 @@
 
 -(void)check_falloff {
     if (![Common hitrect_touch:[self get_world_bounds] b:[player get_hit_rect]]) {
+        [stats increment:GEStat_FALLING];
         [GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
 	}
 }
@@ -397,6 +398,7 @@
         current_mode = GameEngineLayerMode_GAMEPLAY;
         
     } else if (e.type == GEventType_PLAYER_DIE) {
+        [stats increment:GEStat_DEATHS];
         if (![player has_heart]) {
             lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
         }

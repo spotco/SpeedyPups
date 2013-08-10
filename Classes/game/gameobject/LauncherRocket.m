@@ -115,6 +115,7 @@
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
             [DazedParticle cons_effect:g tar:player time:40];
             [self remove_from:g];
+            [g.get_stats increment:GEStat_ROBOT];
             return;
         }
         

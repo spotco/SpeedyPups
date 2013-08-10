@@ -89,6 +89,7 @@
 
 -(void)shift_queue_into_current { //move top map in queue to current
     if ([queued_sections count] == 0) {
+        [tglayer.get_stats increment:GEStat_SECTIONS];
         [self load_into_queue:[cur_state get_level]];
     }
     MapSection *m = [queued_sections objectAtIndex:0];

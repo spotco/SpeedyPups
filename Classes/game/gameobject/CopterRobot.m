@@ -110,6 +110,7 @@ static const int DEFAULT_HP = 4;
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
             [DazedParticle cons_effect:g tar:player time:40];
             [AudioManager playsfx:SFX_HIT];
+            [g.get_stats increment:GEStat_ROBOT];
             
         }
     }

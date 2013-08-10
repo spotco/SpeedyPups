@@ -7,10 +7,10 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 10
+#define STARTING_LIVES 1
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -19,7 +19,6 @@
 
 /**
  TODO
- -fix the stats
  
  -different dogs differnt special powers
 	-corgi -- auto magnet stuff

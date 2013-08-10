@@ -95,6 +95,7 @@ static float avg_y;
     if (queue_swipe == YES && player.current_island == NULL && [player get_current_params].cur_dash_count > 0) {
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
+        [g.get_stats increment:GEStat_DASHED];
     }
     queue_swipe = NO;
     
@@ -115,6 +116,7 @@ static float avg_y;
             jump_hold_timer = JUMP_HOLD_TIME;
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
+            [g.get_stats increment:GEStat_JUMPED];
 			
         } else if ([player get_current_params].cur_airjump_count > 0) {
             [GameControlImplementation player_double_jump:player];
@@ -122,7 +124,8 @@ static float avg_y;
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
 			[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
-			
+			[g.get_stats increment:GEStat_JUMPED];
+            
         }
     }
     queue_jump = NO;
