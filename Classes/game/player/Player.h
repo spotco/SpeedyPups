@@ -23,6 +23,15 @@ typedef enum {
     player_anim_mode_FLIP = 13
 } player_anim_mode;
 
+typedef enum {
+    CharacterPower_AUTOMAGNET,
+    CharacterPower_HIGHERJUMP,
+    CharacterPower_SLOWFALL,
+    CharacterPower_TRIPLEJUMP,
+    CharacterPower_LONGDASH,
+    CharacterPower_DOUBLEDASH
+} CharacterPower;
+
 @interface Player : CCSprite <PhysicsObject> {
     CGPoint start_pt;
     PlayerEffectParams *current_params;
@@ -59,6 +68,8 @@ typedef enum {
 +(NSString*)get_character;
 +(NSString*)get_name:(NSString*)tar;
 +(NSString*)get_power_desc:(NSString*)tar;
+
++(BOOL)current_character_has_power:(CharacterPower)power;
 
 +(Player*)cons_at:(CGPoint)pt;
 -(void)cons_anim;

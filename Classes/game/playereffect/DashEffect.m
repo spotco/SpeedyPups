@@ -19,7 +19,13 @@
 }
 
 +(int)dash_effect_length {
-	return 30 * 1/[Common get_dt_Scale];
+    int rtv;
+    if ([Player current_character_has_power:CharacterPower_LONGDASH]) {
+        rtv = 45 * 1/[Common get_dt_Scale];
+    } else {
+        rtv = 30 * 1/[Common get_dt_Scale];
+    }
+	return rtv;
 }
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{

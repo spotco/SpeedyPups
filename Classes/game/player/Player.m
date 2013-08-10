@@ -6,6 +6,7 @@
 #import "MagnetItemEffect.h"
 #import "ArmorBreakEffect.h"
 #import "JumpPadParticle.h" 
+#import "DataStore.h" 
 
 
 #define IMGWID 64
@@ -19,6 +20,8 @@
 
 #define TRAIL_MIN 8
 #define TRAIL_MAX 15
+
+#define DATASTORE_KEY_CUR_CHARACTER @"cur_character"
 
 @interface NSMutableDictionary (hash_with_anim_mode)
 -(id)get:(player_anim_mode)k;
@@ -53,7 +56,7 @@
 
 /* static set player character */
 
-static NSString* CURRENT_CHARACTER = TEX_DOG_RUN_1;
+static NSString* CURRENT_CHARACTER;
 static NSDictionary* ID_TO_NAME;
 static NSDictionary* ID_TO_POWERDESC;
 
@@ -70,17 +73,44 @@ static NSDictionary* ID_TO_POWERDESC;
 	
 	ID_TO_POWERDESC = @{
 		TEX_DOG_RUN_1: @"None",
-		TEX_DOG_RUN_2: @"Dodge Bullets",
-		TEX_DOG_RUN_3: @"Dodge Bullets",
-		TEX_DOG_RUN_4: @"Dodge Bullets",
-		TEX_DOG_RUN_5: @"Dodge Bullets",
-		TEX_DOG_RUN_6: @"Dodge Bullets",
-		TEX_DOG_RUN_7: @"Dodge Bullets"
+		TEX_DOG_RUN_2: @"auto magnet",
+		TEX_DOG_RUN_3: @"higher jump",
+		TEX_DOG_RUN_4: @"slower fall",
+		TEX_DOG_RUN_5: @"triple jump",
+		TEX_DOG_RUN_6: @"longer dash",
+		TEX_DOG_RUN_7: @"double dash"
 	};
+    
+    CURRENT_CHARACTER = [DataStore get_str_for_key:DATASTORE_KEY_CUR_CHARACTER];
+    if (CURRENT_CHARACTER == NULL) CURRENT_CHARACTER = TEX_DOG_RUN_1;
+}
+
++(BOOL)current_character_has_power:(CharacterPower)power {
+    if (power == CharacterPower_AUTOMAGNET) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_2];
+        
+    } else if (power == CharacterPower_HIGHERJUMP) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_3];
+        
+    } else if (power == CharacterPower_SLOWFALL) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_4];
+        
+    } else if (power == CharacterPower_TRIPLEJUMP) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_5];
+        
+    } else if (power == CharacterPower_LONGDASH) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_6];
+        
+    } else if (power == CharacterPower_DOUBLEDASH) {
+        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_7];
+        
+    }
+    return NO;
 }
 
 +(void)set_character:(NSString*)tar {
     CURRENT_CHARACTER = tar;
+    [DataStore set_key:DATASTORE_KEY_CUR_CHARACTER str_value:tar];
 }
 +(NSString*)get_character {
     return CURRENT_CHARACTER;
@@ -304,7 +334,7 @@ static NSDictionary* ID_TO_POWERDESC;
 -(int)get_magnet_rad {
     if (new_magnetrad_ct > 0) {
         return new_magnetrad;
-    } else if (dashing) {
+    } else if (dashing || [Player current_character_has_power:CharacterPower_AUTOMAGNET]) {
         return DEFAULT_DASH_MAGNET_RAD;
     } else {
         return 20;

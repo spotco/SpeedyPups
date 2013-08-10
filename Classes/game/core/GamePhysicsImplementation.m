@@ -143,7 +143,12 @@
 +(CGPoint)player_free_fall:(id<PhysicsObject>)player islands:(NSMutableArray*)islands {
     float GRAVITY = [player get_current_params].cur_gravity;
     if (player.floating) {
-        GRAVITY = GRAVITY * 0.4;
+        if ([Player current_character_has_power:CharacterPower_SLOWFALL]){
+            GRAVITY = GRAVITY * 0.2;
+        } else {
+            GRAVITY = GRAVITY * 0.4;
+        }
+        
     }
     player.up_vec = [VecLib cons_x:0 y:1 z:0];
     

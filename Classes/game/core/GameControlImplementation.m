@@ -6,6 +6,7 @@
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
+#define HIGHER_JUMP_POWER 11.5
 #define JUMP_FLOAT_SCALE 1
 
 @implementation GameControlImplementation
@@ -92,7 +93,7 @@ static float avg_y;
         [[player get_current_params] add_airjump_count];
     }
     
-    if (queue_swipe == YES && player.current_island == NULL && [player get_current_params].cur_dash_count > 0) {
+    if (queue_swipe == YES && player.current_island == NULL && [player get_current_params].cur_dash_count > 0 && player.dashing == NO) {
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
         [g.get_stats increment:GEStat_DASHED];
@@ -113,14 +114,19 @@ static float avg_y;
 											   up:ccp([player.current_island get_normal_vecC].x,[player.current_island get_normal_vecC].y)]];
             
             [GameControlImplementation player_jump_from_island:player];
+            
             jump_hold_timer = JUMP_HOLD_TIME;
+            
+            
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
             [g.get_stats increment:GEStat_JUMPED];
 			
         } else if ([player get_current_params].cur_airjump_count > 0) {
             [GameControlImplementation player_double_jump:player];
+            
             jump_hold_timer = JUMP_HOLD_TIME;
+            
             [[player get_current_params] decr_airjump_count];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
 			[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
@@ -160,11 +166,19 @@ static float avg_y;
     [player add_effect:[DashEffect cons_from:[player get_default_params] vx:swipe_dir.x vy:swipe_dir.y]];
 }
 
+
 +(void)player_double_jump:(Player*)player {
     [AudioManager playsfx:SFX_JUMP];
     
-    player.vx += player.up_vec.x*JUMP_POWER;
-    player.vy = player.up_vec.y*JUMP_POWER;
+    if ([Player current_character_has_power:CharacterPower_HIGHERJUMP]) {
+        player.vx += player.up_vec.x*JUMP_POWER;
+        player.vy = player.up_vec.y*HIGHER_JUMP_POWER;
+        
+    } else {
+        player.vx += player.up_vec.x*JUMP_POWER;
+        player.vy = player.up_vec.y*JUMP_POWER;
+        
+    }
     player.current_swingvine = NULL;
 }
 
@@ -195,8 +209,11 @@ static float avg_y;
     }
     
     tangent = [VecLib scale:tangent by:mov_speed];
-    up = [VecLib scale:up by:JUMP_POWER];
-    
+    if ([Player current_character_has_power:CharacterPower_HIGHERJUMP]) {
+        up = [VecLib scale:up by:HIGHER_JUMP_POWER];
+    } else {
+        up = [VecLib scale:up by:JUMP_POWER];
+    }
 
     Vec3D combined = [VecLib add:up to:tangent];
     Vec3D cur_tangent_vec = [player.current_island get_tangent_vec];

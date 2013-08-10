@@ -19,10 +19,12 @@ static NSUserDefaults* store;
 
 +(void)reset_key:(NSString*)key {
     [store setObject:nil forKey:key];
+    [self force_write];
 }
 
 +(void)set_key:(NSString*)key int_value:(int)val {
     [store setInteger:val forKey:key];
+    [self force_write];
 }
 
 +(int)get_int_for_key:(NSString*)key {
@@ -31,6 +33,7 @@ static NSUserDefaults* store;
 
 +(void)set_key:(NSString*)key flt_value:(float)val {
     [store setFloat:val forKey:key];
+    [self force_write];
 }
 
 +(float)get_flt_for_key:(NSString*)key {
@@ -39,10 +42,15 @@ static NSUserDefaults* store;
 
 +(void)set_key:(NSString*)key str_value:(NSString*)val {
     [store setObject:val forKey:key];
+    [self force_write];
 }
 
 +(NSString*)get_str_for_key:(NSString*)key {
     return [store stringForKey:key];
+}
+
++(void)force_write {
+    [store synchronize];
 }
 
 

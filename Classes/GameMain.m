@@ -19,15 +19,8 @@
 
 /**
  TODO
- 
- -different dogs differnt special powers
-	-corgi -- auto magnet stuff
-	-pug -- higher jump
-	-poodle -- slower fall speed
-	-dalmation -- triple jump
-	-husky -- longer duration dash
-	-lab -- double dash (set cur_airjump_count to 2)
- 
+ -better character screen text
+ -redo brock run anim
  -buy item sound + anim
  **/
 
@@ -41,7 +34,7 @@
  -total deaths
  
  -infinite runner skip tutorial settings
- **/
+ **/    
 
 /**
  More Challenges:

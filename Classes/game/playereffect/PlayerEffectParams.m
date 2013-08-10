@@ -28,8 +28,16 @@
 }
 
 -(void)add_airjump_count {
-    cur_airjump_count = 2;
-    cur_dash_count = 1;
+    if ([Player current_character_has_power:CharacterPower_TRIPLEJUMP]) {
+        cur_airjump_count = 3;
+    } else {
+        cur_airjump_count = 2;
+    }
+    if ([Player current_character_has_power:CharacterPower_DOUBLEDASH]) {
+        cur_dash_count = 2;
+    } else {
+        cur_dash_count = 1;
+    }
 }
 
 -(void)decr_dash_count {
