@@ -10,7 +10,7 @@
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 1
+#define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -21,8 +21,7 @@
  TODO
  -buy item sound + anim
  -infinite runner skip tutorial settings
- 
- -fix corgi and poodle spin animations
+
  -
  **/
 
