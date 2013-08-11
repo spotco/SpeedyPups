@@ -110,7 +110,6 @@
     }
 }
 
-//todo -- instead have a loading scene
 +(void)run_scene:(CCScene*)s {
 	[CCDirectorDisplayLink set_framemodct:1];
     [[CCDirector sharedDirector] runningScene]?

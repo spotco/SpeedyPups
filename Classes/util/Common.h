@@ -172,4 +172,6 @@ float CGPointDist(CGPoint a,CGPoint b);
 
 +(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct;
 
++(CGPoint)y0_coord_to_0y:(CGPoint)y0;
+
 @end

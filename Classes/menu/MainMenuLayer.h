@@ -12,6 +12,9 @@
 #define MENU_SHOP_PAGE 0
 
 @interface NMenuPage : CCSprite
+-(void)touch_begin:(CGPoint)pt;
+-(void)touch_move:(CGPoint)pt;
+-(void)touch_end:(CGPoint)pt;
 @end
 
 @interface MainMenuLayer : CCLayer <GEventListener> {

@@ -4,6 +4,7 @@
 #import "ShopItemPane.h"
 #import "ShopManager.h"
 
+//deprecated, please ignore
 @implementation NMenuShopPage
 +(NMenuShopPage*)cons {
     return [NMenuShopPage node];

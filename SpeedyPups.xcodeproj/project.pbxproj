@@ -28,6 +28,7 @@
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
 		7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667C1772E85B001B03EC /* classic_manyoptredux.map */; };
 		7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667E1772F755001B03EC /* classic_totalmix.map */; };
+		7E13D7F417B83A75003F723F /* NMenuTabShopPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */; };
 		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
 		7E269C6116DA0000005F446C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6016DA0000005F446C /* Icon.png */; };
 		7E269C6816DA00E4005F446C /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6716DA00DE005F446C /* fps_images.png */; };
@@ -670,6 +671,8 @@
 		7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmorBreakEffect.m; sourceTree = "<group>"; };
 		7E10667C1772E85B001B03EC /* classic_manyoptredux.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_manyoptredux.map; sourceTree = "<group>"; };
 		7E10667E1772F755001B03EC /* classic_totalmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_totalmix.map; sourceTree = "<group>"; };
+		7E13D7F217B83A75003F723F /* NMenuTabShopPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMenuTabShopPage.h; sourceTree = "<group>"; };
+		7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMenuTabShopPage.m; sourceTree = "<group>"; };
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
 		7E17491C1706CB09004EA720 /* InventoryItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItemPane.h; sourceTree = "<group>"; };
 		7E17491D1706CB09004EA720 /* InventoryItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItemPane.m; sourceTree = "<group>"; };
@@ -1488,6 +1491,8 @@
 				7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */,
 				7E0A788916ED781D0026C418 /* NMenuShopPage.h */,
 				7E0A788A16ED781D0026C418 /* NMenuShopPage.m */,
+				7E13D7F217B83A75003F723F /* NMenuTabShopPage.h */,
+				7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */,
 			);
 			name = nmenu_pages;
 			sourceTree = "<group>";
@@ -3698,6 +3703,7 @@
 				7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */,
 				7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */,
 				7ED0F8BF17B4F981003D0014 /* GameEngineStats.m in Sources */,
+				7E13D7F417B83A75003F723F /* NMenuTabShopPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

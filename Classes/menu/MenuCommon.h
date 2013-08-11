@@ -3,6 +3,14 @@
 #import "Resource.h"
 #import "FileCache.h"
 
+@interface TouchButton : CCSprite
+
++(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect cb:(CallBack*)tcb;
+-(void)touch_begin:(CGPoint)pt;
+@property(readwrite,assign) CGRect touchrect;
+@property(readwrite,strong) CallBack* cb;
+@end
+
 @interface MenuCommon : NSObject
 
 +(CCSprite*)menu_item:(NSString*)tex id:(NSString*)tid pos:(CGPoint)pos;

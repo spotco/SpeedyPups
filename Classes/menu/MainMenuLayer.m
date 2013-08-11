@@ -3,7 +3,8 @@
 #import "NMenuPlayPage.h"
 #import "NMenuSettingsPage.h"
 #import "NMenuCharSelectPage.h"
-#import "NMenuShopPage.h"
+#import "NMenuTabShopPage.h"
+//#import "NMenuShopPage.h"
 
 #import "MainMenuInventoryLayer.h"
 
@@ -16,6 +17,9 @@
 		sprite.opacity = opacity;
 	}
 }
+-(void)touch_begin:(CGPoint)pt{}
+-(void)touch_move:(CGPoint)pt{}
+-(void)touch_end:(CGPoint)pt{}
 @end
 
 @implementation MainMenuLayer
@@ -59,7 +63,8 @@
 }
 
 -(void)add_pages {
-    [menu_pages addObject:[NMenuShopPage cons]];
+    [menu_pages addObject:[NMenuTabShopPage cons]];
+	//[menu_pages addObject:[NMenuShopPage cons]];
     [menu_pages addObject:[NMenuCharSelectPage cons]];
     [menu_pages addObject:[NMenuPlayPage cons]];
     [menu_pages addObject:[NMenuSettingsPage cons]];
@@ -111,6 +116,27 @@
 		[self exit];
 		[GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:e.i1]];
 	}
+}
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	CGPoint touch;
+    for (UITouch *t in touches) touch = [t locationInView:[t view]];
+	touch = [Common y0_coord_to_0y:touch];
+	for (NMenuPage *p in menu_pages) [p touch_begin:touch];
+}
+
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	CGPoint touch;
+    for (UITouch *t in touches) touch = [t locationInView:[t view]];
+	touch = [Common y0_coord_to_0y:touch];
+	for (NMenuPage *p in menu_pages) [p touch_move:touch];
+}
+
+-(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	CGPoint touch;
+    for (UITouch *t in touches) touch = [t locationInView:[t view]];
+	touch = [Common y0_coord_to_0y:touch];
+	for (NMenuPage *p in menu_pages) [p touch_end:touch];
 }
 
 

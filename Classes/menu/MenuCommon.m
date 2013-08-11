@@ -3,8 +3,36 @@
 #import "MainMenuLayer.h"
 #import "CharSelAnim.h"
 
-@implementation MenuCommon
+@implementation TouchButton
+@synthesize cb;
+@synthesize touchrect;
++(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb {
+	return [[TouchButton node] cons_pt:pt tex:tex texrect:texrect cb:tcb];
+}
 
+-(id)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb {
+	[self setPosition:pt];
+	[self setTexture:tex];
+	[self setTextureRect:texrect];
+	cb = tcb;
+	
+	NSLog(@"cons(%f,%f)",position_.x,position_.y);
+	touchrect = CGRectMake(positionInPixels_.x, positionInPixels_.y, rectInPixels_.size.width, rectInPixels_.size.height);
+	
+	return self;
+}
+
+-(void)touch_begin:(CGPoint)pt {
+	NSLog(@"pt:%@ rect:%@",NSStringFromCGPoint(pt),NSStringFromCGRect(touchrect));
+	if (CGRectContainsPoint(touchrect, pt)) {
+		[Common run_callback:cb];
+	}
+}
+
+@end
+
+
+@implementation MenuCommon
 +(CCSprite*)menu_item:(NSString*)tex id:(NSString*)tid pos:(CGPoint)pos {
     CCSprite *s = [CCSprite spriteWithTexture:[Resource get_tex:tex] rect:[FileCache get_cgrect_from_plist:tex idname:tid]];
     [s setPosition:pos];
