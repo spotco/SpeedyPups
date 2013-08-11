@@ -74,5 +74,5 @@
  * @warning Changing the string is as expensive as creating a new CCLabel. To obtain better performance use CCLabelAtlas
  */
 - (void) setString:(NSString*)str;
-
+-(CCLabelTTF*)anchor_pt:(CGPoint)pt;
 @end

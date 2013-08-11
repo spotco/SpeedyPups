@@ -82,21 +82,36 @@ static NSMutableArray* _anim_table;
     nav_menu = [MenuCommon cons_common_nav_menu];
     [self addChild:nav_menu];
     
+    available_disp = [CCSprite node];
+    [charselmenu addChild:available_disp];
+    [available_disp addChild:[[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.08 pcty:0.6]
+                                              color:ccc3(200,20,20)
+                                           fontsize:13
+                                                str:@"Name:"] anchor_pt:ccp(0,0.5)]];
     
-    NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaa";
-    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
-                           constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
+    [available_disp addChild:[[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.08 pcty:0.35]
+                                              color:ccc3(200,20,20)
+                                           fontsize:13
+                                                str:@"Ability:"] anchor_pt:ccp(0,0.5)]];
     
-    infodesc = [CCLabelTTF labelWithString:@""
-                                dimensions:actualSize
-                                 alignment:UITextAlignmentLeft
-                                  fontName:@"Carton Six"
-                                  fontSize:15];
-    [infodesc setColor:ccc3(0,0,0)];
-    [charselmenu addChild:infodesc];
-	[infodesc setPosition:[Common pct_of_obj:charselmenu pctx:0.5 pcty:0.45]];
-	
+    name_disp = [[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.225 pcty:0.55]
+                                 color:ccc3(0,0,0)
+                              fontsize:20
+                                    str:@"nom"] anchor_pt:ccp(0,0.5)];
+    power_disp = [[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.275 pcty:0.3]
+                                   color:ccc3(0,0,0)
+                                fontsize:20
+                                     str:@"power"] anchor_pt:ccp(0,0.5)];
+    [available_disp addChild:name_disp];
+    [available_disp addChild:power_disp];
+    
+    locked_disp = [CCSprite node];
+    [charselmenu addChild:locked_disp];
+    [locked_disp addChild:[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.5 pcty:0.4]
+                                          color:ccc3(0,0,0)
+                                       fontsize:19
+                                             str:@"unlock me at the store!"]];
+    
     for(int i = 0; i < [_anim_table count]; i++) {
         if ([_anim_table[i] isEqualToString:[Player get_character]]) {
             cur_dog = i;
@@ -136,15 +151,17 @@ static NSMutableArray* _anim_table;
     }
 	
 	if ([UserInventory get_character_unlocked:[_anim_table objectAtIndex:cur_dog]]) {
-		[infodesc setString:[NSString stringWithFormat:@"Name: %@\nAbility: %@",
-							 [Player get_name:_anim_table[cur_dog]],
-							 [Player get_power_desc:_anim_table[cur_dog]]]];
+        [available_disp setVisible:YES];
+        [locked_disp setVisible:NO];
+        [name_disp setString:[Player get_name:_anim_table[cur_dog]]];
+        [power_disp setString: [Player get_power_desc:_anim_table[cur_dog]]];
 		[dog_spr setColor:ccc3(255,255,255)];
 		
 		
 	} else {
-		[infodesc setString:@"Unlock me in the store!"];
-		[dog_spr setColor:ccc3(0,0,0)];
+        [available_disp setVisible:NO];
+        [locked_disp setVisible:YES];
+        [dog_spr setColor:ccc3(0,0,0)];
 		[select setVisible:NO];
 	}
     

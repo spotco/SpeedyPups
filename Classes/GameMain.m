@@ -6,7 +6,7 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX NO
 #define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
@@ -19,21 +19,19 @@
 
 /**
  TODO
- -better character screen text
- -redo brock run anim
  -buy item sound + anim
+ -infinite runner skip tutorial settings
+ 
+ -fix corgi and poodle spin animations
+ -
  **/
 
 /**
  Settings:
- -enable/disable sfx
- -enable/disable music
- -enable/disable tutorial levels
- -left/right/disable item slot
- -total bones collected
- -total deaths
+ -view stats
+ -enable/disable levels
  
- -infinite runner skip tutorial settings
+
  **/    
 
 /**
@@ -58,7 +56,6 @@
  
  
  Stretch goal:
- tutorial jump swipe and jump inair
  credits screen after boss
  cloud cape flying minigame
  2nd and 3rd reskin world

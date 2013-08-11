@@ -155,4 +155,9 @@
 
 	return [NSString stringWithFormat:@"<%@ = %08X | FontSize = %.1f>", [self class], self, fontSize_];
 }
+
+-(CCLabelTTF*)anchor_pt:(CGPoint)pt {
+    [self setAnchorPoint:pt];
+    return self;
+}
 @end

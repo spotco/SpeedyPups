@@ -6,7 +6,12 @@
 	CCMenuItem *select;
     int cur_dog;
     
-    CCLabelTTF *infodesc;
+    //CCLabelTTF *infodesc;
+    CCSprite *available_disp;
+    CCLabelTTF *name_disp;
+    CCLabelTTF *power_disp;
+    
+    CCSprite *locked_disp;
     
     bool kill;
 	
