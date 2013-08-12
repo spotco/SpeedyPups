@@ -118,25 +118,25 @@
 	}
 }
 
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(CGPoint)grab_gl_coord_touch:(NSSet*)touches {
 	CGPoint touch;
     for (UITouch *t in touches) touch = [t locationInView:[t view]];
-	touch = [Common y0_coord_to_0y:touch];
-	for (NMenuPage *p in menu_pages) [p touch_begin:touch];
+	return [[CCDirector sharedDirector] convertToGL:touch];
+}
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	CGPoint touch = [self grab_gl_coord_touch:touches];
+	for (NMenuPage *p in menu_pages) p.visible?[p touch_begin:touch]:0;
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	CGPoint touch;
-    for (UITouch *t in touches) touch = [t locationInView:[t view]];
-	touch = [Common y0_coord_to_0y:touch];
-	for (NMenuPage *p in menu_pages) [p touch_move:touch];
+	CGPoint touch = [self grab_gl_coord_touch:touches];
+	for (NMenuPage *p in menu_pages) p.visible?[p touch_move:touch]:0;
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	CGPoint touch;
-    for (UITouch *t in touches) touch = [t locationInView:[t view]];
-	touch = [Common y0_coord_to_0y:touch];
-	for (NMenuPage *p in menu_pages) [p touch_end:touch];
+	CGPoint touch = [self grab_gl_coord_touch:touches];
+	for (NMenuPage *p in menu_pages) p.visible?[p touch_end:touch]:0;
 }
 
 
@@ -145,7 +145,6 @@
     [self unscheduleAllSelectors];
     [self removeAllChildrenWithCleanup:YES];
     [menu_pages removeAllObjects];
-    
     [self addChild:[Common get_load_scr]];
 }
 

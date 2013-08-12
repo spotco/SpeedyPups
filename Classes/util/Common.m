@@ -390,9 +390,4 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return ccc3(a.r+(b.r-a.r)*pct,a.g+(b.g-a.g)*pct,a.b+(b.b-a.b)*pct);
 }
 
-+(CGPoint)y0_coord_to_0y:(CGPoint)y0 {
-	y0.y = [Common SCREEN].height - y0.y;
-	return y0;
-}
-
 @end

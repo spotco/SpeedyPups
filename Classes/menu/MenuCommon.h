@@ -7,7 +7,6 @@
 
 +(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect cb:(CallBack*)tcb;
 -(void)touch_begin:(CGPoint)pt;
-@property(readwrite,assign) CGRect touchrect;
 @property(readwrite,strong) CallBack* cb;
 @end
 

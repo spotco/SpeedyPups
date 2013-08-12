@@ -71,7 +71,7 @@
 										   fontsize:19
 												str:@"stats"]];
 	ClippingNode *clipper = [ClippingNode node];
-	[clipper setClippingRegion:CGRectMake(0, 0, 568, 320)];
+	//[clipper setClippingRegion:CGRectMake(0, 0, 568, 320)];
 	
 	CGPoint tarpt = [Common screen_pctwid:0.5 pcthei:0.43];
 	tarpt.x -= [info_disp_pane boundingBoxInPixels].size.width/2;

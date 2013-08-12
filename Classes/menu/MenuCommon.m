@@ -5,7 +5,6 @@
 
 @implementation TouchButton
 @synthesize cb;
-@synthesize touchrect;
 +(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb {
 	return [[TouchButton node] cons_pt:pt tex:tex texrect:texrect cb:tcb];
 }
@@ -16,17 +15,22 @@
 	[self setTextureRect:texrect];
 	cb = tcb;
 	
-	NSLog(@"cons(%f,%f)",position_.x,position_.y);
-	touchrect = CGRectMake(positionInPixels_.x, positionInPixels_.y, rectInPixels_.size.width, rectInPixels_.size.height);
 	
 	return self;
 }
 
 -(void)touch_begin:(CGPoint)pt {
-	NSLog(@"pt:%@ rect:%@",NSStringFromCGPoint(pt),NSStringFromCGRect(touchrect));
-	if (CGRectContainsPoint(touchrect, pt)) {
+	pt = [self convertToNodeSpace:pt];
+	CGRect hitrect = [self hit_rect_local];
+	if (CGRectContainsPoint(hitrect, pt)) {
 		[Common run_callback:cb];
 	}
+}
+
+-(CGRect)hit_rect_local {
+	CGRect hitrect = [self boundingBox];
+	hitrect.origin = CGPointZero;
+	return hitrect;
 }
 
 @end
