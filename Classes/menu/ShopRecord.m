@@ -15,8 +15,7 @@
 				name:(NSString*)name
 				desc:(NSString*)desc
 			   price:(int)price
-			  action:(ShopAction)action
-				 key:(id)tkey {
+				 val:(NSString*)val {
 	
 	ItemInfo *i = [[ItemInfo alloc] init];
 	i.tex = [Resource get_tex:texn];
@@ -24,10 +23,7 @@
 	i.name = name;
 	i.desc = desc;
 	i.price = price;
-	
-	i.action = action;
-	i.action_key = tkey;
-	
+	i.val = val;
 	return i;
 }
 @end
@@ -36,10 +32,10 @@
 
 +(NSArray*)get_items_for_tab:(ShopTab)t {
 	NSMutableArray *a = [NSMutableArray array];
-	if (t == ShopTab_ITEMS) [self fill_items_tab:a];
+	if (t == ShopTab_UPGRADE) [self fill_items_tab:a];
 	if (t == ShopTab_CHARACTERS) [self fill_characters_tab:a];
-	if (t == ShopTab_MISC) [self fill_misc_tab:a];
-	if (t == ShopTab_UPGRADE) [self fill_upgrade_tab:a];
+	if (t == ShopTab_UNLOCK) [self fill_misc_tab:a];
+	if (t == ShopTab_REALMONEY) [self fill_upgrade_tab:a];
 	return a;
 }
 
@@ -50,8 +46,7 @@
 								   name:[GameItemCommon name_from:Item_Magnet]
 								   desc:@"Unlock the rocket to equip in the inventory!"
 								  price:1000
-								 action:ShopAction_BUY_ITEM_UPGRADE
-									key:[NSNumber numberWithInt:Item_Magnet]]];
+									val:SHOP_ITEM_MAGNET]];
 	}
 	
 	if ([UserInventory get_upgrade_level:Item_Rocket] == 0) {
@@ -60,8 +55,7 @@
 								   name:[GameItemCommon name_from:Item_Rocket]
 								   desc:@"Unlock the rocket to equip in the inventory!"
 								  price:2000
-								 action:ShopAction_BUY_ITEM_UPGRADE
-									key:[NSNumber numberWithInt:Item_Rocket]]];
+									val:SHOP_ITEM_ROCKET]];
 	}
 	
 	if ([UserInventory get_upgrade_level:Item_Shield] == 0) {
@@ -70,8 +64,7 @@
 								   name:[GameItemCommon name_from:Item_Shield]
 								   desc:@"Unlock the shield to equip in the inventory!"
 								  price:3000
-								 action:ShopAction_BUY_ITEM_UPGRADE
-									key:[NSNumber numberWithInt:Item_Shield]]];
+									val:SHOP_ITEM_ARMOR]];
 	}
 	
 	if ([UserInventory get_upgrade_level:Item_Clock] == 0) {
@@ -80,13 +73,14 @@
 								   name:[GameItemCommon name_from:Item_Clock]
 								   desc:@"Unlock the clock to equip in the inventory!"
 								  price:4000
-								 action:ShopAction_BUY_ITEM_UPGRADE
-									key:[NSNumber numberWithInt:Item_Clock]]];
+									val:SHOP_ITEM_CLOCK]];
 	}
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
-	NSString *dogs[] = {TEX_DOG_RUN_2,TEX_DOG_RUN_3,TEX_DOG_RUN_4,TEX_DOG_RUN_5,TEX_DOG_RUN_6,TEX_DOG_RUN_7};
+	NSString *dogs[] = {	TEX_DOG_RUN_2,	TEX_DOG_RUN_3,	TEX_DOG_RUN_4,	TEX_DOG_RUN_5,	TEX_DOG_RUN_6,	TEX_DOG_RUN_7};
+	NSString *actions[] = {	SHOP_DOG_DOG2,	SHOP_DOG_DOG3,	SHOP_DOG_DOG4,	SHOP_DOG_DOG5,	SHOP_DOG_DOG6,	SHOP_DOG_DOG7};
+	float prices[] = {		1500,			3000,			7500,			15000,			25000,			35000};
 	for(int i = 0; i < sizeof(dogs)/sizeof(NSString*); i++) {
 		NSString *dog = dogs[i];
 		if (![UserInventory get_character_unlocked:dog]) {
@@ -96,9 +90,8 @@
 									   desc:[NSString stringWithFormat:@"Unlock %@.\nSpecial ability:%@",
 												[Player get_name:dog],
 												[Player get_power_desc:dog]]
-									  price:1000+i*1000
-									 action:ShopAction_UNLOCK_CHARACTER
-										key:dog]];
+									  price:prices[i]
+										val:actions[i]]];
 		}
 	}
 }

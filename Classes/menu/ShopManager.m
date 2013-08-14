@@ -60,19 +60,19 @@
 			[buy setVisible:NO];
 		}
 		
-		if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
+		/*if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
 			GameItem i = [selected_item.action_key integerValue];
 			[infotitle setString:[GameItemCommon name_from:i]];
 		} else {
 			[infotitle setString:selected_item.name];
-		}
+		}*/
 		[infodesc setString:selected_item.desc];
 		[infoprice setString:[NSString stringWithFormat:@"%d",selected_item.price]];
 	}
 }
 
 -(void)reset {
-	current_tab = ShopTab_ITEMS;
+	current_tab = ShopTab_UPGRADE;
 	cur_tab_offset = 0;
 	cur_tab_items = [ShopRecord get_items_for_tab:current_tab];
 	[self update];
@@ -109,7 +109,7 @@
 		} else {
 			[UserInventory add_bones:-selected_item.price];
 		}
-			
+		/*
 		if (selected_item.action == ShopAction_BUY_ITEM_UPGRADE) {
 			GameItem i = [selected_item.action_key integerValue];
 			[UserInventory upgrade:i];
@@ -119,7 +119,7 @@
 			[UserInventory unlock_character:selected_item.action_key];
 			selected_item = NULL;
 		}
-		
+		*/
 		[GEventDispatcher push_event:[GEvent cons_type:GeventType_MENU_UPDATE_INVENTORY]];
 		[self update];
 	}

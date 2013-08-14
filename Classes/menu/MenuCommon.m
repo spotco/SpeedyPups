@@ -27,6 +27,9 @@
 	}
 }
 
+-(void)touch_move:(CGPoint)pt{}
+-(void)touch_end:(CGPoint)pt{}
+
 -(CGRect)hit_rect_local {
 	CGRect hitrect = [self boundingBox];
 	hitrect.origin = CGPointZero;

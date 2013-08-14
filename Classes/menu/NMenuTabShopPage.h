@@ -1,13 +1,18 @@
 #import "MainMenuLayer.h"
+#import "ShopRecord.h"
+@class ShopListTouchButton;
+@class ShopTabTouchButton;
+@class TouchButton;
 
 @interface NMenuTabShopPage : NMenuPage <GEventListener> {
 	CCSprite *tabbedpane;
 	
 	CCLabelTTF *itemname;
-	CCSprite *itemdisp;
 	CCLabelTTF *itemdesc;
 	CCLabelTTF *itemprice;
-	CCSprite *buybutton;
+	CCSprite *price_disp;
+	TouchButton *buybutton;
+	NSString *sto_val;
 	
 	NSMutableArray *touches;
 	
@@ -16,9 +21,19 @@
 	int scroll_move_ct;
 	float vy;
 	float clippedholder_y_min, clippedholder_y_max;
+	
 	CCSprite *clipperholder;
+	ClippingNode *clipper;
+	CGPoint clipper_anchor;
+	
+	ShopTab current_tab;
+	
+	NSMutableArray *scroll_items;
 	
 	CCSprite *can_scroll_up, *can_scroll_down;
+	
+	ShopListTouchButton *cur_selected_list_button;
+	ShopTabTouchButton *cur_selected_tab;
 }
 
 +(NMenuTabShopPage*)cons;

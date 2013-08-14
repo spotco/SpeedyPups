@@ -161,7 +161,7 @@
 }
 
 -(void)shop_tab_items {
-	[shop tab:ShopTab_ITEMS];
+	[shop tab:ShopTab_UPGRADE];
 }
 
 -(void)shop_tab_characters {
@@ -169,7 +169,7 @@
 }
 
 -(void)shop_tab_misc {
-	[shop tab:ShopTab_MISC];
+	[shop tab:ShopTab_REALMONEY];
 }
 
 -(void)shop_tab_upgrades {

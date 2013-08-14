@@ -2,16 +2,23 @@
 #import "cocos2d.h"
 
 typedef enum {
-    ShopTab_ITEMS,
+    ShopTab_UPGRADE,
     ShopTab_CHARACTERS,
-	ShopTab_MISC,
-	ShopTab_UPGRADE
+	ShopTab_UNLOCK,
+	ShopTab_REALMONEY
 } ShopTab;
 
-typedef enum {
-	ShopAction_UNLOCK_CHARACTER,
-	ShopAction_BUY_ITEM_UPGRADE
-} ShopAction;
+#define SHOP_ITEM_MAGNET @"shop_item_magnet"
+#define SHOP_ITEM_ARMOR @"shop_item_shield"
+#define SHOP_ITEM_ROCKET @"shop_item_rocket"
+#define SHOP_ITEM_CLOCK @"shop_item_clock"
+
+#define SHOP_DOG_DOG2 @"shop_dog_dog2"
+#define SHOP_DOG_DOG3 @"shop_dog_dog3"
+#define SHOP_DOG_DOG4 @"shop_dog_dog4"
+#define SHOP_DOG_DOG5 @"shop_dog_dog5"
+#define SHOP_DOG_DOG6 @"shop_dog_dog6"
+#define SHOP_DOG_DOG7 @"shop_dog_dog7"
 
 @interface ItemInfo : NSObject
 @property(readwrite,strong) CCTexture2D* tex;
@@ -19,8 +26,7 @@ typedef enum {
 @property(readwrite,assign) int price;
 @property(readwrite,strong) NSString *name, *desc;
 
-@property(readwrite,assign) ShopAction action;
-@property(readwrite,strong) id action_key;
+@property(readwrite,strong) NSString *val;
 @end
 
 @interface ShopRecord : NSObject

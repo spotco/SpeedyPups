@@ -6,7 +6,11 @@
 @interface TouchButton : CCSprite
 
 +(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect cb:(CallBack*)tcb;
+-(id)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb;
 -(void)touch_begin:(CGPoint)pt;
+-(void)touch_move:(CGPoint)pt;
+-(void)touch_end:(CGPoint)pt;
+-(CGRect)hit_rect_local;
 @property(readwrite,strong) CallBack* cb;
 @end
 
