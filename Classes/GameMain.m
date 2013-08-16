@@ -14,13 +14,13 @@
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
-#define RESET_STATS YES
+#define RESET_STATS NO
 #define DISPLAY_FPS NO
 
 /**
  TODO
- -make shoptabs and pausebutton hitbox extend to top of screen
  -buy item sound + anim
+ -inventory screen refresh, display level
  -infinite runner skip tutorial settings
  **/
 

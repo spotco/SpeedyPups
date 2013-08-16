@@ -153,7 +153,7 @@ static NSMutableArray* _anim_table;
 	if ([UserInventory get_character_unlocked:[_anim_table objectAtIndex:cur_dog]]) {
         [available_disp setVisible:YES];
         [locked_disp setVisible:NO];
-        [name_disp setString:[Player get_name:_anim_table[cur_dog]]];
+        [name_disp setString:[Player get_full_name:_anim_table[cur_dog]]];
         [power_disp setString: [Player get_power_desc:_anim_table[cur_dog]]];
 		[dog_spr setColor:ccc3(255,255,255)];
 		

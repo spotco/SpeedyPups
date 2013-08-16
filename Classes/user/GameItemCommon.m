@@ -21,10 +21,10 @@ static NSDictionary* descriptions;
     
     descriptions = @{
         [NSValue valueWithGameItem:Item_Heart]: @"Carry it to take an extra hit from any obstable.",
-        [NSValue valueWithGameItem:Item_Magnet]: @"Bones and other goodies will come your way!",
+        [NSValue valueWithGameItem:Item_Magnet]: @"Bones and other goodies will fly your way!",
         [NSValue valueWithGameItem:Item_Rocket]: @"Zoom past your troubles!",
-        [NSValue valueWithGameItem:Item_Shield]: @"Brief invincibility. Run past anything!",
-		[NSValue valueWithGameItem:Item_Clock]: @"Slow down time"
+        [NSValue valueWithGameItem:Item_Shield]: @"Brief invincibility. Break past anything!",
+		[NSValue valueWithGameItem:Item_Clock]: @"Slow down time."
     };
 }
 
@@ -91,7 +91,16 @@ static NSDictionary* descriptions;
 }
 
 +(int)get_uselength_for:(GameItem)gi {
-	return 300;
+	int uglvl = [UserInventory get_upgrade_level:gi];
+	if (uglvl == 0) {
+		return 500;
+	} else if (uglvl == 1) {
+		return 900;
+	} else if (uglvl == 2) {
+		return 1600;
+	} else {
+		return 2100;
+	}
 }
 
 @end

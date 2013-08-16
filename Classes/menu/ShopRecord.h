@@ -31,4 +31,5 @@ typedef enum {
 
 @interface ShopRecord : NSObject
 +(NSArray*)get_items_for_tab:(ShopTab)t;
++(BOOL)buy_shop_item:(NSString *)val price:(int)price;
 @end

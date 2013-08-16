@@ -31,6 +31,7 @@
 -(void)touch_end:(CGPoint)pt{}
 
 -(CGRect)hit_rect_local {
+	if (!self.visible) return CGRectZero;
 	CGRect hitrect = [self boundingBox];
 	hitrect.origin = CGPointZero;
 	return hitrect;

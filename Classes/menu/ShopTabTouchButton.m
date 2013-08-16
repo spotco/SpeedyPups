@@ -43,4 +43,10 @@
 		[tabcover setVisible:NO];
 	}
 }
+
+-(CGRect)hit_rect_local {
+	CGRect rect = [super hit_rect_local];
+	rect.size.height += 30;
+	return rect;
+}
 @end

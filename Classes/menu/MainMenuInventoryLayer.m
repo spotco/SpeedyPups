@@ -126,12 +126,14 @@
 
 -(void)invpane_click:(int)i {
     GameItem t = [(InventoryItemPane*)[inventory_panes objectAtIndex:i] cur_item];
-    [infoname setString:[GameItemCommon name_from:t]];
-    [infodesc setString:[GameItemCommon description_from:t]];
+	[infodesc setString:[GameItemCommon description_from:t]];
 	
     if ([UserInventory get_upgrade_level:t] > 0) {
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
+		[infoname setString:[NSString stringWithFormat:@"%@ %d",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
+	} else {
+		[infoname setString:[GameItemCommon name_from:t]];
 	}
 	
     [self update_invpane];
@@ -139,6 +141,7 @@
 
 -(void)open {
     [inventory_window setVisible:YES];
+	[self update_invpane];
 }
 
 -(void)close {

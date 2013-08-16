@@ -67,6 +67,7 @@ typedef enum {
 +(void)set_character:(NSString*)tar;
 +(NSString*)get_character;
 +(NSString*)get_name:(NSString*)tar;
++(NSString*)get_full_name:(NSString*)tar;
 +(NSString*)get_power_desc:(NSString*)tar;
 
 +(BOOL)current_character_has_power:(CharacterPower)power;

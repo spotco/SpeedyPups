@@ -3,6 +3,7 @@
 #import "MenuCommon.h"
 #import "ShopTabTouchButton.h"
 #import "ShopListTouchButton.h"
+#import "UserInventory.h"
 
 @implementation NMenuTabShopPage
 
@@ -72,18 +73,18 @@
 	[tabbedpane addChild:itemname];
 	
 	price_disp = [CCSprite node];
-	[price_disp addChild:[[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.43 pcty:0.49]
+	[price_disp addChild:[[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.43 pcty:0.51]
 										  color:ccc3(200,30,30)
 									   fontsize:16
 											str:@"Price"] anchor_pt:ccp(0,0.5)]];
-	itemprice = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.5 pcty:0.405]
+	itemprice = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.5 pcty:0.425]
 								 color:ccc3(0,0,0)
 							  fontsize:19
 								   str:@"99999"] anchor_pt:ccp(0,0.5)];
 	[price_disp addChild:itemprice];
-	[price_disp addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"boneicon"]]
-						  pos:[Common pct_of_obj:tabbedpane pctx:0.46 pcty:0.405]] scale:0.5]];
+	[price_disp addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
+												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tinybone"]]
+						  pos:[Common pct_of_obj:tabbedpane pctx:0.46 pcty:0.425]]];
 	[tabbedpane addChild:price_disp];
 	buybutton = [TouchButton cons_pt:[Common pct_of_obj:tabbedpane pctx:0.975 pcty:0.025]
 								 tex:[Resource get_tex:TEX_NMENU_ITEMS]
@@ -93,7 +94,13 @@
 	[touches addObject:buybutton];
 	[tabbedpane addChild:buybutton];
 	
-	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	notenoughdisp = [Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.69 pcty:0.15]
+									 color:ccc3(200,30,30)
+								  fontsize:23
+									   str:@"Not enough bones!"];
+	[tabbedpane addChild:notenoughdisp];
+	
+	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
                                lineBreakMode:UILineBreakModeWordWrap];
@@ -106,11 +113,31 @@
 	[itemdesc setColor:ccc3(0,0,0)];
 	[itemdesc setPosition:[Common pct_of_obj:tabbedpane pctx:0.44 pcty:0.79]];
 	[tabbedpane addChild:itemdesc];
-	
 	[self addChild:tabbedpane];
+	
+	CCSprite *total_bones_pane = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+														 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue_total_bg"]]
+								  pos:[Common screen_pctwid:0.13 pcthei:0.3]];
+	[total_bones_pane addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"tinybone"]
+								 ] pos:[Common pct_of_obj:total_bones_pane pctx:0.15 pcty:0.3]]];
+	[total_bones_pane addChild:[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.325 pcty:0.75]
+												color:ccc3(0,0,0)
+											 fontsize:10
+												  str:@"Total Bones"]];
+	total_disp = [Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.57 pcty:0.325]
+								  color:ccc3(255,0,0)
+							   fontsize:20
+									str:@"000000"];
+	[total_bones_pane addChild:total_disp];
+	[self addChild:total_bones_pane];
 	
 	[self make_scroll_items];
 	return self;
+}
+
+-(void)update_total_disp {
+	[total_disp setString:strf("%d",[UserInventory get_current_bones])];
 }
 
 -(void)make_scroll_items {
@@ -135,17 +162,19 @@
 	}
 	
 	if (items.count > 0) {
-		[self sellist:scroll_items[0]];
 		[itemdesc setVisible:YES];
 		[price_disp setVisible:YES];
 		[buybutton setVisible:YES];
+		[self sellist:scroll_items[0]];
 		
 	} else {
 		itemname.string = @"More Coming Soon!";
 		[itemdesc setVisible:NO];
 		[price_disp setVisible:NO];
 		[buybutton setVisible:NO];
+		[notenoughdisp setVisible:NO];
 	}
+	[self update_total_disp];
 }
 
 -(ShopListTouchButton*)cons_scrollitem_anchor:(CGPoint)anchor mult:(int)mult info:(ItemInfo*)info parent:(CCNode*)parent clip:(CGRect)clip {
@@ -180,7 +209,18 @@
 	itemname.string = tar.sto_info.name;
 	itemdesc.string = tar.sto_info.desc;
 	itemprice.string = [NSString stringWithFormat:@"%d",tar.sto_info.price];
+	
 	sto_val = tar.sto_info.val;
+	sto_price = tar.sto_info.price;
+	
+	if (sto_price > [UserInventory get_current_bones]) {
+		[buybutton setVisible:NO];
+		[notenoughdisp setVisible:YES];
+	} else {
+		[buybutton setVisible:YES];
+		[notenoughdisp setVisible:NO];
+	}
+	[self update_total_disp];
 }
 
 -(void)seltab:(int)t tab:(ShopTabTouchButton*)tab{
@@ -193,7 +233,9 @@
 	current_tab = t==0?ShopTab_UPGRADE:
 					(t==1?ShopTab_CHARACTERS:
 					 (t==2?ShopTab_UNLOCK:ShopTab_REALMONEY));
+	current_tab_index = t;
 	[self make_scroll_items];
+	[self update_total_disp];
 }
 
 -(void)tab0:(ShopTabTouchButton*)tab{[self seltab:0 tab:tab];}
@@ -236,8 +278,11 @@
 
 -(void)buybutton {
 	[buybutton setScale:1.4];
-	NSLog(@"buy %@",sto_val);
-	//TODO -- implement buy action here
+	if ([ShopRecord buy_shop_item:sto_val price:sto_price]) {
+		[self seltab:current_tab_index tab:cur_selected_tab];
+	} else {
+		NSLog(@"buying failed");
+	}
 }
 
 -(void)touch_begin:(CGPoint)pt {

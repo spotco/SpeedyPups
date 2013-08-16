@@ -45,7 +45,8 @@
 }
 
 +(BOOL)can_upgrade:(GameItem)g {
-	return YES;
+	int uglvl = [self get_upgrade_level:g];
+	return uglvl < 3;
 }
 
 static NSArray *valid_characters;

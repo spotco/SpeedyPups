@@ -7,6 +7,18 @@
 #import "UICommon.h"
 #import "UILayer.h"
 
+@interface MRectCCMenuItemImage : CCMenuItemImage
+@end
+
+@implementation MRectCCMenuItemImage
+-(CGRect)rect {
+	CGRect rect = [super rect];
+	rect.size.width += 20;
+	rect.size.height += 20;
+	return rect;
+}
+@end
+
 @implementation IngameUI
 
 @synthesize lives_disp,bones_disp,time_disp;
@@ -22,7 +34,7 @@
     CCSprite *pauseiconzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEICON]];
     [UICommon set_zoom_pos_align:pauseicon zoomed:pauseiconzoom scale:1.4];
     
-    CCMenuItemImage *ingamepause = [CCMenuItemImage itemFromNormalSprite:pauseicon
+    CCMenuItemImage *ingamepause = [MRectCCMenuItemImage itemFromNormalSprite:pauseicon
                                                           selectedSprite:pauseiconzoom
                                                                   target:self
                                                                 selector:@selector(pause)];

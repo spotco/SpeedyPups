@@ -20,7 +20,7 @@
 	
 	CCLabelTTF *name_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
 											 color:ccc3(0,0,0)
-										  fontsize:18
+										  fontsize:16
 											   str:info.name] anchor_pt:ccp(1,1)];
 	[self addChild:name_disp];
 	
@@ -72,8 +72,10 @@
 -(void)set_selected:(BOOL)t {
 	if (t) {
 		tar_scale = 1;
+		[parent_ reorderChild:self z:5];
 	} else {
 		tar_scale = 0.85;
+		[parent_ reorderChild:self z:2];
 	}
 }
 

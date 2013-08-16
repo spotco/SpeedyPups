@@ -58,16 +58,27 @@
 
 static NSString* CURRENT_CHARACTER;
 static NSDictionary* ID_TO_NAME;
+static NSDictionary* ID_TO_FULLNAME;
 static NSDictionary* ID_TO_POWERDESC;
 
 +(void)initialize {
 	ID_TO_NAME = @{
+		TEX_DOG_RUN_1: @"OG",
+		TEX_DOG_RUN_2: @"Cate",
+		TEX_DOG_RUN_3: @"Penny",
+		TEX_DOG_RUN_4: @"Spot",
+		TEX_DOG_RUN_5: @"Chubs",
+		TEX_DOG_RUN_6: @"Henry",
+		TEX_DOG_RUN_7: @"Brock"
+	};
+	
+	ID_TO_FULLNAME = @{
 		TEX_DOG_RUN_1: @"OG the Mutt",
 		TEX_DOG_RUN_2: @"Cate the Corgi",
 		TEX_DOG_RUN_3: @"Penny the Poodle",
 		TEX_DOG_RUN_4: @"Spot the Dalmation",
 		TEX_DOG_RUN_5: @"Chubs the Pug",
-		TEX_DOG_RUN_6: @"Husky the Husky",
+		TEX_DOG_RUN_6: @"Henry the Husky",
 		TEX_DOG_RUN_7: @"Brock the Lab"
 	};
 	
@@ -117,6 +128,9 @@ static NSDictionary* ID_TO_POWERDESC;
 }
 +(NSString*)get_name:(NSString*)tar {
 	return [ID_TO_NAME objectForKey:tar];
+}
++(NSString*)get_full_name:(NSString*)tar {
+	return ID_TO_FULLNAME[tar];
 }
 +(NSString*)get_power_desc:(NSString*)tar {
 	return [ID_TO_POWERDESC objectForKey:tar];

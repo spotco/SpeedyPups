@@ -12,7 +12,12 @@
 	CCLabelTTF *itemprice;
 	CCSprite *price_disp;
 	TouchButton *buybutton;
+	CCLabelTTF *notenoughdisp;
+	
+	CCLabelTTF *total_disp;
+	
 	NSString *sto_val;
+	int sto_price;
 	
 	NSMutableArray *touches;
 	
@@ -27,6 +32,7 @@
 	CGPoint clipper_anchor;
 	
 	ShopTab current_tab;
+	int current_tab_index;
 	
 	NSMutableArray *scroll_items;
 	
