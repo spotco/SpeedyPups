@@ -33,6 +33,7 @@
 	
 	ShopTab current_tab;
 	int current_tab_index;
+	int current_scroll_index;
 	
 	NSMutableArray *scroll_items;
 	
@@ -40,6 +41,9 @@
 	
 	ShopListTouchButton *cur_selected_list_button;
 	ShopTabTouchButton *cur_selected_tab;
+	
+	NSMutableArray *particles;
+	CCSprite *particleholder;
 }
 
 +(NMenuTabShopPage*)cons;

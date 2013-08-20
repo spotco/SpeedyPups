@@ -37,6 +37,8 @@
 		7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3444A516DE01CF007D20F5 /* BGTimeManager.m */; };
 		7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A716DE1850007D20F5 /* BG1_moon.png */; };
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
+		7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */; };
+		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
 		7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA69172DE73A009C43DD /* ShopManager.m */; };
 		7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6C172DE94C009C43DD /* ShopItemPane.m */; };
 		7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6F172DF8D7009C43DD /* ShopRecord.m */; };
@@ -686,6 +688,10 @@
 		7E3444A516DE01CF007D20F5 /* BGTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTimeManager.m; sourceTree = "<group>"; };
 		7E3444A716DE1850007D20F5 /* BG1_moon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_moon.png; sourceTree = "<group>"; };
 		7E3444A816DE1850007D20F5 /* BG1_stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG1_stars.png; sourceTree = "<group>"; };
+		7E37B46F17C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyBoneFlyoutParticle.h; sourceTree = "<group>"; };
+		7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyBoneFlyoutParticle.m; sourceTree = "<group>"; };
+		7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyFlyoffTextParticle.h; sourceTree = "<group>"; };
+		7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyFlyoffTextParticle.m; sourceTree = "<group>"; };
 		7E45DA68172DE73A009C43DD /* ShopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopManager.h; path = ../ShopManager.h; sourceTree = "<group>"; };
 		7E45DA69172DE73A009C43DD /* ShopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopManager.m; path = ../ShopManager.m; sourceTree = "<group>"; };
 		7E45DA6B172DE94C009C43DD /* ShopItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopItemPane.h; path = ../ShopItemPane.h; sourceTree = "<group>"; };
@@ -1555,6 +1561,10 @@
 				7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */,
 				7EE41C9917BB56FF0011D20F /* ShopListTouchButton.h */,
 				7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */,
+				7E37B46F17C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.h */,
+				7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */,
+				7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */,
+				7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */,
 			);
 			name = shop;
 			sourceTree = "<group>";
@@ -3724,6 +3734,8 @@
 				7E13D7F417B83A75003F723F /* NMenuTabShopPage.m in Sources */,
 				7EE41C9817BB56B30011D20F /* ShopTabTouchButton.m in Sources */,
 				7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */,
+				7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */,
+				7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

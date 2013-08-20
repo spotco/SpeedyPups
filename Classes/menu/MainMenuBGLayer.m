@@ -65,7 +65,7 @@
     [time update_posx:0 posy:0];
     
     if (arc4random_uniform(35) == 0) {
-        [self add_particle:[WaveParticle cons_x:500 y:float_random(200, 350) vx:float_random(-2, -5) vtheta:float_random(0.01, 0.075)]];
+        [self add_particle:[WaveParticle cons_x:[Common SCREEN].width y:float_random(200, 350) vx:float_random(-2, -5) vtheta:float_random(0.01, 0.075)]];
     }
 }
 

@@ -4,6 +4,9 @@
 #import "ShopTabTouchButton.h"
 #import "ShopListTouchButton.h"
 #import "UserInventory.h"
+#import "Particle.h"
+#import "ShopBuyBoneFlyoutParticle.h"
+#import "ShopBuyFlyoffTextParticle.h"
 
 @implementation NMenuTabShopPage
 
@@ -13,6 +16,7 @@
 
 -(id)init {
 	self = [super init];
+	
 	[GEventDispatcher add_listener:self];
 	scroll_items = [NSMutableArray array];
 	current_tab = ShopTab_UPGRADE;
@@ -129,15 +133,16 @@
 								  color:ccc3(255,0,0)
 							   fontsize:20
 									str:@"000000"];
+	[total_disp setString:strf("%d",[UserInventory get_current_bones])];
 	[total_bones_pane addChild:total_disp];
 	[self addChild:total_bones_pane];
 	
+	particles = [NSMutableArray array];
+	particleholder = [CCSprite node];
+	[self addChild:particleholder];
+	
 	[self make_scroll_items];
 	return self;
-}
-
--(void)update_total_disp {
-	[total_disp setString:strf("%d",[UserInventory get_current_bones])];
 }
 
 -(void)make_scroll_items {
@@ -165,7 +170,8 @@
 		[itemdesc setVisible:YES];
 		[price_disp setVisible:YES];
 		[buybutton setVisible:YES];
-		[self sellist:scroll_items[0]];
+		current_scroll_index = current_scroll_index < scroll_items.count ? current_scroll_index : scroll_items.count - 1;
+		[self sellist:scroll_items[current_scroll_index]];
 		
 	} else {
 		itemname.string = @"More Coming Soon!";
@@ -174,7 +180,6 @@
 		[buybutton setVisible:NO];
 		[notenoughdisp setVisible:NO];
 	}
-	[self update_total_disp];
 }
 
 -(ShopListTouchButton*)cons_scrollitem_anchor:(CGPoint)anchor mult:(int)mult info:(ItemInfo*)info parent:(CCNode*)parent clip:(CGRect)clip {
@@ -203,6 +208,12 @@
 	if (cur_selected_list_button != NULL) {
 		[cur_selected_list_button set_selected:NO];
 	}
+	for (int i = 0; i < scroll_items.count; i++) {
+		if (scroll_items[i] == tar) {
+			current_scroll_index = i;
+			break;
+		}
+	}
 	cur_selected_list_button = tar;
 	[tar set_selected:YES];
 	
@@ -220,7 +231,6 @@
 		[buybutton setVisible:YES];
 		[notenoughdisp setVisible:NO];
 	}
-	[self update_total_disp];
 }
 
 -(void)seltab:(int)t tab:(ShopTabTouchButton*)tab{
@@ -235,13 +245,12 @@
 					 (t==2?ShopTab_UNLOCK:ShopTab_REALMONEY));
 	current_tab_index = t;
 	[self make_scroll_items];
-	[self update_total_disp];
 }
 
--(void)tab0:(ShopTabTouchButton*)tab{[self seltab:0 tab:tab];}
--(void)tab1:(ShopTabTouchButton*)tab{[self seltab:1 tab:tab];}
--(void)tab2:(ShopTabTouchButton*)tab{[self seltab:2 tab:tab];}
--(void)tab3:(ShopTabTouchButton*)tab{[self seltab:3 tab:tab];}
+-(void)tab0:(ShopTabTouchButton*)tab{current_scroll_index = 0;[self seltab:0 tab:tab];}
+-(void)tab1:(ShopTabTouchButton*)tab{current_scroll_index = 0;[self seltab:1 tab:tab];}
+-(void)tab2:(ShopTabTouchButton*)tab{current_scroll_index = 0;[self seltab:2 tab:tab];}
+-(void)tab3:(ShopTabTouchButton*)tab{current_scroll_index = 0;[self seltab:3 tab:tab];}
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_INVENTORY) {
@@ -257,6 +266,7 @@
 }
 
 -(void)update {
+	if (!visible_) return;
 	CGPoint neupos = CGPointAdd(ccp(0,vy), clipperholder.position);
 	neupos.y = clampf(neupos.y, clippedholder_y_min, clippedholder_y_max);
 	[clipperholder setPosition:neupos];
@@ -274,12 +284,51 @@
 	}
 	
 	[buybutton setScale:(1-buybutton.scale)/5.0+buybutton.scale];
+	
+	NSMutableArray *toremove = [NSMutableArray array];
+    for (Particle *i in particles) {
+        [i update:(id)self];
+        if ([i should_remove]) {
+            [particleholder removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+	[particles removeObjectsInArray:toremove];
+	
+	int curdispval = total_disp.string.integerValue;
+	int tardispval = [UserInventory get_current_bones];
+	if (curdispval != tardispval) {
+		if (ABS(curdispval-tardispval) > 200) {
+			curdispval = curdispval + (tardispval-curdispval)/10.0f;
+		} else {
+			curdispval = tardispval;
+		}
+		[total_disp setString:strf("%d",curdispval)];
+	}
+}
+
+-(void)add_particle:(Particle*)p {
+	[particleholder addChild:p];
+	[particles addObject:p];
 }
 
 -(void)buybutton {
 	[buybutton setScale:1.4];
 	if ([ShopRecord buy_shop_item:sto_val price:sto_price]) {
+		CGPoint centre = [buybutton convertToWorldSpace:CGPointZero];
+		centre.x += buybutton.boundingBox.size.width/2.0f;
+		centre.y += buybutton.boundingBox.size.height/2.0f;
+		for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/4) {
+			CGPoint vel = ccp(sinf(i),cosf(i));
+			float scale = float_random(5, 7);
+			[self add_particle:[ShopBuyBoneFlyoutParticle cons_pt:centre vel:ccp(vel.x*scale,vel.y*scale)]];
+		}
+		centre = [total_disp convertToWorldSpace:CGPointZero];
+		[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:ccp(centre.x+total_disp.boundingBox.size.width/2.0,centre.y+15) text:strf("-%d",sto_price)]];
+		
 		[self seltab:current_tab_index tab:cur_selected_tab];
+		//todo -- buying sound here
+		
 	} else {
 		NSLog(@"buying failed");
 	}

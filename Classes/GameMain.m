@@ -7,19 +7,18 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
-#define RESET_STATS NO
+#define RESET_STATS YES
 #define DISPLAY_FPS NO
 
 /**
  TODO
- -buy item sound + anim
  -inventory screen refresh, display level
  -infinite runner skip tutorial settings
  **/
@@ -51,6 +50,8 @@
  armor
  1up
  boss sounds
+ buy item
+ barking
  
  
  Stretch goal:
@@ -74,7 +75,7 @@
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	//[UserInventory add_bones:100000];
+	[UserInventory add_bones:100000];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
