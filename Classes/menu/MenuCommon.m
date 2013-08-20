@@ -39,6 +39,25 @@
 
 @end
 
+@implementation LabelGroup
+-(id)init {
+	self = [super init];
+	labels = [NSMutableArray array];
+	return self;
+}
+
+-(LabelGroup*)add_label:(CCLabelTTF *)l {
+	[labels addObject:l];
+	return self;
+}
+
+-(void)set_string:(NSString *)string {
+	for (CCLabelTTF* l in labels) {
+		[l setString:string];
+	}
+}
+@end
+
 
 @implementation MenuCommon
 +(CCSprite*)menu_item:(NSString*)tex id:(NSString*)tid pos:(CGPoint)pos {
@@ -112,23 +131,32 @@
 }
 
 +(void)inventory {
+	[self close_inventory];
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_INVENTORY]];
 }
 
 +(void)goto_shop {
+	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SHOP_PAGE i2:0]];
 }
 
 +(void)goto_charsel {
+	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_DOG_MODE_PAGE_ID i2:0]];
 }
 
 +(void)goto_home {
+	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_STARTING_PAGE_ID i2:0]];
 }
 
 +(void)goto_settings {
+	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SETTINGS_PAGE_ID i2:0]];
+}
+
++(void)close_inventory {
+    [GEventDispatcher push_event:[GEvent cons_type:GEVentType_MENU_CLOSE_INVENTORY]];
 }
 
 @end

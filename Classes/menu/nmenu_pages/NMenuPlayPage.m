@@ -1,6 +1,7 @@
 #import "NMenuPlayPage.h"
 #import "MenuCommon.h"
 #import "Flowers.h"
+#import "GameMain.h"
 
 @implementation NMenuPlayPage
 
@@ -43,12 +44,66 @@
     
     rundog = [CCSprite node];
     
-    CCMenuItem *freerunmodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ rect:@"infinitemode" tar:self sel:@selector(freerun_button_pressed) pos:[Common screen_pctwid:0.35 pcthei:0.35]];
-    [freerunmodebutton addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Free Run"]];
-    CCMenuItem *challengemodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ rect:@"challengemodebutton" tar:self sel:@selector(challengemode_button_button_pressed) pos:[Common screen_pctwid:0.65 pcthei:0.35]];
-    [challengemodebutton addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
+    CCMenuItem *freerunmodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+													 rect:@"infinitemode"
+													  tar:self
+													  sel:@selector(freerun_button_pressed)
+													  pos:[Common screen_pctwid:0.35 pcthei:0.35]];
+	[[((CCMenuItemSprite*)freerunmodebutton) normalImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Free Run"]];
+	[[((CCMenuItemSprite*)freerunmodebutton) selectedImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Free Run"]];
     
-    mode_choose_menu = [CCMenu menuWithItems:freerunmodebutton,challengemodebutton,nil];
+	CCMenuItem *challengemodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
+													   rect:@"challengemodebutton"
+														tar:self
+														sel:@selector(challengemode_button_button_pressed)
+														pos:[Common screen_pctwid:0.65 pcthei:0.35]];
+    [[((CCMenuItemSprite*)challengemodebutton) normalImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
+    [[((CCMenuItemSprite*)challengemodebutton) selectedImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
+	
+	#define PLAYTAB_MARGIN 10
+	CCMenuItemSprite *startworlddisp = (CCMenuItemSprite*)[MenuCommon item_from:TEX_NMENU_ITEMS
+														rect:@"playpage_infoside"
+														 tar:self
+														 sel:@selector(startworlddispbutton_pressed)
+														 pos:CGPointZero];
+	[startworlddisp setAnchorPoint:ccp(1,1)];
+	[startworlddisp setPosition:ccp(
+		freerunmodebutton.position.x - freerunmodebutton.boundingBox.size.width/2.0f + PLAYTAB_MARGIN,
+		freerunmodebutton.position.y + freerunmodebutton.boundingBox.size.height/2.0f - PLAYTAB_MARGIN
+	)];
+	#define TOPLEFTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.075 pcty:0.9] color:ccc3(200,30,30) fontsize:8 str:x] anchor_pt:ccp(0,1)]
+	[startworlddisp.normalImage addChild:TOPLEFTLABEL(@"starting at:")];
+	[startworlddisp.selectedImage addChild:TOPLEFTLABEL(@"starting at")];
+	
+	#define BOTTOMLEFTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.87 pcty:0.1] color:ccc3(0,0,0) fontsize:14 str:x] anchor_pt:ccp(1,0)]
+	CCLabelTTF *startworlddisp_a = BOTTOMLEFTLABEL(@"");
+	CCLabelTTF *startworlddisp_b = BOTTOMLEFTLABEL(@"");
+	[startworlddisp.normalImage addChild:startworlddisp_a];
+	[startworlddisp.selectedImage addChild:startworlddisp_b];
+	startworld_disp = [[[[LabelGroup alloc] init] add_label:startworlddisp_a] add_label:startworlddisp_b];
+	[startworld_disp set_string:@""];
+	
+	
+	CCMenuItemSprite *startbonusdisp = (CCMenuItemSprite*)[MenuCommon item_from:TEX_NMENU_ITEMS
+														   rect:@"playpage_infoside"
+															tar:self
+															sel:@selector(startbonusdispbutton_pressed)
+															pos:CGPointZero];
+	[startbonusdisp setAnchorPoint:ccp(1,0)];
+	[startbonusdisp setPosition:ccp(
+		freerunmodebutton.position.x - freerunmodebutton.boundingBox.size.width/2.0f + PLAYTAB_MARGIN,
+		freerunmodebutton.position.y - freerunmodebutton.boundingBox.size.height/2.0f - PLAYTAB_MARGIN + startbonusdisp.normalImage.boundingBox.size.height/2.0f
+	)];
+	[startbonusdisp.normalImage addChild:TOPLEFTLABEL(@"bonus:")];
+	[startbonusdisp.selectedImage addChild:TOPLEFTLABEL(@"bonus:")];
+	CCLabelTTF *startbonusdisp_a = BOTTOMLEFTLABEL(@"");
+	CCLabelTTF *startbonusdisp_b = BOTTOMLEFTLABEL(@"");
+	[startbonusdisp.normalImage addChild:startbonusdisp_a];
+	[startbonusdisp.selectedImage addChild:startbonusdisp_b];
+	startbonus_disp = [[[[LabelGroup alloc] init] add_label:startbonusdisp_a] add_label:startbonusdisp_b];
+	[startbonus_disp set_string:@"none"];
+	
+    mode_choose_menu = [CCMenu menuWithItems:startworlddisp,startbonusdisp,freerunmodebutton,challengemodebutton,nil];
     [mode_choose_menu setPosition:ccp(0,0)];
     [self addChild:mode_choose_menu];
     [mode_choose_menu setVisible:NO];
@@ -58,6 +113,21 @@
     [self addChild:challengeselect];
     
     return self;
+}
+
+-(void)startworlddispbutton_pressed {
+	[MenuCommon goto_settings];
+}
+
+-(void)startbonusdispbutton_pressed {
+	[MenuCommon goto_shop];
+}
+
+-(void)setVisible:(BOOL)visible {
+	if (visible) {
+		[startworld_disp set_string:[GameMain GET_DO_TUTORIAL]?@"tutorial":@"world 1"];
+	}
+	[super setVisible:visible];
 }
 
 -(void)challengemode_button_button_pressed {

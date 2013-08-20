@@ -61,9 +61,9 @@
     [player setPosition:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.3]];
     [inventory_window addChild:player];
     
-    CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"boneicon"]];
+    CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tinybone"]];
     [boneicon setPosition:[Common pct_of_obj:inventory_window pctx:0.665 pcty:0.15]];
-    [boneicon setScale:0.6];
+    //[boneicon setScale:0.6];
     [inventory_window addChild:boneicon];
     bonectdsp = [Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.695 pcty:0.15] color:ccc3(0, 0, 0) fontsize:15 str:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
     [bonectdsp setAnchorPoint:ccp(0,0.5)];
@@ -89,7 +89,7 @@
                            constrainedToSize:CGSizeMake(1000, 1000)
                               lineBreakMode:UILineBreakModeWordWrap];
     
-    infodesc = [CCLabelTTF labelWithString:@"Equip to use ingame. Get items and more slots at the store!"
+    infodesc = [CCLabelTTF labelWithString:@"Equip here and find in freerun mode. Unlock and upgrade at the store!"
                                 dimensions:actualSize
                                  alignment:UITextAlignmentLeft
                                   fontName:@"Carton Six"
@@ -131,9 +131,9 @@
     if ([UserInventory get_upgrade_level:t] > 0) {
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
-		[infoname setString:[NSString stringWithFormat:@"%@ %d",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
+		[infoname setString:[NSString stringWithFormat:@"%@ (level %d)",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
 	} else {
-		[infoname setString:[GameItemCommon name_from:t]];
+		[infoname setString:[NSString stringWithFormat:@"%@ (locked)",[GameItemCommon name_from:t]]];
 	}
 	
     [self update_invpane];
@@ -145,7 +145,6 @@
 }
 
 -(void)close {
-    [inventory_window setVisible:NO];
     [GEventDispatcher push_event:[GEvent cons_type:GEVentType_MENU_CLOSE_INVENTORY]];
 }
 
@@ -160,6 +159,8 @@
 		pane_anim_scale = pane_anim_scale - (pane_anim_scale-1)/3;
 		[mainslot setScale:pane_anim_scale];
 		
+	} else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
+		[inventory_window setVisible:NO];
 	}
 }
 

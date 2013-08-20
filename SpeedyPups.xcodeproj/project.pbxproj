@@ -21,7 +21,6 @@
 		7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */; };
 		7E0A788516ED6BD80026C418 /* Flowers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788416ED6BD80026C418 /* Flowers.m */; };
 		7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */; };
-		7E0A788B16ED781D0026C418 /* NMenuShopPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788A16ED781D0026C418 /* NMenuShopPage.m */; };
 		7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788D16ED7AD60026C418 /* Shopkeeper.m */; };
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
@@ -39,8 +38,6 @@
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
 		7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */; };
 		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
-		7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA69172DE73A009C43DD /* ShopManager.m */; };
-		7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6C172DE94C009C43DD /* ShopItemPane.m */; };
 		7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6F172DF8D7009C43DD /* ShopRecord.m */; };
 		7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E47433B17AD02AF00A664CE /* ItemGen.m */; };
 		7E4922DC17115FEC0032665B /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4922DB17115FEC0032665B /* Challenge.m */; };
@@ -665,8 +662,6 @@
 		7E0A788416ED6BD80026C418 /* Flowers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flowers.m; path = details/Flowers.m; sourceTree = "<group>"; };
 		7E0A788616ED74D30026C418 /* NMenuCharSelectPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuCharSelectPage.h; path = nmenu_pages/NMenuCharSelectPage.h; sourceTree = "<group>"; };
 		7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuCharSelectPage.m; path = nmenu_pages/NMenuCharSelectPage.m; sourceTree = "<group>"; };
-		7E0A788916ED781D0026C418 /* NMenuShopPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuShopPage.h; path = ../NMenuShopPage.h; sourceTree = "<group>"; };
-		7E0A788A16ED781D0026C418 /* NMenuShopPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuShopPage.m; path = ../NMenuShopPage.m; sourceTree = "<group>"; };
 		7E0A788C16ED7AD60026C418 /* Shopkeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shopkeeper.h; path = details/Shopkeeper.h; sourceTree = "<group>"; };
 		7E0A788D16ED7AD60026C418 /* Shopkeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shopkeeper.m; path = details/Shopkeeper.m; sourceTree = "<group>"; };
 		7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = armored_dog_ss.plist; sourceTree = "<group>"; };
@@ -692,10 +687,6 @@
 		7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyBoneFlyoutParticle.m; sourceTree = "<group>"; };
 		7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyFlyoffTextParticle.h; sourceTree = "<group>"; };
 		7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyFlyoffTextParticle.m; sourceTree = "<group>"; };
-		7E45DA68172DE73A009C43DD /* ShopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopManager.h; path = ../ShopManager.h; sourceTree = "<group>"; };
-		7E45DA69172DE73A009C43DD /* ShopManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopManager.m; path = ../ShopManager.m; sourceTree = "<group>"; };
-		7E45DA6B172DE94C009C43DD /* ShopItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopItemPane.h; path = ../ShopItemPane.h; sourceTree = "<group>"; };
-		7E45DA6C172DE94C009C43DD /* ShopItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopItemPane.m; path = ../ShopItemPane.m; sourceTree = "<group>"; };
 		7E45DA6E172DF8D7009C43DD /* ShopRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopRecord.h; sourceTree = "<group>"; };
 		7E45DA6F172DF8D7009C43DD /* ShopRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopRecord.m; sourceTree = "<group>"; };
 		7E47433A17AD02AF00A664CE /* ItemGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemGen.h; sourceTree = "<group>"; };
@@ -1554,7 +1545,6 @@
 		7E45DA67172DE6E9009C43DD /* shop */ = {
 			isa = PBXGroup;
 			children = (
-				7EE41C9C17BB72CD0011D20F /* deprecated */,
 				7E45DA6E172DF8D7009C43DD /* ShopRecord.h */,
 				7E45DA6F172DF8D7009C43DD /* ShopRecord.m */,
 				7EE41C9617BB56B30011D20F /* ShopTabTouchButton.h */,
@@ -3027,19 +3017,6 @@
 			path = details;
 			sourceTree = "<group>";
 		};
-		7EE41C9C17BB72CD0011D20F /* deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				7E45DA6B172DE94C009C43DD /* ShopItemPane.h */,
-				7E45DA6C172DE94C009C43DD /* ShopItemPane.m */,
-				7E0A788916ED781D0026C418 /* NMenuShopPage.h */,
-				7E0A788A16ED781D0026C418 /* NMenuShopPage.m */,
-				7E45DA68172DE73A009C43DD /* ShopManager.h */,
-				7E45DA69172DE73A009C43DD /* ShopManager.m */,
-			);
-			path = deprecated;
-			sourceTree = "<group>";
-		};
 		7EF8A65B16D9BA5C009A1FC5 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3664,7 +3641,6 @@
 				7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */,
 				7E0A788516ED6BD80026C418 /* Flowers.m in Sources */,
 				7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */,
-				7E0A788B16ED781D0026C418 /* NMenuShopPage.m in Sources */,
 				7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */,
 				7ECD9EE616F0103900FD0B99 /* CharSelAnim.m in Sources */,
 				7EA5680816FF8C5A0003F2A5 /* TutorialLauncher.m in Sources */,
@@ -3693,8 +3669,6 @@
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
 				7EBD7618171A855F00EBEB3C /* Coin.m in Sources */,
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,
-				7E45DA6A172DE73A009C43DD /* ShopManager.m in Sources */,
-				7E45DA6D172DE94C009C43DD /* ShopItemPane.m in Sources */,
 				7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */,
 				7ECADE0F17646AF00032A1E6 /* OALAction.m in Sources */,
 				7ECADE1017646AF00032A1E6 /* OALActionManager.m in Sources */,

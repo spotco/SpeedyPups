@@ -19,16 +19,12 @@
 
 /**
  TODO
- -inventory screen refresh, display level
- -infinite runner skip tutorial settings
+ -infinite runner skip to world 1, 2, 3 settings
  **/
 
 /**
  Settings:
  -view stats
- -enable/disable levels
- 
-
  **/    
 
 /**

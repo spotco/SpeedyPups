@@ -2,6 +2,7 @@
 #import "MainMenuLayer.h"
 #import "BirdFlock.h"
 #import "ChallengeModeSelect.h"
+@class LabelGroup;
 
 typedef enum {
     PlayPageMode_WAIT,
@@ -30,6 +31,8 @@ typedef enum {
     BOOL kill;
 	
 	GEvent *play_mode_type;
+	
+	LabelGroup *startworld_disp,*startbonus_disp;
 }
 
 +(NMenuPlayPage*)cons;
