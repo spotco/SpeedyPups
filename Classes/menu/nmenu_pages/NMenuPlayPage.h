@@ -3,6 +3,7 @@
 #import "BirdFlock.h"
 #import "ChallengeModeSelect.h"
 @class LabelGroup;
+@class SpriteGroup;
 
 typedef enum {
     PlayPageMode_WAIT,
@@ -32,7 +33,9 @@ typedef enum {
 	
 	GEvent *play_mode_type;
 	
-	LabelGroup *startworld_disp,*startbonus_disp;
+	LabelGroup *startworld_disp;
+	SpriteGroup *startworld_disp_icon;
+	CCLabelTTF *challenges_completed_disp;
 }
 
 +(NMenuPlayPage*)cons;

@@ -60,50 +60,57 @@
     [[((CCMenuItemSprite*)challengemodebutton) normalImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
     [[((CCMenuItemSprite*)challengemodebutton) selectedImage] addChild:[Common cons_label_pos:ccp(50,20) color:ccc3(240, 10, 10) fontsize:15 str:@"Challenge"]];
 	
-	#define PLAYTAB_MARGIN 10
+	
+	
 	CCMenuItemSprite *startworlddisp = (CCMenuItemSprite*)[MenuCommon item_from:TEX_NMENU_ITEMS
 														rect:@"playpage_infoside"
 														 tar:self
 														 sel:@selector(startworlddispbutton_pressed)
 														 pos:CGPointZero];
-	[startworlddisp setAnchorPoint:ccp(1,1)];
+	[startworlddisp setAnchorPoint:ccp(1,0.5)];
 	[startworlddisp setPosition:ccp(
-		freerunmodebutton.position.x - freerunmodebutton.boundingBox.size.width/2.0f + PLAYTAB_MARGIN,
-		freerunmodebutton.position.y + freerunmodebutton.boundingBox.size.height/2.0f - PLAYTAB_MARGIN
+		freerunmodebutton.position.x - freerunmodebutton.boundingBox.size.width/2.0f + 10,
+		freerunmodebutton.position.y
 	)];
-	#define TOPLEFTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.075 pcty:0.9] color:ccc3(200,30,30) fontsize:8 str:x] anchor_pt:ccp(0,1)]
+	
+	#define TOPLEFTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.085 pcty:0.93] color:ccc3(200,30,30) fontsize:9 str:x] anchor_pt:ccp(0,1)]
 	[startworlddisp.normalImage addChild:TOPLEFTLABEL(@"starting at:")];
 	[startworlddisp.selectedImage addChild:TOPLEFTLABEL(@"starting at")];
 	
-	#define BOTTOMLEFTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.87 pcty:0.1] color:ccc3(0,0,0) fontsize:14 str:x] anchor_pt:ccp(1,0)]
-	CCLabelTTF *startworlddisp_a = BOTTOMLEFTLABEL(@"");
-	CCLabelTTF *startworlddisp_b = BOTTOMLEFTLABEL(@"");
+	#define TOPRIGHTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.5 pcty:0.78] color:ccc3(0,0,0) fontsize:14 str:x] anchor_pt:ccp(0.5,1)]
+	CCLabelTTF *startworlddisp_a = TOPRIGHTLABEL(@"");
+	CCLabelTTF *startworlddisp_b = TOPRIGHTLABEL(@"");
 	[startworlddisp.normalImage addChild:startworlddisp_a];
 	[startworlddisp.selectedImage addChild:startworlddisp_b];
 	startworld_disp = [[[[LabelGroup alloc] init] add_label:startworlddisp_a] add_label:startworlddisp_b];
 	[startworld_disp set_string:@""];
 	
+	#define SPRITEICON(x) [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_tutorial"]] pos:[Common pct_of_obj:startworlddisp pctx:0.5 pcty:0.33]]
+	CCSprite *swdispicon_a = SPRITEICON(@"icon_tutorial");
+	CCSprite *swdispicon_b = SPRITEICON(@"icon_tutorial");
+	startworld_disp_icon = [[[[SpriteGroup alloc] init] add_sprite:swdispicon_a] add_sprite:swdispicon_b];
+	[startworlddisp.normalImage addChild:swdispicon_a];
+	[startworlddisp.selectedImage addChild:swdispicon_b];
 	
-	CCMenuItemSprite *startbonusdisp = (CCMenuItemSprite*)[MenuCommon item_from:TEX_NMENU_ITEMS
-														   rect:@"playpage_infoside"
-															tar:self
-															sel:@selector(startbonusdispbutton_pressed)
-															pos:CGPointZero];
-	[startbonusdisp setAnchorPoint:ccp(1,0)];
-	[startbonusdisp setPosition:ccp(
-		freerunmodebutton.position.x - freerunmodebutton.boundingBox.size.width/2.0f + PLAYTAB_MARGIN,
-		freerunmodebutton.position.y - freerunmodebutton.boundingBox.size.height/2.0f - PLAYTAB_MARGIN + startbonusdisp.normalImage.boundingBox.size.height/2.0f
-	)];
-	[startbonusdisp.normalImage addChild:TOPLEFTLABEL(@"bonus:")];
-	[startbonusdisp.selectedImage addChild:TOPLEFTLABEL(@"bonus:")];
-	CCLabelTTF *startbonusdisp_a = BOTTOMLEFTLABEL(@"");
-	CCLabelTTF *startbonusdisp_b = BOTTOMLEFTLABEL(@"");
-	[startbonusdisp.normalImage addChild:startbonusdisp_a];
-	[startbonusdisp.selectedImage addChild:startbonusdisp_b];
-	startbonus_disp = [[[[LabelGroup alloc] init] add_label:startbonusdisp_a] add_label:startbonusdisp_b];
-	[startbonus_disp set_string:@"none"];
 	
-    mode_choose_menu = [CCMenu menuWithItems:startworlddisp,startbonusdisp,freerunmodebutton,challengemodebutton,nil];
+	CCSprite *challengescompleteddisp = [CCSprite node];
+	CCSprite *chcodis_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"playpage_infoside"]];
+	[chcodis_body setScaleX:-1];
+	[challengescompleteddisp addChild:chcodis_body];
+	[chcodis_body setPosition:[Common pct_of_obj:chcodis_body pctx:0.5 pcty:0]];
+	[challengescompleteddisp setPosition:ccp(challengemodebutton.position.x + challengemodebutton.boundingBox.size.width/2.0 - 10,challengemodebutton.position.y)];
+	CCMenuItemImage *challengecompletedisp_wrapper = [CCMenuItemImage itemWithTarget:self selector:@selector(null_selector)];
+	[challengecompletedisp_wrapper addChild:challengescompleteddisp];
+	[challengescompleteddisp addChild:[[Common cons_label_pos:[Common pct_of_obj:chcodis_body pctx:0.9 pcty:0.93-0.5]
+														color:ccc3(200,30,30)
+													 fontsize:9 str:@"Completed:"] anchor_pt:ccp(1,1)]];
+	challenges_completed_disp = [Common cons_label_pos:[Common pct_of_obj:chcodis_body pctx:0.55 pcty:0.5-0.5]
+												 color:ccc3(0,0,0)
+											  fontsize:20
+												   str:@"00/00"];
+	[challengescompleteddisp addChild:challenges_completed_disp];
+	
+    mode_choose_menu = [CCMenu menuWithItems:startworlddisp,challengecompletedisp_wrapper,freerunmodebutton,challengemodebutton,nil];
     [mode_choose_menu setPosition:ccp(0,0)];
     [self addChild:mode_choose_menu];
     [mode_choose_menu setVisible:NO];
@@ -126,6 +133,8 @@
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
 		[startworld_disp set_string:[GameMain GET_DO_TUTORIAL]?@"tutorial":@"world 1"];
+		[startworld_disp_icon set_texturerect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:[GameMain GET_DO_TUTORIAL]?@"icon_tutorial":@"icon_world1"]];
+		[challenges_completed_disp setString:[NSString stringWithFormat:@"%d/%d",[ChallengeRecord get_highest_available_challenge],[ChallengeRecord get_num_challenges]]];
 	}
 	[super setVisible:visible];
 }
@@ -314,5 +323,7 @@
     [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation9.png"]]];
     return [Common make_anim_frames:animFrames speed:0.15];
 }
+
+-(void)null_selector{}
 
 @end

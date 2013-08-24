@@ -58,6 +58,33 @@
 }
 @end
 
+@implementation SpriteGroup
+
+-(id)init {
+	self = [super init];
+	sprites = [NSMutableArray array];
+	return self;
+}
+
+-(SpriteGroup*)add_sprite:(CCSprite *)spr {
+	[sprites addObject:spr];
+	return self;
+}
+
+-(void)set_texture:(CCTexture2D *)tex {
+	for (CCSprite *s in sprites) {
+		[s setTexture:tex];
+	}
+}
+
+-(void)set_texturerect:(CGRect)rect {
+	for (CCSprite *s in sprites) {
+		[s setTextureRect:rect];
+	}
+}
+
+@end
+
 
 @implementation MenuCommon
 +(CCSprite*)menu_item:(NSString*)tex id:(NSString*)tid pos:(CGPoint)pos {

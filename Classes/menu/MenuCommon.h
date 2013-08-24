@@ -21,6 +21,14 @@
 -(void)set_string:(NSString*)string;
 @end
 
+@interface SpriteGroup : NSObject {
+	NSMutableArray *sprites;
+}
+-(SpriteGroup*)add_sprite:(CCSprite*)spr;
+-(void)set_texture:(CCTexture2D*)tex;
+-(void)set_texturerect:(CGRect)rect;
+@end
+
 @interface MenuCommon : NSObject
 
 +(CCSprite*)menu_item:(NSString*)tex id:(NSString*)tid pos:(CGPoint)pos;
