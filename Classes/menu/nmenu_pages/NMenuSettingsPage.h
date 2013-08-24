@@ -2,9 +2,10 @@
 #import "MainMenuLayer.h"
 
 @interface NMenuSettingsPage : NMenuPage <GEventListener> {
-    BOOL kill;
-	CCMenuItemSprite *do_tutorial;
-	CCLabelTTF *do_tutorial_label;
+	CCSprite *clipper_anchor;
+	CCSprite *scroll_left_arrow, *scroll_right_arrow;
+	CCSprite *selector_icon;
+
 }
 
 +(NMenuSettingsPage*)cons;

@@ -20,12 +20,11 @@
 /**
  TODO
  -infinite runner skip to world 1, 2, 3 settings
+ 
+ -art ask for:
+	settings page -> map page navmenu icon
+	new UNLOCK NOW button design
  **/
-
-/**
- Settings:
- -view stats
- **/    
 
 /**
  More Challenges:
