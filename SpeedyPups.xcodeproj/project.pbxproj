@@ -624,6 +624,7 @@
 		7EF8CA581797E4A900BD4476 /* dashjumpparticles_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EF8CA561797E4A900BD4476 /* dashjumpparticles_ss.plist */; };
 		7EF8CA591797E4A900BD4476 /* dashjumpparticles_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF8CA571797E4A900BD4476 /* dashjumpparticles_ss.png */; };
 		7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */; };
+		7EFC757B17C9F0F500D4EEF7 /* FreeRunStartAtManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFC757A17C9F0F500D4EEF7 /* FreeRunStartAtManager.m */; };
 		7EFD034D1707B945002492D6 /* UsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD034C1707B945002492D6 /* UsedItem.m */; };
 		7EFD3E5C17894FEB00A6F383 /* sweatanim_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */; };
 		7EFD3E5D17894FEB00A6F383 /* sweatanim_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5B17894FEB00A6F383 /* sweatanim_ss.png */; };
@@ -1433,6 +1434,8 @@
 		7EF8CA571797E4A900BD4476 /* dashjumpparticles_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashjumpparticles_ss.png; sourceTree = "<group>"; };
 		7EF8CA5A1797EB0900BD4476 /* JumpParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpParticle.h; sourceTree = "<group>"; };
 		7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpParticle.m; sourceTree = "<group>"; };
+		7EFC757917C9F0F500D4EEF7 /* FreeRunStartAtManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeRunStartAtManager.h; path = user/FreeRunStartAtManager.h; sourceTree = "<group>"; };
+		7EFC757A17C9F0F500D4EEF7 /* FreeRunStartAtManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FreeRunStartAtManager.m; path = user/FreeRunStartAtManager.m; sourceTree = "<group>"; };
 		7EFD034B1707B945002492D6 /* UsedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsedItem.h; sourceTree = "<group>"; };
 		7EFD034C1707B945002492D6 /* UsedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsedItem.m; sourceTree = "<group>"; };
 		7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sweatanim_ss.plist; sourceTree = "<group>"; };
@@ -2985,6 +2988,8 @@
 				7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */,
 				7ECFA6A01706A23A00496002 /* UserInventory.h */,
 				7ECFA6A11706A23A00496002 /* UserInventory.m */,
+				7EFC757917C9F0F500D4EEF7 /* FreeRunStartAtManager.h */,
+				7EFC757A17C9F0F500D4EEF7 /* FreeRunStartAtManager.m */,
 			);
 			name = user;
 			sourceTree = "<group>";
@@ -3710,6 +3715,7 @@
 				7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */,
 				7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */,
 				7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */,
+				7EFC757B17C9F0F500D4EEF7 /* FreeRunStartAtManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

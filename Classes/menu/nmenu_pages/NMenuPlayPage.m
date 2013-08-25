@@ -2,6 +2,7 @@
 #import "MenuCommon.h"
 #import "Flowers.h"
 #import "GameMain.h"
+#import "FreeRunStartAtManager.h"
 
 @implementation NMenuPlayPage
 
@@ -132,8 +133,11 @@
 
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
-		[startworld_disp set_string:[GameMain GET_DO_TUTORIAL]?@"tutorial":@"world 1"];
-		[startworld_disp_icon set_texturerect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:[GameMain GET_DO_TUTORIAL]?@"icon_tutorial":@"icon_world1"]];
+		[startworld_disp set_string:[FreeRunStartAtManager name_for_loc:[FreeRunStartAtManager get_starting_loc]]];
+		TexRect *tr = [FreeRunStartAtManager get_icon_for_loc:[FreeRunStartAtManager get_starting_loc]];
+		[startworld_disp_icon set_texture:tr.tex];
+		[startworld_disp_icon set_texturerect:tr.rect];
+		
 		[challenges_completed_disp setString:[NSString stringWithFormat:@"%d/%d",[ChallengeRecord get_highest_available_challenge],[ChallengeRecord get_num_challenges]]];
 	}
 	[super setVisible:visible];

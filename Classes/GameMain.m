@@ -3,6 +3,7 @@
 
 #import "UserInventory.h"
 #import "Challenge.h"
+#import "FreeRunStartAtManager.h"
 
 @implementation GameMain
 
@@ -19,7 +20,8 @@
 
 /**
  TODO
- -infinite runner skip to world 1, 2, 3 settings
+ -make skip to lab and world 2,3 work
+ -unlockable skip levels, in game and in store
  
  -art ask for:
 	settings page -> map page navmenu icon
@@ -71,6 +73,9 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	[UserInventory add_bones:100000];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
@@ -115,12 +120,4 @@
 +(BOOL)GET_USE_BG {return USE_BG;}
 +(BOOL)GET_DRAW_HITBOX {return DRAW_HITBOX;}
 +(BOOL)GET_DO_CONSTANT_DT { return SET_CONSTANT_DT; }
-
-static BOOL DO_TUTORIAL = YES;
-+(BOOL)GET_DO_TUTORIAL {
-	return DO_TUTORIAL;
-}
-+(void)SET_DO_TUTORIAL:(BOOL)t {
-	DO_TUTORIAL = t;
-}
 @end

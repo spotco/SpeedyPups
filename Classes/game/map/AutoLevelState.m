@@ -1,6 +1,7 @@
 #import "AutoLevelState.h"
 #import "Common.h"
 #import "GameMain.h" 
+#import "FreeRunStartAtManager.h"
 
 @implementation AutoLevelState
 
@@ -180,7 +181,7 @@ static NSArray *lab_tutorial_levels;
 -(id)init {
     self = [super init];
 	ct = 0;
-	has_done_lab_tutorial = ![GameMain GET_DO_TUTORIAL];
+	has_done_lab_tutorial = [FreeRunStartAtManager get_starting_loc] != FreeRunStartAt_TUTORIAL;
 	sets_until_next_lab = 0;
 	cur_set_completed = 0;
 	nth_freerunprogress = 0;
@@ -235,7 +236,7 @@ bool sur = NO;
 	ct++;
 	
 	if (ct == 1) {
-		if ([GameMain GET_DO_TUTORIAL]) {
+		if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
 			cur_set = L_TUTORIAL;
 			
 		} else {
