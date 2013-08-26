@@ -20,7 +20,6 @@
 
 /**
  TODO
- -make skip to lab and world 2,3 work
  -unlockable skip levels, in game and in store
  
  -art ask for:
@@ -73,9 +72,8 @@
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	[UserInventory add_bones:100000];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

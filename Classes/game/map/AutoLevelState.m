@@ -231,20 +231,80 @@ static NSArray *lab_tutorial_levels;
 	return tar;
 }
 
+-(void)cycle_through:(int)fois {
+	cur_set = [self pick_set];
+	for (int i = 0; i < fois; i++) {
+		ct++;
+		if (ct%3==0) cur_set = [self pick_set];
+		[setgen get_from_bucket:cur_set];
+	}
+}
+
+-(void)cycle_through_lab:(int)fois {
+	for (int i = 0; i < fois; i++) {
+		[labsetgen get_from_bucket:L_LAB];
+	}
+}
+
+-(void)set_initial_params {
+	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
+		cur_set = L_TUTORIAL;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
+		tutorial_ct = 0;
+		ct = 10;
+		cur_set = L_FREERUN_PROGRESS;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
+		[self cycle_through:17];
+		nth_freerunprogress++;
+		tutorial_ct = 0;
+		has_done_lab_tutorial = true;
+		cur_set = L_LABINTRO;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
+		[self cycle_through:20];
+		[self cycle_through_lab:3];
+		nth_freerunprogress = 3;
+		tutorial_ct = 0;
+		has_done_lab_tutorial = true;
+		cur_set = L_FREERUN_PROGRESS;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB2) {
+		[self cycle_through:35];
+		[self cycle_through_lab:3];
+		nth_freerunprogress = 3;
+		tutorial_ct = 0;
+		has_done_lab_tutorial = true;
+		cur_set = L_LABINTRO;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
+		[self cycle_through:36];
+		[self cycle_through_lab:6];
+		nth_freerunprogress = 4;
+		tutorial_ct = 0;
+		has_done_lab_tutorial = true;
+		cur_set = L_FREERUN_PROGRESS;
+		
+	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
+		[self cycle_through:36];
+		[self cycle_through_lab:6];
+		nth_freerunprogress = 5;
+		tutorial_ct = 0;
+		has_done_lab_tutorial = true;
+		cur_set = L_LABINTRO;
+		
+	} else {
+		NSLog(@"AutoLevelState start at error");
+	}
+}
+
 bool sur = NO;
 -(NSString*)get_level {
 	ct++;
 	
 	if (ct == 1) {
-		if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
-			cur_set = L_TUTORIAL;
-			
-		} else {
-			tutorial_ct = 0;
-			ct = 10;
-			cur_set = L_FREERUN_PROGRESS;
-		}
-		
+		[self set_initial_params];
 		return [[levelsets[L_AUTOSTART] allKeys] random];
 		
 	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
