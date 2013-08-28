@@ -10,6 +10,7 @@
     n.time_left = time;
     [n recft];
     n.cur_airjump_count = 2;
+	n.cur_dash_count = 2;
     n.cur_gravity = -0.1;
     return n;
 }

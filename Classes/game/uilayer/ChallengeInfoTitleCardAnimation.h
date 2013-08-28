@@ -10,7 +10,7 @@ typedef enum {
 
 @interface ChallengeInfoTitleCardAnimation : UIIngameAnimation {
 	CCSprite *base;
-	int animct;
+	float animct;
 	TitleCardMode mode;
 }
 @property(readwrite,assign) int TRANS_LEN,STAY_LEN;

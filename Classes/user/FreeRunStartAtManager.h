@@ -1,7 +1,9 @@
 #import <Foundation/Foundation.h>
+#import "FreeRunProgressAnimation.h"
 @class TexRect;
 
 typedef enum {
+	FreeRunStartAt_ERRVAL = -1,
 	FreeRunStartAt_TUTORIAL = 0,
 	FreeRunStartAt_WORLD1 = 1,
 	FreeRunStartAt_LAB1 = 2,
@@ -20,5 +22,7 @@ typedef enum {
 
 +(FreeRunStartAt)get_starting_loc;
 +(void)set_starting_loc:(FreeRunStartAt)loc;
+
++(FreeRunStartAt)get_for_progress:(FreeRunProgress)prog;
 
 @end

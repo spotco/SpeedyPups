@@ -15,12 +15,36 @@
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
-#define RESET_STATS YES
+#define RESET_STATS NO
 #define DISPLAY_FPS NO
 
 /**
  TODO
- -unlockable skip levels, in game and in store
+	animate map page navmenu selector
+	challenge page show reward
+	only partially load textures (as opposed to loading all)
+	challenge page images
+ 
+ More Challenges:
+	 collect all bones in swingvine_awesome (67)
+	 classic_nubcave secret
+	 easy_curvywater get all bones
+	 easy_hillvine get all secrets
+	 filler_genome get 57 bones
+	 classic_manyoptredux beat fast
+	 classic_totalmix get 54 bones
+	 labintro_tutoriallauncher get all bones
+	 lab_alladat speedrun
+	 double helicopter boss final challenge
+ 
+ SFX:
+	 goal
+	 rocket
+	 armor
+	 1up
+	 boss sounds
+	 buy item
+	 barking
  
  -art ask for:
 	settings page -> map page navmenu icon
@@ -28,32 +52,13 @@
  **/
 
 /**
- More Challenges:
- collect all bones in swingvine_awesome (67)
- classic_nubcave secret
- easy_curvywater get all bones
- easy_hillvine get all secrets
- filler_genome get 57 bones
- classic_manyoptredux beat fast
- classic_totalmix get 54 bones
- labintro_tutoriallauncher get all bones
- lab_alladat speedrun
- double helicopter boss final challenge
- 
- SFX:
- goal
- rocket
- armor
- 1up
- boss sounds
- buy item
- barking
- 
- 
- Stretch goal:
- credits screen after boss
- cloud cape flying minigame
+Stretch goals:
  2nd and 3rd reskin world
+ 2nd and 3rd boss
+ cloud cape flying minigame
+ integrate IAPs
+ weekly levels (streamed from online)
+ store sales (streamed from online)
  **/
 
 +(void)main {
@@ -71,9 +76,10 @@
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	[UserInventory add_bones:100000];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
+	//[UserInventory add_bones:100000];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

@@ -51,6 +51,7 @@
 		7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */; };
 		7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */; };
 		7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E717A11177FE9A800141E3D /* labswingvine_base.png */; };
+		7E72818E17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
 		7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8F478217994067004CA582 /* tutorial_upsidebounce.map */; };
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
@@ -706,6 +707,8 @@
 		7E52834F179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeInfoTitleCardAnimation.h; sourceTree = "<group>"; };
 		7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeInfoTitleCardAnimation.m; sourceTree = "<group>"; };
 		7E717A11177FE9A800141E3D /* labswingvine_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labswingvine_base.png; sourceTree = "<group>"; };
+		7E72818C17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeRunStartAtUnlockUIAnimation.h; sourceTree = "<group>"; };
+		7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunStartAtUnlockUIAnimation.m; sourceTree = "<group>"; };
 		7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutorialbop.map; path = Resources/levels/labintro_tutorialbop.map; sourceTree = SOURCE_ROOT; };
 		7E8F478217994067004CA582 /* tutorial_upsidebounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_upsidebounce.map; sourceTree = "<group>"; };
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
@@ -1596,6 +1599,8 @@
 				7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */,
 				7E50B27117A2608E00E0C408 /* FreeRunProgressAnimation.h */,
 				7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */,
+				7E72818C17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.h */,
+				7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */,
 			);
 			name = ingame_anim;
 			sourceTree = "<group>";
@@ -3716,6 +3721,7 @@
 				7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */,
 				7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */,
 				7EFC757B17C9F0F500D4EEF7 /* FreeRunStartAtManager.m in Sources */,
+				7E72818E17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -109,6 +109,7 @@
 	[clipper addChild:zero_anchor];
 	
 	FreeRunStartAt loc[] = {FreeRunStartAt_TUTORIAL,FreeRunStartAt_WORLD1,FreeRunStartAt_LAB1,FreeRunStartAt_WORLD2,FreeRunStartAt_LAB2,FreeRunStartAt_WORLD3,FreeRunStartAt_LAB3};
+	CGPoint selector_icon_position = ccp(50,70);
 	for(int i = 0; i < 7; i++) {
 		MapIconTouchButton *b = [MapIconTouchButton cons_loc:loc[i]
 														 pos:ccp(50+i*90,40)
@@ -120,12 +121,16 @@
 														 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"location_spacer"]]
 								  pos:ccp(50+i*90+45,40)]];
 		clippedholder_x_min = -(50+i*90) + [Common SCREEN].width * 0.6 - 55;
+		
+		if (loc[i] == [FreeRunStartAtManager get_starting_loc]) {
+			selector_icon_position.x = b.position.x;
+		}
 	}
 	
 	
 	selector_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
 											rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"dog_selector"]]
-					pos:ccp(50,70)];
+					pos:selector_icon_position];
 	selector_icon_target_pos = selector_icon.position;
 	[clipper_anchor addChild:selector_icon];
 	

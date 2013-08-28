@@ -66,4 +66,22 @@
 	}
 }
 
++(FreeRunStartAt)get_for_progress:(FreeRunProgress)prog {
+	if (prog == FreeRunProgress_PRE_1) {
+		return FreeRunStartAt_WORLD1;
+	} else if (prog == FreeRunProgress_1) {
+		return FreeRunStartAt_LAB1;
+	} else if (prog == FreeRunProgress_PRE_2) {
+		return FreeRunStartAt_WORLD2;
+	} else if (prog == FreeRunProgress_2) {
+		return FreeRunStartAt_LAB2;
+	} else if (prog == FreeRunProgress_PRE_3) {
+		return FreeRunStartAt_WORLD3;
+	} else if (prog == FreeRunProgress_3) {
+		return FreeRunStartAt_LAB3;
+	} else {
+		return FreeRunStartAt_ERRVAL;
+	}
+}
+
 @end

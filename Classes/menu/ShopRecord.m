@@ -4,6 +4,7 @@
 #import "GameItemCommon.h"
 #import "UserInventory.h"
 #import "Player.h"
+#import "FreeRunStartAtManager.h"
 
 @implementation ItemInfo
 @synthesize tex;
@@ -26,6 +27,23 @@
 	i.val = val;
 	return i;
 }
+
++(ItemInfo*)cons_tex:(CCTexture2D*)texn
+				rect:(CGRect)rectid
+				name:(NSString*)name
+				desc:(NSString*)desc
+			   price:(int)price
+				 val:(NSString*)val {
+	ItemInfo *i = [[ItemInfo alloc] init];
+	i.tex = texn;
+	i.rect = rectid;
+	i.name = name;
+	i.desc = desc;
+	i.price = price;
+	i.val = val;
+	return i;
+}
+
 @end
 
 @implementation ShopRecord
@@ -103,6 +121,15 @@
 }
 
 +(void)fill_unlock_tab:(NSMutableArray*)a {
+	if (![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_LAB3]) {
+		TexRect *freerunstarticon = [FreeRunStartAtManager get_icon_for_loc:FreeRunStartAt_WORLD1];
+		[a addObject:[ItemInfo cons_tex:freerunstarticon.tex
+								   rect:freerunstarticon.rect
+								   name:@"Free Run"
+								   desc:@"Unlock all freerun start points!"
+								  price:25000
+									val:SHOP_UNLOCK_FREERUN]];
+	}
 }
 
 +(void)fill_realmoney_tab:(NSMutableArray*)a {
@@ -170,6 +197,14 @@
 	} else if (streq(val, SHOP_DOG_DOG7)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_7]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_7];
+		
+	} else if (streq(val, SHOP_UNLOCK_FREERUN)) {
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 		
 	}
 	[UserInventory add_bones:-price];

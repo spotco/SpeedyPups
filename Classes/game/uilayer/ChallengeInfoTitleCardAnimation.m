@@ -137,16 +137,16 @@
 		[base setPosition:[Common screen_pctwid:XPOS
 										 pcthei:YPOS_END + (((float)animct) / TRANS_LEN)*(YPOS_START-YPOS_END)
 						   ]];
-		animct--;
-		if (animct == 0) {
+		animct-=[Common get_dt_Scale];
+		if (animct <= 0) {
 			mode = TitleCardMode_STAY;
 			animct = STAY_LEN;
 		}
 		
 	} else if (mode == TitleCardMode_STAY) {
 		[base setPosition:[Common screen_pctwid:XPOS pcthei:YPOS_END]];
-		animct--;
-		if (animct == 0) {
+		animct-=[Common get_dt_Scale];
+		if (animct <= 0) {
 			mode = TitleCardMode_UP;
 			animct = TRANS_LEN;
 		}
@@ -155,8 +155,8 @@
 		[base setPosition:[Common screen_pctwid:XPOS
 										 pcthei:YPOS_END + ((1-((float)animct) / TRANS_LEN)) * (YPOS_START-YPOS_END)
 						   ]];
-		animct--;
-		if (animct == 0) {
+		animct-=[Common get_dt_Scale];
+		if (animct <= 0) {
 			ct = 0;
 		}
 	}

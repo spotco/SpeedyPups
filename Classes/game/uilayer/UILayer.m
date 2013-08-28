@@ -12,6 +12,8 @@
 #import "GameModeCallback.h" 
 #import "CoinCollectUIAnimation.h"
 #import "ChallengeInfoTitleCardAnimation.h"
+#import "FreeRunStartAtManager.h"
+#import "FreeRunStartAtUnlockUIAnimation.h"
 
 @implementation UILayer
 
@@ -114,11 +116,24 @@
 		
 	} else if (e.type == GEventType_FREERUN_PROGRESS) {
 		[self start_freerunprogress_anim:e.i1];
+		[self check_freerunprogress_unlock:e.i1];
 		
 	} else if (e.type == GEVentType_PICKUP_ITEM) {
 		[self update_items];
 		[ingameui animslot_notification];
 		
+	}
+}
+
+-(void)check_freerunprogress_unlock:(FreeRunProgress)progress {
+	FreeRunStartAt start_at = [FreeRunStartAtManager get_for_progress:progress];
+	if (start_at == FreeRunStartAt_ERRVAL) return;
+	
+	if (![FreeRunStartAtManager get_can_start_at:start_at]) {
+		[FreeRunStartAtManager set_can_start_at:start_at];
+		UIIngameAnimation *ua = [FreeRunStartAtUnlockUIAnimation cons_for_unlocking:start_at];
+		[ingameuianimholder addChild:ua];
+		[ingame_ui_anims addObject:ua];
 	}
 }
 
