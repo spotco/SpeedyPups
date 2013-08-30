@@ -122,6 +122,7 @@
 #define TEX_NMENU_DOGHOUSEMASK @"doghousemask"
 #define TEX_NMENU_LOGO @"logo_ss"
 #define TEX_NMENU_LEVELSELOBJ @"nmenu_levelselectobj"
+#define TEX_FREERUNSTARTICONS @"freerunstart_icons"
 
 #define TEX_BLANK @"blank"
 

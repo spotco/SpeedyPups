@@ -32,13 +32,13 @@
 
 +(TexRect*)get_icon_for_loc:(FreeRunStartAt)loc {
 	if (loc == FreeRunStartAt_TUTORIAL) {
-		return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_tutorial"]];
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_tutorial"]];
 		
 	} else if (loc == FreeRunStartAt_LAB1 || loc == FreeRunStartAt_LAB2 || loc == FreeRunStartAt_LAB3) {
-		return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_lab"]];
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_lab"]];
 		
 	} else if (loc == FreeRunStartAt_WORLD1 || loc == FreeRunStartAt_WORLD2 || loc == FreeRunStartAt_WORLD3) {
-		return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_world1"]];
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_world1"]];
 		
 	} else {
 		NSLog(@"FreeRunStartAtManager get_icon_for_loc is null");

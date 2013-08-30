@@ -20,8 +20,6 @@
 
 /**
  TODO
-	animate map page navmenu selector
-	challenge page show reward
 	only partially load textures (as opposed to loading all)
 	challenge page images
  
@@ -35,7 +33,6 @@
 	 classic_totalmix get 54 bones
 	 labintro_tutoriallauncher get all bones
 	 lab_alladat speedrun
-	 double helicopter boss final challenge
  
  SFX:
 	 goal

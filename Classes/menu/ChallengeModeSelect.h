@@ -8,9 +8,12 @@
     
     CCSprite *selectmenu, *chosenmenu;
     
-    CCLabelTTF *chosen_name, *chosen_goal;
-    CCSprite /**chosen_star,*/*chosen_preview, *chosen_icon;
-    int chosen_level;
+    CCLabelTTF *chosen_name, *chosen_mapname, *chosen_goal;
+    CCLabelTTF *reward_amount;
+	CCSprite *chosen_preview;
+    CCSprite *show_reward;
+	CCSprite *show_already_beaten;
+	int chosen_level;
 }
 
 +(ChallengeModeSelect*)cons;

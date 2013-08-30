@@ -4,7 +4,7 @@
 @implementation Resource
 
 
-static NSMutableDictionary* textures = nil;
+static NSMutableDictionary* textures;
 
 +(void)cons_textures {
     textures = [NSMutableDictionary dictionary];
@@ -129,6 +129,7 @@ static NSMutableDictionary* textures = nil;
                         @"nmenu_bg.png",TEX_NMENU_BG,
                         @"doghouse_mask.png",TEX_NMENU_DOGHOUSEMASK,
                         @"nmenu_levelselectobj.png",TEX_NMENU_LEVELSELOBJ,
+						@"freerunstart_icons.png",TEX_FREERUNSTARTICONS,
                      
                         @"blank.png",TEX_BLANK,
                      

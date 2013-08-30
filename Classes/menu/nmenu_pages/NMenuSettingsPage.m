@@ -43,7 +43,7 @@
 		[disp_text setString:[FreeRunStartAtManager name_for_loc:starting_loc]];
 		
 	} else {
-		[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_question"]];
+		[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_question"]];
 		[disp_text setColor:ccc3(80,80,80)];
 		[disp_text setString:@"Locked"];
 		
@@ -127,10 +127,11 @@
 		}
 	}
 	
-	
-	selector_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-											rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"dog_selector"]]
-					pos:selector_icon_position];
+	selector_icon = [CCSprite node];
+	[selector_icon runAction:[Common cons_anim:@[@"dog_selector_0",@"dog_selector_1"] speed:0.2 tex_key:TEX_NMENU_ITEMS]];
+	[selector_icon setScale:0.6];
+	[selector_icon setAnchorPoint:ccp(0.44,0.5)];
+	[selector_icon setPosition:selector_icon_position];
 	selector_icon_target_pos = selector_icon.position;
 	[clipper_anchor addChild:selector_icon];
 	

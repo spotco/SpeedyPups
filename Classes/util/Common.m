@@ -390,4 +390,12 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return ccc3(a.r+(b.r-a.r)*pct,a.g+(b.g-a.g)*pct,a.b+(b.b-a.b)*pct);
 }
 
++(CCAction*)cons_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key {
+	CCTexture2D *texture = [Resource get_tex:key];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    for (NSString* k in a) [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:key idname:k]]];
+    return [Common make_anim_frames:animFrames speed:speed];
+}
+
+
 @end
