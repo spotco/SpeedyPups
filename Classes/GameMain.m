@@ -8,8 +8,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -20,8 +20,7 @@
 
 /**
  TODO
-	only partially load textures (as opposed to loading all)
-	challenge page images
+ -ingame ui move time and bones
  
  More Challenges:
 	 collect all bones in swingvine_awesome (67)
@@ -33,15 +32,18 @@
 	 classic_totalmix get 54 bones
 	 labintro_tutoriallauncher get all bones
 	 lab_alladat speedrun
+	
+	challenge page images
  
  SFX:
 	 goal
 	 rocket
 	 armor
-	 1up
+	 barking
 	 boss sounds
 	 buy item
-	 barking
+	 menu clicks
+		(continue yes, no, pause,etc)
  
  -art ask for:
 	settings page -> map page navmenu icon
@@ -66,17 +68,13 @@ Stretch goals:
     [BatchDraw cons];
 	
 	//todo -- loadscreen this, this is slow
-	[Resource cons_textures];
+	//[Resource cons_textures];
 	for (NSString* i in [AutoLevelState get_all_levels]) {
         [MapLoader precache_map:i];
     }
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	//[UserInventory add_bones:100000];
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
@@ -84,30 +82,34 @@ Stretch goals:
 }
 
 +(void)start_game_autolevel {
+	//[self clear_scene];
     [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {
-    [GameMain run_scene:[GameEngineLayer scene_with_challenge:info]];
+    //[self clear_scene];
+	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info]];
+	
 }
 
 +(void)start_menu {
-    [GameMain run_scene:[MainMenuLayer scene]];
+    //[self clear_scene];
+	[self run_scene:[MainMenuLayer scene]];
 }
 
 +(void)start_testlevel {
-    [GameMain run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
+    //[self clear_scene];
+	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
 }
 
 +(void)start_from_callback:(GameModeCallback *)c {
+	//[self clear_scene];
     if (c.mode == GameMode_FREERUN) {
         [self start_game_autolevel];
         
     } else if (c.mode == GameMode_CHALLENGE) {
         [self start_game_challengelevel:[ChallengeRecord get_challenge_number:c.val]];
         
-    } else {
-        NSLog(@"error");
     }
 }
 

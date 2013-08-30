@@ -72,8 +72,8 @@
 @end
 
 @interface CallBack : NSObject
-    @property(readwrite,strong) NSObject* target;
-    @property(readwrite,assign) SEL selector;
+@property(readwrite,assign) SEL selector;
+@property(readwrite,unsafe_unretained) NSObject *target;
 @end
 
 @interface GLRenderObject : NSObject {
@@ -88,7 +88,7 @@
 @end
 
 @interface TexRect : NSObject
-@property(readwrite,strong) CCTexture2D* tex;
+@property(readwrite,unsafe_unretained) CCTexture2D* tex;
 @property(readwrite,assign) CGRect rect;
 +(TexRect*)cons_tex:(CCTexture2D*)tex rect:(CGRect)rect;
 @end

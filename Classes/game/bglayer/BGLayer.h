@@ -18,7 +18,7 @@
     int fadectr;
     NSMutableArray *visible_set;
     
-    GameEngineLayer* game_engine_layer;
+    GameEngineLayer* __unsafe_unretained game_engine_layer;
     
     float lastx,lasty, curx,cury;
     

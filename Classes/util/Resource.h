@@ -2,9 +2,11 @@
 
 @interface Resource : NSObject
 
-+(void)cons_textures;
+//+(void)cons_textures;
 +(CCTexture2D*)get_tex:(NSString*)key;
-+(void)dealloc_textures;
++(void)unload_textures;
+//+(void)dealloc_textures;
+
 
 #define TEX_GROUND_TEX_1 @"GroundTexture1"
 #define TEX_GROUND_TOP_1 @"GroundTop1"

@@ -23,7 +23,7 @@ typedef enum {
 #define SHOP_UNLOCK_FREERUN @"shop_unlock_freerun"
 
 @interface ItemInfo : NSObject
-@property(readwrite,strong) CCTexture2D* tex;
+@property(readwrite,unsafe_unretained) CCTexture2D* tex;
 @property(readwrite,assign) CGRect rect;
 @property(readwrite,assign) int price;
 @property(readwrite,strong) NSString *name, *desc;

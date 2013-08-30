@@ -225,6 +225,9 @@
 	is_scroll = NO;
 }
 
+-(void)dealloc {
+	//NSLog(@"settingsdealloc");
+}
 
 
 @end

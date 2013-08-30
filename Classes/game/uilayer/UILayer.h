@@ -15,7 +15,7 @@
 @class GameModeCallback;
 
 @interface UILayer : CCLayer <GEventListener> {
-    GameEngineLayer* game_engine_layer;
+    GameEngineLayer* __unsafe_unretained game_engine_layer;
     IngameUI *ingameui;
     PauseUI *pauseui;
     AskContinueUI *askcontinueui;

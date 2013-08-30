@@ -64,7 +64,6 @@
 
 -(void)add_pages {
     [menu_pages addObject:[NMenuTabShopPage cons]];
-	//[menu_pages addObject:[NMenuShopPage cons]];
     [menu_pages addObject:[NMenuCharSelectPage cons]];
     [menu_pages addObject:[NMenuPlayPage cons]];
     [menu_pages addObject:[NMenuSettingsPage cons]];
@@ -145,7 +144,7 @@
     [self unscheduleAllSelectors];
     [self removeAllChildrenWithCleanup:YES];
     [menu_pages removeAllObjects];
-    [self addChild:[Common get_load_scr]];
+	[[self parent] removeAllChildrenWithCleanup:YES];
 }
 
 @end

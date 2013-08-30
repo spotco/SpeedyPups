@@ -32,7 +32,7 @@ static NSArray *lab_tutorial_levels;
 
 +(void)initialize {
 	tutorial_levels = @[
-		@"tutorial_jump"
+		@"tutorial_jump",
 		@"tutorial_water",
 		@"tutorial_swipeget",
 		@"filler_sanicloop",

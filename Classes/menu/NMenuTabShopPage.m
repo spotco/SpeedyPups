@@ -363,4 +363,8 @@
 	is_scroll = NO;
 }
 
+-(void)dealloc {
+	//NSLog(@"shop dealloc");
+}
+
 @end

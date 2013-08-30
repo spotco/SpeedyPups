@@ -459,6 +459,8 @@
     [GEventDispatcher remove_all_listeners];
     [[CCDirector sharedDirector] resume];
     [BatchDraw clear];
+	
+	[parent_ removeAllChildrenWithCleanup:YES];
 }
 
 /* camera interface */
@@ -648,6 +650,7 @@
     [islands removeAllObjects];
     [game_objects removeAllObjects];
     [particles removeAllObjects];
+	NSLog(@"game dealloc");
 }
 
 

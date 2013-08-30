@@ -4,8 +4,8 @@
 #import "GameMain.h"
 
 @implementation CallBack
-    @synthesize selector;
-    @synthesize target;
+@synthesize selector;
+@synthesize target;
 @end
 
 @implementation GLRenderObject
@@ -109,7 +109,7 @@ static ccTime last_sdt = 1;
 +(CallBack*)cons_callback:(NSObject*)tar sel:(SEL)sel {
     CallBack* cb = [[CallBack alloc] init];
     cb.target = tar;
-    cb.selector = sel;
+	cb.selector = sel;
     return cb;
 }
 

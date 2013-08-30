@@ -44,7 +44,7 @@ typedef enum {
     int cur_scy;
     int inair_ct;
     
-    GameEngineLayer* game_engine_layer;
+    GameEngineLayer* __unsafe_unretained game_engine_layer;
     
     int new_spd,new_spd_ct;
     int new_magnetrad,new_magnetrad_ct;
