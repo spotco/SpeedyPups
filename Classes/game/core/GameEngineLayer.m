@@ -650,7 +650,6 @@
     [islands removeAllObjects];
     [game_objects removeAllObjects];
     [particles removeAllObjects];
-	NSLog(@"game dealloc");
 }
 
 

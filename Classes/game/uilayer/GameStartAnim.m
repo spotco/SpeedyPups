@@ -1,4 +1,6 @@
 #import "GameStartAnim.h"
+#import "Resource.h"
+#import "FileCache.h"
 
 @implementation GameStartAnim
 
@@ -13,9 +15,10 @@
 static float ANIM_LENGTH = 75.0;
 
 -(void)cons_anim {
-    readyimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_STARTGAME_READY]];
-    goimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_STARTGAME_GO]];
-    
+    readyimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"READY"]];
+    goimg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"GO"]];
+	
+	
     [self addChild:readyimg];
     [self addChild:goimg];
     [self setPosition:ccp([[UIScreen mainScreen] bounds].size.height/2, [[UIScreen mainScreen] bounds].size.width/2)];

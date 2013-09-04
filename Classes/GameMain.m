@@ -8,8 +8,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -20,7 +20,8 @@
 
 /**
  TODO
- -ingame ui move time and bones
+ 
+ water alert
  
  More Challenges:
 	 collect all bones in swingvine_awesome (67)
@@ -75,6 +76,8 @@ Stretch goals:
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
+	
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

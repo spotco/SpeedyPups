@@ -104,15 +104,6 @@
 #define TEX_CANNONFIRE_PARTICLE @"cannonfire_default"
 #define TEX_CANNONTRAIL @"cannontrail_default"
 
-#define TEX_UI_BONE_ICON @"UIBoneIcon"
-#define TEX_UI_LIVES_ICON @"UILivesIcon"
-#define TEX_UI_TIME_ICON @"UITimeIcon"
-#define TEX_UI_ENEMY_ALERT @"UIEnemyAlert"
-
-#define TEX_UI_PAUSEICON @"UIPauseIcon"
-#define TEX_UI_STARTGAME_GO @"UIStartGameGo"
-#define TEX_UI_STARTGAME_READY @"UIStartGameReady"
-
 #define TEX_UI_INGAMEUI_SS @"ingame_ui_ss"
 
 #define TEX_TUTORIAL_OBJ @"tutorial_obj"

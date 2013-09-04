@@ -1,11 +1,11 @@
 {
-    "islands": [
-        {"can_fall": true, "x2": 438.6, "ground": "open", "ndir": "left", "type": "line", "y1": 480, "hei": 50, "y2": 477.1, "x1": 98.6},
-        {"can_fall": true, "x2": 1177.2, "ground": "bridge", "ndir": "left", "type": "line", "y1": 477.1, "hei": 50, "y2": 474.3, "x1": 438.6}
+    "islands": [{"can_fall": true, "x2": 922, "ground": "open", "ndir": "left", "type": "line", "y1": 279, "hei": 50, "y2": 284, "x1": 112}],
+    "objects": [
+        {"x": 483, "width": 334, "y": 229, "type": "enemyalert", "height": 283, "label": "0"},
+        {"type": "launcherrobot", "x": 1142, "dir": {"x": -0.77, "y": -0.63}, "y": 815, "label": "0"}
     ],
-    "connect_pts": {"y1": 480, "x2": 1177.2, "y2": 474.3, "x1": 98.6},
-    "objects": [],
-    "start_x": 181.5,
-    "assert_links": 1,
-    "start_y": 535.7214285714285
+    "start_x": 189,
+    "connect_pts": {"y1": 279, "x2": 922, "y2": 284, "x1": 112},
+    "start_y": 373,
+    "assert_links": 0
 }

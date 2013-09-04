@@ -6,6 +6,8 @@
 #import "GameEngineLayer.h"
 #import "UICommon.h"
 #import "UILayer.h"
+#import "LauncherRocket.h"
+#import "UIEnemyAlert.h"
 
 @interface MRectCCMenuItemImage : CCMenuItemImage
 @end
@@ -27,11 +29,14 @@
     return [IngameUI node];
 }
 
+#define ENEMY_ALERT_CENTER [Common screen_pctwid:0.6 pcthei:0.5]
+
 -(id)init {
     self = [super init];
-    
-    CCSprite *pauseicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEICON]];
-    CCSprite *pauseiconzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_PAUSEICON]];
+	
+	CCSprite *pauseicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseicon"]];
+	CCSprite *pauseiconzoom = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseicon"]];
+	
     [UICommon set_zoom_pos_align:pauseicon zoomed:pauseiconzoom scale:1.4];
     
     CCMenuItemImage *ingamepause = [MRectCCMenuItemImage itemFromNormalSprite:pauseicon
@@ -42,34 +47,33 @@
 		[Common SCREEN].width-pauseicon.boundingBoxInPixels.size.width+10,
 		[Common SCREEN].height-pauseicon.boundingBoxInPixels.size.height+10
 	)];
-    
 	
-    CCMenuItem *bone_disp_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_BONE_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.96)];
-    CCMenuItem *lives_disp_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_LIVES_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.88)];
-    CCMenuItem *time_icon = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_TIME_ICON] pos:ccp([Common SCREEN].width*0.06,[Common SCREEN].height*0.80)];
-    
-    ccColor3B red = ccc3(255,0,0);
-    int fntsz = 15;
-    bones_disp = [UICommon cons_label_pos:ccp([Common SCREEN].width*0.03+20,[Common SCREEN].height*0.95) color:red fontsize:fntsz];
-    lives_disp = [UICommon cons_label_pos:ccp([Common SCREEN].width*0.03+16,[Common SCREEN].height*0.8725) color:red fontsize:fntsz];
-    time_disp = [UICommon cons_label_pos:ccp([Common SCREEN].width*0.03+13,[Common SCREEN].height*0.795) color:red fontsize:fntsz];
-    
-    enemy_alert_ui = [UICommon cons_menuitem_tex:[Resource get_tex:TEX_UI_ENEMY_ALERT] pos:[Common screen_pctwid:0.9 pcthei:0.5]];
-    [enemy_alert_ui setVisible:NO];
-    
+	CCSprite *bone_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_bone_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.96]];
+	CCSprite *lives_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_lives_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.88]];
+	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
+	
+	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	time_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
+	
+	[bone_disp_icon addChild:bones_disp];
+	[lives_disp_icon addChild:lives_disp];
+	[time_disp_icon addChild:time_disp];
+	
+	[self addChild:bone_disp_icon];
+	[self addChild:lives_disp_icon];
+	[self addChild:time_disp_icon];
+	
+	enemy_alert_ui = [UIEnemyAlert cons];
+	[enemy_alert_ui setVisible:NO];
+	[self addChild:enemy_alert_ui];
+	
     ingame_ui_item_slot = [MainSlotItemPane cons_pt:[Common screen_pctwid:0.93 pcthei:0.09] cb:[Common cons_callback:self sel:@selector(itemslot_use)] slot:0];
     [ingame_ui_item_slot setScale:0.75];
     [ingame_ui_item_slot setOpacity:120];
     
     CCMenu *ingame_ui = [CCMenu menuWithItems:
                  ingamepause,
-                 bone_disp_icon,
-                 lives_disp_icon,
-                 time_icon,
-                 [UICommon label_cons_menuitem:bones_disp leftalign:YES],
-                 [UICommon label_cons_menuitem:lives_disp leftalign:YES],
-                 [UICommon label_cons_menuitem:time_disp leftalign:YES],
-                 enemy_alert_ui,
                  ingame_ui_item_slot,
                  nil];
     
@@ -170,10 +174,31 @@
 	[ingame_ui_item_slot setScale:item_slot_notify_anim_sc];
 
     if (enemy_alert_ui_ct > 0) {
-        enemy_alert_ui_ct--;
-        if (enemy_alert_ui_ct % 10 == 0) {
-            [enemy_alert_ui setVisible:!enemy_alert_ui.visible];
-        }
+		float min_rocket_dist = INFINITY;
+		Vec3D alert_delta = [VecLib cons_x:1 y:0 z:0];
+		BOOL found = NO;
+		for (GameObject *o in g.game_objects) {
+			if ([[o class] isSubclassOfClass:[LauncherRocket class]] && o.position.x > g.player.position.x-200 ) {
+				float dist = CGPointDist(o.position, g.player.position);
+				if (dist < min_rocket_dist) {
+					min_rocket_dist = dist;
+					alert_delta = [VecLib normalized_x:o.position.x-g.player.position.x y:o.position.y-g.player.position.y z:0];
+					found = YES;
+				}
+			}
+		}
+		
+		[enemy_alert_ui set_dir:alert_delta];
+		alert_delta = [VecLib scale:alert_delta by:[Common SCREEN].width*0.25];
+		CGPoint alert_pos = ENEMY_ALERT_CENTER;
+		alert_pos.x += alert_delta.x;
+		alert_pos.y += alert_delta.y;
+		[enemy_alert_ui setPosition:alert_pos];
+		
+        enemy_alert_ui_ct-=[Common get_dt_Scale];
+        [enemy_alert_ui set_flash:(((int)enemy_alert_ui_ct)/14)%2];
+		[enemy_alert_ui setVisible:found];
+		
     } else {
         [enemy_alert_ui setVisible:NO];
     }
