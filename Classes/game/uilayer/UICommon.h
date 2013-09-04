@@ -1,5 +1,6 @@
 #import "cocos2d.h"
 @class GameEngineLayer;
+@class GameObject;
 
 @interface UICommon : NSObject
 
@@ -11,4 +12,7 @@
 +(CGPoint)player_approx_position:(GameEngineLayer*)game_engine_layer;
 
 +(void)button:(CCNode *)btn add_desctext:(NSString *)txt color:(ccColor3B)color fntsz:(int)fntsz ;
+
++(CGPoint)pt_approx_position:(CGPoint)obj g:(GameEngineLayer*)g;
+
 @end

@@ -1,11 +1,13 @@
 {
-    "islands": [{"can_fall": true, "x2": 922, "ground": "open", "ndir": "left", "type": "line", "y1": 279, "hei": 50, "y2": 284, "x1": 112}],
+    "islands": [{"can_fall": true, "x2": 1622, "ground": "open", "ndir": "left", "type": "line", "y1": 580, "hei": 50, "y2": 584, "x1": 100}],
     "objects": [
-        {"x": 483, "width": 334, "y": 229, "type": "enemyalert", "height": 283, "label": "0"},
-        {"type": "launcherrobot", "x": 1142, "dir": {"x": -0.77, "y": -0.63}, "y": 815, "label": "0"}
+        {"x": 1183, "width": 334, "y": 529, "type": "enemyalert", "height": 283, "label": "0"},
+        {"type": "launcherrobot", "x": 1842, "dir": {"x": -0.77, "y": -0.63}, "y": 1115, "label": "0"},
+        {"x": 1301.7, "width": 1385, "y": 30, "type": "water", "height": 431.63333333333344, "label": "2"},
+        {"x": 347.5, "width": 395, "y": 412.5, "type": "camera_area", "height": 607.5, "camera": {"x": 120, "z": 262, "y": 110}, "label": "CAM(120,110,262)"}
     ],
-    "start_x": 189,
-    "connect_pts": {"y1": 279, "x2": 922, "y2": 284, "x1": 112},
-    "start_y": 373,
+    "start_x": 195,
+    "connect_pts": {"y1": 580, "x2": 1622, "y2": 584, "x1": 100},
+    "start_y": 653.3,
     "assert_links": 0
 }

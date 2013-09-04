@@ -20,9 +20,6 @@
 
 /**
  TODO
- 
- water alert
- 
  More Challenges:
 	 collect all bones in swingvine_awesome (67)
 	 classic_nubcave secret
@@ -79,9 +76,9 @@ Stretch goals:
 	
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
 }
 
 +(void)start_game_autolevel {

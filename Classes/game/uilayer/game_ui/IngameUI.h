@@ -2,10 +2,11 @@
 #import "InventoryItemPane.h"
 #import "Challenge.h"
 @class UIEnemyAlert;
+@class UIWaterAlert;
 
 @interface IngameUI : CCSprite {
-    float enemy_alert_ui_ct;
 	UIEnemyAlert *enemy_alert_ui;
+	UIWaterAlert *water_alert_ui;
 	
     MainSlotItemPane *ingame_ui_item_slot;
     float item_duration_pct;

@@ -15,6 +15,21 @@
     float playerscry = ([Common SCREEN].height/2.0)-outy/( (2*(0.515*outz + 203.696)) / ([Common SCREEN].height) );
     return ccp(playerscrx,playerscry);
 }
+
++(CGPoint)pt_approx_position:(CGPoint)obj g:(GameEngineLayer*)g {
+	CGPoint player_screen = [self player_approx_position:g];
+	CGPoint world_delta = ccp(obj.x-g.player.position.x,obj.y-g.player.position.y);
+	
+	float outz = g.camera_state.z;
+	//world_delta.x *= 0.64; //z = 160
+	//world_delta.x *= 0.52; //z = 260
+	world_delta.x *= (0.832- 0.0012 * outz);
+	
+	//TODO -- do y values too
+	
+	return CGPointAdd(player_screen, world_delta);
+}
+
 +(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale {
     zoomed.scale = scale;
     zoomed.position = ccp((-[zoomed contentSize].width * zoomed.scale + [zoomed contentSize].width)/2

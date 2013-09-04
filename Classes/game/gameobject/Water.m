@@ -16,6 +16,10 @@
     return w;
 }
 
+-(CGPoint)get_size {
+	return ccp(bwidth,bheight);
+}
+
 -(void)cons_body_ofwidth:(float)width height:(float)height {
     
     bwidth = width;

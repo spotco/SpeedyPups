@@ -55,6 +55,8 @@
 		7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E717A11177FE9A800141E3D /* labswingvine_base.png */; };
 		7E72818E17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */; };
 		7E73334317D7AA9E00E5D6F6 /* UIEnemyAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73334217D7AA9E00E5D6F6 /* UIEnemyAlert.m */; };
+		7E73334517D7B31F00E5D6F6 /* labintro_entrance.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */; };
+		7E73334817D7B48D00E5D6F6 /* UIWaterAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
 		7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8F478217994067004CA582 /* tutorial_upsidebounce.map */; };
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
@@ -582,7 +584,6 @@
 		7EDD637B1703B1B500825887 /* grounddetail_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDD63791703B1B500825887 /* grounddetail_ss.png */; };
 		7EDEFB1617AE2A9000F07C76 /* 1upobject.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1517AE2A9000F07C76 /* 1upobject.png */; };
 		7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */; };
-		7EE2224C1778325000174B92 /* labintro_entrance.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224B1778325000174B92 /* labintro_entrance.map */; };
 		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
 		7EE41C9817BB56B30011D20F /* ShopTabTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */; };
 		7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */; };
@@ -698,6 +699,9 @@
 		7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunStartAtUnlockUIAnimation.m; sourceTree = "<group>"; };
 		7E73334117D7AA9E00E5D6F6 /* UIEnemyAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIEnemyAlert.h; path = game_ui/UIEnemyAlert.h; sourceTree = "<group>"; };
 		7E73334217D7AA9E00E5D6F6 /* UIEnemyAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIEnemyAlert.m; path = game_ui/UIEnemyAlert.m; sourceTree = "<group>"; };
+		7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_entrance.map; path = levels/labintro_entrance.map; sourceTree = "<group>"; };
+		7E73334617D7B48D00E5D6F6 /* UIWaterAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWaterAlert.h; sourceTree = "<group>"; };
+		7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWaterAlert.m; sourceTree = "<group>"; };
 		7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutorialbop.map; path = Resources/levels/labintro_tutorialbop.map; sourceTree = SOURCE_ROOT; };
 		7E8F478217994067004CA582 /* tutorial_upsidebounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_upsidebounce.map; sourceTree = "<group>"; };
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
@@ -1377,7 +1381,6 @@
 		7EDEFB1517AE2A9000F07C76 /* 1upobject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1upobject.png; sourceTree = "<group>"; };
 		7EDEFB1717AE2B2700F07C76 /* OneUpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneUpObject.h; sourceTree = "<group>"; };
 		7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneUpObject.m; sourceTree = "<group>"; };
-		7EE2224B1778325000174B92 /* labintro_entrance.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labintro_entrance.map; sourceTree = "<group>"; };
 		7EE2224D177837B100174B92 /* lab_basicmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_basicmix.map; sourceTree = "<group>"; };
 		7EE41C9617BB56B30011D20F /* ShopTabTouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTabTouchButton.h; sourceTree = "<group>"; };
 		7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTabTouchButton.m; sourceTree = "<group>"; };
@@ -1579,9 +1582,9 @@
 		7E8A53331773F8F7006F6114 /* labintro */ = {
 			isa = PBXGroup;
 			children = (
+				7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */,
 				7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */,
 				7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */,
-				7EE2224B1778325000174B92 /* labintro_entrance.map */,
 				7E07524D17A5191A001FAE5F /* labintro_labexit.map */,
 			);
 			name = labintro;
@@ -2945,6 +2948,8 @@
 				7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */,
 				7E73334117D7AA9E00E5D6F6 /* UIEnemyAlert.h */,
 				7E73334217D7AA9E00E5D6F6 /* UIEnemyAlert.m */,
+				7E73334617D7B48D00E5D6F6 /* UIWaterAlert.h */,
+				7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */,
 			);
 			name = game_ui;
 			sourceTree = "<group>";
@@ -3437,7 +3442,6 @@
 				7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */,
 				7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */,
 				7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */,
-				7EE2224C1778325000174B92 /* labintro_entrance.map in Resources */,
 				7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */,
 				7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */,
 				7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */,
@@ -3461,6 +3465,7 @@
 				7EDEFB1617AE2A9000F07C76 /* 1upobject.png in Resources */,
 				7E50505D17D074CF00B343E1 /* freerunstart_icons.plist in Resources */,
 				7E50505E17D074CF00B343E1 /* freerunstart_icons.png in Resources */,
+				7E73334517D7B31F00E5D6F6 /* labintro_entrance.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3640,6 +3645,7 @@
 				7EFC757B17C9F0F500D4EEF7 /* FreeRunStartAtManager.m in Sources */,
 				7E72818E17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m in Sources */,
 				7E73334317D7AA9E00E5D6F6 /* UIEnemyAlert.m in Sources */,
+				7E73334817D7B48D00E5D6F6 /* UIWaterAlert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

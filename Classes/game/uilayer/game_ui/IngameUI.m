@@ -8,6 +8,7 @@
 #import "UILayer.h"
 #import "LauncherRocket.h"
 #import "UIEnemyAlert.h"
+#import "UIWaterAlert.h"
 
 @interface MRectCCMenuItemImage : CCMenuItemImage
 @end
@@ -28,8 +29,6 @@
 +(IngameUI*)cons {
     return [IngameUI node];
 }
-
-#define ENEMY_ALERT_CENTER [Common screen_pctwid:0.6 pcthei:0.5]
 
 -(id)init {
     self = [super init];
@@ -52,9 +51,9 @@
 	CCSprite *lives_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_lives_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.88]];
 	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
 	
-	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
 	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
-	time_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
+	time_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.44] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
 	
 	[bone_disp_icon addChild:bones_disp];
 	[lives_disp_icon addChild:lives_disp];
@@ -67,6 +66,9 @@
 	enemy_alert_ui = [UIEnemyAlert cons];
 	[enemy_alert_ui setVisible:NO];
 	[self addChild:enemy_alert_ui];
+	
+	water_alert_ui = [UIWaterAlert cons];
+	[self addChild:water_alert_ui];
 	
     ingame_ui_item_slot = [MainSlotItemPane cons_pt:[Common screen_pctwid:0.93 pcthei:0.09] cb:[Common cons_callback:self sel:@selector(itemslot_use)] slot:0];
     [ingame_ui_item_slot setScale:0.75];
@@ -173,35 +175,8 @@
 	item_slot_notify_anim_sc = item_slot_notify_anim_sc - (item_slot_notify_anim_sc-1)/3;
 	[ingame_ui_item_slot setScale:item_slot_notify_anim_sc];
 
-    if (enemy_alert_ui_ct > 0) {
-		float min_rocket_dist = INFINITY;
-		Vec3D alert_delta = [VecLib cons_x:1 y:0 z:0];
-		BOOL found = NO;
-		for (GameObject *o in g.game_objects) {
-			if ([[o class] isSubclassOfClass:[LauncherRocket class]] && o.position.x > g.player.position.x-200 ) {
-				float dist = CGPointDist(o.position, g.player.position);
-				if (dist < min_rocket_dist) {
-					min_rocket_dist = dist;
-					alert_delta = [VecLib normalized_x:o.position.x-g.player.position.x y:o.position.y-g.player.position.y z:0];
-					found = YES;
-				}
-			}
-		}
-		
-		[enemy_alert_ui set_dir:alert_delta];
-		alert_delta = [VecLib scale:alert_delta by:[Common SCREEN].width*0.25];
-		CGPoint alert_pos = ENEMY_ALERT_CENTER;
-		alert_pos.x += alert_delta.x;
-		alert_pos.y += alert_delta.y;
-		[enemy_alert_ui setPosition:alert_pos];
-		
-        enemy_alert_ui_ct-=[Common get_dt_Scale];
-        [enemy_alert_ui set_flash:(((int)enemy_alert_ui_ct)/14)%2];
-		[enemy_alert_ui setVisible:found];
-		
-    } else {
-        [enemy_alert_ui setVisible:NO];
-    }
+	[enemy_alert_ui update:g];
+	[water_alert_ui update:g];
     
     [self set_label:bones_disp to:strf("%i",[g get_num_bones])];
     [self set_label:lives_disp to:strf("\u00B7 %s",[g get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[g get_lives]).UTF8String)];
@@ -271,7 +246,7 @@
 }
 
 -(void)set_enemy_alert_ui_ct:(int)i {
-    enemy_alert_ui_ct = i;
+    [enemy_alert_ui set_ct:i];
 }
 
 -(void)set_item_duration_pct:(float)f {

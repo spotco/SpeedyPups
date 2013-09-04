@@ -1,0 +1,36 @@
+{
+    "start_y": 1050,
+    "islands": [
+        {"can_fall": true, "x2": 1350, "y2": 997.5, "ground": "open", "y1": 998, "ndir": "left", "hei": 500, "type": "line", "x1": 100},
+        {"can_fall": true, "x2": 4450, "y2": 1000, "ground": "lab", "y1": 997.5, "ndir": "left", "hei": 500, "type": "line", "x1": 1350},
+        {"can_fall": true, "x2": 3754, "y2": 1198, "ground": "lab", "y1": 1194, "ndir": "left", "hei": 100, "type": "line", "x1": 3202}
+    ],
+    "objects": [
+        {"x": 1350, "label": "1", "y": 997.5, "type": "labentrance"},
+        {"img": 11, "x": 550, "label": "(7)gd_img:11", "y": 1000, "type": "ground_detail"},
+        {"img": 11, "x": 850, "label": "(9)gd_img:11", "y": 1001.6, "type": "ground_detail"},
+        {"img": 11, "x": 1146.7, "label": "(10)gd_img:11", "y": 1003.3, "type": "ground_detail"},
+        {"img": 6, "x": 698.4, "label": "(11)gd_img:6", "y": 1001.6, "type": "ground_detail"},
+        {"img": 6, "x": 1018.4, "label": "(12)gd_img:6", "y": 1003.3, "type": "ground_detail"},
+        {"img": 18, "x": 1040, "label": "(13)gd_img:18", "y": 1003.3, "type": "ground_detail"},
+        {"img": 18, "x": 683.4, "label": "(14)gd_img:18", "y": 1003.3, "type": "ground_detail"},
+        {"img": 22, "x": 710, "label": "(15)gd_img:22", "y": 1005, "type": "ground_detail"},
+        {"img": 22, "x": 993.4, "label": "(16)gd_img:22", "y": 1005, "type": "ground_detail"},
+        {"x": 1346, "height": 1350, "label": "18", "y": 496, "width": 952, "type": "labwall"},
+        {"x": 1318, "height": 642, "label": "19", "y": 1196, "width": 106, "type": "blocker"},
+        {"x": 2646, "label": "20", "y": 1000, "type": "checkpoint"},
+        {"img": 2, "x": 1698, "label": "(21)gd_img:2", "y": 998, "type": "ground_detail"},
+        {"img": 2, "x": 2050, "label": "(22)gd_img:2", "y": 1000, "type": "ground_detail"},
+        {"bid": 1, "x": 3054, "label": "BID:1", "y": 1148, "type": "dogbone"},
+        {"bid": 2, "x": 3052, "label": "BID:2", "y": 1246, "type": "dogbone"},
+        {"bid": 3, "x": 3152, "label": "BID:3", "y": 1248, "type": "dogbone"},
+        {"bid": 4, "x": 3150, "label": "BID:4", "y": 1346, "type": "dogbone"},
+        {"bid": 5, "x": 3702, "label": "BID:5", "y": 1442, "type": "dogbone"},
+        {"bid": 6, "x": 3702, "label": "BID:6", "y": 1362, "type": "dogbone"},
+        {"bid": 7, "x": 3804, "label": "BID:7", "y": 1444, "type": "dogbone"},
+        {"bid": 8, "x": 3806, "label": "BID:8", "y": 1358, "type": "dogbone"}
+    ],
+    "start_x": 301.3,
+    "assert_links": 1,
+    "connect_pts": {"y1": 998, "x2": 4450, "y2": 1000, "x1": 100}
+}
