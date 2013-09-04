@@ -38,8 +38,6 @@
 
 @end
 
-
-
 @implementation ChallengeRecord
 
 static NSArray* _CHALLENGES;
@@ -56,7 +54,21 @@ static NSArray* _CHALLENGES;
         [ChallengeInfo cons_name:@"easy_gottagofast" type:ChallengeType_COLLECT_BONES ct:60 reward:900],
         [ChallengeInfo cons_name:@"filler_directdrop" type:ChallengeType_FIND_SECRET ct:1 reward:1000],
         [ChallengeInfo cons_name:@"classic_smgislands" type:ChallengeType_COLLECT_BONES ct:52 reward:1100],
-        [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1000 reward:1200]
+        [ChallengeInfo cons_name:@"swingvine_bounswindodg" type:ChallengeType_TIMED ct:1000 reward:1200],
+		
+		//add challengeend
+		[ChallengeInfo cons_name:@"classic_nubcave" type:ChallengeType_FIND_SECRET ct:1 reward:1300],
+		[ChallengeInfo cons_name:@"swingvine_awesome" type:ChallengeType_COLLECT_BONES ct:67 reward:1400],
+		[ChallengeInfo cons_name:@"easy_hillvine" type:ChallengeType_FIND_SECRET ct:3 reward:1500],
+		[ChallengeInfo cons_name:@"classic_nubcave" type:ChallengeType_COLLECT_BONES ct:77 reward:1600],
+		[ChallengeInfo cons_name:@"classic_manyoptredux" type:ChallengeType_TIMED ct:1550 reward:1700],
+		[ChallengeInfo cons_name:@"filler_genome" type:ChallengeType_COLLECT_BONES ct:57 reward:1800],
+		[ChallengeInfo cons_name:@"classic_totalmix" type:ChallengeType_COLLECT_BONES ct:54 reward:1900],
+		
+		[ChallengeInfo cons_name:@"labintro_tutoriallauncher" type:ChallengeType_COLLECT_BONES ct:1 reward:2000], //get amt
+		[ChallengeInfo cons_name:@"lab_alladat" type:ChallengeType_COLLECT_BONES ct:1 reward:2100] //get time
+		
+		
     ];
 }
 

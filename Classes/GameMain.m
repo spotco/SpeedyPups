@@ -8,9 +8,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"easy_hillvine"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -20,18 +20,11 @@
 
 /**
  TODO
- More Challenges:
-	 collect all bones in swingvine_awesome (67)
-	 classic_nubcave secret
-	 easy_curvywater get all bones
-	 easy_hillvine get all secrets
-	 filler_genome get 57 bones
-	 classic_manyoptredux beat fast
-	 classic_totalmix get 54 bones
-	 labintro_tutoriallauncher get all bones
-	 lab_alladat speedrun
-	
-	challenge page images
+ get 2 more times in challengerecord
+ challenge page images
+ challenge page disable items
+ challenge page pay to cheat
+ challenge page lab special
  
  SFX:
 	 goal
@@ -74,11 +67,12 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	//[ChallengeRecord set_beaten_challenge:18 to:YES];
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
 }
 
 +(void)start_game_autolevel {

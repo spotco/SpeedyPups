@@ -77,6 +77,7 @@
 }
 
 -(BOOL)did_complete_challenge:(GameEngineLayer*)g {
+	NSLog(@"time:%d",[g get_time]);
     if (info.type == ChallengeType_COLLECT_BONES) {
         return [g get_num_bones] >= info.ct;
     
