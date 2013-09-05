@@ -8,8 +8,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"easy_hillvine"
 #define STARTING_LIVES 10
 
@@ -20,11 +20,9 @@
 
 /**
  TODO
- get 2 more times in challengerecord
  challenge page images
- challenge page disable items
- challenge page pay to cheat
- challenge page lab special
+ item ui slot fix (fall off when done)
+ crush spikes and vines when armor
  
  SFX:
 	 goal
@@ -69,6 +67,7 @@ Stretch goals:
 	
 	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	//[ChallengeRecord set_beaten_challenge:18 to:YES];
+	//[UserInventory add_bones:100000];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
@@ -108,6 +107,7 @@ Stretch goals:
 }
 
 +(void)run_scene:(CCScene*)s {
+	[UserInventory reset_to_equipped_gameitem];
 	[CCDirectorDisplayLink set_framemodct:1];
     [[CCDirector sharedDirector] runningScene]?
     [[CCDirector sharedDirector] replaceScene:s]:

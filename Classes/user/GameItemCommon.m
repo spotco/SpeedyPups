@@ -71,35 +71,48 @@ static NSDictionary* descriptions;
 	if (g.player.dead) return;
 	
     if (it == Item_Rocket) {
-        [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it]]];
+        [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it g:g]]];
         
     } else if (it == Item_Magnet) {
-        [g.player set_magnet_rad:250 ct:[self get_uselength_for:Item_Magnet]];
+        [g.player set_magnet_rad:250 ct:[self get_uselength_for:Item_Magnet g:g]];
         
     } else if (it == Item_Shield) {
-        [g.player set_armored:[self get_uselength_for:Item_Shield]];
+        [g.player set_armored:[self get_uselength_for:Item_Shield g:g]];
         
     } else if (it == Item_Heart) {
-        [g.player set_heart:[self get_uselength_for:Item_Heart]];
+        [g.player set_heart:[self get_uselength_for:Item_Heart g:g]];
         
     } else if (it == Item_Clock) {
-		[g.player set_clockeffect:[self get_uselength_for:Item_Clock]];
+		[g.player set_clockeffect:[self get_uselength_for:Item_Clock g:g]];
 		
 	}
 	
 	[UserInventory set_current_gameitem:Item_NOITEM];
 }
 
-+(int)get_uselength_for:(GameItem)gi {
++(int)get_uselength_for:(GameItem)gi g:(GameEngineLayer *)g {
 	int uglvl = [UserInventory get_upgrade_level:gi];
-	if (uglvl == 0) {
-		return 500;
-	} else if (uglvl == 1) {
-		return 900;
-	} else if (uglvl == 2) {
-		return 1600;
+	if (uglvl >= 4) {
+		NSLog(@"error, upgrade level too high");
+	}
+	
+	if ([g get_challenge] != NULL) {
+		if (gi==Item_Clock) {
+			int rtvs[] = {75,150,250,350};
+			return rtvs[uglvl];
+			
+		}
+		int rtvs[] = {100,200,300,500};
+		return rtvs[uglvl];
+		
 	} else {
-		return 2100;
+		if (gi==Item_Clock) {
+			int rtvs[] = {100,200,300,400};
+			return rtvs[uglvl];
+			
+		}
+		int rtvs[] = {500,900,1500,2000};
+		return rtvs[uglvl];
 	}
 }
 

@@ -14,6 +14,7 @@
 #import "ChallengeInfoTitleCardAnimation.h"
 #import "FreeRunStartAtManager.h"
 #import "FreeRunStartAtUnlockUIAnimation.h"
+#import "ItemUseUIAnimation.h"
 
 @implementation UILayer
 
@@ -194,6 +195,10 @@
 	if ([UserInventory get_current_gameitem] != Item_NOITEM) {
 		GameItem i = [UserInventory get_current_gameitem];
 		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
+		
+		UIIngameAnimation *ua = [ItemUseUIAnimation cons_around:[Common screen_pctwid:0.93 pcthei:0.09]];
+		[ingameuianimholder addChild:ua];
+		[ingame_ui_anims addObject:ua];
 	}
 }
 

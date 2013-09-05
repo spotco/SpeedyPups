@@ -42,14 +42,14 @@
         {"can_fall": true, "x2": 17872, "ground": "lab", "ndir": "left", "type": "line", "y1": 3922, "hei": 500, "y2": 3294, "x1": 17872},
         {"can_fall": true, "x2": 17940, "ground": "lab", "ndir": "left", "type": "line", "y1": 3294, "hei": 500, "y2": 3230, "x1": 17872},
         {"can_fall": true, "x2": 18070, "ground": "lab", "ndir": "left", "type": "line", "y1": 3230, "hei": 500, "y2": 3174, "x1": 17940},
-        {"can_fall": true, "x2": 19710.3, "ground": "lab", "ndir": "left", "type": "line", "y1": 3174, "hei": 500, "y2": 3173.4, "x1": 18070}
+        {"can_fall": true, "x2": 19300.3, "ground": "lab", "ndir": "left", "type": "line", "y1": 3174, "hei": 500, "y2": 3175, "x1": 18070}
     ],
-    "connect_pts": {"y1": 1097.5, "x2": 19710.3, "y2": 3173.4, "x1": 51.3},
+    "connect_pts": {"y1": 1097.5, "x2": 19300.3, "y2": 3175, "x1": 51.3},
     "objects": [
         {"type": "checkpoint", "x": 753.8, "y": 1097.5, "label": "0"},
         {"x": 1652.5, "x2": 1202.5, "y": 1000, "label": "3", "type": "electricwall", "y2": 997.5},
         {"x": 2402.5, "x2": 2401.3, "y": 1400, "label": "5", "type": "swingvine", "y2": 1197.5},
-        {"x": 2401.3, "x2": 2402.5, "y": 2000, "label": "6", "type": "electricwall", "y2": 1446.3},
+        {"x": 2401.7, "x2": 2402.8999999999996, "y": 1965, "label": "6", "type": "electricwall", "y2": 1411.3},
         {"type": "jumppad", "x": 3066, "dir": {"x": 0.18, "y": 0.98}, "y": 1136, "label": "7"},
         {"x": 3000, "x2": 1950, "y": 1001.4, "label": "8", "type": "electricwall", "y2": 997.1},
         {"x": 3400, "x2": 3048.6, "y": 1050, "label": "9", "type": "electricwall", "y2": 1047.1},
@@ -58,7 +58,7 @@
         {"x": 3850, "x2": 3454.3, "y": 1204.3, "label": "12", "type": "electricwall", "y2": 1201.4},
         {"x": 4303.4, "x2": 4303.4, "y": 1815, "label": "13", "type": "swingvine", "y2": 1593.5},
         {"x": 4304.3, "x2": 4302.900000000001, "y": 922.9, "label": "14", "type": "electricwall", "y2": 1521.3999999999996},
-        {"x": 4301.8, "x2": 4300.3, "y": 2388.3, "label": "15", "type": "electricwall", "y2": 1872.6000000000004},
+        {"x": 4305.1, "x2": 4303.6, "y": 2336.7, "label": "15", "type": "electricwall", "y2": 1821},
         {"x": 4750, "x2": 3949.999999999999, "y": 1298.6, "label": "16", "type": "electricwall", "y2": 1298.6},
         {"type": "robotminion", "x": 4751.8, "y": 1528.3, "label": "17"},
         {"x": 5300.1, "x2": 4856.8, "y": 1400, "label": "20", "type": "electricwall", "y2": 1395},
@@ -255,10 +255,9 @@
         {"type": "dogbone", "x": 17896, "bid": 100, "y": 3524, "label": "BID:100"},
         {"type": "dogbone", "x": 18042, "bid": 101, "y": 3222, "label": "BID:101"},
         {"type": "dogbone", "x": 18120, "bid": 102, "y": 3202, "label": "BID:102"},
-        {"type": "dogbone", "x": 17962, "bid": 103, "y": 3264, "label": "BID:103"},
-        {"type": "game_end", "x": 18998.6, "y": 3175, "label": "0"}
+        {"type": "dogbone", "x": 17962, "bid": 103, "y": 3264, "label": "BID:103"}
     ],
-    "start_x": 450,
     "assert_links": 33,
+    "start_x": 450,
     "start_y": 1197.4833333333336
 }

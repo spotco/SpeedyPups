@@ -294,7 +294,7 @@ static NSDictionary* ID_TO_POWERDESC;
     if (new_magnetrad_ct) {
         new_magnetrad_ct--;
         if (new_magnetrad_ct) {
-            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet] f2:0] add_i1:Item_Magnet i2:0]];
+            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet g:game_engine_layer] f2:0] add_i1:Item_Magnet i2:0]];
         } else {
             [self reset_magnet_ieffect];
         }
@@ -302,14 +302,14 @@ static NSDictionary* ID_TO_POWERDESC;
     if (heart_ct) {
         heart_ct--;
         if (heart_ct) {
-            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)heart_ct)/[GameItemCommon get_uselength_for:Item_Heart] f2:0] add_i1:Item_Heart i2:0]];
+            [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)heart_ct)/[GameItemCommon get_uselength_for:Item_Heart g:game_engine_layer] f2:0] add_i1:Item_Heart i2:0]];
         } else {
             [self reset_heart];
         }
     }
     if (armored_ct) {
         armored_ct--;
-        [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)armored_ct)/[GameItemCommon get_uselength_for:Item_Shield] f2:0] add_i1:Item_Shield i2:0]];
+        [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)armored_ct)/[GameItemCommon get_uselength_for:Item_Shield g:game_engine_layer] f2:0] add_i1:Item_Shield i2:0]];
         if (armored_ct == 0) {
             [ArmorBreakEffect cons_at:[self get_center] in:game_engine_layer];
             [self reset_is_armored];
@@ -317,7 +317,7 @@ static NSDictionary* ID_TO_POWERDESC;
     }
 	if (clock_ct > 0) {
 		clock_ct--;
-		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)clock_ct)/[GameItemCommon get_uselength_for:Item_Clock] f2:0] add_i1:Item_Clock i2:0]];
+		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)clock_ct)/[GameItemCommon get_uselength_for:Item_Clock g:game_engine_layer] f2:0] add_i1:Item_Clock i2:0]];
 		if (clock_ct == 0) {
 			[self reset_clockeffect];
 		}

@@ -222,6 +222,10 @@
         GameObject *o = [game_objects objectAtIndex:i];
         [o reset];
     }
+	
+	if (challenge != NULL) {
+		[UserInventory reset_to_equipped_gameitem];
+	}
     
     [player reset];
     [self reset_camera];

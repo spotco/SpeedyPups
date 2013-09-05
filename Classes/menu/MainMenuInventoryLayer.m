@@ -121,6 +121,7 @@
 
 -(void)slotpane0_click {
 	[UserInventory set_current_gameitem:Item_NOITEM];
+	[UserInventory set_equipped_gameitem:Item_NOITEM];
 	[self update_invpane];
 }
 
@@ -129,6 +130,7 @@
 	[infodesc setString:[GameItemCommon description_from:t]];
 	
     if ([UserInventory get_upgrade_level:t] > 0) {
+		[UserInventory set_equipped_gameitem:t];
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
 		[infoname setString:[NSString stringWithFormat:@"%@ (level %d)",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];

@@ -52,7 +52,7 @@
 	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
 	
 	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
-	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.415] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
 	time_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.44] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
 	
 	[bone_disp_icon addChild:bones_disp];
@@ -109,7 +109,7 @@
 		[i setOpacity:175];
 	}
 	itemlenbaricon = [CCSprite node];
-	[itemlenbaricon setPosition:ccp(52,0)];
+	[itemlenbaricon setPosition:ccp(55,0)];
 	[itemlenbaricon setScale:0.8];
 	[itemlenbaricon setOpacity:200];
 	[itemlenbarroot addChild:itemlenbaricon];
@@ -170,8 +170,8 @@
 	[challengedesc setString:str];
 }
 
+static GameItem last_item = Item_NOITEM;
 -(void)update:(GameEngineLayer*)g {
-	
 	item_slot_notify_anim_sc = item_slot_notify_anim_sc - (item_slot_notify_anim_sc-1)/3;
 	[ingame_ui_item_slot setScale:item_slot_notify_anim_sc];
 
@@ -195,12 +195,14 @@
 		if ([UserInventory get_current_gameitem] != Item_NOITEM) {
 			[readynotif setVisible:YES];
 			[ingame_ui_item_slot setVisible:YES];
+			if (last_item != [UserInventory get_current_gameitem]) [self update_item_slot];
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
 			[readynotif setVisible:NO];
 			[ingame_ui_item_slot setVisible:NO];
 		}
 	}
+	last_item = [UserInventory get_current_gameitem];
 	
 	if (challengedescbg.visible) {
 		ChallengeInfo *cinfo = [g get_challenge];

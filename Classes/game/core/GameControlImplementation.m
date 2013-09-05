@@ -3,6 +3,7 @@
 #import "GEventDispatcher.h"
 #import "SwingVine.h"
 #import "JumpParticle.h"
+#import "DogRocketEffect.h"
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
@@ -93,7 +94,11 @@ static float avg_y;
         [[player get_current_params] add_airjump_count];
     }
     
-    if (queue_swipe == YES && player.current_island == NULL && [player get_current_params].cur_dash_count > 0 && player.dashing == NO) {
+    if (queue_swipe == YES &&
+		player.current_island == NULL &&
+		[player get_current_params].cur_dash_count > 0 &&
+		([[player get_current_params] isKindOfClass:[DogRocketEffect class]] || player.dashing == NO)) {
+		
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
         [g.get_stats increment:GEStat_DASHED];

@@ -7,6 +7,8 @@
 #define STO_CURRENT_BONES @"current_bones"
 #define STO_MAIN_SLOT @"main_slot"
 
+#define STO_EQUIPPED @"equipped_item"
+
 +(void)initialize {
 	valid_characters = @[TEX_DOG_RUN_1,TEX_DOG_RUN_2,TEX_DOG_RUN_3,TEX_DOG_RUN_4,TEX_DOG_RUN_5,TEX_DOG_RUN_6,TEX_DOG_RUN_7];
 }
@@ -23,12 +25,23 @@
     [DataStore set_key:STO_CURRENT_BONES int_value:[self get_current_bones]+ct];
 }
 
+static GameItem current_item = Item_NOITEM;
 +(GameItem)get_current_gameitem {
-	return (GameItem)[DataStore get_int_for_key:STO_MAIN_SLOT];
+	//return (GameItem)[DataStore get_int_for_key:STO_MAIN_SLOT];
+	return current_item;
 }
 
 +(void)set_current_gameitem:(GameItem)g {
-	[DataStore set_key:STO_MAIN_SLOT int_value:(int)g];
+	//[DataStore set_key:STO_MAIN_SLOT int_value:(int)g];
+	current_item = g;
+}
+
++(void)set_equipped_gameitem:(GameItem)g {
+	[DataStore set_key:STO_EQUIPPED int_value:(int)g];
+}
+
++(void)reset_to_equipped_gameitem {
+	[self set_current_gameitem:[DataStore get_int_for_key:STO_EQUIPPED]];
 }
 
 //upgrade system

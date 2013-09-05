@@ -104,7 +104,7 @@
 +(void)fill_characters_tab:(NSMutableArray*)a {
 	NSString *dogs[] = {	TEX_DOG_RUN_2,	TEX_DOG_RUN_3,	TEX_DOG_RUN_4,	TEX_DOG_RUN_5,	TEX_DOG_RUN_6,	TEX_DOG_RUN_7};
 	NSString *actions[] = {	SHOP_DOG_DOG2,	SHOP_DOG_DOG3,	SHOP_DOG_DOG4,	SHOP_DOG_DOG5,	SHOP_DOG_DOG6,	SHOP_DOG_DOG7};
-	float prices[] = {		1500,			3000,			7500,			15000,			25000,			35000};
+	float prices[] = {		3000,			6000,			10000,			15000,			25000,			35000};
 	for(int i = 0; i < sizeof(dogs)/sizeof(NSString*); i++) {
 		NSString *dog = dogs[i];
 		if (![UserInventory get_character_unlocked:dog]) {
@@ -161,18 +161,26 @@
 	if (streq(val, SHOP_ITEM_MAGNET)) {
 		if (![UserInventory can_upgrade:Item_Magnet]) return NO;
 		[UserInventory upgrade:Item_Magnet];
+		[UserInventory set_current_gameitem:Item_Magnet];
+		[UserInventory set_equipped_gameitem:Item_Magnet];
 		
 	} else if (streq(val, SHOP_ITEM_ARMOR)) {
 		if (![UserInventory can_upgrade:Item_Shield]) return NO;
 		[UserInventory upgrade:Item_Shield];
+		[UserInventory set_current_gameitem:Item_Shield];
+		[UserInventory set_equipped_gameitem:Item_Shield];
 		
 	} else if (streq(val, SHOP_ITEM_ROCKET)) {
 		if (![UserInventory can_upgrade:Item_Rocket]) return NO;
 		[UserInventory upgrade:Item_Rocket];
+		[UserInventory set_current_gameitem:Item_Rocket];
+		[UserInventory set_equipped_gameitem:Item_Rocket];
 		
 	} else if (streq(val, SHOP_ITEM_CLOCK)) {
 		if (![UserInventory can_upgrade:Item_Clock]) return NO;
 		[UserInventory upgrade:Item_Clock];
+		[UserInventory set_current_gameitem:Item_Clock];
+		[UserInventory set_equipped_gameitem:Item_Clock];
 		
 	} else if (streq(val, SHOP_DOG_DOG2)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_2]) return NO;

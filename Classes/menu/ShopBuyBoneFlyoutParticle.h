@@ -8,5 +8,6 @@
 }
 
 +(ShopBuyBoneFlyoutParticle*)cons_pt:(CGPoint)pt vel:(CGPoint)vel;
-
+-(id)cons_pt:(CGPoint)pt vel:(CGPoint)tvel;
+-(void)set_body;
 @end

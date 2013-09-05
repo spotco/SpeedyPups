@@ -7,12 +7,16 @@
 	return [[ShopBuyBoneFlyoutParticle node] cons_pt:pt vel:vel];
 }
 
-#define MAX_CT 23.0
-
--(id)cons_pt:(CGPoint)pt vel:(CGPoint)tvel {
+-(void)set_body {
 	[self setTexture:[Resource get_tex:TEX_GOLDEN_BONE]];
 	CGSize tex_size = [Resource get_tex:TEX_GOLDEN_BONE].contentSize;
 	[self setTextureRect:CGRectMake(0, 0, tex_size.width, tex_size.height)];
+}
+
+#define MAX_CT 23.0
+
+-(id)cons_pt:(CGPoint)pt vel:(CGPoint)tvel {
+	[self set_body];
 	ct = MAX_CT;
 	[self setPosition:pt];
 	vel = tvel;

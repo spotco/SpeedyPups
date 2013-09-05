@@ -15,4 +15,7 @@
 +(BOOL)get_character_unlocked:(NSString*)character;
 +(void)unlock_character:(NSString*)character;
 
++(void)set_equipped_gameitem:(GameItem)gi;
++(void)reset_to_equipped_gameitem;
+
 @end
