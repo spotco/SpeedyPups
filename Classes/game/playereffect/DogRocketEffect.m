@@ -32,7 +32,7 @@
 	sound_ct -= [Common get_dt_Scale];
 	if (sound_ct <= 0) {
 		[AudioManager playsfx:SFX_ROCKET];
-		sound_ct = 40;
+		sound_ct = 20;
 	}
 	
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)time_left)/fulltime f2:0]];

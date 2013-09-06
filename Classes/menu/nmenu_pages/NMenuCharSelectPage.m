@@ -181,6 +181,7 @@ static NSMutableArray* _anim_table;
     if (cur_dog <= 0) {
         cur_dog = [_anim_table count]-1;
     }
+	[AudioManager playsfx:SFX_MENU_UP];
     [self refresh];
 }
 
@@ -189,6 +190,7 @@ static NSMutableArray* _anim_table;
     if (cur_dog >= [_anim_table count]) {
         cur_dog = 1;
     }
+	[AudioManager playsfx:SFX_MENU_UP];
     [self refresh];
 }
 

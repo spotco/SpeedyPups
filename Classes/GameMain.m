@@ -19,10 +19,6 @@
 #define DISPLAY_FPS NO
 
 /**
- SFX:
-	 inventory equip click
-	 freerun start click
- 
  -art ask for:
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design

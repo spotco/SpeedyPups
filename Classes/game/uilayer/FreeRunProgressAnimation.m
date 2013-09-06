@@ -1,6 +1,7 @@
 #import "FreeRunProgressAnimation.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "Player.h"
 
 @implementation FreeRunProgressAnimation
 
@@ -57,6 +58,7 @@
 	return self;
 }
 
+static TitleCardMode last_mode;
 -(void)update {
 	flashct++;
 	if (panelmarker.visible) {
@@ -71,6 +73,10 @@
 		}
 	}
 	[super update];
+	if (last_mode == TitleCardMode_DOWN && mode == TitleCardMode_STAY) {
+		[Player character_bark];
+	}
+	last_mode = mode;
 }
 
 

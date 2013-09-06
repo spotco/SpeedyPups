@@ -1,5 +1,6 @@
 #import "ShopListTouchButton.h"
 #import "ShopRecord.h"
+#import "AudioManager.h"
 
 @implementation ShopListTouchButton
 @synthesize sto_info;
@@ -54,6 +55,7 @@
 			return;
 		}
 		[self.cb.target performSelector:self.cb.selector withObject:self];
+		[AudioManager playsfx:SFX_MENU_UP_2];
 	}
 }
 

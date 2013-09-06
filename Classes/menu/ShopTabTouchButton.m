@@ -1,4 +1,5 @@
 #import "ShopTabTouchButton.h"
+#import "AudioManager.h"
 
 @implementation ShopTabTouchButton
 +(ShopTabTouchButton*)cons_pt:(CGPoint)pt text:(NSString*)text cb:(CallBack*)tcb {
@@ -27,6 +28,7 @@
 	CGRect hitrect = [self hit_rect_local];
 	if (CGRectContainsPoint(hitrect, pt)) {
 		[self.cb.target performSelector:self.cb.selector withObject:self];
+		[AudioManager playsfx:SFX_MENU_UP];
 	}
 }
 

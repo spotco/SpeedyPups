@@ -158,6 +158,8 @@
 		[FreeRunStartAtManager set_starting_loc:button.starting_loc];
 		selector_icon_target_pos = button.position;
 		
+		[AudioManager playsfx:SFX_MENU_UP];
+		
 	} else {
 		NSLog(@"mapicontouch ERROR");
 	}

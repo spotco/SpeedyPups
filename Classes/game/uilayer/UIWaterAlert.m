@@ -26,6 +26,7 @@
 
 -(void)update:(GameEngineLayer *)g {
 	Water *closest_water = NULL;
+	float dist = INFINITY;
 	CGPoint playerpt = g.player.position;
 	
 	for (GameObject *o in g.game_objects) {
@@ -38,8 +39,11 @@
 			y_range.min = cur.position.y + size.y + 300;
 			y_range.max = cur.position.y + size.y + 2500;
 			if (playerpt.x > x_range.min && playerpt.x < x_range.max && playerpt.y > y_range.min && playerpt.y < y_range.max) {
-				closest_water = cur;
-				break;
+				float curdist = CGPointDist(g.player.position, ccp(cur.position.x+size.x/2,cur.position.y+size.y));
+				if (curdist < dist) {
+					closest_water = cur;
+					dist = curdist;
+				}
 			}
 		}
 	}

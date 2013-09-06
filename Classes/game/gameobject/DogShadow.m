@@ -35,6 +35,11 @@
             Vec3D tv = [player.current_island get_tangent_vec];
             [self setRotation:-[Common rad_to_deg:[VecLib get_angle_in_rad:tv]]];
             [self setScale:1];
+			
+			if ([player is_armored] || streq([Player get_character],TEX_DOG_RUN_6)) {
+				[self setScale:[self scale]*1.5];
+				[self setPosition:CGPointAdd(position_, ccp(tv.x*13,tv.y*13))];
+			}
        }
     } else {
         shadowinfo v = [DogShadow calc_g_dist:player islands:g.islands];
@@ -46,6 +51,11 @@
         [self setPosition:ccp(player.position.x,v.y)];
         [self setRotation:v.rotation];
         [self setScale:MAX(0, (300-v.dist)/300)];
+		
+		if ([player is_armored] || streq([Player get_character],TEX_DOG_RUN_6)) {
+			[self setScale:[self scale]*1.5];
+			[self setPosition:CGPointAdd(position_, ccp(cosf([Common deg_to_rad:v.rotation])*13,sinf([Common deg_to_rad:v.rotation])*13))];
+		}
     }
 }
 

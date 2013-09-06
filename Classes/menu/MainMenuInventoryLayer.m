@@ -6,6 +6,7 @@
 #import "GameItemCommon.h"
 #import "Player.h"
 #import "InventoryItemPane.h"
+#import "AudioManager.h" 
 
 @implementation MainMenuInventoryLayer
 
@@ -145,6 +146,8 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
 		[infoname setString:[NSString stringWithFormat:@"%@ (level %d)",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
+		[AudioManager playsfx:SFX_CHECKPOINT];
+	
 	} else {
 		[infoname setString:[NSString stringWithFormat:@"%@ (locked)",[GameItemCommon name_from:t]]];
 	}
@@ -158,10 +161,13 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	
 	[infoname setString:@"Powerups"];
 	[infodesc setString:default_text];
+	
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)close {
     [GEventDispatcher push_event:[GEvent cons_type:GEVentType_MENU_CLOSE_INVENTORY]];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(void)dispatch_event:(GEvent *)e {

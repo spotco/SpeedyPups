@@ -160,11 +160,15 @@
 -(void)pause {
     UILayer *p = (UILayer*)[self parent];
     [p pause];
+	[AudioManager playsfx:SFX_PAUSE];
 }
 
 -(void)itemslot_use {
     UILayer *p = (UILayer*)[self parent];
     [p itemslot_use];
+	TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
+	itemlenbaricon.texture = curitem.tex;
+	itemlenbaricon.textureRect = curitem.rect;
 }
 
 -(void)enable_challengedesc_type:(ChallengeType)type {
@@ -279,9 +283,6 @@ static int ct  = 0;
 
 -(void)update_item_slot {
     [ingame_ui_item_slot set_item:[UserInventory get_current_gameitem]];
-	TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
-	itemlenbaricon.texture = curitem.tex;
-	itemlenbaricon.textureRect = curitem.rect;
 }
 
 -(void)animslot_notification {

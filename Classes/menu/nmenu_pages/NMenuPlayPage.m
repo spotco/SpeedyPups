@@ -144,6 +144,7 @@
 }
 
 -(void)challengemode_button_button_pressed {
+	[AudioManager playsfx:SFX_MENU_UP_2];
     cur_mode = PlayPageMode_CHALLENGE_SELECT;
 }
 
@@ -257,6 +258,7 @@
 }
 
 -(void)run_button_pressed {
+	[AudioManager playsfx:SFX_MENU_UP];
     cur_mode = PlayPageMode_MODE_CHOOSE;
 }
 
@@ -295,6 +297,7 @@
     [self addChild:dhmask z:1 tag:tDHMASK];
 	
 	[Player character_bark];
+	[AudioManager playsfx:SFX_CHECKPOINT];
 }
 
 -(CCAction*)cons_anim:(NSString*)tar {

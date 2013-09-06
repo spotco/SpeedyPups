@@ -166,21 +166,25 @@
 +(void)goto_shop {
 	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SHOP_PAGE i2:0]];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 +(void)goto_charsel {
 	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_DOG_MODE_PAGE_ID i2:0]];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 +(void)goto_home {
 	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_STARTING_PAGE_ID i2:0]];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 +(void)goto_settings {
 	[self close_inventory];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SETTINGS_PAGE_ID i2:0]];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 +(void)close_inventory {

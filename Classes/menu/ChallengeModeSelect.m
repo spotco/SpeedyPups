@@ -273,12 +273,14 @@
 }
 
 -(void)close {
+	[AudioManager playsfx:SFX_MENU_DOWN];
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_STARTING_PAGE_ID i2:0]];
 }
 
 -(void)arrow_left {
     if (page_offset > 0) {
         page_offset-=8;
+		[AudioManager playsfx:SFX_MENU_UP];
     }
     [self update_selectmenu];
 }
@@ -286,6 +288,7 @@
 -(void)arrow_right {
     if (page_offset+8<=[ChallengeRecord get_num_challenges]) {
         page_offset+=8;
+		[AudioManager playsfx:SFX_MENU_UP];
     }
     [self update_selectmenu];
 }
@@ -337,6 +340,7 @@
 }
 
 -(void)clicked:(int)i{
+	[AudioManager playsfx:SFX_MENU_UP_3];
     [self choose_challenge:i];
 }
 
@@ -344,6 +348,7 @@
     [pagewindow setVisible:YES];
     [selectmenu setVisible:YES];
     [chosenmenu setVisible:NO];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(void)play {
