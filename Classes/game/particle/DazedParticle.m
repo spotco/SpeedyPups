@@ -4,7 +4,7 @@
 @implementation DazedParticle
 
 +(DazedParticle*)cons_x:(float)x y:(float)y theta:(float)theta time:(int)time tracking:(id<PhysicsObject>)t {
-    return [[DazedParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]] cons_x:x y:y t:theta time:time tracking:t];
+    return [[DazedParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]] cons_x:x y:y t:theta time:time tracking:t];
 }
 
 +(void)cons_effect:(GameEngineLayer *)g tar:(id<PhysicsObject>)tar time:(int)time {

@@ -4,6 +4,7 @@
 #import "UICommon.h" 
 #import "FileCache.h"
 #import "FireworksParticleA.h"
+#import "AudioManager.h"
 
 @implementation ChallengeEnd
 
@@ -52,6 +53,7 @@
           add_i1:[self did_complete_challenge:g] i2:0]
           add_key:@"challenge" value:info]
          ];
+		[AudioManager playsfx:SFX_GOAL];
     }
 	
 	if (procced) {

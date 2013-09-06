@@ -96,6 +96,16 @@ static NSDictionary* ID_TO_POWERDESC;
     if (CURRENT_CHARACTER == NULL) CURRENT_CHARACTER = TEX_DOG_RUN_1;
 }
 
++(void)character_bark {
+	if (streq(CURRENT_CHARACTER, TEX_DOG_RUN_2) || streq(CURRENT_CHARACTER, TEX_DOG_RUN_3) || streq(CURRENT_CHARACTER, TEX_DOG_RUN_5)) {
+		[AudioManager playsfx:SFX_BARK_HIGH];
+	} else if (streq(CURRENT_CHARACTER, TEX_DOG_RUN_6) || streq(CURRENT_CHARACTER, TEX_DOG_RUN_7)) {
+		[AudioManager playsfx:SFX_BARK_LOW];
+	} else {
+		[AudioManager playsfx:SFX_BARK_MID];
+	}
+}
+
 +(BOOL)current_character_has_power:(CharacterPower)power {
     if (power == CharacterPower_AUTOMAGNET) {
         return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_2];

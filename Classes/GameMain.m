@@ -8,9 +8,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"easy_hillvine"
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -19,34 +19,27 @@
 #define DISPLAY_FPS NO
 
 /**
- TODO
- challenge page images
- item ui slot fix (fall off when done)
- crush spikes and vines when armor
- 
  SFX:
-	 goal
-	 rocket
-	 armor
-	 barking
-	 boss sounds
-	 buy item
-	 menu clicks
-		(continue yes, no, pause,etc)
+	 inventory equip click
+	 freerun start click
  
  -art ask for:
-	settings page -> map page navmenu icon
+	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design
+	new clock icon
  **/
 
 /**
 Stretch goals:
  2nd and 3rd reskin world
  2nd and 3rd boss
- cloud cape flying minigame
  integrate IAPs
  weekly levels (streamed from online)
  store sales (streamed from online)
+ goober pet
+ 
+ cloud cape levels
+ levels based around armor (armor break spikes)
  **/
 
 +(void)main {
@@ -65,7 +58,7 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	//[ChallengeRecord set_beaten_challenge:18 to:YES];
 	//[UserInventory add_bones:100000];
 	
@@ -75,28 +68,23 @@ Stretch goals:
 }
 
 +(void)start_game_autolevel {
-	//[self clear_scene];
     [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {
-    //[self clear_scene];
 	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info]];
 	
 }
 
 +(void)start_menu {
-    //[self clear_scene];
 	[self run_scene:[MainMenuLayer scene]];
 }
 
 +(void)start_testlevel {
-    //[self clear_scene];
 	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
 }
 
 +(void)start_from_callback:(GameModeCallback *)c {
-	//[self clear_scene];
     if (c.mode == GameMode_FREERUN) {
         [self start_game_autolevel];
         

@@ -1,6 +1,7 @@
 #import "Spike.h"
 #import "Island.h"
 #import "GameEngineLayer.h"
+#import "BreakableWallRockParticle.h"
 
 @implementation Spike
 @synthesize img;
@@ -38,15 +39,28 @@
         return;
     }
     
-    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead && ![player is_armored]) {
-        [player reset_params];
-        player.current_swingvine = NULL;
-        activated = YES;
-        [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
-        [DazedParticle cons_effect:g tar:player time:40];
-        [AudioManager playsfx:SFX_HIT];
-        [g.get_stats increment:GEStat_SPIKES];
-        
+    if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+		if ([player is_armored]) {
+			activated = YES;
+			[img setVisible:NO];
+			for (float i = M_PI*0.1; i < M_PI*0.9; i+=M_PI/12) {
+				CGPoint vel = ccp(cosf(i),sinf(i));
+				float scale = float_random(2, 8);
+				[g add_particle:[BreakableWallRockParticle cons_spike_x:position_.x y:position_.y vx:vel.x*scale vy:vel.y*scale]];
+			}
+			[AudioManager playsfx:SFX_SPIKEBREAK];
+			
+		} else if (!player.dead && ![player is_armored]) {
+			[player reset_params];
+			player.current_swingvine = NULL;
+			activated = YES;
+			[player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
+			[DazedParticle cons_effect:g tar:player time:40];
+			[AudioManager playsfx:SFX_HIT];
+			[g.get_stats increment:GEStat_SPIKES];
+			
+		}
+		
         //[DazedParticle cons_effect:g x:player.position.x y:player.position.y+60*(player.current_island != NULL?player.last_ndir:1) time:40];
     }
     
@@ -56,6 +70,7 @@
 -(void)reset {
     [super reset];
     activated = NO;
+	[img setVisible:YES];
 }
 
 -(void)attach_toisland:(NSMutableArray*)islands {

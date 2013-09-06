@@ -13,7 +13,7 @@
 
 @implementation BombSparkParticle
 +(BombSparkParticle*)cons_pt:(CGPoint)pt v:(CGPoint)v {
-    return [[BombSparkParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]] cons_pt:pt v:v];
+    return [[BombSparkParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]] cons_pt:pt v:v];
 }
 -(id)cons_pt:(CGPoint)pt v:(CGPoint)v {
     [self setPosition:pt];
@@ -75,7 +75,7 @@
         }
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
-        if (player.dashing) {
+        if (player.dashing || [player is_armored]) {
             v = ccp(player.vx*1.4,player.vy*1.4);
             knockout = YES;
             ct = 0;

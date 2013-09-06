@@ -70,6 +70,8 @@ typedef enum {
 +(NSString*)get_full_name:(NSString*)tar;
 +(NSString*)get_power_desc:(NSString*)tar;
 
++(void)character_bark;
+
 +(BOOL)current_character_has_power:(CharacterPower)power;
 
 +(Player*)cons_at:(CGPoint)pt;

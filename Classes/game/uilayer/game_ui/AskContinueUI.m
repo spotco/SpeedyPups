@@ -246,6 +246,9 @@ static BGM_GROUP prev_group;
 		countdown_ct--;
 		[countdown_disp setString:[NSString stringWithFormat:@"%d",countdown_ct]];
 		countdown_disp_scale = 3;
+		if (countdown_ct == 3 || countdown_ct == 2 || countdown_ct == 1) {
+			[AudioManager playsfx:SFX_READY];
+		}
 		if (countdown_ct <= 0) {
 			[self continue_no];
 			return;

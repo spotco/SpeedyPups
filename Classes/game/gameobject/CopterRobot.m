@@ -158,6 +158,14 @@ static const int DEFAULT_HP = 4;
     }
     
     [self setPosition:ccp(actual_pos.x+vibration.x+recoil.x,actual_pos.y+vibration.y+recoil.y)];
+
+	sfx_ct -= [Common get_dt_Scale];
+	if (sfx_ct <= 0) {
+		if (CGPointDist(player.position, position_) < 250) {
+			[AudioManager playsfx:SFX_COPTER_FLYBY];
+			sfx_ct = 150;
+		}
+	}
 }
 
 
@@ -228,6 +236,7 @@ static const int DEFAULT_HP = 4;
         if (ct%40==0) {
             CGPoint noz = [self get_nozzle];
             [g add_gameobject:[EnemyBomb cons_pt:noz v:ccp(float_random(1,5),float_random(-4,4))]];
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
             [self apply_recoil];
             [LauncherRobot explosion:g at:noz];
         }
@@ -248,6 +257,7 @@ static const int DEFAULT_HP = 4;
         if (ct%40==0) {
             CGPoint noz = [self get_nozzle];
             [g add_gameobject:[EnemyBomb cons_pt:noz v:ccp(float_random(5,7),float_random(0,4))]];
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
             [self apply_recoil];
             [LauncherRobot explosion:g at:noz];
         }
@@ -277,6 +287,7 @@ static const int DEFAULT_HP = 4;
         if (ct2 > firespeed) {
             CGPoint noz = [self get_nozzle];
             [g add_gameobject:[EnemyBomb cons_pt:noz v:ccp(float_random(7,18),float_random(2,9))]];
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
             [self apply_recoil];
             [LauncherRobot explosion:g at:noz];
             ct2 = 0;
@@ -323,6 +334,7 @@ static const int DEFAULT_HP = 4;
 														   pimg:i]];
             //[g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 10) vy:float_random(-10, 10)]];
         }
+		[AudioManager playsfx:SFX_BIG_EXPLOSION];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_DEFEATED] add_pt:g.player.position]];
     }
 }
@@ -349,6 +361,7 @@ static const int DEFAULT_HP = 4;
             LauncherRocket *r = [[RelativePositionLauncherRocket cons_at:noz player:g.player.position vel:ccp(rv.x,rv.y)] set_remlimit:1300];
             
             [g add_gameobject:r];
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
             [self apply_recoil];
         }
         
@@ -380,6 +393,7 @@ static const int DEFAULT_HP = 4;
             LauncherRocket *r = [[RelativePositionLauncherRocket cons_at:noz player:g.player.position vel:ccp(rv.x,rv.y)] set_remlimit:1300];
             
             [g add_gameobject:r];
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
             [self apply_recoil];
         }
     } else {
@@ -408,6 +422,7 @@ static const int DEFAULT_HP = 4;
         LauncherRocket *r = [LauncherRocket cons_at:noz vel:ccp(rv.x,rv.y)];
         
         [g add_gameobject:r];
+		[AudioManager playsfx:SFX_ROCKET_LAUNCH];
         [self apply_recoil];
     }
     

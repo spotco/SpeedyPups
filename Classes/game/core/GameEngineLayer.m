@@ -647,6 +647,10 @@
 
 -(void)incr_lives {
 	lives = lives == GAMEENGINE_INF_LIVES ? lives : lives+1;
+	if (lives != GAMEENGINE_INF_LIVES) {
+		[AudioManager playsfx:SFX_1UP];
+		[Player character_bark];
+	}
 }
 
 -(void)dealloc {

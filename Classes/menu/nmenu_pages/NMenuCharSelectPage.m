@@ -2,6 +2,7 @@
 #import "MenuCommon.h"
 #import "Player.h"
 #import "UserInventory.h"
+#import "AudioManager.h"
 
 @implementation NMenuCharSelectPage
 
@@ -172,6 +173,7 @@ static NSMutableArray* _anim_table;
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_CHANGE_CURRENT_DOG]];
     [self refresh];
 	charselfbutton_anim_scale = 3;
+	[Player character_bark];
 }
 
 -(void)arrow_left {

@@ -58,8 +58,8 @@
 }
 
 -(void)set_num:(int)i locked:(BOOL)l {
-    [((CCLabelTTF*)[locked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i]];
-    [((CCLabelTTF*)[unlocked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i]];
+    [((CCLabelTTF*)[locked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i+1]];
+    [((CCLabelTTF*)[unlocked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i+1]];
     [locked setVisible:l];
     [unlocked setVisible:!l];
     if (l) {
@@ -248,7 +248,7 @@
 	[chosen_window addChild:m];
     
     chosen_preview = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-                                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"preview_generic"]]
+                                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@""]]
                       pos:[Common pct_of_obj:chosen_window pctx:0.35 pcty:0.46]];
     [chosen_window addChild:chosen_preview];
     
@@ -310,10 +310,21 @@
 
 -(void)update_chosenmenu {
     ChallengeInfo* cc = [ChallengeRecord get_challenge_number:chosen_level];
-    [chosen_name setString:[NSString stringWithFormat:@"Challenge %d:",chosen_level]];
+    [chosen_name setString:[NSString stringWithFormat:@"Challenge %d:",chosen_level+1]];
 	[chosen_mapname setString:cc.map_name];
     [chosen_goal setString:[cc to_string]];
 	[reward_amount setString:[NSString stringWithFormat:@"%d",cc.reward]];
+	
+	NSString *cle = @"";
+	if (cc.type == ChallengeType_COLLECT_BONES) {
+		cle = @"preview_collect_bones";
+	} else if (cc.type == ChallengeType_FIND_SECRET) {
+		cle = @"preview_find_secrets";
+	} else if (cc.type == ChallengeType_TIMED) {
+		cle = @"preview_timed";
+	}
+	[chosen_preview setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];
+	
 	if ([ChallengeRecord get_beaten_challenge:chosen_level]) {
 		[show_reward setVisible:NO];
 		[show_already_beaten setVisible:YES];

@@ -5,7 +5,7 @@
 @implementation OneUpParticle
 
 +(OneUpParticle*)cons_pt:(CGPoint)pos {
-    return [[OneUpParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLE_1UP]] cons_pt:pos];
+    return [[OneUpParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"1up"]] cons_pt:pos];
 }
 
 -(id)cons_pt:(CGPoint)pt {

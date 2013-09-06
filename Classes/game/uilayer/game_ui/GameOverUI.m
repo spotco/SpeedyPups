@@ -204,6 +204,7 @@
 	[super setVisible:visible];
 	if (visible) {
 		[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
+		[AudioManager playsfx:SFX_WHIMPER];
 	}
 	
 }

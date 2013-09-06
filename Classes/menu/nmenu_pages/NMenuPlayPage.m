@@ -293,6 +293,8 @@
 	[dhmask setScaleX:[Common scale_from_default].x];
 	[dhmask setScaleY:[Common scale_from_default].y];
     [self addChild:dhmask z:1 tag:tDHMASK];
+	
+	[Player character_bark];
 }
 
 -(CCAction*)cons_anim:(NSString*)tar {

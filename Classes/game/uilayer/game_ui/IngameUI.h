@@ -12,6 +12,7 @@
     float item_duration_pct;
 	float item_slot_notify_anim_sc;
 	
+	CGPoint itemlenbar_target_pos;
 	CCSprite *itemlenbarfill, *readynotif, *itemlenbarroot,*itemlenbaricon;
 
 	CCSprite *challengedescbg,*challengedescincon;

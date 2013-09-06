@@ -316,7 +316,7 @@ bool sur = NO;
 		if (tutorial_ct >= tutorial_levels.count) {
 			cur_set = L_FREERUN_PROGRESS;
 		}
-		
+		//return @"boss1_start";
 		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {

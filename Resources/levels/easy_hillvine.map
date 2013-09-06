@@ -1,7 +1,4 @@
 {
-    "connect_pts": {"y1": 1048.8, "x2": 12937.7, "y2": 3035.1, "x1": 48.8},
-    "assert_links": 30,
-    "start_x": 251.5,
     "islands": [
         {"can_fall": true, "x2": 2353.4, "ground": "open", "ndir": "left", "type": "line", "y1": 1048.8, "hei": 500, "y2": 1050, "x1": 48.8},
         {"can_fall": true, "x2": 1168.8, "ground": "open", "ndir": "left", "type": "line", "y1": 1471.3, "hei": 50, "y2": 1471.3, "x1": 1040},
@@ -46,6 +43,7 @@
         {"can_fall": true, "x2": 11282, "ground": "open", "ndir": "left", "type": "line", "y1": 2996, "hei": 500, "y2": 3032, "x1": 11172},
         {"can_fall": true, "x2": 12937.7, "ground": "open", "ndir": "left", "type": "line", "y1": 3032, "hei": 500, "y2": 3035.1, "x1": 11282}
     ],
+    "assert_links": 30,
     "objects": [
         {"type": "checkpoint", "x": 552.5, "y": 1048.8, "label": "0"},
         {"x": 1101.3, "x2": 1100, "y": 1402.5, "label": "1", "type": "swingvine", "y2": 1198.8},
@@ -222,7 +220,10 @@
         {"type": "dogbone", "x": 6850, "bid": 69, "y": 1954, "label": "BID:69"},
         {"type": "ground_detail", "x": 10630.1, "img": 18, "y": 1845.7, "label": "(177)gd_img:18"},
         {"type": "ground_detail", "x": 10601.5, "img": 20, "y": 1845.7, "label": "(178)gd_img:20"},
-        {"type": "game_end", "x": 12302.7, "y": 3035.1, "label": "0"}
+        {"type": "game_end", "x": 12302.7, "y": 3035.1, "label": "0"},
+        {"x": 4424, "width": 760, "y": 614, "type": "island_fill", "height": 660, "label": "1"}
     ],
-    "start_y": 1151.45
+    "start_x": 251.5,
+    "connect_pts": {"y1": 1048.8, "x2": 12937.7, "y2": 3035.1, "x1": 48.8},
+    "start_y": 1151.5
 }

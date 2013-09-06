@@ -10,7 +10,7 @@
 @implementation SubFireworksParticleA
 #define SUBCT 25.0
 +(SubFireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    SubFireworksParticleA* p = [SubFireworksParticleA spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    SubFireworksParticleA* p = [SubFireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     p.position = ccp(x,y);
     [p cons_vx:vx vy:vy];
     return p;
@@ -39,7 +39,7 @@
 @implementation FireworksParticleA
 
 +(FireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy ct:(int)ct {
-    FireworksParticleA* p = [FireworksParticleA spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    FireworksParticleA* p = [FireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     p.position = ccp(x,y);
     [p cons_vx:vx vy:vy ct:ct];
     return p;
@@ -90,7 +90,7 @@
 @implementation FireworksGroundFlower
 #define FWGFCT 60.0
 +(FireworksGroundFlower*)cons_pt:(CGPoint)pt {
-	return [[FireworksGroundFlower spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]] cons_pt:pt];
+	return [[FireworksGroundFlower spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]] cons_pt:pt];
 }
 -(id)cons_pt:(CGPoint)pt {
 	ct = FWGFCT;

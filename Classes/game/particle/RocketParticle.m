@@ -4,7 +4,7 @@
 @implementation RocketParticle
 
 +(RocketParticle*)cons_x:(float)x y:(float)y {
-    RocketParticle* p = [RocketParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    RocketParticle* p = [RocketParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p cons];
     p.position = ccp(x,y);
     

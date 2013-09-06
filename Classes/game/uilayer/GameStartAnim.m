@@ -1,6 +1,8 @@
 #import "GameStartAnim.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "AudioManager.h"
+#import "Player.h"
 
 @implementation GameStartAnim
 
@@ -44,12 +46,24 @@ static float ANIM_LENGTH = 75.0;
         
         [goimg setOpacity:0];
         [readyimg setOpacity:(int)o];
+		
+		if (!played_ready) {
+			[AudioManager playsfx:SFX_READY];
+			played_ready = YES;
+		}
+		
     } else {
         float o = ct;
         o = (o/(ANIM_LENGTH/2))*200+55;
         
         [readyimg setOpacity:0];
         [goimg setOpacity:(int)o];
+		
+		if (!played_go) {
+			[AudioManager playsfx:SFX_GO];
+			[Player character_bark];
+			played_go = YES;
+		}
     }
 }
 

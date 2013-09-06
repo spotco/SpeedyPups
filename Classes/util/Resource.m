@@ -53,7 +53,6 @@ static NSMutableDictionary* loaded_textures;
 		TEX_SPIKE_VINE_BOTTOM:@"spike_vine_bottom.png",
 		TEX_SPIKE_VINE_SECTION:@"spike_vine_section.png",
 		TEX_GOAL_SS:@"goal_ss.png",
-		TEX_PARTICLE_1UP:@"1up.png",
 		TEX_SWINGVINE_BASE:@"swingvine_base.png",
 		TEX_SWINGVINE_TEX:@"swingvine_tex_loose.png",
 		TEX_LABSWINGVINE_BASE:@"labswingvine_base.png",
@@ -87,8 +86,6 @@ static NSMutableDictionary* loaded_textures;
 		TEX_SPIKE:@"spikes.png",
 		TEX_CHECKPOINT_1:@"checkpoint1.png",
 		TEX_CHECKPOINT_2:@"checkpoint2.png",
-		TEX_GREY_PARTICLE:@"grey_particle.png",
-		TEX_SMOKE_PARTICLE:@"smokecloud.png",
 		TEX_CANNONFIRE_PARTICLE:@"cannonfire_default.png",
 		TEX_CANNONTRAIL:@"cannontrail_default.png",
 		TEX_UI_INGAMEUI_SS:@"ingame_ui_ss.png",
@@ -101,7 +98,8 @@ static NSMutableDictionary* loaded_textures;
 		TEX_NMENU_DOGHOUSEMASK:@"doghouse_mask.png",
 		TEX_NMENU_LEVELSELOBJ:@"nmenu_levelselectobj.png",
 		TEX_FREERUNSTARTICONS:@"freerunstart_icons.png",
-		TEX_BLANK:@"blank.png"
+		TEX_BLANK:@"blank.png",
+		TEX_PARTICLES:@"particles.png"
 	};
 	[self load_all];
 }

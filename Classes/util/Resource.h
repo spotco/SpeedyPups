@@ -2,10 +2,8 @@
 
 @interface Resource : NSObject
 
-//+(void)cons_textures;
 +(CCTexture2D*)get_tex:(NSString*)key;
 +(void)unload_textures;
-//+(void)dealloc_textures;
 
 
 #define TEX_GROUND_TEX_1 @"GroundTexture1"
@@ -77,9 +75,8 @@
 #define TEX_SPIKE_VINE_BOTTOM @"SpikeVineRight"
 #define TEX_SPIKE_VINE_SECTION @"SpikeVineSection"
 
-#define TEX_PARTICLE_1UP @"1up"
-
 #define TEX_ITEM_SS @"item_ss"
+#define TEX_PARTICLES @"particles"
 
 #define TEX_ENEMY_ROBOT @"robot_default"
 #define TEX_ENEMY_LAUNCHER @"launcher_default"
@@ -99,8 +96,6 @@
 #define TEX_CHECKPOINT_1 @"CheckPointPre"
 #define TEX_CHECKPOINT_2 @"CheckPointPost"
 
-#define TEX_GREY_PARTICLE @"GreyParticle"
-#define TEX_SMOKE_PARTICLE @"smokeparticle"
 #define TEX_CANNONFIRE_PARTICLE @"cannonfire_default"
 #define TEX_CANNONTRAIL @"cannontrail_default"
 

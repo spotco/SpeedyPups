@@ -4,6 +4,7 @@
 #import "NMenuSettingsPage.h"
 #import "NMenuCharSelectPage.h"
 #import "NMenuTabShopPage.h"
+#import "AudioManager.h"
 //#import "NMenuShopPage.h"
 
 #import "MainMenuInventoryLayer.h"
@@ -107,6 +108,7 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_GOTO_PAGE) {
         cur_page = e.i1;
+		
     } else if (e.type == GEventType_MENU_PLAY_AUTOLEVEL_MODE) {
         [self exit];
         [GameMain start_game_autolevel];

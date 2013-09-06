@@ -3,7 +3,7 @@
 
 @implementation JumpPadParticle
 +(JumpPadParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    JumpPadParticle *p = [JumpPadParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    JumpPadParticle *p = [JumpPadParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p cons_vx:vx vy:vy];
     p.position = ccp(x,y);
     return p;
@@ -23,7 +23,7 @@
 
 @implementation RocketLaunchParticle
 +(RocketLaunchParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    RocketLaunchParticle *p = [RocketLaunchParticle spriteWithTexture:[Resource get_tex:TEX_SMOKE_PARTICLE]];
+    RocketLaunchParticle *p = [RocketLaunchParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"smokecloud"]];
     [p cons_vx:vx vy:vy];
     p.position = ccp(x,y);
     return p;
@@ -63,7 +63,7 @@
 @implementation RocketExplodeParticle
 
 +(RocketExplodeParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    RocketExplodeParticle *p = [RocketExplodeParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    RocketExplodeParticle *p = [RocketExplodeParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p cons_vx:vx vy:vy];
     p.position = ccp(x,y);
     return p;

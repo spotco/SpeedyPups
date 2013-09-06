@@ -34,7 +34,26 @@ typedef enum {
 #define SFX_BOP @"sfx_bop.wav"
 #define SFX_CHECKPOINT @"sfx_checkpoint.wav" 
 #define SFX_SWING @"sfx_swing.wav" 
-#define SFX_BARK @"sfx_bark1.wav"
+#define SFX_POWERUP @"sfx_powerup.wav"
+#define SFX_1UP @"sfx_1up.wav"
+#define SFX_BIG_EXPLOSION @"sfx_big_explosion.wav"
+
+#define SFX_WHIMPER @"sfx_whimper.wav"
+#define SFX_ROCKET_LAUNCH @"sfx_rocket_launch.wav"
+#define SFX_GOAL @"sfx_goal.wav"
+#define SFX_ROCKET @"sfx_rocket.wav"
+#define SFX_SPIKEBREAK @"sfx_spikebreak.wav"
+#define SFX_BUY @"sfx_buy.wav"
+
+#define SFX_BARK_LOW @"bark_low.wav"
+#define SFX_BARK_MID @"bark_mid.wav"
+#define SFX_BARK_HIGH @"bark_high.wav"
+
+#define SFX_READY @"sfx_ready.wav"
+#define SFX_GO @"sfx_go.wav"
+
+#define SFX_COPTER_FLYBY @"sfx_copter_flyby.wav"
+
 
 @interface AudioManager : NSObject
 

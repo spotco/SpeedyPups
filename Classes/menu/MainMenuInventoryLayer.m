@@ -9,6 +9,9 @@
 
 @implementation MainMenuInventoryLayer
 
+static NSString* default_text = @"Equip to use powerups on your next run. Unlock upgrades at the store!";
+static NSString* locked_text = @"Buy at the store to unlock and equip!";
+
 +(MainMenuInventoryLayer*)cons {
     return [MainMenuInventoryLayer node];
 }
@@ -63,15 +66,18 @@
     
     CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tinybone"]];
     [boneicon setPosition:[Common pct_of_obj:inventory_window pctx:0.665 pcty:0.15]];
-    //[boneicon setScale:0.6];
     [inventory_window addChild:boneicon];
     bonectdsp = [Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.695 pcty:0.15] color:ccc3(0, 0, 0) fontsize:15 str:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
     [bonectdsp setAnchorPoint:ccp(0,0.5)];
     [inventory_window addChild:bonectdsp];
     
-	mainslot = [MainSlotItemPane cons_pt:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.26]
+	mainslot = [MainSlotItemPane cons_pt:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.24]
 														cb:[Common cons_callback:self sel:@selector(slotpane0_click)]
 													  slot:0];
+	[inventory_window addChild:[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.4]
+												color:ccc3(200,30,30)
+											 fontsize:13
+												  str:@"Equipped:"]];
     CCMenu *slotitems = [CCMenu menuWithItems:mainslot,NULL];
 	[slotitems setPosition:CGPointZero];
 	[inventory_window addChild:slotitems];
@@ -80,7 +86,7 @@
     infoname = [Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.075 pcty:0.375]
 								color:ccc3(205, 51, 51)
 							 fontsize:20
-								  str:@"Inventory"];
+								  str:@""];
     [infoname setAnchorPoint:ccp(0,0.5)];
     [inventory_window addChild:infoname];
     
@@ -89,7 +95,7 @@
                            constrainedToSize:CGSizeMake(1000, 1000)
                               lineBreakMode:UILineBreakModeWordWrap];
     
-    infodesc = [CCLabelTTF labelWithString:@"Equip here and find in freerun mode. Unlock and upgrade at the store!"
+    infodesc = [CCLabelTTF labelWithString:default_text
                                 dimensions:actualSize
                                  alignment:UITextAlignmentLeft
                                   fontName:@"Carton Six"
@@ -127,7 +133,12 @@
 
 -(void)invpane_click:(int)i {
     GameItem t = [(InventoryItemPane*)[inventory_panes objectAtIndex:i] cur_item];
-	[infodesc setString:[GameItemCommon description_from:t]];
+	if ([UserInventory get_upgrade_level:t] == 0) {
+		[infodesc setString:locked_text];
+	} else {
+		[infodesc setString:[GameItemCommon description_from:t]];
+	}
+	
 	
     if ([UserInventory get_upgrade_level:t] > 0) {
 		[UserInventory set_equipped_gameitem:t];
@@ -144,6 +155,9 @@
 -(void)open {
     [inventory_window setVisible:YES];
 	[self update_invpane];
+	
+	[infoname setString:@"Powerups"];
+	[infodesc setString:default_text];
 }
 
 -(void)close {

@@ -45,6 +45,8 @@ typedef enum {
     CGPoint recoil,recoil_tar;
     
     CGPoint flyoffdir;
+	
+	float sfx_ct;
 }
 
 +(CopterRobot*)cons_with_g:(GameEngineLayer*)g;

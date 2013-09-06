@@ -30,7 +30,7 @@
 	particles = [NSMutableArray array];
 	for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/5) {
 		CGPoint vel = ccp(sinf(i),cosf(i));
-		float scale = float_random(5, 7);
+		float scale = float_random(2, 4);
 		[self add_particle:[ItemUseFlyoutParticle cons_pt:CGPointZero vel:ccp(vel.x*scale,vel.y*scale)]];
 	}
 	ct = 1;

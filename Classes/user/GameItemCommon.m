@@ -4,6 +4,7 @@
 #import "GameEngineLayer.h"
 #import "DogRocketEffect.h"
 #import "UserInventory.h"
+#import "AudioManager.h"
 
 @implementation GameItemCommon
 
@@ -69,6 +70,7 @@ static NSDictionary* descriptions;
 
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g {
 	if (g.player.dead) return;
+	[AudioManager playsfx:SFX_POWERUP];
 	
     if (it == Item_Rocket) {
         [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it g:g]]];

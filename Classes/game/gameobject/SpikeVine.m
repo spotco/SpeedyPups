@@ -1,6 +1,7 @@
 #import "SpikeVine.h"
 #import "AudioManager.h"
 #import "GameEngineLayer.h" 
+#import "BreakableWallRockParticle.h"
 
 @implementation SpikeVine
 
@@ -29,6 +30,25 @@
     }
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && !player.dead) {
+		
+		if ([player is_armored] && [self class] == [SpikeVine class]) {
+			float len = [VecLib length:dir_vec];
+			for(float i = 0; i < len; i+=float_random(8, 30)) {
+				[g add_particle:
+				 [BreakableWallRockParticle cons_spike_x:position_.x + (i/len)*dir_vec.x
+												 y:position_.y + (i/len)*dir_vec.y
+												vx:float_random(-5, 5)
+												vy:float_random(-5, 5)]
+				 ];
+				
+			}
+			[AudioManager playsfx:SFX_SPIKEBREAK];
+			activated = YES;
+			stop_draw = YES;
+			return;
+		}
+		
+		
         HitRect player_small_rect = [player get_hit_rect]; //watahack :DDD
         float pwid = player_small_rect.x2-player_small_rect.x1;
         float phei = player_small_rect.y2-player_small_rect.y1;
@@ -70,6 +90,7 @@
 -(void)reset {
     [super reset];
     activated = NO;
+	stop_draw = NO;
 }
 
 -(CCTexture2D*)get_base_tex {
@@ -170,6 +191,7 @@
 }
 
 -(void)draw_o {
+	if (stop_draw) return;
     [Common draw_renderobj:top n_vtx:4];
     [Common draw_renderobj:bottom n_vtx:4];
     [Common draw_renderobj:center n_vtx:4];

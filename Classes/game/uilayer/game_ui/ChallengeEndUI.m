@@ -152,6 +152,11 @@
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
 		[self set_curtain_anim_positions];
+		if (sto_passed) {
+			[Player character_bark];
+		} else {
+			[AudioManager playsfx:SFX_WHIMPER];
+		}
 	}
 	[super setVisible:visible];
 }

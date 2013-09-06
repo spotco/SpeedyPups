@@ -140,6 +140,11 @@
         
         [g add_gameobject:r];
         recoilanim_timer = RECOIL_TIME;
+		
+		if (CGPointDist(position_, player.position) < 1200) {
+			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+		}
+		
     }
     
     if (!player.dead && player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]) {

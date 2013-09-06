@@ -7,6 +7,7 @@
 #import "Particle.h"
 #import "ShopBuyBoneFlyoutParticle.h"
 #import "ShopBuyFlyoffTextParticle.h"
+#import "AudioManager.h"
 
 @implementation NMenuTabShopPage
 
@@ -327,7 +328,8 @@
 		[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:ccp(centre.x+total_disp.boundingBox.size.width/2.0,centre.y+15) text:strf("-%d",sto_price)]];
 		
 		[self seltab:current_tab_index tab:cur_selected_tab];
-		//todo -- buying sound here
+		[AudioManager playsfx:SFX_BUY];
+		[AudioManager playsfx:SFX_BARK_MID];
 		
 	} else {
 		NSLog(@"buying failed");

@@ -1,10 +1,11 @@
 #import "StreamParticle.h"
+#import "FileCache.h"
 
 @implementation StreamParticle
 @synthesize ct;
 
 +(StreamParticle*)cons_x:(float)x y:(float)y {
-    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p cons];
     p.position = ccp(x,y);
     
@@ -12,7 +13,7 @@
 }
 
 +(StreamParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     p.position = ccp(x,y);
     [p cons_vx:vx vy:vy];
     return p;

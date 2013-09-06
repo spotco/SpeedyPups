@@ -6,6 +6,9 @@
 @interface GameStartAnim : UIAnim {
     CCSprite* readyimg;
     CCSprite* goimg;
+	
+	BOOL played_ready;
+	BOOL played_go;
     
     int ct;
 }

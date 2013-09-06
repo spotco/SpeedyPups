@@ -2,6 +2,7 @@
 #import "GameEngineLayer.h"
 #import "TutorialAnim.h"
 #import "DogShadow.h"
+#import "AudioManager.h"
 
 @interface ProfShadow : ObjectShadow
 @end
@@ -70,6 +71,7 @@
             curstate = TutorialProf_MESSAGE;
             ct = MESSAGELENGTH;
             [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
+			[AudioManager playsfx:SFX_BARK_MID];
         }
         
         

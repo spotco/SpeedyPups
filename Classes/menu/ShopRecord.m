@@ -58,9 +58,9 @@
 }
 
 +(void)fill_items_tab:(NSMutableArray*)a {
-	[self add_item:Item_Magnet into:a];
 	[self add_item:Item_Rocket into:a];
 	[self add_item:Item_Shield into:a];
+	[self add_item:Item_Magnet into:a];
 	[self add_item:Item_Clock into:a];
 }
 
@@ -73,16 +73,16 @@
 		  (item == Item_Shield ? SHOP_ITEM_ARMOR : @"top lel")));
 	int price = 1;
 	if (item == Item_Clock) {
-		int vals[] = {900,2000,4000};
+		int vals[] = {4000,8000,12000};
 		price = vals[uggval];
 	} else if (item == Item_Magnet) {
-		int vals[] = {300,1000,2000};
+		int vals[] = {3000,6000,9000};
 		price = vals[uggval];
 	} else if (item == Item_Rocket) {
-		int vals[] = {500,1400,2500};
+		int vals[] = {1000,2000,4000};
 		price = vals[uggval];
 	} else if (item == Item_Shield) {
-		int vals[] = {600,1700,3000};
+		int vals[] = {2000,4000,6000};
 		price = vals[uggval];
 	}
 	

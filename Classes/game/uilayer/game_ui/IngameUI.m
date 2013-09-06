@@ -30,6 +30,10 @@
     return [IngameUI node];
 }
 
+#define ITEM_LENBAR_HIDE_DURATION 10.0f
+#define ITEM_LENBAR_DEFAULT_POSITION [Common screen_pctwid:0.82 pcthei:0.09]
+#define ITEM_LENBAR_HIDDEN_POSITION [Common screen_pctwid:0.82 pcthei:-0.2]
+
 -(id)init {
     self = [super init];
 	
@@ -102,7 +106,10 @@
 	[itemlenbarroot addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																				   idname:@"item_timebar"]]];
-	[itemlenbarroot setPosition:[Common screen_pctwid:0.82 pcthei:0.09]];
+	[itemlenbarroot setPosition:ITEM_LENBAR_HIDDEN_POSITION];
+	
+	itemlenbar_target_pos = ITEM_LENBAR_HIDDEN_POSITION;
+	
     [self addChild:itemlenbarroot];
 	[itemlenbarfill setScaleX:0.5];
 	for (CCSprite *i in [itemlenbarroot children]) {
@@ -145,6 +152,8 @@
 	
 	item_slot_notify_anim_sc = 1;
 	
+	
+	
     return self;
 }
 
@@ -171,7 +180,9 @@
 }
 
 static GameItem last_item = Item_NOITEM;
+static int ct  = 0;
 -(void)update:(GameEngineLayer*)g {
+	ct ++;
 	item_slot_notify_anim_sc = item_slot_notify_anim_sc - (item_slot_notify_anim_sc-1)/3;
 	[ingame_ui_item_slot setScale:item_slot_notify_anim_sc];
 
@@ -182,20 +193,28 @@ static GameItem last_item = Item_NOITEM;
     [self set_label:lives_disp to:strf("\u00B7 %s",[g get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[g get_lives]).UTF8String)];
     [self set_label:time_disp to:[UICommon parse_gameengine_time:[g get_time]]];
 	
-	
+	[itemlenbarroot setPosition:ccp(
+		itemlenbarroot.position.x + (itemlenbar_target_pos.x - itemlenbarroot.position.x)/4.0,
+		itemlenbarroot.position.y + (itemlenbar_target_pos.y - itemlenbarroot.position.y)/4.0
+	 )];
+		
 	if (item_duration_pct > 0) {
 		[itemlenbarroot setVisible:YES];
 		[ingame_ui_item_slot setVisible:NO];
 		[readynotif setVisible:NO];
 		[itemlenbarfill setScaleX:item_duration_pct];
+		itemlenbar_target_pos = ITEM_LENBAR_DEFAULT_POSITION;
 		
 	} else {
-		[itemlenbarroot setVisible:NO];
+		//[itemlenbarroot setVisible:NO];
+		itemlenbar_target_pos = ITEM_LENBAR_HIDDEN_POSITION;
+		
 		[ingame_ui_item_slot set_locked:NO];
 		if ([UserInventory get_current_gameitem] != Item_NOITEM) {
 			[readynotif setVisible:YES];
 			[ingame_ui_item_slot setVisible:YES];
 			if (last_item != [UserInventory get_current_gameitem]) [self update_item_slot];
+			[readynotif setVisible:(ct/25)%2==0];
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
 			[readynotif setVisible:NO];
@@ -253,6 +272,9 @@ static GameItem last_item = Item_NOITEM;
 
 -(void)set_item_duration_pct:(float)f {
     item_duration_pct = f;
+	if (f == 0) {
+		itemlenbar_target_pos = ITEM_LENBAR_HIDDEN_POSITION;
+	}
 }
 
 -(void)update_item_slot {

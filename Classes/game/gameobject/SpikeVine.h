@@ -9,6 +9,7 @@
     SATPoly r_hitbox;
     
     BOOL activated;
+	BOOL stop_draw;
 }
 
 +(SpikeVine*)cons_x:(float)x y:(float)y x2:(float)x2 y2:(float)y2;

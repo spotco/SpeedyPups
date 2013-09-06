@@ -5,7 +5,7 @@
 
 
 +(WaveParticle*)cons_x:(float)x y:(float)y vx:(float)vx vtheta:(float)vtheta {
-    WaveParticle *p = [WaveParticle spriteWithTexture:[Resource get_tex:TEX_GREY_PARTICLE]];
+    WaveParticle *p = [WaveParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p setPosition:ccp(x,y)];
     [p cons:vx vtheta:vtheta];
     return p;
