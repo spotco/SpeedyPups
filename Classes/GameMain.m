@@ -19,6 +19,9 @@
 #define DISPLAY_FPS NO
 
 /**
+ 
+  cloud cape levels
+ 
  -art ask for:
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design
@@ -34,7 +37,7 @@ Stretch goals:
  store sales (streamed from online)
  goober pet
  
- cloud cape levels
+
  levels based around armor (armor break spikes)
  **/
 
@@ -54,9 +57,13 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	//[ChallengeRecord set_beaten_challenge:18 to:YES];
 	//[UserInventory add_bones:100000];
+	
+	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

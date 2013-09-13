@@ -292,6 +292,8 @@ static BGM_GROUP prev_group;
 																			 end:CGPointAdd(playericon.position,ccp(-30,15))];
 			[bone_anims addObject:neuanim];
 			[self addChild:neuanim];
+			[AudioManager playsfx:SFX_BONE];
+			
 		}
 		
 	} else if (bone_anims.count != 0) {
@@ -304,6 +306,7 @@ static BGM_GROUP prev_group;
 		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
 		continue_cost = 10; //used as pause ct now
 		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
+		[Player character_bark];
 		curmode = AskContinueUI_YES_RUNOUT;
 		
 	}

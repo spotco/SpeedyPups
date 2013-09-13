@@ -25,7 +25,8 @@
 	CCLabelTTF *text_disp = [[Common cons_label_pos:[Common pct_of_obj:base pctx:0.2 pcty:0.5]
 											 color:ccc3(0,0,0)
 										  fontsize:16
-											   str:@"Unlocked: World 1 !"] anchor_pt:ccp(0,0.5)];
+											   str:[NSString stringWithFormat:@"Unlocked: %@!",[FreeRunStartAtManager name_for_loc:startat]]]
+							 anchor_pt:ccp(0,0.5)];
 	[base addChild:text_disp];
 	TexRect *tr = [FreeRunStartAtManager get_icon_for_loc:startat];
 	CGPoint iconpt = text_disp.position;

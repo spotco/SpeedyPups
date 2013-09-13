@@ -7,7 +7,7 @@
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
-#define HIGHER_JUMP_POWER 11.5
+#define HIGHER_JUMP_POWER 10.5
 #define JUMP_FLOAT_SCALE 1
 
 @implementation GameControlImplementation

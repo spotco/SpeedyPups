@@ -161,7 +161,7 @@
 }
 
 -(void)start_coin_collect_anim {
-    CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
+    CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,0)];
     [ingameuianimholder addChild:c];
     [ingame_ui_anims addObject:c];
 }

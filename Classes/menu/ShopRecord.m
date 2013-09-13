@@ -25,6 +25,7 @@
 	i.desc = desc;
 	i.price = price;
 	i.val = val;
+	i.short_name = name;
 	return i;
 }
 
@@ -41,6 +42,7 @@
 	i.desc = desc;
 	i.price = price;
 	i.val = val;
+	i.short_name = name;
 	return i;
 }
 
@@ -87,24 +89,22 @@
 	}
 	
 	NSString *item_name = [GameItemCommon name_from:item];
-	NSString *use_name = uggval == 0?
-		item_name:
-		[NSString stringWithFormat:@"%@ %d",item_name,uggval+1];
 	NSString *use_desc = uggval == 0?@"Unlock to equip in inventory.":@"Upgrade to last longer.";
 	
 	ItemInfo *i = [ItemInfo cons_tex:TEX_ITEM_SS
 							  rectid:[ShopRecord gameitem_to_texid:item]
-								name:use_name
+								name:uggval==0?item_name:[NSString stringWithFormat:@"Upgrade %@",item_name]
 								desc:[NSString stringWithFormat:@"%@\nUse: %@",use_desc,[GameItemCommon description_from:item]]
 							   price:price
 								 val:shop_val];
+	i.short_name = uggval == 0?item_name:[NSString stringWithFormat:@"%@ %d",item_name,uggval+1];
 	[a addObject:i];
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
 	NSString *dogs[] = {	TEX_DOG_RUN_2,	TEX_DOG_RUN_3,	TEX_DOG_RUN_4,	TEX_DOG_RUN_5,	TEX_DOG_RUN_6,	TEX_DOG_RUN_7};
 	NSString *actions[] = {	SHOP_DOG_DOG2,	SHOP_DOG_DOG3,	SHOP_DOG_DOG4,	SHOP_DOG_DOG5,	SHOP_DOG_DOG6,	SHOP_DOG_DOG7};
-	float prices[] = {		3000,			6000,			10000,			15000,			25000,			35000};
+	float prices[] = {		5000,			7500,			10000,			15000,			25000,			35000};
 	for(int i = 0; i < sizeof(dogs)/sizeof(NSString*); i++) {
 		NSString *dog = dogs[i];
 		if (![UserInventory get_character_unlocked:dog]) {

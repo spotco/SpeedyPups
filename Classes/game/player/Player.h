@@ -24,6 +24,7 @@ typedef enum {
 } player_anim_mode;
 
 typedef enum {
+	CharacterPower_DOUBLELIVES,
     CharacterPower_AUTOMAGNET,
     CharacterPower_HIGHERJUMP,
     CharacterPower_SLOWFALL,

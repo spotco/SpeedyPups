@@ -160,7 +160,7 @@
 -(void)pause {
     UILayer *p = (UILayer*)[self parent];
     [p pause];
-	[AudioManager playsfx:SFX_PAUSE];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)itemslot_use {
@@ -233,12 +233,16 @@ static int ct  = 0;
 		if (cinfo.type == ChallengeType_COLLECT_BONES) {
 			if ([g get_num_bones] >= cinfo.ct) {
 				[challengedesc setColor:ccc3(0,255,0)];
+			} else {
+				[challengedesc setColor:ccc3(0,0,0)];
 			}
 			tar_str = strf("%i/%i",[g get_num_bones],cinfo.ct);
 			
 		} else if (cinfo.type == ChallengeType_FIND_SECRET) {
 			if ([g get_num_secrets] >= cinfo.ct) {
 				[challengedesc setColor:ccc3(0,255,0)];
+			} else {
+				[challengedesc setColor:ccc3(0,0,0)];
 			}
 			tar_str = strf("%i/%i",[g get_num_secrets],cinfo.ct);
 			
@@ -254,6 +258,7 @@ static int ct  = 0;
 				}
 			} else {
 				tar_str = [UICommon parse_gameengine_time:tm];
+				[challengedesc setColor:ccc3(0,0,0)];
 			}
 			
 		}

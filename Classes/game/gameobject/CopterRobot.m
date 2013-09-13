@@ -36,7 +36,7 @@ static const int TRACKINGFIRE_ROCKETSPEED = 8;
 static const float RECOIL_DIST = 25;
 static const float RECOIL_CT = 10;
 
-static const int DEFAULT_HP = 4;
+static const int DEFAULT_HP = 5;
 
 #define DEFAULT_SCALE 1.2
 

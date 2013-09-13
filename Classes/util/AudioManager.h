@@ -55,12 +55,7 @@ typedef enum {
 #define SFX_COPTER_FLYBY @"sfx_copter_flyby.wav"
 
 #define SFX_MENU_UP @"sfx_menu_up.wav" 
-#define SFX_MENU_DOWN @"sfx_menu_down.wav" 
-#define SFX_MENU_UP_2 @"sfx_menu_up_2.wav"
-#define SFX_MENU_UP_3 @"sfx_menu_up_3.wav"
-
-#define SFX_PAUSE @"sfx_pause.wav"
-#define SFX_UNPAUSE @"sfx_unpause.wav"
+#define SFX_MENU_DOWN @"sfx_menu_down.wav"
 
 
 @interface AudioManager : NSObject

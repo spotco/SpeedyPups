@@ -144,7 +144,7 @@
 }
 
 -(void)challengemode_button_button_pressed {
-	[AudioManager playsfx:SFX_MENU_UP_2];
+	[AudioManager playsfx:SFX_MENU_UP];
     cur_mode = PlayPageMode_CHALLENGE_SELECT;
 }
 

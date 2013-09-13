@@ -14,6 +14,7 @@
     end = tend;
     ct = CTMAX;
     [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_STARCOIN]]];
+	[self set_ctmax:CTMAX];
     
     return self;
 }

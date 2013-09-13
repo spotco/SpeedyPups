@@ -340,7 +340,7 @@
 }
 
 -(void)clicked:(int)i{
-	[AudioManager playsfx:SFX_MENU_UP_3];
+	[AudioManager playsfx:SFX_MENU_UP];
     [self choose_challenge:i];
 }
 

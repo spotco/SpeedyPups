@@ -84,10 +84,10 @@ static NSDictionary* ID_TO_POWERDESC;
 	
 	ID_TO_POWERDESC = @{
 		TEX_DOG_RUN_1: @"None",
-		TEX_DOG_RUN_2: @"auto magnet",
+		TEX_DOG_RUN_2: @"double lives",
 		TEX_DOG_RUN_3: @"higher jump",
-		TEX_DOG_RUN_4: @"slower fall",
-		TEX_DOG_RUN_5: @"triple jump",
+		TEX_DOG_RUN_4: @"triple jump",
+		TEX_DOG_RUN_5: @"auto magnet",
 		TEX_DOG_RUN_6: @"longer dash",
 		TEX_DOG_RUN_7: @"double dash"
 	};
@@ -107,23 +107,26 @@ static NSDictionary* ID_TO_POWERDESC;
 }
 
 +(BOOL)current_character_has_power:(CharacterPower)power {
-    if (power == CharacterPower_AUTOMAGNET) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_2];
+	if (power == CharacterPower_DOUBLELIVES) {
+		return streq(CURRENT_CHARACTER, TEX_DOG_RUN_2);
+		
+    } else if (power == CharacterPower_AUTOMAGNET) {
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_5);
         
     } else if (power == CharacterPower_HIGHERJUMP) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_3];
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_3);
         
     } else if (power == CharacterPower_SLOWFALL) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_4];
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_3);
         
     } else if (power == CharacterPower_TRIPLEJUMP) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_5];
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_4);
         
     } else if (power == CharacterPower_LONGDASH) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_6];
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_6);
         
     } else if (power == CharacterPower_DOUBLEDASH) {
-        return [CURRENT_CHARACTER isEqualToString:TEX_DOG_RUN_7];
+        return streq(CURRENT_CHARACTER, TEX_DOG_RUN_7);
         
     }
     return NO;

@@ -586,8 +586,6 @@
 		7EE3C4B417DA7C0C00DCAF76 /* sfx_hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49217DA7C0C00DCAF76 /* sfx_hit.wav */; };
 		7EE3C4B517DA7C0C00DCAF76 /* sfx_jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49317DA7C0C00DCAF76 /* sfx_jump.wav */; };
 		7EE3C4B617DA7C0C00DCAF76 /* sfx_jumppad.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49417DA7C0C00DCAF76 /* sfx_jumppad.wav */; };
-		7EE3C4B717DA7C0C00DCAF76 /* sfx_menu_up_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49517DA7C0C00DCAF76 /* sfx_menu_up_2.wav */; };
-		7EE3C4B817DA7C0C00DCAF76 /* sfx_menu_up_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49617DA7C0C00DCAF76 /* sfx_menu_up_3.wav */; };
 		7EE3C4B917DA7C0C00DCAF76 /* sfx_menu_up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49717DA7C0C00DCAF76 /* sfx_menu_up.wav */; };
 		7EE3C4BA17DA7C0C00DCAF76 /* sfx_powerup.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49817DA7C0C00DCAF76 /* sfx_powerup.wav */; };
 		7EE3C4BB17DA7C0C00DCAF76 /* sfx_ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C49917DA7C0C00DCAF76 /* sfx_ready.wav */; };
@@ -602,8 +600,6 @@
 		7EE3C4C417DA7C0C00DCAF76 /* sfx_swing.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4A217DA7C0C00DCAF76 /* sfx_swing.wav */; };
 		7EE3C4C517DA7C0C00DCAF76 /* sfx_whimper.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4A317DA7C0C00DCAF76 /* sfx_whimper.wav */; };
 		7EE3C4C717DA7C5400DCAF76 /* sfx_menu_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4C617DA7C5400DCAF76 /* sfx_menu_down.wav */; };
-		7EE3C4CA17DA7ECF00DCAF76 /* sfx_pause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4C817DA7ECF00DCAF76 /* sfx_pause.wav */; };
-		7EE3C4CB17DA7ECF00DCAF76 /* sfx_unpause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4C917DA7ECF00DCAF76 /* sfx_unpause.wav */; };
 		7EE41C9817BB56B30011D20F /* ShopTabTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */; };
 		7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */; };
 		7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33917D90A2B0032CE7D /* particles.plist */; };
@@ -1405,8 +1401,6 @@
 		7EE3C49217DA7C0C00DCAF76 /* sfx_hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_hit.wav; sourceTree = "<group>"; };
 		7EE3C49317DA7C0C00DCAF76 /* sfx_jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_jump.wav; sourceTree = "<group>"; };
 		7EE3C49417DA7C0C00DCAF76 /* sfx_jumppad.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_jumppad.wav; sourceTree = "<group>"; };
-		7EE3C49517DA7C0C00DCAF76 /* sfx_menu_up_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_menu_up_2.wav; sourceTree = "<group>"; };
-		7EE3C49617DA7C0C00DCAF76 /* sfx_menu_up_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_menu_up_3.wav; sourceTree = "<group>"; };
 		7EE3C49717DA7C0C00DCAF76 /* sfx_menu_up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_menu_up.wav; sourceTree = "<group>"; };
 		7EE3C49817DA7C0C00DCAF76 /* sfx_powerup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_powerup.wav; sourceTree = "<group>"; };
 		7EE3C49917DA7C0C00DCAF76 /* sfx_ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_ready.wav; sourceTree = "<group>"; };
@@ -1421,8 +1415,6 @@
 		7EE3C4A217DA7C0C00DCAF76 /* sfx_swing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_swing.wav; sourceTree = "<group>"; };
 		7EE3C4A317DA7C0C00DCAF76 /* sfx_whimper.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_whimper.wav; sourceTree = "<group>"; };
 		7EE3C4C617DA7C5400DCAF76 /* sfx_menu_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_menu_down.wav; sourceTree = "<group>"; };
-		7EE3C4C817DA7ECF00DCAF76 /* sfx_pause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_pause.wav; sourceTree = "<group>"; };
-		7EE3C4C917DA7ECF00DCAF76 /* sfx_unpause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_unpause.wav; sourceTree = "<group>"; };
 		7EE41C9617BB56B30011D20F /* ShopTabTouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTabTouchButton.h; sourceTree = "<group>"; };
 		7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTabTouchButton.m; sourceTree = "<group>"; };
 		7EE41C9917BB56FF0011D20F /* ShopListTouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopListTouchButton.h; sourceTree = "<group>"; };
@@ -1603,8 +1595,6 @@
 		7E49B1D517DA766600563243 /* sfx */ = {
 			isa = PBXGroup;
 			children = (
-				7EE3C4C817DA7ECF00DCAF76 /* sfx_pause.wav */,
-				7EE3C4C917DA7ECF00DCAF76 /* sfx_unpause.wav */,
 				7EE3C48317DA7C0C00DCAF76 /* bark_high.wav */,
 				7EE3C48417DA7C0C00DCAF76 /* bark_low.wav */,
 				7EE3C48517DA7C0C00DCAF76 /* bark_mid.wav */,
@@ -1624,8 +1614,6 @@
 				7EE3C49317DA7C0C00DCAF76 /* sfx_jump.wav */,
 				7EE3C49417DA7C0C00DCAF76 /* sfx_jumppad.wav */,
 				7EE3C4C617DA7C5400DCAF76 /* sfx_menu_down.wav */,
-				7EE3C49517DA7C0C00DCAF76 /* sfx_menu_up_2.wav */,
-				7EE3C49617DA7C0C00DCAF76 /* sfx_menu_up_3.wav */,
 				7EE3C49717DA7C0C00DCAF76 /* sfx_menu_up.wav */,
 				7EE3C49817DA7C0C00DCAF76 /* sfx_powerup.wav */,
 				7EE3C49917DA7C0C00DCAF76 /* sfx_ready.wav */,
@@ -3541,8 +3529,6 @@
 				7EE3C4B417DA7C0C00DCAF76 /* sfx_hit.wav in Resources */,
 				7EE3C4B517DA7C0C00DCAF76 /* sfx_jump.wav in Resources */,
 				7EE3C4B617DA7C0C00DCAF76 /* sfx_jumppad.wav in Resources */,
-				7EE3C4B717DA7C0C00DCAF76 /* sfx_menu_up_2.wav in Resources */,
-				7EE3C4B817DA7C0C00DCAF76 /* sfx_menu_up_3.wav in Resources */,
 				7EE3C4B917DA7C0C00DCAF76 /* sfx_menu_up.wav in Resources */,
 				7EE3C4BA17DA7C0C00DCAF76 /* sfx_powerup.wav in Resources */,
 				7EE3C4BB17DA7C0C00DCAF76 /* sfx_ready.wav in Resources */,
@@ -3557,8 +3543,6 @@
 				7EE3C4C417DA7C0C00DCAF76 /* sfx_swing.wav in Resources */,
 				7EE3C4C517DA7C0C00DCAF76 /* sfx_whimper.wav in Resources */,
 				7EE3C4C717DA7C5400DCAF76 /* sfx_menu_down.wav in Resources */,
-				7EE3C4CA17DA7ECF00DCAF76 /* sfx_pause.wav in Resources */,
-				7EE3C4CB17DA7ECF00DCAF76 /* sfx_unpause.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3896,6 +3880,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
+				GENERATE_PROFILING_CODE = YES;
 				HEADER_SEARCH_PATHS = "\"cocos2d-2.x-ARC-iOS/libs/kazmath/include\"";
 				INFOPLIST_FILE = "cocos2d-2.x-ARC-iOS/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3921,6 +3906,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
+				GENERATE_PROFILING_CODE = YES;
 				HEADER_SEARCH_PATHS = "\"cocos2d-2.x-ARC-iOS/libs/kazmath/include\"";
 				INFOPLIST_FILE = "cocos2d-2.x-ARC-iOS/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -3929,8 +3915,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "FC15B56D-779C-42B2-9C42-9BB17A4763AF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC15B56D-779C-42B2-9C42-9BB17A4763AF";
+				PROVISIONING_PROFILE = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

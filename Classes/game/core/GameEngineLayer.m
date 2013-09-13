@@ -94,6 +94,10 @@
     }
 	stats = [GameEngineStats cons];
     default_starting_lives = starting_lives;
+	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
+		default_starting_lives *= 2;
+	}
+	lives = default_starting_lives;
 	
     [AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
@@ -128,8 +132,6 @@
     }
     
     [self reset_camera];
-    
-    lives = starting_lives;
     
     [self update_render];
     [self schedule:@selector(update:)];
@@ -383,13 +385,7 @@
         [UserInventory add_bones:1];
         
     } else if (e.type == GEventType_GET_COIN) {
-        if (collected_bones%100 > (collected_bones+10)%100) {
-            [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
-            [self incr_lives];
-        }
         collected_secrets++;
-        collected_bones+=10;
-        [UserInventory add_bones:10];
     
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
         runout_ct = 100;

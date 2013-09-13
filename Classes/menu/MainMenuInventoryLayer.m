@@ -130,6 +130,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	[UserInventory set_current_gameitem:Item_NOITEM];
 	[UserInventory set_equipped_gameitem:Item_NOITEM];
 	[self update_invpane];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(void)invpane_click:(int)i {
@@ -146,7 +147,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
 		[infoname setString:[NSString stringWithFormat:@"%@ (level %d)",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
-		[AudioManager playsfx:SFX_CHECKPOINT];
+		[AudioManager playsfx:SFX_MENU_UP];
 	
 	} else {
 		[infoname setString:[NSString stringWithFormat:@"%@ (locked)",[GameItemCommon name_from:t]]];

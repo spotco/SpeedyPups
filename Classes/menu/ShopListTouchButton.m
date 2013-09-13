@@ -22,7 +22,7 @@
 	CCLabelTTF *name_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
 											 color:ccc3(0,0,0)
 										  fontsize:16
-											   str:info.name] anchor_pt:ccp(1,1)];
+											   str:info.short_name] anchor_pt:ccp(1,1)];
 	[self addChild:name_disp];
 	
 	CCLabelTTF *price_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
@@ -55,7 +55,7 @@
 			return;
 		}
 		[self.cb.target performSelector:self.cb.selector withObject:self];
-		[AudioManager playsfx:SFX_MENU_UP_2];
+		[AudioManager playsfx:SFX_MENU_UP];
 	}
 }
 

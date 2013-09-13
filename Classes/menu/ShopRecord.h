@@ -27,8 +27,8 @@ typedef enum {
 @property(readwrite,assign) CGRect rect;
 @property(readwrite,assign) int price;
 @property(readwrite,strong) NSString *name, *desc;
-
 @property(readwrite,strong) NSString *val;
+@property(readwrite,strong) NSString *short_name;
 @end
 
 @interface ShopRecord : NSObject

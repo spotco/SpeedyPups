@@ -249,15 +249,19 @@ static NSArray *lab_tutorial_levels;
 -(void)set_initial_params {
 	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
 		cur_set = L_TUTORIAL;
+		nth_freerunprogress = 0;
+		has_done_lab_tutorial = NO;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
 		tutorial_ct = 0;
+		nth_freerunprogress = 0;
 		ct = 10;
 		cur_set = L_FREERUN_PROGRESS;
+		has_done_lab_tutorial = NO;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
 		[self cycle_through:17];
-		nth_freerunprogress++;
+		nth_freerunprogress = 1;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
@@ -265,7 +269,7 @@ static NSArray *lab_tutorial_levels;
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
 		[self cycle_through:20];
 		[self cycle_through_lab:3];
-		nth_freerunprogress = 3;
+		nth_freerunprogress = 2;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
@@ -299,6 +303,16 @@ static NSArray *lab_tutorial_levels;
 	}
 }
 
+#define SETS_BETWEEN_LABS 4
+#define SETS_BETWEEN_LABS_WORLD1_TUTORIAL 2
+#define LEVELS_IN_LAB_SET 3
+#define LEVELS_IN_SET 3
+
+-(void)increment_freerun_progress {
+	nth_freerunprogress++;
+	nth_freerunprogress = nth_freerunprogress>6?1:nth_freerunprogress;
+}
+
 bool sur = NO;
 -(NSString*)get_level {
 	ct++;
@@ -321,14 +335,13 @@ bool sur = NO;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
 		if (!has_done_lab_tutorial) {
-			sets_until_next_lab = 2;
+			sets_until_next_lab = SETS_BETWEEN_LABS_WORLD1_TUTORIAL;
 		} else {
-			sets_until_next_lab = 4;
+			sets_until_next_lab = SETS_BETWEEN_LABS;
 		}
 		cur_set_completed = 0;
 		cur_set = [self pick_set];
-		nth_freerunprogress++;
-		nth_freerunprogress = nth_freerunprogress>7?1:nth_freerunprogress;
+		[self increment_freerun_progress];
 		
 		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		
@@ -337,7 +350,7 @@ bool sur = NO;
 		tutorial_ct++;
 		if (tutorial_ct >= lab_tutorial_levels.count) {
 			cur_set = L_LABINTRO;
-			sets_until_next_lab = 3;
+			sets_until_next_lab = LEVELS_IN_LAB_SET;
 			tutorial_ct = 0;
 		}
 		return tar;
@@ -345,13 +358,13 @@ bool sur = NO;
 	} else if ([cur_set isEqualToString:L_LABINTRO]) {
 		if (tutorial_ct == 0) {
 			tutorial_ct++;
-			nth_freerunprogress++;
+			[self increment_freerun_progress];
 			return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		} else {
 			cur_set = L_LAB;
 			tutorial_ct = 0;
 			nth_lab++;
-			sets_until_next_lab = 3;
+			sets_until_next_lab = LEVELS_IN_LAB_SET;
 			return [[levelsets[L_LABINTRO] allKeys] random];
 		}
 	
@@ -390,7 +403,7 @@ bool sur = NO;
 	} else if ([pickable_sets contains_str:cur_set]) {
 		cur_set_completed++;
 		NSString *tar_set = cur_set;
-		if (cur_set_completed >= 3) cur_set = L_FILLER;
+		if (cur_set_completed >= LEVELS_IN_SET) cur_set = L_FILLER;
 		return [setgen get_from_bucket:tar_set];
 		
 	} else {
@@ -434,7 +447,7 @@ bool sur = NO;
 		return FreeRunProgress_POST_3;
 		
 	} else {
-		return FreeRunProgress_PRE_1;
+		return FreeRunProgress_POST_3;
 		
 	}
 }

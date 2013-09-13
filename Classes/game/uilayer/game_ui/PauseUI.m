@@ -154,18 +154,18 @@
 -(void)retry {
 	[update_timer invalidate];
     [(UILayer*)[self parent] retry];
-	[AudioManager playsfx:SFX_MENU_UP];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(void)unpause {
     [(UILayer*)[self parent] unpause];
-	[AudioManager playsfx:SFX_UNPAUSE];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(void)exit_to_menu {
 	[update_timer invalidate];
     [(UILayer*)[self parent] exit_to_menu];
-	[AudioManager playsfx:SFX_MENU_UP];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 @end

@@ -135,6 +135,10 @@
 	selector_icon_target_pos = selector_icon.position;
 	[clipper_anchor addChild:selector_icon];
 	
+	CGPoint neupos = ccp(-(selector_icon_position.x-clipper.clippingRegion.size.width/2.0),clipper_anchor.position.y);
+	neupos.x = clampf(neupos.x, clippedholder_x_min, clippedholder_x_max);
+	[clipper_anchor setPosition:neupos];
+	
 	scroll_right_arrow = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
 												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"settingspage_scrollright"]]
 						  pos:[Common screen_pctwid:0.83 pcthei:0.615]];
@@ -158,6 +162,7 @@
 		[FreeRunStartAtManager set_starting_loc:button.starting_loc];
 		selector_icon_target_pos = button.position;
 		
+		[Player character_bark];
 		[AudioManager playsfx:SFX_MENU_UP];
 		
 	} else {
@@ -198,12 +203,7 @@
 	}
 }
 
--(void)touch_begin:(CGPoint)pt {
-	for (int i = touches.count-1; i>=0; i--) {
-		TouchButton *b = touches[i];
-		[b touch_begin:pt];
-	}
-	
+-(void)touch_begin:(CGPoint)pt {	
 	is_scroll = YES;
 	last_scroll_pt = pt;
 	scroll_move_ct = 0;
@@ -224,6 +224,12 @@
 
 -(void)touch_end:(CGPoint)pt {
 	if (!visible_) return;
+	if (scroll_move_ct < 5) {
+		for (int i = touches.count-1; i>=0; i--) {
+			TouchButton *b = touches[i];
+			[b touch_begin:pt];
+		}
+	}
 	is_scroll = NO;
 }
 

@@ -144,7 +144,7 @@
     float GRAVITY = [player get_current_params].cur_gravity;
     if (player.floating) {
         if ([Player current_character_has_power:CharacterPower_SLOWFALL]){
-            GRAVITY = GRAVITY * 0.2;
+            GRAVITY = GRAVITY * 0.3;
         } else {
             GRAVITY = GRAVITY * 0.4;
         }
