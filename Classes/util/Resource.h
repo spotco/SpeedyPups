@@ -114,4 +114,6 @@
 
 #define TEX_BLANK @"blank"
 
+#define TEX_CLOUDGAME_CLOUDFLOOR @"cloudfloor"
+
 @end

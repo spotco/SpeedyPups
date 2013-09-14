@@ -8,6 +8,7 @@
 #import "OneUpParticle.h"
 #import "GameModeCallback.h"
 #import "BGTimeManager.h"
+#import "CapeGameEngineLayer.h"
 
 @implementation GameEngineLayer
 
@@ -422,6 +423,9 @@
 		
 	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
 		cur_bg_mode = BGMode_NORMAL;
+		
+	} else if (e.type == GEventType_BEGIN_CAPE_GAME) {
+		[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@""]];
 		
 	}
 }

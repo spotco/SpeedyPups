@@ -99,7 +99,8 @@ static NSMutableDictionary* loaded_textures;
 		TEX_NMENU_LEVELSELOBJ:@"nmenu_levelselectobj.png",
 		TEX_FREERUNSTARTICONS:@"freerunstart_icons.png",
 		TEX_BLANK:@"blank.png",
-		TEX_PARTICLES:@"particles.png"
+		TEX_PARTICLES:@"particles.png",
+		TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png"
 	};
 	[self load_all];
 }

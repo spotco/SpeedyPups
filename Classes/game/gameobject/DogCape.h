@@ -1,10 +1,7 @@
 #import "GameObject.h"
-#import "DogCapeEffect.h"
+#import "DogBone.h"
 
-@interface DogCape : GameObject {
-    BOOL anim_toggle;
-}
+@interface DogCape : DogBone
 
 +(DogCape*)cons_x:(float)x y:(float)y;
-@property(readwrite,strong)CCSprite* img;
 @end

@@ -9,7 +9,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -21,6 +21,7 @@
 /**
  
   cloud cape levels
+ //leveleditor add cape grab item
  
  -art ask for:
 	settings page -> map page navmenu icon and bg design
@@ -57,17 +58,9 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
-	//[ChallengeRecord set_beaten_challenge:18 to:YES];
-	//[UserInventory add_bones:100000];
-	
-	//[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
-	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
 }
 
 +(void)start_game_autolevel {
