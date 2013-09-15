@@ -34,4 +34,8 @@
 							  tex_key:[Player get_character]]];
 }
 
+-(HitRect)get_hitrect {
+	return [Common hitrect_cons_x1:position_.x-20 y1:position_.y-20 wid:40 hei:40];
+}
+
 @end

@@ -99,6 +99,8 @@ typedef enum {
 
 -(void)follow_player;
 
+-(void)collect_bone;
+
 -(int)get_lives;
 -(int)get_time;
 -(int)get_num_particles;

@@ -13,7 +13,8 @@ typedef enum {
 } MapLoaderMode;
 
 @interface MapLoader : NSObject
-	+(void)set_maploader_mode:(MapLoaderMode)m;
-    +(GameMap*) load_map:(NSString *)map_file_name;
-    +(void) precache_map:(NSString *)map_file_name;
++(void)set_maploader_mode:(MapLoaderMode)m;
++(GameMap*) load_map:(NSString *)map_file_name;
++(void) precache_map:(NSString *)map_file_name;
++(GameMap*) load_capegame_map:(NSString*)map_file_name;
 @end

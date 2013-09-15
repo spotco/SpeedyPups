@@ -308,15 +308,17 @@
 		player.vy += 0.5*[Common get_dt_Scale];
 		player.vy = MIN(20,player.vy);
 		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
+		[self update_gameobjs];
 		[self update_particles];
 		[self push_added_particles];
+		[GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
 		
 		Vec3D vdir_vec = [VecLib cons_x:10 y:player.vy z:0];
 		[player setRotation:[VecLib get_rotation:vdir_vec offset:0]+180];
 		
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
-			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@"" g:self]];
+			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@"capegame_test" g:self]];
 			current_mode = GameEngineLayerMode_CAPEIN;
 			player.vy = 0;
 			player.rotation = 0;
@@ -326,8 +328,10 @@
 		[self incr_time:[Common get_dt_Scale]];
 		[player do_stand_anim];
 		[GamePhysicsImplementation player_move:player with_islands:islands];
+		[self update_gameobjs];
 		[self update_particles];
 		[self push_added_particles];
+		[GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
 		
 		if (player.current_island != NULL) {
 			current_mode = GameEngineLayerMode_GAMEPLAY;
@@ -401,6 +405,15 @@
     [GEventDispatcher dispatch_events];
 }
 
+-(void)collect_bone {
+	collected_bones++;
+	if (challenge == NULL && collected_bones%100==0) {
+		[self add_particle:[OneUpParticle cons_pt:[player get_center]]];
+		[self incr_lives];
+	}
+	[UserInventory add_bones:1];
+}
+
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_QUIT) {
         [self exit];
@@ -423,12 +436,7 @@
         [self set_checkpoint_to:e.pt];
         
     } else if (e.type == GEventType_COLLECT_BONE) {
-        collected_bones++;
-        if (challenge == NULL && collected_bones%100==0) {
-            [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
-            [self incr_lives];
-        }
-        [UserInventory add_bones:1];
+		[self collect_bone];
         
     } else if (e.type == GEventType_GET_COIN) {
         collected_secrets++;

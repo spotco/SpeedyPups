@@ -673,6 +673,8 @@ HitRect cached_rect;
 
 -(void)do_cape_anim {
 	[self start_anim:player_anim_mode_CAPE];
+	[dashlines setVisible:NO];
+	[sweatanim setVisible:NO];
 }
 
 -(void)cons_anim {

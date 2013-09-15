@@ -20,10 +20,12 @@
 
 /**
  
-  cloud cape levels
- //leveleditor add cape grab item
- 
- unschedule pauseui and capegamepauseui timers
+ cloud cape bone anim
+ cloud cape spikevine + anim
+ cloud cape tutorial popup
+ cloud cape accelerate
+ cloud cape get fail sound from goober
+ unschedule pauseui and capegamepauseui timers, make sure they dealloc
  
  -art ask for:
 	settings page -> map page navmenu icon and bg design

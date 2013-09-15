@@ -1,0 +1,14 @@
+{
+    "islands": [{"can_fall": true, "x2": 481, "ground": "open", "ndir": "right", "type": "line", "y1": 317, "hei": 50, "y2": 318, "x1": 3}],
+    "objects": [
+        {"type": "dogbone", "x": 402, "bid": 2, "y": 200, "label": "BID:2"},
+        {"type": "dogbone", "x": 500, "bid": 3, "y": 201, "label": "BID:3"},
+        {"type": "dogbone", "x": 602, "bid": 4, "y": 202, "label": "BID:4"},
+        {"x": 752, "x2": 749, "y": 3, "label": "4", "type": "spikevine", "y2": 150},
+        {"x": 952, "x2": 952, "y": 449, "label": "5", "type": "spikevine", "y2": 199}
+    ],
+    "start_x": 77,
+    "connect_pts": {"y1": 317, "x2": 481, "y2": 318, "x1": 3},
+    "assert_links": 0,
+    "start_y": 156
+}

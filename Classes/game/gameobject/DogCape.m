@@ -1,4 +1,5 @@
 #import "DogCape.h"
+#import "AudioManager.h"
 
 @implementation DogCape
 
@@ -21,6 +22,7 @@
 }
 
 -(void)hit {
+	[AudioManager playsfx:SFX_POWERUP];
 	[GEventDispatcher push_event:[GEvent cons_type:GEventType_BEGIN_CAPE_GAME]];
 	active = NO;
 }

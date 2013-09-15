@@ -1,12 +1,16 @@
 #import "CapeGameEngineLayer.h"
 #import "Resource.h"
 #import "FileCache.h"
-#import "Common.h"
 #import "BackgroundObject.h"
 #import "CapeGamePlayer.h"
 #import "CapeGameUILayer.h"
 #import "GameEngineLayer.h"
 #import "UICommon.h"
+#import "Common.h"
+
+@implementation CapeGameObject
+-(void)update:(CapeGameEngineLayer*)g{}
+@end
 
 @implementation CapeGameEngineLayer
 
@@ -40,6 +44,14 @@
 	[self addChild:top_scroll];
 	[self addChild:bottom_scroll];
 	
+	game_objects = [NSMutableArray array];
+	GameMap *map = [MapLoader load_capegame_map:file];
+	for (CapeGameObject *o in map.game_objects) {
+		[game_objects addObject:o];
+		[self addChild:o];
+	}
+	[map.game_objects removeAllObjects];
+	
 	ui = [CapeGameUILayer cons_g:self];
 	[self addChild:ui];
 	
@@ -54,6 +66,10 @@
 	current_mode = CapeGameMode_FALLIN;
 	
 	return self;
+}
+
+-(CapeGamePlayer*)player {
+	return player;
 }
 
 -(void)update:(ccTime)dt {
@@ -106,8 +122,12 @@
 	CGPoint neupos = CGPointAdd(player.position, ccp(0,player.vy));
 	neupos.y = clampf(neupos.y, [Common SCREEN].height*0.1, [Common SCREEN].height*0.9);
 	player.position = neupos;
-	
 	[player set_rotation];
+	
+	for (CapeGameObject *o in game_objects) {
+		[o setPosition:CGPointAdd(ccp(-4,0), o.position)];
+		[o update:self];
+	}
 	
 	duration--;
 	if (duration <= 0) {
@@ -118,6 +138,10 @@
 
 -(GameEngineLayer*)get_main_game {
 	return main_game;
+}
+
+-(void)collect_bone {
+	[main_game collect_bone];
 }
 
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {

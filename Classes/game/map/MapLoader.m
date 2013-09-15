@@ -41,6 +41,8 @@
 #import "ItemGen.h"
 #import "OneUpObject.h"
 
+#import "CapeGameBone.h"
+
 @implementation GameMap
     @synthesize assert_links;
     @synthesize connect_pts_x1,connect_pts_x2,connect_pts_y1,connect_pts_y2;
@@ -391,6 +393,35 @@ static NSMutableDictionary* cached_json;
 
 float getflt(NSDictionary* j_object,NSString* key) {
     return ((NSString*)[j_object objectForKey:key]).floatValue;
+}
+
++(GameMap*)load_capegame_map:(NSString *)map_file_name {
+    NSDictionary *j_map_data = [MapLoader get_jsondict:map_file_name];
+    GameMap *map = [[GameMap alloc] init];
+	map.game_objects = [NSMutableArray array];
+	map.n_islands = NULL;
+	
+    NSArray *coins_array = [j_map_data objectForKey:@"objects"];
+    for(int i = 0; i < [coins_array count]; i++){
+        NSDictionary *j_object = (NSDictionary *)[coins_array objectAtIndex:i];
+        NSString *type = (NSString *)[j_object objectForKey:@"type"];
+        
+        if([type isEqualToString:@"dogbone"]){
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[CapeGameBone cons_pt:ccp(x,y)]];
+			
+        } else if ([type isEqualToString:@"spikevine"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            float x2 = getflt(j_object, @"x2");
+            float y2 = getflt(j_object, @"y2");
+            //[map.game_objects addObject:[SpikeVine cons_x:x y:y x2:x2 y2:y2]];
+			
+		}
+	}
+	
+	return map;
 }
 
 @end

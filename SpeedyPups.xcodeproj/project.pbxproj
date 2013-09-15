@@ -572,6 +572,8 @@
 		7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */; };
 		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
 		7EE2455E17E63AE9007D4B4D /* CapeGameUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */; };
+		7EE2456117E65CDC007D4B4D /* capegame_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2456017E65CDC007D4B4D /* capegame_test.map */; };
+		7EE2456817E6606B007D4B4D /* CapeGameBone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2456717E6606B007D4B4D /* CapeGameBone.m */; };
 		7EE3C4A517DA7C0C00DCAF76 /* bark_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48317DA7C0C00DCAF76 /* bark_high.wav */; };
 		7EE3C4A617DA7C0C00DCAF76 /* bark_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48417DA7C0C00DCAF76 /* bark_low.wav */; };
 		7EE3C4A717DA7C0C00DCAF76 /* bark_mid.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48517DA7C0C00DCAF76 /* bark_mid.wav */; };
@@ -1394,6 +1396,9 @@
 		7EE2224D177837B100174B92 /* lab_basicmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_basicmix.map; sourceTree = "<group>"; };
 		7EE2455C17E63AE9007D4B4D /* CapeGameUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameUILayer.h; sourceTree = "<group>"; };
 		7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameUILayer.m; sourceTree = "<group>"; };
+		7EE2456017E65CDC007D4B4D /* capegame_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capegame_test.map; sourceTree = "<group>"; };
+		7EE2456617E6606B007D4B4D /* CapeGameBone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameBone.h; sourceTree = "<group>"; };
+		7EE2456717E6606B007D4B4D /* CapeGameBone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameBone.m; sourceTree = "<group>"; };
 		7EE3C48317DA7C0C00DCAF76 /* bark_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_high.wav; sourceTree = "<group>"; };
 		7EE3C48417DA7C0C00DCAF76 /* bark_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_low.wav; sourceTree = "<group>"; };
 		7EE3C48517DA7C0C00DCAF76 /* bark_mid.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_mid.wav; sourceTree = "<group>"; };
@@ -1579,6 +1584,7 @@
 		7E4532A317E438E5005EE7CB /* capegame */ = {
 			isa = PBXGroup;
 			children = (
+				7EE2456517E66048007D4B4D /* capegameobject */,
 				7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */,
 				7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */,
 				7E4532AA17E4495B005EE7CB /* CapeGamePlayer.h */,
@@ -2037,6 +2043,7 @@
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
 				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
+				7EE2455F17E65CAF007D4B4D /* capegame */,
 				7E2C8ADF17D8538200DC08AE /* challenge_only */,
 				7E8A53331773F8F7006F6114 /* labintro */,
 				7EC460E81705780C00656A48 /* lab */,
@@ -3060,6 +3067,23 @@
 			path = details;
 			sourceTree = "<group>";
 		};
+		7EE2455F17E65CAF007D4B4D /* capegame */ = {
+			isa = PBXGroup;
+			children = (
+				7EE2456017E65CDC007D4B4D /* capegame_test.map */,
+			);
+			name = capegame;
+			sourceTree = "<group>";
+		};
+		7EE2456517E66048007D4B4D /* capegameobject */ = {
+			isa = PBXGroup;
+			children = (
+				7EE2456617E6606B007D4B4D /* CapeGameBone.h */,
+				7EE2456717E6606B007D4B4D /* CapeGameBone.m */,
+			);
+			name = capegameobject;
+			sourceTree = "<group>";
+		};
 		7EF8A65B16D9BA5C009A1FC5 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3578,6 +3602,7 @@
 				7EE3C4C517DA7C0C00DCAF76 /* sfx_whimper.wav in Resources */,
 				7EE3C4C717DA7C5400DCAF76 /* sfx_menu_down.wav in Resources */,
 				7E4532A917E44192005EE7CB /* cloudlevel_cloudfloor.png in Resources */,
+				7EE2456117E65CDC007D4B4D /* capegame_test.map in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3762,6 +3787,7 @@
 				7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */,
 				7E4532AC17E4495B005EE7CB /* CapeGamePlayer.m in Sources */,
 				7EE2455E17E63AE9007D4B4D /* CapeGameUILayer.m in Sources */,
+				7EE2456817E6606B007D4B4D /* CapeGameBone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
