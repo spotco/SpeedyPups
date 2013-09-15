@@ -671,6 +671,10 @@ HitRect cached_rect;
     [self start_anim:player_anim_mode_RUN_NONE];
 }
 
+-(void)do_cape_anim {
+	[self start_anim:player_anim_mode_CAPE];
+}
+
 -(void)cons_anim {
     normal_anims = [NSMutableDictionary dictionary];
     armored_anims = [NSMutableDictionary dictionary];

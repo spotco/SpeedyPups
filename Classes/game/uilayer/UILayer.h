@@ -31,6 +31,7 @@
 +(UILayer*)cons_with_gamelayer:(GameEngineLayer*)g;
 
 -(void)set_retry_callback:(GameModeCallback*)c;
+-(GameModeCallback*)get_retry_callback;
 
 -(void)start_initial_anim;
 -(void)start_challengeinfocard_anim;

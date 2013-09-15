@@ -23,6 +23,8 @@
   cloud cape levels
  //leveleditor add cape grab item
  
+ unschedule pauseui and capegamepauseui timers
+ 
  -art ask for:
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design

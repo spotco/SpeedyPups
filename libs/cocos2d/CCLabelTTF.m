@@ -160,4 +160,9 @@
     [self setAnchorPoint:pt];
     return self;
 }
+-(void)set_label:(NSString *)str {
+	if (![[self string] isEqualToString:str]) {
+		[self setString:str];
+	}
+}
 @end

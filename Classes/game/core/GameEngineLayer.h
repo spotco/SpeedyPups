@@ -30,7 +30,9 @@ typedef enum {
     GameEngineLayerMode_PAUSED,
     GameEngineLayerMode_UIANIM,
     GameEngineLayerMode_GAMEOVER,
-    GameEngineLayerMode_RUNOUT
+    GameEngineLayerMode_RUNOUT,
+	GameEngineLayerMode_CAPEOUT,
+	GameEngineLayerMode_CAPEIN
 } GameEngineLayerMode;
 
 typedef enum {
@@ -65,6 +67,8 @@ typedef enum {
 	float follow_clamp_y_min,follow_clamp_y_max;
 	
 	GameEngineStats *stats;
+	
+	GameEngineLayerMode stored_mode;
 }
 
 
@@ -76,6 +80,8 @@ typedef enum {
 +(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives;
 +(CCScene*)scene_with_autolevel_lives:(int)lives;
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info;
+
+-(UILayer*)get_ui_layer;
 
 -(ChallengeInfo*)get_challenge;
 
@@ -100,6 +106,7 @@ typedef enum {
 -(int)get_num_secrets;
 
 -(void)incr_lives;
+-(void)incr_time:(float)t;
 
 -(int)get_current_continue_cost;
 -(void)incr_current_continue_cost;

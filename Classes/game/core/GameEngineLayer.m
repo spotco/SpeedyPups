@@ -85,6 +85,10 @@
     return g;
 }
 
+-(UILayer*)get_ui_layer {
+	return (UILayer*)[[self parent] getChildByTag:tUILAYER];
+}
+
 -(GameEngineStats*)get_stats {
 	return stats;
 }
@@ -263,6 +267,10 @@
 	)];
 }
 
+-(void)incr_time:(float)t {
+	time += t;
+}
+
 -(void)update:(ccTime)delta {
 	[Common set_dt:delta];
 	[self reset_follow_clamp_y];
@@ -276,7 +284,7 @@
 	
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
-		time+=[Common get_dt_Scale];
+		[self incr_time:[Common get_dt_Scale]];
 		
 		refresh_viewbox_cache = YES;
 		[GameControlImplementation control_update_player:self];
@@ -292,7 +300,40 @@
 		[GameRenderImplementation update_render_on:self];
 		[GEventDispatcher push_event:[GEvent cons_type:GEventType_GAME_TICK]];
 		[self follow_player];
-        
+		
+	} else if (current_mode == GameEngineLayerMode_CAPEOUT) {
+		[self incr_time:[Common get_dt_Scale]];
+		[player do_cape_anim];
+		player.vx = 0;
+		player.vy += 0.5*[Common get_dt_Scale];
+		player.vy = MIN(20,player.vy);
+		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
+		[self update_particles];
+		[self push_added_particles];
+		
+		Vec3D vdir_vec = [VecLib cons_x:10 y:player.vy z:0];
+		[player setRotation:[VecLib get_rotation:vdir_vec offset:0]+180];
+		
+		runout_ct-=[Common get_dt_Scale];
+		if (runout_ct <= 0) {
+			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@"" g:self]];
+			current_mode = GameEngineLayerMode_CAPEIN;
+			player.vy = 0;
+			player.rotation = 0;
+		}
+		
+	} else if (current_mode == GameEngineLayerMode_CAPEIN) {
+		[self incr_time:[Common get_dt_Scale]];
+		[player do_stand_anim];
+		[GamePhysicsImplementation player_move:player with_islands:islands];
+		[self update_particles];
+		[self push_added_particles];
+		
+		if (player.current_island != NULL) {
+			current_mode = GameEngineLayerMode_GAMEPLAY;
+		}
+		
+		
     } else if (current_mode == GameEngineLayerMode_UIANIM) {
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
 		[self follow_player];
@@ -368,7 +409,11 @@
     } else if (e.type == GEventType_RETRY_WITH_CALLBACK) {
         [self exit];
         GameModeCallback *cb = [e get_value:@"callback"];
-        [cb run];
+		if (cb == NULL) {
+			NSLog(@"retry cb is null!");
+		} else {
+			[cb run];
+		}
     
     } else if (e.type == GEventType_PLAYAGAIN_AUTOLEVEL) {
         [self exit];
@@ -393,10 +438,11 @@
         current_mode = GameEngineLayerMode_RUNOUT;
         
     } else if (e.type == GEventType_PAUSE) {
+		stored_mode = current_mode;
         current_mode = GameEngineLayerMode_PAUSED;
         
     } else if (e.type == GEventType_UNPAUSE) {
-        current_mode = GameEngineLayerMode_GAMEPLAY;
+        current_mode = stored_mode;
         
     } else if (e.type == GEventType_PLAYER_DIE) {
         [stats increment:GEStat_DEATHS];
@@ -425,7 +471,11 @@
 		cur_bg_mode = BGMode_NORMAL;
 		
 	} else if (e.type == GEventType_BEGIN_CAPE_GAME) {
-		[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@""]];
+		current_mode = GameEngineLayerMode_CAPEOUT;
+		[player reset_params];
+		[GameControlImplementation reset_control_state];
+		runout_ct = 100;
+		player.current_island = NULL;
 		
 	}
 }

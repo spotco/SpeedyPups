@@ -95,6 +95,7 @@ typedef enum {
 
 -(void)do_run_anim;
 -(void)do_stand_anim;
+-(void)do_cape_anim;
 
 -(void)set_new_spd:(int)spd ct:(int)ct;
 

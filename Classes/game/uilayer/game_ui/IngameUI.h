@@ -4,6 +4,9 @@
 @class UIEnemyAlert;
 @class UIWaterAlert;
 
+@interface MRectCCMenuItemImage : CCMenuItemImage
+@end
+
 @interface IngameUI : CCSprite {
 	UIEnemyAlert *enemy_alert_ui;
 	UIWaterAlert *water_alert_ui;

@@ -228,6 +228,10 @@
     retry_cb = c;
 }
 
+-(GameModeCallback*)get_retry_callback {
+	return retry_cb;
+}
+
 -(void)retry {
     if (retry_cb != NULL) {
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_RETRY_WITH_CALLBACK] add_key:@"callback" value:retry_cb]];

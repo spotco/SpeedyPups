@@ -571,6 +571,7 @@
 		7EDEFB1617AE2A9000F07C76 /* 1upobject.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1517AE2A9000F07C76 /* 1upobject.png */; };
 		7EDEFB1917AE2B2700F07C76 /* OneUpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */; };
 		7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EE2224D177837B100174B92 /* lab_basicmix.map */; };
+		7EE2455E17E63AE9007D4B4D /* CapeGameUILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */; };
 		7EE3C4A517DA7C0C00DCAF76 /* bark_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48317DA7C0C00DCAF76 /* bark_high.wav */; };
 		7EE3C4A617DA7C0C00DCAF76 /* bark_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48417DA7C0C00DCAF76 /* bark_low.wav */; };
 		7EE3C4A717DA7C0C00DCAF76 /* bark_mid.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C48517DA7C0C00DCAF76 /* bark_mid.wav */; };
@@ -1391,6 +1392,8 @@
 		7EDEFB1717AE2B2700F07C76 /* OneUpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneUpObject.h; sourceTree = "<group>"; };
 		7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneUpObject.m; sourceTree = "<group>"; };
 		7EE2224D177837B100174B92 /* lab_basicmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_basicmix.map; sourceTree = "<group>"; };
+		7EE2455C17E63AE9007D4B4D /* CapeGameUILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameUILayer.h; sourceTree = "<group>"; };
+		7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameUILayer.m; sourceTree = "<group>"; };
 		7EE3C48317DA7C0C00DCAF76 /* bark_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_high.wav; sourceTree = "<group>"; };
 		7EE3C48417DA7C0C00DCAF76 /* bark_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_low.wav; sourceTree = "<group>"; };
 		7EE3C48517DA7C0C00DCAF76 /* bark_mid.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bark_mid.wav; sourceTree = "<group>"; };
@@ -1580,6 +1583,8 @@
 				7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */,
 				7E4532AA17E4495B005EE7CB /* CapeGamePlayer.h */,
 				7E4532AB17E4495B005EE7CB /* CapeGamePlayer.m */,
+				7EE2455C17E63AE9007D4B4D /* CapeGameUILayer.h */,
+				7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */,
 			);
 			path = capegame;
 			sourceTree = "<group>";
@@ -3756,6 +3761,7 @@
 				7E2C8AE417D865A200DC08AE /* ItemUseUIAnimation.m in Sources */,
 				7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */,
 				7E4532AC17E4495B005EE7CB /* CapeGamePlayer.m in Sources */,
+				7EE2455E17E63AE9007D4B4D /* CapeGameUILayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3906,8 +3912,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3921,8 +3927,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EDFDCB9C-2315-4A1B-826F-10D17EAD41B1";
+				PROVISIONING_PROFILE = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

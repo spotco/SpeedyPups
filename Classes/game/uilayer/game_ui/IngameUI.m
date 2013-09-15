@@ -10,9 +10,6 @@
 #import "UIEnemyAlert.h"
 #import "UIWaterAlert.h"
 
-@interface MRectCCMenuItemImage : CCMenuItemImage
-@end
-
 @implementation MRectCCMenuItemImage
 -(CGRect)rect {
 	CGRect rect = [super rect];
