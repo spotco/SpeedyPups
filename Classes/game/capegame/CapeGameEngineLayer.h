@@ -31,7 +31,9 @@ typedef enum {
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;
 
--(void)collect_bone;
+-(void)collect_bone:(CGPoint)screen_pos;
+-(void)do_get_hit;
+-(void)do_tutorial_anim;
 @end
 
 @interface CapeGameObject : CCSprite

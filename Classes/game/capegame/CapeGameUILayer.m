@@ -8,6 +8,8 @@
 #import "GameMain.h"
 #import "CapeGameEngineLayer.h"
 #import "UILayer.h"
+#import "BoneCollectUIAnimation.h"
+#import "ChallengeInfoTitleCardAnimation.h"
 
 @implementation CapeGameUILayer
 
@@ -100,6 +102,10 @@
 	[self addChild:pause_ui];
 	[pause_ui setVisible:NO];
 	
+	uianim_holder = [CCNode node];
+	[ingame_ui addChild:uianim_holder];
+	uianims = [NSMutableArray array];
+	
 	return self;
 }
 
@@ -188,6 +194,19 @@
 
 }
 
+-(void)update {
+    NSMutableArray *toremove = [NSMutableArray array];
+    for (UIIngameAnimation *i in uianims) {
+        [i update];
+        if (i.ct <= 0) {
+            [uianim_holder removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+    [uianims removeObjectsInArray:toremove];
+    [toremove removeAllObjects];
+}
+
 -(void)update_pause_menu {
 	[left_curtain setPosition:ccp(
 		left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
@@ -219,6 +238,18 @@
 
 -(void)update_pct:(float)pct {
 	[itemlenbarfill setScaleX:pct];
+}
+
+-(void)do_bone_collect_anim:(CGPoint)start {
+    BoneCollectUIAnimation* b = [BoneCollectUIAnimation cons_start:start end:[Common screen_pctwid:0 pcthei:1]];
+    [uianim_holder addChild:b];
+    [uianims addObject:b];
+}
+
+-(void)do_tutorial_anim {
+	UIIngameAnimation *ua = [MessageTitleCardAnimation cons_msg:@"Touch to fly,\nand watch out for spikes!"];
+	[uianim_holder addChild:ua];
+	[uianims addObject:ua];
 }
 
 -(void)pause {

@@ -9,7 +9,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
@@ -20,11 +20,8 @@
 
 /**
  
- cloud cape bone anim
- cloud cape spikevine + anim
- cloud cape tutorial popup
- cloud cape accelerate
  cloud cape get fail sound from goober
+ cloud game 1up and dazed particles
  unschedule pauseui and capegamepauseui timers, make sure they dealloc
  
  -art ask for:

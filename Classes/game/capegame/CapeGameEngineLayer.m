@@ -20,7 +20,7 @@
 	return scene;
 }
 
-#define GAME_DURATION 200.0
+#define GAME_DURATION 2000.0
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
 #define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.1]
 
@@ -32,7 +32,7 @@
 	
 	player = [CapeGamePlayer cons];
 	[player setPosition:END_TARPOS];
-	[self addChild:player];
+	[self addChild:player z:2];
 	
 	
 	top_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
@@ -41,8 +41,10 @@
 	bottom_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
 	[top_scroll setAnchorPoint:ccp(0,0)];
 	[bottom_scroll setAnchorPoint:ccp(0,0)];
-	[self addChild:top_scroll];
-	[self addChild:bottom_scroll];
+	[top_scroll setOpacity:220];
+	[bottom_scroll setOpacity:220];
+	[self addChild:top_scroll z:3];
+	[self addChild:bottom_scroll z:3];
 	
 	game_objects = [NSMutableArray array];
 	GameMap *map = [MapLoader load_capegame_map:file];
@@ -53,7 +55,7 @@
 	[map.game_objects removeAllObjects];
 	
 	ui = [CapeGameUILayer cons_g:self];
-	[self addChild:ui];
+	[self addChild:ui z:4];
 	
 	
 	self.isTouchEnabled = YES;
@@ -75,6 +77,7 @@
 -(void)update:(ccTime)dt {
 	[Common set_dt:dt];
 	[main_game incr_time:[Common get_dt_Scale]];
+	[ui update];
 	[ui update_pct:duration/GAME_DURATION];
 	[[ui bones_disp] set_label:strf("%i",[main_game get_num_bones])];
 	[[ui lives_disp] set_label:strf("\u00B7 %s",[main_game get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[main_game get_lives]).UTF8String)];
@@ -98,7 +101,7 @@
 		return;
 	} else if (current_mode == CapeGameMode_FALLOUT) {
 		CGPoint tar = END_TARPOS;
-		player.vy -= 0.5;
+		player.vy -= 0.3;
 		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
 		if (player.position.y < tar.y) {
 			[[CCDirector sharedDirector] popScene];
@@ -106,8 +109,10 @@
 		return;
 	}
 	
+	float speed = (1-duration/GAME_DURATION)*6 + 4;
+	
 	CGRect scroll_rect = top_scroll.textureRect;
-	scroll_rect.origin.x += 4;
+	scroll_rect.origin.x += speed;
 	scroll_rect.origin.x = ((int)(scroll_rect.origin.x))%top_scroll.texture.pixelsWide + ((scroll_rect.origin.x) - ((int)(scroll_rect.origin.x)));
 	[top_scroll setTextureRect:scroll_rect];
 	[bottom_scroll setTextureRect:scroll_rect];
@@ -115,9 +120,9 @@
 	if (touch_down) {
 		player.vy = MIN(player.vy + 2, 7);
 	} else if (initial_hold) {
-		player.vy = MAX(player.vy - 0.02,-7);
+		player.vy = MAX(player.vy - 0.005,-7);
 	} else {
-		player.vy = MAX(player.vy - 0.5,-7);
+		player.vy = MAX(player.vy - 0.35,-7);
 	}
 	CGPoint neupos = CGPointAdd(player.position, ccp(0,player.vy));
 	neupos.y = clampf(neupos.y, [Common SCREEN].height*0.1, [Common SCREEN].height*0.9);
@@ -125,7 +130,7 @@
 	[player set_rotation];
 	
 	for (CapeGameObject *o in game_objects) {
-		[o setPosition:CGPointAdd(ccp(-4,0), o.position)];
+		[o setPosition:CGPointAdd(ccp(-speed,0), o.position)];
 		[o update:self];
 	}
 	
@@ -140,8 +145,19 @@
 	return main_game;
 }
 
--(void)collect_bone {
+-(void)do_get_hit {
+	[player do_hit];
+	[ui update_pct:0];
+	current_mode = CapeGameMode_FALLOUT;
+}
+
+-(void)collect_bone:(CGPoint)screen_pos {
 	[main_game collect_bone];
+	[ui do_bone_collect_anim:screen_pos];
+}
+
+-(void)do_tutorial_anim {
+	[ui do_tutorial_anim];
 }
 
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {

@@ -7,6 +7,9 @@
 	
 	CCNode *ingame_ui;
 	CCNode *pause_ui;
+	CCNode *uianim_holder;
+	
+	NSMutableArray *uianims;
 	
 	CCLabelTTF *bones_disp, *lives_disp, *time_disp;
 	CCSprite *itemlenbarroot, *itemlenbarfill, *itemlenbaricon;
@@ -18,6 +21,10 @@
 }
 
 +(CapeGameUILayer*)cons_g:(CapeGameEngineLayer*)g;
+
+-(void)update;
+-(void)do_bone_collect_anim:(CGPoint)start;
+-(void)do_tutorial_anim;
 
 -(void)update_pct:(float)pct;
 -(CCLabelTTF*)bones_disp;

@@ -64,6 +64,10 @@
     return true;
 }
 
++(NSString*)satpoly_to_str:(SATPoly)poly {
+	return strf("{SATPoly 0:(%f,%f) 1:(%f,%f) 2:(%f,%f) 3:(%f,%f)}",poly.pts[0].x,poly.pts[0].y,poly.pts[1].x,poly.pts[1].y,poly.pts[2].x,poly.pts[2].y,poly.pts[3].x,poly.pts[3].y);
+}
+
 
 /*stackoverflow.com/questions/10962379/how-to-check-intersection-between-2-rotated-rectangles*/
 

@@ -9,11 +9,50 @@
 #define DEFAULT_YPOS_START 1.3
 #define DEFAULT_YPOS_END 0.875
 
+@implementation MessageTitleCardAnimation
++(MessageTitleCardAnimation*)cons_msg:(NSString*)msg {
+	return [[[MessageTitleCardAnimation alloc] init] cons_msg:msg];
+}
+-(id)cons_msg:(NSString*)msg {
+	self.TRANS_LEN = DEFAULT_TRANS_LEN;
+	self.STAY_LEN = DEFAULT_STAY_LEN;
+	self.YPOS_START = DEFAULT_YPOS_START;
+	self.YPOS_END = DEFAULT_YPOS_END;
+	
+	base = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+								  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengeintrocard"]];
+	[base setPosition:[Common screen_pctwid:XPOS pcthei:self.YPOS_START]];
+	[self addChild:base];
+	ct = 1;
+	mode = TitleCardMode_DOWN;
+	animct = self.TRANS_LEN;
+	
+
+    NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaa";
+    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:18]
+                           constrainedToSize:CGSizeMake(1000, 1000)
+                               lineBreakMode:UILineBreakModeWordWrap];
+    
+    CCLabelTTF *infodesc = [CCLabelTTF labelWithString:msg
+											dimensions:actualSize
+											 alignment:UITextAlignmentCenter
+											  fontName:@"Carton Six"
+											  fontSize:18];
+    [infodesc setColor:ccc3(20,20,20)];
+    [infodesc setPosition:[Common pct_of_obj:base pctx:0.5 pcty:0.5]];
+	[base addChild:infodesc];
+	return self;
+}
+@end
+
 @implementation TutorialInfoTitleCardAnimation
 +(TutorialInfoTitleCardAnimation*)cons_g:(GameEngineLayer *)g msg:(NSString *)msg {
-	return [[[TutorialInfoTitleCardAnimation alloc] init] cons_g:g msg:msg];
+	return [[[TutorialInfoTitleCardAnimation alloc] init] cons_g:g msg:msg gevent:YES];
 }
--(id)cons_g:(GameEngineLayer *)g msg:(NSString *)tmsg {
++(TutorialInfoTitleCardAnimation*)cons_msg:(NSString*)msg {
+	return [[[TutorialInfoTitleCardAnimation alloc] init] cons_g:NULL msg:msg gevent:NO];
+}
+-(id)cons_g:(GameEngineLayer *)g msg:(NSString *)tmsg gevent:(BOOL)do_gevent {
 	self.TRANS_LEN = DEFAULT_TRANS_LEN;
 	self.STAY_LEN = DEFAULT_STAY_LEN*1.4;
 	self.YPOS_START = -0.3;
@@ -40,18 +79,21 @@
                                   fontSize:18];
     [infodesc setColor:ccc3(20,20,20)];
 	[infodesc setAnchorPoint:ccp(0.5,1)];
-    [infodesc setPosition:[Common pct_of_obj:base pctx:0.5 pcty:0.825]];
+    [infodesc setPosition:[Common pct_of_obj:base pctx:0.5 pcty:0.85]];
 	[base addChild:infodesc];
 	
-	[GEventDispatcher add_listener:self];
+	if (do_gevent)[GEventDispatcher add_listener:self];
 	
 	return self;
+}
+-(void)on_remove {
+	[[self parent] removeChild:self cleanup:NO];
+	[GEventDispatcher remove_listener:self];
 }
 -(void)dispatch_event:(GEvent *)e {
 	if (e.type == GEventType_END_TUTORIAL) {
 		mode = TitleCardMode_UP;
 		animct = DEFAULT_TRANS_LEN;
-		[GEventDispatcher remove_listener:self];
 	}
 }
 @end
@@ -161,7 +203,12 @@
 		}
 	}
 	if (ct==0) {
-		[[self parent] removeChild:self cleanup:NO];
+		[self on_remove];
+		
 	}
+}
+
+-(void)on_remove {
+	[[self parent] removeChild:self cleanup:NO];
 }
 @end

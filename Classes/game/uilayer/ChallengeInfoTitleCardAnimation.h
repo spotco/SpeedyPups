@@ -16,6 +16,7 @@ typedef enum {
 @property(readwrite,assign) int TRANS_LEN,STAY_LEN;
 @property(readwrite,assign) float YPOS_START,YPOS_END;
 +(ChallengeInfoTitleCardAnimation*)cons_g:(GameEngineLayer*)g;
+-(void)on_remove;
 @end
 
 @interface FreerunInfoTitleCardAnimation : ChallengeInfoTitleCardAnimation
@@ -26,4 +27,9 @@ typedef enum {
 	NSString *msg;
 }
 +(TutorialInfoTitleCardAnimation*)cons_g:(GameEngineLayer*)g msg:(NSString*)msg;
++(TutorialInfoTitleCardAnimation*)cons_msg:(NSString*)msg; //not used
+@end
+
+@interface MessageTitleCardAnimation :ChallengeInfoTitleCardAnimation
++(MessageTitleCardAnimation*)cons_msg:(NSString*)msg;
 @end

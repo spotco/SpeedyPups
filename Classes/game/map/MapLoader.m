@@ -42,6 +42,8 @@
 #import "OneUpObject.h"
 
 #import "CapeGameBone.h"
+#import "CapeGameSpikeVine.h"
+#import "CapeTutorialLauncher.h"
 
 @implementation GameMap
     @synthesize assert_links;
@@ -416,7 +418,11 @@ float getflt(NSDictionary* j_object,NSString* key) {
             float y = getflt(j_object, @"y");
             float x2 = getflt(j_object, @"x2");
             float y2 = getflt(j_object, @"y2");
-            //[map.game_objects addObject:[SpikeVine cons_x:x y:y x2:x2 y2:y2]];
+			[map.game_objects addObject:[CapeGameSpikeVine cons_pt1:ccp(x,y) pt2:ccp(x2,y2)]];
+			
+		} else if ([type isEqualToString:@"tutorial"]) {
+            float x = getflt(j_object, @"x");
+			[map.game_objects addObject:[CapeTutorialLauncher cons_x:x]];
 			
 		}
 	}

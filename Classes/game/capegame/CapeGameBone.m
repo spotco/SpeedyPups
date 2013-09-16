@@ -25,7 +25,7 @@
 	
 	if ([Common hitrect_touch:[[g player] get_hitrect] b:[self get_hitrect]]) {
 		[self setVisible:NO];
-		[g collect_bone];
+		[g collect_bone:[self convertToWorldSpace:ccp(0,0)]];
 		[AudioManager playsfx:SFX_BONE];
 		active = NO;
 	}
