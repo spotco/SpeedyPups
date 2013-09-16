@@ -405,10 +405,10 @@
     [GEventDispatcher dispatch_events];
 }
 
--(void)collect_bone {
+-(void)collect_bone:(BOOL)do_1up_anim {
 	collected_bones++;
 	if (challenge == NULL && collected_bones%100==0) {
-		[self add_particle:[OneUpParticle cons_pt:[player get_center]]];
+		if (do_1up_anim) [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
 		[self incr_lives];
 	}
 	[UserInventory add_bones:1];
@@ -436,7 +436,7 @@
         [self set_checkpoint_to:e.pt];
         
     } else if (e.type == GEventType_COLLECT_BONE) {
-		[self collect_bone];
+		[self collect_bone:YES];
         
     } else if (e.type == GEventType_GET_COIN) {
         collected_secrets++;

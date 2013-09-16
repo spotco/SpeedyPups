@@ -31,4 +31,6 @@
 -(CCLabelTTF*)lives_disp;
 -(CCLabelTTF*)time_disp;
 
+-(void)exit;
+
 @end

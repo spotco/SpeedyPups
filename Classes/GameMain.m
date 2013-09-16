@@ -11,7 +11,7 @@
 #define PLAY_SFX YES
 #define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 10
+#define STARTING_LIVES 1
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -19,27 +19,27 @@
 #define DISPLAY_FPS NO
 
 /**
+ integrate capelevels into freerun, do 2 more capelevels in editor
  
- cloud cape get fail sound from goober
- cloud game 1up and dazed particles
- unschedule pauseui and capegamepauseui timers, make sure they dealloc
+ will need to redo audiomanager bgm handling 
+ (hopefully get it to just play one song at a time too)
+ 
+ weekly levels/challenges (streamed from online)
+ store sales (streamed from online)
+ cloud saves
+ integrate IAPs
  
  -art ask for:
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design
 	new clock icon
+	intro cartoon
+	world 2 & 3 art, bosses 2 & 3
  **/
 
 /**
 Stretch goals:
- 2nd and 3rd reskin world
- 2nd and 3rd boss
- integrate IAPs
- weekly levels (streamed from online)
- store sales (streamed from online)
  goober pet
- 
-
  levels based around armor (armor break spikes)
  **/
 

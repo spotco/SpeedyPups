@@ -291,4 +291,10 @@
 	[GEventDispatcher push_event:[GEvent cons_type:GEventType_QUIT]];
 }
 
+-(void)exit {
+	[update_timer invalidate];
+	[self removeAllChildrenWithCleanup:YES];
+	cape_game = NULL;
+}
+
 @end

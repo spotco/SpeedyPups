@@ -4,6 +4,7 @@
 @class CapeGamePlayer;
 @class CapeGameUILayer;
 @class GameEngineLayer;
+@class Particle;
 
 typedef enum {
 	CapeGameMode_FALLIN,
@@ -20,6 +21,10 @@ typedef enum {
 	
 	NSMutableArray *game_objects;
 	
+	CCSprite *particleholder;
+	NSMutableArray *particles;
+	NSMutableArray *particles_tba;
+	
 	BOOL touch_down;
 	BOOL initial_hold;
 	
@@ -30,6 +35,8 @@ typedef enum {
 +(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g;
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;
+
+-(void)add_particle:(Particle*)p;
 
 -(void)collect_bone:(CGPoint)screen_pos;
 -(void)do_get_hit;

@@ -129,6 +129,8 @@ static BGM_GROUP prev_group;
 	
 	prev_group = [AudioManager get_cur_group];
 	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
+	[AudioManager mute_music_for:13];
+	[AudioManager playsfx:SFX_FANFARE_LOSE];
 	
 	[self set_curtain_animstart_positions];
     countdown_ct = 10;
@@ -308,6 +310,8 @@ static BGM_GROUP prev_group;
 		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
 		[Player character_bark];
 		curmode = AskContinueUI_YES_RUNOUT;
+		[AudioManager mute_music_for:13];
+		[AudioManager playsfx:SFX_FANFARE_WIN];
 		
 	}
 }

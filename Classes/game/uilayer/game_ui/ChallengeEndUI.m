@@ -151,19 +151,21 @@
 
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
+		[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
 		[self set_curtain_anim_positions];
+		[AudioManager mute_music_for:13];
 		if (sto_passed) {
 			[Player character_bark];
+			[AudioManager playsfx:SFX_FANFARE_WIN];
 		} else {
 			[AudioManager playsfx:SFX_WHIMPER];
+			[AudioManager playsfx:SFX_FANFARE_LOSE];
 		}
 	}
 	[super setVisible:visible];
 }
 
 -(void)update_passed:(BOOL)p info:(ChallengeInfo*)ci bones:(NSString*)bones time:(NSString*)time secrets:(NSString*)secrets {
-	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
-	
 	[wlicon setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:p?@"challengecomplete":@"challengefailed"]];
     [infodesc setString:[ci to_string]];
     [bone_disp setString:bones];

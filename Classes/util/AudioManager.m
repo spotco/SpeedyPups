@@ -71,6 +71,7 @@ static BOOL playbgm = YES;
 		BUFFERMAPGEN(SFX_BUY),
 		BUFFERMAPGEN(SFX_1UP),
 		BUFFERMAPGEN(SFX_BIG_EXPLOSION),
+		BUFFERMAPGEN(SFX_FAIL),
 	 
 		BUFFERMAPGEN(SFX_BARK_LOW),
 		BUFFERMAPGEN(SFX_BARK_MID),
@@ -82,7 +83,10 @@ static BOOL playbgm = YES;
 		BUFFERMAPGEN(SFX_COPTER_FLYBY),
 	 
 		BUFFERMAPGEN(SFX_MENU_DOWN),
-		BUFFERMAPGEN(SFX_MENU_UP)
+		BUFFERMAPGEN(SFX_MENU_UP),
+	 
+		BUFFERMAPGEN(SFX_FANFARE_WIN),
+		BUFFERMAPGEN(SFX_FANFARE_LOSE)
 	 }];
 	
 	bgm_1 = [OALAudioTrack track];
@@ -176,7 +180,26 @@ static int transition_ct;
 	if (sfx_buffers[tar]) [channel play:sfx_buffers[tar]];
 }
 
+static int mute_music_ct = 0;
+static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
++(void)mute_music_for:(int)ct {
+	mute_music_ct = ct;
+	sto_bgm1_gain = [bgm_1 gain];
+	sto_bgm2_gain = [bgm_2 gain];
+}
+
 +(void)update {
+	if (mute_music_ct > 0) {
+		mute_music_ct--;
+		if (mute_music_ct > 0) {
+			[bgm_1 setGain:0];
+			[bgm_2 setGain:0];
+		} else {
+			[bgm_1 setGain:sto_bgm1_gain];
+			[bgm_2 setGain:sto_bgm2_gain];
+		}
+	}
+	
 	if (transition_ct > 0) {
 		float pct = ((float)transition_ct)/10.0f;
 		if ([bgm_1 gain] != 0) {

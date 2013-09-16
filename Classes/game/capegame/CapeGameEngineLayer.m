@@ -8,6 +8,9 @@
 #import "UICommon.h"
 #import "Common.h"
 
+#import "OneUpParticle.h"
+#import "DazedParticle.h"
+
 @implementation CapeGameObject
 -(void)update:(CapeGameEngineLayer*)g{}
 @end
@@ -46,6 +49,11 @@
 	[self addChild:top_scroll z:3];
 	[self addChild:bottom_scroll z:3];
 	
+	particleholder = [CCSprite node];
+	[self addChild:particleholder z:5];
+	particles = [NSMutableArray array];
+	particles_tba = [NSMutableArray array];
+	
 	game_objects = [NSMutableArray array];
 	GameMap *map = [MapLoader load_capegame_map:file];
 	for (CapeGameObject *o in map.game_objects) {
@@ -74,6 +82,18 @@
 	return player;
 }
 
+-(void)add_particle:(Particle*)p {
+	[particles_tba addObject:p];
+}
+
+-(void)push_added_particles {
+    for (Particle *p in particles_tba) {
+        [particles addObject:p];
+        [particleholder addChild:p z:[p get_render_ord]];
+    }
+    [particles_tba removeAllObjects];
+}
+
 -(void)update:(ccTime)dt {
 	[Common set_dt:dt];
 	[main_game incr_time:[Common get_dt_Scale]];
@@ -82,6 +102,17 @@
 	[[ui bones_disp] set_label:strf("%i",[main_game get_num_bones])];
 	[[ui lives_disp] set_label:strf("\u00B7 %s",[main_game get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[main_game get_lives]).UTF8String)];
 	[[ui time_disp] set_label:[UICommon parse_gameengine_time:[main_game get_time]]];
+	
+	[self push_added_particles];
+    NSMutableArray *toremove = [NSMutableArray array];
+    for (Particle *i in particles) {
+        [i update:(id)self]; //don't do this at home
+        if ([i should_remove]) {
+            [particleholder removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+    [particles removeObjectsInArray:toremove];
 	
 	if (current_mode == CapeGameMode_FALLIN) {
 		CGPoint tar = START_TARPOS;
@@ -104,7 +135,7 @@
 		player.vy -= 0.3;
 		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
 		if (player.position.y < tar.y) {
-			[[CCDirector sharedDirector] popScene];
+			[self exit];
 		}
 		return;
 	}
@@ -147,13 +178,20 @@
 
 -(void)do_get_hit {
 	[player do_hit];
-	[ui update_pct:0];
 	current_mode = CapeGameMode_FALLOUT;
+	[DazedParticle cons_effect:self sprite:player time:40];
 }
 
 -(void)collect_bone:(CGPoint)screen_pos {
-	[main_game collect_bone];
+	[main_game collect_bone:NO];
 	[ui do_bone_collect_anim:screen_pos];
+	
+	if ([main_game get_challenge]==NULL && [main_game get_num_bones]%100==0) {
+		OneUpParticle *p = [OneUpParticle cons_pt:player.position];
+		[p setScale:0.4];
+		[self add_particle:p];
+		[AudioManager playsfx:SFX_1UP];
+	}
 }
 
 -(void)do_tutorial_anim {
@@ -180,6 +218,14 @@
         touch = [t locationInView:[t view]];
     }
 	touch_down = NO;
+}
+
+-(void)exit {
+	[self removeAllChildrenWithCleanup:YES];
+	[particles removeAllObjects];
+	[ui exit];
+	[[CCDirector sharedDirector] popScene];
+	[AudioManager playsfx:SFX_FAIL];
 }
 
 @end

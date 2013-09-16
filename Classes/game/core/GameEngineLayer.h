@@ -99,7 +99,7 @@ typedef enum {
 
 -(void)follow_player;
 
--(void)collect_bone;
+-(void)collect_bone:(BOOL)do_1up_anim;
 
 -(int)get_lives;
 -(int)get_time;

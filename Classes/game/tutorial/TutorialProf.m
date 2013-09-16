@@ -143,9 +143,9 @@ static NSDictionary *_tutorial_msglist;
 	_tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight", nil];
 
 	_tutorial_msglist = @{
-		@"doublejump" :		@"tap twice double jump",
-		@"minionhit" :		@"don't get hit",
-		@"minionjump" :		@"you can jump on them",
+		@"doublejump" :		@"tap twice to double jump",
+		@"minionhit" :		@"watch out for these guys!",
+		@"minionjump" :		@"you can jump on their heads!",
 		@"rockbreak" :		@"swipe to break rocks",
 		@"rockethit" :		@"don't get hit by rockets",
 		@"rocketjump" :		@"jump on the rockets",

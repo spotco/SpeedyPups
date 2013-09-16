@@ -37,6 +37,7 @@ typedef enum {
 #define SFX_POWERUP @"sfx_powerup.wav"
 #define SFX_1UP @"sfx_1up.wav"
 #define SFX_BIG_EXPLOSION @"sfx_big_explosion.wav"
+#define SFX_FAIL @"sfx_fail.wav"
 
 #define SFX_WHIMPER @"sfx_whimper.wav"
 #define SFX_ROCKET_LAUNCH @"sfx_rocket_launch.wav"
@@ -57,6 +58,9 @@ typedef enum {
 #define SFX_MENU_UP @"sfx_menu_up.wav" 
 #define SFX_MENU_DOWN @"sfx_menu_down.wav"
 
+#define SFX_FANFARE_WIN @"fanfare_win.aiff"
+#define SFX_FANFARE_LOSE @"fanfare_lose.aiff"
+
 
 @interface AudioManager : NSObject
 
@@ -71,5 +75,7 @@ typedef enum {
 
 +(void)transition_mode1;
 +(void)transition_mode2;
+
++(void)mute_music_for:(int)ct;
 
 @end
