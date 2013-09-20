@@ -52,6 +52,7 @@
 		BOOL found = NO;
 		for (GameObject *o in g.game_objects) {
 			if ([[o class] isSubclassOfClass:[LauncherRocket class]] && o.position.x > g.player.position.x-200 ) {
+				if (![(LauncherRocket*)o is_active]) continue;
 				float dist = CGPointDist(o.position, g.player.position);
 				if (dist < min_rocket_dist) {
 					min_rocket_dist = dist;

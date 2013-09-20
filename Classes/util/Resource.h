@@ -28,9 +28,6 @@
 #define TEX_LAB_BG_LAYER @"lab_bg_layer"
 #define TEX_LAB_ROCK_PARTICLE @"lab_rock_particle"
 
-#define TEX_CAVE_TOP_TEX @"CaveTopTex"
-#define TEX_CAVE_CORNER_TEX @"CaveCornerTex"
-#define TEX_CAVEWALL @"CaveWall"
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"
 #define TEX_LAB_ROCKWALL_BASE @"LabRockWallBase"
@@ -61,11 +58,7 @@
 #define TEX_BG_STARS @"BgStars"
 #define TEX_BG_LAYER_1 @"BgLayer1"
 #define TEX_BG_LAYER_3 @"BgLayer3"
-#define TEX_ONEUP_OBJECT @"oneupobject"
-#define TEX_GOLDEN_BONE @"GoldenBone"
-#define TEX_STARCOIN @"StarCoin"
-#define TEX_DOG_CAPE @"DogCape"
-#define TEX_DOG_ROCKET @"DogRocket"
+
 #define TEX_SPIKE @"Spike"
 #define TEX_WATER @"Water"
 #define TEX_FISH_SS @"fish_ss"

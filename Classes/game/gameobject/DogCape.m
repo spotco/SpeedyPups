@@ -9,8 +9,8 @@
 
 -(id)cons_pt:(CGPoint)pt {
 	[self setPosition:pt];
-	[self setTexture:[Resource get_tex:TEX_DOG_CAPE]];
-	[self setTextureRect:CGRectMake(0, 0, [Resource get_tex:TEX_DOG_CAPE].pixelsWide, [Resource get_tex:TEX_DOG_CAPE].pixelsHigh)];
+	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	active = YES;
 	[self setScale:1.5];
 	

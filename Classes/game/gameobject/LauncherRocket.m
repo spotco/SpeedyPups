@@ -62,6 +62,10 @@
     vibration.y = 4*sinf(vibration_ct);
 }
 
+-(BOOL)is_active {
+	return (broken_ct <= 0);
+}
+
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     if(shadow == NULL) {
         shadow = [ObjectShadow cons_tar:self];
@@ -108,7 +112,7 @@
         
     } else if (broken_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         if (player.dashing || [player is_armored]) {
-            [self flyoff:ccp(player.vx,player.vy) norm:0];
+            [self flyoff:ccp(player.vx,player.vy) norm:7];
             [AudioManager playsfx:SFX_ROCKBREAK];
             
         } else if (!player.dead) {

@@ -17,7 +17,7 @@
 }
 
 -(void)update:(GameEngineLayer *)g {
-    [self setPosition:CGPointAdd(self.position,ccp(0,6))];
+    [self setPosition:CGPointAdd(self.position,ccp(0,1))];
     [self setOpacity:255*((float)ct)/ctmax];
     ct--;
 }

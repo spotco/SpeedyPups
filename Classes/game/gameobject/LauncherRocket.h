@@ -16,6 +16,8 @@
 -(void)update_position;
 -(id)set_remlimit:(int)t;
 
+-(BOOL)is_active;
+
 @end
 
 @interface RelativePositionLauncherRocket : LauncherRocket {

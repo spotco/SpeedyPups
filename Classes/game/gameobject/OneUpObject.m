@@ -4,7 +4,7 @@
 
 @implementation OneUpObject
 +(OneUpObject*)cons_pt:(CGPoint)pt {
-	return [[OneUpObject spriteWithTexture:[Resource get_tex:TEX_ONEUP_OBJECT]] cons_pt:pt];
+	return [[OneUpObject spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"1upobject"]] cons_pt:pt];
 }
 -(id)cons_pt:(CGPoint)pt {
 	[self setPosition:pt];

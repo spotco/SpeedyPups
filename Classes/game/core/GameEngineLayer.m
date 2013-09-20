@@ -9,6 +9,7 @@
 #import "GameModeCallback.h"
 #import "BGTimeManager.h"
 #import "CapeGameEngineLayer.h"
+#import "TutorialEnd.h"
 
 @implementation GameEngineLayer
 
@@ -318,10 +319,32 @@
 		
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
-			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:@"capegame_test" g:self]];
+			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
 			current_mode = GameEngineLayerMode_CAPEIN;
 			player.vy = 0;
 			player.rotation = 0;
+			TutorialEnd *target_end = NULL;
+			for (GameObject *o in game_objects) {
+				if ([o class] == [TutorialEnd class]) {
+					if (target_end == NULL) {
+						target_end = (TutorialEnd*)o;
+					} else if (o.position.x > player.position.x && o.position.x < target_end.position.x) {
+						target_end = (TutorialEnd*)o;
+					}
+				}
+			}
+			if (target_end != NULL) {
+				player.position = ccp(target_end.position.x,target_end.position.y+600);
+				CGSize s = [[CCDirector sharedDirector] winSize];
+				CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+				[self setPosition:ccp(
+				  clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
+				  clampf(halfScreenSize.y-target_end.position.y,follow_clamp_y_min,follow_clamp_y_max)
+				)];
+				refresh_viewbox_cache = YES;
+				[self update_render];
+				
+			}
 		}
 		
 	} else if (current_mode == GameEngineLayerMode_CAPEIN) {

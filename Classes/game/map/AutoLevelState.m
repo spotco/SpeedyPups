@@ -7,6 +7,7 @@
 
 #define L_TUTORIAL @"levelset_tutorial"
 #define L_LAB_TUTORIAL @"levelset_lab_tutorial"
+#define L_CAPEGAME_LAUNCHER @"levelset_capegame_launcher"
 
 #define L_CLASSIC @"levelset_classic"
 #define L_FILLER @"levelset_filler"
@@ -138,6 +139,9 @@ static NSArray *lab_tutorial_levels;
 		L_LABEXIT: @{
 			@"labintro_labexit" : @1
 		},
+		L_CAPEGAME_LAUNCHER: @{
+			@"capegame_launcher": @1
+		},
 		L_LAB: @{
 			@"lab_basicmix" : @2,
 			@"lab_minionwalls" : @2,
@@ -185,6 +189,8 @@ static NSArray *lab_tutorial_levels;
 	sets_until_next_lab = 0;
 	cur_set_completed = 0;
 	nth_freerunprogress = 0;
+	nth_lab = 0;
+	nth_filler = 0;
 	
 	setgen = [WeightedSorter cons_vals:levelsets use:pickable_sets];
 	fillersetgen = [WeightedSorter cons_vals:levelsets use:@[L_FILLER]];
@@ -304,7 +310,6 @@ static NSArray *lab_tutorial_levels;
 }
 
 #define SETS_BETWEEN_LABS 4
-#define SETS_BETWEEN_LABS_WORLD1_TUTORIAL 2
 #define LEVELS_IN_LAB_SET 3
 #define LEVELS_IN_SET 3
 
@@ -313,7 +318,6 @@ static NSArray *lab_tutorial_levels;
 	nth_freerunprogress = nth_freerunprogress>6?1:nth_freerunprogress;
 }
 
-bool sur = NO;
 -(NSString*)get_level {
 	ct++;
 	
@@ -334,11 +338,7 @@ bool sur = NO;
 		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
-		if (!has_done_lab_tutorial) {
-			sets_until_next_lab = SETS_BETWEEN_LABS_WORLD1_TUTORIAL;
-		} else {
-			sets_until_next_lab = SETS_BETWEEN_LABS;
-		}
+		sets_until_next_lab = SETS_BETWEEN_LABS;
 		cur_set_completed = 0;
 		cur_set = [self pick_set];
 		[self increment_freerun_progress];
@@ -375,7 +375,6 @@ bool sur = NO;
 	} else if ([cur_set isEqualToString:L_LAB]) {
 		sets_until_next_lab--;
 		if (sets_until_next_lab < 0) {
-			//cur_set = L_LABEXIT; //if doing this, set back to <= 0
 			return [[levelsets[L_BOSS1START] allKeys] random];
 		}
 		return [labsetgen get_from_bucket:L_LAB];
@@ -383,22 +382,19 @@ bool sur = NO;
 	} else if ([cur_set isEqualToString:L_FILLER]) {
 		cur_set_completed = 0;
 		sets_until_next_lab--;
-		if (sets_until_next_lab == 0) {
-			if (!has_done_lab_tutorial) {
-				cur_set = L_LAB_TUTORIAL;
-				tutorial_ct = 0;
-				has_done_lab_tutorial = true;
-				
-			} else {
-				cur_set = L_LABINTRO;
-				tutorial_ct = 0;
-				
-			}
-			
+		nth_filler++;
+
+		if (nth_filler%3==0) {
+			cur_set = L_CAPEGAME_LAUNCHER;
 		} else {
-			cur_set = [self pick_set];
+			[self filler_next];
 		}
+		
 		return [fillersetgen get_from_bucket:L_FILLER];
+		
+	} else if ([cur_set isEqualToString:L_CAPEGAME_LAUNCHER]) {
+		[self filler_next];
+		return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		
 	} else if ([pickable_sets contains_str:cur_set]) {
 		cur_set_completed++;
@@ -410,6 +406,21 @@ bool sur = NO;
 		NSLog(@"ERROR: autolevel state fallthrough, curset:%@",cur_set);
 		return @"ERROR";
 	
+	}
+}
+
+-(void)filler_next {
+	if (sets_until_next_lab == 0) {
+		if (!has_done_lab_tutorial) {
+			cur_set = L_LAB_TUTORIAL;
+			tutorial_ct = 0;
+			has_done_lab_tutorial = true;
+		} else {
+			cur_set = L_LABINTRO;
+			tutorial_ct = 0;
+		}
+	} else {
+		cur_set = [self pick_set];
 	}
 }
 

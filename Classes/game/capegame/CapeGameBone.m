@@ -3,6 +3,7 @@
 #import "Common.h"
 #import "CapeGamePlayer.h"
 #import "AudioManager.h"
+#import "FileCache.h"
 
 @implementation CapeGameBone
 
@@ -11,10 +12,8 @@
 }
 
 -(id)cons_pt:(CGPoint)pt {
-	[self setTexture:[Resource get_tex:TEX_GOLDEN_BONE]];
-	CGRect texr = CGRectZero;
-	texr.size = self.texture.contentSize;
-	[self setTextureRect:texr];
+	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
 	[self setPosition:pt];
 	active = YES;
 	return self;

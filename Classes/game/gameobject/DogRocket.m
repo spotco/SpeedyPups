@@ -8,8 +8,7 @@
     new_rocket.active = YES;
     new_rocket.position = ccp(x,y);
     
-    CCTexture2D *texture = [Resource get_tex:TEX_DOG_ROCKET];
-    new_rocket.img = [CCSprite spriteWithTexture:texture];
+    new_rocket.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"dogrocket"]];
     [new_rocket addChild:new_rocket.img];
     
     return new_rocket;

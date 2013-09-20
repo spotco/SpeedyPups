@@ -1,4 +1,4 @@
-
+#import "FileCache.h"
 #import "BoneCollectUIAnimation.h"
 
 @implementation BoneCollectUIAnimation
@@ -10,7 +10,7 @@
 }
 
 -(void)cons_start:(CGPoint)tstart end:(CGPoint)tend {
-    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_GOLDEN_BONE]]];
+    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]]];
     start = tstart;
     end = tend;
     [self setPosition:start];

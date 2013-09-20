@@ -90,7 +90,7 @@
 	for (CCSprite *i in [itemlenbarroot children]) {
 		[i setOpacity:175];
 	}
-	itemlenbaricon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_DOG_CAPE]];
+	itemlenbaricon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_dogcape"]];
 	[itemlenbaricon setPosition:ccp(55,0)];
 	[itemlenbaricon setScale:0.8];
 	[itemlenbaricon setOpacity:200];

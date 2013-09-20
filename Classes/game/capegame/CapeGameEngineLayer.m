@@ -17,13 +17,28 @@
 
 @implementation CapeGameEngineLayer
 
+static int lvl_ct = 0;
+static NSString *blank = @"";
++(NSString*)get_level {
+	NSString *rtv = blank;
+	if (lvl_ct%3==0) {
+		rtv = @"capegame_easy";
+	} else if (lvl_ct%3==1) {
+		rtv = @"capegame_creative";
+	} else if (lvl_ct%3==2) {
+		rtv = @"capegame_test";
+	}
+	lvl_ct++;
+	return rtv;
+}
+
 +(CCScene*)scene_with_level:(NSString *)file g:(GameEngineLayer *)g {
 	CCScene *scene = [CCScene node];
 	[scene addChild:[[CapeGameEngineLayer node] cons_with_level:file g:g]];
 	return scene;
 }
 
-#define GAME_DURATION 2000.0
+#define GAME_DURATION 2100.0
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
 #define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.1]
 
@@ -149,7 +164,7 @@
 	[bottom_scroll setTextureRect:scroll_rect];
 	
 	if (touch_down) {
-		player.vy = MIN(player.vy + 2, 7);
+		player.vy = MIN(player.vy + 1.6, 7);
 	} else if (initial_hold) {
 		player.vy = MAX(player.vy - 0.005,-7);
 	} else {

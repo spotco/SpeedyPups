@@ -18,10 +18,12 @@
 }
 
 -(CCTexture2D*)get_tex_corner {
-    return [Resource get_tex:TEX_CAVE_CORNER_TEX];
+    return [Resource get_tex:TEX_GROUND_CORNER_TEX_1];
+	//return [Resource get_tex:TEX_CAVE_CORNER_TEX];
 }
 -(CCTexture2D*)get_tex_top {
-    return [Resource get_tex:TEX_CAVE_TOP_TEX];
+    return [Resource get_tex:TEX_GROUND_TOP_1];
+	//return [Resource get_tex:TEX_CAVE_TOP_TEX];
 }
 
 @end

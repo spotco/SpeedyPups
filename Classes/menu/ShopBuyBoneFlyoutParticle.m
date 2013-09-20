@@ -1,5 +1,6 @@
 #import "ShopBuyBoneFlyoutParticle.h"
 #import "Common.h"
+#import "FileCache.h"
 
 @implementation ShopBuyBoneFlyoutParticle
 
@@ -8,9 +9,8 @@
 }
 
 -(void)set_body {
-	[self setTexture:[Resource get_tex:TEX_GOLDEN_BONE]];
-	CGSize tex_size = [Resource get_tex:TEX_GOLDEN_BONE].contentSize;
-	[self setTextureRect:CGRectMake(0, 0, tex_size.width, tex_size.height)];
+	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
 }
 
 #define MAX_CT 23.0

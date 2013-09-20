@@ -10,8 +10,8 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"shittytest"
-#define STARTING_LIVES 1
+#define TESTLEVEL @"capegame_launcher"
+#define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
@@ -19,8 +19,6 @@
 #define DISPLAY_FPS NO
 
 /**
- integrate capelevels into freerun, do 2 more capelevels in editor
- 
  will need to redo audiomanager bgm handling 
  (hopefully get it to just play one song at a time too)
  
@@ -41,6 +39,7 @@
 Stretch goals:
  goober pet
  levels based around armor (armor break spikes)
+ challenges based around capegame
  **/
 
 +(void)main {
@@ -59,9 +58,9 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	[GameMain start_testlevel];
+	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
 }
 
 +(void)start_game_autolevel {

@@ -10,7 +10,7 @@
 -(id)init_pt:(CGPoint)pt {
     [self setPosition:pt];
     active = YES;
-    self.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_STARCOIN]];
+    self.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]];
     [self.img setScale:1.2];
     [self addChild:self.img];
     return self;

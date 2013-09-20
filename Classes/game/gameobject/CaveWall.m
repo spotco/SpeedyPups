@@ -33,7 +33,7 @@
 }
 
 -(CCTexture2D*)get_tex {
-    return [Resource get_tex:TEX_CAVEWALL];
+    return [Resource get_tex:TEX_GROUND_TEX_1];
 }
 
 -(void)draw {

@@ -32,6 +32,8 @@ typedef enum {
 	CapeGameMode current_mode;
 }
 
++(NSString*)get_level;
+
 +(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g;
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;

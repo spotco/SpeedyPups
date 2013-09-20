@@ -14,6 +14,7 @@
 	
 	int nth_lab;
 	int nth_freerunprogress;
+	int nth_filler;
 	
 	NSMutableArray *recently_picked_sets;
 	WeightedSorter *setgen, *fillersetgen, *labsetgen;
