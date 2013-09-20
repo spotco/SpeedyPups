@@ -1,5 +1,6 @@
 #import "ItemGen.h"
 #import "UserInventory.h"
+#import "AudioManager.h"
 
 @implementation ItemGen
 
@@ -33,6 +34,7 @@
 }
 
 -(void)hit {
+	[AudioManager playsfx:SFX_POWERUP];
     [UserInventory set_current_gameitem:item];
 	[GEventDispatcher push_event:[GEvent cons_type:GEVentType_PICKUP_ITEM]];
 	active = NO;

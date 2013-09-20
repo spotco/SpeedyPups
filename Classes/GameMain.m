@@ -19,11 +19,6 @@
 #define DISPLAY_FPS NO
 
 /**
- item pickup sound
- new bone pickup sound
- copter runin menacing sound, from goober
- modify tutorial_spikevine to not have tutorial, include in classic
- 
  weekly levels/challenges (streamed from online)
  store sales (streamed from online)
  cloud saves

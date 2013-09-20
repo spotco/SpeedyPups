@@ -19,7 +19,11 @@ typedef enum {
 //bgm_2
 #define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"
 
-#define SFX_BONE @"sfx_bone.wav"
+#define SFX_BONE @"sfx_bone_1.wav"
+#define SFX_BONE_2 @"sfx_bone_2.wav"
+#define SFX_BONE_3 @"sfx_bone_3.wav"
+#define SFX_BONE_4 @"sfx_bone_4.wav"
+
 #define SFX_EXPLOSION @"sfx_explosion.wav" 
 #define SFX_HIT @"sfx_hit.wav"
 #define SFX_JUMP @"sfx_jump.wav"
@@ -53,6 +57,7 @@ typedef enum {
 #define SFX_READY @"sfx_ready.wav"
 #define SFX_GO @"sfx_go.wav"
 
+#define SFX_BOSS_ENTER @"sfx_boss_enter.wav"
 #define SFX_COPTER_FLYBY @"sfx_copter_flyby.wav"
 
 #define SFX_MENU_UP @"sfx_menu_up.wav" 

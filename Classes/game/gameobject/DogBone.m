@@ -79,7 +79,7 @@
         refresh_cached_hitbox = YES;
         Vec3D vel = [VecLib cons_x:player.position.x-position_.x y:player.position.y-position_.y z:0];
         vel = [VecLib normalize:vel];
-        vel = [VecLib scale:vel by:MAX(1,sqrtf(powf(player.vx, 2) + powf(player.vy, 2))*1.2)];
+        vel = [VecLib scale:vel by:MAX(12,sqrtf(powf(player.vx, 2) + powf(player.vy, 2))*1.2)];
         vx = vel.x;
         vy = vel.y;
     } else {
@@ -87,15 +87,31 @@
         vy = 0;
     }
     
+	gameengine = g;
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         [self hit];
     }
 }
 
+static float last_collect_time = 0;
+static NSString* snds[] = {SFX_BONE,SFX_BONE_2,SFX_BONE_3,SFX_BONE_4};
+static int current_sound = 0;
+
 -(void)hit {
-    [AudioManager playsfx:SFX_BONE];
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
+	if ([gameengine get_time] - last_collect_time < 5) {
+		current_sound = current_sound;
+		
+	} else if ([gameengine get_time] - last_collect_time < 30) {
+		current_sound = MIN(current_sound+1,3);
+		
+	} else {
+		current_sound = 0;
+	}
+	[AudioManager playsfx:snds[current_sound]];
+	last_collect_time = [gameengine get_time];
+    
+	[GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
     active=NO;
 }
 

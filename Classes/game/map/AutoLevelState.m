@@ -38,11 +38,12 @@ static NSArray *lab_tutorial_levels;
 		@"tutorial_swipeget",
 		@"filler_sanicloop",
 		@"tutorial_spikes",
+		@"tutorial_spikevine",
 		@"tutorial_breakrocks",
+		@"tutorial_swingvine",
 		@"tutorial_doublejump",
 		@"tutorial_upsidebounce",
-        @"tutorial_spikevine",
-		@"tutorial_swingvine"
+		@"capegame_launcher"
 	];
 	
 	lab_tutorial_levels = @[
@@ -53,22 +54,6 @@ static NSArray *lab_tutorial_levels;
 	pickable_sets = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE];
 	
 	levelsets = @{
-		L_TUTORIAL: @{
-			@"tutorial_jump" : @1,
-			@"tutorial_water" : @1,
-			@"tutorial_swipeget" : @1,
-			@"filler_sanicloop" : @1 ,
-			@"tutorial_spikes" : @2,
-			@"tutorial_breakrocks" : @2,
-			@"tutorial_doublejump" : @2,
-			@"tutorial_upsidebounce" : @3,
-			@"tutorial_spikevine" : @3,
-			@"tutorial_swingvine" : @3
-		},
-		L_LAB_TUTORIAL: @{
-			@"labintro_tutorialbop" : @1,
-			@"labintro_tutoriallauncher" : @1
-		},
 		L_CLASSIC: @{
 			@"classic_trickytreas" : @3,
 			@"classic_bridgenbwall" : @2,

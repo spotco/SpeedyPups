@@ -14,6 +14,7 @@
     BOOL follow;
     CGPoint initial_pos;
     
+	GameEngineLayer __unsafe_unretained *gameengine;
 }
 
 +(DogBone*)cons_x:(float)x y:(float)y bid:(int)bid;

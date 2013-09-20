@@ -60,6 +60,7 @@ static const int DEFAULT_HP = 5;
 	[self set_bounds_and_ground:g];
     actual_pos.y = groundlevel+360;
     [self setPosition:actual_pos];
+	[AudioManager playsfx:SFX_BOSS_ENTER];
     
     return self;
 }
@@ -169,7 +170,8 @@ static const int DEFAULT_HP = 5;
 }
 
 
--(void)get_random_action:(Side)s {    
+-(void)get_random_action:(Side)s {
+	[AudioManager playsfx:SFX_BOSS_ENTER];
     if (s == Side_Left) {
         lct = (lct+1)%4;
         if (lct == 1) {
