@@ -309,9 +309,10 @@ static NSArray *lab_tutorial_levels;
 	}
 }
 
-#define SETS_BETWEEN_LABS 4
+#define SETS_BETWEEN_LABS 3
 #define LEVELS_IN_LAB_SET 3
 #define LEVELS_IN_SET 3
+#define CAPEGAME_EVERY 3
 
 -(void)increment_freerun_progress {
 	nth_freerunprogress++;
@@ -384,7 +385,7 @@ static NSArray *lab_tutorial_levels;
 		sets_until_next_lab--;
 		nth_filler++;
 
-		if (nth_filler%3==0) {
+		if (nth_filler%CAPEGAME_EVERY==0) {
 			cur_set = L_CAPEGAME_LAUNCHER;
 		} else {
 			[self filler_next];

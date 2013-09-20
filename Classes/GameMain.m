@@ -19,8 +19,10 @@
 #define DISPLAY_FPS NO
 
 /**
- will need to redo audiomanager bgm handling 
- (hopefully get it to just play one song at a time too)
+ item pickup sound
+ new bone pickup sound
+ copter runin menacing sound, from goober
+ modify tutorial_spikevine to not have tutorial, include in classic
  
  weekly levels/challenges (streamed from online)
  store sales (streamed from online)
@@ -40,6 +42,8 @@ Stretch goals:
  goober pet
  levels based around armor (armor break spikes)
  challenges based around capegame
+ will need to redo audiomanager bgm handling, (hopefully get it to just play one song at a time too)
+ look into batchsprite
  **/
 
 +(void)main {
