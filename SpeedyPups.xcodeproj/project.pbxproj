@@ -316,6 +316,13 @@
 		7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7612171A800E00EBEB3C /* GameModeCallback.m */; };
 		7EBD7618171A855F00EBEB3C /* Coin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7617171A855F00EBEB3C /* Coin.m */; };
 		7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD761A171A8B6B00EBEB3C /* CoinCollectUIAnimation.m */; };
+		7EBEA3AD17EEB078009C9930 /* BG2_backhills.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3A817EEB078009C9930 /* BG2_backhills.png */; };
+		7EBEA3AE17EEB078009C9930 /* BG2_fronthills.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3A917EEB078009C9930 /* BG2_fronthills.png */; };
+		7EBEA3B017EEB078009C9930 /* BG2_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3AB17EEB078009C9930 /* BG2_sky.png */; };
+		7EBEA3B117EEB078009C9930 /* BG2_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3AC17EEB078009C9930 /* BG2_water.png */; };
+		7EBEA3B817EEC5CE009C9930 /* BG2_frontislands_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3B617EEC5CE009C9930 /* BG2_frontislands_0.png */; };
+		7EBEA3B917EEC5CE009C9930 /* BG2_frontislands_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3B717EEC5CE009C9930 /* BG2_frontislands_1.png */; };
+		7EBEA3BC17EED101009C9930 /* BG2_top_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBEA3BB17EED101009C9930 /* BG2_top_fill.png */; };
 		7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460E617054D9700656A48 /* AutoLevelState.m */; };
 		7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */; };
 		7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EC460ED17058BC700656A48 /* ingame_ui_ss.plist */; };
@@ -1092,6 +1099,13 @@
 		7EBD7617171A855F00EBEB3C /* Coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coin.m; sourceTree = "<group>"; };
 		7EBD7619171A8B6B00EBEB3C /* CoinCollectUIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinCollectUIAnimation.h; sourceTree = "<group>"; };
 		7EBD761A171A8B6B00EBEB3C /* CoinCollectUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinCollectUIAnimation.m; sourceTree = "<group>"; };
+		7EBEA3A817EEB078009C9930 /* BG2_backhills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_backhills.png; sourceTree = "<group>"; };
+		7EBEA3A917EEB078009C9930 /* BG2_fronthills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_fronthills.png; sourceTree = "<group>"; };
+		7EBEA3AB17EEB078009C9930 /* BG2_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_sky.png; sourceTree = "<group>"; };
+		7EBEA3AC17EEB078009C9930 /* BG2_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_water.png; sourceTree = "<group>"; };
+		7EBEA3B617EEC5CE009C9930 /* BG2_frontislands_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_frontislands_0.png; sourceTree = "<group>"; };
+		7EBEA3B717EEC5CE009C9930 /* BG2_frontislands_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_frontislands_1.png; sourceTree = "<group>"; };
+		7EBEA3BB17EED101009C9930 /* BG2_top_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_top_fill.png; sourceTree = "<group>"; };
 		7EC460E517054D9600656A48 /* AutoLevelState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState.h; sourceTree = "<group>"; };
 		7EC460E617054D9700656A48 /* AutoLevelState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState.m; sourceTree = "<group>"; };
 		7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuInventoryLayer.h; sourceTree = "<group>"; };
@@ -1885,6 +1899,7 @@
 		7EB8B1E116D9F8E600F58961 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				7EBEA3A717EEB078009C9930 /* BG2 */,
 				7E4532A717E4417E005EE7CB /* capegame */,
 				7EDD63771703B1B500825887 /* details */,
 				7EB8B1E216D9F8E600F58961 /* BG1 */,
@@ -2624,6 +2639,28 @@
 				7EB8B3C816D9FC0900F58961 /* BreakableWall.m */,
 			);
 			name = obstacle;
+			sourceTree = "<group>";
+		};
+		7EBEA3A717EEB078009C9930 /* BG2 */ = {
+			isa = PBXGroup;
+			children = (
+				7EBEA3BA17EED101009C9930 /* island */,
+				7EBEA3B617EEC5CE009C9930 /* BG2_frontislands_0.png */,
+				7EBEA3B717EEC5CE009C9930 /* BG2_frontislands_1.png */,
+				7EBEA3A817EEB078009C9930 /* BG2_backhills.png */,
+				7EBEA3A917EEB078009C9930 /* BG2_fronthills.png */,
+				7EBEA3AB17EEB078009C9930 /* BG2_sky.png */,
+				7EBEA3AC17EEB078009C9930 /* BG2_water.png */,
+			);
+			path = BG2;
+			sourceTree = "<group>";
+		};
+		7EBEA3BA17EED101009C9930 /* island */ = {
+			isa = PBXGroup;
+			children = (
+				7EBEA3BB17EED101009C9930 /* BG2_top_fill.png */,
+			);
+			path = island;
 			sourceTree = "<group>";
 		};
 		7EC460E81705780C00656A48 /* lab */ = {
@@ -3600,6 +3637,13 @@
 				7E24A35C17ECD02F0085154C /* sfx_bone_3.wav in Resources */,
 				7E24A35D17ECD02F0085154C /* sfx_bone_4.wav in Resources */,
 				7E24A35F17ECD7F70085154C /* sfx_boss_enter.wav in Resources */,
+				7EBEA3AD17EEB078009C9930 /* BG2_backhills.png in Resources */,
+				7EBEA3AE17EEB078009C9930 /* BG2_fronthills.png in Resources */,
+				7EBEA3B017EEB078009C9930 /* BG2_sky.png in Resources */,
+				7EBEA3B117EEB078009C9930 /* BG2_water.png in Resources */,
+				7EBEA3B817EEC5CE009C9930 /* BG2_frontislands_0.png in Resources */,
+				7EBEA3B917EEC5CE009C9930 /* BG2_frontislands_1.png in Resources */,
+				7EBEA3BC17EED101009C9930 /* BG2_top_fill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -59,6 +59,15 @@
 #define TEX_BG_LAYER_1 @"BgLayer1"
 #define TEX_BG_LAYER_3 @"BgLayer3"
 
+#define TEX_BG2_BACKHILLS @"BG2_backhills"
+#define TEX_BG2_FRONTHILLS @"BG2_fronthills"
+#define TEX_BG2_FRONTISLANDS_0 @"BG2_frontislands_0"
+#define TEX_BG2_FRONTISLANDS_1 @"BG2_frontislands_1"
+#define TEX_BG2_SKY @"BG2_sky"
+#define TEX_BG2_WATER @"BG2_water"
+
+#define TEX_BG2_ISLAND_TOP_FILL @"BG2_island_top_fill"
+
 #define TEX_SPIKE @"Spike"
 #define TEX_WATER @"Water"
 #define TEX_FISH_SS @"fish_ss"

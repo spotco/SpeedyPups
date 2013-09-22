@@ -54,7 +54,7 @@
     return a;
 }
 
-
+/*
 -(NSMutableArray*) load_normal_bg {
 	NSMutableArray *a = [[NSMutableArray alloc] init];
     starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
@@ -69,6 +69,20 @@
 		
     }
     return a;
+}*/
+
+
+-(NSMutableArray*)load_normal_bg {
+	NSMutableArray *a = [NSMutableArray array];
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_SKY] scrollspd_x:0 scrollspd_y:0]];
+	[a addObject:[BGTimeManager cons]];
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_BACKHILLS] scrollspd_x:0.005 scrollspd_y:0.003]];
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_FRONTHILLS] scrollspd_x:0.009 scrollspd_y:0.003]];
+	
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_WATER] scrollspd_x:0.07 scrollspd_y:0.007]];
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_FRONTISLANDS_1] scrollspd_x:0.05 scrollspd_y:0.006]];
+	[a addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_FRONTISLANDS_0] scrollspd_x:0.07 scrollspd_y:0.007]];
+	return a;
 }
 
 static const float FADECTR_MAX = 10;
@@ -181,9 +195,11 @@ static int last_star_opacity;
 
 -(void)scrollup_bg_pct:(float)pct {
     if (![GameMain GET_USE_BG])return;
+	/*
     [[self bgo_at:iCLOUD] setPosition:ccp([self bgo_at:iCLOUD].position.x,-400*pct)];
     [[self bgo_at:iBACKHILL] setPosition:ccp([self bgo_at:iBACKHILL].position.x,[self bgo_at:iBACKHILL].position.y-500*pct)];
     [[self bgo_at:iFRNTHILL] setPosition:ccp([self bgo_at:iFRNTHILL].position.x,[self bgo_at:iFRNTHILL].position.y-800*pct)];
+	 */
 }
 
 -(BackgroundObject*)bgo_at:(int)i {return [normal_bg_elements objectAtIndex:i];}
@@ -191,6 +207,7 @@ static int last_star_opacity;
 //day is 100, night is 0
 -(void)set_day_night_color:(int)val {
     if (![GameMain GET_USE_BG])return;
+	/*
     float pctm = ((float)val) / 100;
     [[self bgo_at:iSKY] setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     [[self bgo_at:iCLOUD] setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
@@ -198,6 +215,7 @@ static int last_star_opacity;
     [[self bgo_at:iFRNTHILL] setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     last_star_opacity = 255-pctm*255;
     [starsbg setOpacity:last_star_opacity];
+	 */
 }
 
 @end

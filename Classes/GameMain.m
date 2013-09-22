@@ -8,9 +8,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"capegame_launcher"
+#define PLAY_SFX NO
+#define PLAY_BGM NO
+#define TESTLEVEL @"tutorial_jump"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -19,6 +19,8 @@
 #define DISPLAY_FPS NO
 
 /**
+ cloud level iphone5 fix
+ 
  weekly levels/challenges (streamed from online)
  store sales (streamed from online)
  cloud saves
@@ -57,9 +59,9 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	//[GameMain start_testlevel];
+	[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    [GameMain start_menu];
+    //[GameMain start_menu];
 }
 
 +(void)start_game_autolevel {
