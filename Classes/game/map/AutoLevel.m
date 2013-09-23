@@ -73,7 +73,7 @@
 }
 
 -(void)load_into_queue:(NSString*)key { //load map into queue
-    MapSection *m = [MapSection cons_from_name:key];
+    MapSection *m = [MapSection cons_from_name:key g:tglayer];
     if (!has_pos_initial) {
         cur_x = m.map.connect_pts_x1;
         cur_y = m.map.connect_pts_y1;

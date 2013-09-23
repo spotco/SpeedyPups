@@ -18,6 +18,7 @@
 }
 
 +(DogBone*)cons_x:(float)x y:(float)y bid:(int)bid;
++(void)play_collect_sound:(GameEngineLayer*)gameengine;
 -(void)hit;
 
 @property(readwrite,assign) int bid;

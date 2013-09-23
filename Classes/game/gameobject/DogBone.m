@@ -98,7 +98,7 @@ static float last_collect_time = 0;
 static NSString* snds[] = {SFX_BONE,SFX_BONE_2,SFX_BONE_3,SFX_BONE_4};
 static int current_sound = 0;
 
--(void)hit {
++(void)play_collect_sound:(GameEngineLayer*)gameengine {
 	if ([gameengine get_time] - last_collect_time < 5) {
 		current_sound = current_sound;
 		
@@ -110,6 +110,10 @@ static int current_sound = 0;
 	}
 	[AudioManager playsfx:snds[current_sound]];
 	last_collect_time = [gameengine get_time];
+}
+
+-(void)hit {
+	[DogBone play_collect_sound:gameengine];
     
 	[GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
     active=NO;

@@ -76,6 +76,9 @@
 		7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F7B17EFEC3C004DB956 /* World1BGLayerSet.m */; };
 		7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F7E17EFEC53004DB956 /* World2BGLayerSet.m */; };
 		7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */; };
+		7E908F8517F01BC6004DB956 /* BG2_island_corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8317F01BC6004DB956 /* BG2_island_corner.png */; };
+		7E908F8617F01BC6004DB956 /* BG2_island_top_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8417F01BC6004DB956 /* BG2_island_top_edge.png */; };
+		7E908F8817F01FE5004DB956 /* gameloop2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8717F01FE4004DB956 /* gameloop2.aiff */; };
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
 		7E98648216E874CF00109092 /* nmenu_items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647F16E874CF00109092 /* nmenu_items.plist */; };
 		7E98648316E874CF00109092 /* nmenu_items.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98648016E874CF00109092 /* nmenu_items.png */; };
@@ -764,6 +767,9 @@
 		7E908F7E17EFEC53004DB956 /* World2BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World2BGLayerSet.m; sourceTree = "<group>"; };
 		7E908F8017EFEC69004DB956 /* Lab1BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lab1BGLayerSet.h; sourceTree = "<group>"; };
 		7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lab1BGLayerSet.m; sourceTree = "<group>"; };
+		7E908F8317F01BC6004DB956 /* BG2_island_corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_island_corner.png; sourceTree = "<group>"; };
+		7E908F8417F01BC6004DB956 /* BG2_island_top_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_island_top_edge.png; sourceTree = "<group>"; };
+		7E908F8717F01FE4004DB956 /* gameloop2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2.aiff; sourceTree = "<group>"; };
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
 		7E98647F16E874CF00109092 /* nmenu_items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_items.plist; sourceTree = "<group>"; };
 		7E98648016E874CF00109092 /* nmenu_items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_items.png; sourceTree = "<group>"; };
@@ -2120,6 +2126,7 @@
 		7EB8B27316D9F8E700F58961 /* music */ = {
 			isa = PBXGroup;
 			children = (
+				7E908F8717F01FE4004DB956 /* gameloop2.aiff */,
 				7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */,
 				7E709F2117E78AC60005D8F6 /* fanfare_win.aiff */,
 				7ECADE3B176490E20032A1E6 /* boss1.aiff */,
@@ -2681,6 +2688,8 @@
 		7EBEA3BA17EED101009C9930 /* island */ = {
 			isa = PBXGroup;
 			children = (
+				7E908F8317F01BC6004DB956 /* BG2_island_corner.png */,
+				7E908F8417F01BC6004DB956 /* BG2_island_top_edge.png */,
 				7EBEA3BB17EED101009C9930 /* BG2_top_fill.png */,
 			);
 			path = island;
@@ -3667,6 +3676,9 @@
 				7EBEA3B817EEC5CE009C9930 /* BG2_frontislands_0.png in Resources */,
 				7EBEA3B917EEC5CE009C9930 /* BG2_frontislands_1.png in Resources */,
 				7EBEA3BC17EED101009C9930 /* BG2_top_fill.png in Resources */,
+				7E908F8517F01BC6004DB956 /* BG2_island_corner.png in Resources */,
+				7E908F8617F01BC6004DB956 /* BG2_island_top_edge.png in Resources */,
+				7E908F8817F01FE5004DB956 /* gameloop2.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

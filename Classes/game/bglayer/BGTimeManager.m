@@ -9,7 +9,6 @@
 +(BGTimeManager*)cons {
     BGTimeManager* b = [BGTimeManager node];
     [b cons];
-	[GEventDispatcher add_listener:b];
     return b;
 }
 
@@ -17,11 +16,11 @@
 #define SUN_Y_PCT 0.81
 
 //0 night, 100 day
-//#define DAYNIGHT_LENGTH 10000
-//#define TRANSITION_LENGTH 600
+#define DAYNIGHT_LENGTH 10000
+#define TRANSITION_LENGTH 600
 
-#define DAYNIGHT_LENGTH 50
-#define TRANSITION_LENGTH 100
+//#define DAYNIGHT_LENGTH 50
+//#define TRANSITION_LENGTH 100
 
 static int bgtime_delayct;
 static BGTimeManagerMode bgtime_curmode;
@@ -70,22 +69,13 @@ static BGTimeManagerMode bgtime_curmode;
 	
 }
 
--(void)dispatch_event:(GEvent *)e {
-	if (e.type == GEventType_ENTER_LABAREA) {
-		stop = YES;
-	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		stop = NO;
-	}
-}
-
 //0 night, 100 day
 -(void)update_posx:(float)posx posy:(float)posy {
-	if (stop) return;
-	
     bgtime_delayct--;
     if (bgtime_curmode == MODE_DAY) {
 		[sun setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT]];
         [moon setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT+1]];
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_DAY_NIGHT_UPDATE] add_i1:100 i2:0]];
         if (bgtime_delayct <= 0) {
             bgtime_curmode = MODE_DAY_TO_NIGHT;
             bgtime_delayct = TRANSITION_LENGTH;
@@ -110,6 +100,7 @@ static BGTimeManagerMode bgtime_curmode;
     } else if (bgtime_curmode == MODE_NIGHT) {
 		[sun setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT-1]];
         [moon setPosition:[Common screen_pctwid:SUN_X_PCT pcthei:SUN_Y_PCT]];
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_DAY_NIGHT_UPDATE] add_i1:0 i2:0]];
         if (bgtime_delayct <= 0) {
             bgtime_curmode = MODE_NIGHT_TO_DAY;
             bgtime_delayct = TRANSITION_LENGTH;

@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "FreeRunProgressAnimation.h"
+#import "GameEngineLayer.h"
 @class TexRect;
 
 typedef enum {
@@ -24,5 +25,7 @@ typedef enum {
 +(void)set_starting_loc:(FreeRunStartAt)loc;
 
 +(FreeRunStartAt)get_for_progress:(FreeRunProgress)prog;
+
++(WorldNum)worldnum_for_startingloc;
 
 @end

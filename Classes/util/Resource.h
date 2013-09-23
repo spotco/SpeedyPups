@@ -67,6 +67,8 @@
 #define TEX_BG2_WATER @"BG2_water"
 
 #define TEX_BG2_ISLAND_TOP_FILL @"BG2_island_top_fill"
+#define TEX_BG2_ISLAND_CORNER @"BG2_island_corner"
+#define TEX_BG2_ISLAND_TOP_EDGE @"BG2_island_top_edge"
 
 #define TEX_SPIKE @"Spike"
 #define TEX_WATER @"Water"

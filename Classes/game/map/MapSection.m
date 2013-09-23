@@ -7,14 +7,14 @@
 @implementation MapSection
 @synthesize map;
 
-+(MapSection*)cons_from_name:(NSString*)name {
++(MapSection*)cons_from_name:(NSString*)name g:(GameEngineLayer*)g {
     MapSection* m = [[MapSection alloc] init];
-    [m cons:name];
+    [m cons:name g:g];
     return m;
 }
 
--(void)cons:(NSString*)name {
-    map = [MapLoader load_map:name];
+-(void)cons:(NSString*)name g:(GameEngineLayer*)g {
+    map = [MapLoader load_map:name g:g];
     [MapSection transform_map:map by_x:-map.connect_pts_x1 by_y:-map.connect_pts_y1];
     offset_x = 0;
     offset_y = 0;

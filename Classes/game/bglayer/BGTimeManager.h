@@ -9,9 +9,8 @@ typedef enum {
 } BGTimeManagerMode;
 
 
-@interface BGTimeManager : BackgroundObject <GEventListener> {
+@interface BGTimeManager : BackgroundObject {
     CCSprite *sun,*moon;
-	bool stop;
 }
 
 +(BGTimeManager*)cons;

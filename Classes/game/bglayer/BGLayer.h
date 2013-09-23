@@ -12,13 +12,19 @@
 @class Lab1BGLayerSet;
 @class World2BGLayerSet;
 
-@interface BGLayerSet: CCNode
+@interface BGLayerSet : CCNode {
+	int fadein_ct;
+	int fadeout_ct;
+	int ct;
+}
 -(void)set_scrollup_pct:(float)pct;
 -(void)set_day_night_color:(float)pct;
+-(void)update:(GameEngineLayer*)g curx:(float)curx cury:(float)cury;
+
 -(void)fadeout_in:(int)ticks;
 -(void)fadein_in:(int)ticks;
--(void)set_active:(BOOL)t;
--(void)update:(GameEngineLayer*)g curx:(float)curx cury:(float)cury;
+-(void)update_fadeout;
+-(void)set_opacity:(float)pct;
 @end
 
 

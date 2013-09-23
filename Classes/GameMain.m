@@ -8,9 +8,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_SFX YES
+#define PLAY_BGM YES
+#define TESTLEVEL @"capegame_launcher"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -19,7 +19,8 @@
 #define DISPLAY_FPS NO
 
 /**
- cloud level iphone5 fix
+ world2 grounddetail fix (spritesheet swap)
+ world2 particles
  
  weekly levels/challenges (streamed from online)
  store sales (streamed from online)
@@ -59,17 +60,19 @@ Stretch goals:
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
 	
-	[GameMain start_testlevel];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+	
+	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];
-    //[GameMain start_menu];
+    [GameMain start_menu];
 }
 
 +(void)start_game_autolevel {
-    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES]];
+    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {
-	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info]];
+	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info world:WorldNum_1]];
 	
 }
 
@@ -78,7 +81,7 @@ Stretch goals:
 }
 
 +(void)start_testlevel {
-	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES]];
+	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
 }
 
 +(void)start_from_callback:(GameModeCallback *)c {

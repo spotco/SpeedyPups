@@ -41,6 +41,9 @@ static BOOL playbgm = YES;
 		],
 		enumkey(BGM_GROUP_JINGLE):@[
 			BGMUSIC_JINGLE
+		],
+		enumkey(BGM_GROUP_WORLD2):@[
+			BGMUSIC_GAMELOOP2
 		]
 	};
 	

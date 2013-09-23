@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+@class GameEngineLayer;
 
 @interface GameMap : NSObject
     @property(readwrite,strong) NSMutableArray *n_islands, *game_objects;
@@ -14,7 +15,7 @@ typedef enum {
 
 @interface MapLoader : NSObject
 +(void)set_maploader_mode:(MapLoaderMode)m;
-+(GameMap*) load_map:(NSString *)map_file_name;
++(GameMap*) load_map:(NSString *)map_file_name g:(GameEngineLayer*)g;
 +(void) precache_map:(NSString *)map_file_name;
 +(GameMap*) load_capegame_map:(NSString*)map_file_name;
 @end

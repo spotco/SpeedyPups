@@ -4,6 +4,7 @@
 #import "CapeGamePlayer.h"
 #import "AudioManager.h"
 #import "FileCache.h"
+#import "DogBone.h"
 
 @implementation CapeGameBone
 
@@ -25,7 +26,8 @@
 	if ([Common hitrect_touch:[[g player] get_hitrect] b:[self get_hitrect]]) {
 		[self setVisible:NO];
 		[g collect_bone:[self convertToWorldSpace:ccp(0,0)]];
-		[AudioManager playsfx:SFX_BONE];
+		//[AudioManager playsfx:SFX_BONE];
+		[DogBone play_collect_sound:g.get_main_game];
 		active = NO;
 	}
 }

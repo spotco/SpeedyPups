@@ -25,12 +25,14 @@
     
     BOOL has_gen_hitrect;
     BOOL has_transformed_renderpts;
+	
+	GameEngineLayer* __unsafe_unretained gameengine;
 }
 
 @property(readwrite,assign) CGPoint tl,bl,tr,br;
 @property(readwrite,assign) BOOL force_draw_leftline,force_draw_rightline;
 
-+(LineIsland*)cons_pt1:(CGPoint)start pt2:(CGPoint)end height:(float)height ndir:(float)ndir can_land:(BOOL)can_land;
++(LineIsland*)cons_pt1:(CGPoint)start pt2:(CGPoint)end height:(float)height ndir:(float)ndir can_land:(BOOL)can_land g:(GameEngineLayer*)g;
 
 -(void)calc_init;
 -(void)cons_tex;

@@ -6,7 +6,8 @@ typedef enum {
 	BGM_GROUP_LAB = 1,
 	BGM_GROUP_MENU = 2,
 	BGM_GROUP_BOSS1 = 3,
-	BGM_GROUP_JINGLE = 4
+	BGM_GROUP_JINGLE = 4,
+	BGM_GROUP_WORLD2 = 5
 } BGM_GROUP;
 
 //bgm_1
@@ -15,6 +16,7 @@ typedef enum {
 #define BGMUSIC_BOSS1 @"boss1.aiff"
 #define BGMUSIC_LAB1 @"lab1.aiff"
 #define BGMUSIC_JINGLE @"jingle.aiff"
+#define BGMUSIC_GAMELOOP2 @"gameloop2.aiff"
 
 //bgm_2
 #define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"

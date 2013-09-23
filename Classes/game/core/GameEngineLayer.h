@@ -40,6 +40,19 @@ typedef enum {
 	BGMode_LAB
 } BGMode;
 
+typedef enum { //worlds are incremented by labentrances, only further created lineislands will be affected
+	WorldNum_1 = 1,
+	WorldNum_2 = 2
+} WorldNum;
+
+typedef enum { //labs incremented by labexits, keep these synchronized with worldnum
+	LabNum_1 = 1
+} LabNum;
+
+//update when available
+#define MAX_WORLD WorldNum_2
+#define MAX_LAB LabNum_1
+
 @interface GameEngineLayer : CCLayer <GEventListener> {
     NSMutableArray *particles,*particles_tba;
     
@@ -69,6 +82,8 @@ typedef enum {
 	GameEngineStats *stats;
 	
 	GameEngineLayerMode stored_mode;
+	WorldNum cur_world_num;
+	LabNum cur_lab_num;
 }
 
 
@@ -77,15 +92,17 @@ typedef enum {
 @property(readwrite,strong) Player *player;
 @property(readwrite,assign) CameraZoom camera_state,tar_camera_state;
 
-+(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives;
-+(CCScene*)scene_with_autolevel_lives:(int)lives;
-+(CCScene*)scene_with_challenge:(ChallengeInfo*)info;
++(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world;
++(CCScene*)scene_with_autolevel_lives:(int)lives world:(WorldNum)world;
++(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world;
 
 -(UILayer*)get_ui_layer;
 
 -(ChallengeInfo*)get_challenge;
 
 -(BGMode)get_cur_bg_mode;
+-(WorldNum)get_world_num;
+-(LabNum)get_lab_num;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

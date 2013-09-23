@@ -46,7 +46,9 @@ static NSString *blank = @"";
 	
 	main_game = g;
 	
-	[self addChild:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0]];
+	BackgroundObject *bg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0];
+	[bg setScaleX:[Common scale_from_default].x];
+	[self addChild:bg];
 	
 	player = [CapeGamePlayer cons];
 	[player setPosition:END_TARPOS];
@@ -54,9 +56,11 @@ static NSString *blank = @"";
 	
 	
 	top_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
+	[top_scroll setScaleX:[Common scale_from_default].x];
 	[top_scroll setScaleY:-1];
 	[top_scroll setPosition:[Common screen_pctwid:0 pcthei:1]];
 	bottom_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
+	[bottom_scroll setScaleX:[Common scale_from_default].x];
 	[top_scroll setAnchorPoint:ccp(0,0)];
 	[bottom_scroll setAnchorPoint:ccp(0,0)];
 	[top_scroll setOpacity:220];

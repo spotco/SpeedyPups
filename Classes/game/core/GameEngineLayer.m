@@ -27,9 +27,9 @@
 @synthesize player;
 @synthesize camera_state,tar_camera_state;
 
-+(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives {
++(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world {
     CCScene *scene = [CCScene node];
-    GameEngineLayer *glayer = [GameEngineLayer layer_from_file:map_file_name lives:lives];
+    GameEngineLayer *glayer = [GameEngineLayer layer_from_file:map_file_name lives:lives world:world];
 	BGLayer *bglayer = [BGLayer cons_with_gamelayer:glayer];
     UILayer* uilayer = [UILayer cons_with_gamelayer:glayer];
     
@@ -42,8 +42,8 @@
     [scene addChild:[Common get_load_scr] z:1 tag:tLOADSCR];
 	return scene;
 }
-+(CCScene*) scene_with_autolevel_lives:(int)lives {
-    CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives];
++(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
+    CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
     [glayer.game_objects addObject:nobj];
@@ -61,9 +61,9 @@
 	return scene;
 }
 
-+(CCScene*)scene_with_challenge:(ChallengeInfo*)info {
++(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world {
 	[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
-    CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES];
+    CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES world:world];
 	[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     
@@ -80,9 +80,9 @@
     return scene;
 }
 
-+(GameEngineLayer*)layer_from_file:(NSString*)file lives:(int)lives {
++(GameEngineLayer*)layer_from_file:(NSString*)file lives:(int)lives world:(WorldNum)world {
     GameEngineLayer *g = [GameEngineLayer node];
-    [g cons:file lives:lives];
+    [g cons:file lives:lives world:world];
     return g;
 }
 
@@ -94,7 +94,17 @@
 	return stats;
 }
 
--(void)cons:(NSString*)map_filename lives:(int)starting_lives {
+-(void)play_worldnum_bgm {
+	if ([self get_world_num] == WorldNum_1) {
+		[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
+		
+	} else if ([self get_world_num] == WorldNum_2) {
+		[AudioManager playbgm_imm:BGM_GROUP_WORLD2];
+		
+	} 
+}
+
+-(void)cons:(NSString*)map_filename lives:(int)starting_lives world:(WorldNum)world {
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
@@ -105,7 +115,6 @@
 	}
 	lives = default_starting_lives;
 	
-    [AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
 		[AudioManager transition_mode2];
 	}
@@ -149,12 +158,14 @@
     current_continue_cost = DEFAULT_CONTINUE_COST;
     player_starting_pos = player_start_pt;
 	[Common unset_dt];
+	
+	cur_world_num = MIN(world,MAX_WORLD);
+	cur_lab_num = MIN(world,MAX_LAB);
+	[self play_worldnum_bgm];
 }
 
 -(void)set_challenge:(ChallengeInfo*)info {
-    //NSLog(@"loaded challenge for %@, %@",info.map_name,[info to_string]);
     [GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_CHALLENGE] add_key:@"challenge" value:info]];
-	//[GEventDispatcher dispatch_events];
     for (GameObject *o in game_objects) {
         [o notify_challenge_mode:info];
     }
@@ -196,7 +207,7 @@
 }
 
 -(CGPoint)loadMap:(NSString*)filename {
-	GameMap *map = [MapLoader load_map:filename];
+	GameMap *map = [MapLoader load_map:filename g:self];
     
     islands = map.n_islands;
     int ct = [Island link_islands:islands];
@@ -498,9 +509,19 @@
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
 		cur_bg_mode = BGMode_LAB;
+		cur_world_num = cur_world_num + 1;
+		if (cur_world_num > MAX_WORLD) cur_world_num = WorldNum_1;
+		[AudioManager playbgm_imm:BGM_GROUP_LAB];
 		
 	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
 		cur_bg_mode = BGMode_NORMAL;
+		cur_lab_num = cur_lab_num + 1;
+		if (cur_lab_num > MAX_LAB) cur_lab_num = LabNum_1;
+		
+		[self play_worldnum_bgm];
+		if ([BGTimeManager get_global_time] == MODE_NIGHT) {
+			[AudioManager transition_mode2];
+		}
 		
 	} else if (e.type == GEventType_BEGIN_CAPE_GAME) {
 		current_mode = GameEngineLayerMode_CAPEOUT;
@@ -510,6 +531,14 @@
 		player.current_island = NULL;
 		
 	}
+}
+
+-(WorldNum)get_world_num {
+	return cur_world_num;
+}
+
+-(LabNum)get_lab_num {
+	return cur_lab_num;
 }
 
 -(BGMode)get_cur_bg_mode {

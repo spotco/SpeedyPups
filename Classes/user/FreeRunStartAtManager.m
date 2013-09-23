@@ -84,4 +84,23 @@
 	}
 }
 
++(WorldNum)worldnum_for_startingloc {
+	FreeRunStartAt loc = [self get_starting_loc];
+	if (loc == FreeRunStartAt_TUTORIAL || loc == FreeRunStartAt_WORLD1 || loc == FreeRunStartAt_LAB1) {
+		return WorldNum_1;
+		
+	} else if (loc == FreeRunStartAt_WORLD2 || loc == FreeRunStartAt_LAB2) {
+		return WorldNum_2;
+		
+	} else if (loc == FreeRunStartAt_WORLD3 || loc == FreeRunStartAt_LAB3) {
+		//TODO!!
+		NSLog(@"error, world3 not in yet");
+		return WorldNum_1;
+	
+	} else {
+		NSLog(@"worldnumstartat errval");
+		return WorldNum_1;
+	}
+}
+
 @end

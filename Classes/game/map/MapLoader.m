@@ -87,7 +87,7 @@ static NSMutableDictionary* cached_json;
     return [cached_json objectForKey:map_file_name];
 }
 
-+(GameMap*) load_map:(NSString *)map_file_name {
++(GameMap*) load_map:(NSString *)map_file_name g:(GameEngineLayer *)g {
     NSDictionary *j_map_data = [MapLoader get_jsondict:map_file_name];
     
     NSArray *islandArray = [j_map_data objectForKey:(@"islands")];
@@ -134,7 +134,7 @@ static NSMutableDictionary* cached_json;
         NSString *ground_type = (NSString *)[currentIslandDict objectForKey:@"ground"];
         
         if (ground_type == NULL || [ground_type isEqualToString:@"open"]) {
-            currentIsland = [LineIsland cons_pt1:start pt2:end height:height ndir:ndir can_land:can_land];
+            currentIsland = [LineIsland cons_pt1:start pt2:end height:height ndir:ndir can_land:can_land g:g];
         } else if ([ground_type isEqualToString:@"cave"]) {
             currentIsland = [CaveLineIsland cons_pt1:start pt2:end height:height ndir:ndir can_land:can_land];
         } else if ([ground_type isEqualToString:@"bridge"]) {
