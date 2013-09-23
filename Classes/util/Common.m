@@ -49,6 +49,7 @@ inline CGPoint CGPointAdd(CGPoint a,CGPoint b) {
 }
 
 int pb(int base,float pctm) {return base+(255-base)*pctm;}
+ccColor3B PCT_CCC3(int _R,int _G,int _B,float _PCTM) { return ccc3(pb(_R,_PCTM),pb(_G,_PCTM),pb(_B,_PCTM)); }
 
 inline float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));

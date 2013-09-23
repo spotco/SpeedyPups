@@ -73,6 +73,9 @@
 		7E73334817D7B48D00E5D6F6 /* UIWaterAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
 		7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8F478217994067004CA582 /* tutorial_upsidebounce.map */; };
+		7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F7B17EFEC3C004DB956 /* World1BGLayerSet.m */; };
+		7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F7E17EFEC53004DB956 /* World2BGLayerSet.m */; };
+		7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */; };
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
 		7E98648216E874CF00109092 /* nmenu_items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647F16E874CF00109092 /* nmenu_items.plist */; };
 		7E98648316E874CF00109092 /* nmenu_items.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98648016E874CF00109092 /* nmenu_items.png */; };
@@ -755,6 +758,12 @@
 		7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWaterAlert.m; sourceTree = "<group>"; };
 		7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutorialbop.map; path = Resources/levels/labintro_tutorialbop.map; sourceTree = SOURCE_ROOT; };
 		7E8F478217994067004CA582 /* tutorial_upsidebounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_upsidebounce.map; sourceTree = "<group>"; };
+		7E908F7A17EFEC3C004DB956 /* World1BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World1BGLayerSet.h; sourceTree = "<group>"; };
+		7E908F7B17EFEC3C004DB956 /* World1BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World1BGLayerSet.m; sourceTree = "<group>"; };
+		7E908F7D17EFEC53004DB956 /* World2BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World2BGLayerSet.h; sourceTree = "<group>"; };
+		7E908F7E17EFEC53004DB956 /* World2BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World2BGLayerSet.m; sourceTree = "<group>"; };
+		7E908F8017EFEC69004DB956 /* Lab1BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lab1BGLayerSet.h; sourceTree = "<group>"; };
+		7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lab1BGLayerSet.m; sourceTree = "<group>"; };
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
 		7E98647F16E874CF00109092 /* nmenu_items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_items.plist; sourceTree = "<group>"; };
 		7E98648016E874CF00109092 /* nmenu_items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_items.png; sourceTree = "<group>"; };
@@ -1740,6 +1749,19 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		7E908F7917EFE98F004DB956 /* bglayerset */ = {
+			isa = PBXGroup;
+			children = (
+				7E908F7A17EFEC3C004DB956 /* World1BGLayerSet.h */,
+				7E908F7B17EFEC3C004DB956 /* World1BGLayerSet.m */,
+				7E908F7D17EFEC53004DB956 /* World2BGLayerSet.h */,
+				7E908F7E17EFEC53004DB956 /* World2BGLayerSet.m */,
+				7E908F8017EFEC69004DB956 /* Lab1BGLayerSet.h */,
+				7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */,
+			);
+			name = bglayerset;
+			sourceTree = "<group>";
+		};
 		7E98647D16E874CF00109092 /* nmenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2305,6 +2327,7 @@
 		7EB8B3AE16D9FC0800F58961 /* bglayer */ = {
 			isa = PBXGroup;
 			children = (
+				7E908F7917EFE98F004DB956 /* bglayerset */,
 				7EB8B3AF16D9FC0800F58961 /* BackgroundObject.h */,
 				7EB8B3B016D9FC0800F58961 /* BackgroundObject.m */,
 				7EB8B3B116D9FC0800F58961 /* BGLayer.h */,
@@ -3831,6 +3854,9 @@
 				7EE2456817E6606B007D4B4D /* CapeGameBone.m in Sources */,
 				7EE30D1E17E6D05E00DC2A21 /* CapeGameSpikeVine.m in Sources */,
 				7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */,
+				7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */,
+				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
+				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

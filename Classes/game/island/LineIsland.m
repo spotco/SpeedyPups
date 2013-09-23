@@ -123,8 +123,8 @@
     return [Resource get_tex:TEX_ISLAND_BORDER];
 }
 -(CCTexture2D*)get_tex_top {
-    //return [Resource get_tex:TEX_GROUND_TOP_1];
-	return [Resource get_tex:TEX_BG2_ISLAND_TOP_FILL];
+    return [Resource get_tex:TEX_GROUND_TOP_1];
+	//return [Resource get_tex:TEX_BG2_ISLAND_TOP_FILL];
 }
 -(CCTexture2D*)get_corner_fill_color {
     return [Resource get_tex:TEX_GROUND_CORNER_TEX_1];

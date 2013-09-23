@@ -117,6 +117,7 @@ typedef struct CGRange {
 NSString* strf (char* format, ... );
 int SIG(float n);
 int pb(int base,float pctm);
+ccColor3B PCT_CCC3(int _R,int _G,int _B,float _PCTM);
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
 

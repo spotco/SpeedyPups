@@ -10,7 +10,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_jump"
+#define TESTLEVEL @"shittytest"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
