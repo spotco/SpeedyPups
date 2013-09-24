@@ -14,6 +14,7 @@
 #define TEX_TOP_EDGE @"GroundTopEdge"
 
 #define TEX_GROUND_DETAILS @"grounddetail_ss"
+#define TEX_GROUND_DETAILS_WORLD2 @"grounddetail_world2_ss"
 
 #define TEX_LAB_BG @"labbg"
 #define TEX_LAB_GROUND_1 @"labground1"
@@ -65,6 +66,7 @@
 #define TEX_BG2_FRONTISLANDS_1 @"BG2_frontislands_1"
 #define TEX_BG2_SKY @"BG2_sky"
 #define TEX_BG2_WATER @"BG2_water"
+#define TEX_BG2_CLOUDS_SS @"cloud_world2_ss"
 
 #define TEX_BG2_ISLAND_TOP_FILL @"BG2_island_top_fill"
 #define TEX_BG2_ISLAND_CORNER @"BG2_island_corner"

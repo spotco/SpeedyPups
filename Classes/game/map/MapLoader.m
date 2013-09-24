@@ -177,7 +177,7 @@ static NSMutableDictionary* cached_json;
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
             int type = ((NSString*)[j_object  objectForKey:@"img"]).intValue;
-            [map.game_objects addObject:[GroundDetail cons_x:x y:y type:type islands:map.n_islands]];
+            [map.game_objects addObject:[GroundDetail cons_x:x y:y type:type islands:map.n_islands g:g]];
             
         } else if ([type isEqualToString:@"spike"]) {
             float x = getflt(j_object, @"x");

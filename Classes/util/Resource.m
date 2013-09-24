@@ -17,6 +17,7 @@ static NSMutableDictionary* loaded_textures;
 		TEX_BRIDGE_EDGE : @"BG1_bridge_edge.png",
 		TEX_BRIDGE_SECTION : @"BG1_bridge_section.png",
 		TEX_GROUND_DETAILS : @"grounddetail_ss.png",
+		TEX_GROUND_DETAILS_WORLD2 : @"grounddetail_world2_ss.png",
 		TEX_LAB_BG : @"lab_bg.png",
 		TEX_LAB_GROUND_1 : @"lab_ground_1.png",
 		TEX_LAB_GROUND_TOP : @"lab_ground_top.png",
@@ -50,6 +51,7 @@ static NSMutableDictionary* loaded_textures;
 		TEX_BG2_FRONTISLANDS_1:@"BG2_frontislands_1.png",
 		TEX_BG2_SKY:@"BG2_sky.png",
 		TEX_BG2_WATER:@"BG2_water.png",
+		TEX_BG2_CLOUDS_SS:@"cloud_world2_ss.png",
   
 		TEX_BG2_ISLAND_TOP_FILL:@"BG2_top_fill.png",
 		TEX_BG2_ISLAND_TOP_EDGE:@"BG2_island_top_edge.png",

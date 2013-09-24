@@ -6,6 +6,7 @@
 	BackgroundObject *sky;
 	BackgroundObject *starsbg;
 	BGTimeManager *time;
+	CloudGenerator *clouds;
 	BackgroundObject *backhills;
 	BackgroundObject *fronthills;
 	BackgroundObject *water;

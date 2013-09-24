@@ -5,6 +5,8 @@
 #import "Challenge.h"
 #import "FreeRunStartAtManager.h"
 
+#import "WebRequest.h"
+
 @implementation GameMain
 
 #define USE_BG YES
@@ -19,12 +21,10 @@
 #define DISPLAY_FPS NO
 
 /**
- world2 grounddetail fix (spritesheet swap)
- world2 particles
+ design tabs in inventory pane, settings page
+ implement cloudsaves
+ implement level of the week
  
- weekly levels/challenges (streamed from online)
- store sales (streamed from online)
- cloud saves
  integrate IAPs
  
  -art ask for:
@@ -40,8 +40,8 @@ Stretch goals:
  goober pet
  levels based around armor (armor break spikes)
  challenges based around capegame
- will need to redo audiomanager bgm handling, (hopefully get it to just play one song at a time too)
  look into batchsprite
+ store sales (streamed from online)
  **/
 
 +(void)main {
@@ -59,8 +59,6 @@ Stretch goals:
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

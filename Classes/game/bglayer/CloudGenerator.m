@@ -4,14 +4,17 @@
 #import "FileCache.h"
 
 @interface Cloud : CCSprite {
-    float movspd;
+	float movspd;
 }
-+(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc;
++(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc texkey:(NSString*)texkey scaley:(float)sy;
 -(void)update_dv:(CGPoint)dv;
+@property(readwrite,assign) float scaley;
+@property(readwrite,assign) float speedmult;
 @end
 
 @implementation Cloud
-+(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc {
+@synthesize scaley;
++(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc texkey:(NSString *)texkey scaley:(float)sy {
 	int rnd = int_random(0, 5);
 	NSString *tarcld;
 	if (rnd == 0) {
@@ -27,8 +30,12 @@
 	} else {
 		tarcld = @"cloud5";
 	}
-	Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:TEX_CLOUD_SS] rect:[FileCache get_cgrect_from_plist:TEX_CLOUD_SS idname:tarcld]];
 	
+	//TEX_CLOUD_SS
+	Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:texkey] rect:[FileCache get_cgrect_from_plist:texkey idname:tarcld]];
+	
+	b.scaley = sy;
+	b.speedmult = 1;
 	[b setPosition:pt];
     [b setAnchorPoint:CGPointZero];
     [b setScale:sc];
@@ -39,7 +46,7 @@
     movspd = -((sc-0.2)*1.1 + 0.3);
 }
 -(void)update_dv:(CGPoint)dv {
-    [self setPosition:CGPointAdd(self.position, ccp(movspd,-dv.y*0.025))];
+    [self setPosition:CGPointAdd(self.position, ccp(movspd*self.speedmult,-dv.y*scaley))];
 }
 @end
 
@@ -48,6 +55,15 @@
 +(CloudGenerator*)cons {
     CloudGenerator* c = [CloudGenerator node];
     [c cons];
+    [c random_seed_clouds];
+    return c;
+}
+
++(CloudGenerator*)cons_texkey:(NSString *)key scaley:(float)sy {
+    CloudGenerator* c = [CloudGenerator node];
+    [c cons];
+	[c set_texkey:key];
+	[c set_scaley:sy];
     [c random_seed_clouds];
     return c;
 }
@@ -62,6 +78,25 @@
 -(void)cons {
     clouds = [[NSMutableArray alloc] init];
     nextct = 0;
+	texkey = TEX_CLOUD_SS;
+	scaley = 0.025;
+	speedmult = 1;
+}
+
+-(void)set_texkey:(NSString *)key {
+	texkey = key;
+}
+
+-(void)set_scaley:(float)sy {
+	scaley = sy;
+}
+
+-(CloudGenerator*)set_speedmult:(float)spd {
+	speedmult = spd;
+	for (Cloud *c in clouds) {
+		c.speedmult = speedmult;
+	}
+	return self;
 }
 
 -(void)update_posx:(float)posx posy:(float)posy {
@@ -79,7 +114,7 @@
     NSMutableArray* toremove = [[NSMutableArray alloc] init];
     for (Cloud* c in clouds) {
         [c update_dv:dv];
-        if (c.position.x < -100) {
+        if (c.position.x < -150) {
             [toremove addObject:c];
         }
     }
@@ -108,8 +143,9 @@
         alternator = 0;
     }
     
-    Cloud* n = [Cloud cons_pt:pos sc:scale];
+    Cloud* n = [Cloud cons_pt:pos sc:scale texkey:texkey scaley:scaley];
     [n setColor:[self color]];
+	n.speedmult = speedmult;
     [clouds addObject:n];
     [self addChild:n];
 }

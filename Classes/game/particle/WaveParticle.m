@@ -28,6 +28,11 @@
     ct--;
 }
 
+-(WaveParticle*)set_color:(ccColor3B)c {
+	[self setColor:c];
+	return self;
+}
+
 -(BOOL)should_remove {
     return ct < 0;
 }

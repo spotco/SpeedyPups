@@ -5,6 +5,7 @@
 
 @interface World1ParticleGenerator : GameObject <GEventListener> {
 	bool stop;
+	float ct;
 }
 
 +(World1ParticleGenerator*)cons;

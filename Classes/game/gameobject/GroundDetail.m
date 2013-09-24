@@ -64,12 +64,20 @@ static NSArray* ABOVE;
     return [IDTOKEY objectAtIndex:gid];
 }
 
-+(GroundDetail*)cons_x:(float)posx y:(float)posy type:(int)type islands:(NSMutableArray *)islands{
++(GroundDetail*)cons_x:(float)posx y:(float)posy type:(int)type islands:(NSMutableArray *)islands g:(GameEngineLayer *)g{
     GroundDetail *d = [GroundDetail node];
     d.position = ccp(posx,posy);
     
     CGRect texrect = [FileCache get_cgrect_from_plist:TEX_GROUND_DETAILS idname:[self id_to_key:type]];
-    d.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_GROUND_DETAILS] rect:texrect];
+	
+	CCTexture2D *tex;
+	if ([g get_world_num] == WorldNum_2) {
+		tex = [Resource get_tex:TEX_GROUND_DETAILS_WORLD2];
+	} else {
+		tex = [Resource get_tex:TEX_GROUND_DETAILS];
+	}
+	
+    d.img = [CCSprite spriteWithTexture:tex rect:texrect];
     [d.img setPosition:ccp(0,texrect.size.height/2)];
     d.imgtype = type;
     [d addChild:d.img];
