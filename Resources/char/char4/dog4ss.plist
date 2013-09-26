@@ -357,7 +357,7 @@
 			<false/>
 		</dict>
 		
-		<key>rocket_3</key>
+		<key>rocket_2</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -713,15 +713,13 @@
 	<key>metadata</key>
 	<dict>
 		<key>version</key>
-		<string>1.5.5</string>
+		<string>1.6.0</string>
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
 		<string>{512, 512}</string>
 		<key>name</key>
 		<string>dog4</string>
-		<key>premultipliedAlpha</key>
-		<false/>
 		<key>target</key>
 		<dict>
 			<key>name</key>

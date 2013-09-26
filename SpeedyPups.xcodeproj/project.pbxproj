@@ -46,6 +46,7 @@
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
 		7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */; };
 		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
+		7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4507C117F3FD4100287716 /* InventoryLayerTab.m */; };
 		7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */; };
 		7E4532A917E44192005EE7CB /* cloudlevel_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */; };
 		7E4532AC17E4495B005EE7CB /* CapeGamePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532AB17E4495B005EE7CB /* CapeGamePlayer.m */; };
@@ -728,6 +729,8 @@
 		7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyBoneFlyoutParticle.m; sourceTree = "<group>"; };
 		7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyFlyoffTextParticle.h; sourceTree = "<group>"; };
 		7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyFlyoffTextParticle.m; sourceTree = "<group>"; };
+		7E4507C017F3FD4100287716 /* InventoryLayerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryLayerTab.h; sourceTree = "<group>"; };
+		7E4507C117F3FD4100287716 /* InventoryLayerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryLayerTab.m; sourceTree = "<group>"; };
 		7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEngineLayer.h; sourceTree = "<group>"; };
 		7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameEngineLayer.m; sourceTree = "<group>"; };
 		7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_cloudfloor.png; sourceTree = "<group>"; };
@@ -1627,6 +1630,15 @@
 			name = challenge_only;
 			sourceTree = "<group>";
 		};
+		7E4507BF17F3FD2100287716 /* inventorytab */ = {
+			isa = PBXGroup;
+			children = (
+				7E4507C017F3FD4100287716 /* InventoryLayerTab.h */,
+				7E4507C117F3FD4100287716 /* InventoryLayerTab.m */,
+			);
+			name = inventorytab;
+			sourceTree = "<group>";
+		};
 		7E4532A317E438E5005EE7CB /* capegame */ = {
 			isa = PBXGroup;
 			children = (
@@ -2516,6 +2528,7 @@
 		7EB8B45316D9FC0900F58961 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				7E4507BF17F3FD2100287716 /* inventorytab */,
 				7E45DA67172DE6E9009C43DD /* shop */,
 				7E0A788216ED6BBC0026C418 /* details */,
 				7E0A787816ED57430026C418 /* nmenu_pages */,
@@ -3887,6 +3900,7 @@
 				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
 				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
 				7E99416B17F1758300B363F3 /* WebRequest.m in Sources */,
+				7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

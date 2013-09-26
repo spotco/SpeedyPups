@@ -11,7 +11,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"capegame_launcher"
 #define STARTING_LIVES 10
 
@@ -21,11 +21,13 @@
 #define DISPLAY_FPS NO
 
 /**
- design tabs in inventory pane, settings page
+ make floatingwindow tabs classes
+	
+	-purchases tab
  implement cloudsaves
  implement level of the week
  
- integrate IAPs
+ integrate IAP speedypups subscription
  
  -art ask for:
 	settings page -> map page navmenu icon and bg design
@@ -37,6 +39,8 @@
 
 /**
 Stretch goals:
+ stats tracking
+ 
  goober pet
  levels based around armor (armor break spikes)
  challenges based around capegame

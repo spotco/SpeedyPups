@@ -10,8 +10,17 @@
 -(void)touch_begin:(CGPoint)pt;
 -(void)touch_move:(CGPoint)pt;
 -(void)touch_end:(CGPoint)pt;
+-(void)on_touch;
 -(CGRect)hit_rect_local;
 @property(readwrite,strong) CallBack* cb;
+@end
+
+@interface AnimatedTouchButton : TouchButton {
+	float target_scale;
+	BOOL started_on;
+}
++(AnimatedTouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect cb:(CallBack*)tcb;
+-(void)update;
 @end
 
 @interface LabelGroup : NSObject {

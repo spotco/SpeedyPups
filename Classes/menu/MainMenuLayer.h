@@ -5,6 +5,8 @@
 #import "GEventDispatcher.h"
 #import "MainMenuBGLayer.h"
 
+@class MainMenuInventoryLayer;
+
 
 #define MENU_STARTING_PAGE_ID 2
 #define MENU_DOG_MODE_PAGE_ID 1
@@ -21,9 +23,11 @@
     NSMutableArray* menu_pages;
     int cur_page;
     CGPoint last,dp;
+	
 }
 
 @property(readwrite,strong) MainMenuBGLayer* bg;
+@property(readwrite,strong) MainMenuInventoryLayer* inventory_layer;
 
 +(CCScene*)scene;
 

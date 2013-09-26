@@ -32,10 +32,11 @@
     MainMenuBGLayer *mb = [MainMenuBGLayer cons];
     [mm setBg:mb];
     [mm.bg move_fg:[mm get_target_bg_pt]];
+	mm.inventory_layer = [MainMenuInventoryLayer cons];
     
     [sc addChild:mb];
     [sc addChild:mm];
-    [sc addChild:[MainMenuInventoryLayer cons]];
+    [sc addChild:mm.inventory_layer];
     
     return sc;
 }
@@ -116,6 +117,10 @@
     } else if (e.type == GEventType_MENU_PLAY_CHALLENGELEVEL_MODE) {
 		[self exit];
 		[GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:e.i1]];
+		
+	} else if (e.type == GEventType_QUIT) {
+		[self exit];
+		[GameMain start_menu];
 	}
 }
 
@@ -127,17 +132,29 @@
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
-	for (NMenuPage *p in menu_pages) p.visible?[p touch_begin:touch]:0;
+	if (![self.inventory_layer window_open]) {
+		for (NMenuPage *p in menu_pages) p.visible?[p touch_begin:touch]:0;
+	} else {
+		[self.inventory_layer touch_begin:touch];
+	}
 }
 
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
-	for (NMenuPage *p in menu_pages) p.visible?[p touch_move:touch]:0;
+	if (![self.inventory_layer window_open]) {
+		for (NMenuPage *p in menu_pages) p.visible?[p touch_move:touch]:0;
+	} else {
+		[self.inventory_layer touch_move:touch];
+	}
 }
 
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
-	for (NMenuPage *p in menu_pages) p.visible?[p touch_end:touch]:0;
+	if (![self.inventory_layer window_open]) {
+		for (NMenuPage *p in menu_pages) p.visible?[p touch_end:touch]:0;
+	} else {
+		[self.inventory_layer touch_end:touch];
+	}
 }
 
 

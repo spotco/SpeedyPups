@@ -7,7 +7,14 @@
 #import "Player.h"
 #import "InventoryItemPane.h"
 #import "AudioManager.h" 
+#import "InventoryLayerTab.h"
+#import "DataStore.h"
+#import "WebRequest.h"
 
+#import "AudioManager.h"
+
+
+//todo -- seperate me into class for every tab, this is popupwindowlayer now (not just inventory)
 @implementation MainMenuInventoryLayer
 
 static NSString* default_text = @"Equip to use powerups on your next run. Unlock upgrades at the store!";
@@ -21,12 +28,15 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
     self = [super init];
     
     [GEventDispatcher add_listener:self];
+	inventory_tab_items = [CCNode node];
+	settings_tab_items = [CCNode node];
     
-    CGRect windowsize = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventorypane"];
     inventory_window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-                                              rect:windowsize];
+                                              rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventorypane"]];
     [inventory_window setPosition:[Common screen_pctwid:0.5 pcthei:0.55]];
     [self addChild:inventory_window];
+	[inventory_window addChild:inventory_tab_items];
+	[inventory_window addChild:settings_tab_items];
     
     CCMenuItem *closebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                              rect:@"nmenu_closebutton"
@@ -37,7 +47,48 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	[invmh setPosition:CGPointZero];
     [inventory_window addChild:invmh];
     [inventory_window setVisible:NO];
-    
+	
+	[self cons_inventory_tab_items];
+	[self cons_settings_tab_items];
+	[inventory_tab_items setVisible:YES];
+	[settings_tab_items setVisible:NO];
+	
+	tabs = [NSMutableArray array];
+	tab_inventory = [InventoryLayerTab cons_pt:[Common pct_of_obj:inventory_window pctx:0 pcty:0.9525]
+										  text:@"Inventory"
+											cb:[Common cons_callback:self sel:@selector(tab_inventory)]];
+	[tabs addObject:tab_inventory];
+	[inventory_window addChild:tab_inventory];
+	tab_settings = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width,tab_inventory.position.y)
+										 text:@"Settings"
+										   cb:[Common cons_callback:self sel:@selector(tab_settings)]];
+	[tabs addObject:tab_settings];
+	[inventory_window addChild:tab_settings];
+	
+	[tab_inventory set_selected:YES];
+	[tab_settings set_selected:NO];
+	
+	
+    return self;
+}
+
+-(void)tab_inventory {
+	[tab_settings set_selected:NO];
+	[tab_inventory set_selected:YES];
+	[inventory_tab_items setVisible:YES];
+	[settings_tab_items setVisible:NO];
+	[AudioManager playsfx:SFX_MENU_UP];
+}
+
+-(void)tab_settings {
+	[tab_inventory set_selected:NO];
+	[tab_settings set_selected:YES];
+	[inventory_tab_items setVisible:NO];
+	[settings_tab_items setVisible:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
+}
+
+-(void)cons_inventory_tab_items {
     CCMenu *itempanes = [CCMenu menuWithItems:nil];
 	[itempanes setPosition:[Common pct_of_obj:inventory_window pctx:0.55 pcty:0.7]];
     
@@ -52,36 +103,36 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
         [ip set_item:defaultpaneitem[i]];
         [itempanesarr addObject:ip];
     }
-    [inventory_window addChild:itempanes];
+    [inventory_tab_items addChild:itempanes];
     inventory_panes = itempanesarr;
     
-	 
+	
     CCSprite *divider = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"inventorydivider"]];
-    [divider setPosition:ccp(windowsize.size.width*0.5,windowsize.size.height*0.475)];
-    [inventory_window addChild:divider];
+    [divider setPosition:[Common pct_of_obj:inventory_window pctx:0.5 pcty:0.475]];
+    [inventory_tab_items addChild:divider];
     
     CCSprite *player = [CCSprite spriteWithTexture:[Resource get_tex:[Player get_character]] rect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
     [player setScale:0.8];
     [player setPosition:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.3]];
-    [inventory_window addChild:player];
+    [inventory_tab_items addChild:player];
     
     CCSprite *boneicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tinybone"]];
     [boneicon setPosition:[Common pct_of_obj:inventory_window pctx:0.665 pcty:0.15]];
-    [inventory_window addChild:boneicon];
+    [inventory_tab_items addChild:boneicon];
     bonectdsp = [Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.695 pcty:0.15] color:ccc3(0, 0, 0) fontsize:15 str:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
     [bonectdsp setAnchorPoint:ccp(0,0.5)];
-    [inventory_window addChild:bonectdsp];
+    [inventory_tab_items addChild:bonectdsp];
     
 	mainslot = [MainSlotItemPane cons_pt:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.24]
-														cb:[Common cons_callback:self sel:@selector(slotpane0_click)]
-													  slot:0];
-	[inventory_window addChild:[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.4]
+									  cb:[Common cons_callback:self sel:@selector(slotpane0_click)]
+									slot:0];
+	[inventory_tab_items addChild:[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.87 pcty:0.4]
 												color:ccc3(200,30,30)
 											 fontsize:13
 												  str:@"Equipped:"]];
     CCMenu *slotitems = [CCMenu menuWithItems:mainslot,NULL];
 	[slotitems setPosition:CGPointZero];
-	[inventory_window addChild:slotitems];
+	[inventory_tab_items addChild:slotitems];
 	
 	
     infoname = [Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.075 pcty:0.375]
@@ -89,12 +140,12 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 							 fontsize:20
 								  str:@""];
     [infoname setAnchorPoint:ccp(0,0.5)];
-    [inventory_window addChild:infoname];
+    [inventory_tab_items addChild:infoname];
     
     NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                              lineBreakMode:UILineBreakModeWordWrap];
+							   lineBreakMode:UILineBreakModeWordWrap];
     
     infodesc = [CCLabelTTF labelWithString:default_text
                                 dimensions:actualSize
@@ -104,13 +155,123 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
     [infodesc setColor:ccc3(0,0,0)];
     [infodesc setAnchorPoint:ccp(0,0.5)];
     [infodesc setPosition:[Common pct_of_obj:inventory_window pctx:0.075 pcty:0.215]];
-    [inventory_window addChild:infodesc];
+    [inventory_tab_items addChild:infodesc];
     
     [self update_invpane];
-	
 	pane_anim_scale = 1;
+}
+
+-(void)cons_settings_tab_items {
+	settings_touches = [NSMutableArray array];
 	
-    return self;
+	PollingButton *playbgmb = [PollingButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.125 pcty:0.8]
+									   texkey:TEX_NMENU_ITEMS
+									   yeskey:@"nmenu_checkbutton"
+										nokey:@"nmenu_xbutton"
+										 poll:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(get_play_bgm)]
+										click:[Common cons_callback:self sel:@selector(toggle_play_bgm)]];
+	[settings_tab_items addChild:playbgmb];
+	[settings_touches addObject:playbgmb];
+	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.2 pcty:0.8]
+												  color:ccc3(0,0,0)
+											   fontsize:16
+													str:@"play music"] anchor_pt:ccp(0,0.5)]];
+	
+	PollingButton *playsfxb = [PollingButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.125 pcty:0.55]
+											  texkey:TEX_NMENU_ITEMS
+											  yeskey:@"nmenu_checkbutton"
+											   nokey:@"nmenu_xbutton"
+												poll:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(get_play_sfx)]
+											   click:[Common cons_callback:self sel:@selector(toggle_play_sfx)]];
+	[settings_tab_items addChild:playsfxb];
+	[settings_touches addObject:playsfxb];
+	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.2 pcty:0.55]
+												  color:ccc3(0,0,0)
+											   fontsize:16
+													str:@"play sfx"] anchor_pt:ccp(0,0.5)]];
+	
+	TouchButton *cleardata = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.16 pcty:0.25]
+													  tex:[Resource get_tex:TEX_NMENU_ITEMS]
+												  texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
+													   cb:[Common cons_callback:self sel:@selector(clear_data)]];
+	[cleardata addChild:[Common cons_label_pos:[Common pct_of_obj:cleardata pctx:0.5 pcty:0.5]
+										 color:ccc3(0,0,0)
+									  fontsize:13
+										   str:@"Reset Data"]];
+	[settings_tab_items addChild:cleardata];
+	[settings_touches addObject:cleardata];
+	
+	
+	TouchButton *cloudup = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.575 pcty:0.675]
+													tex:[Resource get_tex:TEX_NMENU_ITEMS]
+												texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]
+													 cb:[Common cons_callback:self sel:@selector(cloud_save)]];
+	[cloudup addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"cloudup"]] pos:[Common pct_of_obj:cloudup pctx:0.5 pcty:0.5]]];
+	[settings_tab_items addChild:cloudup];
+	[settings_touches addObject:cloudup];
+	
+	
+	TouchButton *clouddown = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.575 pcty:0.3]
+													tex:[Resource get_tex:TEX_NMENU_ITEMS]
+												texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]
+													 cb:[Common cons_callback:self sel:@selector(cloud_load)]];
+	[clouddown addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"clouddown"]] pos:[Common pct_of_obj:cloudup pctx:0.5 pcty:0.5]]];
+	[settings_tab_items addChild:clouddown];
+	[settings_touches addObject:clouddown];
+	
+	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.675]
+												   color:ccc3(0,0,0)
+												fontsize:16
+													 str:@"cloud save"] anchor_pt:ccp(0,0.5)]];
+	
+	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.3]
+												   color:ccc3(0,0,0)
+												fontsize:16
+													 str:@"cloud load"] anchor_pt:ccp(0,0.5)]];
+	
+}
+
+-(void)cloud_save {
+	NSLog(@"cloud save");
+}
+
+-(void)cloud_load {
+	NSLog(@"cloud load");
+}
+
+-(void)toggle_play_bgm {
+	[AudioManager set_play_bgm:![AudioManager get_play_bgm]];
+	[AudioManager playbgm_imm:BGM_GROUP_MENU];
+	
+}
+
+-(void)toggle_play_sfx {
+	[AudioManager set_play_sfx:![AudioManager get_play_sfx]];
+	[AudioManager playsfx:SFX_MENU_UP];
+}
+
+-(void)clear_data {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
+													message:@""
+												   delegate:self
+										  cancelButtonTitle:@"Yes"
+										  otherButtonTitles:@"No",nil];
+	[alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) {
+		[DataStore reset_all];
+		[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_QUIT]];
+	}
+}
+
+-(void)update {
+	[tab_inventory update];
+	[tab_settings update];
+	if (settings_tab_items.visible) {
+		for (TouchButton *b in settings_touches) if ([b respondsToSelector:@selector(update)]) [b performSelector:@selector(update)];
+	}
 }
 
 -(void)update_invpane {
@@ -181,10 +342,43 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	} else if (e.type == GEventType_MENU_TICK) {
 		pane_anim_scale = pane_anim_scale - (pane_anim_scale-1)/3;
 		[mainslot setScale:pane_anim_scale];
+		[self update];
 		
 	} else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
 		[inventory_window setVisible:NO];
 	}
 }
+
+-(BOOL)window_open {
+	return inventory_window.visible;
+}
+
+-(void)touch_begin:(CGPoint)pt {
+	for (int i = tabs.count-1; i>=0; i--) {
+		TouchButton *b = tabs[i];
+		[b touch_begin:pt];
+	}
+	if (settings_tab_items.visible) {
+		for (int i = settings_touches.count-1; i>=0; i--) {
+			TouchButton *b = settings_touches[i];
+			[b touch_begin:pt];
+		}
+	}
+}
+-(void)touch_move:(CGPoint)pt{}
+-(void)touch_end:(CGPoint)pt{
+	for (int i = tabs.count-1; i>=0; i--) {
+		TouchButton *b = tabs[i];
+		[b touch_end:pt];
+	}
+	if (settings_tab_items.visible) {
+		for (int i = settings_touches.count-1; i>=0; i--) {
+			TouchButton *b = settings_touches[i];
+			[b touch_end:pt];
+		}
+	}
+}
+
+
 
 @end

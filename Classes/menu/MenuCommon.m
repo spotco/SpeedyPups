@@ -24,8 +24,12 @@
 	pt = [self convertToNodeSpace:pt];
 	CGRect hitrect = [self hit_rect_local];
 	if (CGRectContainsPoint(hitrect, pt)) {
-		[Common run_callback:cb];
+		[self on_touch];
 	}
+}
+
+-(void)on_touch {
+	[Common run_callback:cb];
 }
 
 -(void)touch_move:(CGPoint)pt{}
@@ -35,6 +39,50 @@
 	if (!self.visible) return CGRectZero;
 	CGRect hitrect = [self boundingBox];
 	hitrect.origin = CGPointZero;
+	return hitrect;
+}
+
+@end
+
+@implementation AnimatedTouchButton
+
++(AnimatedTouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb {
+	return [[AnimatedTouchButton node] cons_pt:pt tex:tex texrect:texrect cb:tcb];
+}
+
+-(id)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect cb:(CallBack *)tcb {
+	[super cons_pt:pt tex:tex texrect:texrect cb:tcb];
+	target_scale = 1;
+	return self;
+}
+
+
+-(void)update {
+	[self setScale:(target_scale-self.scale)/3.0+self.scale];
+}
+
+-(void)on_touch {
+	started_on = YES;
+	target_scale = 1.2;
+}
+
+-(void)touch_end:(CGPoint)pt {
+	pt = [self convertToNodeSpace:pt];
+	CGRect hitrect = [self hit_rect_local];
+	if (started_on && CGRectContainsPoint(hitrect, pt)) {
+		[super on_touch];
+		[self setScale:1.2];
+	}
+	started_on = NO;
+	target_scale = 1;
+}
+
+-(CGRect)hit_rect_local {
+	float sto_sc = [self scale];
+	[self setScale:1];
+	CGRect hitrect = [self boundingBox];
+	hitrect.origin = CGPointZero;
+	[self setScale:sto_sc];
 	return hitrect;
 }
 

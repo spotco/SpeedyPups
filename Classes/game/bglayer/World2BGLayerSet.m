@@ -13,7 +13,7 @@
 	starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
     [starsbg setOpacity:0];
 	time = [BGTimeManager cons];
-	clouds = [[CloudGenerator cons_texkey:TEX_BG2_CLOUDS_SS scaley:0.003] set_speedmult:0.3];
+	clouds = [[[CloudGenerator cons_texkey:TEX_BG2_CLOUDS_SS scaley:0.003] set_speedmult:0.3] set_generate_speed:140];
 	backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_BACKHILLS] scrollspd_x:0.005 scrollspd_y:0.003];
 	fronthills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_FRONTHILLS] scrollspd_x:0.009 scrollspd_y:0.003];
 	water = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG2_WATER] scrollspd_x:0.07 scrollspd_y:0.007];

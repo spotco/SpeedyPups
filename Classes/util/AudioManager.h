@@ -82,6 +82,9 @@ typedef enum {
 +(void)set_play_bgm:(BOOL)t;
 +(void)set_play_sfx:(BOOL)t;
 
++(BOOL)get_play_bgm;
++(BOOL)get_play_sfx;
+
 +(void)transition_mode1;
 +(void)transition_mode2;
 

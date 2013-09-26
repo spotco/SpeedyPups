@@ -81,6 +81,7 @@
 	texkey = TEX_CLOUD_SS;
 	scaley = 0.025;
 	speedmult = 1;
+	generatespeed = 50;
 }
 
 -(void)set_texkey:(NSString *)key {
@@ -89,6 +90,11 @@
 
 -(void)set_scaley:(float)sy {
 	scaley = sy;
+}
+
+-(CloudGenerator*)set_generate_speed:(int)spd {
+	generatespeed = spd;
+	return self;
 }
 
 -(CloudGenerator*)set_speedmult:(float)spd {
@@ -106,7 +112,7 @@
     
     if (nextct <= 0) {
         [self generate_cloud];
-        nextct = 50;
+        nextct = generatespeed;
     }
     nextct--;
     

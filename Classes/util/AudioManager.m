@@ -121,6 +121,14 @@ static BOOL playbgm = YES;
 	playsfx = t;
 }
 
++(BOOL)get_play_bgm {
+	return playbgm;
+}
+
++(BOOL)get_play_sfx {
+	return playsfx;
+}
+
 static BGM_GROUP curgroup;
 static float bgm_1_gain_tar;
 static float bgm_2_gain_tar;
@@ -146,7 +154,6 @@ static int transition_ct;
 
 +(void)playbgm_imm:(BGM_GROUP)tar {
 	if (playbgm == NO) return;
-	if (curgroup == tar) return;
 	
 	[bgm_1 stop];
 	[bgm_2 stop];
