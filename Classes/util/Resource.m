@@ -30,6 +30,15 @@ static NSMutableDictionary* loaded_textures;
 		TEX_LAB_WALL:@"lab_wall.png",
 		TEX_LAB_BG_LAYER:@"lab_bg_layer.png",
 		TEX_LAB_ROCK_PARTICLE:@"lab_rock_particle.png",
+		TEX_LAB_HANDRAIL:@"lab_handrail.png",
+  
+		TEX_LAB2_WATER_BACK: @"lab2_water_back.png",
+		TEX_LAB2_WATER_FRONT: @"lab2_water_front.png",
+		TEX_LAB2_DOCKS: @"lab2_docks.png",
+		TEX_LAB2_WINDOWWALL: @"lab2_windowwall.png",
+		TEX_LAB2_TANKER_BACK: @"lab2_tanker_back.png",
+		TEX_LAB2_TANKER_FRONT: @"lab2_tanker_front.png",
+  
 		TEX_CAVE_ROCKWALL_BASE:@"breakablewall_base.png",
 		TEX_CAVE_ROCKWALL_SECTION:@"breakablewall_body.png",
 		TEX_LAB_ROCKWALL_BASE:@"labbreakablewall_base.png",

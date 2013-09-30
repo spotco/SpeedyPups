@@ -44,6 +44,9 @@ static BOOL playbgm = YES;
 		],
 		enumkey(BGM_GROUP_WORLD2):@[
 			BGMUSIC_GAMELOOP2
+		],
+		enumkey(BGM_GROUP_CAPEGAME):@[
+			BGMUSIC_CAPEGAMELOOP
 		]
 	};
 	

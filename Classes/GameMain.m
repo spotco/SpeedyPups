@@ -11,7 +11,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"capegame_launcher"
 #define STARTING_LIVES 10
 
@@ -21,13 +21,14 @@
 #define DISPLAY_FPS NO
 
 /**
+ integrate handrail as linegameobject
+ animated loading screen
  make floatingwindow tabs classes
 	
-	-purchases tab
- implement cloudsaves
+-purchases tab
  implement level of the week
- 
  integrate IAP speedypups subscription
+ integrate ads
  
  -art ask for:
 	settings page -> map page navmenu icon and bg design
@@ -63,6 +64,11 @@ Stretch goals:
 
     if (RESET_STATS) [DataStore reset_all];
     [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
+	
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	
 	//[GameMain start_testlevel];
 	//[GameMain start_game_autolevel];

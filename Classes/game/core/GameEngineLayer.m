@@ -332,6 +332,8 @@
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
 			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
+			[AudioManager playbgm:BGM_GROUP_CAPEGAME];
+			[Player character_bark];
 			current_mode = GameEngineLayerMode_CAPEIN;
 			player.vy = 0;
 			player.rotation = 0;
@@ -355,11 +357,17 @@
 				)];
 				refresh_viewbox_cache = YES;
 				[self update_render];
+				do_runin_anim = YES;
 				
 			}
 		}
 		
 	} else if (current_mode == GameEngineLayerMode_CAPEIN) {
+		if (do_runin_anim) {
+			[self play_worldnum_bgm];
+			do_runin_anim = NO;
+		}
+		
 		[self incr_time:[Common get_dt_Scale]];
 		[player do_stand_anim];
 		[GamePhysicsImplementation player_move:player with_islands:islands];

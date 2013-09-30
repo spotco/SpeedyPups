@@ -4,6 +4,7 @@
 #import "World1BGLayerSet.h"
 #import "Lab1BGLayerSet.h"
 #import "World2BGLayerSet.h"
+#import "Lab2BGLayerSet.h"
 
 @implementation BGLayerSet
 -(void)set_scrollup_pct:(float)pct{}
@@ -61,7 +62,7 @@
 -(id) cons_with:(GameEngineLayer*)ref {
 	game_engine_layer = ref;
 	
-	bglayerset_world1 = [World1BGLayerSet cons];
+	bglayerset_world1 = [World1BGLayerSet cons]; 
 	[bglayerset_world1 setVisible:NO];
 	[self addChild:bglayerset_world1];
 	
@@ -73,6 +74,10 @@
 	[bglayerset_world2 setVisible:NO];
 	[self addChild:bglayerset_world2];
 	
+	bglayerset_lab2 = [Lab2BGLayerSet cons];
+	[bglayerset_lab2 setVisible:NO];
+	[self addChild:bglayerset_lab2];
+	
 	current_set = [self set_for_world:[game_engine_layer get_world_num]];
 	[current_set setVisible:YES];
 	
@@ -82,8 +87,10 @@
 -(BGLayerSet*)set_for_world:(WorldNum)worldnum {
 	if (worldnum == WorldNum_1) {
 		return bglayerset_world1;
+		
 	} else if (worldnum == WorldNum_2) {
 		return bglayerset_world2;
+		
 	} else {
 		return NULL;
 	}
@@ -92,6 +99,10 @@
 -(BGLayerSet*)set_for_lab:(LabNum)labnum {
 	if (labnum == LabNum_1) {
 		return bglayerset_lab1;
+		
+	} else if (labnum == LabNum_2) {
+		return bglayerset_lab2;
+	
 	} else {
 		return NULL;
 	}
@@ -137,7 +148,7 @@
     lasty = posy;
     
 	[current_set update:game_engine_layer curx:curx cury:cury];
-	for (BGLayerSet *b in @[bglayerset_world1,bglayerset_world2,bglayerset_lab1]) {
+	for (BGLayerSet *b in ALL_SETS) {
 		[b update_fadeout];
 	}
 }

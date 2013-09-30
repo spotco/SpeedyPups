@@ -28,6 +28,14 @@
 #define TEX_LAB_WALL @"labwall"
 #define TEX_LAB_BG_LAYER @"lab_bg_layer"
 #define TEX_LAB_ROCK_PARTICLE @"lab_rock_particle"
+#define TEX_LAB_HANDRAIL @"lab_handrail"
+
+#define TEX_LAB2_WATER_BACK @"lab2_water_back"
+#define TEX_LAB2_WATER_FRONT @"lab2_water_front"
+#define TEX_LAB2_DOCKS @"lab2_docks"
+#define TEX_LAB2_WINDOWWALL @"lab2_windowwall"
+#define TEX_LAB2_TANKER_BACK @"lab2_tanker_back"
+#define TEX_LAB2_TANKER_FRONT @"lab2_tanker_front"
 
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"

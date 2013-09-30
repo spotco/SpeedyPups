@@ -201,7 +201,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	[settings_tab_items addChild:cleardata];
 	[settings_touches addObject:cleardata];
 	
-	
+	/*
 	TouchButton *cloudup = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.575 pcty:0.675]
 													tex:[Resource get_tex:TEX_NMENU_ITEMS]
 												texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]
@@ -219,6 +219,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 	[settings_tab_items addChild:clouddown];
 	[settings_touches addObject:clouddown];
 	
+	
 	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.675]
 												   color:ccc3(0,0,0)
 												fontsize:16
@@ -228,9 +229,10 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 												   color:ccc3(0,0,0)
 												fontsize:16
 													 str:@"cloud load"] anchor_pt:ccp(0,0.5)]];
-	
+	*/
 }
 
+/*
 -(void)cloud_save {
 	NSLog(@"cloud save");
 }
@@ -238,6 +240,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 -(void)cloud_load {
 	NSLog(@"cloud load");
 }
+ */
 
 -(void)toggle_play_bgm {
 	[AudioManager set_play_bgm:![AudioManager get_play_bgm]];

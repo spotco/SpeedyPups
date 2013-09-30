@@ -321,6 +321,7 @@ static NSArray *lab_tutorial_levels;
 			cur_set = L_FREERUN_PROGRESS;
 		}
 		//return @"boss1_start";
+		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {

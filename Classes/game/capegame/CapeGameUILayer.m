@@ -47,8 +47,8 @@
 	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
 	
 	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
-	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.415] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
-	time_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.44] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
+	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:lives_disp_icon pctx:0.5 pcty:0.412] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	time_disp = [[Common cons_label_pos:[Common pct_of_obj:time_disp_icon pctx:0.5 pcty:0.44] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
 	
 	[bone_disp_icon addChild:bones_disp];
 	[lives_disp_icon addChild:lives_disp];
@@ -253,6 +253,7 @@
 }
 
 -(void)pause {
+	[AudioManager playsfx:SFX_MENU_UP];
 	[[CCDirector sharedDirector] pause];
 	[self set_curtain_animstart_positions];
 	[ingame_ui setVisible:NO];
@@ -263,6 +264,7 @@
 }
 
 -(void)retry {
+	[AudioManager playsfx:SFX_MENU_DOWN];
 	[[CCDirector sharedDirector] resume];
 	[update_timer invalidate];
 	[[CCDirector sharedDirector] popScene];
@@ -279,12 +281,14 @@
 }
 
 -(void)unpause {
+	[AudioManager playsfx:SFX_MENU_DOWN];
 	[[CCDirector sharedDirector] resume];
 	[ingame_ui setVisible:YES];
 	[pause_ui setVisible:NO];
 }
 
 -(void)exit_to_menu {
+	[AudioManager playsfx:SFX_MENU_DOWN];
 	[[CCDirector sharedDirector] resume];
 	[update_timer invalidate];
 	[[CCDirector sharedDirector] popScene];

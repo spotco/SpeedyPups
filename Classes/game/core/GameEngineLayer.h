@@ -46,12 +46,13 @@ typedef enum { //worlds are incremented by labentrances, only further created li
 } WorldNum;
 
 typedef enum { //labs incremented by labexits, keep these synchronized with worldnum
-	LabNum_1 = 1
+	LabNum_1 = 1,
+	LabNum_2 = 2
 } LabNum;
 
 //update when available
 #define MAX_WORLD WorldNum_2
-#define MAX_LAB LabNum_1
+#define MAX_LAB LabNum_2
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
     NSMutableArray *particles,*particles_tba;
