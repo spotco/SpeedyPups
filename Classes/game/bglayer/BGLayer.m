@@ -59,24 +59,30 @@
     return l;
 }
 
+-(void)bglayer_addChild:(CCNode*)node {
+	if ([GameMain GET_USE_BG]) {
+		[self addChild:node];
+	}
+}
+
 -(id) cons_with:(GameEngineLayer*)ref {
 	game_engine_layer = ref;
 	
 	bglayerset_world1 = [World1BGLayerSet cons]; 
 	[bglayerset_world1 setVisible:NO];
-	[self addChild:bglayerset_world1];
+	[self bglayer_addChild:bglayerset_world1];
 	
 	bglayerset_lab1 = [Lab1BGLayerSet cons];
 	[bglayerset_lab1 setVisible:NO];
-	[self addChild:bglayerset_lab1];
+	[self bglayer_addChild:bglayerset_lab1];
 	
 	bglayerset_world2 = [World2BGLayerSet cons];
 	[bglayerset_world2 setVisible:NO];
-	[self addChild:bglayerset_world2];
+	[self bglayer_addChild:bglayerset_world2];
 	
 	bglayerset_lab2 = [Lab2BGLayerSet cons];
 	[bglayerset_lab2 setVisible:NO];
-	[self addChild:bglayerset_lab2];
+	[self bglayer_addChild:bglayerset_lab2];
 	
 	current_set = [self set_for_world:[game_engine_layer get_world_num]];
 	[current_set setVisible:YES];

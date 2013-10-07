@@ -39,7 +39,8 @@ static NSOperationQueue *request_queue;
 }
 
 +(NSString*)unique_id {
-	return [[UIDevice currentDevice] uniqueIdentifier];
+	//return [[UIDevice currentDevice] uniqueIdentifier];
+	return NULL;
 }
 
 @end

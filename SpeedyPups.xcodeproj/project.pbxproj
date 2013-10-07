@@ -20,6 +20,10 @@
 		7E02222617F951E30083815C /* lab2_water_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222217F951E30083815C /* lab2_water_back.png */; };
 		7E02222717F951E30083815C /* lab2_water_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222317F951E30083815C /* lab2_water_front.png */; };
 		7E02222917F95D9C0083815C /* lab_handrail.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222817F95D9C0083815C /* lab_handrail.png */; };
+		7E071F2C180292B90003F8AA /* filler_chickennuggets.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F2B180292B90003F8AA /* filler_chickennuggets.map */; };
+		7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E071F2E180296E10003F8AA /* LabHandRail.m */; };
+		7E071F331802A24F0003F8AA /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F311802A24F0003F8AA /* loadinganim.plist */; };
+		7E071F341802A24F0003F8AA /* loadinganim.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F321802A24F0003F8AA /* loadinganim.png */; };
 		7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07524B17A5072B001FAE5F /* WeightedSorter.m */; };
 		7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524D17A5191A001FAE5F /* labintro_labexit.map */; };
 		7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524F17A51AD5001FAE5F /* boss1_start.map */; };
@@ -696,6 +700,11 @@
 		7E02222217F951E30083815C /* lab2_water_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_back.png; sourceTree = "<group>"; };
 		7E02222317F951E30083815C /* lab2_water_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_front.png; sourceTree = "<group>"; };
 		7E02222817F95D9C0083815C /* lab_handrail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab_handrail.png; sourceTree = "<group>"; };
+		7E071F2B180292B90003F8AA /* filler_chickennuggets.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_chickennuggets.map; sourceTree = "<group>"; };
+		7E071F2D180296E10003F8AA /* LabHandRail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabHandRail.h; sourceTree = "<group>"; };
+		7E071F2E180296E10003F8AA /* LabHandRail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabHandRail.m; sourceTree = "<group>"; };
+		7E071F311802A24F0003F8AA /* loadinganim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loadinganim.plist; sourceTree = "<group>"; };
+		7E071F321802A24F0003F8AA /* loadinganim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadinganim.png; sourceTree = "<group>"; };
 		7E07524A17A5072B001FAE5F /* WeightedSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightedSorter.h; sourceTree = "<group>"; };
 		7E07524B17A5072B001FAE5F /* WeightedSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightedSorter.m; sourceTree = "<group>"; };
 		7E07524D17A5191A001FAE5F /* labintro_labexit.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_labexit.map; path = levels/labintro_labexit.map; sourceTree = "<group>"; };
@@ -1593,6 +1602,15 @@
 			path = BG_lab2;
 			sourceTree = "<group>";
 		};
+		7E071F301802A24F0003F8AA /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				7E071F311802A24F0003F8AA /* loadinganim.plist */,
+				7E071F321802A24F0003F8AA /* loadinganim.png */,
+			);
+			path = loading;
+			sourceTree = "<group>";
+		};
 		7E0A787816ED57430026C418 /* nmenu_pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1869,6 +1887,7 @@
 				4512283117705E7F0088D298 /* filler_genome.map */,
 				45528CD61771A054002EF02E /* filler_manyopt.map */,
 				45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */,
+				7E071F2B180292B90003F8AA /* filler_chickennuggets.map */,
 			);
 			name = filler;
 			sourceTree = "<group>";
@@ -1965,6 +1984,7 @@
 		7EB8B1E016D9F8E600F58961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E071F301802A24F0003F8AA /* loading */,
 				7E49B1D517DA766600563243 /* sfx */,
 				7EA567F816FF8B200003F2A5 /* tutorial */,
 				7E98647D16E874CF00109092 /* nmenu */,
@@ -2658,6 +2678,8 @@
 				7EB8B3C416D9FC0900F58961 /* BirdFlock.m */,
 				7EB8B3CB16D9FC0900F58961 /* CaveWall.h */,
 				7EB8B3CC16D9FC0900F58961 /* CaveWall.m */,
+				7E071F2D180296E10003F8AA /* LabHandRail.h */,
+				7E071F2E180296E10003F8AA /* LabHandRail.m */,
 			);
 			name = detail;
 			sourceTree = "<group>";
@@ -3451,7 +3473,7 @@
 		DC0C49E8154AB4DD00B4B727 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = DC0C49EB154AB4DD00B4B727 /* Build configuration list for PBXProject "SpeedyPups" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3559,6 +3581,7 @@
 				7EB8B35716D9F8E700F58961 /* bird_ss.png in Resources */,
 				7EB8B35816D9F8E700F58961 /* speedup_ss.plist in Resources */,
 				7EB8B35916D9F8E700F58961 /* speedup_ss.png in Resources */,
+				7E071F341802A24F0003F8AA /* loadinganim.png in Resources */,
 				7EB8B35D16D9F8E700F58961 /* checkpoint1.png in Resources */,
 				7EB8B35E16D9F8E700F58961 /* checkpoint2.png in Resources */,
 				7EB8B36116D9F8E700F58961 /* copter_default.plist in Resources */,
@@ -3602,6 +3625,7 @@
 				7EA5680016FF8B200003F2A5 /* tut_anim_1.png in Resources */,
 				7EA5680116FF8B200003F2A5 /* tut_anim_2.plist in Resources */,
 				7EA5680216FF8B200003F2A5 /* tut_anim_2.png in Resources */,
+				7E071F2C180292B90003F8AA /* filler_chickennuggets.map in Resources */,
 				7EA5680316FF8B200003F2A5 /* tutorial_obj.plist in Resources */,
 				7EA5680416FF8B200003F2A5 /* tutorial_obj.png in Resources */,
 				7ED5B21E1700D86400B22CC4 /* blank.png in Resources */,
@@ -3753,6 +3777,7 @@
 				7E02222517F951E30083815C /* lab2_tanker_front.png in Resources */,
 				7E02222617F951E30083815C /* lab2_water_back.png in Resources */,
 				7E02222717F951E30083815C /* lab2_water_front.png in Resources */,
+				7E071F331802A24F0003F8AA /* loadinganim.plist in Resources */,
 				7E02222917F95D9C0083815C /* lab_handrail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3942,6 +3967,7 @@
 				7EE30D1E17E6D05E00DC2A21 /* CapeGameSpikeVine.m in Sources */,
 				7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */,
 				7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */,
+				7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */,
 				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
 				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
 				7E99416B17F1758300B363F3 /* WebRequest.m in Sources */,
@@ -4055,7 +4081,12 @@
 		DC0C4B7E154AB4DF00B4B727 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4065,10 +4096,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				SDKROOT = iphoneos6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4076,7 +4112,12 @@
 		DC0C4B7F154AB4DF00B4B727 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4084,10 +4125,14 @@
 					"NS_BLOCK_ASSERTIONS=1",
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				SDKROOT = iphoneos6.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -4097,8 +4142,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4112,8 +4157,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
+				PROVISIONING_PROFILE = "747C166B-140A-40F7-8815-4B8F52CD251F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747C166B-140A-40F7-8815-4B8F52CD251F";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4124,7 +4169,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4138,8 +4183,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7EFCE9-ADF2-4D70-B37E-E5CB2A2BD61C";
+				PROVISIONING_PROFILE = "747C166B-140A-40F7-8815-4B8F52CD251F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747C166B-140A-40F7-8815-4B8F52CD251F";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
