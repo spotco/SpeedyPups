@@ -40,16 +40,17 @@
 }
 
 -(void)draw {
+	if (!do_render) return;
 	[super draw];
 	[Common draw_renderobj:center n_vtx:4];
 }
 
 -(int)get_render_ord {
-	return [GameRenderImplementation GET_RENDER_ABOVE_FG_ORD];
+	return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD];
 }
 
 -(HitRect)get_hit_rect {
-	return [Common hitrect_cons_x1:position_.x y1:position_.y wid:dir_vec.x hei:dir_vec.y];
+	return [Common hitrect_cons_x1:position_.x+dir_vec.x/2 y1:position_.y+dir_vec.x/2 wid:300 hei:dir_vec.y+300];
 }
 
 @end

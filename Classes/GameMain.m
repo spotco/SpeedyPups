@@ -12,7 +12,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"lab_muhfiller"
 #define STARTING_LIVES 10
 
 #define SET_CONSTANT_DT NO
@@ -21,9 +21,6 @@
 #define DISPLAY_FPS NO
 
 /**
- add handrail to leveleditor
- add handrails to lab levels
- 
  animated loading screen
  worldselect arrow clickable
  make floatingwindow tabs classes

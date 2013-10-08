@@ -75,7 +75,8 @@ static NSArray *lab_tutorial_levels;
 			@"filler_genome" : @1,
 			@"filler_manyopt" : @1,
 			@"filler_cuhrazyloop" : @1,
-      @"filler_chickennuggets" : @2
+			@"filler_chickennuggets" : @2,
+			@"filler_skippingstones" : @2
 		},
 		L_EASY: @{
 			@"easy_puddles" : @1,
