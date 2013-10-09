@@ -16,7 +16,7 @@
 #define TESTLEVEL @"lab_muhfiller"
 
 #define RESET_STATS NO
-#define STARTING_LIVES 1
+#define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 

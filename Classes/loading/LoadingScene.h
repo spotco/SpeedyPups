@@ -7,7 +7,7 @@
 	CallBack *on_finish;
 	NSMutableArray *loading_letters;
 	
-	CCTexture2D *letters_tex, *paw_tex;
+	CCTexture2D *letters_tex, *paw_tex, *bg_tex;
 	
 	int arr_anim_i;
 	int anim_ct;

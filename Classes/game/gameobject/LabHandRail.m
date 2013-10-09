@@ -40,7 +40,7 @@
 }
 
 -(void)draw {
-	//if (!do_render) return;
+	if (!do_render) return;
 	[super draw];
 	[Common draw_renderobj:center n_vtx:4];
 }
@@ -50,7 +50,12 @@
 }
 
 -(HitRect)get_hit_rect {
-	return [Common hitrect_cons_x1:position_.x+dir_vec.x/2 y1:position_.y+dir_vec.x/2 wid:300 hei:dir_vec.y+300];
+	Vec3D normal_vec = [VecLib scale:[VecLib normalize:[VecLib cross:[VecLib Z_VEC] with:dir_vec]] by:[VecLib length:dir_vec]];
+	float xmin = MIN(position_.x, MIN(position_.x+normal_vec.x, MIN(position_.x+dir_vec.x, position_.x+normal_vec.x+dir_vec.x)));
+	float xmax = MAX(position_.x, MAX(position_.x+normal_vec.x, MAX(position_.x+dir_vec.x, position_.x+normal_vec.x+dir_vec.x)));
+	float ymin = MIN(position_.y, MIN(position_.y+normal_vec.y, MIN(position_.y+dir_vec.y, position_.y+normal_vec.y+dir_vec.y)));
+	float ymax = MAX(position_.y, MAX(position_.y+normal_vec.y, MAX(position_.y+dir_vec.y, position_.y+normal_vec.y+dir_vec.y)));
+	return [Common hitrect_cons_x1:xmin y1:ymin x2:xmax y2:ymax];
 }
 
 @end

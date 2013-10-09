@@ -144,7 +144,7 @@ static BGM_GROUP curgroup;
 static float bgm_1_gain_tar;
 static float bgm_2_gain_tar;
 
-static BGM_GROUP transition_target;
+//static BGM_GROUP transition_target;
 
 +(BGM_GROUP) get_cur_group { return curgroup; }
 
@@ -166,6 +166,7 @@ static BGM_GROUP transition_target;
  */
 
 +(void)playbgm_imm:(BGM_GROUP)tar {
+	[self todos_remove_all];
 	if (playbgm == NO) return;
 	
 	[bgm_1 stop];

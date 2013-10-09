@@ -29,17 +29,34 @@
 
 -(id)init {
 	self = [super init];
-	[self addChild:[CCLayerColor layerWithColor:ccc4(216, 166, 122, 255)]];
+	//[self addChild:[CCLayerColor layerWithColor:ccc4(216, 166, 122, 255)]];
+	
+	NSString *splashtex_str;
+	if ([Common fuzzyeq_a:[Common scale_from_default].x b:1 delta:0.05]) {
+		splashtex_str = @"Default.png";
+	} else {
+		splashtex_str = @"Default-568h@2x.png";
+	}
+	bg_tex = [[CCTextureCache sharedTextureCache] addImage:splashtex_str];
+	CCSprite *bg = [CCSprite spriteWithTexture:bg_tex];
+	[bg setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];
+	[bg setRotation:90];
+	[bg setScaleX:[Common SCREEN].height/bg.boundingBox.size.height];
+	[bg setScaleY:[Common SCREEN].width/bg.boundingBox.size.width];
+	
+	[self addChild:bg];
+	
 	
 	paw_tex = [[CCTextureCache sharedTextureCache] addImage:LOADING_ICON];
 	letters_tex = [[CCTextureCache sharedTextureCache] addImage:LOADING_IMG];
 	
+	CGPoint wordanchor = ccp([Common SCREEN].width-190-40,[Common SCREEN].height-40);
+	
 	CCSprite *icon = [CCSprite spriteWithTexture:paw_tex];
 	[icon setAnchorPoint:ccp(0,0)];
-	[icon setPosition:ccp(20,20)];
+	[icon setPosition:CGPointAdd(wordanchor, ccp(-20,-20))];
 	[self addChild:icon];
 	
-	CGPoint wordanchor = ccp(40,40);
 	loading_letters = [NSMutableArray array];
 	[loading_letters addObject:[self letter:@"L" pos:CGPointAdd(ccp(55,0), wordanchor)]];
 	[loading_letters addObject:[self letter:@"O" pos:CGPointAdd(ccp(72,0), wordanchor)]];

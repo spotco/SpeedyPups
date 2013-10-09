@@ -208,8 +208,8 @@
 	neupos.x = clampf(neupos.x, clippedholder_x_min, clippedholder_x_max);
 	[clipper_anchor setPosition:neupos];
 	vx *= 0.8;
-	[scroll_right_arrow setVisible:neupos.x != clippedholder_x_min];
-	[scroll_left_arrow setVisible:neupos.x != clippedholder_x_max];
+	[scroll_right_arrow setVisible:neupos.x > clippedholder_x_min];
+	[scroll_left_arrow setVisible:neupos.x < clippedholder_x_max];
 	
 	selector_icon.position = ccp((selector_icon_target_pos.x-selector_icon.position.x)/5.0+selector_icon.position.x,selector_icon.position.y);
 	
