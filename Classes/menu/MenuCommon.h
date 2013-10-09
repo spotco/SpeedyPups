@@ -15,6 +15,15 @@
 @property(readwrite,strong) CallBack* cb;
 @end
 
+@interface HoldTouchButton : TouchButton {
+	float zoom_scale;
+	float default_scale_x, default_scale_y;
+}
++(HoldTouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect;
+-(void)update;
+@property(readwrite,assign) BOOL pressed;
+@end
+
 @interface AnimatedTouchButton : TouchButton {
 	float target_scale;
 	BOOL started_on;

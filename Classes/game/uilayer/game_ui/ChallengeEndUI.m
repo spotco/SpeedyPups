@@ -149,17 +149,18 @@
 	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
 }
 
+
+
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
-		[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
 		[self set_curtain_anim_positions];
-		[AudioManager mute_music_for:13];
+		[AudioManager bgm_stop];
 		if (sto_passed) {
 			[Player character_bark];
-			[AudioManager playsfx:SFX_FANFARE_WIN];
+			[AudioManager playsfx:SFX_FANFARE_WIN after_do:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(play_jingle)]];
 		} else {
 			[AudioManager playsfx:SFX_WHIMPER];
-			[AudioManager playsfx:SFX_FANFARE_LOSE];
+			[AudioManager playsfx:SFX_FANFARE_LOSE after_do:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(play_jingle)]];
 		}
 	}
 	[super setVisible:visible];

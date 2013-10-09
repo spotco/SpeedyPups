@@ -1,4 +1,4 @@
-#import "NMenuSettingsPage.h"
+#import "NMenuWorldSelectPage.h"
 #import "MenuCommon.h"
 #import "GameMain.h"
 #import "FreeRunStartAtManager.h"
@@ -79,10 +79,10 @@
 
 @end
 
-@implementation NMenuSettingsPage
+@implementation NMenuWorldSelectPage
 
-+(NMenuSettingsPage*)cons {
-    return [NMenuSettingsPage node];
++(NMenuWorldSelectPage*)cons {
+    return [NMenuWorldSelectPage node];
 }
 
 -(id)init {
@@ -139,16 +139,21 @@
 	neupos.x = clampf(neupos.x, clippedholder_x_min, clippedholder_x_max);
 	[clipper_anchor setPosition:neupos];
 	
-	scroll_right_arrow = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"settingspage_scrollright"]]
-						  pos:[Common screen_pctwid:0.83 pcthei:0.615]];
+	scroll_right_arrow = [HoldTouchButton cons_pt:[Common screen_pctwid:0.83 pcthei:0.615]
+											 tex:[Resource get_tex:TEX_NMENU_ITEMS]
+										 texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"settingspage_scrollright"]];
+	[scroll_right_arrow setScaleX:1.5];
 	[self addChild:scroll_right_arrow];
+	[touches addObject:scroll_right_arrow];
 	
-	scroll_left_arrow = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-												 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"settingspage_scrollright"]]
-						  pos:[Common screen_pctwid:0.17 pcthei:0.615]];
-	[scroll_left_arrow setScaleX:-1];
+	scroll_left_arrow = [HoldTouchButton cons_pt:[Common screen_pctwid:0.17 pcthei:0.615]
+											 tex:[Resource get_tex:TEX_NMENU_ITEMS]
+										 texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"settingspage_scrollright"]];
+	[scroll_left_arrow setScaleX:-1.5];
 	[self addChild:scroll_left_arrow];
+	[touches addObject:scroll_left_arrow];
+	
+	
 	
     [self addChild:[MenuCommon cons_common_nav_menu]];
 	
@@ -181,7 +186,9 @@
 -(void)setVisible:(BOOL)visible {
 	if (visible) {
 		for (MapIconTouchButton *b in touches) {
-			[b set_icon_and_text];
+			if ([b respondsToSelector:@selector(set_icon_and_text)]) {
+				[b set_icon_and_text];
+			}
 		}
 	}
 	[super setVisible:visible];
@@ -189,7 +196,15 @@
 
 -(void)update {
 	if (!visible_) return;
-	CGPoint neupos = CGPointAdd(ccp(vx,0), clipper_anchor.position);
+	CGPoint neupos;
+	if (scroll_left_arrow.pressed) {
+		neupos = CGPointAdd(ccp(7.5,0), clipper_anchor.position);
+	} else if (scroll_right_arrow.pressed) {
+		neupos = CGPointAdd(ccp(-7.5,0), clipper_anchor.position);
+	} else {
+		neupos = CGPointAdd(ccp(vx,0), clipper_anchor.position);
+	}
+	
 	neupos.x = clampf(neupos.x, clippedholder_x_min, clippedholder_x_max);
 	[clipper_anchor setPosition:neupos];
 	vx *= 0.8;
@@ -199,14 +214,22 @@
 	selector_icon.position = ccp((selector_icon_target_pos.x-selector_icon.position.x)/5.0+selector_icon.position.x,selector_icon.position.y);
 	
 	for (MapIconTouchButton *btn in touches) {
-		[btn update];
+		if ([btn respondsToSelector:@selector(update)]) {
+			[btn update];
+		}
 	}
+	
+
+	
 }
 
 -(void)touch_begin:(CGPoint)pt {	
 	is_scroll = YES;
 	last_scroll_pt = pt;
 	scroll_move_ct = 0;
+	for (TouchButton *b in touches) {
+		if ([[b class] isSubclassOfClass:[HoldTouchButton class]]) [b touch_begin:pt];
+	}
 }
 
 -(void)touch_move:(CGPoint)pt {
@@ -220,6 +243,10 @@
 	av /= MAX(1,8.0-scroll_move_ct);
 	vx += sign * av;
 	scroll_move_ct++;
+	
+	for (TouchButton *b in touches) {
+		if ([[b class] isSubclassOfClass:[HoldTouchButton class]]) [b touch_move:pt];
+	}
 }
 
 -(void)touch_end:(CGPoint)pt {
@@ -231,6 +258,10 @@
 		}
 	}
 	is_scroll = NO;
+	
+	for (TouchButton *b in touches) {
+		if ([[b class] isSubclassOfClass:[HoldTouchButton class]]) [b touch_end:pt];
+	}
 }
 
 -(void)dealloc {

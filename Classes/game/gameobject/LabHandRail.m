@@ -40,7 +40,7 @@
 }
 
 -(void)draw {
-	if (!do_render) return;
+	//if (!do_render) return;
 	[super draw];
 	[Common draw_renderobj:center n_vtx:4];
 }

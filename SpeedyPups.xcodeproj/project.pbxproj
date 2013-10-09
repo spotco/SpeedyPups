@@ -22,7 +22,6 @@
 		7E02222917F95D9C0083815C /* lab_handrail.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222817F95D9C0083815C /* lab_handrail.png */; };
 		7E071F2C180292B90003F8AA /* filler_chickennuggets.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F2B180292B90003F8AA /* filler_chickennuggets.map */; };
 		7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E071F2E180296E10003F8AA /* LabHandRail.m */; };
-		7E071F331802A24F0003F8AA /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F311802A24F0003F8AA /* loadinganim.plist */; };
 		7E071F341802A24F0003F8AA /* loadinganim.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F321802A24F0003F8AA /* loadinganim.png */; };
 		7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07524B17A5072B001FAE5F /* WeightedSorter.m */; };
 		7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524D17A5191A001FAE5F /* labintro_labexit.map */; };
@@ -30,7 +29,7 @@
 		7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */; };
 		7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787A16ED57880026C418 /* NMenuPlayPage.m */; };
 		7E0A787E16ED5DEC0026C418 /* MenuCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787D16ED5DEC0026C418 /* MenuCommon.m */; };
-		7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */; };
+		7E0A788116ED65BB0026C418 /* NMenuWorldSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788016ED65BB0026C418 /* NMenuWorldSelectPage.m */; };
 		7E0A788516ED6BD80026C418 /* Flowers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788416ED6BD80026C418 /* Flowers.m */; };
 		7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */; };
 		7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788D16ED7AD60026C418 /* Shopkeeper.m */; };
@@ -645,6 +644,9 @@
 		7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */; };
 		7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33917D90A2B0032CE7D /* particles.plist */; };
 		7EEAC33C17D90A2B0032CE7D /* particles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33A17D90A2B0032CE7D /* particles.png */; };
+		7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE5B531804CA8D00A4A64F /* LoadingScene.m */; };
+		7EEE5B561804CE3400A4A64F /* load_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B551804CE3400A4A64F /* load_icon.png */; };
+		7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B571804CEF100A4A64F /* loadinganim.plist */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
 		7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE955B1776F98500474FD3 /* RocketWall.m */; };
 		7EF02D1F17856B6200C2DD50 /* lab_tube.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D1E17856B6200C2DD50 /* lab_tube.map */; };
@@ -704,7 +706,6 @@
 		7E071F2B180292B90003F8AA /* filler_chickennuggets.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_chickennuggets.map; sourceTree = "<group>"; };
 		7E071F2D180296E10003F8AA /* LabHandRail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabHandRail.h; sourceTree = "<group>"; };
 		7E071F2E180296E10003F8AA /* LabHandRail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabHandRail.m; sourceTree = "<group>"; };
-		7E071F311802A24F0003F8AA /* loadinganim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loadinganim.plist; sourceTree = "<group>"; };
 		7E071F321802A24F0003F8AA /* loadinganim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadinganim.png; sourceTree = "<group>"; };
 		7E07524A17A5072B001FAE5F /* WeightedSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightedSorter.h; sourceTree = "<group>"; };
 		7E07524B17A5072B001FAE5F /* WeightedSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightedSorter.m; sourceTree = "<group>"; };
@@ -716,8 +717,8 @@
 		7E0A787A16ED57880026C418 /* NMenuPlayPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuPlayPage.m; path = nmenu_pages/NMenuPlayPage.m; sourceTree = "<group>"; };
 		7E0A787C16ED5DEB0026C418 /* MenuCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCommon.h; sourceTree = "<group>"; };
 		7E0A787D16ED5DEC0026C418 /* MenuCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCommon.m; sourceTree = "<group>"; };
-		7E0A787F16ED65BB0026C418 /* NMenuSettingsPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuSettingsPage.h; path = nmenu_pages/NMenuSettingsPage.h; sourceTree = "<group>"; };
-		7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuSettingsPage.m; path = nmenu_pages/NMenuSettingsPage.m; sourceTree = "<group>"; };
+		7E0A787F16ED65BB0026C418 /* NMenuWorldSelectPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuWorldSelectPage.h; path = nmenu_pages/NMenuWorldSelectPage.h; sourceTree = "<group>"; };
+		7E0A788016ED65BB0026C418 /* NMenuWorldSelectPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NMenuWorldSelectPage.m; path = nmenu_pages/NMenuWorldSelectPage.m; sourceTree = "<group>"; };
 		7E0A788316ED6BD80026C418 /* Flowers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flowers.h; path = details/Flowers.h; sourceTree = "<group>"; };
 		7E0A788416ED6BD80026C418 /* Flowers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flowers.m; path = details/Flowers.m; sourceTree = "<group>"; };
 		7E0A788616ED74D30026C418 /* NMenuCharSelectPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NMenuCharSelectPage.h; path = nmenu_pages/NMenuCharSelectPage.h; sourceTree = "<group>"; };
@@ -1516,6 +1517,10 @@
 		7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopListTouchButton.m; sourceTree = "<group>"; };
 		7EEAC33917D90A2B0032CE7D /* particles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles.plist; sourceTree = "<group>"; };
 		7EEAC33A17D90A2B0032CE7D /* particles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles.png; sourceTree = "<group>"; };
+		7EEE5B521804CA8D00A4A64F /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = loading/LoadingScene.h; sourceTree = "<group>"; };
+		7EEE5B531804CA8D00A4A64F /* LoadingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingScene.m; path = loading/LoadingScene.m; sourceTree = "<group>"; };
+		7EEE5B551804CE3400A4A64F /* load_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_icon.png; sourceTree = "<group>"; };
+		7EEE5B571804CEF100A4A64F /* loadinganim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loadinganim.plist; sourceTree = "<group>"; };
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
 		7EEE955A1776F98500474FD3 /* RocketWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketWall.h; sourceTree = "<group>"; };
 		7EEE955B1776F98500474FD3 /* RocketWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketWall.m; sourceTree = "<group>"; };
@@ -1607,7 +1612,8 @@
 		7E071F301802A24F0003F8AA /* loading */ = {
 			isa = PBXGroup;
 			children = (
-				7E071F311802A24F0003F8AA /* loadinganim.plist */,
+				7EEE5B551804CE3400A4A64F /* load_icon.png */,
+				7EEE5B571804CEF100A4A64F /* loadinganim.plist */,
 				7E071F321802A24F0003F8AA /* loadinganim.png */,
 			);
 			path = loading;
@@ -1620,8 +1626,8 @@
 				7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */,
 				7E0A787916ED57880026C418 /* NMenuPlayPage.h */,
 				7E0A787A16ED57880026C418 /* NMenuPlayPage.m */,
-				7E0A787F16ED65BB0026C418 /* NMenuSettingsPage.h */,
-				7E0A788016ED65BB0026C418 /* NMenuSettingsPage.m */,
+				7E0A787F16ED65BB0026C418 /* NMenuWorldSelectPage.h */,
+				7E0A788016ED65BB0026C418 /* NMenuWorldSelectPage.m */,
 				7E0A788616ED74D30026C418 /* NMenuCharSelectPage.h */,
 				7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */,
 				7E13D7F217B83A75003F723F /* NMenuTabShopPage.h */,
@@ -2382,6 +2388,7 @@
 		7EB8B3AC16D9FC0800F58961 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7EEE5B511804CA6700A4A64F /* loading */,
 				7ECADDCB17646AF00032A1E6 /* ObjectAL (iOS) */,
 				7EB8B45116D9FC0900F58961 /* GameMain.h */,
 				7EB8B45216D9FC0900F58961 /* GameMain.m */,
@@ -3238,6 +3245,15 @@
 			name = capegameobject;
 			sourceTree = "<group>";
 		};
+		7EEE5B511804CA6700A4A64F /* loading */ = {
+			isa = PBXGroup;
+			children = (
+				7EEE5B521804CA8D00A4A64F /* LoadingScene.h */,
+				7EEE5B531804CA8D00A4A64F /* LoadingScene.m */,
+			);
+			name = loading;
+			sourceTree = "<group>";
+		};
 		7EF8A65B16D9BA5C009A1FC5 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3617,6 +3633,7 @@
 				7E269C6116DA0000005F446C /* Icon.png in Resources */,
 				7E269C6816DA00E4005F446C /* fps_images.png in Resources */,
 				7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */,
+				7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */,
 				7E269C6A16DA00EB005F446C /* Default.png in Resources */,
 				7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */,
 				7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */,
@@ -3729,6 +3746,7 @@
 				7EE3C4AF17DA7C0C00DCAF76 /* sfx_copter_flyby.wav in Resources */,
 				7EE3C4B017DA7C0C00DCAF76 /* sfx_electric.wav in Resources */,
 				7EE3C4B117DA7C0C00DCAF76 /* sfx_explosion.wav in Resources */,
+				7EEE5B561804CE3400A4A64F /* load_icon.png in Resources */,
 				7EE3C4B217DA7C0C00DCAF76 /* sfx_go.wav in Resources */,
 				7EE3C4B317DA7C0C00DCAF76 /* sfx_goal.wav in Resources */,
 				7EE3C4B417DA7C0C00DCAF76 /* sfx_hit.wav in Resources */,
@@ -3781,7 +3799,6 @@
 				7E02222517F951E30083815C /* lab2_tanker_front.png in Resources */,
 				7E02222617F951E30083815C /* lab2_water_back.png in Resources */,
 				7E02222717F951E30083815C /* lab2_water_front.png in Resources */,
-				7E071F331802A24F0003F8AA /* loadinganim.plist in Resources */,
 				7E02222917F95D9C0083815C /* lab_handrail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3887,7 +3904,7 @@
 				7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */,
 				7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */,
 				7E0A787E16ED5DEC0026C418 /* MenuCommon.m in Sources */,
-				7E0A788116ED65BB0026C418 /* NMenuSettingsPage.m in Sources */,
+				7E0A788116ED65BB0026C418 /* NMenuWorldSelectPage.m in Sources */,
 				7E0A788516ED6BD80026C418 /* Flowers.m in Sources */,
 				7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */,
 				7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */,
@@ -3931,6 +3948,7 @@
 				7ECADE1817646AF00032A1E6 /* ALCaptureDevice.m in Sources */,
 				7ECADE1917646AF00032A1E6 /* ALChannelSource.m in Sources */,
 				7ECADE1A17646AF00032A1E6 /* ALContext.m in Sources */,
+				7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */,
 				7ECADE1B17646AF00032A1E6 /* ALDevice.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
 				7ECADE1D17646AF00032A1E6 /* ALSoundSourcePool.m in Sources */,

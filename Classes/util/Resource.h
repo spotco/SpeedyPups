@@ -2,6 +2,7 @@
 
 @interface Resource : NSObject
 
++(void)load_all;
 +(CCTexture2D*)get_tex:(NSString*)key;
 +(void)unload_textures;
 

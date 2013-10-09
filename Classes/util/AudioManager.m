@@ -1,6 +1,7 @@
 #import "AudioManager.h"
 #import "ObjectAL.h"
 #import "Common.h"
+#import "BGTimeManager.h"
 
 @implementation AudioManager
 
@@ -24,6 +25,11 @@ static BOOL playbgm = YES;
 	[OALAudioSession sharedInstance].honorSilentSwitch = YES;
 	channel = [ALChannelSource channelWithSources:32];
 	
+	todos = [NSMutableDictionary dictionary];
+}
+	
+	
++(void)begin_load {
 	#define enumkey(x) [NSNumber numberWithInt:x]
 	bgm_groups = @{
 		enumkey(BGM_GROUP_WORLD1):@[
@@ -108,8 +114,10 @@ static BOOL playbgm = YES;
 		if (val.count >= 1) [bgm_1 preloadFile:val[0]];
 		if (val.count >= 2) [bgm_2 preloadFile:val[1]];
 	}
-	
-	[NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(update) userInfo:nil repeats:YES];
+}
+
++(void)schedule_update {
+	[[CCScheduler sharedScheduler] scheduleSelector:@selector(update) forTarget:self interval:0.2 paused:NO];
 }
 
 +(void)set_play_bgm:(BOOL)t {
@@ -137,10 +145,11 @@ static float bgm_1_gain_tar;
 static float bgm_2_gain_tar;
 
 static BGM_GROUP transition_target;
-static int transition_ct;
 
 +(BGM_GROUP) get_cur_group { return curgroup; }
 
+//im pretty sure this is broken lol
+/*
 +(void)playbgm:(BGM_GROUP)tar {
 	if (playbgm == NO) return;
 	if (curgroup == tar) return;
@@ -154,6 +163,7 @@ static int transition_ct;
 		transition_ct = 10;
 	}
 }
+ */
 
 +(void)playbgm_imm:(BGM_GROUP)tar {
 	if (playbgm == NO) return;
@@ -170,6 +180,11 @@ static int transition_ct;
 	NSArray *val = bgm_groups[enumkey(tar)];
 	if (val.count >= 1) [bgm_1 playFile:val[0] loops:-1];
 	if (val.count >= 2) [bgm_2 playFile:val[1] loops:-1];
+}
+
++(void)bgm_stop {
+	[bgm_1 stop];
+	[bgm_2 stop];
 }
 
 +(void)transition_mode1 {
@@ -198,6 +213,14 @@ static int transition_ct;
 	if (sfx_buffers[tar]) [channel play:sfx_buffers[tar]];
 }
 
+static bool todos_remove_all = NO;
+static float audiomanager_time = 0;
+static NSMutableDictionary *todos;
++(void)playsfx:(NSString*)tar after_do:(CallBack*)cb {
+	[self playsfx:tar];
+	todos[[NSNumber numberWithFloat:audiomanager_time+[(ALBuffer*)sfx_buffers[tar] duration]]] = cb;
+}
+
 static int mute_music_ct = 0;
 static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
 +(void)mute_music_for:(int)ct {
@@ -207,6 +230,20 @@ static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
 }
 
 +(void)update {
+	if (todos_remove_all) {
+		[todos removeAllObjects];
+		todos_remove_all = NO;
+	}
+	
+	audiomanager_time += 0.2;
+	for (NSNumber *time in [todos keyEnumerator]) {
+		if (time.doubleValue <= audiomanager_time) {
+			CallBack *cb = todos[time];
+			[Common run_callback:cb];
+			[todos removeObjectForKey:time];
+		}
+	}
+	
 	if (mute_music_ct > 0) {
 		mute_music_ct--;
 		if (mute_music_ct > 0) {
@@ -218,36 +255,37 @@ static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
 		}
 	}
 	
-	if (transition_ct > 0) {
-		float pct = ((float)transition_ct)/10.0f;
-		if ([bgm_1 gain] != 0) {
-			[bgm_1 setGain:pct];
-		} else {
-			if ([bgm_2 gain] != 0) {
-				[bgm_2 setGain:pct];
-			}
-		}
-		transition_ct--;
-		if (transition_ct == 0) {
-			[self playbgm_imm:transition_target];
-		}
-		
-		
+	if (ABS([bgm_1 gain]-bgm_1_gain_tar) >= 0.01) {
+		float sign = [Common sig:bgm_1_gain_tar-[bgm_1 gain]];
+		[bgm_1 setGain:[bgm_1 gain] + sign*0.1];
 	} else {
-		if (ABS([bgm_1 gain]-bgm_1_gain_tar) >= 0.01) {
-			float sign = [Common sig:bgm_1_gain_tar-[bgm_1 gain]];
-			[bgm_1 setGain:[bgm_1 gain] + sign*0.1];
-		} else {
-			[bgm_1 setGain:bgm_1_gain_tar];
-		}
-		
-		if (ABS([bgm_2 gain]-bgm_2_gain_tar) >= 0.01) {
-			float sign = [Common sig:bgm_2_gain_tar-[bgm_2 gain]];
-			[bgm_2 setGain:[bgm_2 gain] + sign*0.1];
-		} else {
-			[bgm_2 setGain:bgm_2_gain_tar];
-		}
-		
+		[bgm_1 setGain:bgm_1_gain_tar];
+	}
+	
+	if (ABS([bgm_2 gain]-bgm_2_gain_tar) >= 0.01) {
+		float sign = [Common sig:bgm_2_gain_tar-[bgm_2 gain]];
+		[bgm_2 setGain:[bgm_2 gain] + sign*0.1];
+	} else {
+		[bgm_2 setGain:bgm_2_gain_tar];
+	}
+	
+}
+
+
++(void)play_jingle{ [AudioManager playbgm_imm:BGM_GROUP_JINGLE]; }
+
++(void)todos_remove_all {
+	todos_remove_all = YES;
+}
+
+static BGM_GROUP prev_group;
++(void)sto_prev_group {
+	prev_group = [self get_cur_group];
+}
++(void)play_prev_group {
+	[self playbgm_imm:prev_group];
+	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
+		[AudioManager transition_mode2];
 	}
 }
 

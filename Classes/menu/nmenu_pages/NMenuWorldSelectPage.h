@@ -1,9 +1,11 @@
 #import "CCSprite.h"
 #import "MainMenuLayer.h"
 
-@interface NMenuSettingsPage : NMenuPage <GEventListener> {
+@class HoldTouchButton;
+
+@interface NMenuWorldSelectPage : NMenuPage <GEventListener> {
 	CCSprite *clipper_anchor;
-	CCSprite *scroll_left_arrow, *scroll_right_arrow;
+	HoldTouchButton *scroll_left_arrow, *scroll_right_arrow;
 	CCSprite *selector_icon;
 	
 	CGPoint selector_icon_target_pos;
@@ -17,6 +19,6 @@
 
 }
 
-+(NMenuSettingsPage*)cons;
++(NMenuWorldSelectPage*)cons;
 
 @end

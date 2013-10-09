@@ -122,15 +122,12 @@
 	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
 }
 
-
-static BGM_GROUP prev_group;
-
 -(void)start_countdown:(int)cost {
 	
-	prev_group = [AudioManager get_cur_group];
-	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
-	[AudioManager mute_music_for:13];
-	[AudioManager playsfx:SFX_FANFARE_LOSE];
+	[AudioManager sto_prev_group];
+	[AudioManager bgm_stop];
+	[AudioManager playsfx:SFX_FANFARE_LOSE after_do:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(play_jingle)]];
+	
 	
 	[self set_curtain_animstart_positions];
     countdown_ct = 10;
@@ -204,6 +201,7 @@ static BGM_GROUP prev_group;
 
 -(void)continue_yes {
     if ([UserInventory get_current_bones] >= continue_cost) {
+		[AudioManager todos_remove_all];
 		[countdown_disp setVisible:NO];
 		[UserInventory add_bones:-continue_cost];
 		countdown_ct = 1; //works as transfer rate now
@@ -310,8 +308,10 @@ static BGM_GROUP prev_group;
 		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
 		[Player character_bark];
 		curmode = AskContinueUI_YES_RUNOUT;
-		[AudioManager mute_music_for:13];
-		[AudioManager playsfx:SFX_FANFARE_WIN];
+		
+		[AudioManager bgm_stop];
+		[AudioManager playsfx:SFX_FANFARE_WIN after_do:[Common cons_callback:(NSObject*)[AudioManager class] sel:@selector(play_prev_group)]];
+		
 		
 	}
 }
@@ -321,7 +321,7 @@ static BGM_GROUP prev_group;
 		continue_cost--;
 		
 	} else if (playericon.position.x < [Common SCREEN].width) {
-		playericon.position = CGPointAdd(playericon.position, ccp(15,0));
+		playericon.position = CGPointAdd(playericon.position, ccp(10,0));
 		if (mod_ct % 2 == 0) {
 			player_anim_ct = (player_anim_ct + 1) % 4;
 			[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character]
@@ -329,10 +329,6 @@ static BGM_GROUP prev_group;
 		}
 		
 	} else {
-		[AudioManager playbgm_imm:prev_group];
-		if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
-			[AudioManager transition_mode2];
-		}
 		[(UILayer*)[self parent] continue_game];
 		[self stop_countdown];
 		

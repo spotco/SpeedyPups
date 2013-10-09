@@ -332,7 +332,7 @@
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
 			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
-			[AudioManager playbgm:BGM_GROUP_CAPEGAME];
+			[AudioManager playbgm_imm:BGM_GROUP_CAPEGAME];
 			[Player character_bark];
 			current_mode = GameEngineLayerMode_CAPEIN;
 			player.vy = 0;

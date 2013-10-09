@@ -4,45 +4,40 @@
 #import "UserInventory.h"
 #import "Challenge.h"
 #import "FreeRunStartAtManager.h"
+#import "LoadingScene.h"
 
 #import "WebRequest.h"
 
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"lab_muhfiller"
-#define STARTING_LIVES 10
 
+#define RESET_STATS NO
+#define STARTING_LIVES 1
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
-#define RESET_STATS NO
-#define DISPLAY_FPS NO
 
 /**
- animated loading screen
- worldselect arrow clickable
- make floatingwindow tabs classes
- boss restart not bgm_play_imm
- wait for sfx to complete in gameover before jingle
-	
--purchases tab
  implement level of the week
  integrate IAP speedypups subscription
  integrate ads
  
  -art ask for:
+	splash
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design
 	new clock icon
 	intro cartoon
-	world 2 & 3 art, bosses 2 & 3
+	world 3 art, bosses 3
  **/
 
 /**
 Stretch goals:
  stats tracking
+ make floatingwindow tabs classes
  
  goober pet
  levels based around armor (armor break spikes)
@@ -52,29 +47,33 @@ Stretch goals:
  **/
 
 +(void)main {
-    [GEventDispatcher lazy_alloc];
+	[[CCDirector sharedDirector] setDisplayFPS:NO];
+	
+	[GEventDispatcher lazy_alloc];
     [DataStore cons];
-    [AudioManager set_play_bgm:PLAY_BGM];
-    [AudioManager set_play_sfx:PLAY_SFX];
     [BatchDraw cons];
+	[AudioManager set_play_bgm:PLAY_BGM];
+    [AudioManager set_play_sfx:PLAY_SFX];
+	 
+	if (RESET_STATS) [DataStore reset_all];
 	
-	//todo -- loadscreen this, this is slow
-	//[Resource cons_textures];
-	for (NSString* i in [AutoLevelState get_all_levels]) {
-        [MapLoader precache_map:i];
-    }
-
-    if (RESET_STATS) [DataStore reset_all];
-    [[CCDirector sharedDirector] setDisplayFPS:DISPLAY_FPS];
-	
+	/*
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	*/
 	
-	[GameMain start_testlevel];
-	//[GameMain start_game_autolevel];
-	//[GameMain start_menu];
+	LoadingScene *loader = [LoadingScene cons];
+	[self run_scene:loader];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game)]];
+	
+	
+}
+
++(void)start_game {
+	[AudioManager schedule_update];
+	[self start_menu];
 }
 
 +(void)start_game_autolevel {

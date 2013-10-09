@@ -1,7 +1,7 @@
 #import "MainMenuLayer.h"
 
 #import "NMenuPlayPage.h"
-#import "NMenuSettingsPage.h"
+#import "NMenuWorldSelectPage.h"
 #import "NMenuCharSelectPage.h"
 #import "NMenuTabShopPage.h"
 #import "AudioManager.h"
@@ -68,7 +68,7 @@
     [menu_pages addObject:[NMenuTabShopPage cons]];
     [menu_pages addObject:[NMenuCharSelectPage cons]];
     [menu_pages addObject:[NMenuPlayPage cons]];
-    [menu_pages addObject:[NMenuSettingsPage cons]];
+    [menu_pages addObject:[NMenuWorldSelectPage cons]];
 }
 
 -(void)update {

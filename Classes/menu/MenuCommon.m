@@ -41,6 +41,72 @@
 	hitrect.origin = CGPointZero;
 	return hitrect;
 }
+@end
+
+@implementation HoldTouchButton
+
++(HoldTouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect {
+	return [[HoldTouchButton node] cons_pt:pt tex:tex texrect:texrect];
+}
+
+-(id)cons_pt:(CGPoint)pt tex:(CCTexture2D *)tex texrect:(CGRect)texrect {
+	[self setPosition:pt];
+	[self setTexture:tex];
+	[self setTextureRect:texrect];
+	self.cb = NULL;
+	self.pressed = NO;
+	zoom_scale = 1;
+	default_scale_x = 1;
+	default_scale_y = 1;
+	return self;
+}
+
+-(void)touch_begin:(CGPoint)pt {
+	pt = [self convertToNodeSpace:pt];
+	CGRect hitrect = [self hit_rect_local];
+	if (CGRectContainsPoint(hitrect, pt)) {
+		self.pressed = YES;
+		[self set_zoom_scale:1.5];
+	} else {
+		self.pressed = NO;
+	}
+}
+-(void)touch_move:(CGPoint)pt{
+	pt = [self convertToNodeSpace:pt];
+	CGRect hitrect = [self hit_rect_local];
+	if (!CGRectContainsPoint(hitrect, pt)) {
+		self.pressed = NO;
+	}
+}
+-(void)touch_end:(CGPoint)pt{
+	self.pressed  = NO;
+}
+
+-(void)update {
+	if (!self.pressed) {
+		[self set_zoom_scale:[self zoom_scale] + (1 - [self zoom_scale])/4.0];
+	}
+}
+
+-(void)set_zoom_scale:(float)sc {
+	zoom_scale = sc;
+	[super setScaleX:default_scale_x * zoom_scale];
+	[super setScaleY:default_scale_y * zoom_scale];
+}
+
+-(float)zoom_scale {
+	return zoom_scale;
+}
+
+-(void)setScaleX:(float)scaleX {
+	default_scale_x = scaleX;
+	[super setScaleX:default_scale_x * zoom_scale];
+}
+
+-(void)setScaleY:(float)scaleY {
+	default_scale_y = scaleY;
+	[super setScaleY:default_scale_y * zoom_scale];
+}
 
 @end
 

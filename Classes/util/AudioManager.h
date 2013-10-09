@@ -72,12 +72,19 @@ typedef enum {
 #define SFX_FANFARE_WIN @"fanfare_win.aiff"
 #define SFX_FANFARE_LOSE @"fanfare_lose.aiff"
 
+@class CallBack;
 
 @interface AudioManager : NSObject
 
-+(void)playbgm:(BGM_GROUP)tar;
++(void)begin_load;
++(void)schedule_update; //do this on main thread
+
+//+(void)playbgm:(BGM_GROUP)tar;
 +(void)playbgm_imm:(BGM_GROUP)tar;
 +(void)playsfx:(NSString*)tar;
++(void)playsfx:(NSString*)tar after_do:(CallBack*)cb;
+
++(void)bgm_stop;
 
 +(BGM_GROUP) get_cur_group;
 
@@ -91,5 +98,10 @@ typedef enum {
 +(void)transition_mode2;
 
 +(void)mute_music_for:(int)ct;
+
++(void)play_jingle;
++(void)todos_remove_all;
++(void)sto_prev_group;
++(void)play_prev_group;
 
 @end
