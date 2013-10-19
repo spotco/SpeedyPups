@@ -8,7 +8,8 @@ typedef enum {
 	BGM_GROUP_BOSS1 = 3,
 	BGM_GROUP_JINGLE = 4,
 	BGM_GROUP_WORLD2 = 5,
-	BGM_GROUP_CAPEGAME = 6
+	BGM_GROUP_WORLD3 = 6,
+	BGM_GROUP_CAPEGAME = 7
 } BGM_GROUP;
 
 //afconvert -f caff -d LEI16 DOG_Music_019b.mp3 test.aiff
@@ -21,6 +22,8 @@ typedef enum {
 #define BGMUSIC_JINGLE @"jingle.aiff"
 #define BGMUSIC_GAMELOOP2 @"gameloop2.aiff"
 #define BGMUSIC_CAPEGAMELOOP @"capegameloop.aiff"
+#define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
+#define BGMUSIC_GAMELOOP3 @"gameloop3.aiff"
 
 //bgm_2
 #define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"

@@ -49,7 +49,11 @@ static BOOL playbgm = YES;
 			BGMUSIC_JINGLE
 		],
 		enumkey(BGM_GROUP_WORLD2):@[
-			BGMUSIC_GAMELOOP2
+			BGMUSIC_GAMELOOP2,
+			BGMUSIC_GAMELOOP2_NIGHT
+		],
+		enumkey(BGM_GROUP_WORLD3):@[
+			BGMUSIC_GAMELOOP3
 		],
 		enumkey(BGM_GROUP_CAPEGAME):@[
 			BGMUSIC_CAPEGAMELOOP
@@ -194,7 +198,7 @@ static float bgm_2_gain_tar;
 		bgm_1_gain_tar = 1;
 		bgm_2_gain_tar = 0;
 	} else {
-		NSLog(@"bgm group %d does not have mode1",curgroup);
+		//NSLog(@"bgm group %d does not have mode1",curgroup);
 	}
 	
 }
@@ -205,7 +209,7 @@ static float bgm_2_gain_tar;
 		bgm_1_gain_tar = 0;
 		bgm_2_gain_tar = 1;
 	} else {
-		NSLog(@"bgm group %d does not have mode2",curgroup);
+		//NSLog(@"bgm group %d does not have mode2",curgroup);
 	}
 }
 

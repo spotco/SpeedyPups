@@ -13,7 +13,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"lab_muhfiller"
+#define TESTLEVEL @"classic_twopath"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -57,22 +57,19 @@ Stretch goals:
 	 
 	if (RESET_STATS) [DataStore reset_all];
 	
-	/*
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
-	*/
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	
 	
 }
 
 +(void)start_game {
-	[AudioManager schedule_update];
 	[self start_menu];
 }
 

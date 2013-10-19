@@ -99,6 +99,7 @@
 
 -(void)update {
 	if (finished_loading) {
+		[AudioManager schedule_update];
 		[self unschedule:@selector(update)];
 		[Common run_callback:on_finish];
 		[self removeAllChildrenWithCleanup:YES];

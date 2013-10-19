@@ -63,7 +63,8 @@ static NSArray *lab_tutorial_levels;
 			@"classic_smgislands" : @3,
 			@"classic_nubcave" : @2,
 			@"classic_manyoptredux" : @3,
-			@"classic_totalmix" : @3
+			@"classic_totalmix" : @3,
+			@"classic_twopath" : @3
 		},
 		L_FILLER: @{
 			@"filler_sanicloop" : @1,
