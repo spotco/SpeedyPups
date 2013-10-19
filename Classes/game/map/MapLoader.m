@@ -41,6 +41,7 @@
 #import "ItemGen.h"
 #import "OneUpObject.h"
 #import "LabHandRail.h"
+#import "SubBossLader.h"
 
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
@@ -357,6 +358,12 @@ static NSMutableDictionary* cached_json;
             float x2 = getflt(j_object, @"x2");
             float y2 = getflt(j_object, @"y2");
 			[map.game_objects addObject:[LabHandRail cons_pt1:ccp(x,y) pt2:ccp(x2,y2)]];
+			
+		} else if ([type isEqualToString:@"subbossloader"]) {
+			float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[SubBossLader cons_pt:ccp(x,y)]];
+			
 		}
 		
 		if (cur_mode == MapLoaderMode_AUTO) {
