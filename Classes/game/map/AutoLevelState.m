@@ -21,6 +21,9 @@
 #define L_BOSS1AREA @"levelset_boss1area"
 #define L_AUTOSTART @"levelset_autostart"
 
+#define L_BOSS2START @"levelset_boss2start"
+#define L_BOSS2AREA @"levelset_boss2area"
+
 #define L_LABINTRO @"levelset_labintro"
 #define L_LAB @"levelset_lab"
 #define L_LABEXIT @"levelset_labexit"
@@ -110,7 +113,8 @@ static NSArray *lab_tutorial_levels;
 			@"swingvine_datbounce" : @2
 		},
 		L_AUTOSTART: @{
-			@"autolevel_start": @1
+			//@"autolevel_start": @1
+			@"shittytest":@1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -120,6 +124,12 @@ static NSArray *lab_tutorial_levels;
 		},
 		L_BOSS1AREA: @{
 			@"boss1_area": @1
+		},
+		L_BOSS2START: @{
+			@"boss2_start":@1 //TODO -- fix me
+		},
+		L_BOSS2AREA: @{
+			@"boss2_area":@1,
 		},
 		L_LABINTRO: @{
 			@"labintro_entrance" : @1
@@ -192,6 +202,10 @@ static NSArray *lab_tutorial_levels;
 
 -(NSString*)setgen_get:(NSString*)key {
 	return [setgen get_from_bucket:key];
+}
+
+-(void)to_boss2_mode {
+	cur_set = L_BOSS2AREA;
 }
 
 -(void)to_boss1_mode {
@@ -316,6 +330,9 @@ static NSArray *lab_tutorial_levels;
 		
 	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
 		return [[levelsets[L_BOSS1AREA] allKeys] random];
+		
+	} else if ([cur_set isEqualToString:L_BOSS2AREA]) {
+		return [[levelsets[L_BOSS2AREA] allKeys] random];
 		
 	} else if ([cur_set isEqualToString:L_TUTORIAL]) {
 		NSString *tar = [tutorial_levels get:tutorial_ct];

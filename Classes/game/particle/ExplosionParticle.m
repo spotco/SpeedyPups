@@ -20,7 +20,7 @@ static const float MAXSCALE = 0.5;
 
 
 -(id)cons_x:(float)x y:(float)y {
-    CCAction* anim = [self cons_anim:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7", nil] speed:0.075];
+    CCAction* anim = [self cons_anim:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"empty", nil] speed:0.075];
     [self runAction:anim];
     
     [self setPosition:ccp(x,y)];
@@ -33,7 +33,7 @@ static const float MAXSCALE = 0.5;
 -(void)update:(GameEngineLayer*)g{
     ct--;
     [self setScale:(1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE];
-    [self setOpacity:(int)(55*(ct/TIME))+200];
+    [self setOpacity:(ct/TIME)*255];
 }
 
 -(BOOL)should_remove {

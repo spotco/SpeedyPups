@@ -137,12 +137,22 @@
     } else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
 		[current_set set_scrollup_pct:e.f1];
         
-    }
+    } else if (e.type == GEventType_BOSS2_ACTIVATE) {
+		[((Lab2BGLayerSet*)bglayerset_lab2) do_sink_anim];
+		
+	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+		[((Lab2BGLayerSet*)bglayerset_lab2) reset];
+		
+	}
+}
+
+-(SubBossBGObject*)get_subboss_bgobject {
+	return [((Lab2BGLayerSet*)bglayerset_lab2) get_subboss_bgobject];
 }
 
 -(void)update {    
     float posx = game_engine_layer.player.position.x;
-    float posy = game_engine_layer.player.position.y;
+    float posy = clampf(game_engine_layer.player.position.y, game_engine_layer.get_follow_clamp_y_range.min, game_engine_layer.get_follow_clamp_y_range.max);
     
     float dx = posx - lastx;
     float dy = posy - lasty;

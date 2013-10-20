@@ -41,7 +41,7 @@
 #import "ItemGen.h"
 #import "OneUpObject.h"
 #import "LabHandRail.h"
-#import "SubBossLader.h"
+#import "SubBossLoader.h"
 
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
@@ -362,7 +362,7 @@ static NSMutableDictionary* cached_json;
 		} else if ([type isEqualToString:@"subbossloader"]) {
 			float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-			[map.game_objects addObject:[SubBossLader cons_pt:ccp(x,y)]];
+			[map.game_objects addObject:[SubBossLoader cons_pt:ccp(x,y)]];
 			
 		}
 		

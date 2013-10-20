@@ -13,7 +13,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"classic_twopath"
+#define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -66,13 +66,9 @@ Stretch goals:
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	
-}
-
-+(void)start_game {
-	[self start_menu];
 }
 
 +(void)start_game_autolevel {

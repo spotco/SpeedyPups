@@ -37,6 +37,7 @@
 #define TEX_LAB2_WINDOWWALL @"lab2_windowwall"
 #define TEX_LAB2_TANKER_BACK @"lab2_tanker_back"
 #define TEX_LAB2_TANKER_FRONT @"lab2_tanker_front"
+#define TEX_LAB2_WATER_FG @"lab2_water_fg"
 
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"

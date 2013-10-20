@@ -98,12 +98,15 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world;
 
 -(UILayer*)get_ui_layer;
+-(BGLayer*)get_bg_layer;
 
 -(ChallengeInfo*)get_challenge;
 
 -(BGMode)get_cur_bg_mode;
 -(WorldNum)get_world_num;
 -(LabNum)get_lab_num;
+
+-(CGRange)get_follow_clamp_y_range;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

@@ -11,6 +11,7 @@
 @class World1BGLayerSet;
 @class Lab1BGLayerSet;
 @class World2BGLayerSet;
+@class SubBossBGObject;
 
 @interface BGLayerSet : CCNode {
 	int fadein_ct;
@@ -47,4 +48,5 @@
 
 +(BGLayer*)cons_with_gamelayer:(GameEngineLayer*)g;
 
+-(SubBossBGObject*)get_subboss_bgobject;
 @end

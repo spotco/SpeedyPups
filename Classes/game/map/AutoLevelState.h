@@ -24,6 +24,7 @@
 +(NSArray*)get_all_levels;
 
 -(void)to_boss1_mode;
+-(void)to_boss2_mode;
 -(void)to_labexit_mode;
 //-(void)to_progress_mode;
 

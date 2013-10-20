@@ -30,22 +30,25 @@
         [self cleanup_start:tglayer.player.start_pt player:tglayer.player.position];
         
     } else if (e.type == GEventType_BOSS1_ACTIVATE) {
-        //[cur_state change_mode:AutoLevelStateMode_BOSS1];
 		[cur_state to_boss1_mode];
-		
         [self remove_all_ahead_but_current:e.pt];
         [self shift_queue_into_current];
         
     } else if (e.type == GEventType_BOSS1_DEFEATED) {
-        //[cur_state change_mode:AutoLevelStateMode_Normal];
-		//[cur_state to_progress_mode];
 		[cur_state to_labexit_mode];
-		
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
         [tglayer follow_player];
         
-    }
+    } else if (e.type == GEventType_BOSS2_ACTIVATE) {
+		[cur_state to_boss2_mode];
+        [self remove_all_ahead_but_current:e.pt];
+        [self shift_queue_into_current];
+		
+	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+		NSLog(@"TODO -- BOSS2 DEFEATED");
+		
+	}
 }
 
 -(void)remove_all_ahead_but_current:(CGPoint)pos {

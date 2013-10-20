@@ -40,6 +40,10 @@ typedef enum {
     GEventType_BOSS1_ACTIVATE,
     GEventType_BOSS1_TICK,
     GEventType_BOSS1_DEFEATED,
+	
+	GEventType_BOSS2_ACTIVATE,
+	GEventType_BOSS2_DEFEATED,
+	
     GEventType_MENU_TICK,
     GEventType_MENU_MAKERUNPARTICLE, //34
 	

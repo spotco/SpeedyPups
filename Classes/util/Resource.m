@@ -66,6 +66,7 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_LAB2_WINDOWWALL: @"lab2_windowwall.png",
 	 TEX_LAB2_TANKER_BACK: @"lab2_tanker_back.png",
 	 TEX_LAB2_TANKER_FRONT: @"lab2_tanker_front.png",
+	 TEX_LAB2_WATER_FG: @"lab2_water_fg.png",
 	 
 	 TEX_CAVE_ROCKWALL_BASE:@"breakablewall_base.png",
 	 TEX_CAVE_ROCKWALL_SECTION:@"breakablewall_body.png",

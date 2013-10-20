@@ -546,7 +546,8 @@
 }
 
 -(LabNum)get_lab_num {
-	return cur_lab_num;
+	return LabNum_2;
+	//return cur_lab_num;
 }
 
 -(BGMode)get_cur_bg_mode {
@@ -770,6 +771,16 @@
 		[AudioManager playsfx:SFX_1UP];
 		[Player character_bark];
 	}
+}
+
+-(BGLayer*)get_bg_layer {
+	return (BGLayer*)[parent_ getChildByTag:tBGLAYER];
+}
+-(CGRange)get_follow_clamp_y_range {
+	CGRange rtv;
+	rtv.min = follow_clamp_y_min;
+	rtv.max = follow_clamp_y_max;
+	return rtv;
 }
 
 -(void)dealloc {

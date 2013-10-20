@@ -34,6 +34,7 @@
 		7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */; };
 		7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788D16ED7AD60026C418 /* Shopkeeper.m */; };
 		7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C57A717E6E1E900786CE5 /* CapeTutorialLauncher.m */; };
+		7E0DFF7A1813703F006F8039 /* lab2_water_fg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0DFF791813703F006F8039 /* lab2_water_fg.png */; };
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
@@ -64,6 +65,7 @@
 		7E4532AC17E4495B005EE7CB /* CapeGamePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532AB17E4495B005EE7CB /* CapeGamePlayer.m */; };
 		7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E45DA6F172DF8D7009C43DD /* ShopRecord.m */; };
 		7E47433C17AD02AF00A664CE /* ItemGen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E47433B17AD02AF00A664CE /* ItemGen.m */; };
+		7E4751C118133BA200001706 /* boss2_area.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4751C018133BA200001706 /* boss2_area.map */; };
 		7E4922DC17115FEC0032665B /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4922DB17115FEC0032665B /* Challenge.m */; };
 		7E4A2F5B17043851001BD38C /* tutorial_swipedir.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */; };
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
@@ -79,7 +81,7 @@
 		7E5CE28F17F8E75400226263 /* capegameloop.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E5CE28E17F8E75400226263 /* capegameloop.aiff */; };
 		7E60A69718128FD900CC7C07 /* subboss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69518128FD900CC7C07 /* subboss.plist */; };
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
-		7E60A69B1812906B00CC7C07 /* SubBossLader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLader.m */; };
+		7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLoader.m */; };
 		7E60A69E1812910000CC7C07 /* SubBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69D1812910000CC7C07 /* SubBoss.m */; };
 		7E709F1F17E77E0B0005D8F6 /* sfx_fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */; };
 		7E709F2217E78AC60005D8F6 /* fanfare_lose.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */; };
@@ -734,6 +736,7 @@
 		7E0A788D16ED7AD60026C418 /* Shopkeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shopkeeper.m; path = details/Shopkeeper.m; sourceTree = "<group>"; };
 		7E0C57A617E6E1E900786CE5 /* CapeTutorialLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeTutorialLauncher.h; sourceTree = "<group>"; };
 		7E0C57A717E6E1E900786CE5 /* CapeTutorialLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeTutorialLauncher.m; sourceTree = "<group>"; };
+		7E0DFF791813703F006F8039 /* lab2_water_fg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_fg.png; sourceTree = "<group>"; };
 		7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = armored_dog_ss.plist; sourceTree = "<group>"; };
 		7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armored_dog_ss.png; sourceTree = "<group>"; };
 		7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmorBreakEffect.h; sourceTree = "<group>"; };
@@ -777,6 +780,7 @@
 		7E45DA6F172DF8D7009C43DD /* ShopRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopRecord.m; sourceTree = "<group>"; };
 		7E47433A17AD02AF00A664CE /* ItemGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemGen.h; sourceTree = "<group>"; };
 		7E47433B17AD02AF00A664CE /* ItemGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemGen.m; sourceTree = "<group>"; };
+		7E4751C018133BA200001706 /* boss2_area.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss2_area.map; sourceTree = "<group>"; };
 		7E4922DA17115FEC0032665B /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = game/challenge/Challenge.h; sourceTree = "<group>"; };
 		7E4922DB17115FEC0032665B /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = game/challenge/Challenge.m; sourceTree = "<group>"; };
 		7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tutorial_swipedir.map; path = ../tutorial_swipedir.map; sourceTree = "<group>"; };
@@ -795,8 +799,8 @@
 		7E5CE28E17F8E75400226263 /* capegameloop.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = capegameloop.aiff; sourceTree = "<group>"; };
 		7E60A69518128FD900CC7C07 /* subboss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = subboss.plist; sourceTree = "<group>"; };
 		7E60A69618128FD900CC7C07 /* subboss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subboss.png; sourceTree = "<group>"; };
-		7E60A6991812906B00CC7C07 /* SubBossLader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBossLader.h; sourceTree = "<group>"; };
-		7E60A69A1812906B00CC7C07 /* SubBossLader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBossLader.m; sourceTree = "<group>"; };
+		7E60A6991812906B00CC7C07 /* SubBossLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBossLoader.h; sourceTree = "<group>"; };
+		7E60A69A1812906B00CC7C07 /* SubBossLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBossLoader.m; sourceTree = "<group>"; };
 		7E60A69C1812910000CC7C07 /* SubBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBoss.h; sourceTree = "<group>"; };
 		7E60A69D1812910000CC7C07 /* SubBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBoss.m; sourceTree = "<group>"; };
 		7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_fail.wav; sourceTree = "<group>"; };
@@ -1615,6 +1619,7 @@
 		7E02221217F93A200083815C /* BG_lab2 */ = {
 			isa = PBXGroup;
 			children = (
+				7E0DFF791813703F006F8039 /* lab2_water_fg.png */,
 				7E02222017F951E30083815C /* lab2_tanker_back.png */,
 				7E02222117F951E30083815C /* lab2_tanker_front.png */,
 				7E02222217F951E30083815C /* lab2_water_back.png */,
@@ -2184,6 +2189,7 @@
 		7EB8B23B16D9F8E700F58961 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				7E4751C018133BA200001706 /* boss2_area.map */,
 				7E07524F17A51AD5001FAE5F /* boss1_start.map */,
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
@@ -2682,8 +2688,8 @@
 				7EB8B3D216D9FC0900F58961 /* CopterRobotLoader.m */,
 				7EEE955A1776F98500474FD3 /* RocketWall.h */,
 				7EEE955B1776F98500474FD3 /* RocketWall.m */,
-				7E60A6991812906B00CC7C07 /* SubBossLader.h */,
-				7E60A69A1812906B00CC7C07 /* SubBossLader.m */,
+				7E60A6991812906B00CC7C07 /* SubBossLoader.h */,
+				7E60A69A1812906B00CC7C07 /* SubBossLoader.m */,
 				7E60A69C1812910000CC7C07 /* SubBoss.h */,
 				7E60A69D1812910000CC7C07 /* SubBoss.m */,
 			);
@@ -3552,6 +3558,7 @@
 				7EB8B2E416D9F8E700F58961 /* BG1_layer_3.png in Resources */,
 				7EB8B2E516D9F8E700F58961 /* BG1_sky.png in Resources */,
 				7EB8B2E616D9F8E700F58961 /* BG1_sun.png in Resources */,
+				7E4751C118133BA200001706 /* boss2_area.map in Resources */,
 				7EB8B2E716D9F8E700F58961 /* BG1_top_fill.png in Resources */,
 				7EB8B2E816D9F8E700F58961 /* rock_particle.png in Resources */,
 				7EB8B2E916D9F8E700F58961 /* breakablewall_base.png in Resources */,
@@ -3816,6 +3823,7 @@
 				7EBEA3B817EEC5CE009C9930 /* BG2_frontislands_0.png in Resources */,
 				7EBEA3B917EEC5CE009C9930 /* BG2_frontislands_1.png in Resources */,
 				7EBEA3BC17EED101009C9930 /* BG2_top_fill.png in Resources */,
+				7E0DFF7A1813703F006F8039 /* lab2_water_fg.png in Resources */,
 				7E908F8517F01BC6004DB956 /* BG2_island_corner.png in Resources */,
 				7E908F8617F01BC6004DB956 /* BG2_island_top_edge.png in Resources */,
 				7E908F8817F01FE5004DB956 /* gameloop2.aiff in Resources */,
@@ -3842,7 +3850,7 @@
 			files = (
 				7EC5ED2316D9DE9300E9D431 /* main.m in Sources */,
 				7EB8B3AA16D9FBFE00F58961 /* GOstrichAppDelegate.m in Sources */,
-				7E60A69B1812906B00CC7C07 /* SubBossLader.m in Sources */,
+				7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */,
 				7EB8B3AB16D9FBFE00F58961 /* RootViewController.m in Sources */,
 				7EB8B47916D9FC0900F58961 /* BackgroundObject.m in Sources */,
 				7EB8B47A16D9FC0900F58961 /* BGLayer.m in Sources */,
