@@ -10,7 +10,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
 #define TESTLEVEL @"cannon_test"
@@ -18,7 +18,7 @@
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
-#define DRAW_HITBOX YES
+#define DRAW_HITBOX NO
 
 /**
  implement level of the week
@@ -79,8 +79,7 @@ Stretch goals:
 }
 
 +(void)start_game_autolevel {
-    //[GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
-	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
+    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {

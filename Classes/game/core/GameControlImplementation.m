@@ -87,7 +87,7 @@ static float avg_y;
 		player.vy = dir.y;
 		[LauncherRobot explosion:g at:[player.current_cannon get_nozzel_position]];
 		[player.current_cannon detach_player];
-		[player.current_cannon deactivate_for:50];
+		[player.current_cannon deactivate_for:20];
 		player.current_cannon = NULL;
 		player.up_vec  = [VecLib cons_x:0 y:1 z:0];
 		[player remove_temp_params:g];
@@ -127,7 +127,7 @@ static float avg_y;
     queue_swipe = NO;
     
     
-    if (queue_jump == YES) { //initial jump
+    if (queue_jump == YES && ![[player get_current_params] isKindOfClass:[DashEffect class]]) { //initial jump
         /*if (player.dashing) { //not a bug?
             [player remove_temp_params:g]; //note bug here is dashing then jump into ndir -1 wall, fix by removing dash param
         }

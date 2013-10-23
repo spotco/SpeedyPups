@@ -15,6 +15,7 @@
 
 @synthesize up_vec;
 @synthesize current_swingvine;
+@synthesize current_cannon;
 @synthesize floating;
 @synthesize current_island;
 @synthesize last_ndir,movedir;

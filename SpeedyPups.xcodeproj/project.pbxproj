@@ -654,8 +654,6 @@
 		7EEAA7F71817689700BEE8D2 /* cannon_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAA7F51817689700BEE8D2 /* cannon_ss.plist */; };
 		7EEAA7F81817689700BEE8D2 /* cannon_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAA7F61817689700BEE8D2 /* cannon_ss.png */; };
 		7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA7FA181768FE00BEE8D2 /* Cannon.m */; };
-		7EEAA7FE1817933C00BEE8D2 /* CannonMoveTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */; };
-		7EEAA8011817934D00BEE8D2 /* CannonRotationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */; };
 		7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33917D90A2B0032CE7D /* particles.plist */; };
 		7EEAC33C17D90A2B0032CE7D /* particles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33A17D90A2B0032CE7D /* particles.png */; };
 		7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE5B531804CA8D00A4A64F /* LoadingScene.m */; };
@@ -1544,10 +1542,6 @@
 		7EEAA7F61817689700BEE8D2 /* cannon_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannon_ss.png; sourceTree = "<group>"; };
 		7EEAA7F9181768FE00BEE8D2 /* Cannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cannon.h; sourceTree = "<group>"; };
 		7EEAA7FA181768FE00BEE8D2 /* Cannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cannon.m; sourceTree = "<group>"; };
-		7EEAA7FC1817933C00BEE8D2 /* CannonMoveTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannonMoveTrack.h; sourceTree = "<group>"; };
-		7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CannonMoveTrack.m; sourceTree = "<group>"; };
-		7EEAA7FF1817934D00BEE8D2 /* CannonRotationPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannonRotationPoint.h; sourceTree = "<group>"; };
-		7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CannonRotationPoint.m; sourceTree = "<group>"; };
 		7EEAC33917D90A2B0032CE7D /* particles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles.plist; sourceTree = "<group>"; };
 		7EEAC33A17D90A2B0032CE7D /* particles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles.png; sourceTree = "<group>"; };
 		7EEE5B521804CA8D00A4A64F /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = loading/LoadingScene.h; sourceTree = "<group>"; };
@@ -2772,10 +2766,6 @@
 				7EBD7608171A430700EBEB3C /* ChallengeEnd.m */,
 				7E07525117A527DA001FAE5F /* FreeRunProgressDisplay.h */,
 				7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */,
-				7EEAA7FC1817933C00BEE8D2 /* CannonMoveTrack.h */,
-				7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */,
-				7EEAA7FF1817934D00BEE8D2 /* CannonRotationPoint.h */,
-				7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -3994,7 +3984,6 @@
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
-				7EEAA8011817934D00BEE8D2 /* CannonRotationPoint.m in Sources */,
 				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
 				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
@@ -4020,7 +4009,6 @@
 				7ECADE1E17646AF00032A1E6 /* ALSource.m in Sources */,
 				7ECADE1F17646AF00032A1E6 /* ALWrapper.m in Sources */,
 				7ECADE2017646AF00032A1E6 /* OpenALManager.m in Sources */,
-				7EEAA7FE1817933C00BEE8D2 /* CannonMoveTrack.m in Sources */,
 				7ECADE2117646AF00032A1E6 /* OALAudioSession.m in Sources */,
 				7ECADE2217646AF00032A1E6 /* OALSuspendHandler.m in Sources */,
 				7ECADE2317646AF00032A1E6 /* IOSVersion.m in Sources */,

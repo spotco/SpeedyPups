@@ -565,6 +565,7 @@ static int lastswap = 0;
     dashing = NO;
     dead = NO;
     current_swingvine = NULL;
+	current_cannon = NULL;
     [self start_anim:player_anim_mode_RUN_NONE];
     [self reset_all_ieffects];
     [self reset_params];

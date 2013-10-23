@@ -373,6 +373,20 @@ static NSMutableDictionary* cached_json;
             float dir_x = getflt(dir_obj, @"x");
             float dir_y = getflt(dir_obj, @"y");
 			[map.game_objects addObject:[Cannon cons_pt:ccp(x,y) dir:ccp(dir_x,dir_y)]];
+			
+		} else if ([type isEqualToString:@"cannonmovetrack"]) {
+			float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            float x2 = getflt(j_object, @"x2");
+            float y2 = getflt(j_object, @"y2");
+			[map.game_objects addObject:[CannonMoveTrack cons_pt1:ccp(x,y) pt2:ccp(x2,y2)]];
+			
+		} else if ([type isEqualToString:@"cannonrotationpoint"]) {
+			float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            float x2 = getflt(j_object, @"x2");
+            float y2 = getflt(j_object, @"y2");
+			[map.game_objects addObject:[CannonRotationPoint cons_pt1:ccp(x,y) pt2:ccp(x2,y2)]];
 		}
 		
 		if (cur_mode == MapLoaderMode_AUTO) {
