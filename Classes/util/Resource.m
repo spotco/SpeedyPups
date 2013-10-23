@@ -82,6 +82,7 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_ISLAND_BORDER:@"BG1_island_border.png",
 	 TEX_CLOUD_SS:@"cloud_ss.png",
 	 TEX_WATER:@"water.png",
+	 TEX_CANNON_SS:@"cannon_ss.png",
 	 
 	 TEX_BG2_BACKHILLS:@"BG2_backhills.png",
 	 TEX_BG2_FRONTHILLS:@"BG2_fronthills.png",

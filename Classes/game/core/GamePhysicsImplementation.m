@@ -14,7 +14,7 @@
 
 
 +(void)player_move:(id<PhysicsObject>)player with_islands:(NSMutableArray*)islands {
-    if (player.current_swingvine != NULL) {
+    if (player.current_swingvine != NULL || player.current_cannon != NULL) {
         return;
     }
     

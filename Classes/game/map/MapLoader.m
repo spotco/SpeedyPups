@@ -42,6 +42,7 @@
 #import "OneUpObject.h"
 #import "LabHandRail.h"
 #import "SubBossLoader.h"
+#import "Cannon.h"
 
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
@@ -364,6 +365,14 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
 			[map.game_objects addObject:[SubBossLoader cons_pt:ccp(x,y)]];
 			
+		} else if ([type isEqualToString:@"cannon"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            
+            NSDictionary* dir_obj = [j_object objectForKey:@"dir"];
+            float dir_x = getflt(dir_obj, @"x");
+            float dir_y = getflt(dir_obj, @"y");
+			[map.game_objects addObject:[Cannon cons_pt:ccp(x,y) dir:ccp(dir_x,dir_y)]];
 		}
 		
 		if (cur_mode == MapLoaderMode_AUTO) {

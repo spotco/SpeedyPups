@@ -90,6 +90,7 @@
 #define TEX_SPEEDUP @"speedup_ss"
 #define TEX_SPIKE_VINE_BOTTOM @"SpikeVineRight"
 #define TEX_SPIKE_VINE_SECTION @"SpikeVineSection"
+#define TEX_CANNON_SS @"cannon_ss"
 
 #define TEX_ITEM_SS @"item_ss"
 #define TEX_PARTICLES @"particles"

@@ -20,7 +20,8 @@ typedef enum {
     player_anim_mode_DASH = 10,
     player_anim_mode_SWING = 11,
     player_anim_mode_FLASH = 12,
-    player_anim_mode_FLIP = 13
+    player_anim_mode_FLIP = 13,
+	player_anim_mode_HEAD = 14
 } player_anim_mode;
 
 typedef enum {
@@ -61,7 +62,6 @@ typedef enum {
 }
 
 @property(readwrite,strong) CCSprite* player_img;
-@property(readwrite,unsafe_unretained) Island* current_island;
 @property(readwrite,assign) CGPoint start_pt;
 @property(readwrite,assign) BOOL dashing,dead;
 

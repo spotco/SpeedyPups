@@ -4,6 +4,8 @@
 #import "SwingVine.h"
 #import "JumpParticle.h"
 #import "DogRocketEffect.h"
+#import "Cannon.h"
+#import "LauncherRobot.h"
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
@@ -77,6 +79,22 @@ static float avg_y;
     if (player.dead){
         return;
     }
+	
+	if (player.current_cannon != NULL && (queue_jump || queue_swipe)) {
+		Vec3D dir = [VecLib cons_x:player.current_cannon.dir.x y:player.current_cannon.dir.y z:0];
+		dir = [VecLib scale:dir by:25];
+		player.vx = dir.x;
+		player.vy = dir.y;
+		[LauncherRobot explosion:g at:[player.current_cannon get_nozzel_position]];
+		[player.current_cannon detach_player];
+		[player.current_cannon deactivate_for:50];
+		player.current_cannon = NULL;
+		player.up_vec  = [VecLib cons_x:0 y:1 z:0];
+		[player remove_temp_params:g];
+		[player add_effect:[DashEffect cons_from:[player get_default_params] vx:dir.x/12.0 vy:dir.y/12.0]];
+		queue_jump = NO;
+		queue_swipe = NO;
+	}
     
     if (player.current_swingvine != NULL && (queue_jump || queue_swipe)) {
         CGPoint t_vel = [player.current_swingvine get_tangent_vel];
@@ -88,6 +106,9 @@ static float avg_y;
         player.vy = t_vel.y;
         
         [[player get_current_params] add_airjump_count];
+		
+		queue_jump = NO;
+		queue_swipe = NO;
     }
     
     if (player.current_island != NULL) { //reset jump count on ground

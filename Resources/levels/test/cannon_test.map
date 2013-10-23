@@ -1,0 +1,14 @@
+{
+    "islands": [{"type": "line", "y2": 166, "x1": 100, "can_fall": true, "x2": 752, "ground": "open", "ndir": "left", "y1": 162, "hei": 50}],
+    "objects": [
+        {"type": "cannon", "x": 504, "label": "0", "dir": {"x": 0.54, "y": 0.84}, "y": 253},
+        {"type": "cannon", "x": 822.5, "label": "2", "dir": {"x": 0.71, "y": -0.7}, "y": 695},
+        {"type": "cannon", "x": 1237.5, "label": "4", "dir": {"x": 0.66, "y": 0.75}, "y": 248.8},
+        {"type": "cannon", "x": 2060, "label": "6", "dir": {"x": 0.81, "y": 0.58}, "y": 250},
+        {"type": "cannon", "x": 1653.8, "label": "7", "dir": {"x": -1, "y": 0.03}, "y": 698.8}
+    ],
+    "assert_links": 0,
+    "start_x": 177,
+    "connect_pts": {"y2": 166, "x1": 100, "y1": 162, "x2": 752},
+    "start_y": 215
+}

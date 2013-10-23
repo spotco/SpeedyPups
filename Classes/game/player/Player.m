@@ -6,7 +6,8 @@
 #import "MagnetItemEffect.h"
 #import "ArmorBreakEffect.h"
 #import "JumpPadParticle.h" 
-#import "DataStore.h" 
+#import "DataStore.h"
+#import "Cannon.h"
 
 
 #define IMGWID 64
@@ -53,6 +54,7 @@
 @synthesize last_ndir,movedir;
 @synthesize floating,dashing,dead;
 @synthesize current_swingvine;
+@synthesize current_cannon;
 
 /* static set player character */
 
@@ -249,7 +251,16 @@ static NSDictionary* ID_TO_POWERDESC;
 	}
     
     player_anim_mode cur_param_anim_mode = [[self get_current_params] get_anim];
-    
+    if (current_cannon != NULL) {
+		cur_param_anim_mode = player_anim_mode_HEAD;
+		[self.player_img setPosition:ccp(IMG_OFFSET_X,IMG_OFFSET_Y-20)];
+		[self.player_img setVisible:[current_cannon cannon_show_head:self]];
+		
+	} else {
+		[self.player_img setPosition:ccp(IMG_OFFSET_X,IMG_OFFSET_Y)];
+		[self.player_img setVisible:YES];
+	}
+	
     dashing = (cur_param_anim_mode == player_anim_mode_DASH) || ([[self get_current_params] is_also_dashing]);
 	[dashlines setVisible:dashing];
 	if ([[self get_current_params] class] == [DashEffect class]) {
@@ -295,7 +306,9 @@ static NSDictionary* ID_TO_POWERDESC;
         cur_scy = 1;
         [self start_anim:player_anim_mode_SPLASH];
         
-    }
+    } else if (cur_param_anim_mode == player_anim_mode_HEAD) {
+		[self start_anim:player_anim_mode_HEAD];
+	}
     [self setScaleY:cur_scy];
     [self update_params:g];
     refresh_hitrect = YES;
@@ -699,6 +712,7 @@ HitRect cached_rect;
     [d set:player_anim_mode_SWING v:[self cons_anim_repeat_texstr:tar speed:1 frames:[NSArray arrayWithObjects:@"swing_0",nil]]];
     [d set:player_anim_mode_FLASH v:[self cons_anim_repeat_texstr:tar speed:0.1 frames:[NSArray arrayWithObjects:@"hit_0",@"hit_0_flash",nil]]];
     [d set:player_anim_mode_FLIP v:[self cons_anim_once_texstr:tar speed:0.025 frames:[NSArray arrayWithObjects:@"flip_4",@"flip_3",@"flip_2",@"flip_1",@"flip_0",nil]]];
+	[d set:player_anim_mode_HEAD v:[self cons_anim_repeat_texstr:tar speed:0.075 frames:[NSArray arrayWithObjects:@"head",nil]]];
 }
 
 -(player_anim_mode)cur_anim_mode {

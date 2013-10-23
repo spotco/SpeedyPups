@@ -83,7 +83,7 @@
     [super cons_vx:lvx vy:lvy];
     [self setColor:ccc3(255, 140, 0)];
     ct = 20;
-    [self setScale:float_random(0.5, 0.85)];
+    [self setScale:float_random(1, 1.85)];
 }
 
 @end

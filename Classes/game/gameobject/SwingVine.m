@@ -78,7 +78,7 @@
         [vine setOpacity:255];
     }
     
-    if (player.current_swingvine == NULL && player.current_island == NULL && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+    if (player.current_swingvine == NULL && player.current_cannon == NULL && player.current_island == NULL && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         line_seg playerseg = [self get_player_mid_line_seg:player];
         line_seg selfseg = [self get_hit_line_seg];
         CGPoint ins = [Common line_seg_intersection_a:playerseg b:selfseg];

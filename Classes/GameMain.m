@@ -10,15 +10,15 @@
 
 @implementation GameMain
 
-#define USE_BG YES
+#define USE_BG NO
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"cannon_test"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
-#define DRAW_HITBOX NO
+#define DRAW_HITBOX YES
 
 /**
  implement level of the week
@@ -63,16 +63,24 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	*/
+	
+	[UserInventory unlock_character:TEX_DOG_RUN_2];
+	[UserInventory unlock_character:TEX_DOG_RUN_3];
+	[UserInventory unlock_character:TEX_DOG_RUN_4];
+	[UserInventory unlock_character:TEX_DOG_RUN_5];
+	[UserInventory unlock_character:TEX_DOG_RUN_6];
+	[UserInventory unlock_character:TEX_DOG_RUN_7];
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	
 }
 
 +(void)start_game_autolevel {
-    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
+    //[GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
+	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {

@@ -59,15 +59,19 @@
 @class PlayerEffectParams;
 @class Island;
 @class SwingVine;
+@class Cannon;
 @protocol PhysicsObject <NSObject>
     @property(readwrite,assign) float vx,vy,scaleX,scaleY,rotation;
     @property(readwrite,assign) int last_ndir, movedir;
-    @property(readwrite,assign) Island* current_island;
     @property(readwrite,assign) Vec3D up_vec;
     @property(readwrite,assign) BOOL floating;
     @property(readwrite,assign) CGPoint position;
+
+	@property(readwrite,unsafe_unretained) Island* current_island;
     @property(readwrite,unsafe_unretained) SwingVine* current_swingvine;
-    -(PlayerEffectParams*)get_current_params;
+	@property(readwrite,unsafe_unretained) Cannon* current_cannon;
+
+	-(PlayerEffectParams*)get_current_params;
     -(int)get_speed;
 @end
 

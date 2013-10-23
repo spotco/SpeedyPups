@@ -200,7 +200,7 @@
 		7EB8B33916D9F8E700F58961 /* bossloadertest.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25616D9F8E700F58961 /* bossloadertest.map */; };
 		7EB8B33A16D9F8E700F58961 /* bridge_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25716D9F8E700F58961 /* bridge_test.map */; };
 		7EB8B33B16D9F8E700F58961 /* bwall_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25816D9F8E700F58961 /* bwall_test.map */; };
-		7EB8B33C16D9F8E700F58961 /* camera_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25916D9F8E700F58961 /* camera_test.map */; };
+		7EB8B33C16D9F8E700F58961 /* cannon_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25916D9F8E700F58961 /* cannon_test.map */; };
 		7EB8B33D16D9F8E700F58961 /* cave_test.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25A16D9F8E700F58961 /* cave_test.map */; };
 		7EB8B33E16D9F8E700F58961 /* tomshittylvl.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25B16D9F8E700F58961 /* tomshittylvl.map */; };
 		7EB8B33F16D9F8E700F58961 /* labentrancetest.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8B25C16D9F8E700F58961 /* labentrancetest.map */; };
@@ -651,6 +651,11 @@
 		7EE3C4C717DA7C5400DCAF76 /* sfx_menu_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EE3C4C617DA7C5400DCAF76 /* sfx_menu_down.wav */; };
 		7EE41C9817BB56B30011D20F /* ShopTabTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */; };
 		7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */; };
+		7EEAA7F71817689700BEE8D2 /* cannon_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAA7F51817689700BEE8D2 /* cannon_ss.plist */; };
+		7EEAA7F81817689700BEE8D2 /* cannon_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAA7F61817689700BEE8D2 /* cannon_ss.png */; };
+		7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA7FA181768FE00BEE8D2 /* Cannon.m */; };
+		7EEAA7FE1817933C00BEE8D2 /* CannonMoveTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */; };
+		7EEAA8011817934D00BEE8D2 /* CannonRotationPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */; };
 		7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33917D90A2B0032CE7D /* particles.plist */; };
 		7EEAC33C17D90A2B0032CE7D /* particles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33A17D90A2B0032CE7D /* particles.png */; };
 		7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE5B531804CA8D00A4A64F /* LoadingScene.m */; };
@@ -931,7 +936,7 @@
 		7EB8B25616D9F8E700F58961 /* bossloadertest.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bossloadertest.map; sourceTree = "<group>"; };
 		7EB8B25716D9F8E700F58961 /* bridge_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bridge_test.map; sourceTree = "<group>"; };
 		7EB8B25816D9F8E700F58961 /* bwall_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bwall_test.map; sourceTree = "<group>"; };
-		7EB8B25916D9F8E700F58961 /* camera_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = camera_test.map; sourceTree = "<group>"; };
+		7EB8B25916D9F8E700F58961 /* cannon_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_test.map; sourceTree = "<group>"; };
 		7EB8B25A16D9F8E700F58961 /* cave_test.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cave_test.map; sourceTree = "<group>"; };
 		7EB8B25B16D9F8E700F58961 /* tomshittylvl.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tomshittylvl.map; sourceTree = "<group>"; };
 		7EB8B25C16D9F8E700F58961 /* labentrancetest.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = labentrancetest.map; sourceTree = "<group>"; };
@@ -1535,6 +1540,14 @@
 		7EE41C9717BB56B30011D20F /* ShopTabTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTabTouchButton.m; sourceTree = "<group>"; };
 		7EE41C9917BB56FF0011D20F /* ShopListTouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopListTouchButton.h; sourceTree = "<group>"; };
 		7EE41C9A17BB56FF0011D20F /* ShopListTouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopListTouchButton.m; sourceTree = "<group>"; };
+		7EEAA7F51817689700BEE8D2 /* cannon_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cannon_ss.plist; sourceTree = "<group>"; };
+		7EEAA7F61817689700BEE8D2 /* cannon_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannon_ss.png; sourceTree = "<group>"; };
+		7EEAA7F9181768FE00BEE8D2 /* Cannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cannon.h; sourceTree = "<group>"; };
+		7EEAA7FA181768FE00BEE8D2 /* Cannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cannon.m; sourceTree = "<group>"; };
+		7EEAA7FC1817933C00BEE8D2 /* CannonMoveTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannonMoveTrack.h; sourceTree = "<group>"; };
+		7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CannonMoveTrack.m; sourceTree = "<group>"; };
+		7EEAA7FF1817934D00BEE8D2 /* CannonRotationPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CannonRotationPoint.h; sourceTree = "<group>"; };
+		7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CannonRotationPoint.m; sourceTree = "<group>"; };
 		7EEAC33917D90A2B0032CE7D /* particles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles.plist; sourceTree = "<group>"; };
 		7EEAC33A17D90A2B0032CE7D /* particles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles.png; sourceTree = "<group>"; };
 		7EEE5B521804CA8D00A4A64F /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = loading/LoadingScene.h; sourceTree = "<group>"; };
@@ -2218,7 +2231,7 @@
 				7EB8B25616D9F8E700F58961 /* bossloadertest.map */,
 				7EB8B25716D9F8E700F58961 /* bridge_test.map */,
 				7EB8B25816D9F8E700F58961 /* bwall_test.map */,
-				7EB8B25916D9F8E700F58961 /* camera_test.map */,
+				7EB8B25916D9F8E700F58961 /* cannon_test.map */,
 				7EB8B25A16D9F8E700F58961 /* cave_test.map */,
 				7EB8B25B16D9F8E700F58961 /* tomshittylvl.map */,
 				7EB8B25C16D9F8E700F58961 /* labentrancetest.map */,
@@ -2277,6 +2290,8 @@
 		7EB8B27A16D9F8E700F58961 /* boost */ = {
 			isa = PBXGroup;
 			children = (
+				7EEAA7F51817689700BEE8D2 /* cannon_ss.plist */,
+				7EEAA7F61817689700BEE8D2 /* cannon_ss.png */,
 				7EB97765170261FD00459DEF /* jumppad.plist */,
 				7EB97766170261FD00459DEF /* jumppad.png */,
 				7EB8B27B16D9F8E700F58961 /* speedup_ss.plist */,
@@ -2757,6 +2772,10 @@
 				7EBD7608171A430700EBEB3C /* ChallengeEnd.m */,
 				7E07525117A527DA001FAE5F /* FreeRunProgressDisplay.h */,
 				7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */,
+				7EEAA7FC1817933C00BEE8D2 /* CannonMoveTrack.h */,
+				7EEAA7FD1817933C00BEE8D2 /* CannonMoveTrack.m */,
+				7EEAA7FF1817934D00BEE8D2 /* CannonRotationPoint.h */,
+				7EEAA8001817934D00BEE8D2 /* CannonRotationPoint.m */,
 			);
 			name = internal;
 			sourceTree = "<group>";
@@ -2791,6 +2810,8 @@
 				7EB8B3DE16D9FC0900F58961 /* ElectricWall.m */,
 				7EB8B3C716D9FC0900F58961 /* BreakableWall.h */,
 				7EB8B3C816D9FC0900F58961 /* BreakableWall.m */,
+				7EEAA7F9181768FE00BEE8D2 /* Cannon.h */,
+				7EEAA7FA181768FE00BEE8D2 /* Cannon.m */,
 			);
 			name = obstacle;
 			sourceTree = "<group>";
@@ -3620,7 +3641,7 @@
 				7EB8B33916D9F8E700F58961 /* bossloadertest.map in Resources */,
 				7EB8B33A16D9F8E700F58961 /* bridge_test.map in Resources */,
 				7EB8B33B16D9F8E700F58961 /* bwall_test.map in Resources */,
-				7EB8B33C16D9F8E700F58961 /* camera_test.map in Resources */,
+				7EB8B33C16D9F8E700F58961 /* cannon_test.map in Resources */,
 				7EB8B33D16D9F8E700F58961 /* cave_test.map in Resources */,
 				7EB8B33E16D9F8E700F58961 /* tomshittylvl.map in Resources */,
 				7EB8B33F16D9F8E700F58961 /* labentrancetest.map in Resources */,
@@ -3749,6 +3770,7 @@
 				7EAE854C177FEFE4005AB868 /* labbreakablewall_body.png in Resources */,
 				7EAE854E177FF647005AB868 /* lab_minionwalls.map in Resources */,
 				7EAE8550177FFF2F005AB868 /* lab_ezshiz.map in Resources */,
+				7EEAA7F71817689700BEE8D2 /* cannon_ss.plist in Resources */,
 				7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */,
 				7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */,
 				7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */,
@@ -3761,6 +3783,7 @@
 				7EF8CA591797E4A900BD4476 /* dashjumpparticles_ss.png in Resources */,
 				7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */,
 				7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */,
+				7EEAA7F81817689700BEE8D2 /* cannon_ss.png in Resources */,
 				7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */,
 				7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */,
 				7EFED6A317ABA5710061C919 /* lab_rock_particle.png in Resources */,
@@ -3892,6 +3915,7 @@
 				7EB8B49F16D9FC0900F58961 /* SpeedUp.m in Sources */,
 				7EB8B4A016D9FC0900F58961 /* Spike.m in Sources */,
 				7EB8B4A116D9FC0900F58961 /* SpikeVine.m in Sources */,
+				7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */,
 				7EB8B4A216D9FC0900F58961 /* SwingVine.m in Sources */,
 				7EB8B4A316D9FC0900F58961 /* Water.m in Sources */,
 				7EB8B4A416D9FC0900F58961 /* World1ParticleGenerator.m in Sources */,
@@ -3970,6 +3994,7 @@
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
+				7EEAA8011817934D00BEE8D2 /* CannonRotationPoint.m in Sources */,
 				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
 				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
@@ -3995,6 +4020,7 @@
 				7ECADE1E17646AF00032A1E6 /* ALSource.m in Sources */,
 				7ECADE1F17646AF00032A1E6 /* ALWrapper.m in Sources */,
 				7ECADE2017646AF00032A1E6 /* OpenALManager.m in Sources */,
+				7EEAA7FE1817933C00BEE8D2 /* CannonMoveTrack.m in Sources */,
 				7ECADE2117646AF00032A1E6 /* OALAudioSession.m in Sources */,
 				7ECADE2217646AF00032A1E6 /* OALSuspendHandler.m in Sources */,
 				7ECADE2317646AF00032A1E6 /* IOSVersion.m in Sources */,
