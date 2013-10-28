@@ -118,7 +118,7 @@ static NSArray *lab_tutorial_levels;
 		},
 		L_AUTOSTART: @{
 			//@"autolevel_start": @1
-			@"shittytest":@1
+			@"robotstest":@1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1

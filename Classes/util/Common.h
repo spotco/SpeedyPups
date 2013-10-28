@@ -179,5 +179,5 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct;
 
 +(CCAction*)cons_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key;
-
++(CCAction*)cons_nonrepeating_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key;
 @end

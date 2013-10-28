@@ -23,11 +23,28 @@
 	float outz = g.camera_state.z;
 	//world_delta.x *= 0.64; //z = 160
 	//world_delta.x *= 0.52; //z = 260
+	//todo -- correct for y
+	//when g.camera_state.z = ___, world_delta.y*= ___ looks correct
 	world_delta.x *= (0.832- 0.0012 * outz);
-	
-	//TODO -- do y values too
+	world_delta.y *= (0.832- 0.0012 * outz); //this is not correct
 	
 	return CGPointAdd(player_screen, world_delta);
+}
+
++(CGPoint)touch_to_game_coords:(CGPoint)touch g:(GameEngineLayer*)g  {
+	CGPoint player_screen = [self player_approx_position:g];
+	float outz = g.camera_state.z;
+	
+	touch.x -= player_screen.x;
+	touch.y -= player_screen.y;
+	
+	touch.x /= (0.832- 0.0012 * outz);
+	touch.y /= (0.832- 0.0012 * outz);
+	
+	touch.x += g.player.position.x;
+	touch.y += clampf(g.player.position.y,g.get_actual_follow_clamp_y_range.max,g.get_actual_follow_clamp_y_range.min);
+	
+	return touch;
 }
 
 +(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale {

@@ -398,5 +398,11 @@ bool fm_a_gt_b(double a,double b,double delta) {
     return [Common make_anim_frames:animFrames speed:speed];
 }
 
++(CCAction*)cons_nonrepeating_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key {
+	CCTexture2D *texture = [Resource get_tex:key];
+	NSMutableArray *animFrames = [NSMutableArray array];
+    for (NSString* k in a) [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:key idname:k]]];
+	return [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:speed] restoreOriginalFrame:NO];
+}
 
 @end

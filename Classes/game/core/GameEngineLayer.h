@@ -79,6 +79,7 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 	BGMode cur_bg_mode;
 	
 	float follow_clamp_y_min,follow_clamp_y_max;
+	float actual_follow_clamp_y_min,actual_follow_clamp_y_max;
 	
 	GameEngineStats *stats;
 	
@@ -107,6 +108,7 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 -(LabNum)get_lab_num;
 
 -(CGRange)get_follow_clamp_y_range;
+-(CGRange)get_actual_follow_clamp_y_range;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

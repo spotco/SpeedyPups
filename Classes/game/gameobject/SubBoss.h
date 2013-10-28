@@ -6,7 +6,9 @@
 typedef enum SubMode {
 	SubMode_Intro,
 	SubMode_ToRemove,
-	SubMode_Attack1
+	SubMode_BGFireBombs,
+	SubMode_BGFireMissiles,
+	SubMode_FrontJumpAttack
 } SubMode;
 
 @interface SubBoss : GameObject {

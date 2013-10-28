@@ -140,7 +140,7 @@
     } else if (e.type == GEventType_BOSS2_ACTIVATE) {
 		[((Lab2BGLayerSet*)bglayerset_lab2) do_sink_anim];
 		
-	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+	} else if (e.type == GEventType_PLAYER_DIE) {
 		[((Lab2BGLayerSet*)bglayerset_lab2) reset];
 		
 	}

@@ -265,11 +265,28 @@
 -(void)frame_set_follow_clamp_y_min:(float)min max:(float)max {
 	follow_clamp_y_max = -min;
 	follow_clamp_y_min = -(max - [[CCDirector sharedDirector] winSize].height);
+	actual_follow_clamp_y_max = max;
+	actual_follow_clamp_y_min = min;
+}
+
+-(CGRange)get_follow_clamp_y_range {
+	CGRange rtv;
+	rtv.min = follow_clamp_y_min;
+	rtv.max = follow_clamp_y_max;
+	return rtv;
+}
+-(CGRange)get_actual_follow_clamp_y_range {
+	CGRange rtv;
+	rtv.min = actual_follow_clamp_y_min;
+	rtv.max = actual_follow_clamp_y_max;
+	return rtv;
 }
 
 -(void)reset_follow_clamp_y {
 	follow_clamp_y_min = -INFINITY;
 	follow_clamp_y_max = INFINITY;
+	actual_follow_clamp_y_min = -INFINITY;
+	actual_follow_clamp_y_max = INFINITY;
 }
 
 -(void)follow_player {
@@ -784,12 +801,6 @@
 
 -(BGLayer*)get_bg_layer {
 	return (BGLayer*)[parent_ getChildByTag:tBGLAYER];
-}
--(CGRange)get_follow_clamp_y_range {
-	CGRange rtv;
-	rtv.min = follow_clamp_y_min;
-	rtv.max = follow_clamp_y_max;
-	return rtv;
 }
 
 -(void)dealloc {

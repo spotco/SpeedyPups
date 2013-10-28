@@ -6,7 +6,7 @@
 static CCAction* _anim_body_normal;
 static CCAction* _anim_hatch_closed;
 static CCAction* _anim_hatch_closed_to_cannon;
-static CCAction* _anim_hatch_closed_to_cannon;
+static CCAction* _anim_hatch_cannon_to_closed;
 static CCAction* _anim_wake;
 
 +(SubBossBGObject*)cons_anchor:(CCNode*)anchor { return [[SubBossBGObject node] cons_anchor:anchor]; }
@@ -35,19 +35,23 @@ static CCAction* _anim_wake;
 	anchor = tanchor;
 	return self;
 }
+-(void)reset {
+	[_hatch stopAllActions];
+	[_hatch runAction:_anim_hatch_closed];
+}
 -(void)update_posx:(float)posx posy:(float)posy{}
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
 	_anim_body_normal = [Common cons_anim:@[@"bg_body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed = [Common cons_anim:@[@"bg_hatch_0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_hatch_closed_to_cannon = [Common cons_anim:@[@"bg_hatch_0",
+	_anim_hatch_closed_to_cannon = [Common cons_nonrepeating_anim:@[@"bg_hatch_0",
 													   @"bg_hatch_1",
 													   @"bg_hatch_cannon_0",
 													   @"bg_hatch_cannon_1",
 													   @"bg_hatch_cannon_2"]
 											   speed:0.1
 											 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_hatch_closed_to_cannon = [Common cons_anim:@[@"bg_hatch_cannon_2",
+	_anim_hatch_cannon_to_closed = [Common cons_nonrepeating_anim:@[@"bg_hatch_cannon_2",
 													   @"bg_hatch_cannon_1",
 													   @"bg_hatch_cannon_0",
 													   @"bg_hatch_1",
@@ -55,7 +59,10 @@ static CCAction* _anim_wake;
 											   speed:0.1
 											 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_wake = [Common cons_anim:@[@"bg_wake_0",@"bg_wake_1",@"bg_wake_2"] speed:0.15 tex_key:TEX_ENEMY_SUBBOSS];
-	
+}
+-(void)anim_hatch_closed_to_cannon {
+	[_hatch stopAllActions];
+	[_hatch runAction:_anim_hatch_closed_to_cannon];
 }
 @end
 
@@ -211,6 +218,11 @@ static int explosion_ct;
 }
 
 -(void)reset {
-	NSLog(@"todo -- Lab2BGLayerSet reset");
+	current_state = Lab2BGLayerSetState_Normal;
+	[tankers setPosition:CGPointZero];
+	[tankersfront setPosition:CGPointZero];
+	[docks setPosition:CGPointZero];
+	[subboss setPosition:ccp(-[Common SCREEN].width,subboss.position.y)];
+	[subboss reset];
 }
 @end

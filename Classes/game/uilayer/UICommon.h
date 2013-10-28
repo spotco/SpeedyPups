@@ -14,5 +14,5 @@
 +(void)button:(CCNode *)btn add_desctext:(NSString *)txt color:(ccColor3B)color fntsz:(int)fntsz ;
 
 +(CGPoint)pt_approx_position:(CGPoint)obj g:(GameEngineLayer*)g;
-
++(CGPoint)touch_to_game_coords:(CGPoint)touch g:(GameEngineLayer*)g ;
 @end

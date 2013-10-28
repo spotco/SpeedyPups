@@ -13,8 +13,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"classic_doublehelix"
-//#define TESTLEVEL @"robotstest" 
+#define TESTLEVEL @"robotstest"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -74,7 +73,7 @@ Stretch goals:
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	
 }

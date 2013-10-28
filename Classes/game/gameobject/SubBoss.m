@@ -2,6 +2,8 @@
 #import "GameEngineLayer.h"
 #import "BGLayer.h"
 #import "Lab2BGLayerSet.h"
+#import "EnemyBomb.h"
+#import "UICommon.h"
 
 @interface FGWater : GameObject
 +(FGWater*)cons;
@@ -100,17 +102,39 @@ static CCAction* _anim_wake;
 	} else if (current_mode == SubMode_Intro) {
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
+		[bgobj setScaleX:1];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setPosition:ccp(bgobj.position.x+2*[Common get_dt_Scale],bgobj.position.y)];
-		if (bgobj.position.x > [Common SCREEN].width+300) {
-			current_mode = SubMode_Attack1;
+		if (bgobj.position.x > [Common SCREEN].width+150) {
+			current_mode = SubMode_BGFireBombs;
+
 		}
 		
-	} else if (current_mode == SubMode_Attack1) {
-		NSLog(@"attack1");
+	} else if (current_mode == SubMode_BGFireBombs) {
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
-		[bgobj setVisible:NO];
+		[bgobj setVisible:YES];
 		[body setVisible:NO];
+		[bgobj setScaleX:-1];
+		if (bgobj.position.x > [Common SCREEN].width*0.75) {
+			[bgobj setPosition:ccp(bgobj.position.x-2*[Common get_dt_Scale],bgobj.position.y)];
+			if (bgobj.position.x <= [Common SCREEN].width*0.75) {
+				[bgobj anim_hatch_closed_to_cannon];
+			}
+		} else {
+			if (int_random(0, 20)==0) {
+				[g add_gameobject:[EnemyBomb cons_pt:[UICommon touch_to_game_coords:bgobj.position g:g] v:ccp(float_random(5,7),float_random(0,4))]];
+			}
+			//todo -- relative positioned small->big start fadeout bomb
+			//fix y scaling problem in uicommon
+			//fire from nozzle
+			//lower turret angle in spritesheet
+			
+		}
+		
+	} else if (current_mode == SubMode_BGFireMissiles) {
+		
+	} else if (current_mode == SubMode_FrontJumpAttack) {
+		
 	}
 }
 

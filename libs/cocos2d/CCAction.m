@@ -177,6 +177,38 @@
 {
 	return [CCRepeatForever actionWithAction:[innerAction_ reverse]];
 }
+
+/*
+- (ccTime)duration { //spotco hax
+	return INFINITY;
+}
+
+-(void) update: (ccTime) t
+{
+	NSArray *frames = [animation_ frames];
+	NSUInteger numberOfFrames = [frames count];
+	CCSpriteFrame *frameToDisplay = nil;
+	
+	for( NSUInteger i=nextFrame_; i < numberOfFrames; i++ ) {
+		NSNumber *splitTime = [splitTimes_ objectAtIndex:i];
+		
+		if( [splitTime floatValue] <= t ) {
+			CCAnimationFrame *frame = [frames objectAtIndex:i];
+			frameToDisplay = [frame spriteFrame];
+			[(CCSprite*)target_ setDisplayFrame: frameToDisplay];
+			
+			NSDictionary *dict = [frame userInfo];
+			if( dict )
+				[[NSNotificationCenter defaultCenter] postNotificationName:CCAnimationFrameDisplayedNotification object:target_ userInfo:dict];
+			
+			nextFrame_ = i+1;
+			
+			break;
+		}
+	}
+}
+ */
+
 @end
 
 //

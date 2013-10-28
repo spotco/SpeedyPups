@@ -10,6 +10,9 @@ typedef enum Lab2BGLayerSetState {
 	CCNode __unsafe_unretained *anchor;
 }
 +(SubBossBGObject*)cons_anchor:(CCNode*)anchor;
+
+-(void)anim_hatch_closed_to_cannon;
+
 @property(readwrite,strong) CCSprite *body, *hatch, *wake;
 @end
 
