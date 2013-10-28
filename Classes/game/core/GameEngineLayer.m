@@ -124,8 +124,9 @@
     refresh_viewbox_cache = YES;
     CGPoint player_start_pt = [self loadMap:map_filename];
     particles = [[NSMutableArray alloc] init];
+    gameobjects_tbr = [NSMutableArray array];
     player = [Player cons_at:player_start_pt];
-	[self follow_player];
+    [self follow_player];
     [self addChild:player z:[GameRenderImplementation GET_RENDER_PLAYER_ORD]];
     
     DogShadow *d = [DogShadow cons];
@@ -559,6 +560,7 @@
         GameObject *o = [game_objects objectAtIndex:i];
         [o update:player g:self];
     }
+	[self do_remove_gameobjects];
 }
 
 -(void)add_gameobject:(GameObject*)o {
@@ -566,8 +568,15 @@
     [self addChild:o z:[o get_render_ord]];
 }
 -(void)remove_gameobject:(GameObject *)o {
-    [game_objects removeObject:o];
-    [self removeChild:o cleanup:YES];
+	[gameobjects_tbr addObject:o];
+}
+
+-(void)do_remove_gameobjects {
+	for (GameObject *o in gameobjects_tbr) {
+		[game_objects removeObject:o];
+		[self removeChild:o cleanup:YES];
+	}
+	[gameobjects_tbr removeAllObjects];
 }
 
 /* event dispatch handlers */

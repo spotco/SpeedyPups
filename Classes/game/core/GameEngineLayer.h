@@ -55,7 +55,7 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 #define MAX_LAB LabNum_2
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
-    NSMutableArray *particles,*particles_tba;
+    NSMutableArray *particles,*particles_tba, *gameobjects_tbr;
     
     int lives;
     float time;

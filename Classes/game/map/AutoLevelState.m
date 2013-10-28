@@ -67,7 +67,8 @@ static NSArray *lab_tutorial_levels;
 			@"classic_nubcave" : @2,
 			@"classic_manyoptredux" : @3,
 			@"classic_totalmix" : @3,
-			@"classic_twopath" : @3
+			@"classic_twopath" : @3,
+			@"classic_doublehelix" : @2
 		},
 		L_FILLER: @{
 			@"filler_sanicloop" : @1,
@@ -80,7 +81,10 @@ static NSArray *lab_tutorial_levels;
 			@"filler_manyopt" : @1,
 			@"filler_cuhrazyloop" : @1,
 			@"filler_chickennuggets" : @2,
-			@"filler_skippingstones" : @2
+			@"filler_skippingstones" : @2,
+			@"filler_godog" : @2,
+			@"filler_kingofswing" : @2,
+			@"filler_goslow" : @2
 		},
 		L_EASY: @{
 			@"easy_puddles" : @1,
