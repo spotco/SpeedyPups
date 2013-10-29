@@ -18,5 +18,6 @@
 
 +(RocketExplodeParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy;
 +(RocketExplodeParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy scale:(float)scale;
-
+-(RocketExplodeParticle*)set_color:(ccColor3B)c;
+-(RocketExplodeParticle*)set_scale:(float)sc;
 @end

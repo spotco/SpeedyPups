@@ -37,11 +37,9 @@
 @end
 
 
-
 @implementation EnemyBomb
 
 #define DEFAULT_SCALE 1.5
-
 +(EnemyBomb*)cons_pt:(CGPoint)pt v:(CGPoint)vel {
     return [[EnemyBomb node] cons_pt:pt v:vel];
 }
@@ -60,11 +58,10 @@
     [body setScale:DEFAULT_SCALE];
     return self;
 }
-
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     ct++;
     if (knockout) {
-        [self setPosition:CGPointAdd(position_, v)];
+        [self move:g];
         [body setOpacity:150];
         [body setRotation:body.rotation+25];
         if (ct > 20) {
@@ -103,11 +100,9 @@
         
     }
 }
-
 -(void)move:(GameEngineLayer*)g {
     [self setPosition:CGPointAdd(position_, v)];
 }
-
 -(BOOL)has_hit_ground:(GameEngineLayer*)g {
     line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, v)];
     for (Island* i in g.islands) {
@@ -133,6 +128,49 @@
 
 -(int)get_render_ord {
     return [GameRenderImplementation GET_RENDER_PLAYER_ON_FG_ORD];
+}
+@end
+
+@implementation RelativePositionEnemyBomb
+
++(RelativePositionEnemyBomb*)cons_pt:(CGPoint)pt v:(CGPoint)vel player:(CGPoint)player {
+	return [[RelativePositionEnemyBomb node] cons_pt:pt v:vel player:player];
+}
+
+-(id)cons_pt:(CGPoint)pt v:(CGPoint)vel player:(CGPoint)player {
+	player_rel_pos = ccp(pt.x - player.x,pt.y - player.y);
+	bg_to_front_ct = 0;
+	KILL = NO;
+	[super cons_pt:pt v:vel];
+	return self;
+}
+
+#define CT 45.0
+#define MINSCALE 0.35
+-(id)do_bg_to_front_anim {
+	bg_to_front_ct = CT;
+	[self setScale:MINSCALE];
+	return self;
+}
+
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+	if (KILL) {
+		[g remove_gameobject:self];
+		return;
+	}
+	if (bg_to_front_ct > 0) bg_to_front_ct--;
+	[self setScale:((1-MINSCALE)*((CT-bg_to_front_ct)/CT)+MINSCALE)];
+	
+	[super update:player g:g];
+}
+
+-(void)move:(GameEngineLayer*)g {
+	player_rel_pos.x += v.x;
+    [self setPosition:ccp(g.player.position.x+player_rel_pos.x,position_.y+=v.y)];
+}
+
+-(void)reset {
+	KILL = YES;
 }
 
 @end

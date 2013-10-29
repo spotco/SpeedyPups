@@ -8,7 +8,6 @@
     StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [p cons];
     p.position = ccp(x,y);
-    
     return p;
 }
 
@@ -20,6 +19,7 @@
 }
 
 -(void)cons_vx:(float)tvx vy:(float)tvy {
+	STREAMPARTICLE_CT_DEFAULT = 40;
     vx = tvx;
     vy = tvy;
     [self setScale:float_random(0.5, 2)];
@@ -28,6 +28,7 @@
 }
 
 -(void)cons {
+	STREAMPARTICLE_CT_DEFAULT = 40;
     vx = float_random(-2, -4);
     vy = float_random(0, 2);
     [self setScale:float_random(0.5, 2)];
@@ -42,6 +43,17 @@
 
 -(BOOL)should_remove {
     return ct <= 0;
+}
+
+-(StreamParticle*)set_scale:(float)scale {
+	[self setScale:scale];
+	return self;
+}
+
+-(StreamParticle*)set_ctmax:(int)ctmax {
+	STREAMPARTICLE_CT_DEFAULT =  ctmax;
+	ct = ctmax;
+	return self;
 }
 
 @end

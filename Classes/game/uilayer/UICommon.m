@@ -23,10 +23,8 @@
 	float outz = g.camera_state.z;
 	//world_delta.x *= 0.64; //z = 160
 	//world_delta.x *= 0.52; //z = 260
-	//todo -- correct for y
-	//when g.camera_state.z = ___, world_delta.y*= ___ looks correct
 	world_delta.x *= (0.832- 0.0012 * outz);
-	world_delta.y *= (0.832- 0.0012 * outz); //this is not correct
+	world_delta.y *= (0.832- 0.0012 * outz);
 	
 	return CGPointAdd(player_screen, world_delta);
 }
@@ -42,10 +40,17 @@
 	touch.y /= (0.832- 0.0012 * outz);
 	
 	touch.x += g.player.position.x;
-	touch.y += clampf(g.player.position.y,g.get_actual_follow_clamp_y_range.max,g.get_actual_follow_clamp_y_range.min);
+	
+	CGRange cutrange = g.get_actual_follow_clamp_y_range;
+	float qtr = (cutrange.max - cutrange.min) / 6; //looks right deal with
+	cutrange.max -= qtr;
+	cutrange.min += qtr;
+	
+	touch.y += clampf(g.player.position.y,cutrange.min,cutrange.max);
 	
 	return touch;
 }
+
 
 +(void)set_zoom_pos_align:(CCSprite*)normal zoomed:(CCSprite*)zoomed scale:(float)scale {
     zoomed.scale = scale;

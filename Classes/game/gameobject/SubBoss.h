@@ -14,13 +14,14 @@ typedef enum SubMode {
 @interface SubBoss : GameObject {
 	CCSprite *body;
 	CCSprite *hatch;
-	CCSprite *wake;
 	
 	SubBossBGObject __unsafe_unretained *bgobj;
 	
 	FGWater *fgwater;
 	SubMode current_mode;
 	float groundlevel;
+	
+	int ct;
 }
 
 +(SubBoss*)cons_with:(GameEngineLayer*)g;

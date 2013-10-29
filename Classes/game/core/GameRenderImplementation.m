@@ -85,26 +85,26 @@
 	}
 	
 	float YDIR_DEFAULT = layer.tar_camera_state.y;
-	if (g_dist > 0) {
-		float tmp = g_dist > 500.0 ? 500.0 : g_dist;
-		float tar_yoff = 80.0 + (tmp / 500.0)*60.0;
-		
-		if (state.y > YDIR_DEFAULT-tar_yoff) {
-			state.y -= (state.y - (YDIR_DEFAULT-tar_yoff))/ZOOMSPD;
+	if ([layer get_follow_clamp_y_range].max == INFINITY) {
+		if (g_dist > 0) {
+			float tmp = g_dist > 500.0 ? 500.0 : g_dist;
+			float tar_yoff = 80.0 + (tmp / 500.0)*60.0;
+			
+			if (state.y > YDIR_DEFAULT-tar_yoff) {
+				state.y -= (state.y - (YDIR_DEFAULT-tar_yoff))/ZOOMSPD;
+			} else {
+				state.y += ((YDIR_DEFAULT-tar_yoff)-state.y)/ZOOMSPD;
+			}
+			
 		} else {
-			state.y += ((YDIR_DEFAULT-tar_yoff)-state.y)/ZOOMSPD;
-		}
-		
-	} else {
-		if (state.y < YDIR_DEFAULT) {
-			state.y += (YDIR_DEFAULT-state.y)/ (ZOOMSPD/2.0);
+			if (state.y < YDIR_DEFAULT) {
+				state.y += (YDIR_DEFAULT-state.y)/ (ZOOMSPD/2.0);
+			}
 		}
 	}
 	
 	[layer set_camera:state];
 	[GameRenderImplementation update_camera_on:layer zoom:layer.camera_state];
-	//NSLog(@"camera(%f,%f,%f)",layer.camera_state.x,layer.camera_state.y,layer.camera_state.z);
-		
 }
 
 +(void)update_camera_on:(CCLayer*)layer zoom:(CameraZoom)state {

@@ -21,12 +21,14 @@
 #define DRAW_HITBOX NO
 
 /**
+ particle effect wake on boss
+ change around tutorials, swingvine and cannon world 2
+ make cannon levels
  implement level of the week
  integrate IAP speedypups subscription
  integrate ads
  
  -art ask for:
-	splash
 	settings page -> map page navmenu icon and bg design
 	new UNLOCK NOW button design
 	new clock icon
@@ -42,7 +44,6 @@ Stretch goals:
  goober pet
  levels based around armor (armor break spikes)
  challenges based around capegame
- look into batchsprite
  store sales (streamed from online)
  **/
 

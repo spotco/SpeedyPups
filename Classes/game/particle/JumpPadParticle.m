@@ -86,4 +86,14 @@
     [self setScale:float_random(1, 1.85)];
 }
 
+-(RocketExplodeParticle*)set_color:(ccColor3B)c {
+	[self setColor:c];
+	return self;
+}
+
+-(RocketExplodeParticle*)set_scale:(float)sc {
+	[self setScale:sc];
+	return self;
+}
+
 @end

@@ -4,6 +4,7 @@
 #import "Lab2BGLayerSet.h"
 #import "EnemyBomb.h"
 #import "UICommon.h"
+#import "LauncherRocket.h"
 
 @interface FGWater : GameObject
 +(FGWater*)cons;
@@ -46,7 +47,6 @@ static CCAction* _anim_body_bite;
 static CCAction* _anim_hatch_closed_to_cannon;
 static CCAction* _anim_hatch_cannon_to_closed;
 static CCAction* _anim_hatch_closed;
-static CCAction* _anim_wake;
 
 +(SubBoss*)cons_with:(GameEngineLayer *)g {
 	return [[SubBoss node] cons:g];
@@ -55,27 +55,34 @@ static CCAction* _anim_wake;
 -(id)cons:(GameEngineLayer*)g {
 	body = [CCSprite node];
 	hatch = [CCSprite node];
-	wake = [CCSprite node];
 	[self addChild:body];
 	[hatch setAnchorPoint:ccp(0.5,0)];
 	[body addChild:hatch];
-	[wake setAnchorPoint:ccp(1,0.5)];
-	[body addChild:wake];
 	[SubBoss cons_anims];
 	
 	[hatch setPosition:ccp(215,195)];
-	[wake setPosition:ccp(100,110)];
 	
 	[body runAction:_anim_body_normal];
 	[hatch runAction:_anim_hatch_closed];
-	[wake runAction:_anim_wake];
 	
 	active = YES;
 	do_render = YES;
-	current_mode = SubMode_Intro;
 	
 	bgobj = [[g get_bg_layer] get_subboss_bgobject];
-	[bgobj setPosition:ccp(-100,bgobj.position.y)];
+	
+	//current_mode = SubMode_Intro;
+	//[bgobj setPosition:ccp(-100,bgobj.position.y)];
+	
+	//current_mode = SubMode_BGFireBombs;
+	//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
+	
+	//current_mode = SubMode_BGFireMissiles;
+	//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
+	//ct = 0;
+	
+	current_mode = SubMode_FrontJumpAttack;
+	
+	
 	[bgobj setScale:1];
 	
 	[bgobj setVisible:NO];
@@ -100,17 +107,19 @@ static CCAction* _anim_wake;
 		[g remove_gameobject:fgwater];
 		
 	} else if (current_mode == SubMode_Intro) {
+		//[bgobj setPosition:ccp(-100,bgobj.position.y)];
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
 		[bgobj setScaleX:1];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setPosition:ccp(bgobj.position.x+2*[Common get_dt_Scale],bgobj.position.y)];
 		if (bgobj.position.x > [Common SCREEN].width+150) {
-			current_mode = SubMode_BGFireBombs;
+			current_mode = SubMode_BGFireBombs; //replace with attack choosing
 
 		}
 		
 	} else if (current_mode == SubMode_BGFireBombs) {
+		//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
@@ -121,19 +130,54 @@ static CCAction* _anim_wake;
 				[bgobj anim_hatch_closed_to_cannon];
 			}
 		} else {
-			if (int_random(0, 20)==0) {
-				[g add_gameobject:[EnemyBomb cons_pt:[UICommon touch_to_game_coords:bgobj.position g:g] v:ccp(float_random(5,7),float_random(0,4))]];
+			ct++;
+			if (ct%20==0) {
+				[g add_gameobject:[[RelativePositionEnemyBomb
+								   cons_pt:[UICommon touch_to_game_coords:[bgobj get_nozzle] g:g]
+								   v:ccp(float_random(-16,-4),float_random(5,9))
+								   player:player.position] do_bg_to_front_anim]];
+				[bgobj set_recoil_delta:ccp(10,-10)];
+				[bgobj explosion_at:[bgobj get_nozzle]];
 			}
-			//todo -- relative positioned small->big start fadeout bomb
-			//fix y scaling problem in uicommon
-			//fire from nozzle
-			//lower turret angle in spritesheet
+			
 			
 		}
 		
 	} else if (current_mode == SubMode_BGFireMissiles) {
+		//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
+		//ct = 0
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
+		[bgobj setVisible:YES];
+		[body setVisible:NO];
+		[bgobj setScaleX:-1];
+		
+		if (bgobj.position.x > -150) {
+			if (ct == 40) {
+				[bgobj anim_hatch_closed_to_open];
+			} else if (ct > 40) {
+				if (ct % 9 == 0) {
+					[bgobj launch_rocket];
+				}
+				if (ct > 80) {
+					if (ct % 14 == 0) {
+						[g add_gameobject:[LauncherRocket cons_at:ccp(player.position.x+float_random(900, 1000),groundlevel+600) vel:ccp(0,float_random(-5, -3))]];
+					}
+				}
+			}
+			ct++;
+		
+			[bgobj setPosition:CGPointAdd(bgobj.position, ccp(-2*[Common get_dt_Scale],0))];
+		} else {
+			NSLog(@"attacque over");
+		}
 		
 	} else if (current_mode == SubMode_FrontJumpAttack) {
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
+		[bgobj setVisible:NO];
+		[body setVisible:YES];
+		[body setScaleX:-1];
+		
+		[body setPosition:ccp(player.position.x + 500,player.position.y)];
 		
 	}
 }
@@ -151,7 +195,6 @@ static CCAction* _anim_wake;
 	if (lowest != NULL) {
 		yl_min = lowest.startY;
 	}
-    
 	[g frame_set_follow_clamp_y_min:yl_min-500 max:yl_min+300];
 	groundlevel = yl_min;
 }
@@ -193,7 +236,6 @@ static CCAction* _anim_wake;
 													   @"hatch_0"]
 											   speed:0.1
 											 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_wake = [Common cons_anim:@[@"wake_0",@"wake_1",@"wake_2"] speed:0.15 tex_key:TEX_ENEMY_SUBBOSS];
 	
 }
 

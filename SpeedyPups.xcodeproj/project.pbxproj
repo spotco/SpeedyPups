@@ -51,6 +51,7 @@
 		7E269C6816DA00E4005F446C /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6716DA00DE005F446C /* fps_images.png */; };
 		7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6516DA00DE005F446C /* Carton_Six.ttf */; };
 		7E269C6A16DA00EB005F446C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6616DA00DE005F446C /* Default.png */; };
+		7E270D31181F8F7900613E95 /* BGSubBossRocketParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */; };
 		7E2C8AE117D853B100DC08AE /* lab_alladat_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */; };
 		7E2C8AE417D865A200DC08AE /* ItemUseUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */; };
 		7E2E1BAD1803DF47002EFCF0 /* filler_skippingstones.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E1BAC1803DF47002EFCF0 /* filler_skippingstones.map */; };
@@ -764,6 +765,8 @@
 		7E269C6516DA00DE005F446C /* Carton_Six.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Carton_Six.ttf; path = "cocos2d-2.x-ARC-iOS/Resources/Carton_Six.ttf"; sourceTree = "<group>"; };
 		7E269C6616DA00DE005F446C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "cocos2d-2.x-ARC-iOS/Resources/Default.png"; sourceTree = "<group>"; };
 		7E269C6716DA00DE005F446C /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = "cocos2d-2.x-ARC-iOS/Resources/fps_images.png"; sourceTree = "<group>"; };
+		7E270D2F181F8F7900613E95 /* BGSubBossRocketParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGSubBossRocketParticle.h; sourceTree = "<group>"; };
+		7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGSubBossRocketParticle.m; sourceTree = "<group>"; };
 		7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_alladat_challenge.map; sourceTree = "<group>"; };
 		7E2C8AE217D865A200DC08AE /* ItemUseUIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseUIAnimation.h; sourceTree = "<group>"; };
 		7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemUseUIAnimation.m; sourceTree = "<group>"; };
@@ -2584,6 +2587,8 @@
 				7EDB544A1712C4F000218A46 /* OneUpParticle.m */,
 				7EF8CA5A1797EB0900BD4476 /* JumpParticle.h */,
 				7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */,
+				7E270D2F181F8F7900613E95 /* BGSubBossRocketParticle.h */,
+				7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */,
 			);
 			path = particle;
 			sourceTree = "<group>";
@@ -3970,6 +3975,7 @@
 				7EB8B4D616D9FC0900F58961 /* PolyLib.m in Sources */,
 				7EB8B4D716D9FC0900F58961 /* Resource.m in Sources */,
 				7EB8B4D816D9FC0900F58961 /* Vec3D.m in Sources */,
+				7E270D31181F8F7900613E95 /* BGSubBossRocketParticle.m in Sources */,
 				7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */,
 				7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */,
 				7E0A787E16ED5DEC0026C418 /* MenuCommon.m in Sources */,

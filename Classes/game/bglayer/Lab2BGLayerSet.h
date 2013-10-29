@@ -8,12 +8,21 @@ typedef enum Lab2BGLayerSetState {
 
 @interface SubBossBGObject : BackgroundObject {
 	CCNode __unsafe_unretained *anchor;
+	CGPoint actual_position;
+	CGPoint recoil_delta;
 }
 +(SubBossBGObject*)cons_anchor:(CCNode*)anchor;
+-(void)set_recoil_delta:(CGPoint)delta;
+-(CGPoint)get_nozzle;
 
 -(void)anim_hatch_closed_to_cannon;
+-(void)anim_hatch_closed_to_open;
 
-@property(readwrite,strong) CCSprite *body, *hatch, *wake;
+-(void)explosion_at:(CGPoint)pt;
+-(void)launch_rocket;
+-(void)reset;
+
+@property(readwrite,strong) CCSprite *body, *hatch;
 @end
 
 @interface Lab2BGLayerSet : BGLayerSet {
@@ -28,6 +37,8 @@ typedef enum Lab2BGLayerSetState {
 	
 	NSMutableArray *particles;
 	NSMutableArray *particles_tba;
+	NSMutableArray *tankersfront_particles_tba;
+	CCSprite *tankersfront_particleholder;
 	CCSprite *particleholder;
 	Lab2BGLayerSetState current_state;
 	
