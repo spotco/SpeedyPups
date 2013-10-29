@@ -287,6 +287,11 @@ static CCAction* _anim_hatch_closed_to_open;
 														tex_key:TEX_ENEMY_SUBBOSS];
 }
 
+-(void)anim_hatch_closed {
+	[_hatch stopAllActions];
+	[_hatch runAction:_anim_hatch_closed];
+}
+
 -(void)anim_hatch_closed_to_cannon {
 	[_hatch stopAllActions];
 	[_hatch runAction:_anim_hatch_closed_to_cannon];

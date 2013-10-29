@@ -44,6 +44,7 @@
 static CCAction* _anim_body_normal = NULL;
 static CCAction* _anim_body_angry;
 static CCAction* _anim_body_bite;
+
 static CCAction* _anim_hatch_closed_to_cannon;
 static CCAction* _anim_hatch_cannon_to_closed;
 static CCAction* _anim_hatch_closed;
@@ -62,7 +63,7 @@ static CCAction* _anim_hatch_closed;
 	
 	[hatch setPosition:ccp(215,195)];
 	
-	[body runAction:_anim_body_normal];
+	[self run_body_anim:_anim_body_normal];
 	[hatch runAction:_anim_hatch_closed];
 	
 	active = YES;
@@ -70,18 +71,9 @@ static CCAction* _anim_hatch_closed;
 	
 	bgobj = [[g get_bg_layer] get_subboss_bgobject];
 	
-	//current_mode = SubMode_Intro;
-	//[bgobj setPosition:ccp(-100,bgobj.position.y)];
-	
-	//current_mode = SubMode_BGFireBombs;
-	//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
-	
-	//current_mode = SubMode_BGFireMissiles;
-	//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
-	//ct = 0;
-	
-	current_mode = SubMode_FrontJumpAttack;
-	
+	current_mode = SubMode_Intro;
+	[bgobj setPosition:ccp(-100,bgobj.position.y)];
+	ct = 0;
 	
 	[bgobj setScale:1];
 	
@@ -95,6 +87,7 @@ static CCAction* _anim_hatch_closed;
 	return self;
 }
 
+static CGPoint last_pos;
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
 	[self set_bounds_and_ground:g];
 	
@@ -107,19 +100,18 @@ static CCAction* _anim_hatch_closed;
 		[g remove_gameobject:fgwater];
 		
 	} else if (current_mode == SubMode_Intro) {
-		//[bgobj setPosition:ccp(-100,bgobj.position.y)];
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
 		[bgobj setScaleX:1];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setPosition:ccp(bgobj.position.x+2*[Common get_dt_Scale],bgobj.position.y)];
 		if (bgobj.position.x > [Common SCREEN].width+150) {
-			current_mode = SubMode_BGFireBombs; //replace with attack choosing
-
+			[self pick_next_move];
+			
 		}
+		//todo -- make wake effect here
 		
 	} else if (current_mode == SubMode_BGFireBombs) {
-		//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
@@ -139,13 +131,14 @@ static CCAction* _anim_hatch_closed;
 				[bgobj set_recoil_delta:ccp(10,-10)];
 				[bgobj explosion_at:[bgobj get_nozzle]];
 			}
-			
+			//todo -- make 1,1,3,1,1,3
+			if (ct > 250) { //todo -- make move out phase
+				[self pick_next_move];
+			}
 			
 		}
 		
 	} else if (current_mode == SubMode_BGFireMissiles) {
-		//[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
-		//ct = 0
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setVisible:YES];
 		[body setVisible:NO];
@@ -168,7 +161,7 @@ static CCAction* _anim_hatch_closed;
 		
 			[bgobj setPosition:CGPointAdd(bgobj.position, ccp(-2*[Common get_dt_Scale],0))];
 		} else {
-			NSLog(@"attacque over");
+			[self pick_next_move];
 		}
 		
 	} else if (current_mode == SubMode_FrontJumpAttack) {
@@ -177,7 +170,72 @@ static CCAction* _anim_hatch_closed;
 		[body setVisible:YES];
 		[body setScaleX:-1];
 		
-		[body setPosition:ccp(player.position.x + 500,player.position.y)];
+		float target_rotation = 0;
+		
+		if (body_rel_pos.x > 500) {
+			body_rel_pos.x -= 3 * [Common get_dt_Scale];
+			target_rotation = 0;
+			[self run_body_anim:_anim_body_normal];
+			if (body_rel_pos.x <= 500) {
+				body_rel_pos.x = 500;
+				ct = 50;
+				sub_submode = 0;
+			}
+			
+		} else if (sub_submode == 0) {
+			target_rotation = 15;
+			ct--;
+			if (ct <= 0) {
+				sub_submode = 1;
+				ct = 0;
+				//todo -- splash anim here
+			}
+			
+		} else if (sub_submode == 1) {
+			body_rel_pos.x -= 3.5 * [Common get_dt_Scale];
+			body_rel_pos.y = (-25.0/5000.0) * (body_rel_pos.x - 500) * (body_rel_pos.x);
+			target_rotation = [VecLib get_rotation:[VecLib cons_x:body_rel_pos.x-last_pos.x y:body_rel_pos.y-last_pos.y z:0] offset:0];
+			
+			ct++;
+			if (ct >= 35) {
+				[self run_body_anim:_anim_body_bite];
+			}
+			if (body_rel_pos.x < -20) {
+				//todo -- splash anim here
+				[self pick_next_move];
+			}
+			//todo -- make hit effect and roll into effect
+		}
+		
+		[body setRotation:body.rotation + (target_rotation - body.rotation)/5];
+		[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
+		
+	}
+	
+	last_pos = body_rel_pos;
+}
+
+static int pick_ct;
+-(void)pick_next_move {
+	pick_ct++;
+	if (pick_ct%3 == 0) {
+		current_mode = SubMode_BGFireBombs;
+		[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
+		ct = 0;
+		[bgobj anim_hatch_closed];
+		
+	} else if (pick_ct%3 == 1) {
+		current_mode = SubMode_BGFireMissiles;
+		[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
+		ct = 0;
+		[bgobj anim_hatch_closed];
+		
+	} else if (pick_ct%3 == 2) {
+		current_mode = SubMode_FrontJumpAttack;
+		body_rel_pos = ccp(1000,0);
+		sub_submode = 0;
+		ct = 0;
+		[self run_body_anim:_anim_body_normal];
 		
 	}
 }
@@ -200,7 +258,7 @@ static CCAction* _anim_hatch_closed;
 }
 
 -(HitRect)get_hit_rect {
-	return [Common hitrect_cons_x1:position_.x y1:position_.y wid:1 hei:1];
+	return [Common hitrect_cons_x1:body.position.x-100 y1:body.position.y-50 wid:200 hei:120];
 }
 
 -(void)check_should_render:(GameEngineLayer *)g {
@@ -209,18 +267,19 @@ static CCAction* _anim_hatch_closed;
 
 -(void)reset {
 	current_mode = SubMode_ToRemove;
+	_current_anim = NULL;
 }
 
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
 	_anim_body_normal = [Common cons_anim:@[@"body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_body_angry = [Common cons_anim:@[@"body_bite0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_body_bite = [Common cons_anim:@[@"body_bite0",
+	_anim_body_angry = [Common cons_anim:@[@"body_normal",@"body_normal_red"] speed:0.1 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_bite = [Common cons_nonrepeating_anim:@[@"body_bite0",
 										  @"body_bite1",
-										  @"body_bite2",
-										  @"body_bite3"]
+										  @"body_bite2"]
 								  speed:0.1
 								tex_key:TEX_ENEMY_SUBBOSS];
+	
 	_anim_hatch_closed = [Common cons_anim:@[@"hatch_0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed_to_cannon = [Common cons_anim:@[@"hatch_0",
 													   @"hatch_1",
@@ -237,6 +296,17 @@ static CCAction* _anim_hatch_closed;
 											   speed:0.1
 											 tex_key:TEX_ENEMY_SUBBOSS];
 	
+}
+
+-(void)run_body_anim:(CCAction*)anim {
+	if (_current_anim == NULL) {
+		_current_anim = anim;
+		[body runAction:anim];
+	} else if (anim != _current_anim) {
+		[body stopAllActions];
+		_current_anim = anim;
+		[body runAction:anim];
+	}
 }
 
 @end

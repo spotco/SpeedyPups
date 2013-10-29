@@ -15,6 +15,7 @@ typedef enum Lab2BGLayerSetState {
 -(void)set_recoil_delta:(CGPoint)delta;
 -(CGPoint)get_nozzle;
 
+-(void)anim_hatch_closed;
 -(void)anim_hatch_closed_to_cannon;
 -(void)anim_hatch_closed_to_open;
 

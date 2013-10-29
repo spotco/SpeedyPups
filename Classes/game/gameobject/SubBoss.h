@@ -15,6 +15,8 @@ typedef enum SubMode {
 	CCSprite *body;
 	CCSprite *hatch;
 	
+	CCAction* _current_anim;
+	
 	SubBossBGObject __unsafe_unretained *bgobj;
 	
 	FGWater *fgwater;
@@ -22,6 +24,9 @@ typedef enum SubMode {
 	float groundlevel;
 	
 	int ct;
+	int sub_submode;
+	float flt_ct;
+	CGPoint body_rel_pos;
 }
 
 +(SubBoss*)cons_with:(GameEngineLayer*)g;
