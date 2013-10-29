@@ -13,7 +13,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"robotstest"
+#define TESTLEVEL @"cannon_test"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -74,7 +74,12 @@ Stretch goals:
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	
+	//to load the TESTLEVEL
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	
+	//to try the boss
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	
 }
