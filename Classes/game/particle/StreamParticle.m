@@ -38,6 +38,16 @@
 -(void)update:(GameEngineLayer*)g{
     [self setPosition:ccp(position_.x+vx,position_.y+vy)];
     [self setOpacity:((int)(ct/STREAMPARTICLE_CT_DEFAULT*255))];
+	if (has_set_gravity) {
+		vx += gravity.x;
+		vy += gravity.y;
+	}
+	if (has_set_final_color) {
+		float pct = ct/STREAMPARTICLE_CT_DEFAULT;
+		[self setColor:ccc3(pct*(initial_color.r-final_color.r)+final_color.r,
+							pct*(initial_color.g-final_color.g)+final_color.g,
+							pct*(initial_color.b-final_color.b)+final_color.b)];
+	}
     ct--;
 }
 
@@ -54,6 +64,28 @@
 	STREAMPARTICLE_CT_DEFAULT =  ctmax;
 	ct = ctmax;
 	return self;
+}
+
+-(StreamParticle*)set_gravity:(CGPoint)g {
+	has_set_gravity = YES;
+	gravity = g;
+	return self;
+}
+-(StreamParticle*)set_final_color:(ccColor3B)color {
+	has_set_final_color = YES;
+	final_color = color;
+	initial_color = [self color];
+	return self;
+}
+-(StreamParticle*)set_render_ord:(int)ord {
+	has_set_render_ord = YES;
+	render_ord = ord;
+	return self;
+}
+
+-(int)get_render_ord {
+	if (has_set_render_ord) return render_ord;
+	return [super get_render_ord];
 }
 
 @end

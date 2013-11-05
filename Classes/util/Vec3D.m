@@ -53,6 +53,7 @@
 
 +(Vec3D) normalize:(Vec3D)v {
     float len = [VecLib length:v];
+	if (len == 0) len = 0.0001;
     v.x /= len;
     v.y /= len;
     v.z /= len;
@@ -92,6 +93,7 @@
 
 +(Vec3D)normalized_x:(float)x y:(float)y z:(float)z {
     float len = sqrt((x * x) + (y * y) + (z * z));
+	if (len == 0) len = 0.0001;
     return [VecLib cons_x:x/len y:y/len z:z/len];
 }
 

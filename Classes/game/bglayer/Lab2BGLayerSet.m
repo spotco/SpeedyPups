@@ -39,7 +39,9 @@
 	particles = [NSMutableArray array];
 	particles_tba = [NSMutableArray array];
 	tankersfront_particles_tba = [NSMutableArray array];
+	behindwater_particles_tba = [NSMutableArray array];
 	tankersfront_particleholder = [CCSprite node];
+	behindwater_particleholder = [CCSprite node];
 	[tankersfront addChild:tankersfront_particleholder];
 	
 	BGTimeManager *time = [BGTimeManager cons];
@@ -48,6 +50,9 @@
 	
 	
 	for (BackgroundObject *o in bg_objects) {
+		if (o == backwater) {
+			[self addChild:behindwater_particleholder];
+		}
 		[self addChild:o];
 	}
 	
@@ -81,6 +86,20 @@
 							 set_scale:float_random(0.3, 0.9)]
 							set_ctmax:15]];
 	}
+}
+
+-(void)splash_tick:(CGPoint)dir offset:(CGPoint)offset {
+	CGPoint spot = CGPointAdd(subboss.position, offset);
+	StreamParticle *sp = [[[[StreamParticle cons_x:spot.x
+											   y:spot.y
+											  vx:dir.x
+											  vy:dir.y]
+						   set_scale:float_random(0.4, 1.3)]
+						  set_ctmax:8]
+						  set_gravity:ccp(0,float_random(-4, -2))];
+	[sp setColor:ccc3(200,220,250)];
+	[sp set_final_color:ccc3(120+arc4random_uniform(40), 170+arc4random_uniform(20), 220+arc4random_uniform(30))];
+	[self add_particle_behind_water:sp];
 }
 
 -(SubBossBGObject*)get_subboss_bgobject {
@@ -121,6 +140,9 @@ static int explosion_ct;
 			Particle *p = [ExplosionParticle cons_x:float_random(0, 600) y:float_random(0,350)];
 			[self add_tankersfront_particle:p];
 		}
+		if (explosion_ct%6==0) {
+			[AudioManager playsfx:SFX_EXPLOSION];
+		}
 		
 		for (BackgroundObject *o in bg_objects) {
 			if (o == tankers || o == docks || o == tankersfront) {
@@ -149,6 +171,9 @@ static int explosion_ct;
 -(void)add_particle:(Particle*)p {
     [particles_tba addObject:p];
 }
+-(void)add_particle_behind_water:(Particle*)p {
+	[behindwater_particles_tba addObject:p];
+}
 -(void)add_tankersfront_particle:(Particle*)p {
 	[tankersfront_particles_tba addObject:p];
 }
@@ -161,8 +186,13 @@ static int explosion_ct;
 		[particles addObject:p];
 		[tankersfront_particleholder addChild:p z:[p get_render_ord]];
 	}
+	for (Particle *p in behindwater_particles_tba) {
+		[particles addObject:p];
+		[behindwater_particleholder addChild:p z:[p get_render_ord]];
+	}
     [particles_tba removeAllObjects];
 	[tankersfront_particles_tba removeAllObjects];
+	[behindwater_particles_tba removeAllObjects];
 }
 -(void)remove_all_particles {
 	if ([particles count] != 0) {
@@ -273,7 +303,8 @@ static CCAction* _anim_hatch_closed_to_open;
 																	@"bg_hatch_cannon_default"]
 															speed:0.1
 														  tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_hatch_cannon_to_closed = [Common cons_nonrepeating_anim:@[@"bg_hatch_cannon_2",
+	_anim_hatch_cannon_to_closed = [Common cons_nonrepeating_anim:@[@"bg_hatch_cannon_default",
+																	@"bg_hatch_cannon_2",
 																	@"bg_hatch_cannon_1",
 																	@"bg_hatch_cannon_0",
 																	@"bg_hatch_1",
@@ -297,6 +328,11 @@ static CCAction* _anim_hatch_closed_to_open;
 	[_hatch runAction:_anim_hatch_closed_to_cannon];
 }
 
+-(void)anim_hatch_cannon_to_closed {
+	[_hatch stopAllActions];
+	[_hatch runAction:_anim_hatch_cannon_to_closed];
+}
+
 -(void)anim_hatch_closed_to_open {
 	[_hatch stopAllActions];
 	[_hatch runAction:_anim_hatch_closed_to_open];
@@ -311,6 +347,12 @@ static CCAction* _anim_hatch_closed_to_open;
 -(void)launch_rocket {
 	if ([[self parent] class] == [Lab2BGLayerSet class]) {
 		[((Lab2BGLayerSet*)parent_) launch_rocket];
+	}
+}
+
+-(void)splash_tick:(CGPoint)dir offset:(CGPoint)offset {
+	if ([[self parent] class] == [Lab2BGLayerSet class]) {
+		[((Lab2BGLayerSet*)parent_) splash_tick:dir offset:offset];
 	}
 }
 @end

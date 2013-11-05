@@ -18,9 +18,11 @@ typedef enum Lab2BGLayerSetState {
 -(void)anim_hatch_closed;
 -(void)anim_hatch_closed_to_cannon;
 -(void)anim_hatch_closed_to_open;
+-(void)anim_hatch_cannon_to_closed;
 
 -(void)explosion_at:(CGPoint)pt;
 -(void)launch_rocket;
+-(void)splash_tick:(CGPoint)dir offset:(CGPoint)offset;
 -(void)reset;
 
 @property(readwrite,strong) CCSprite *body, *hatch;
@@ -39,7 +41,9 @@ typedef enum Lab2BGLayerSetState {
 	NSMutableArray *particles;
 	NSMutableArray *particles_tba;
 	NSMutableArray *tankersfront_particles_tba;
+	NSMutableArray *behindwater_particles_tba;
 	CCSprite *tankersfront_particleholder;
+	CCSprite *behindwater_particleholder;
 	CCSprite *particleholder;
 	Lab2BGLayerSetState current_state;
 	
