@@ -132,7 +132,7 @@ static CGPoint last_pos;
 		[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
 		
 		ct++;
-		ct%3==0?[g add_particle:[RocketLaunchParticle cons_x:body.position.x
+		((int)ct)%3==0?[g add_particle:[RocketLaunchParticle cons_x:body.position.x
 														   y:body.position.y
 														  vx:-flyoff_dir.x + float_random(-4, 4)
 														  vy:-flyoff_dir.y + float_random(-4, 4)
@@ -152,7 +152,7 @@ static CGPoint last_pos;
 			[self pick_next_move];
 			
 		}
-		DO_FOR(2, [bgobj splash_tick:ccp(float_random(-5.5, -2),float_random(2, 12)) offset:ccp(-35,float_random(-17, -13))]);
+		DO_FOR(2, [bgobj splash_tick:ccp(float_random(-3.5, -1),float_random(2, 8)) offset:ccp(-35,float_random(-17, -13))]);
 		
 		
 	} else if (current_mode == SubMode_BGFireBombs) {
@@ -164,32 +164,41 @@ static CGPoint last_pos;
 			[bgobj setPosition:ccp(bgobj.position.x-2*[Common get_dt_Scale],bgobj.position.y)];
 			if (bgobj.position.x <= [Common SCREEN].width*0.75) {
 				[bgobj anim_hatch_closed_to_cannon];
+				sub_submode = 0;
 			}
-			DO_FOR(2, [bgobj splash_tick:ccp(float_random(2, 5.5),float_random(2, 12)) offset:ccp(35,float_random(-17, -13))]);
-			sub_submode = 0;
+			DO_FOR(2, [bgobj splash_tick:ccp(float_random(1, 3.5),float_random(2, 8)) offset:ccp(35,float_random(-17, -13))]);
 			
-		} else if (sub_submode == 0) {
-			ct++;
-			static NSSet *fireat = NULL;
-			if (fireat == NULL)fireat = [NSSet setWithObjects:@30,@70,@80,@90,@130,@170,@180,@190,@230,nil];
-			if ([fireat containsObject:[NSNumber numberWithInt:ct]]) {
-				[g add_gameobject:[[RelativePositionEnemyBomb
-								   cons_pt:[UICommon touch_to_game_coords:[bgobj get_nozzle] g:g]
-								   v:ccp(float_random(-16,-4),float_random(5,9))
-								   player:player.position] do_bg_to_front_anim]];
-				[bgobj set_recoil_delta:ccp(10,-10)];
-				[bgobj explosion_at:[bgobj get_nozzle]];
-				[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+		} else if (sub_submode >= 0) {
+			ct-=[Common get_dt_Scale];
+			if (ct <= 0) {
+				if (sub_submode > 1) {
+					[g add_gameobject:[[RelativePositionEnemyBomb
+										cons_pt:[UICommon touch_to_game_coords:[bgobj get_nozzle] g:g]
+										v:ccp(float_random(-13,-4),float_random(5,9))
+										player:player.position] do_bg_to_front_anim]];
+					[bgobj set_recoil_delta:ccp(10,-10)];
+					[bgobj explosion_at:[bgobj get_nozzle]];
+					[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+					
+					//optional delta time on bombs
+				}
+				if (sub_submode%4 == 2 || sub_submode%4 == 3) {
+					ct = 20;
+				} else {
+					ct = 55;
+				}
+				sub_submode++;
 			}
 			
-			if (ct > 250) {
-				sub_submode = 1;
+			
+			if (sub_submode >= 14) {
+				sub_submode = -1;
 				[bgobj anim_hatch_cannon_to_closed];
 			}
 			
-		} else if (sub_submode == 1) {
+		} else if (sub_submode < 0) {
 			[bgobj setPosition:ccp(bgobj.position.x-2*[Common get_dt_Scale],bgobj.position.y)];
-			DO_FOR(2, [bgobj splash_tick:ccp(float_random(2, 5.5),float_random(2, 12)) offset:ccp(35,float_random(-17, -13))]);
+			DO_FOR(2, [bgobj splash_tick:ccp(float_random(1, 3.5),float_random(2, 8)) offset:ccp(35,float_random(-17, -13))]);
 			if (bgobj.position.x < -100) {
 				[self pick_next_move];
 			}
@@ -202,21 +211,20 @@ static CGPoint last_pos;
 		[bgobj setScaleX:-1];
 		
 		if (bgobj.position.x > -150) {
-			if (ct == 40) {
-				[bgobj anim_hatch_closed_to_open];
-			} else if (ct > 40) {
-				if (ct % 9 == 0) {
-					[bgobj launch_rocket];
-					[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+			ct -= [Common get_dt_Scale];
+			if (ct <= 0) {
+				sub_submode++;
+				if (sub_submode == 2) {
+					[bgobj anim_hatch_closed_to_open];
 				}
-				if (ct > 80) {
-					if (ct % 16 == 0) {
-						[g add_gameobject:[LauncherRocket cons_at:ccp(player.position.x+float_random(900, 1000),groundlevel+600) vel:ccp(0,float_random(-5, -3))]];
-					}
+				[bgobj launch_rocket];
+				[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+				if (sub_submode > 4 && sub_submode%2==0) {
+					[g add_gameobject:[[LauncherRocket cons_at:ccp(player.position.x+float_random(900, 1000),groundlevel+600) vel:ccp(0,float_random(-5, -3))] no_vibration]];
 				}
+				ct = 17;
 			}
-			ct++;
-			DO_FOR(2, [bgobj splash_tick:ccp(float_random(2, 5.5),float_random(2, 12)) offset:ccp(35,float_random(-17, -13))]);
+			DO_FOR(2, [bgobj splash_tick:ccp(float_random(1, 3.5),float_random(2, 8)) offset:ccp(35,float_random(-17, -13))]);
 			[bgobj setPosition:CGPointAdd(bgobj.position, ccp(-2*[Common get_dt_Scale],0))];
 			
 		} else {
@@ -235,7 +243,7 @@ static CGPoint last_pos;
 			body_rel_pos.x -= 3 * [Common get_dt_Scale];
 			target_rotation = 0;
 			[self run_body_anim:_anim_body_normal];
-			[self splash_tick:g dir:ccp(float_random(18, 30),float_random(25, 35)) offset:ccp(100,float_random(-50, -30))];
+			[self splash_tick:g dir:ccp(float_random(10, 25),float_random(10, 20)) offset:ccp(100,float_random(-50, -30))];
 			
 			if (body_rel_pos.x <= 500) {
 				body_rel_pos.x = 500;
@@ -246,17 +254,17 @@ static CGPoint last_pos;
 		} else if (sub_submode == 0) {
 			target_rotation = 15;
 			ct--;
-			[self splash_tick:g dir:ccp(float_random(18, 30),float_random(25, 35)) offset:ccp(100,float_random(-50, -30))];
+			[self splash_tick:g dir:ccp(float_random(10, 25),float_random(10, 20)) offset:ccp(100,float_random(-50, -30))];
 			if (ct <= 0) {
 				sub_submode = 1;
 				ct = 0;
-				[self splash:g at:CGPointAdd(body.position,ccp(60,0))];
+				[self splash:g at:CGPointAdd(body.position,ccp(60,-15))];
 				[AudioManager playsfx:SFX_BOSS_ENTER];
 				[AudioManager playsfx:SFX_SPLASH];
 			}
 			
 		} else if (sub_submode == 1) {
-			body_rel_pos.x -= 3.5 * [Common get_dt_Scale];
+			body_rel_pos.x -= 6 * [Common get_dt_Scale];
 			body_rel_pos.y = (-25.0/5000.0) * (body_rel_pos.x - 500) * (body_rel_pos.x);
 			target_rotation = [VecLib get_rotation:[VecLib cons_x:body_rel_pos.x-last_pos.x y:body_rel_pos.y-last_pos.y z:0] offset:0];
 			
@@ -286,8 +294,8 @@ static CGPoint last_pos;
 												vx:dir.x
 												vy:dir.y]
 							set_scale:float_random(1.5, 3)]
-						   set_ctmax:8]
-						   set_gravity:ccp(0,float_random(-10, -6))];
+						   set_ctmax:16]
+						   set_gravity:ccp(0,float_random(-4, -2))];
 	[sp setColor:ccc3(200,220,250)];
 	[sp set_final_color:ccc3(120+arc4random_uniform(40), 170+arc4random_uniform(20), 220+arc4random_uniform(30))];
 	[g add_particle:sp];
@@ -297,11 +305,11 @@ static CGPoint last_pos;
 	DO_FOR(30,
 		StreamParticle *sp = [[[[StreamParticle cons_x:pt.x + float_random(-40, 40)
 													 y:pt.y
-													vx:float_random(-7, 30)
-													vy:float_random(15, 45)]
+													vx:float_random(-12.5, 20)
+													vy:float_random(10, 20)]
 								set_scale:float_random(0.5, 3)]
-							   set_ctmax:30]
-							  set_gravity:ccp(0,float_random(-5, -3))];
+							   set_ctmax:25]
+							  set_gravity:ccp(0,float_random(-1.5, -1))];
 		[sp setColor:ccc3(200,220,250)];
 		[sp set_final_color:ccc3(120+arc4random_uniform(40), 170+arc4random_uniform(20), 220+arc4random_uniform(30))];
 		[g add_particle:sp];
@@ -314,7 +322,8 @@ static int pick_mod = 3;
 	[body setRotation:0];
 	[body setOpacity:255];
 	[AudioManager playsfx:SFX_BOSS_ENTER];
-	//pick_ct = 2; //todo fix
+	sub_submode = 0;
+	pick_ct = 2; //todo fix
 	
 	if (pick_ct%pick_mod == 0) {
 		current_mode = SubMode_BGFireBombs;

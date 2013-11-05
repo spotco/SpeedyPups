@@ -1,7 +1,7 @@
 #import "Particle.h"
 
 @interface StreamParticle : Particle {
-    int ct;
+    float ct;
 	float STREAMPARTICLE_CT_DEFAULT;
 	
 	BOOL has_set_gravity, has_set_final_color, has_set_render_ord;
@@ -12,7 +12,7 @@
 
 
 
-@property(readwrite,assign) int ct;
+@property(readwrite,assign) float ct;
 
 +(StreamParticle*)cons_x:(float)x y:(float)y;
 +(StreamParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy;

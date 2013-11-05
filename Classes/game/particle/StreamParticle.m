@@ -36,11 +36,11 @@
 }
 
 -(void)update:(GameEngineLayer*)g{
-    [self setPosition:ccp(position_.x+vx,position_.y+vy)];
+    [self setPosition:ccp(position_.x+vx*[Common get_dt_Scale],position_.y+vy*[Common get_dt_Scale])];
     [self setOpacity:((int)(ct/STREAMPARTICLE_CT_DEFAULT*255))];
 	if (has_set_gravity) {
-		vx += gravity.x;
-		vy += gravity.y;
+		vx += gravity.x * [Common get_dt_Scale];
+		vy += gravity.y * [Common get_dt_Scale];
 	}
 	if (has_set_final_color) {
 		float pct = ct/STREAMPARTICLE_CT_DEFAULT;
@@ -48,7 +48,7 @@
 							pct*(initial_color.g-final_color.g)+final_color.g,
 							pct*(initial_color.b-final_color.b)+final_color.b)];
 	}
-    ct--;
+    ct-=[Common get_dt_Scale];
 }
 
 -(BOOL)should_remove {

@@ -165,8 +165,8 @@
 }
 
 -(void)move:(GameEngineLayer*)g {
-	player_rel_pos.x += v.x;
-    [self setPosition:ccp(g.player.position.x+player_rel_pos.x,position_.y+=v.y)];
+	player_rel_pos.x += v.x * [Common get_dt_Scale];
+    [self setPosition:ccp(g.player.position.x+player_rel_pos.x,position_.y+v.y * [Common get_dt_Scale])];
 }
 
 -(void)reset {

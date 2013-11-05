@@ -9,7 +9,8 @@ typedef enum SubMode {
 	SubMode_ToRemove,
 	SubMode_BGFireBombs,
 	SubMode_BGFireMissiles,
-	SubMode_FrontJumpAttack
+	SubMode_FrontJumpAttack,
+	SubMode_ScopeQuickJump
 } SubMode;
 
 @interface SubBoss : GameObject {
@@ -25,7 +26,7 @@ typedef enum SubMode {
 	float groundlevel;
 	
 	int pick_ct;
-	int ct;
+	float ct;
 	int sub_submode;
 	float flt_ct;
 	CGPoint body_rel_pos;

@@ -42,8 +42,15 @@
     [trail setPosition:ccp(70,0)];
     [trail runAction:[self cons_anim:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4", nil] speed:0.1]];
     [self addChild:trail z:1];
+	
+	no_vibration = NO;
     
     return self;
+}
+
+-(LauncherRocket*)no_vibration {
+	no_vibration = YES;
+	return self;
 }
 
 -(void)update_position {
@@ -58,8 +65,10 @@
 }
 
 -(void)update_vibration {
-    vibration_ct+=0.2;
-    vibration.y = 4*sinf(vibration_ct);
+	if (no_vibration == NO) {
+		vibration_ct+=0.2;
+		vibration.y = 4*sinf(vibration_ct);
+	}
 }
 
 -(BOOL)is_active {

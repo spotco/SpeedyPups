@@ -95,8 +95,8 @@
 											  vx:dir.x
 											  vy:dir.y]
 						   set_scale:float_random(0.4, 1.3)]
-						  set_ctmax:8]
-						  set_gravity:ccp(0,float_random(-4, -2))];
+						  set_ctmax:16]
+						  set_gravity:ccp(0,float_random(-2, -1))];
 	[sp setColor:ccc3(200,220,250)];
 	[sp set_final_color:ccc3(120+arc4random_uniform(40), 170+arc4random_uniform(20), 220+arc4random_uniform(30))];
 	[self add_particle_behind_water:sp];
@@ -112,7 +112,7 @@
 	[clouds setColor:PCT_CCC3(80, 80, 130, pctm)];
 }
 
-static int explosion_ct;
+static float explosion_ct;
 -(void)update:(GameEngineLayer*)g curx:(float)curx cury:(float)cury {
 	[self update_particles];
 	[self push_added_particles];
@@ -135,20 +135,19 @@ static int explosion_ct;
 		[docks setVisible:YES];
 		[tankersfront setVisible:YES];
 		
-		explosion_ct++;
-		if (explosion_ct%2==0) {
+		explosion_ct-=[Common get_dt_Scale];
+		if (explosion_ct <= 0) {
 			Particle *p = [ExplosionParticle cons_x:float_random(0, 600) y:float_random(0,350)];
 			[self add_tankersfront_particle:p];
-		}
-		if (explosion_ct%6==0) {
 			[AudioManager playsfx:SFX_EXPLOSION];
+			explosion_ct = 13;
 		}
 		
 		for (BackgroundObject *o in bg_objects) {
 			if (o == tankers || o == docks || o == tankersfront) {
 				float prevy = o.position.y;
 				[o update_posx:curx posy:cury];
-				[o setPosition:ccp(o.position.x,prevy-3)];
+				[o setPosition:ccp(o.position.x,prevy-1.5*[Common get_dt_Scale])];
 				
 				if (o == docks && o.position.y <= -350) current_state = Lab2BGLayerSetState_Sunk;
 				
