@@ -10,6 +10,8 @@ typedef enum Lab2BGLayerSetState {
 	CCNode __unsafe_unretained *anchor;
 	CGPoint actual_position;
 	CGPoint recoil_delta;
+	
+	BOOL broken;
 }
 +(SubBossBGObject*)cons_anchor:(CCNode*)anchor;
 -(void)set_recoil_delta:(CGPoint)delta;
@@ -19,6 +21,8 @@ typedef enum Lab2BGLayerSetState {
 -(void)anim_hatch_closed_to_cannon;
 -(void)anim_hatch_closed_to_open;
 -(void)anim_hatch_cannon_to_closed;
+
+-(void)set_broken;
 
 -(void)explosion_at:(CGPoint)pt;
 -(void)launch_rocket;

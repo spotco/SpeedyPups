@@ -28,7 +28,7 @@
     playbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                               rect:@"nmenu_runbutton"
                                                tar:self sel:@selector(run_button_pressed)
-                                               pos:[Common screen_pctwid:0.5 pcthei:0.45]];
+                                               pos:[Common screen_pctwid:0.5 pcthei:0.4]];
     
     nav_menu = [MenuCommon cons_common_nav_menu];
     [self addChild:nav_menu z:5];

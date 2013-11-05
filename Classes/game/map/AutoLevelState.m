@@ -117,8 +117,7 @@ static NSArray *lab_tutorial_levels;
 			@"swingvine_datbounce" : @2
 		},
 		L_AUTOSTART: @{
-			//@"autolevel_start": @1
-			@"robotstest":@1
+			@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -130,7 +129,7 @@ static NSArray *lab_tutorial_levels;
 			@"boss1_area": @1
 		},
 		L_BOSS2START: @{
-			@"boss2_start":@1 //TODO -- fix me
+			@"boss2_start":@1
 		},
 		L_BOSS2AREA: @{
 			@"boss2_area":@1,
@@ -263,6 +262,7 @@ static NSArray *lab_tutorial_levels;
 		cur_set = L_TUTORIAL;
 		nth_freerunprogress = 0;
 		has_done_lab_tutorial = NO;
+		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
 		tutorial_ct = 0;
@@ -270,6 +270,7 @@ static NSArray *lab_tutorial_levels;
 		ct = 10;
 		cur_set = L_FREERUN_PROGRESS;
 		has_done_lab_tutorial = NO;
+		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
 		[self cycle_through:17];
@@ -277,6 +278,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
+		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
 		[self cycle_through:20];
@@ -285,6 +287,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
+		nth_lab = 1;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB2) {
 		[self cycle_through:35];
@@ -293,6 +296,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
+		nth_lab = 1;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
 		[self cycle_through:36];
@@ -301,6 +305,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
+		nth_lab = 2;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
 		[self cycle_through:36];
@@ -309,6 +314,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
+		nth_lab = 2;
 		
 	} else {
 		NSLog(@"AutoLevelState start at error");
@@ -386,7 +392,11 @@ static NSArray *lab_tutorial_levels;
 	} else if ([cur_set isEqualToString:L_LAB]) {
 		sets_until_next_lab--;
 		if (sets_until_next_lab < 0) {
-			return [[levelsets[L_BOSS1START] allKeys] random];
+			if (nth_lab%3==0 || nth_lab%3==1) {
+				return [[levelsets[L_BOSS1START] allKeys] random];
+			} else {
+				return [[levelsets[L_BOSS2START] allKeys] random];
+			}
 		}
 		return [labsetgen get_from_bucket:L_LAB];
 		

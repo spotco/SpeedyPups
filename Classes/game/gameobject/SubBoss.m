@@ -9,31 +9,43 @@
 #import "JumpPadParticle.h"
 #import "HitEffect.h"
 #import "DazedParticle.h"
+#import "ExplosionParticle.h"
+#import "BrokenMachineParticle.h"
 
-@interface FGWater : GameObject
+@interface FGWater : GameObject {
+	CCSprite *body;
+}
 +(FGWater*)cons;
 @property (readwrite,assign) float offset;
+@property (readwrite,strong) CCSprite *periscope;
 @end
 
 @implementation FGWater
 @synthesize offset;
+@synthesize periscope;
 +(FGWater*)cons {
-	return [[FGWater spriteWithTexture:[Resource get_tex:TEX_LAB2_WATER_FG]] cons_it];
+	return [[FGWater node] cons_];
 }
--(id)cons_it {
-	[self setAnchorPoint:ccp(0.5,1)];
+-(id)cons_ {
+	periscope = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_SUBBOSS] rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_SUBBOSS idname:@"spyglass"]];
+	[self addChild:periscope];
+	
+	body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_LAB2_WATER_FG]];
+	[self addChild:body];
 	active = YES;
+	[periscope setScaleX:-1];
 	return self;
 }
 -(void)update:(CGPoint)player_pos {
 	player_pos.x *= 1.1;
-	float xpos = ((int)(player_pos.x))%self.texture.pixelsWide + ((player_pos.x) - ((int)(player_pos.x)));
-	[self setTextureRect:CGRectMake(
+	float xpos = ((int)(player_pos.x))%body.texture.pixelsWide + ((player_pos.x) - ((int)(player_pos.x)));
+	[body setTextureRect:CGRectMake(
 		xpos,
 		0,
 		[Common SCREEN].width*4,
-		[self textureRect].size.height
+		[body textureRect].size.height
 	)];
+	
 }
 -(void)check_should_render:(GameEngineLayer *)g {
 	do_render = YES;
@@ -46,7 +58,7 @@
 @implementation SubBoss
 
 static CCAction* _anim_body_normal = NULL;
-static CCAction* _anim_body_angry;
+static CCAction* _anim_body_broken;
 static CCAction* _anim_body_bite;
 
 static CCAction* _anim_hatch_closed_to_cannon;
@@ -78,7 +90,7 @@ static CCAction* _anim_hatch_closed;
 	current_mode = SubMode_Intro;
 	[bgobj setPosition:ccp(-100,bgobj.position.y)];
 	ct = 0;
-	pick_ct = 0;
+	pick_ct = int_random(0, 99);
 	
 	[bgobj setScale:1];
 	
@@ -90,6 +102,7 @@ static CCAction* _anim_hatch_closed;
 	[g add_gameobject:fgwater];
 	
 	[AudioManager playsfx:SFX_BOSS_ENTER];
+	hp = 4;
 	
 	return self;
 }
@@ -98,11 +111,13 @@ static CGPoint last_pos;
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
 	[self set_bounds_and_ground:g];
 	
-	fgwater.offset += (150-fgwater.offset)/10.0;
+	fgwater.offset += (220-fgwater.offset)/10.0;
 	[fgwater setPosition:ccp(player.position.x,groundlevel-fgwater.offset)];
 	[fgwater update:player.position];
+	CCSprite *periscope = fgwater.periscope;
+	[periscope setVisible:NO];
 	
-	if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && body.visible && !player.dead && current_mode != SubMode_Flyoff) {
+	if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && body.visible && !player.dead && current_mode != SubMode_Flyoff && current_mode != SubMode_DeadExplode) {
 		if (player.dashing || [player is_armored]) {
 			current_mode = SubMode_Flyoff;
 			Vec3D playerdir = [VecLib scale:[VecLib normalized_x:player.vx y:player.vy z:0] by:14];
@@ -111,6 +126,11 @@ static CGPoint last_pos;
 			[body setOpacity:180];
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			[AudioManager playsfx:SFX_ROCKET_SPIN];
+			hp--;
+			if (hp <= 0) {
+				current_mode = SubMode_DeadExplode;
+				ct = 130;
+			}
 			
 		} else {
 			[player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
@@ -124,6 +144,39 @@ static CGPoint last_pos;
 	if (current_mode == SubMode_ToRemove) {
 		[g remove_gameobject:self];
 		[g remove_gameobject:fgwater];
+		
+	} else if (current_mode == SubMode_DeadExplode) {
+		[bgobj setVisible:NO];
+		[body setVisible:YES];
+		[body setOpacity:160];
+		[body setRotation:body.rotation+15*[Common get_dt_Scale]];
+		ct-=[Common get_dt_Scale];
+		sub_submode++;
+		if (sub_submode%15==0 && sub_submode > 20) {
+			[g add_particle:[RelativePositionExplosionParticle cons_x:body.position.x+float_random(-60, 60)
+																	y:body.position.y+float_random(-60, 60)
+															   player:g.player.position]];
+			[AudioManager playsfx:SFX_EXPLOSION];
+		}
+		
+		sub_submode%5==0?[g add_particle:[RocketLaunchParticle cons_x:body.position.x
+														   y:body.position.y
+														  vx:float_random(-7, 7)
+														  vy:float_random(-7, 7)]]:0;
+		
+		[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
+		if (ct <= 0) {
+			current_mode = SubMode_ToRemove;
+			for(float i = 0; i < 5; i++) {
+				[g add_particle:[BrokenCopterMachineParticle cons_x:body.position.x
+																  y:body.position.y
+																 vx:float_random(-5, 10)
+																 vy:float_random(-10, 10)
+															   pimg:i]];
+			}
+			[AudioManager playsfx:SFX_BIG_EXPLOSION];
+			[GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS2_DEFEATED] add_pt:g.player.position]];
+		}
 		
 	} else if (current_mode == SubMode_Flyoff) {
 		[body setRotation:[body rotation] + 15*[Common get_dt_Scale]];
@@ -282,6 +335,72 @@ static CGPoint last_pos;
 		[body setRotation:body.rotation + (target_rotation - body.rotation)/5];
 		[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
 		
+	} else if (current_mode == SubMode_ScopeQuickJump) {
+		[periscope setVisible:YES];
+		
+		if (sub_submode == 0) {
+			[periscope setPosition:ccp(1000,120)];
+			sub_submode = 1;
+		}
+		if (sub_submode == 1) {
+			[body setVisible:NO];
+			if (periscope.position.x > 400) {
+				[periscope setPosition:CGPointAdd(periscope.position, ccp(-5*[Common get_dt_Scale],0))];
+				
+			} else {
+				sub_submode = 2;
+				ct = 50;
+			}
+			
+		} else if (sub_submode == 2) {
+			ct -= [Common get_dt_Scale];
+			if (ct <= 0) sub_submode = 3;
+			
+		} else if (sub_submode == 3) {
+			[body setVisible:NO];
+			if (periscope.position.y > -50) {
+				[periscope setPosition:CGPointAdd(periscope.position, ccp(0,-6*[Common get_dt_Scale]))];
+				
+			} else {
+				sub_submode = 4;
+				ct = 60;
+			}
+			
+		} else if (sub_submode == 4) {
+			ct -= [Common get_dt_Scale];
+			if (ct <= 0) {
+				body_rel_pos = ccp(periscope.position.x,-150);
+				[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
+				[self splash:g at:CGPointAdd(body.position,ccp(0,150))];
+				[AudioManager playsfx:SFX_SPLASH];
+				[AudioManager playsfx:SFX_BOSS_ENTER];
+				[self run_body_anim:_anim_body_bite];
+				sub_submode = 5;
+			}
+			
+		} else if (sub_submode == 5) {
+			[body setVisible:YES];
+			[body setScaleX:-1];
+			
+			body_rel_pos.x -= 5*[Common get_dt_Scale];
+			float x = body_rel_pos.x;
+			body_rel_pos.y = -0.006*(x*x)+2.08*x-17.8;
+			//quadratic fit through (400,-150), (200,150), (0,0), (-50,-150)
+			
+			float target_rotation = [VecLib get_rotation:[VecLib cons_x:body_rel_pos.x-last_pos.x y:body_rel_pos.y-last_pos.y z:0] offset:0];
+			[body setRotation:body.rotation + (target_rotation - body.rotation)/5];
+			
+			[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
+			
+			if (body_rel_pos.x < -50) {
+				[self splash:g at:CGPointAdd(body.position,ccp(0,50))];
+				[self pick_next_move];
+			}
+			
+		}
+		
+
+		
 	}
 	
 	last_pos = body_rel_pos;
@@ -316,33 +435,40 @@ static CGPoint last_pos;
 	);
 }
 
-static int pick_mod = 3;
+static int pick_mod = 4;
 -(void)pick_next_move {
 	pick_ct++;
 	[body setRotation:0];
 	[body setOpacity:255];
-	[AudioManager playsfx:SFX_BOSS_ENTER];
 	sub_submode = 0;
-	pick_ct = 2; //todo fix
+	if ([self is_broken]) [bgobj set_broken];
 	
 	if (pick_ct%pick_mod == 0) {
 		current_mode = SubMode_BGFireBombs;
 		[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
 		ct = 0;
 		[bgobj anim_hatch_closed];
+		[AudioManager playsfx:SFX_BOSS_ENTER];
 		
 	} else if (pick_ct%pick_mod == 1) {
+		current_mode = SubMode_ScopeQuickJump;
+		body_rel_pos = ccp(1000,0);
+		[self run_body_anim:_anim_body_normal];
+		
+	} else if (pick_ct%pick_mod == 2) {
 		current_mode = SubMode_BGFireMissiles;
 		[bgobj setPosition:ccp([Common SCREEN].width+150,bgobj.position.y)];
 		ct = 0;
 		[bgobj anim_hatch_closed];
+		[AudioManager playsfx:SFX_BOSS_ENTER];
 		
-	} else if (pick_ct%pick_mod == 2) {
+	} else if (pick_ct%pick_mod == 3) {
 		current_mode = SubMode_FrontJumpAttack;
 		body_rel_pos = ccp(1000,0);
 		sub_submode = 0;
 		ct = 0;
 		[self run_body_anim:_anim_body_normal];
+		[AudioManager playsfx:SFX_BOSS_ENTER];
 		
 	}
 }
@@ -380,7 +506,7 @@ static int pick_mod = 3;
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
 	_anim_body_normal = [Common cons_anim:@[@"body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_body_angry = [Common cons_anim:@[@"body_normal",@"body_normal_red"] speed:0.1 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_broken = [Common cons_anim:@[@"broken"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_body_bite = [Common cons_nonrepeating_anim:@[@"body_bite0",
 										  @"body_bite1",
 										  @"body_bite2"]
@@ -405,14 +531,21 @@ static int pick_mod = 3;
 	
 }
 
+-(BOOL)is_broken {
+	return hp <= 2;
+}
+
 -(void)run_body_anim:(CCAction*)anim {
+	if (anim == _anim_body_normal && [self is_broken]) anim = _anim_body_broken;
 	if (_current_anim == NULL) {
 		_current_anim = anim;
 		[body runAction:anim];
+		
 	} else if (anim != _current_anim) {
 		[body stopAllActions];
 		_current_anim = anim;
 		[body runAction:anim];
+		
 	}
 }
 

@@ -7,6 +7,7 @@ typedef enum SubMode {
 	SubMode_Intro,
 	SubMode_Flyoff,
 	SubMode_ToRemove,
+	SubMode_DeadExplode,
 	SubMode_BGFireBombs,
 	SubMode_BGFireMissiles,
 	SubMode_FrontJumpAttack,
@@ -31,6 +32,8 @@ typedef enum SubMode {
 	float flt_ct;
 	CGPoint body_rel_pos;
 	CGPoint flyoff_dir;
+	
+	int hp;
 }
 
 +(SubBoss*)cons_with:(GameEngineLayer*)g;

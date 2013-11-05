@@ -234,6 +234,7 @@ static float explosion_ct;
 
 @implementation SubBossBGObject
 static CCAction* _anim_body_normal;
+static CCAction* _anim_body_broken;
 static CCAction* _anim_hatch_closed;
 static CCAction* _anim_hatch_closed_to_cannon;
 static CCAction* _anim_hatch_cannon_to_closed;
@@ -256,14 +257,25 @@ static CCAction* _anim_hatch_closed_to_open;
 	[_body setRotation:-15];
 	
 	[self setPosition:ccp(-500,anchor.position.y + 175)];
-	
 	anchor = tanchor;
+	broken = NO;
 	return self;
 }
 
 -(void)reset {
+	broken = NO;
+	[_body stopAllActions];
+	[_body runAction:_anim_body_normal];
 	[_hatch stopAllActions];
 	[_hatch runAction:_anim_hatch_closed];
+}
+
+-(void)set_broken {
+	if (!broken) {
+		[_body stopAllActions];
+		[_body runAction:_anim_body_broken];
+	}
+	broken = YES;
 }
 
 -(CGPoint)get_nozzle {
@@ -293,6 +305,7 @@ static CCAction* _anim_hatch_closed_to_open;
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
 	_anim_body_normal = [Common cons_anim:@[@"bg_body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_broken = [Common cons_anim:@[@"bg_body_broken"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed = [Common cons_anim:@[@"bg_hatch_0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed_to_cannon = [Common cons_nonrepeating_anim:@[@"bg_hatch_0",
 																	@"bg_hatch_1",

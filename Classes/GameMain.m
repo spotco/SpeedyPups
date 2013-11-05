@@ -12,7 +12,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -21,7 +21,11 @@
 #define DRAW_HITBOX NO
 
 /**
+ make ONE consistent lab/world count tracker
  change around tutorials, swingvine and cannon world 2
+ 
+ add in world 3 art
+ 
  make cannon levels
  implement level of the week
  integrate IAP speedypups subscription
@@ -62,7 +66,7 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
-	*/
+	
 	
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
@@ -70,6 +74,7 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
+	 */
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
@@ -78,7 +83,9 @@ Stretch goals:
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	
 	
 }

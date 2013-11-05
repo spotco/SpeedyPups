@@ -564,8 +564,8 @@
 }
 
 -(LabNum)get_lab_num {
-	return LabNum_2;
-	//return cur_lab_num;
+	//return LabNum_2;
+	return cur_lab_num;
 }
 
 -(BGMode)get_cur_bg_mode {

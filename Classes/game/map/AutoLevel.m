@@ -46,7 +46,10 @@
         [self shift_queue_into_current];
 		
 	} else if (e.type == GEventType_BOSS2_DEFEATED) {
-		NSLog(@"TODO -- BOSS2 DEFEATED");
+		[cur_state to_labexit_mode];
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
+        [self remove_all_ahead_but_current:e.pt];
+        [tglayer follow_player];
 		
 	}
 }
