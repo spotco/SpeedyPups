@@ -12,7 +12,7 @@ typedef enum {
 	BGM_GROUP_CAPEGAME = 7
 } BGM_GROUP;
 
-//afconvert -f caff -d LEI16 DOG_Music_019b.mp3 test.aiff
+//g DOG_Music_019b.mp3 test.aiff
 
 //bgm_1
 #define BGMUSIC_MENU1 @"menu1.aiff"

@@ -12,19 +12,23 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
-#define STARTING_LIVES 1
+#define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
 /**
  change around tutorials, swingvine and cannon world 2, revamp autolevelstate tutorial system
- add in world 3 art
  some more secrets challenge level, loops jump through and long spike jump through
  check thomas level
+ 
+ world3 particle effects
+ world3 grounddetails
+ world3 ground
+ world3 night + aurora
  
  make cannon levels
  implement level of the week

@@ -105,7 +105,10 @@
 	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD2];
 		
-	} 
+	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		[AudioManager playbgm_imm:BGM_GROUP_WORLD3];
+		
+	}
 }
 
 -(void)cons:(NSString*)map_filename lives:(int)starting_lives world:(WorldNum)world {
