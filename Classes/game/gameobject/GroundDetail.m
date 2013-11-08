@@ -71,7 +71,7 @@ static NSArray* ABOVE;
     CGRect texrect = [FileCache get_cgrect_from_plist:TEX_GROUND_DETAILS idname:[self id_to_key:type]];
 	
 	CCTexture2D *tex;
-	if ([g get_world_num] == WorldNum_2) {
+	if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		tex = [Resource get_tex:TEX_GROUND_DETAILS_WORLD2];
 	} else {
 		tex = [Resource get_tex:TEX_GROUND_DETAILS];

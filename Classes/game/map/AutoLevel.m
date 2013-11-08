@@ -215,10 +215,6 @@
     [super reset];
 }
 
--(FreeRunProgress)get_freerun_progress {
-	return [cur_state get_freerun_progress];
-}
-
 -(void)dealloc {
     [queued_sections removeAllObjects];
     [stored removeAllObjects];

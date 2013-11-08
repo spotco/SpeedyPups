@@ -93,9 +93,7 @@
 		return WorldNum_2;
 		
 	} else if (loc == FreeRunStartAt_WORLD3 || loc == FreeRunStartAt_LAB3) {
-		//TODO!!
-		NSLog(@"error, world3 not in yet");
-		return WorldNum_1;
+		return WorldNum_3;
 	
 	} else {
 		NSLog(@"worldnumstartat errval");

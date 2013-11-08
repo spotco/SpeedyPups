@@ -18,7 +18,8 @@
 #import "AutoLevel.h"
 #import "World1ParticleGenerator.h"
 #import "BatchDraw.h"
-#import "Challenge.h" 
+#import "Challenge.h"
+#import "GameWorldMode.h"
 
 #define GAMEENGINE_INF_LIVES -99
 
@@ -34,25 +35,6 @@ typedef enum {
 	GameEngineLayerMode_CAPEOUT,
 	GameEngineLayerMode_CAPEIN
 } GameEngineLayerMode;
-
-typedef enum {
-	BGMode_NORMAL,
-	BGMode_LAB
-} BGMode;
-
-typedef enum { //worlds are incremented by labentrances, only further created lineislands will be affected
-	WorldNum_1 = 1,
-	WorldNum_2 = 2
-} WorldNum;
-
-typedef enum { //labs incremented by labexits, keep these synchronized with worldnum
-	LabNum_1 = 1,
-	LabNum_2 = 2
-} LabNum;
-
-//update when available
-#define MAX_WORLD WorldNum_2
-#define MAX_LAB LabNum_2
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
     NSMutableArray *particles,*particles_tba, *gameobjects_tbr;
@@ -76,7 +58,7 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
     BOOL do_runin_anim;
     float scrollup_pct,defcey;
 	
-	BGMode cur_bg_mode;
+	//BGMode cur_bg_mode;
 	
 	float follow_clamp_y_min,follow_clamp_y_max;
 	float actual_follow_clamp_y_min,actual_follow_clamp_y_max;
@@ -84,8 +66,8 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 	GameEngineStats *stats;
 	
 	GameEngineLayerMode stored_mode;
-	WorldNum cur_world_num;
-	LabNum cur_lab_num;
+	//WorldNum cur_world_num;
+	//LabNum cur_lab_num;
 }
 
 
@@ -103,10 +85,12 @@ typedef enum { //labs incremented by labexits, keep these synchronized with worl
 
 -(ChallengeInfo*)get_challenge;
 
+/*
 -(BGMode)get_cur_bg_mode;
 -(WorldNum)get_world_num;
 -(LabNum)get_lab_num;
-
+*/
+ 
 -(CGRange)get_follow_clamp_y_range;
 -(CGRange)get_actual_follow_clamp_y_range;
 

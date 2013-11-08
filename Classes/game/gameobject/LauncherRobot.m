@@ -109,7 +109,7 @@
     }
     
     
-    ct--;
+    ct-=[Common get_dt_Scale];
     if (ct < 50) {
         ct%5==0?[self toggle]:0;
     } else {

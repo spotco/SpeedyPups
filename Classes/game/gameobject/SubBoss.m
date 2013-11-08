@@ -103,6 +103,7 @@ static CCAction* _anim_hatch_closed;
 	
 	[AudioManager playsfx:SFX_BOSS_ENTER];
 	hp = 4;
+	//hp = 1;
 	
 	return self;
 }

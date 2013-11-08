@@ -1,0 +1,23 @@
+{
+    "connect_pts": {"y1": 300, "x2": 1223.8, "y2": 302.5, "x1": 98},
+    "start_y": 0,
+    "objects": [
+        {"bid": 1, "x": 336.3, "label": "BID:1", "y": 626.3, "type": "dogbone"},
+        {"bid": 2, "x": 337.5, "label": "BID:2", "y": 551.3, "type": "dogbone"},
+        {"bid": 3, "x": 336.3, "label": "BID:3", "y": 480, "type": "dogbone"},
+        {"bid": 4, "x": 416.3, "label": "BID:4", "y": 476.3, "type": "dogbone"},
+        {"bid": 11, "x": 601.3, "label": "BID:11", "y": 628.8, "type": "dogbone"},
+        {"bid": 12, "x": 600, "label": "BID:12", "y": 552.5, "type": "dogbone"},
+        {"bid": 13, "x": 602.5, "label": "BID:13", "y": 486.3, "type": "dogbone"},
+        {"bid": 14, "x": 697.5, "label": "BID:14", "y": 490, "type": "dogbone"},
+        {"bid": 15, "x": 693.8, "label": "BID:15", "y": 636.3, "type": "dogbone"},
+        {"bid": 17, "x": 696.3, "label": "BID:17", "y": 557.5, "type": "dogbone"},
+        {"bid": 18, "x": 902.5, "label": "BID:18", "y": 636.3, "type": "dogbone"},
+        {"bid": 21, "x": 901.3, "label": "BID:21", "y": 548.8, "type": "dogbone"},
+        {"bid": 22, "x": 900, "label": "BID:22", "y": 472.5, "type": "dogbone"},
+        {"bid": 23, "x": 998.8, "label": "BID:23", "y": 467.5, "type": "dogbone"}
+    ],
+    "assert_links": 0,
+    "islands": [{"ground": "open", "y1": 300, "hei": 50, "y2": 302.5, "type": "line", "x1": 98, "can_fall": true, "x2": 1223.8, "ndir": "left"}],
+    "start_x": 0
+}

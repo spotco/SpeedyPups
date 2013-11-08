@@ -21,7 +21,7 @@
 	[bg_objects addObject:clouds];
 	[bg_objects addObject:[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB2_WINDOWWALL] scrollspd_x:0.01 scrollspd_y:0]];
 	
-	BackgroundObject *backwater = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB2_WATER_BACK] scrollspd_x:0.06 scrollspd_y:0.0075];
+	BackgroundObject *backwater = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB2_WATER_BACK] scrollspd_x:0.06 scrollspd_y:0];
 	
 	subboss = [SubBossBGObject cons_anchor:backwater];
 	[bg_objects addObject:subboss];

@@ -112,6 +112,10 @@ static int current_sound = 0;
 	last_collect_time = [gameengine get_time];
 }
 
++(void)reset_play_collect_sound {
+	last_collect_time = 0;
+}
+
 -(void)hit {
 	[DogBone play_collect_sound:gameengine];
     

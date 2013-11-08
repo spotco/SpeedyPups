@@ -10,6 +10,7 @@
 #import "BGTimeManager.h"
 #import "CapeGameEngineLayer.h"
 #import "TutorialEnd.h"
+#import "DogBone.h"
 
 @implementation GameEngineLayer
 
@@ -27,7 +28,8 @@
 @synthesize player;
 @synthesize camera_state,tar_camera_state;
 
-+(CCScene *) scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world {
++(CCScene *)scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world {
+	[GameWorldMode set_worldnum:world];
     CCScene *scene = [CCScene node];
     GameEngineLayer *glayer = [GameEngineLayer layer_from_file:map_file_name lives:lives world:world];
 	BGLayer *bglayer = [BGLayer cons_with_gamelayer:glayer];
@@ -43,6 +45,7 @@
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
+	[GameWorldMode set_worldnum:world];
     CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
@@ -62,6 +65,7 @@
 }
 
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world {
+	[GameWorldMode set_worldnum:world];
 	[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
     CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES world:world];
 	[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
@@ -95,10 +99,10 @@
 }
 
 -(void)play_worldnum_bgm {
-	if ([self get_world_num] == WorldNum_1) {
+	if ([GameWorldMode get_worldnum] == WorldNum_1) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 		
-	} else if ([self get_world_num] == WorldNum_2) {
+	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD2];
 		
 	} 
@@ -108,6 +112,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	[DogBone reset_play_collect_sound];
 	stats = [GameEngineStats cons];
     default_starting_lives = starting_lives;
 	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
@@ -160,8 +165,6 @@
     player_starting_pos = player_start_pt;
 	[Common unset_dt];
 	
-	cur_world_num = MIN(world,MAX_WORLD);
-	cur_lab_num = MIN(world,MAX_LAB);
 	[self play_worldnum_bgm];
 }
 
@@ -534,15 +537,21 @@
         [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
-		cur_bg_mode = BGMode_LAB;
+		/*cur_bg_mode = BGMode_LAB;
 		cur_world_num = cur_world_num + 1;
-		if (cur_world_num > MAX_WORLD) cur_world_num = WorldNum_1;
+		if (cur_world_num > MAX_WORLD) cur_world_num = WorldNum_1;*/
+		
+		[GameWorldMode set_bgmode:BGMode_LAB];
+		
 		[AudioManager playbgm_imm:BGM_GROUP_LAB];
 		
 	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		cur_bg_mode = BGMode_NORMAL;
+		/*cur_bg_mode = BGMode_NORMAL;
 		cur_lab_num = cur_lab_num + 1;
-		if (cur_lab_num > MAX_LAB) cur_lab_num = LabNum_1;
+		if (cur_lab_num > MAX_LAB) cur_lab_num = LabNum_1;*/
+		
+		[GameWorldMode increment_world];
+		[GameWorldMode set_bgmode:BGMode_NORMAL];
 		
 		[self play_worldnum_bgm];
 		if ([BGTimeManager get_global_time] == MODE_NIGHT) {
@@ -559,18 +568,19 @@
 	}
 }
 
+/*
 -(WorldNum)get_world_num {
 	return cur_world_num;
 }
 
 -(LabNum)get_lab_num {
-	//return LabNum_2;
 	return cur_lab_num;
 }
 
 -(BGMode)get_cur_bg_mode {
 	return cur_bg_mode;
 }
+*/
 
 -(void)update_gameobjs {
     for(int i = [game_objects count]-1; i>=0 ; i--) {

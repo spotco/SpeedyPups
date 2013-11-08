@@ -61,6 +61,7 @@
 		7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */; };
 		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
 		7E41B648182C748500CBE9A6 /* Icon-hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E41B647182C748500CBE9A6 /* Icon-hr.png */; };
+		7E41B64B182C92F600CBE9A6 /* GameWorldMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */; };
 		7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4507C117F3FD4100287716 /* InventoryLayerTab.m */; };
 		7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */; };
 		7E4532A917E44192005EE7CB /* cloudlevel_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */; };
@@ -86,6 +87,7 @@
 		7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLoader.m */; };
 		7E60A69E1812910000CC7C07 /* SubBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69D1812910000CC7C07 /* SubBoss.m */; };
 		7E6D0E491829214200BD1602 /* boss2_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D0E481829214200BD1602 /* boss2_start.map */; };
+		7E6E61F4182CA0DA008EFA6F /* test_quick.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E61F3182CA0DA008EFA6F /* test_quick.map */; };
 		7E709F1F17E77E0B0005D8F6 /* sfx_fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */; };
 		7E709F2217E78AC60005D8F6 /* fanfare_lose.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */; };
 		7E709F2317E78AC60005D8F6 /* fanfare_win.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F2117E78AC60005D8F6 /* fanfare_win.aiff */; };
@@ -782,6 +784,8 @@
 		7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyFlyoffTextParticle.h; sourceTree = "<group>"; };
 		7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyFlyoffTextParticle.m; sourceTree = "<group>"; };
 		7E41B647182C748500CBE9A6 /* Icon-hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-hr.png"; sourceTree = "<group>"; };
+		7E41B649182C92F600CBE9A6 /* GameWorldMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldMode.h; sourceTree = "<group>"; };
+		7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWorldMode.m; sourceTree = "<group>"; };
 		7E4507C017F3FD4100287716 /* InventoryLayerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryLayerTab.h; sourceTree = "<group>"; };
 		7E4507C117F3FD4100287716 /* InventoryLayerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryLayerTab.m; sourceTree = "<group>"; };
 		7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEngineLayer.h; sourceTree = "<group>"; };
@@ -817,6 +821,7 @@
 		7E60A69C1812910000CC7C07 /* SubBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBoss.h; sourceTree = "<group>"; };
 		7E60A69D1812910000CC7C07 /* SubBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBoss.m; sourceTree = "<group>"; };
 		7E6D0E481829214200BD1602 /* boss2_start.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss2_start.map; sourceTree = "<group>"; };
+		7E6E61F3182CA0DA008EFA6F /* test_quick.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_quick.map; sourceTree = "<group>"; };
 		7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_fail.wav; sourceTree = "<group>"; };
 		7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = fanfare_lose.aiff; sourceTree = "<group>"; };
 		7E709F2117E78AC60005D8F6 /* fanfare_win.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = fanfare_win.aiff; sourceTree = "<group>"; };
@@ -2254,6 +2259,7 @@
 				7EB8B25F16D9F8E700F58961 /* shittytest.map */,
 				7EB8B26016D9F8E700F58961 /* simple_level_1.map */,
 				7EB8B26116D9F8E700F58961 /* swingvine_test.map */,
+				7E6E61F3182CA0DA008EFA6F /* test_quick.map */,
 			);
 			name = TEST;
 			path = test;
@@ -2555,6 +2561,8 @@
 				7EB8B41A16D9FC0900F58961 /* MapSection.m */,
 				7EC460E517054D9600656A48 /* AutoLevelState.h */,
 				7EC460E617054D9700656A48 /* AutoLevelState.m */,
+				7E41B649182C92F600CBE9A6 /* GameWorldMode.h */,
+				7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -3850,6 +3858,7 @@
 				7E709F2317E78AC60005D8F6 /* fanfare_win.aiff in Resources */,
 				7EDE4BA817EBA2FA00D554D6 /* capegame_launcher.map in Resources */,
 				7EDE4BAA17EBA7D000D554D6 /* capegame_easy.map in Resources */,
+				7E6E61F4182CA0DA008EFA6F /* test_quick.map in Resources */,
 				7EE5971F181E34D9003258E1 /* filler_kingofswing.map in Resources */,
 				7EDE4BAC17EBAFC000D554D6 /* capegame_creative.map in Resources */,
 				7E24A35A17ECD02F0085154C /* sfx_bone_1.wav in Resources */,
@@ -3966,6 +3975,7 @@
 				7EB8B4BE16D9FC0900F58961 /* HitEffect.m in Sources */,
 				7EB8B4BF16D9FC0900F58961 /* PlayerEffectParams.m in Sources */,
 				7EB8B4C016D9FC0900F58961 /* SplashEffect.m in Sources */,
+				7E41B64B182C92F600CBE9A6 /* GameWorldMode.m in Sources */,
 				7EB8B4C116D9FC0900F58961 /* BoneCollectUIAnimation.m in Sources */,
 				7EB8B4C216D9FC0900F58961 /* GameStartAnim.m in Sources */,
 				7EB8B4C316D9FC0900F58961 /* UIAnim.m in Sources */,

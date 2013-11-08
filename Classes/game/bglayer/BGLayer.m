@@ -84,7 +84,7 @@
 	[bglayerset_lab2 setVisible:NO];
 	[self bglayer_addChild:bglayerset_lab2];
 	
-	current_set = [self set_for_world:[game_engine_layer get_world_num]];
+	current_set = [self set_for_world:[GameWorldMode get_worldnum]];
 	[current_set setVisible:YES];
 	
 	return self;
@@ -97,7 +97,11 @@
 	} else if (worldnum == WorldNum_2) {
 		return bglayerset_world2;
 		
+	} else if (worldnum == WorldNum_3) {
+		return bglayerset_world2; //TODO FIX
+		
 	} else {
+		NSLog(@"bglayerset::set_for_world:error");
 		return NULL;
 	}
 }
@@ -108,8 +112,12 @@
 		
 	} else if (labnum == LabNum_2) {
 		return bglayerset_lab2;
-	
+		
+	} else if (labnum == LabNum_3) {
+		return bglayerset_lab2; //TODO FIX;
+		
 	} else {
+		NSLog(@"bglayerset::set_for_lab::error");
 		return NULL;
 	}
 }
@@ -120,12 +128,12 @@
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
 		[current_set fadeout_in:10];
-		current_set = [self set_for_lab:[game_engine_layer get_lab_num]];
+		current_set = [self set_for_lab:[GameWorldMode get_labnum]];
 		[current_set fadein_in:10];
         
     } else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
 		[current_set fadeout_in:10];
-		current_set = [self set_for_world:[game_engine_layer get_world_num]];
+		current_set = [self set_for_world:[GameWorldMode get_worldnum]];
 		[current_set fadein_in:10];
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
@@ -152,7 +160,8 @@
 
 -(void)update {    
     float posx = game_engine_layer.player.position.x;
-    float posy = clampf(game_engine_layer.player.position.y, game_engine_layer.get_follow_clamp_y_range.min, game_engine_layer.get_follow_clamp_y_range.max);
+    float posy = game_engine_layer.player.position.y;
+	//float posy = clampf(game_engine_layer.player.position.y, game_engine_layer.get_follow_clamp_y_range.min, game_engine_layer.get_follow_clamp_y_range.max);
     
     float dx = posx - lastx;
     float dy = posy - lasty;

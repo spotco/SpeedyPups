@@ -15,6 +15,5 @@
 }
 
 +(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer;
--(FreeRunProgress)get_freerun_progress;
 
 @end

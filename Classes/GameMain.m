@@ -22,12 +22,10 @@
 
 /**
 
- make ONE consistent lab/world count tracker
- change around tutorials, swingvine and cannon world 2
- 
+ change around tutorials, swingvine and cannon world 2, revamp autolevelstate tutorial system
  add in world 3 art
- 
-  some more secrets challenge level, loops jump through and long spike jump through
+ some more secrets challenge level, loops jump through and long spike jump through
+ check thomas level
  
  make cannon levels
  implement level of the week
@@ -69,6 +67,8 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
 	
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -77,7 +77,7 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
-	 */
+	*/
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];

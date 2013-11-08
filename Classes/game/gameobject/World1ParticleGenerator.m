@@ -18,7 +18,7 @@
 	
     if (ct <= 0) {
 		ccColor3B color;
-		if ([g get_world_num] == WorldNum_2) {
+		if ([GameWorldMode get_worldnum] == WorldNum_2) {
 			color = ccc3(float_random(188, 224), float_random(128, 154), float_random(56, 69));
 			
 		} else {

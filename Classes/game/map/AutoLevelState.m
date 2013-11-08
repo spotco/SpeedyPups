@@ -189,8 +189,6 @@ static NSArray *lab_tutorial_levels;
 	has_done_lab_tutorial = [FreeRunStartAtManager get_starting_loc] != FreeRunStartAt_TUTORIAL;
 	sets_until_next_lab = 0;
 	cur_set_completed = 0;
-	nth_freerunprogress = 0;
-	nth_lab = 0;
 	nth_filler = 0;
 	
 	setgen = [WeightedSorter cons_vals:levelsets use:pickable_sets];
@@ -260,61 +258,46 @@ static NSArray *lab_tutorial_levels;
 -(void)set_initial_params {
 	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
 		cur_set = L_TUTORIAL;
-		nth_freerunprogress = 0;
 		has_done_lab_tutorial = NO;
-		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
 		tutorial_ct = 0;
-		nth_freerunprogress = 0;
-		ct = 10;
 		cur_set = L_FREERUN_PROGRESS;
 		has_done_lab_tutorial = NO;
-		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
 		[self cycle_through:17];
-		nth_freerunprogress = 1;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
-		nth_lab = 0;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
 		[self cycle_through:20];
 		[self cycle_through_lab:3];
-		nth_freerunprogress = 2;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
-		nth_lab = 1;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB2) {
 		[self cycle_through:35];
 		[self cycle_through_lab:3];
-		nth_freerunprogress = 3;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
-		nth_lab = 1;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
 		[self cycle_through:36];
 		[self cycle_through_lab:6];
-		nth_freerunprogress = 4;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
-		nth_lab = 2;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
 		[self cycle_through:36];
 		[self cycle_through_lab:6];
-		nth_freerunprogress = 5;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
-		nth_lab = 2;
 		
 	} else {
 		NSLog(@"AutoLevelState start at error");
@@ -325,11 +308,6 @@ static NSArray *lab_tutorial_levels;
 #define LEVELS_IN_LAB_SET 3
 #define LEVELS_IN_SET 3
 #define CAPEGAME_EVERY 3
-
--(void)increment_freerun_progress {
-	nth_freerunprogress++;
-	nth_freerunprogress = nth_freerunprogress>6?1:nth_freerunprogress;
-}
 
 -(NSString*)get_level {
 	ct++;
@@ -358,7 +336,6 @@ static NSArray *lab_tutorial_levels;
 		sets_until_next_lab = SETS_BETWEEN_LABS;
 		cur_set_completed = 0;
 		cur_set = [self pick_set];
-		[self increment_freerun_progress];
 		
 		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		
@@ -375,12 +352,11 @@ static NSArray *lab_tutorial_levels;
 	} else if ([cur_set isEqualToString:L_LABINTRO]) {
 		if (tutorial_ct == 0) {
 			tutorial_ct++;
-			[self increment_freerun_progress];
+			[GameWorldMode freerun_progress_about_to_enter_lab];
 			return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		} else {
 			cur_set = L_LAB;
 			tutorial_ct = 0;
-			nth_lab++;
 			sets_until_next_lab = LEVELS_IN_LAB_SET;
 			return [[levelsets[L_LABINTRO] allKeys] random];
 		}
@@ -392,12 +368,13 @@ static NSArray *lab_tutorial_levels;
 	} else if ([cur_set isEqualToString:L_LAB]) {
 		sets_until_next_lab--;
 		if (sets_until_next_lab < 0) {
-			if (nth_lab%3==0 || nth_lab%3==1) {
-				return [[levelsets[L_BOSS1START] allKeys] random];
-			} else {
+			if ([GameWorldMode get_labnum] == LabNum_2) {
 				return [[levelsets[L_BOSS2START] allKeys] random];
+			} else {
+				return [[levelsets[L_BOSS1START] allKeys] random];
 			}
 		}
+		//return @"test_quick";
 		return [labsetgen get_from_bucket:L_LAB];
 		
 	} else if ([cur_set isEqualToString:L_FILLER]) {
@@ -421,6 +398,7 @@ static NSArray *lab_tutorial_levels;
 		cur_set_completed++;
 		NSString *tar_set = cur_set;
 		if (cur_set_completed >= LEVELS_IN_SET) cur_set = L_FILLER;
+		//return @"test_quick";
 		return [setgen get_from_bucket:tar_set];
 		
 	} else {
@@ -454,34 +432,6 @@ static NSArray *lab_tutorial_levels;
 		sets_until_next_lab,
 		has_done_lab_tutorial
 	];
-}
-
--(FreeRunProgress)get_freerun_progress {
-	if (nth_freerunprogress <= 1) {
-		return FreeRunProgress_PRE_1;
-		
-	} else if (nth_freerunprogress == 2) {
-		return FreeRunProgress_1;
-		
-	} else if (nth_freerunprogress == 3) {
-		return FreeRunProgress_PRE_2;
-		
-	} else if (nth_freerunprogress == 4) {
-		return FreeRunProgress_2;
-		
-	} else if (nth_freerunprogress == 5) {
-		return FreeRunProgress_PRE_3;
-		
-	} else if (nth_freerunprogress == 6) {
-		return FreeRunProgress_3;
-		
-	} else if (nth_freerunprogress == 7) {
-		return FreeRunProgress_POST_3;
-		
-	} else {
-		return FreeRunProgress_POST_3;
-		
-	}
 }
 
 -(NSString*)debug_boss_only {
