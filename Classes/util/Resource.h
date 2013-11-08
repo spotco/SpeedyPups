@@ -82,6 +82,13 @@
 #define TEX_BG2_ISLAND_CORNER @"BG2_island_corner"
 #define TEX_BG2_ISLAND_TOP_EDGE @"BG2_island_top_edge"
 
+#define TEX_BG3_SKY @"BG3_sky"
+#define TEX_BG3_BACKMOUNTAINS @"BG3_backmountains"
+#define TEX_BG3_CASTLE @"BG3_castle"
+#define TEX_BG3_BACKHILLS @"BG3_backhills"
+#define TEX_BG3_FRONTHILLS @"BG3_fronthills"
+#define TEX_BG3_SKY @"BG3_sky"
+
 #define TEX_SPIKE @"Spike"
 #define TEX_WATER @"Water"
 #define TEX_FISH_SS @"fish_ss"

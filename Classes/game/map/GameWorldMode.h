@@ -37,6 +37,8 @@ typedef enum { //values processed by FreeRunProgressAnimation
 +(WorldNum)get_worldnum;
 +(LabNum)get_labnum;
 
++(void)reset;
+
 +(void)increment_world;
 +(FreeRunProgress)get_freerun_progress;
 +(void)freerun_progress_about_to_enter_lab;

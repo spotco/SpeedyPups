@@ -96,6 +96,13 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_BG2_ISLAND_TOP_EDGE:@"BG2_island_top_edge.png",
 	 TEX_BG2_ISLAND_CORNER:@"BG2_island_corner.png",
 	 
+	 TEX_BG3_SKY:@"BG3_sky.png",
+	 TEX_BG3_BACKMOUNTAINS:@"BG3_backmountains.png",
+	 TEX_BG3_CASTLE:@"BG3_castle.png",
+	 TEX_BG3_BACKHILLS:@"BG3_backhills.png",
+	 TEX_BG3_FRONTHILLS:@"BG3_fronthills.png",
+	 TEX_BG3_SKY:@"BG3_sky.png",
+	 
 	 TEX_FISH_SS:@"fish_ss.png",
 	 TEX_BIRD_SS:@"bird_ss.png",
 	 TEX_JUMPPAD:@"jumppad.png",

@@ -537,19 +537,11 @@
         [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
-		/*cur_bg_mode = BGMode_LAB;
-		cur_world_num = cur_world_num + 1;
-		if (cur_world_num > MAX_WORLD) cur_world_num = WorldNum_1;*/
-		
 		[GameWorldMode set_bgmode:BGMode_LAB];
 		
 		[AudioManager playbgm_imm:BGM_GROUP_LAB];
 		
 	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		/*cur_bg_mode = BGMode_NORMAL;
-		cur_lab_num = cur_lab_num + 1;
-		if (cur_lab_num > MAX_LAB) cur_lab_num = LabNum_1;*/
-		
 		[GameWorldMode increment_world];
 		[GameWorldMode set_bgmode:BGMode_NORMAL];
 		
@@ -614,6 +606,8 @@
 }
 -(void)exit {
     [self unscheduleAllSelectors];
+	
+	[GameWorldMode reset];
     //[self set_records];
     
     [GEventDispatcher remove_all_listeners];

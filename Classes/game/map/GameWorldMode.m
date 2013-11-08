@@ -19,6 +19,10 @@ static LabNum cur_labnum;
 	return cur_labnum;
 }
 
++(void)reset {
+	cur_bgmode = BGMode_NORMAL;
+}
+
 static BOOL about_to_enter_lab = NO;
 +(void)freerun_progress_about_to_enter_lab {
 	about_to_enter_lab = YES;

@@ -12,16 +12,15 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
-#define STARTING_LIVES 10
+#define STARTING_LIVES 1
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
 /**
-
  change around tutorials, swingvine and cannon world 2, revamp autolevelstate tutorial system
  add in world 3 art
  some more secrets challenge level, loops jump through and long spike jump through
@@ -62,7 +61,7 @@ Stretch goals:
 	 
 	if (RESET_STATS) [DataStore reset_all];
 	
-	/*
+	
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
@@ -70,7 +69,7 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
-	
+	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
 	[UserInventory unlock_character:TEX_DOG_RUN_4];
