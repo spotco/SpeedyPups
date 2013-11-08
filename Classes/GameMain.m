@@ -12,7 +12,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -21,10 +21,13 @@
 #define DRAW_HITBOX NO
 
 /**
+
  make ONE consistent lab/world count tracker
  change around tutorials, swingvine and cannon world 2
  
  add in world 3 art
+ 
+  some more secrets challenge level, loops jump through and long spike jump through
  
  make cannon levels
  implement level of the week
