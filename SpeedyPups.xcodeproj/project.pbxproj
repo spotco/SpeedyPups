@@ -46,6 +46,7 @@
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
 		7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667C1772E85B001B03EC /* classic_manyoptredux.map */; };
 		7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667E1772F755001B03EC /* classic_totalmix.map */; };
+		7E115ABA182EF73100C18CFD /* cannonsandrobots.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E115AB9182EF73100C18CFD /* cannonsandrobots.map */; };
 		7E13D7F417B83A75003F723F /* NMenuTabShopPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */; };
 		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
 		7E24A35A17ECD02F0085154C /* sfx_bone_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35617ECD02F0085154C /* sfx_bone_1.wav */; };
@@ -768,6 +769,7 @@
 		7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmorBreakEffect.m; sourceTree = "<group>"; };
 		7E10667C1772E85B001B03EC /* classic_manyoptredux.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_manyoptredux.map; sourceTree = "<group>"; };
 		7E10667E1772F755001B03EC /* classic_totalmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_totalmix.map; sourceTree = "<group>"; };
+		7E115AB9182EF73100C18CFD /* cannonsandrobots.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannonsandrobots.map; sourceTree = "<group>"; };
 		7E13D7F217B83A75003F723F /* NMenuTabShopPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMenuTabShopPage.h; sourceTree = "<group>"; };
 		7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMenuTabShopPage.m; sourceTree = "<group>"; };
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
@@ -1731,6 +1733,14 @@
 			path = armored;
 			sourceTree = "<group>";
 		};
+		7E115AB8182EF71700C18CFD /* cannon */ = {
+			isa = PBXGroup;
+			children = (
+				7E115AB9182EF73100C18CFD /* cannonsandrobots.map */,
+			);
+			name = cannon;
+			sourceTree = "<group>";
+		};
 		7E269C6416DA00CD005F446C /* internal */ = {
 			isa = PBXGroup;
 			children = (
@@ -2255,6 +2265,7 @@
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
+				7E115AB8182EF71700C18CFD /* cannon */,
 				7EE2455F17E65CAF007D4B4D /* capegame */,
 				7E2C8ADF17D8538200DC08AE /* challenge_only */,
 				7E8A53331773F8F7006F6114 /* labintro */,
@@ -3710,6 +3721,7 @@
 				7EB8B34416D9F8E700F58961 /* swingvine_test.map in Resources */,
 				7EB8B34516D9F8E700F58961 /* easy_world1.map in Resources */,
 				7EB8B35616D9F8E700F58961 /* bird_ss.plist in Resources */,
+				7E115ABA182EF73100C18CFD /* cannonsandrobots.map in Resources */,
 				7EB8B35716D9F8E700F58961 /* bird_ss.png in Resources */,
 				7EB8B35816D9F8E700F58961 /* speedup_ss.plist in Resources */,
 				7EB8B35916D9F8E700F58961 /* speedup_ss.png in Resources */,

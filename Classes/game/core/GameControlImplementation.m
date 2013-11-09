@@ -81,6 +81,7 @@ static float avg_y;
     }
 	
 	if (player.current_cannon != NULL && (queue_jump || queue_swipe)) {
+		[AudioManager playsfx:SFX_ROCKET_LAUNCH];
 		Vec3D dir = [VecLib cons_x:player.current_cannon.dir.x y:player.current_cannon.dir.y z:0];
 		dir = [VecLib scale:dir by:25];
 		player.vx = dir.x;

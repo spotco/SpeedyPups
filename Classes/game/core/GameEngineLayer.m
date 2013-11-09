@@ -261,6 +261,8 @@
 }
 
 -(void)check_falloff {
+	//NSLog(@"player:%@ world:%@",[Common hitrect_to_string:[player get_hit_rect]],[Common hitrect_to_string:[self get_world_bounds]]);
+	
     if (![Common hitrect_touch:[self get_world_bounds] b:[player get_hit_rect]]) {
         [stats increment:GEStat_FALLING];
 		[AudioManager playsfx:SFX_FAIL];
@@ -670,11 +672,13 @@
             min_y = MIN(MIN(min_y, i.endY),i.startY);
         }
         for(GameObject* o in game_objects) {
-            max_x =MAX(max_x, o.position.x);
+			
+            max_x = MAX(max_x, o.position.x);
             max_y = MAX(max_y, o.position.y);
             min_x = MIN(min_x, o.position.x);
-            min_y =MIN(min_y, o.position.y);
+            min_y = MIN(min_y, o.position.y);
         }
+		
         HitRect r = [Common hitrect_cons_x1:min_x y1:min_y-200 x2:max_x+1000 y2:max_y+2000];
         cached_worldsbounds = r;
     }

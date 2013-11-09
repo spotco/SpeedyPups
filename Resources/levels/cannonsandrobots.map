@@ -9,7 +9,7 @@
         {"ground": "open", "y1": 1906.7, "can_fall": true, "x2": 6658.5, "hei": 50, "type": "line", "ndir": "left", "y2": 1853.3, "x1": 6515.1},
         {"ground": "open", "y1": 1696.6, "can_fall": true, "x2": 8503.5, "hei": 1000, "type": "line", "ndir": "left", "y2": 1696.6, "x1": 7246.8},
         {"ground": "open", "y1": 1745, "can_fall": true, "x2": 9155.1, "hei": 50, "type": "line", "ndir": "left", "y2": 1743.3, "x1": 9000.1},
-        {"ground": "open", "y1": 1750, "can_fall": true, "x2": 10027.7, "hei": 50, "type": "line", "ndir": "left", "y2": 1750, "x1": 9750.2},
+        {"ground": "open", "y1": 1677.5, "can_fall": true, "x2": 10095.2, "hei": 50, "type": "line", "ndir": "left", "y2": 1680, "x1": 9742.7},
         {"ground": "open", "y1": 2596.7, "can_fall": true, "x2": 10455.2, "hei": 50, "type": "line", "ndir": "right", "y2": 2596.7, "x1": 10350.2},
         {"ground": "open", "y1": 1746.6, "can_fall": true, "x2": 10898.5, "hei": 50, "type": "line", "ndir": "left", "y2": 1748.3, "x1": 10751.9},
         {"ground": "open", "y1": 1845, "can_fall": true, "x2": 11553.5, "hei": 50, "type": "line", "ndir": "left", "y2": 1846.6, "x1": 11403.5},
@@ -93,7 +93,7 @@
         {"width": 2931.7, "x": 4403.4, "label": "6", "y": 440, "type": "water", "height": 456.73333333333346},
         {"x": 8661.8, "type": "cannon", "label": "8", "y": 1901.7, "dir": {"y": -0.13, "x": 0.99}},
         {"x": 9080.1, "type": "robotminion", "label": "9", "y": 1790},
-        {"x": 9960.2, "type": "robotminion", "label": "10", "y": 1780},
+        {"x": 10032.7, "type": "robotminion", "label": "10", "y": 1710},
         {"x": 10396.9, "type": "cannon", "label": "11", "y": 1896.6, "dir": {"y": 1, "x": 0}},
         {"x": 10398.5, "type": "jumppad", "label": "12", "y": 2586.7, "dir": {"y": -1, "x": 0.06}},
         {"x": 10811.9, "type": "cannon", "label": "14", "y": 2310, "dir": {"y": -1, "x": 0}},
@@ -137,7 +137,6 @@
         {"x": 13396, "label": "41", "y": 1658, "y2": 1966.4, "x2": 13397.699999999999, "type": "spikevine"},
         {"x": 13552, "type": "cannon", "label": "42", "y": 2072, "dir": {"y": -0.49, "x": 0.87}},
         {"x": 13102, "label": "43", "y": 1946, "y2": 2344, "x2": 13100, "type": "cannonmovetrack"},
-        {"x": 14330.2, "type": "robotminion", "label": "44", "y": 1647.5},
         {"width": 246, "x": 13908, "label": "CAM(120,110,160)", "y": 1582, "camera": {"x": 120, "y": 110, "z": 160}, "type": "camera_area", "height": 762},
         {"x": 14702.8, "type": "ground_detail", "label": "(46)gd_img:42", "y": 1600, "img": 42},
         {"x": 14665.3, "type": "ground_detail", "label": "(47)gd_img:23", "y": 1595, "img": 23},
@@ -160,7 +159,9 @@
         {"x": 13952.7, "type": "dogbone", "label": "BID:50", "y": 1870, "bid": 50},
         {"width": 3030.1000000000004, "x": 10670.5, "label": "67", "y": 913.3, "type": "water", "height": 553.3166666666666},
         {"width": 2192.6000000000004, "x": 8435.1, "label": "68", "y": 652.5, "type": "water", "height": 877.5},
-        {"width": 347.5, "x": 12335.2, "label": "CAM(116,166,238)", "y": 2082.5, "camera": {"x": 116, "y": 166, "z": 238}, "type": "camera_area", "height": 202.5}
+        {"width": 347.5, "x": 12335.2, "label": "CAM(116,166,238)", "y": 2082.5, "camera": {"x": 116, "y": 166, "z": 238}, "type": "camera_area", "height": 202.5},
+        {"width": 755, "x": 7252.6, "label": "71", "y": 230, "type": "island_fill", "height": 735},
+        {"width": 115, "x": 10592.7, "label": "74", "y": 522.5, "type": "island_fill", "height": 590}
     ],
     "assert_links": 0,
     "connect_pts": {"x2": 15355.3, "y1": 997.5, "x1": 242.5, "y2": 1597.5}

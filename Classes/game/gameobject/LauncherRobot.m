@@ -13,7 +13,7 @@
 
 #define RECOIL_TIME 10.0
 #define RECOIL_DIST 40
-#define RELOAD 200
+#define RELOAD 300
 
 #define REMOVE_BEHIND_BUFFER 500
 
@@ -111,7 +111,7 @@
     
     ct-=[Common get_dt_Scale];
     if (ct < 50) {
-        ct%5==0?[self toggle]:0;
+        ((int)ct)%5==0?[self toggle]:0;
     } else {
         [self set_anim:ANIM_NORMAL];
     }

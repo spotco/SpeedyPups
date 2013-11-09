@@ -115,6 +115,11 @@
         [g.get_stats increment:GEStat_ROBOT];
 
     }
+	
+	if (position_.y < starting_pos.y - 4000) {
+		[self setPosition:ccp(position_.x,starting_pos.y)];
+		vy = 0;
+	}
 }
 
 -(BOOL)has_hit_ground:(GameEngineLayer*)g rtv_ins:(CGPoint*)rtins rtv_isl:(Island**)rtisl {
