@@ -21,6 +21,9 @@
 		if ([GameWorldMode get_worldnum] == WorldNum_2) {
 			color = ccc3(float_random(188, 224), float_random(128, 154), float_random(56, 69));
 			
+		} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+			color = ccc3(255,255,255);
+			
 		} else {
 			color = ccc3(float_random(197, 217),float_random(225, 250),float_random(128, 148));
 		}
@@ -29,7 +32,14 @@
 										   y:player.position.y+float_random(100, 300)
 										  vx:float_random(-2, -5)
 									  vtheta:float_random(0.01, 0.075)] set_color:color]];
-		ct = float_random(15, 40);
+		
+		if ([GameWorldMode get_worldnum] == WorldNum_3) {
+			ct = float_random(5, 15);
+		} else {
+			ct = float_random(15, 40);
+		}
+		
+		
 	}
     return;
 }

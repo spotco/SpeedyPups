@@ -25,6 +25,9 @@
 }
 
 -(CCTexture2D*)get_tex {
+	if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		return [Resource get_tex:TEX_BG3_ISLAND_FILL];
+	}
     return [Resource get_tex:TEX_GROUND_TEX_1];
 }
 

@@ -88,6 +88,11 @@
 #define TEX_BG3_BACKHILLS @"BG3_backhills"
 #define TEX_BG3_FRONTHILLS @"BG3_fronthills"
 #define TEX_BG3_SKY @"BG3_sky"
+#define TEX_BG3_TOP_FILL @"BG3_top_fill"
+#define TEX_BG3_ISLAND_CORNER @"BG3_island_corner"
+#define TEX_BG3_ISLAND_EDGE @"BG3_island_edge"
+#define TEX_BG3_ISLAND_FILL @"BG3_island_fill"
+#define TEX_BG3_GROUND_DETAIL_SS @"grounddetail_world3_ss"
 
 #define TEX_SPIKE @"Spike"
 #define TEX_WATER @"Water"

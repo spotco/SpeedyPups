@@ -60,7 +60,7 @@
     
     
     self.isTouchEnabled = YES;
-    [self schedule:@selector(update) interval:1.0/60];
+    [self schedule:@selector(update:) interval:1.0/60];
     return self;
 }
 
@@ -71,7 +71,7 @@
     [menu_pages addObject:[NMenuWorldSelectPage cons]];
 }
 
--(void)update {
+-(void)update:(ccTime)dt {
     float dx = [self get_target_bg_pt].x - [bg get_fg_pos].x;
     dx/=3;
     BOOL snapto = NO;
@@ -98,7 +98,7 @@
         }
     }
     
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_TICK]];
+    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_TICK] add_f1:dt f2:dt]];
 	[GEventDispatcher dispatch_events]; //breaks if you do immediate_event in menu->freerun, dunno why
 }
 

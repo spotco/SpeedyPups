@@ -37,7 +37,8 @@
 
 -(void)set_scrollup_pct:(float)pct{
     [clouds setPosition:ccp(clouds.position.x,-400*pct)];
-	[backmountains setPosition:ccp(backhills.position.x,backhills.position.y-450*pct)];
+	[backmountains setPosition:ccp(backmountains.position.x,backmountains.position.y-450*pct)];
+	[castle setPosition:ccp(castle.position.x,castle.position.y-450*pct)];
     [backhills setPosition:ccp(backhills.position.x,backhills.position.y-500*pct)];
     [fronthills setPosition:ccp(fronthills.position.x,fronthills.position.y-800*pct)];
 }
@@ -47,6 +48,7 @@
     [sky setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     [clouds setColor:ccc3(pb(150,pctm),pb(150,pctm),pb(190,pctm))];
 	[backmountains setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
+	[castle setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
     [backhills setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
     [fronthills setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     [starsbg setOpacity:255-pctm*255];

@@ -119,6 +119,9 @@
 }
 
 -(CCTexture2D*)get_tex_fill {
+	if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		return [Resource get_tex:TEX_BG3_ISLAND_FILL];
+	}
     return [Resource get_tex:TEX_GROUND_TEX_1];
 }
 -(CCTexture2D*)get_tex_corner {
@@ -128,6 +131,10 @@
 		
 	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		return [Resource get_tex:TEX_BG2_ISLAND_TOP_EDGE];
+		
+	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		return [Resource get_tex:TEX_BG3_ISLAND_EDGE];
+		
 	}
 	return [Resource get_tex:TEX_TOP_EDGE];
 }
@@ -141,7 +148,10 @@
 	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		return [Resource get_tex:TEX_BG2_ISLAND_TOP_FILL];
 		
-	} 
+	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		return [Resource get_tex:TEX_BG3_TOP_FILL];
+		
+	}
     return [Resource get_tex:TEX_GROUND_TOP_1];
 }
 -(CCTexture2D*)get_corner_fill_color {
@@ -150,6 +160,9 @@
 		
 	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
 		return [Resource get_tex:TEX_BG2_ISLAND_CORNER];
+		
+	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		return [Resource get_tex:TEX_BG3_ISLAND_CORNER];
 		
 	}
 	return [Resource get_tex:TEX_GROUND_CORNER_TEX_1];

@@ -155,7 +155,7 @@
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_TICK && self.visible) {
-        [self update];
+        [self update:e.f1];
         
     } else if (e.type == GEventType_MENU_GOTO_PAGE && e.i1 == MENU_STARTING_PAGE_ID) {
         cur_mode = PlayPageMode_WAIT;
@@ -176,8 +176,8 @@
 #define DOG_START ccp(0,80)
 #define DOG_END_X 600
 
--(void)update {
-    
+-(void)update:(ccTime)dt {
+    [Common set_dt:dt];
     if (kill) {
         [logo setVisible:NO];
         [playbutton setVisible:NO];
