@@ -13,10 +13,12 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if (player.position.x > position_.x) {
+    if (player.position.x - 3000 > position_.x) {
         return;
     }
-    NSMutableArray *to_remove = [NSMutableArray array];
+    if (to_remove == NULL) {
+		to_remove = [NSMutableArray array];
+	}
     for (GameObject *o in g.game_objects) {
         if ([[o class] isSubclassOfClass:[LauncherRocket class]] && [Common hitrect_touch:[self get_hit_rect] b:[o get_hit_rect]]) {
 			[g add_particle:[ExplosionParticle cons_x:o.position.x y:o.position.y]];

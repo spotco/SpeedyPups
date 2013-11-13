@@ -12,8 +12,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"cannonsandrobots"
+#define PLAY_BGM NO
+#define TESTLEVEL @"lab_rocketfever"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10

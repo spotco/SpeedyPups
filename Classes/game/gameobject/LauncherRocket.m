@@ -10,7 +10,7 @@
 @implementation LauncherRocket
 
 #define PARTICLE_FREQ 10
-#define REMOVE_BEHIND_BUFFER 500
+#define REMOVE_BEHIND_BUFFER 2000
 
 #define DEFAULT_SCALE 0.75
 

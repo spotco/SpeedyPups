@@ -59,6 +59,7 @@
 		7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6516DA00DE005F446C /* Carton_Six.ttf */; };
 		7E269C6A16DA00EB005F446C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E269C6616DA00DE005F446C /* Default.png */; };
 		7E270D31181F8F7900613E95 /* BGSubBossRocketParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */; };
+		7E29D82A183376D100A92C2A /* lab_rocketfever.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D829183376D100A92C2A /* lab_rocketfever.map */; };
 		7E2C8AE117D853B100DC08AE /* lab_alladat_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */; };
 		7E2C8AE417D865A200DC08AE /* ItemUseUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */; };
 		7E2E1BAD1803DF47002EFCF0 /* filler_skippingstones.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E1BAC1803DF47002EFCF0 /* filler_skippingstones.map */; };
@@ -786,6 +787,7 @@
 		7E269C6716DA00DE005F446C /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = "cocos2d-2.x-ARC-iOS/Resources/fps_images.png"; sourceTree = "<group>"; };
 		7E270D2F181F8F7900613E95 /* BGSubBossRocketParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGSubBossRocketParticle.h; sourceTree = "<group>"; };
 		7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGSubBossRocketParticle.m; sourceTree = "<group>"; };
+		7E29D829183376D100A92C2A /* lab_rocketfever.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_rocketfever.map; sourceTree = "<group>"; };
 		7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_alladat_challenge.map; sourceTree = "<group>"; };
 		7E2C8AE217D865A200DC08AE /* ItemUseUIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseUIAnimation.h; sourceTree = "<group>"; };
 		7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemUseUIAnimation.m; sourceTree = "<group>"; };
@@ -2910,6 +2912,7 @@
 				7EC7B8A21782BF7600C26314 /* lab_alladat.map */,
 				7EF02D1E17856B6200C2DD50 /* lab_tube.map */,
 				7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */,
+				7E29D829183376D100A92C2A /* lab_rocketfever.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3830,6 +3833,7 @@
 				45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */,
 				7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */,
 				7E10667F1772F755001B03EC /* classic_totalmix.map in Resources */,
+				7E29D82A183376D100A92C2A /* lab_rocketfever.map in Resources */,
 				7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */,
 				7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */,
 				7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */,

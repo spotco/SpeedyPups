@@ -151,7 +151,8 @@ static NSArray *lab_tutorial_levels;
 			@"lab_swingers" : @4,
 			@"lab_alladat" : @4,
 			@"lab_tube" : @4,
-			@"lab_muhfiller" : @2
+			@"lab_muhfiller" : @2,
+			@"lab_rocketfever" : @4
 		}
 		
 	};

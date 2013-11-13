@@ -19,6 +19,7 @@
     [g add_particle:[DazedParticle cons_x:x y:y theta:M_PI/2 time:time tracking:tar]];
     [g add_particle:[DazedParticle cons_x:x y:y theta:M_PI time:time tracking:tar]];
     [g add_particle:[DazedParticle cons_x:x y:y theta:M_PI*1.5 time:time tracking:tar]];
+	tar.current_swingvine = NULL;
     
 }
 

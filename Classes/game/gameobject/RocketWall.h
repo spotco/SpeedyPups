@@ -1,6 +1,8 @@
 #import "Blocker.h"
 
-@interface RocketWall : Blocker
+@interface RocketWall : Blocker {
+	NSMutableArray *to_remove;
+}
 
 +(RocketWall*)cons_x:(float)x y:(float)y width:(float)width height:(float)height;
 
