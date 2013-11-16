@@ -48,7 +48,7 @@
 	NSMutableArray *tar_bucket = buckets[key];
 	if (tar_bucket == NULL) {
 		NSLog(@"error bucket for %@ is null",key);
-		return NULL;
+		return @"";
 	}
 	int tar_ind = ((NSNumber*)bucket_indexes[key]).intValue;
 	NSString *rtv = tar_bucket[tar_ind];

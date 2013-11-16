@@ -264,6 +264,7 @@
 	//NSLog(@"player:%@ world:%@",[Common hitrect_to_string:[player get_hit_rect]],[Common hitrect_to_string:[self get_world_bounds]]);
 	
     if (![Common hitrect_touch:[self get_world_bounds] b:[player get_hit_rect]]) {
+	
         [stats increment:GEStat_FALLING];
 		[AudioManager playsfx:SFX_FAIL];
         [GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];

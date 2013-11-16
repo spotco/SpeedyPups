@@ -14,11 +14,12 @@
 }
 
 -(CGPoint)get_pt1 {
-	return pt1;
+	return self.position;
 }
 
 -(CGPoint)get_pt2 {
-	return pt2;
+	CGPoint delta = ccp(pt2.x-pt1.x,pt2.y-pt1.y);
+	return CGPointAdd(self.position, delta);
 }
 
 -(HitRect)get_hit_rect {
@@ -102,9 +103,15 @@
 	if (player_loaded) {
 		[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_CANNON_SS idname:@"cannon_loaded"]];
 		
+		player.vx = 0;
+		player.vy = 0;
+		
 		if (player_head_out == NO) {
-			float pct = 1-head_out_ct/10;
+			
 			head_out_ct-=[Common get_dt_Scale];
+			if (head_out_ct < 0) head_out_ct = 0;
+			float pct = 1-head_out_ct/10;
+			
 			CGPoint tarp = [self get_nozzel_position];
 			CGPoint neup = ccp(player.position.x+(tarp.x-player.position.x)*pct,player.position.y+(tarp.y-player.position.y)*pct);
 			[player setPosition:neup];

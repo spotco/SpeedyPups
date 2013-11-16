@@ -54,6 +54,9 @@
 #define streq(a,b) [a isEqualToString:b]
 #define DO_FOR(cts,a) for(int i = 0; i < cts; i++) { a; }
 
+#define _NSSET(...)  [NSMutableSet setWithArray:@[__VA_ARGS__]]
+#define _NSMARRAY(...)  [NSMutableArray arrayWithArray@[__VA_ARGS__]]
+
 //inclusive s, not l
 #define int_random(s,l) arc4random()%l+s
 

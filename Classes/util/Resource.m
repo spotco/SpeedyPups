@@ -161,6 +161,7 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png"
 	};
 	
+	
 	NSMutableArray *imgloaders = [NSMutableArray array];
 	for (NSString *key in all_textures) {
 		[imgloaders addObject:[AsyncImgLoad load:all_textures[key] key:key]];
@@ -179,6 +180,7 @@ static NSMutableDictionary* loaded_textures;
 		[to_remove removeAllObjects];
 		[NSThread sleepForTimeInterval:0.001];
 	}
+	
 	
 	/*
 	 //sync loading

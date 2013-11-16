@@ -15,6 +15,9 @@
 
 -(void)cons:(NSString*)name g:(GameEngineLayer*)g {
     map = [MapLoader load_map:name g:g];
+	if (map == NULL) {
+		NSLog(@"ERROR::map is null for %@",name);
+	}
     [MapSection transform_map:map by_x:-map.connect_pts_x1 by_y:-map.connect_pts_y1];
     offset_x = 0;
     offset_y = 0;

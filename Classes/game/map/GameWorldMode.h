@@ -35,6 +35,7 @@ typedef enum { //values processed by FreeRunProgressAnimation
 
 +(BGMode)get_bgmode;
 +(WorldNum)get_worldnum;
++(WorldNum)get_actual_worldnum;
 +(LabNum)get_labnum;
 
 +(void)reset;

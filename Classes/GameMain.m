@@ -12,7 +12,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"tutorial_cannons"
 
 #define RESET_STATS NO
@@ -21,30 +21,36 @@
 #define DRAW_HITBOX NO
 
 /**
- change around tutorials, swingvine and cannon world 2, revamp autolevelstate tutorial system
- some more secrets challenge level, loops jump through and long spike jump through
- fix rocket mechanics
  memory reduction
+ fix rocket mechanics
  
- put in cannonsandrobots.map
+ intro cartoon
+ beat boss free pups cartoon scene
  
- make cannon levels
- implement level of the week
- integrate IAP speedypups subscription
- integrate ads
+ sfx fireworks
+ sfx tutorialdog float in/out
+ 
+ cape game end big bone + applause
+ cannon move track graphics
+ 
+ some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
+ make 17 more levels
  
  -art ask for:
-	settings page -> map page navmenu icon and bg design
-	new UNLOCK NOW button design
-	new clock icon
-	intro cartoon
-	world 3 art, bosses 3
+	cannon redesign
+	freerun progress popup redesign
+	freerun start menu redesign + button
+	lab 3 + boss 3
+	speedypups pro button + window
  **/
 
 /**
 Stretch goals:
  stats tracking
  make floatingwindow tabs classes
+ implement level of the week
+ integrate IAP speedypups subscription
+ integrate ads
  
  goober pet
  levels based around armor (armor break spikes)
@@ -84,12 +90,12 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	
 	
 }

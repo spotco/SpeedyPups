@@ -98,6 +98,7 @@ static float avg_y;
 		[GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
 		return;
 	}
+	if (player.current_cannon != NULL) return;
     
     if (player.current_swingvine != NULL && (queue_jump || queue_swipe)) {
         CGPoint t_vel = [player.current_swingvine get_tangent_vel];

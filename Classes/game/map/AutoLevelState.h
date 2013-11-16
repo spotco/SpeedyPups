@@ -8,10 +8,13 @@
 	int tutorial_ct;
 	
 	BOOL has_done_lab_tutorial;
+	BOOL has_done_world2_tutorial;
+	BOOL has_done_world3_tutorial;
 	int sets_until_next_lab;
 	
 	int cur_set_completed;
 	int nth_filler;
+	BOOL start_with_easy;
 	
 	NSMutableArray *recently_picked_sets;
 	WeightedSorter *setgen, *fillersetgen, *labsetgen;
@@ -23,9 +26,5 @@
 -(void)to_boss1_mode;
 -(void)to_boss2_mode;
 -(void)to_labexit_mode;
-
--(NSString*)status;
-
--(NSString*)setgen_get:(NSString*)key;
 
 @end

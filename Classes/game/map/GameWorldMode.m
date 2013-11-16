@@ -15,6 +15,9 @@ static LabNum cur_labnum;
 	}
 	return cur_worldnum;
 }
++(WorldNum)get_actual_worldnum {
+	return cur_worldnum;
+}
 +(LabNum)get_labnum {
 	return cur_labnum;
 }

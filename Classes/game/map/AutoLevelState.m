@@ -14,6 +14,8 @@
 #define L_JUMPPAD @"levelset_jumppad"
 #define L_SWINGVINE @"levelset_swingvine"
 #define L_EASY @"levelset_easy"
+#define L_CANNON @"levelset_cannon"
+#define L_HARD @"levelset_hard"
 
 #define L_FREERUN_PROGRESS @"levelset_freerun_progress"
 
@@ -25,26 +27,32 @@
 #define L_BOSS2AREA @"levelset_boss2area"
 
 #define L_LABINTRO @"levelset_labintro"
-#define L_LAB @"levelset_lab"
 #define L_LABEXIT @"levelset_labexit"
+
+#define L_LAB @"levelset_lab"
 
 static NSDictionary *levelsets;
 static NSArray *pickable_sets;
 
 static NSArray *tutorial_levels;
 static NSArray *lab_tutorial_levels;
+static NSArray *world2_tutorial_levels;
+static NSArray *world3_tutorial_levels;
+
+static NSSet *lab_levels_world1;
+static NSSet *lab_levels_world2;
+static NSSet *lab_levels_world3;
 
 +(void)initialize {
 	tutorial_levels = @[
 		@"tutorial_jump",
 		@"tutorial_water",
+		@"tutorial_doublejump",
 		@"tutorial_swipeget",
 		@"filler_sanicloop",
 		@"tutorial_spikes",
 		@"tutorial_spikevine",
 		@"tutorial_breakrocks",
-		@"tutorial_swingvine",
-		@"tutorial_doublejump",
 		@"tutorial_upsidebounce",
 		@"capegame_launcher"
 	];
@@ -54,7 +62,10 @@ static NSArray *lab_tutorial_levels;
 		@"labintro_tutoriallauncher"
 	];
 	
-	pickable_sets = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE];
+	world2_tutorial_levels = @[@"tutorial_swingvine"];
+	world3_tutorial_levels = @[@"tutorial_cannons"];
+	
+	pickable_sets = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE,L_CANNON,L_HARD];
 	
 	levelsets = @{
 		L_CLASSIC: @{
@@ -66,8 +77,7 @@ static NSArray *lab_tutorial_levels;
 			@"classic_smgislands" : @3,
 			@"classic_nubcave" : @2,
 			@"classic_manyoptredux" : @3,
-			@"classic_totalmix" : @3,
-			@"classic_twopath" : @3,
+			@"classic_twopath" : @5,
 			@"classic_doublehelix" : @2
 		},
 		L_FILLER: @{
@@ -83,7 +93,7 @@ static NSArray *lab_tutorial_levels;
 			@"filler_chickennuggets" : @2,
 			@"filler_skippingstones" : @2,
 			@"filler_godog" : @2,
-			@"filler_kingofswing" : @2,
+			@"filler_kingofswing" : @4,
 			@"filler_goslow" : @2
 		},
 		L_EASY: @{
@@ -93,8 +103,7 @@ static NSArray *lab_tutorial_levels;
 			@"easy_curvywater" : @1,
 			@"easy_simplespikes" : @1,
 			@"easy_curvybreak" : @2,
-			@"easy_breakdetail" : @2,
-			@"easy_hillvine" : @1
+			@"easy_breakdetail" : @2
 		},
 		L_JUMPPAD: @{
 			@"jumppad_bigjump" : @2,
@@ -114,7 +123,21 @@ static NSArray *lab_tutorial_levels;
 			@"swingvine_someswings" : @2,
 			@"swingvine_awesome" : @4,
 			@"swingvine_morecave" : @3,
-			@"swingvine_datbounce" : @2
+			@"swingvine_datbounce" : @2,
+			@"swingvine_totalmix" : @3,
+			@"swingvine_hillvine" : @2
+		},
+		L_CANNON: @{								//TODO -- 7 cannon levels
+			@"cannon_cannonsandrobots" : @2,
+			@"jumppad_launch" : @2,
+			@"jumppad_lotsobwalls" : @3,
+			@"jumppad_spikeceil" : @3
+		},
+		L_HARD: @{									//TODO -- 6 hard levels
+			@"classic_twopath" : @2,
+			@"swingvine_awesome" : @4,
+			@"swingvine_bounswindodg" : @4,
+			@"classic_totalmix" : @3
 		},
 		L_AUTOSTART: @{
 			@"autolevel_start": @1
@@ -154,8 +177,35 @@ static NSArray *lab_tutorial_levels;
 			@"lab_muhfiller" : @2,
 			@"lab_rocketfever" : @4
 		}
-		
 	};
+	
+	lab_levels_world1 = _NSSET( //TODO -- 3 easy lab levels
+		@"lab_basicmix",
+		@"lab_minionwalls"
+	);
+	
+	lab_levels_world2 = _NSSET(
+		@"lab_basicmix",
+		@"lab_minionwalls",
+		@"lab_ezshiz",
+		@"lab_ezrocketshz",
+		@"lab_swingers",
+		@"lab_alladat",
+		@"lab_tube",
+		@"lab_muhfiller",
+		@"lab_rocketfever"
+	);
+	lab_levels_world3 = _NSSET(
+		@"lab_basicmix",
+		@"lab_minionwalls",
+		@"lab_ezshiz",
+		@"lab_ezrocketshz",
+		@"lab_swingers",
+		@"lab_alladat",
+		@"lab_tube",
+		@"lab_muhfiller",
+		@"lab_rocketfever"
+	);
 }
 
 +(int)get_level_difficulty:(NSString*)tarlvl {
@@ -187,7 +237,9 @@ static NSArray *lab_tutorial_levels;
 -(id)init {
     self = [super init];
 	ct = 0;
-	has_done_lab_tutorial = [FreeRunStartAtManager get_starting_loc] != FreeRunStartAt_TUTORIAL;
+	has_done_lab_tutorial = NO;
+	has_done_world2_tutorial = NO;
+	has_done_world3_tutorial = NO;
 	sets_until_next_lab = 0;
 	cur_set_completed = 0;
 	nth_filler = 0;
@@ -196,14 +248,11 @@ static NSArray *lab_tutorial_levels;
 	fillersetgen = [WeightedSorter cons_vals:levelsets use:@[L_FILLER]];
 	labsetgen = [WeightedSorter cons_vals:levelsets use:@[L_LAB]];
 	
+	
 	recently_picked_sets = [NSMutableArray array];
 	if (tutorial_levels == NULL || lab_tutorial_levels == NULL) [AutoLevelState initialize];
 	
     return self;
-}
-
--(NSString*)setgen_get:(NSString*)key {
-	return [setgen get_from_bucket:key];
 }
 
 -(void)to_boss2_mode {
@@ -224,13 +273,25 @@ static NSArray *lab_tutorial_levels;
 
 -(NSString*)pick_set {
 	NSArray *available;
-	if (ct < 13) {
+	
+	if (start_with_easy) {
+		start_with_easy = NO;
 		available = @[L_EASY];
-	} else if (ct < 20) {
-		available = @[L_EASY,L_CLASSIC];
+		
+	} else if ([GameWorldMode get_worldnum] == WorldNum_1) {
+		available = @[L_EASY,L_CLASSIC,L_JUMPPAD];
+		
+	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
+		available = @[L_CLASSIC,L_JUMPPAD, L_SWINGVINE, L_HARD];
+		
+	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		available = @[L_JUMPPAD, L_SWINGVINE, L_HARD, L_CANNON];
+		
 	} else {
-		available = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE];
+		available = @[L_FILLER];
+		
 	}
+	
 	NSArray *usem = [available copy_removing:recently_picked_sets];
 	if (usem.count == 0) {
 		[recently_picked_sets removeAllObjects];
@@ -260,11 +321,13 @@ static NSArray *lab_tutorial_levels;
 	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
 		cur_set = L_TUTORIAL;
 		has_done_lab_tutorial = NO;
+		start_with_easy = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
 		tutorial_ct = 0;
 		cur_set = L_FREERUN_PROGRESS;
 		has_done_lab_tutorial = NO;
+		start_with_easy = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
 		[self cycle_through:17];
@@ -285,6 +348,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
+		has_done_world2_tutorial = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
 		[self cycle_through:36];
@@ -292,6 +356,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
+		has_done_world2_tutorial = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
 		[self cycle_through:36];
@@ -299,6 +364,7 @@ static NSArray *lab_tutorial_levels;
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
+		has_done_world3_tutorial = YES;
 		
 	} else {
 		NSLog(@"AutoLevelState start at error");
@@ -375,8 +441,25 @@ static NSArray *lab_tutorial_levels;
 				return [[levelsets[L_BOSS1START] allKeys] random];
 			}
 		}
-		//return @"test_quick";
-		return [labsetgen get_from_bucket:L_LAB];
+		
+		NSString *rtv = [[levelsets[L_LAB] allKeys] random];
+		int nloopct = 15;
+		while (true) {
+			if ([GameWorldMode get_actual_worldnum] == WorldNum_1 && [lab_levels_world1 containsObject:rtv]) {
+				break;
+			} else if ([GameWorldMode get_actual_worldnum] == WorldNum_2 && [lab_levels_world2 containsObject:rtv]) {
+				break;
+			} else if ([GameWorldMode get_actual_worldnum] == WorldNum_3 && [lab_levels_world3 containsObject:rtv]) {
+				break;
+			}
+			nloopct--;
+			if (nloopct <= 0) {
+				NSLog(@"AutoLevel::lab world selector failed");
+				break;
+			}
+			rtv = [[levelsets[L_LAB] allKeys] random];
+		}
+		return rtv;
 		
 	} else if ([cur_set isEqualToString:L_FILLER]) {
 		cur_set_completed = 0;
@@ -395,11 +478,22 @@ static NSArray *lab_tutorial_levels;
 		[self filler_next];
 		return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		
+	} else if (has_done_world2_tutorial == NO && [GameWorldMode get_bgmode] == BGMode_NORMAL && [GameWorldMode get_worldnum] == WorldNum_2) {
+		has_done_world2_tutorial = YES;
+		cur_set = L_SWINGVINE;
+		[recently_picked_sets addObject:L_SWINGVINE];
+		return [world2_tutorial_levels random];
+		
+	} else if (has_done_world3_tutorial == NO && [GameWorldMode get_bgmode] == BGMode_NORMAL && [GameWorldMode get_worldnum] == WorldNum_3) {
+		has_done_world3_tutorial = YES;
+		cur_set = L_CANNON;
+		[recently_picked_sets addObject:L_CANNON];
+		return [world3_tutorial_levels random];
+		
 	} else if ([pickable_sets contains_str:cur_set]) {
 		cur_set_completed++;
 		NSString *tar_set = cur_set;
 		if (cur_set_completed >= LEVELS_IN_SET) cur_set = L_FILLER;
-		//return @"test_quick";
 		return [setgen get_from_bucket:tar_set];
 		
 	} else {
@@ -421,43 +515,6 @@ static NSArray *lab_tutorial_levels;
 		}
 	} else {
 		cur_set = [self pick_set];
-	}
-}
-
--(NSString*)status {
-	return [NSString stringWithFormat:
-		@"(ct:%d cur_set:%@ cursetcompl:%d setsnextlab:%d hasdonelabtut:%d)",
-		ct,
-		cur_set,
-		cur_set_completed,
-		sets_until_next_lab,
-		has_done_lab_tutorial
-	];
-}
-
--(NSString*)debug_boss_only {
-	ct++;
-	if (ct == 1) {
-		cur_set = @"no";
-		return [[levelsets[L_AUTOSTART] allKeys] random];
-		
-	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
-		return [[levelsets[L_BOSS1AREA] allKeys] random];
-	
-	} else if ([cur_set isEqualToString:L_LABEXIT]) {
-		cur_set = @"no";
-		return [[levelsets[L_LABEXIT] allKeys] random];
-		
-	} else if ([cur_set isEqualToString:@"no"]) {
-		cur_set = @"yes";
-		return [[levelsets[L_LABINTRO] allKeys] random];
-		
-	} else if ([cur_set isEqualToString:@"yes"]) {
-		return [[levelsets[L_BOSS1START] allKeys] random];
-		
-	} else {
-		NSLog(@"error fb");
-		return @"";
 	}
 }
 
