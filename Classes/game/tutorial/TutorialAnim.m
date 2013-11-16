@@ -198,7 +198,18 @@
         
         [body setPosition:ccp(-20,-10)];
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-    
+      
+    } else if ([msg isEqualToString:@"shot"]) {
+      NSArray* tbodyframes = [NSArray arrayWithObjects:  @"shot7"     ,@"shot7"     ,@"shot7"     ,@"shot0"  ,@"shot1",@"shot2" ,@"shot3"  ,@"shot4"  ,@"shot5"   ,@"shot6",@"shot7"  ,@"shot7"   ,@"shot7",nil];
+      NSArray* teffectframes = [NSArray arrayWithObjects:@""          ,@""          ,@""          ,@""       ,@""     ,@""      ,@""       ,@"jump"   ,@"jump"	  ,@""     ,@""       ,@""        ,@""     ,nil];
+      CGPoint handframes[] =                            {ccp(0,0)     ,ccp(0,0)		,ccp(0,0)	  ,ccp(0,0)  ,ccp(0,0),ccp( 0,0),ccp(-6,0),ccp(-12,0) ,ccp(-6,0)  ,ccp(-6,0),ccp(0,0)  ,ccp(0,0)   ,ccp(0,0)      };
+      CGPoint nosignfr[] =                              {NOSHOW  ,NOSHOW  ,NOSHOW  ,NOSHOW     ,NOSHOW,NOSHOW      ,NOSHOW      ,NOSHOW    ,NOSHOW   ,NOSHOW   ,NOSHOW     ,NOSHOW     ,NOSHOW        };
+      
+      [body setPosition:ccp(0,15)];
+      [effect setPosition:ccp(50,-50)];
+      defaulthandpos = ccp(100,-100);
+      [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+      
     } else {
         NSLog(@"ERROR TUTORIAL NOT FOUND:%@",msg);
     }

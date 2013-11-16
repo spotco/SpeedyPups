@@ -140,7 +140,7 @@ static NSArray *_tmp_msglist;
 
 static NSDictionary *_tutorial_msglist;
 +(void)initialize {
-	_tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight", nil];
+	_tmp_msglist = [NSArray arrayWithObjects:@"doublejump",@"minionhit",@"minionjump",@"rockbreak",@"rockethit",@"rocketjump",@"rockhit",@"spikehit",@"spikevine",@"splash",@"hover",@"jump",@"swingvine",@"swipe_down",@"swipe_straight",@"shot", nil];
 
 	_tutorial_msglist = @{
 		@"doublejump" :		@"tap twice to double jump",
@@ -158,7 +158,8 @@ static NSDictionary *_tutorial_msglist;
 		@"swingvine" :		@"swing on vines, tap to jump",
 		@"swipe_down" :		@"swipe down to roll downwards",
 		@"swipe_straight" : @"swipe straight to roll straight",
-		@"collectcoin" :	@"swipe to grab bones"
+		@"collectcoin" :	@"swipe to grab bones",
+    @"shot" : @"tap to launch!"
    };
 }
 +(NSString*)msg_for_tutorial:(NSString*)tut {
