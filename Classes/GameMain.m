@@ -5,6 +5,7 @@
 #import "Challenge.h"
 #import "FreeRunStartAtManager.h"
 #import "LoadingScene.h"
+#import "IntroAnim.h"
 
 #import "WebRequest.h"
 
@@ -21,7 +22,7 @@
 #define DRAW_HITBOX NO
 
 /**
- intro cartoon
+ intro cartoon improvements
  new logo integrate
  memory reduction
  fix rocket mechanics
@@ -97,9 +98,13 @@ Stretch goals:
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	
+}
+
++(void)start_introanim {
+	[GameMain run_scene:[IntroAnim scene]];
 }
 
 +(void)start_game_autolevel {

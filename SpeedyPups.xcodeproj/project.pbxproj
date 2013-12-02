@@ -34,6 +34,14 @@
 		7E0A788816ED74D30026C418 /* NMenuCharSelectPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788716ED74D30026C418 /* NMenuCharSelectPage.m */; };
 		7E0A788E16ED7AD60026C418 /* Shopkeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A788D16ED7AD60026C418 /* Shopkeeper.m */; };
 		7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C57A717E6E1E900786CE5 /* CapeTutorialLauncher.m */; };
+		7E0C635D184C62F500D3C4B9 /* IntroAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C635C184C62F500D3C4B9 /* IntroAnim.m */; };
+		7E0C6360184C674A00D3C4B9 /* IntroAnimFrame1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C635F184C674A00D3C4B9 /* IntroAnimFrame1.m */; };
+		7E0C6363184C7C6200D3C4B9 /* IntroAnimFrame2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C6362184C7C6200D3C4B9 /* IntroAnimFrame2.m */; };
+		7E0C6366184C7DFF00D3C4B9 /* RepeatFillSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C6365184C7DFF00D3C4B9 /* RepeatFillSprite.m */; };
+		7E0C6369184C85B300D3C4B9 /* IntroAnimFrame3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C6368184C85B300D3C4B9 /* IntroAnimFrame3.m */; };
+		7E0C636C184C8D1500D3C4B9 /* IntroAnimFrame4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C636B184C8D1500D3C4B9 /* IntroAnimFrame4.m */; };
+		7E0C636F184C921F00D3C4B9 /* IntroAnimFrame5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C636E184C921F00D3C4B9 /* IntroAnimFrame5.m */; };
+		7E0C6372184C93A100D3C4B9 /* IntroAnimFrame6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0C6371184C93A100D3C4B9 /* IntroAnimFrame6.m */; };
 		7E0D74E9182CE6CD002F5B9A /* BG3_backhills.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D74E4182CE6CD002F5B9A /* BG3_backhills.png */; };
 		7E0D74EA182CE6CD002F5B9A /* BG3_backmountains.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D74E5182CE6CD002F5B9A /* BG3_backmountains.png */; };
 		7E0D74EB182CE6CD002F5B9A /* BG3_castle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D74E6182CE6CD002F5B9A /* BG3_castle.png */; };
@@ -765,6 +773,22 @@
 		7E0A788D16ED7AD60026C418 /* Shopkeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shopkeeper.m; path = details/Shopkeeper.m; sourceTree = "<group>"; };
 		7E0C57A617E6E1E900786CE5 /* CapeTutorialLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeTutorialLauncher.h; sourceTree = "<group>"; };
 		7E0C57A717E6E1E900786CE5 /* CapeTutorialLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeTutorialLauncher.m; sourceTree = "<group>"; };
+		7E0C635B184C62F500D3C4B9 /* IntroAnim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnim.h; sourceTree = "<group>"; };
+		7E0C635C184C62F500D3C4B9 /* IntroAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnim.m; sourceTree = "<group>"; };
+		7E0C635E184C674A00D3C4B9 /* IntroAnimFrame1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame1.h; sourceTree = "<group>"; };
+		7E0C635F184C674A00D3C4B9 /* IntroAnimFrame1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame1.m; sourceTree = "<group>"; };
+		7E0C6361184C7C6200D3C4B9 /* IntroAnimFrame2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame2.h; sourceTree = "<group>"; };
+		7E0C6362184C7C6200D3C4B9 /* IntroAnimFrame2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame2.m; sourceTree = "<group>"; };
+		7E0C6364184C7DFF00D3C4B9 /* RepeatFillSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatFillSprite.h; sourceTree = "<group>"; };
+		7E0C6365184C7DFF00D3C4B9 /* RepeatFillSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatFillSprite.m; sourceTree = "<group>"; };
+		7E0C6367184C85B300D3C4B9 /* IntroAnimFrame3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame3.h; sourceTree = "<group>"; };
+		7E0C6368184C85B300D3C4B9 /* IntroAnimFrame3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame3.m; sourceTree = "<group>"; };
+		7E0C636A184C8D1500D3C4B9 /* IntroAnimFrame4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame4.h; sourceTree = "<group>"; };
+		7E0C636B184C8D1500D3C4B9 /* IntroAnimFrame4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame4.m; sourceTree = "<group>"; };
+		7E0C636D184C921F00D3C4B9 /* IntroAnimFrame5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame5.h; sourceTree = "<group>"; };
+		7E0C636E184C921F00D3C4B9 /* IntroAnimFrame5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame5.m; sourceTree = "<group>"; };
+		7E0C6370184C93A100D3C4B9 /* IntroAnimFrame6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroAnimFrame6.h; sourceTree = "<group>"; };
+		7E0C6371184C93A100D3C4B9 /* IntroAnimFrame6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroAnimFrame6.m; sourceTree = "<group>"; };
 		7E0D74E4182CE6CD002F5B9A /* BG3_backhills.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3_backhills.png; sourceTree = "<group>"; };
 		7E0D74E5182CE6CD002F5B9A /* BG3_backmountains.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3_backmountains.png; sourceTree = "<group>"; };
 		7E0D74E6182CE6CD002F5B9A /* BG3_castle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3_castle.png; sourceTree = "<group>"; };
@@ -1732,6 +1756,27 @@
 			name = details;
 			sourceTree = "<group>";
 		};
+		7E0C635A184C62DE00D3C4B9 /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				7E0C635B184C62F500D3C4B9 /* IntroAnim.h */,
+				7E0C635C184C62F500D3C4B9 /* IntroAnim.m */,
+				7E0C635E184C674A00D3C4B9 /* IntroAnimFrame1.h */,
+				7E0C635F184C674A00D3C4B9 /* IntroAnimFrame1.m */,
+				7E0C6361184C7C6200D3C4B9 /* IntroAnimFrame2.h */,
+				7E0C6362184C7C6200D3C4B9 /* IntroAnimFrame2.m */,
+				7E0C6367184C85B300D3C4B9 /* IntroAnimFrame3.h */,
+				7E0C6368184C85B300D3C4B9 /* IntroAnimFrame3.m */,
+				7E0C636A184C8D1500D3C4B9 /* IntroAnimFrame4.h */,
+				7E0C636B184C8D1500D3C4B9 /* IntroAnimFrame4.m */,
+				7E0C636D184C921F00D3C4B9 /* IntroAnimFrame5.h */,
+				7E0C636E184C921F00D3C4B9 /* IntroAnimFrame5.m */,
+				7E0C6370184C93A100D3C4B9 /* IntroAnimFrame6.h */,
+				7E0C6371184C93A100D3C4B9 /* IntroAnimFrame6.m */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
 		7E0D74E3182CE6CD002F5B9A /* BG3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2524,6 +2569,7 @@
 		7EB8B3AC16D9FC0800F58961 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7E0C635A184C62DE00D3C4B9 /* intro */,
 				7EEE5B511804CA6700A4A64F /* loading */,
 				7ECADDCB17646AF00032A1E6 /* ObjectAL (iOS) */,
 				7EB8B45116D9FC0900F58961 /* GameMain.h */,
@@ -2780,6 +2826,8 @@
 				7E07524B17A5072B001FAE5F /* WeightedSorter.m */,
 				7E99416917F1758300B363F3 /* WebRequest.h */,
 				7E99416A17F1758300B363F3 /* WebRequest.m */,
+				7E0C6364184C7DFF00D3C4B9 /* RepeatFillSprite.h */,
+				7E0C6365184C7DFF00D3C4B9 /* RepeatFillSprite.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -4040,6 +4088,7 @@
 				7EB8B4A216D9FC0900F58961 /* SwingVine.m in Sources */,
 				7EB8B4A316D9FC0900F58961 /* Water.m in Sources */,
 				7EB8B4A416D9FC0900F58961 /* World1ParticleGenerator.m in Sources */,
+				7E0C636C184C8D1500D3C4B9 /* IntroAnimFrame4.m in Sources */,
 				7EB8B4A516D9FC0900F58961 /* BridgeIsland.m in Sources */,
 				7EB8B4A616D9FC0900F58961 /* CaveLineIsland.m in Sources */,
 				7EB8B4A716D9FC0900F58961 /* Island.m in Sources */,
@@ -4066,6 +4115,7 @@
 				7EB8B4BC16D9FC0900F58961 /* DogRocketEffect.m in Sources */,
 				7E0D74F0182CE7D0002F5B9A /* World3BGLayerSet.m in Sources */,
 				7EB8B4BD16D9FC0900F58961 /* FlashEffect.m in Sources */,
+				7E0C6372184C93A100D3C4B9 /* IntroAnimFrame6.m in Sources */,
 				7EB8B4BE16D9FC0900F58961 /* HitEffect.m in Sources */,
 				7EB8B4BF16D9FC0900F58961 /* PlayerEffectParams.m in Sources */,
 				7EB8B4C016D9FC0900F58961 /* SplashEffect.m in Sources */,
@@ -4111,12 +4161,14 @@
 				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
 				7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */,
 				7E4922DC17115FEC0032665B /* Challenge.m in Sources */,
+				7E0C635D184C62F500D3C4B9 /* IntroAnim.m in Sources */,
 				7ED28FA717124DBD0037B916 /* IngameUI.m in Sources */,
 				7ED28FAA17124DDE0037B916 /* PauseUI.m in Sources */,
 				7ED28FAD17124DF30037B916 /* AskContinueUI.m in Sources */,
 				7ED28FB017124E110037B916 /* GameOverUI.m in Sources */,
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
+				7E0C6366184C7DFF00D3C4B9 /* RepeatFillSprite.m in Sources */,
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
 				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
 				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
@@ -4125,6 +4177,7 @@
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,
 				7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */,
 				7ECADE0F17646AF00032A1E6 /* OALAction.m in Sources */,
+				7E0C6369184C85B300D3C4B9 /* IntroAnimFrame3.m in Sources */,
 				7ECADE1017646AF00032A1E6 /* OALActionManager.m in Sources */,
 				7ECADE1117646AF00032A1E6 /* OALAudioActions.m in Sources */,
 				7ECADE1217646AF00032A1E6 /* OALUtilityActions.m in Sources */,
@@ -4136,6 +4189,7 @@
 				7ECADE1817646AF00032A1E6 /* ALCaptureDevice.m in Sources */,
 				7ECADE1917646AF00032A1E6 /* ALChannelSource.m in Sources */,
 				7ECADE1A17646AF00032A1E6 /* ALContext.m in Sources */,
+				7E0C6360184C674A00D3C4B9 /* IntroAnimFrame1.m in Sources */,
 				7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */,
 				7ECADE1B17646AF00032A1E6 /* ALDevice.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
@@ -4164,8 +4218,10 @@
 				7EE41C9817BB56B30011D20F /* ShopTabTouchButton.m in Sources */,
 				7EE41C9B17BB56FF0011D20F /* ShopListTouchButton.m in Sources */,
 				7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */,
+				7E0C636F184C921F00D3C4B9 /* IntroAnimFrame5.m in Sources */,
 				7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */,
 				7EFC757B17C9F0F500D4EEF7 /* FreeRunStartAtManager.m in Sources */,
+				7E0C6363184C7C6200D3C4B9 /* IntroAnimFrame2.m in Sources */,
 				7E72818E17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m in Sources */,
 				7E73334317D7AA9E00E5D6F6 /* UIEnemyAlert.m in Sources */,
 				7E73334817D7B48D00E5D6F6 /* UIWaterAlert.m in Sources */,

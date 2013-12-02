@@ -32,11 +32,7 @@
 	//[self addChild:[CCLayerColor layerWithColor:ccc4(216, 166, 122, 255)]];
 	
 	NSString *splashtex_str;
-	if ([Common fuzzyeq_a:[Common scale_from_default].x b:1 delta:0.05]) {
-		splashtex_str = @"Default.png";
-	} else {
-		splashtex_str = @"Default-568h@2x.png";
-	}
+	splashtex_str = @"Default.png";
 	bg_tex = [[CCTextureCache sharedTextureCache] addImage:splashtex_str];
 	CCSprite *bg = [CCSprite spriteWithTexture:bg_tex];
 	[bg setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];

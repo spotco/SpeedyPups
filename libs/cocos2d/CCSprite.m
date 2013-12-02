@@ -1126,14 +1126,6 @@ static SEL selSortMethod = NULL;
 	[self setClippingRegion:clippingRegionInNodeCoordinates];
 }
 
--(void)setOpacity:(GLubyte)opacity {
-	for (CCNode *n in children_) {
-		if ([n respondsToSelector:@selector(setOpacity:)]) {
-			[n setOpacity:opacity];
-		}
-	}
-}
-
 -(void) deviceOrientationChanged:(NSNotification*)notification
 {
 	// re-adjust the clipping region according to the current orientation
