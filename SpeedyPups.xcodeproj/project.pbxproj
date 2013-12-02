@@ -89,6 +89,8 @@
 		7E4A2F5D17043861001BD38C /* tutorial_swingvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */; };
 		7E4A2F60170448F9001BD38C /* tutorial_swipeget.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */; };
 		7E4A2F6217044908001BD38C /* tutorial_spikevine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E4A2F6117044908001BD38C /* tutorial_spikevine.map */; };
+		7E4D771C184C315A009FB73F /* intro_anim_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E4D771A184C315A009FB73F /* intro_anim_ss.plist */; };
+		7E4D771D184C315A009FB73F /* intro_anim_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4D771B184C315A009FB73F /* intro_anim_ss.png */; };
 		7E50505D17D074CF00B343E1 /* freerunstart_icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E50505B17D074CF00B343E1 /* freerunstart_icons.plist */; };
 		7E50505E17D074CF00B343E1 /* freerunstart_icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E50505C17D074CF00B343E1 /* freerunstart_icons.png */; };
 		7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E50B27217A2608E00E0C408 /* FreeRunProgressAnimation.m */; };
@@ -835,6 +837,8 @@
 		7E4A2F5C17043861001BD38C /* tutorial_swingvine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swingvine.map; sourceTree = "<group>"; };
 		7E4A2F5F170448F9001BD38C /* tutorial_swipeget.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_swipeget.map; sourceTree = "<group>"; };
 		7E4A2F6117044908001BD38C /* tutorial_spikevine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_spikevine.map; sourceTree = "<group>"; };
+		7E4D771A184C315A009FB73F /* intro_anim_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro_anim_ss.plist; sourceTree = "<group>"; };
+		7E4D771B184C315A009FB73F /* intro_anim_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_anim_ss.png; sourceTree = "<group>"; };
 		7E50505B17D074CF00B343E1 /* freerunstart_icons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = freerunstart_icons.plist; sourceTree = "<group>"; };
 		7E50505C17D074CF00B343E1 /* freerunstart_icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freerunstart_icons.png; sourceTree = "<group>"; };
 		7E50B27117A2608E00E0C408 /* FreeRunProgressAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeRunProgressAnimation.h; sourceTree = "<group>"; };
@@ -1893,6 +1897,15 @@
 			path = sfx;
 			sourceTree = "<group>";
 		};
+		7E4D7719184C315A009FB73F /* intro */ = {
+			isa = PBXGroup;
+			children = (
+				7E4D771A184C315A009FB73F /* intro_anim_ss.plist */,
+				7E4D771B184C315A009FB73F /* intro_anim_ss.png */,
+			);
+			path = intro;
+			sourceTree = "<group>";
+		};
 		7E5BA16E16DA1F0100700BF2 /* evt_anim */ = {
 			isa = PBXGroup;
 			children = (
@@ -2104,6 +2117,7 @@
 		7EB8B1E016D9F8E600F58961 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E4D7719184C315A009FB73F /* intro */,
 				7E071F301802A24F0003F8AA /* loading */,
 				7E49B1D517DA766600563243 /* sfx */,
 				7EA567F816FF8B200003F2A5 /* tutorial */,
@@ -3783,6 +3797,7 @@
 				7E269C6816DA00E4005F446C /* fps_images.png in Resources */,
 				7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */,
 				7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */,
+				7E4D771C184C315A009FB73F /* intro_anim_ss.plist in Resources */,
 				7E269C6A16DA00EB005F446C /* Default.png in Resources */,
 				7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */,
 				7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */,
@@ -3861,6 +3876,7 @@
 				7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */,
 				7E29D83618338B0800A92C2A /* grounddetail_world3_ss.png in Resources */,
 				7EE2224E177837B100174B92 /* lab_basicmix.map in Resources */,
+				7E4D771D184C315A009FB73F /* intro_anim_ss.png in Resources */,
 				7E717A13177FE9A800141E3D /* labswingvine_base.png in Resources */,
 				7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */,
 				7EAE854C177FEFE4005AB868 /* labbreakablewall_body.png in Resources */,
@@ -4336,8 +4352,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4351,8 +4367,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "747C166B-140A-40F7-8815-4B8F52CD251F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747C166B-140A-40F7-8815-4B8F52CD251F";
+				PROVISIONING_PROFILE = "FA0BA72A-5231-40DC-A95A-448836B45118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FA0BA72A-5231-40DC-A95A-448836B45118";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4363,7 +4379,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4377,8 +4393,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "747C166B-140A-40F7-8815-4B8F52CD251F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747C166B-140A-40F7-8815-4B8F52CD251F";
+				PROVISIONING_PROFILE = "FA0BA72A-5231-40DC-A95A-448836B45118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FA0BA72A-5231-40DC-A95A-448836B45118";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

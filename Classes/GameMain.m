@@ -21,10 +21,11 @@
 #define DRAW_HITBOX NO
 
 /**
+ intro cartoon
+ new logo integrate
  memory reduction
  fix rocket mechanics
- 
- intro cartoon
+ alarm sounds in timed challenge countdown
  beat boss free pups cartoon scene
  
  sfx fireworks
@@ -34,7 +35,7 @@
  cannon move track graphics
  
  some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
- make 17 more levels
+ make 17 more levels, possibly some rocket ones
  
  -art ask for:
 	cannon redesign
@@ -49,13 +50,14 @@ Stretch goals:
  stats tracking
  make floatingwindow tabs classes
  implement level of the week
- integrate IAP speedypups subscription
+ integrate speedypups full
  integrate ads
- 
  goober pet
  levels based around armor (armor break spikes)
  challenges based around capegame
+ challenges based around bossrush
  store sales (streamed from online)
+ daily challenges
  **/
 
 +(void)main {

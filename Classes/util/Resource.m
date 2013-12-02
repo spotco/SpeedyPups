@@ -38,6 +38,8 @@ static NSMutableDictionary* loaded_textures;
 	
 	loaded_textures = [NSMutableDictionary dictionary];
 	all_textures = @{
+	 TEX_INTRO_ANIM_SS : @"intro_anim_ss.png",
+	
 	 TEX_GROUND_TEX_1 : @"BG1_island_fill.png",
 	 TEX_GROUND_TOP_1 : @"BG1_top_fill.png",
 	 TEX_GROUND_CORNER_TEX_1 : @"BG1_island_corner.png",

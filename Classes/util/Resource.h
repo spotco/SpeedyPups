@@ -6,6 +6,7 @@
 +(CCTexture2D*)get_tex:(NSString*)key;
 +(void)unload_textures;
 
+#define TEX_INTRO_ANIM_SS @"intro_anim_ss"
 
 #define TEX_GROUND_TEX_1 @"GroundTexture1"
 #define TEX_GROUND_TOP_1 @"GroundTop1"
