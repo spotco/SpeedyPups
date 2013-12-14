@@ -6,6 +6,8 @@
 	
 	CCSprite *dleft,*dright,*pups, *curtains;
 	int ct;
+    
+    NSMutableArray *debris;
 }
 
 +(IntroAnimFrame3*)cons;

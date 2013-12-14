@@ -28,27 +28,27 @@ static float GROUNDHEI;
 	ground = [RepeatFillSprite cons_tex:[Resource get_tex:TEX_INTRO_ANIM_SS]
 								   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame6_groundtex"]
 									rep:6];
-	[ground setPosition:ccp(0,40)];
+	[ground setPosition:ccp(0,0)];
 	[self addChild:ground];
 	
 	dog1 = [CCSprite node];
-	[dog1 runAction:[self runAction:[Common cons_anim:@[@"run_0",@"run_1",@"run_2",@"run_3"]
+	[dog1 runAction:[self runAction:[Common cons_anim:@[@"dog5_run_angry0",@"dog5_run_angry1",@"dog5_run_angry2",@"dog5_run_angry3"]
 												speed:0.1
-											  tex_key:TEX_DOG_RUN_6]]];
-	[dog1 setPosition:ccp(-100,GROUNDHEI+5)];
+											  tex_key:TEX_INTRO_ANIM_SS]]];
+	[dog1 setPosition:ccp(-100,GROUNDHEI)];
 	[self addChild:dog1];
 	
 	dog2 = [CCSprite node];
-	[dog2 runAction:[self runAction:[Common cons_anim:@[@"run_0",@"run_1",@"run_2",@"run_3"]
+	[dog2 runAction:[self runAction:[Common cons_anim:@[@"dog6_run_angry0",@"dog6_run_angry1",@"dog6_run_angry2",@"dog6_run_angry3"]
 												speed:0.1
-											  tex_key:TEX_DOG_RUN_5]]];
-	[dog2 setPosition:ccp(-100,GROUNDHEI)];
+											  tex_key:TEX_INTRO_ANIM_SS]]];
+	[dog2 setPosition:ccp(-100,GROUNDHEI+5)];
 	[self addChild:dog2];
 	
 	dog3 = [CCSprite node];
-	[dog3 runAction:[self runAction:[Common cons_anim:@[@"run_0",@"run_1",@"run_2",@"run_3"]
+	[dog3 runAction:[self runAction:[Common cons_anim:@[@"dog1_run_angry0",@"dog1_run_angry1",@"dog1_run_angry2",@"dog1_run_angry3"]
 												speed:0.1
-											  tex_key:TEX_DOG_RUN_1]]];
+											  tex_key:TEX_INTRO_ANIM_SS]]];
 	[dog3 setPosition:ccp(-100,GROUNDHEI)];
 	[self addChild:dog3];
 	

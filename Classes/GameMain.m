@@ -13,7 +13,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"tutorial_cannons"
 
 #define RESET_STATS NO
@@ -22,9 +22,20 @@
 #define DRAW_HITBOX NO
 
 /**
- intro cartoon improvements
- new logo integrate
+all introcartoon frames:
+ remove shadows
+ 
+introcartoon frame 5:
+ wash out
+ 
+introcartoon frame 6:
+ dogs jump
+ shadows
+ scrolling bg
+ scroll up to logo
+ 
  memory reduction
+ 
  fix rocket mechanics
  alarm sounds in timed challenge countdown
  beat boss free pups cartoon scene
@@ -100,7 +111,7 @@ Stretch goals:
 	
 	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
-	
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

@@ -9,7 +9,8 @@
 -(id)cons_tex:(CCTexture2D *)tex rect:(CGRect)rect rep:(int)rep {
 	for (int i = 0; i < rep; i++) {
 		CCSprite *subspr = [CCSprite spriteWithTexture:tex rect:rect];
-		[subspr setPosition:ccp(i*rect.size.width-i,0)];
+		[subspr setAnchorPoint:ccp(0,0)];
+		[subspr setPosition:ccp(i*subspr.boundingBoxInPixels.size.width-i,0)];
 		[self addChild:subspr];
 	}
 	return self;

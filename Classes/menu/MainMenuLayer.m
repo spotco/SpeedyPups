@@ -15,7 +15,7 @@
 -(void)setOpacity:(GLubyte)opacity {
 	[super setOpacity:opacity];
 	for(CCSprite *sprite in [self children]) {
-		sprite.opacity = opacity;
+		if ([sprite respondsToSelector:@selector(setOpacity:)]) sprite.opacity = opacity;
 	}
 }
 -(void)touch_begin:(CGPoint)pt{}

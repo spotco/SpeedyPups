@@ -60,6 +60,7 @@
 }
 
 -(void)cons_frames {
+    //[frames addObject:[IntroAnimFrame6 cons]];
 	[frames addObject:[IntroAnimFrame1 cons]];
 	[frames addObject:[IntroAnimFrame2 cons]];
 	[frames addObject:[IntroAnimFrame3 cons]];
@@ -69,6 +70,7 @@
 }
 
 -(void)update:(ccTime)dt {
+    [Common set_dt:dt];
 	if (!transitioning_out && !transitioning_in) {
 		IntroAnimFrame *animating_frame = frames[cur_frame];
 		[animating_frame update];
@@ -105,6 +107,7 @@
 }
 
 -(void)exit_to_menu {
+    [Common unset_dt];
 	[GameMain start_menu];
 }
 
