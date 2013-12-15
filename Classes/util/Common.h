@@ -133,7 +133,6 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(float)get_dt_Scale;
 +(void)unset_dt;
 
-+(CCSprite*)get_load_scr;
 +(CGSize)SCREEN;
 +(CGPoint)screen_pctwid:(float)pctwid pcthei:(float)pcthei;
 

@@ -62,9 +62,9 @@
 	[clipper addChild:clipperholder];
 	[tabbedpane addChild:clipper];
 	
-	can_scroll_down = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow.png"]];
+	can_scroll_down = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow"]];
 	[can_scroll_down setScaleY:-1];
-	can_scroll_up = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow.png"]];
+	can_scroll_up = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow"]];
 	[can_scroll_down setPosition:[Common pct_of_obj:tabbedpane pctx:0.2 pcty:0.035]];
 	[can_scroll_up setPosition:[Common pct_of_obj:tabbedpane pctx:0.2 pcty:0.95]];
 	[tabbedpane addChild:can_scroll_down];

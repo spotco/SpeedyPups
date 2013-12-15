@@ -82,15 +82,6 @@ static ccTime last_sdt = 1;
 	return sdt/(1/60.0f);
 }
 
-+(CCSprite*)get_load_scr {
-    CCSprite *loadscr = [CCSprite spriteWithFile:@"Default.png"];
-    [loadscr setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];
-    [loadscr setRotation:90];
-	[loadscr setScaleX:loadscr.boundingBoxInPixels.size.width/[Common scale_from_default].x];
-	[loadscr setScaleY:loadscr.boundingBoxInPixels.size.height/[Common scale_from_default].y];
-    return loadscr;
-}
-
 +(CGSize)SCREEN {
     return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }

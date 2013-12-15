@@ -75,9 +75,7 @@
 
 - (void)setOpacity:(GLubyte)opacity {
 	[super setOpacity:opacity];
-    
 	for(CCSprite *sprite in [self children]) {
-        
 		sprite.opacity = opacity;
 	}
 }

@@ -721,6 +721,7 @@
 		7EFD034D1707B945002492D6 /* UsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD034C1707B945002492D6 /* UsedItem.m */; };
 		7EFD3E5C17894FEB00A6F383 /* sweatanim_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */; };
 		7EFD3E5D17894FEB00A6F383 /* sweatanim_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD3E5B17894FEB00A6F383 /* sweatanim_ss.png */; };
+		7EFD5D81185DD7B30059CC39 /* gameloop3_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD5D80185DD7B30059CC39 /* gameloop3_night.aiff */; };
 		7EFED6A317ABA5710061C919 /* lab_rock_particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EFED6A217ABA5710061C919 /* lab_rock_particle.png */; };
 		DC0C49F6154AB4DD00B4B727 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C49F5154AB4DD00B4B727 /* QuartzCore.framework */; };
 		DC0C49F8154AB4DD00B4B727 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C49F7154AB4DD00B4B727 /* OpenGLES.framework */; };
@@ -1658,6 +1659,7 @@
 		7EFD034C1707B945002492D6 /* UsedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsedItem.m; sourceTree = "<group>"; };
 		7EFD3E5A17894FEB00A6F383 /* sweatanim_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sweatanim_ss.plist; sourceTree = "<group>"; };
 		7EFD3E5B17894FEB00A6F383 /* sweatanim_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweatanim_ss.png; sourceTree = "<group>"; };
+		7EFD5D80185DD7B30059CC39 /* gameloop3_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3_night.aiff; sourceTree = "<group>"; };
 		7EFED6A217ABA5710061C919 /* lab_rock_particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab_rock_particle.png; sourceTree = "<group>"; };
 		DC0C49F1154AB4DD00B4B727 /* SpeedyPups.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeedyPups.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0C49F5154AB4DD00B4B727 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -2387,6 +2389,7 @@
 		7EB8B27316D9F8E700F58961 /* music */ = {
 			isa = PBXGroup;
 			children = (
+				7EFD5D80185DD7B30059CC39 /* gameloop3_night.aiff */,
 				7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */,
 				7E80D7C718127B53007E48C5 /* gameloop3.aiff */,
 				7E5CE28E17F8E75400226263 /* capegameloop.aiff */,
@@ -3843,6 +3846,7 @@
 				7EB8B37E16D9F8E700F58961 /* cannontrail_default.png in Resources */,
 				7E269C6116DA0000005F446C /* Icon.png in Resources */,
 				7E269C6816DA00E4005F446C /* fps_images.png in Resources */,
+				7EFD5D81185DD7B30059CC39 /* gameloop3_night.aiff in Resources */,
 				7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */,
 				7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */,
 				7E4D771C184C315A009FB73F /* intro_anim_ss.plist in Resources */,

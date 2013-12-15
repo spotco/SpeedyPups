@@ -13,7 +13,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"tutorial_cannons"
 
 #define RESET_STATS NO
@@ -21,19 +21,7 @@
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
-/**
-all introcartoon frames:
- remove shadows
- 
-introcartoon frame 5:
- wash out
- 
-introcartoon frame 6:
- dogs jump
- shadows
- scrolling bg
- scroll up to logo
- 
+/** 
  memory reduction
  
  fix rocket mechanics

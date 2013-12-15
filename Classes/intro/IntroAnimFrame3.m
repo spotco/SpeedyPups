@@ -37,8 +37,10 @@
 	[dright setPosition:[Common screen_pctwid:0.8 pcthei:0.29]];
 	[self addChild:dright];
 	
-	pups = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
-								  rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame3_pups"]];
+	pups = [CCSprite node];
+	[pups runAction:[Common cons_anim:@[@"frame3_pups_0",@"frame3_pups_1",@"frame3_pups_2",@"frame3_pups_1"]
+								speed:0.11
+							  tex_key:TEX_INTRO_ANIM_SS]];
 	[pups setPosition:[Common screen_pctwid:0.5 pcthei:0.25]];
 	[self addChild:pups];
 	

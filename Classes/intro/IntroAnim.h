@@ -13,6 +13,7 @@
 	
 	BOOL transitioning_out;
 	BOOL transitioning_in;
+	BOOL force_end;
 }
 +(CCScene*)scene;
 @end

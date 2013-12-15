@@ -19,8 +19,10 @@
 	[bg setPosition:[Common screen_pctwid:0.5 pcthei:0.5]];
 	[self addChild:bg];
 	
-	chars = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
-								   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame1_char"]];
+	chars = [CCSprite node];
+	[chars runAction:[Common cons_anim:@[@"frame1_chars_0",@"frame1_chars_1",@"frame1_chars_2",@"frame1_chars_1"]
+								speed:0.25
+							   tex_key:TEX_INTRO_ANIM_SS]];
 	[chars setPosition:[Common screen_pctwid:0.565 pcthei:0.255]];
 	[chars setPosition:ccp(chars.position.x/[Common scale_from_default].x,chars.position.y/[Common scale_from_default].y)];
 	[bg addChild:chars];

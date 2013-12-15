@@ -12,21 +12,23 @@ typedef enum {
 	BGM_GROUP_CAPEGAME = 7
 } BGM_GROUP;
 
-//g DOG_Music_019b.mp3 test.aiff
+//afconvert -f caff -d LEI16 DOG_Music_019b.mp3 test.aiff
 
 //bgm_1
 #define BGMUSIC_MENU1 @"menu1.aiff"
-#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
 #define BGMUSIC_BOSS1 @"boss1.aiff"
 #define BGMUSIC_LAB1 @"lab1.aiff"
 #define BGMUSIC_JINGLE @"jingle.aiff"
-#define BGMUSIC_GAMELOOP2 @"gameloop2.aiff"
 #define BGMUSIC_CAPEGAMELOOP @"capegameloop.aiff"
-#define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
+
+#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
+#define BGMUSIC_GAMELOOP2 @"gameloop2.aiff"
 #define BGMUSIC_GAMELOOP3 @"gameloop3.aiff"
 
 //bgm_2
 #define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"
+#define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
+#define BGMUSIC_GAMELOOP3_NIGHT @"gameloop3_night.aiff"
 
 #define SFX_BONE @"sfx_bone_1.wav"
 #define SFX_BONE_2 @"sfx_bone_2.wav"

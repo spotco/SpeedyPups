@@ -21,7 +21,7 @@
 	
 	chars = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 								   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame5_char"]];
-	[chars setPosition:[Common screen_pctwid:0.45 pcthei:0.33]];
+	[chars setPosition:[Common screen_pctwid:0.45 pcthei:0.34]];
 	[self addChild:chars];
 	
 	excl = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]

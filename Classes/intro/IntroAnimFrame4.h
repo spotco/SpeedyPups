@@ -6,6 +6,7 @@
 	
 	CCSprite *dleft,*dright,*curtains;
 	CCSprite *spotlight, *copter, *exclamation;
+	
 	int ct;
     
 }

@@ -5,7 +5,7 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>headanimation1.png</key>
+		<key>headanimation1</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -27,7 +27,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation2.png</key>
+		<key>headanimation2</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -49,7 +49,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation3.png</key>
+		<key>headanimation3</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -71,7 +71,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation4.png</key>
+		<key>headanimation4</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -93,7 +93,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation5.png</key>
+		<key>headanimation5</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -115,7 +115,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation6.png</key>
+		<key>headanimation6</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -137,7 +137,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation7.png</key>
+		<key>headanimation7</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -159,7 +159,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation8.png</key>
+		<key>headanimation8</key>
 		<dict>
 			<key>aliases</key>
 			<array>
@@ -181,7 +181,7 @@
 			<false/>
 		</dict>
 		
-		<key>headanimation9.png</key>
+		<key>headanimation9</key>
 		<dict>
 			<key>aliases</key>
 			<array>

@@ -106,10 +106,10 @@
 	is_info_disp_pane_scroll = NO;
 	clippedholder_y_min = 0;
 	
-	can_scroll_down = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow.png"]];
+	can_scroll_down = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow"]];
 	[can_scroll_down setScaleX:0.3];
 	[can_scroll_down setScaleY:-1];
-	can_scroll_up = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow.png"]];
+	can_scroll_up = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"scroll_arrow"]];
 	[can_scroll_up setScaleX:0.3];
 	[can_scroll_down setPosition:[Common pct_of_obj:info_disp_pane pctx:0.95 pcty:0.07]];
 	[can_scroll_up setPosition:[Common pct_of_obj:info_disp_pane pctx:0.95 pcty:0.745]];

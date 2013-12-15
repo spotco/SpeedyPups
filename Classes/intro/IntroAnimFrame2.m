@@ -17,6 +17,8 @@ static int GROUND_TEX_WID;
 	self = [super init];
 	
     BackgroundObject *sky = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0];
+	[sky setScaleX:[Common scale_from_default].x];
+	[sky setScaleY:[Common scale_from_default].y];
 	BackgroundObject *starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
     BackgroundObject *moon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_MOON]];
 	BackgroundObject *backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005];

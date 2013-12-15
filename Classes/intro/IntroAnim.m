@@ -36,6 +36,12 @@
 +(CCScene*)scene {
 	CCScene *rtv = [CCScene node];
 	[rtv addChild:[IntroAnim node]];
+	CCLabelTTF *skiplabel = [Common cons_label_pos:[Common screen_pctwid:0.98 pcthei:0.02]
+									   color:ccc3(0,0,0)
+									fontsize:16
+										 str:@"Tap Anywhere To Skip..."];
+	[skiplabel setAnchorPoint:ccp(1,0)];
+	[rtv addChild:skiplabel];
 	return rtv;
 }
 
@@ -55,12 +61,12 @@
 	
 	transitioning_out = NO;
 	transitioning_in = NO;
-	
+	force_end = NO;
 	return self;
 }
 
 -(void)cons_frames {
-    //[frames addObject:[IntroAnimFrame6 cons]];
+	//[frames addObject:[IntroAnimFrame3 cons]];
 	[frames addObject:[IntroAnimFrame1 cons]];
 	[frames addObject:[IntroAnimFrame2 cons]];
 	[frames addObject:[IntroAnimFrame3 cons]];
@@ -85,7 +91,7 @@
 		if (animating_frame.opacity <= 0) {
 			[animating_frame setVisible:NO];
 			cur_frame++;
-			if (cur_frame < [frames count]) {
+			if (cur_frame < [frames count] && !force_end) {
 				[frames[cur_frame] setVisible:YES];
 				[(IntroAnimFrame*)frames[cur_frame] set_recursive_opacity:0];
 				transitioning_out = NO;
@@ -113,6 +119,7 @@
 
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {
 	[frames[cur_frame] force_continue];
+	force_end = YES;
 }
 
 @end

@@ -14,7 +14,6 @@
 
 @implementation GameEngineLayer
 
-#define tLOADSCR 1
 #define tBGLAYER 2
 #define tGLAYER 3
 #define tFGLAYER 4
@@ -40,8 +39,6 @@
     [scene addChild:glayer z:0 tag:tGLAYER];
     [scene addChild:uilayer z:0 tag:tUILAYER];
     [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
-    
-    [scene addChild:[Common get_load_scr] z:1 tag:tLOADSCR];
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
@@ -314,7 +311,6 @@
 -(void)update:(ccTime)delta {
 	[Common set_dt:delta];
 	[self reset_follow_clamp_y];
-    [[[[CCDirector sharedDirector] runningScene] getChildByTag:tLOADSCR] setVisible:NO];
 	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY) {
 		[CCDirectorDisplayLink set_framemodct:2];

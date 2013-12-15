@@ -21,12 +21,12 @@
 	
 	dleft = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 								   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame4_dog3"]];
-	[dleft setPosition:[Common screen_pctwid:0.2 pcthei:0.23]];
+	[dleft setPosition:[Common screen_pctwid:0.16 pcthei:0.23]];
 	[self addChild:dleft];
 	
 	dright = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 									rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame4_dog2"]];
-	[dright setPosition:[Common screen_pctwid:0.8 pcthei:0.27]];
+	[dright setPosition:[Common screen_pctwid:0.84 pcthei:0.27]];
 	[self addChild:dright];
 	
 	copter = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]

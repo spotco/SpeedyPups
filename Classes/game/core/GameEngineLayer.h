@@ -84,12 +84,6 @@ typedef enum {
 -(BGLayer*)get_bg_layer;
 
 -(ChallengeInfo*)get_challenge;
-
-/*
--(BGMode)get_cur_bg_mode;
--(WorldNum)get_world_num;
--(LabNum)get_lab_num;
-*/
  
 -(CGRange)get_follow_clamp_y_range;
 -(CGRange)get_actual_follow_clamp_y_range;
