@@ -49,6 +49,8 @@
 		7E0D74ED182CE6CD002F5B9A /* BG3_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D74E8182CE6CD002F5B9A /* BG3_sky.png */; };
 		7E0D74F0182CE7D0002F5B9A /* World3BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D74EF182CE7D0002F5B9A /* World3BGLayerSet.m */; };
 		7E0DFF7A1813703F006F8039 /* lab2_water_fg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0DFF791813703F006F8039 /* lab2_water_fg.png */; };
+		7E0E92441860199900197F7B /* lab_clusterphobia.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E0E92431860199900197F7B /* lab_clusterphobia.map */; };
+		7E0E92461860259900197F7B /* lab_towerfall.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E0E92451860259900197F7B /* lab_towerfall.map */; };
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
@@ -798,6 +800,8 @@
 		7E0D74EE182CE7D0002F5B9A /* World3BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World3BGLayerSet.h; sourceTree = "<group>"; };
 		7E0D74EF182CE7D0002F5B9A /* World3BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World3BGLayerSet.m; sourceTree = "<group>"; };
 		7E0DFF791813703F006F8039 /* lab2_water_fg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_fg.png; sourceTree = "<group>"; };
+		7E0E92431860199900197F7B /* lab_clusterphobia.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_clusterphobia.map; sourceTree = "<group>"; };
+		7E0E92451860259900197F7B /* lab_towerfall.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_towerfall.map; sourceTree = "<group>"; };
 		7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = armored_dog_ss.plist; sourceTree = "<group>"; };
 		7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armored_dog_ss.png; sourceTree = "<group>"; };
 		7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmorBreakEffect.h; sourceTree = "<group>"; };
@@ -2997,6 +3001,8 @@
 				7EF02D1E17856B6200C2DD50 /* lab_tube.map */,
 				7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */,
 				7E29D829183376D100A92C2A /* lab_rocketfever.map */,
+				7E0E92431860199900197F7B /* lab_clusterphobia.map */,
+				7E0E92451860259900197F7B /* lab_towerfall.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3789,6 +3795,7 @@
 				7EB8B33016D9F8E700F58961 /* jumppad_jumpgap.map in Resources */,
 				7EB8B33116D9F8E700F58961 /* jumppad_jumpislands.map in Resources */,
 				7EB8B33216D9F8E700F58961 /* jumppad_launch.map in Resources */,
+				7E0E92461860259900197F7B /* lab_towerfall.map in Resources */,
 				7EB8B33316D9F8E700F58961 /* jumppad_lotsobwalls.map in Resources */,
 				7EB8B33416D9F8E700F58961 /* jumppad_spikeceil.map in Resources */,
 				7EB8B33516D9F8E700F58961 /* swingvine_bounswindodg.map in Resources */,
@@ -4027,6 +4034,7 @@
 				7E99416817F16E4F00B363F3 /* grounddetail_world2_ss.png in Resources */,
 				7E5CE28F17F8E75400226263 /* capegameloop.aiff in Resources */,
 				7E02221717F93A200083815C /* lab2_docks.png in Resources */,
+				7E0E92441860199900197F7B /* lab_clusterphobia.map in Resources */,
 				7E02221817F93A200083815C /* lab2_windowwall.png in Resources */,
 				7E41B648182C748500CBE9A6 /* Icon-hr.png in Resources */,
 				7E02222417F951E30083815C /* lab2_tanker_back.png in Resources */,
