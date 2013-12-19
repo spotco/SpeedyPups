@@ -30,6 +30,15 @@
 	return p;
 }
 
++(BrokenCopterMachineParticle*)cons_sub_x:(float)x y:(float)y vx:(float)vx vy:(float)vy pimg:(int)pimg {
+	BrokenCopterMachineParticle *p = [BrokenCopterMachineParticle spriteWithTexture:[Resource get_tex:TEX_ENEMY_SUBBOSS]
+																			   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_SUBBOSS
+																											  idname:[NSString stringWithFormat:@"particle_%d",pimg%5]]];
+	[p setPosition:ccp(x,y)];
+	[p cons_vx:vx vy:vy];
+	return p;
+}
+
 -(int)get_render_ord {
     return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD];
 }

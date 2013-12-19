@@ -21,12 +21,11 @@
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
-/** 
- swipe/jump cooldown after bouncepad
- memory reduction
- 
+/**
+ intro music in
  fix rocket mechanics
- alarm sounds in timed challenge countdown
+ 
+ 
  beat boss free pups cartoon scene
  
  sfx fireworks
@@ -80,7 +79,7 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
-	[UserInventory add_bones:100000];
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -95,12 +94,12 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }

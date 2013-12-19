@@ -265,6 +265,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) {
 		[DataStore reset_all];
+		[Player set_character:TEX_DOG_RUN_1];
 		[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_QUIT]];
 	}
 }

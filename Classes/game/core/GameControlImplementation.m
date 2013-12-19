@@ -70,12 +70,18 @@ static float avg_y;
     touch_timer = 0;
 }
 
+float nodash_time = 0;
++(void)set_nodash_time:(int)t {
+	nodash_time = t;
+}
 
 +(void)control_update_player:(GameEngineLayer*)g {
     Player* player = g.player;
 	
 	//NSLog(@"jmp:%d dash:%d type:%@",[player get_current_params].cur_airjump_count,[player get_current_params].cur_dash_count,[player get_current_params]);
     
+	nodash_time = nodash_time <= 0 ? 0 : nodash_time - [Common get_dt_Scale];
+	
     if (player.dead){
         return;
     }
@@ -122,7 +128,7 @@ static float avg_y;
     if (queue_swipe == YES &&
 		player.current_island == NULL &&
 		[player get_current_params].cur_dash_count > 0 &&
-		([[player get_current_params] isKindOfClass:[DogRocketEffect class]] || player.dashing == NO)) {
+		([[player get_current_params] isKindOfClass:[DogRocketEffect class]] || player.dashing == NO) && nodash_time <= 0) {
 		
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];

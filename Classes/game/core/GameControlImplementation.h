@@ -12,6 +12,8 @@
 +(void)control_update_player:(GameEngineLayer*)g;
 +(void)reset_control_state;
 
++(void)set_nodash_time:(int)t;
+
 +(void)touch_begin:(CGPoint)pt;
 +(void)touch_move:(CGPoint)pt;
 +(void)touch_end:(CGPoint)pt;

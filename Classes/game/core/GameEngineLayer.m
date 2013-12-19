@@ -53,11 +53,13 @@
     [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_FREERUN n:0]];
     
     [nobj update:glayer.player g:glayer]; //have first section preloaded
-    [glayer update_render];
     
+	[glayer update_render];
     [glayer move_player_toground];
     [glayer prep_runin_anim];
+	
 	[uil start_freeruninfocard_anim];
+	
 	return scene;
 }
 
@@ -70,8 +72,9 @@
     
     UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
     [uil set_retry_callback:[GameModeCallback cons_mode:GameMode_CHALLENGE n:[ChallengeRecord get_number_for_challenge:info]]];
-    
+	
 	[glayer set_challenge:info];
+	
 	[glayer update_render];
     [glayer move_player_toground];
     [glayer prep_runin_anim];
@@ -194,9 +197,21 @@
     }
 }
 
--(void)prep_runin_anim { //need 1 tick of update to adjust camera
+-(void)prep_runin_anim {
     [player setVisible:NO];
     do_runin_anim = YES;
+	
+	[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
+	float ex,ey,ez,cx,cy,cz;
+	[camera_ eyeX:&ex eyeY:&ey eyeZ:&ez];
+	[camera_ centerX:&cx centerY:&cy centerZ:&cz];
+	
+	[camera_ setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
+	[camera_ setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
+	[self follow_player];
+	
+	//dunno why this works lol
+	if (challenge != NULL) [GameRenderImplementation update_camera_on:self zoom:camera_state];
 }
 
 -(void)update_render {

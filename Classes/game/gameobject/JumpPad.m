@@ -56,6 +56,7 @@
                                                  vy:dvy]];
         }
         [AudioManager playsfx:SFX_JUMPPAD];
+		[GameControlImplementation set_nodash_time:10];
     }
 }
 

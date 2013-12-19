@@ -245,19 +245,30 @@ static int ct  = 0;
 			
 		} else if (cinfo.type == ChallengeType_TIMED) {
 			int tm = cinfo.ct - [g get_time];
+			
+			NSString *cur_time = [UICommon parse_gameengine_time:tm];
+			if (![cur_time isEqualToString:last_time] && ([cur_time isEqualToString:@"0:02"] || [cur_time isEqualToString:@"0:01"] ||[cur_time isEqualToString:@"0:00"])) {
+				[AudioManager playsfx:SFX_READY];
+			}
+			
 			if (tm <= 0) {
-				if ([[UICommon parse_gameengine_time:tm] isEqualToString:@"0:00"]) {
+				if ([cur_time isEqualToString:@"0:00"]) {
+					ccColor3B last_color = challengedesc.color;
+					if (last_color.g != 186) {
+						[AudioManager playsfx:SFX_GO];
+					}
 					[challengedesc setColor:ccc3(255,186,0)];
-					tar_str = @"0:00";
+					tar_str = cur_time;
 				} else {
 					[challengedesc setColor:ccc3(255,0,0)];
 					tar_str = @"failed";
 				}
 			} else {
-				tar_str = [UICommon parse_gameengine_time:tm];
+				tar_str = cur_time;
 				[challengedesc setColor:ccc3(0,0,0)];
 			}
 			
+			last_time = cur_time;
 		}
 		if (![tar_str isEqualToString:challengedesc.string]) {
 			[challengedesc setString:tar_str];

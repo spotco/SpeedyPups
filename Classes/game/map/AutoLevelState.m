@@ -181,12 +181,13 @@ static NSSet *lab_levels_world3;
 	
 	lab_levels_world1 = _NSSET( //TODO -- 3 easy lab levels
 		@"lab_basicmix",
-		@"lab_minionwalls"
+		@"lab_minionwalls",
+		@"lab_clusterphobia",
+		@"lab_towerfall"
+		
 	);
 	
 	lab_levels_world2 = _NSSET(
-		@"lab_basicmix",
-		@"lab_minionwalls",
 		@"lab_ezshiz",
 		@"lab_ezrocketshz",
 		@"lab_swingers",
@@ -397,6 +398,7 @@ static NSSet *lab_levels_world3;
 		}
 		//return @"boss1_start";
 		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
+		//return @"boss2_start";
 		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {

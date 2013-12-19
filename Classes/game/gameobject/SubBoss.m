@@ -169,7 +169,7 @@ static CGPoint last_pos;
 		if (ct <= 0) {
 			current_mode = SubMode_ToRemove;
 			for(float i = 0; i < 5; i++) {
-				[g add_particle:[BrokenCopterMachineParticle cons_x:body.position.x
+				[g add_particle:[BrokenCopterMachineParticle cons_sub_x:body.position.x
 																  y:body.position.y
 																 vx:float_random(-5, 10)
 																 vy:float_random(-10, 10)

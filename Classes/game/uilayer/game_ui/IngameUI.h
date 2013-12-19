@@ -20,6 +20,8 @@
 
 	CCSprite *challengedescbg,*challengedescincon;
 	CCLabelTTF *challengedesc;
+	
+	NSString *last_time;
 }
 
 @property(readwrite,strong) CCLabelTTF *lives_disp, *bones_disp, *time_disp;
