@@ -139,7 +139,6 @@
 #define TEX_NMENU_ITEMS @"nmenu_items"
 #define TEX_NMENU_BG @"nmenu_bg"
 #define TEX_NMENU_DOGHOUSEMASK @"doghousemask"
-#define TEX_NMENU_LOGO @"logo_ss"
 #define TEX_NMENU_LEVELSELOBJ @"nmenu_levelselectobj"
 #define TEX_FREERUNSTARTICONS @"freerunstart_icons"
 

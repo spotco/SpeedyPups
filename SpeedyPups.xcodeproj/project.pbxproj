@@ -86,6 +86,7 @@
 		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
 		7E41B648182C748500CBE9A6 /* Icon-hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E41B647182C748500CBE9A6 /* Icon-hr.png */; };
 		7E41B64B182C92F600CBE9A6 /* GameWorldMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */; };
+		7E445DB41862D7E500771A35 /* intro.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E445DB31862D7E500771A35 /* intro.aiff */; };
 		7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4507C117F3FD4100287716 /* InventoryLayerTab.m */; };
 		7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */; };
 		7E4532A917E44192005EE7CB /* cloudlevel_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */; };
@@ -364,8 +365,6 @@
 		7EB8B4D616D9FC0900F58961 /* PolyLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B47416D9FC0900F58961 /* PolyLib.m */; };
 		7EB8B4D716D9FC0900F58961 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B47616D9FC0900F58961 /* Resource.m */; };
 		7EB8B4D816D9FC0900F58961 /* Vec3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8B47816D9FC0900F58961 /* Vec3D.m */; };
-		7EB9776317025AF000459DEF /* logo_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776117025AF000459DEF /* logo_ss.plist */; };
-		7EB9776417025AF000459DEF /* logo_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776217025AF000459DEF /* logo_ss.png */; };
 		7EB97767170261FD00459DEF /* jumppad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB97765170261FD00459DEF /* jumppad.plist */; };
 		7EB97768170261FD00459DEF /* jumppad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB97766170261FD00459DEF /* jumppad.png */; };
 		7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB97769170273F100459DEF /* nmenu_levelselectobj.plist */; };
@@ -847,6 +846,7 @@
 		7E41B647182C748500CBE9A6 /* Icon-hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-hr.png"; sourceTree = "<group>"; };
 		7E41B649182C92F600CBE9A6 /* GameWorldMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldMode.h; sourceTree = "<group>"; };
 		7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWorldMode.m; sourceTree = "<group>"; };
+		7E445DB31862D7E500771A35 /* intro.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = intro.aiff; sourceTree = "<group>"; };
 		7E4507C017F3FD4100287716 /* InventoryLayerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryLayerTab.h; sourceTree = "<group>"; };
 		7E4507C117F3FD4100287716 /* InventoryLayerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryLayerTab.m; sourceTree = "<group>"; };
 		7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEngineLayer.h; sourceTree = "<group>"; };
@@ -1238,8 +1238,6 @@
 		7EB8B47616D9FC0900F58961 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		7EB8B47716D9FC0900F58961 /* Vec3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3D.h; sourceTree = "<group>"; };
 		7EB8B47816D9FC0900F58961 /* Vec3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vec3D.m; sourceTree = "<group>"; };
-		7EB9776117025AF000459DEF /* logo_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = logo_ss.plist; sourceTree = "<group>"; };
-		7EB9776217025AF000459DEF /* logo_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ss.png; sourceTree = "<group>"; };
 		7EB97765170261FD00459DEF /* jumppad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = jumppad.plist; sourceTree = "<group>"; };
 		7EB97766170261FD00459DEF /* jumppad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jumppad.png; sourceTree = "<group>"; };
 		7EB97769170273F100459DEF /* nmenu_levelselectobj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_levelselectobj.plist; sourceTree = "<group>"; };
@@ -2025,8 +2023,6 @@
 				7E50505C17D074CF00B343E1 /* freerunstart_icons.png */,
 				7EB97769170273F100459DEF /* nmenu_levelselectobj.plist */,
 				7EB9776A170273F200459DEF /* nmenu_levelselectobj.png */,
-				7EB9776117025AF000459DEF /* logo_ss.plist */,
-				7EB9776217025AF000459DEF /* logo_ss.png */,
 				7ED3CE0F1701883B00ED9873 /* loadingicon.png */,
 				7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */,
 				7E98647E16E874CF00109092 /* nmenu_bg.png */,
@@ -2393,6 +2389,7 @@
 		7EB8B27316D9F8E700F58961 /* music */ = {
 			isa = PBXGroup;
 			children = (
+				7E445DB31862D7E500771A35 /* intro.aiff */,
 				7EFD5D80185DD7B30059CC39 /* gameloop3_night.aiff */,
 				7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */,
 				7E80D7C718127B53007E48C5 /* gameloop3.aiff */,
@@ -3876,8 +3873,6 @@
 				7ED3CE0E17017DA700ED9873 /* doghouse_mask.png in Resources */,
 				7ED3CE101701883B00ED9873 /* loadingicon.png in Resources */,
 				7E29D8321833805800A92C2A /* BG3_island_top_edge.png in Resources */,
-				7EB9776317025AF000459DEF /* logo_ss.plist in Resources */,
-				7EB9776417025AF000459DEF /* logo_ss.png in Resources */,
 				7EB97767170261FD00459DEF /* jumppad.plist in Resources */,
 				7EB97768170261FD00459DEF /* jumppad.png in Resources */,
 				7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */,
@@ -3992,6 +3987,7 @@
 				7EE3C4BC17DA7C0C00DCAF76 /* sfx_rockbreak.wav in Resources */,
 				7E29D83518338B0800A92C2A /* grounddetail_world3_ss.plist in Resources */,
 				7EE3C4BD17DA7C0C00DCAF76 /* sfx_rocket_launch.wav in Resources */,
+				7E445DB41862D7E500771A35 /* intro.aiff in Resources */,
 				7EE3C4BE17DA7C0C00DCAF76 /* sfx_rocket_spin.wav in Resources */,
 				7EE3C4BF17DA7C0C00DCAF76 /* sfx_rocket.wav in Resources */,
 				7EE3C4C017DA7C0C00DCAF76 /* sfx_speedup.wav in Resources */,

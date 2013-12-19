@@ -62,11 +62,14 @@
 	transitioning_out = NO;
 	transitioning_in = NO;
 	force_end = NO;
+	
+	[AudioManager playbgm_imm:BGM_GROUP_INTRO];
+	
 	return self;
 }
 
 -(void)cons_frames {
-	//[frames addObject:[IntroAnimFrame3 cons]];
+	//[frames addObject:[IntroAnimFrame6 cons]];
 	[frames addObject:[IntroAnimFrame1 cons]];
 	[frames addObject:[IntroAnimFrame2 cons]];
 	[frames addObject:[IntroAnimFrame3 cons]];

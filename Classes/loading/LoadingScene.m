@@ -101,6 +101,8 @@
 		[self removeAllChildrenWithCleanup:YES];
 		[[CCTextureCache sharedTextureCache] removeTexture:letters_tex];
 		[[CCTextureCache sharedTextureCache] removeTexture:paw_tex];
+		[[CCTextureCache sharedTextureCache] removeTextureForKey:@"Default.png"];
+		[[CCTextureCache sharedTextureCache] dumpCachedTextureInfo];
 		letters_tex = NULL;
 		paw_tex = NULL;
 		return;

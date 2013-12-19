@@ -152,7 +152,6 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_TUTORIAL_OBJ:@"tutorial_obj.png",
 	 TEX_TUTORIAL_ANIM_1:@"tut_anim_1.png",
 	 TEX_TUTORIAL_ANIM_2:@"tut_anim_2.png",
-	 TEX_NMENU_LOGO:@"logo_ss.png",
 	 TEX_NMENU_ITEMS:@"nmenu_items.png",
 	 TEX_NMENU_BG:@"nmenu_bg.png",
 	 TEX_NMENU_DOGHOUSEMASK:@"doghouse_mask.png",

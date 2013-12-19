@@ -156,7 +156,7 @@
 	CCLabelTTF *tittle = [Common cons_label_pos:[Common pct_of_obj:base pctx:0.31 pcty:0.67]
 										  color:ccc3(20,20,20)
 									   fontsize:29
-											str:strf("Challenge %d",[ChallengeRecord get_number_for_challenge:info])];
+											str:strf("Challenge %d",[ChallengeRecord get_number_for_challenge:info]+1)];
 	[tittle setAnchorPoint:ccp(0,0.5)];
 	[base addChild:tittle];
 	[base addChild:[Common cons_label_pos:[Common pct_of_obj:base pctx:0.5 pcty:0.28]

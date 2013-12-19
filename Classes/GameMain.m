@@ -13,7 +13,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -22,10 +22,7 @@
 #define DRAW_HITBOX NO
 
 /**
- intro music in
  fix rocket mechanics
- 
- 
  beat boss free pups cartoon scene
  
  sfx fireworks

@@ -58,6 +58,9 @@ static BOOL playbgm = YES;
 		],
 		enumkey(BGM_GROUP_CAPEGAME):@[
 			BGMUSIC_CAPEGAMELOOP
+		],
+		enumkey(BGM_GROUP_INTRO):@[
+			BGMUSIC_INTRO
 		]
 	};
 	

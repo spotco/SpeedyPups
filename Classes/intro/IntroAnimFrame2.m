@@ -21,21 +21,21 @@ static int GROUND_TEX_WID;
 	[sky setScaleY:[Common scale_from_default].y];
 	BackgroundObject *starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
     BackgroundObject *moon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_MOON]];
-	BackgroundObject *backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005];
-	BackgroundObject *fronthills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03];
+	//BackgroundObject *backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005];
+	//BackgroundObject *fronthills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03];
     
     [moon setPosition:[Common screen_pctwid:0.75 pcthei:0.8]];
     
     float pctm = 0;
     [sky setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
-    [backhills setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
-    [fronthills setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
+    //[backhills setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
+    //[fronthills setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
     
     [self addChild:sky];
     [self addChild:starsbg];
     [self addChild:moon];
-    [self addChild:backhills];
-    [self addChild:fronthills];
+    //[self addChild:backhills];
+    //[self addChild:fronthills];
 	
 	GROUND_TEX_WID = [FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame2_ground"].size.width;
 	ground = [RepeatFillSprite cons_tex:[Resource get_tex:TEX_INTRO_ANIM_SS]

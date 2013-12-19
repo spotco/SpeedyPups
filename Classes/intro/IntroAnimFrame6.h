@@ -14,11 +14,11 @@
 	CCSprite *copter;
 	CGPoint dog1_tar_pos, dog2_tar_pos, dog3_tar_pos, copter_tar_pos;
 	
-	CCSprite *logo_flyin,*logo_flyin_base, *logo_flyin_speedy, *logo_flyin_pups, *logo_flyin_circle,*logo_anim;
+	CCSprite *logo_flyin,*logo_flyin_base, *logo_flyin_speedy, *logo_flyin_pups, *logo_flyin_circle;
 
 	CCAction *dog3_run, *dog2_run, *dog1_run;
 	CCAction *dog3_jump, *dog2_jump, *dog1_jump;
-	CCAnimate *logojump, *logobounce;
+	CCAnimate *logojump, *logobounce, *logoempty;
 	
 	CCSprite *copter_shadow;
 	

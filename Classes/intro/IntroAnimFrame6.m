@@ -4,6 +4,7 @@
 #import "RepeatFillSprite.h"
 #import "BackgroundObject.h"
 #import "CloudGenerator.h"
+#import "AudioManager.h"
 
 @interface CCSprite_SetChildOpacity : CCSprite
 @end
@@ -25,14 +26,6 @@
 @property(readwrite,assign) float ct;
 @property(readwrite,assign) CCSprite *shadow, *shadowbody;
 @property(readwrite,assign) CCSprite *body;
--(void)set_runanim:(CCAction*)_run jumpanim:(CCAction*)_jump;
--(void)anim_run;
--(void)anim_jump;
--(void)go_to_pos:(CGPoint)pos div:(float)div;
--(void)update;
--(void)update_random_jump;
--(void)jump;
--(BOOL)on_ground;
 @end
 @implementation DogSprite
 @synthesize shadow,body,shadowbody;
@@ -100,17 +93,25 @@
 	
 
 }
--(void)update_random_jump {
+-(void)update_random_jump:(int)dog {
 	if ([self on_ground]) {
 		self.ct--;
 		if (self.ct <= 0) {
 			self.ct = int_random(0, 20);
 			[self jump];
+			if (dog == 1) {
+				[AudioManager playsfx:SFX_BARK_LOW];
+			} else if (dog == 2) {
+				[AudioManager playsfx:SFX_BARK_HIGH];
+			} else if (dog == 3) {
+				[AudioManager playsfx:SFX_BARK_MID];
+			}
 		}
 	}
 }
 -(void)jump {
 	vy = 10;
+	[AudioManager playsfx:SFX_JUMP];
 }
 -(BOOL)on_ground {
 	return body.position.y <= 0;
@@ -209,8 +210,8 @@ static float GROUNDHEI;
 											  rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"logo_flyin_base"]];
 	[logo_flyin addChild:logo_flyin_base];
 	
-	logo_flyin_circle = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
-											   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"logo_flyin_circle"]];
+	logo_flyin_circle = [CCSprite node];
+	[logo_flyin_circle runAction:logoempty];
 	[logo_flyin addChild:logo_flyin_circle];
 	
 	logo_flyin_pups = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
@@ -224,10 +225,6 @@ static float GROUNDHEI;
 	[logo_flyin_circle setPosition:ccp(0,300)];
 	[logo_flyin_pups setPosition:ccp(-500,0)];
 	[logo_flyin_speedy setPosition:ccp(500,0)];
-	
-	logo_anim = [CCSprite node];
-	[logo_anim setPosition:ccp(0,2)];
-	[logo_flyin addChild:logo_anim];
 	
 	[logo_flyin setOpacity:0];
 	[logo_flyin setVisible:NO];
@@ -297,22 +294,31 @@ static int END_AT = 600;
 		[logo_flyin setOpacity:logo_flyin.opacity < 255 ? logo_flyin.opacity + 15 : 255];
 		
 	} else if (![Common fuzzyeq_a:logo_flyin_speedy.position.x b:0 delta:0.1]) {
-		[logo_flyin_circle setPosition:ccp(logo_flyin_circle.position.x-logo_flyin_circle.position.x/10,logo_flyin_circle.position.y-logo_flyin_circle.position.y/10)];
-		[logo_flyin_pups setPosition:ccp(logo_flyin_pups.position.x-logo_flyin_pups.position.x/10,logo_flyin_pups.position.y-logo_flyin_pups.position.y/10)];
-		[logo_flyin_speedy setPosition:ccp(logo_flyin_speedy.position.x-logo_flyin_speedy.position.x/10,logo_flyin_speedy.position.y-logo_flyin_speedy.position.y/10)];
+		[logo_flyin_circle setPosition:ccp(logo_flyin_circle.position.x+(25-logo_flyin_circle.position.x)/10,
+										   logo_flyin_circle.position.y+(25-logo_flyin_circle.position.y)/10
+		)];
+		[logo_flyin_pups setPosition:ccp(logo_flyin_pups.position.x-logo_flyin_pups.position.x/10,
+										 logo_flyin_pups.position.y-logo_flyin_pups.position.y/10
+		)];
+		[logo_flyin_speedy setPosition:ccp(
+			logo_flyin_speedy.position.x-logo_flyin_speedy.position.x/10,
+			logo_flyin_speedy.position.y-logo_flyin_speedy.position.y/10
+		)];
 	
 	} else if (!HAS_FLAG(SWAPPED_TO_ANIMATED_LOGO)) {
 		SET_FLAG(SWAPPED_TO_ANIMATED_LOGO);
 		id reptrig = [CCCallFunc actionWithTarget:self selector:@selector(to_logo_jump)];
-		[logo_anim runAction:[CCSequence actions:logojump,reptrig, nil]];
+		[logo_flyin_circle stopAllActions];
+		[logo_flyin_circle runAction:[CCSequence actions:logojump,reptrig, nil]];
 		
 	}
 }
 
 -(void)to_logo_jump {
-	[logo_anim stopAllActions];
-	[logo_anim runAction:logobounce];
+	[logo_flyin_circle stopAllActions];
+	[logo_flyin_circle runAction:logobounce];
 	ok_to_exit = YES;
+	[AudioManager playsfx:SFX_BARK_MID];
 }
 
 -(void)update_phase_scrollup {
@@ -335,9 +341,9 @@ static int END_AT = 600;
 
 -(void)update_phase_jumping_flyout {
 	if (ct < 220) {
-		[dog1 update_random_jump];
-		[dog2 update_random_jump];
-		[dog3 update_random_jump];
+		[dog1 update_random_jump:1];
+		[dog2 update_random_jump:2];
+		[dog3 update_random_jump:3];
 		
 		[dog1 update];
 		[dog2 update];
@@ -429,30 +435,41 @@ static int END_AT = 600;
 	dog2_jump = [Common cons_anim:@[@"dog5_run_angry0"] speed:0.1 tex_key:TEX_INTRO_ANIM_SS];
 	dog1_jump = [Common cons_anim:@[@"dog6_run_angry0"] speed:0.1 tex_key:TEX_INTRO_ANIM_SS];
 	
-	logojump = [self cons_logojump_anim:TEX_NMENU_LOGO];
-	logobounce = [self cons_logobounce_anim:TEX_NMENU_LOGO];
+	logojump = [self cons_logojump_anim];
+	logobounce = [self cons_logobounce_anim];
+	logoempty = [self cons_logo_empty];
 }
 
--(CCAnimate*)cons_logojump_anim:(NSString*)tar {
+-(CCAnimate*)cons_logo_empty {
+	NSString *tar = TEX_INTRO_ANIM_SS;
     CCTexture2D *texture = [Resource get_tex:tar];
     NSMutableArray *animFrames = [NSMutableArray array];
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation1"]]];
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation2"]]];
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation3"]]];
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation4"]]];
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation5"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_0"]]];
+	return [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:0.1] restoreOriginalFrame:NO];
+}
+
+-(CCAnimate*)cons_logojump_anim {
+	NSString *tar = TEX_INTRO_ANIM_SS;
+    CCTexture2D *texture = [Resource get_tex:tar];
+    NSMutableArray *animFrames = [NSMutableArray array];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_0"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_1"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_2"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_3"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_4"]]];
     return [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:0.1] restoreOriginalFrame:NO];
 }
 
--(CCAnimate*)cons_logobounce_anim:(NSString*)tar {
+-(CCAnimate*)cons_logobounce_anim {
+    NSString *tar = TEX_INTRO_ANIM_SS;
     CCTexture2D *texture = [Resource get_tex:tar];
     NSMutableArray *animFrames = [NSMutableArray array];
     for (int i = 0; i < 5; i++) {
-        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation6"]]];
-        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation7"]]];
-        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation8"]]];
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_5"]]];
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_6"]]];
+        [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_7"]]];
     }
-    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"headanimation9"]]];
+    [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:tar idname:@"logo_headcircle_8"]]];
     return [Common make_anim_frames:animFrames speed:0.15];
 }
 @end
