@@ -24,6 +24,7 @@
 /**
  fix rocket mechanics
  beat boss free pups cartoon scene
+ object pool system
  
  sfx fireworks
  sfx tutorialdog float in/out

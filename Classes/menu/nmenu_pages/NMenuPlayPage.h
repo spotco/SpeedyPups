@@ -20,7 +20,7 @@ typedef enum {
     BirdFlock *birds;
     
     CCMenuItem *playbutton;
-    CCSprite *logo;
+    CCSprite *logo, *logo_base;
     CCMenu *nav_menu,*mode_choose_menu;
     ChallengeModeSelect *challengeselect;
 

@@ -18,7 +18,7 @@
     [GEventDispatcher add_listener:self];
     cur_mode = PlayPageMode_WAIT;
     
-	CCSprite *logo_base = [CCSprite node];
+	logo_base = [CCSprite node];
 	[logo_base setPosition:[Common screen_pctwid:0.5 pcthei:0.75]];
 	[self addChild:logo_base];
 	
@@ -195,21 +195,21 @@
 -(void)update:(ccTime)dt {
     [Common set_dt:dt];
     if (kill) {
-        [logo setVisible:NO];
+        [logo_base setVisible:NO];
         [playbutton setVisible:NO];
         [nav_menu setVisible:YES];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:NO];
         
     } else if (cur_mode == PlayPageMode_WAIT) {
-        [logo setVisible:YES];
+        [logo_base setVisible:YES];
         [playbutton setVisible:YES];
         [nav_menu setVisible:YES];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:NO];
     
     } else if (cur_mode == PlayPageMode_DOGRUN) {
-        [logo setVisible:NO];
+        [logo_base setVisible:NO];
         [playbutton setVisible:NO];
         [nav_menu setVisible:NO];
         [mode_choose_menu setVisible:NO];
@@ -238,7 +238,7 @@
         }
         
     } else if (cur_mode == PlayPageMode_SCROLLUP) {
-        [logo setVisible:NO];
+        [logo_base setVisible:NO];
         [playbutton setVisible:NO];
         [nav_menu setVisible:NO];
         [mode_choose_menu setVisible:NO];
@@ -256,14 +256,14 @@
     } else if (cur_mode == PlayPageMode_MODE_CHOOSE) {
         [playbutton setVisible:NO];
         [nav_menu setVisible:YES];
-        [logo setVisible:YES];
+        [logo_base setVisible:YES];
         [mode_choose_menu setVisible:YES];
         [challengeselect setVisible:NO];
         
     } else if (cur_mode == PlayPageMode_CHALLENGE_SELECT) {
         [playbutton setVisible:NO];
         [nav_menu setVisible:YES];
-        [logo setVisible:NO];
+        [logo_base setVisible:NO];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:YES];
         

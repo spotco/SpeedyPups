@@ -24,8 +24,8 @@
 	float vy;
 }
 @property(readwrite,assign) float ct;
-@property(readwrite,assign) CCSprite *shadow, *shadowbody;
-@property(readwrite,assign) CCSprite *body;
+@property(readwrite,strong) CCSprite *shadow, *shadowbody;
+@property(readwrite,strong) CCSprite *body;
 @end
 @implementation DogSprite
 @synthesize shadow,body,shadowbody;
@@ -34,9 +34,8 @@
 	self = [super init];
 	vy = 0;
 	shadow = [CCSprite node];
-	
 	shadowbody = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
-												   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame6_shadow"]];
+														  rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame6_shadow"]];
 	[shadowbody setScale:0.5];
 	[shadowbody setOpacity:180];
 	[shadow addChild:shadowbody];
