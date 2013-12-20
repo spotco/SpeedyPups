@@ -306,6 +306,7 @@ static int END_AT = 600;
 	
 	} else if (!HAS_FLAG(SWAPPED_TO_ANIMATED_LOGO)) {
 		SET_FLAG(SWAPPED_TO_ANIMATED_LOGO);
+		[AudioManager playsfx:SFX_BARK_MID];
 		id reptrig = [CCCallFunc actionWithTarget:self selector:@selector(to_logo_jump)];
 		[logo_flyin_circle stopAllActions];
 		[logo_flyin_circle runAction:[CCSequence actions:logojump,reptrig, nil]];
@@ -317,7 +318,6 @@ static int END_AT = 600;
 	[logo_flyin_circle stopAllActions];
 	[logo_flyin_circle runAction:logobounce];
 	ok_to_exit = YES;
-	[AudioManager playsfx:SFX_BARK_MID];
 }
 
 -(void)update_phase_scrollup {
@@ -357,6 +357,7 @@ static int END_AT = 600;
 	if (ct >= 200 && !HAS_FLAG(COPTER_POS2)) {
 		SET_FLAG(COPTER_POS2);
 		copter_tar_pos = [Common screen_pctwid:1.5 pcthei:1.5];
+		[AudioManager playsfx:SFX_COPTER_FLYBY];
 		
 	} else if (ct >= 220 && !HAS_FLAG(DOG3_POS2)) {
 		SET_FLAG(DOG3_POS2);
@@ -394,6 +395,7 @@ static int END_AT = 600;
 	} else if (ct > 80 && !HAS_FLAG(COPTER_POS1)) {
 		SET_FLAG(COPTER_POS1);
 		copter_tar_pos = [Common screen_pctwid:0.8 pcthei:0.7];
+		[AudioManager playsfx:SFX_BOSS_ENTER];
 		
 	}
 	

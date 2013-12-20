@@ -1,6 +1,7 @@
 #import "IntroAnimFrame4.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "AudioManager.h"
 
 @implementation IntroAnimFrame4
 
@@ -61,6 +62,7 @@ static int END_AT = 250;
 
 
 -(void)update {
+	if (ct == 0) [AudioManager playsfx:SFX_INTRO_SURPRISE];
 	ct++;
 	
 	CGPoint excl_tar = [Common screen_pctwid:0.8 pcthei:0.75];

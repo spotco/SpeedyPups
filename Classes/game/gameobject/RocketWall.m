@@ -2,6 +2,7 @@
 #import "GameEngineLayer.h"
 #import "LauncherRocket.h"
 #import "ExplosionParticle.h"
+#import "DogRocketEffect.h"
 
 @implementation RocketWall
 
@@ -29,6 +30,21 @@
         [g remove_gameobject:o];
     }
     [to_remove removeAllObjects];
+}
+
+@end
+
+@implementation DogRocketWall
+
++(DogRocketWall*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
+    DogRocketWall *w = [DogRocketWall node];
+    [w cons_x:x y:y width:width height:height];
+    return w;
+}
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+    if ([[player get_current_params] class] == [DogRocketEffect class] && [Common hitrect_touch:[player get_hit_rect] b:[self get_hit_rect]]) {
+		[player remove_temp_params:g];
+	}
 }
 
 @end

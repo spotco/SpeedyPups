@@ -45,6 +45,7 @@
 }
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g{
+	gameengine = g;
     [super update:player g:g];
     if (!active || player.dead) {
         return;
@@ -86,8 +87,6 @@
         vx = 0;
         vy = 0;
     }
-    
-	gameengine = g;
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         [self hit];

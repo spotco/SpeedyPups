@@ -1,6 +1,7 @@
 #import "IntroAnimFrame3.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "AudioManager.h"
 
 @interface CCSprite_WithVel : CCSprite
 @property(readwrite,assign) float v_r;
@@ -81,8 +82,11 @@ static int END_AT = 150;
 
 
 -(void)update {
+	if (ct <= 0) [AudioManager playsfx:SFX_INTRO_SNORE];
 	ct++;
 	if (ct > END_AT*0.5) {
+		if (ct - 1 <= END_AT*0.5) [AudioManager playsfx:SFX_ROCKBREAK];
+	
 		if (ct%4==0) {
 			[self setPosition:ccp(float_random(-1, 1),float_random(-1, 1))];
 		}

@@ -79,6 +79,10 @@ typedef enum {
 #define SFX_FANFARE_WIN @"fanfare_win.aiff"
 #define SFX_FANFARE_LOSE @"fanfare_lose.aiff"
 
+#define SFX_INTRO_NIGHT @"sfx_intro_night.wav"
+#define SFX_INTRO_SNORE @"sfx_intro_snore.wav"
+#define SFX_INTRO_SURPRISE @"sfx_intro_surprise.wav"
+
 @class CallBack;
 
 @interface AudioManager : NSObject

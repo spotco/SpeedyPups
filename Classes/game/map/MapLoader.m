@@ -1,6 +1,7 @@
 #import "MapLoader.h"
 
 #import "CJSONDeserializer.h"
+#import "GameItemCommon.h"
 
 #import "LineIsland.h"
 #import "Island.h"
@@ -11,7 +12,6 @@
 #import "DogBone.h"
 #import "GroundDetail.h"
 #import "DogCape.h"
-#import "DogRocket.h"
 #import "CheckPoint.h"
 #import "Spike.h"
 #import "Water.h"
@@ -174,8 +174,20 @@ static NSMutableDictionary* cached_json;
         } else if ([type isEqualToString:@"dogrocket"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[DogRocket cons_x:x y:y]];
-            
+            [map.game_objects addObject:[ItemGen cons_pt:ccp(x,y) item:Item_Rocket]];
+			
+		} else if ([type isEqualToString:@"dogarmor"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            [map.game_objects addObject:[ItemGen cons_pt:ccp(x,y) item:Item_Shield]];
+			
+		} else if ([type isEqualToString:@"dogrocketend"]) {
+            float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+            float width = getflt(j_object, @"width");
+            float hei = getflt(j_object, @"height");
+			[map.game_objects addObject:[DogRocketWall cons_x:x y:y width:width height:hei]];
+			
         } else if ([type isEqualToString:@"ground_detail"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
@@ -190,8 +202,8 @@ static NSMutableDictionary* cached_json;
         } else if ([type isEqualToString:@"water"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-            float width = getflt(j_object, @"width");;
-            float hei = getflt(j_object, @"height");;
+            float width = getflt(j_object, @"width");
+            float hei = getflt(j_object, @"height");
             [map.game_objects addObject:[Water cons_x:x y:y width:width height:hei]];
             
         } else if ([type isEqualToString:@"jumppad"]) {

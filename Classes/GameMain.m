@@ -12,8 +12,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -22,15 +22,14 @@
 #define DRAW_HITBOX NO
 
 /**
- fix rocket mechanics
  beat boss free pups cartoon scene
- object pool system
  
  sfx fireworks
  sfx tutorialdog float in/out
- 
  cape game end big bone + applause
  cannon move track graphics
+ 
+ website
  
  some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
  make 17 more levels, possibly some rocket ones
@@ -56,6 +55,7 @@ Stretch goals:
  challenges based around bossrush
  store sales (streamed from online)
  daily challenges
+ object pool system
  **/
 
 +(void)main {
@@ -92,12 +92,12 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }

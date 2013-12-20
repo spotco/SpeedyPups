@@ -4,6 +4,7 @@
 #import "RepeatFillSprite.h"
 #import "BackgroundObject.h"
 #import "Common.h"
+#import "AudioManager.h"
 
 @implementation IntroAnimFrame2
 
@@ -58,7 +59,6 @@ static int GROUND_TEX_WID;
 									rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame2_robominion"]];
 	[robot3 setPosition:[Common screen_pctwid:1.9 pcthei:0.48]];
 	[self addChild:robot3];
-
 	
 	ct = 0;
 	return self;
@@ -68,6 +68,8 @@ static int END_AT = 125;
 
 
 -(void)update {
+	if (ct <= 0) [AudioManager playsfx:SFX_INTRO_NIGHT];
+	
 	ct+=[Common get_dt_Scale];
 	[robot1 setPosition:ccp(robot1.position.x-12*[Common get_dt_Scale],robot1.position.y)];
 	[robot2 setPosition:ccp(robot2.position.x-12.2*[Common get_dt_Scale],robot2.position.y)];

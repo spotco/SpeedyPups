@@ -8,6 +8,7 @@
 #import "JumpPadParticle.h" 
 #import "DataStore.h"
 #import "Cannon.h"
+#import "DogRocketEffect.h"
 
 
 #define IMGWID 64
@@ -237,7 +238,7 @@ static NSDictionary* ID_TO_POWERDESC;
     
     [self update_ieffects];
     
-    if (current_island == NULL && current_swingvine == NULL) {
+    if (current_island == NULL && current_swingvine == NULL && [[self get_current_params] class] != [DogRocketEffect class]) {
         [self mov_center_rotation];
         
     } else if (current_island != NULL) {

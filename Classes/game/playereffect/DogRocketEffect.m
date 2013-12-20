@@ -12,7 +12,7 @@
     [n recft];
     n.cur_airjump_count = 2;
 	n.cur_dash_count = 2;
-    n.cur_gravity = -0.1;
+    n.cur_gravity = -0.5;
     return n;
 }
 
@@ -22,12 +22,17 @@
 
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
 	self.player = p;
-    if (p.vy > 0) {
-        p.vy *= 0.9;
-    }
+	
+	Vec3D vdir_vec = [VecLib cons_x:30 y:p.vy z:0];
+	if (p.current_island == NULL) [p setRotation:[VecLib get_rotation:vdir_vec offset:0]+180];
+	
     if (p.vx < 20) {
-        p.vx += 1;
-    }
+        p.vx += 1 * [Common get_dt_Scale];
+		
+    } else if (p.vx > 20) {
+		p.vx -= (p.vx-20)/10.0;
+		
+	}
 	
 	sound_ct -= [Common get_dt_Scale];
 	if (sound_ct <= 0) {

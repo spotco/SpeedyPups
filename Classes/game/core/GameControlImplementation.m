@@ -78,13 +78,21 @@ float nodash_time = 0;
 +(void)control_update_player:(GameEngineLayer*)g {
     Player* player = g.player;
 	
-	//NSLog(@"jmp:%d dash:%d type:%@",[player get_current_params].cur_airjump_count,[player get_current_params].cur_dash_count,[player get_current_params]);
-    
 	nodash_time = nodash_time <= 0 ? 0 : nodash_time - [Common get_dt_Scale];
 	
     if (player.dead){
         return;
     }
+	
+	if ([[player get_current_params] class] == [DogRocketEffect class]) {
+		if (is_touch_down && player.current_island == NULL) {
+			player.vy = clampf(player.vy+1*[Common get_dt_Scale], player.vy, 9);
+		
+		} else if (is_touch_down && player.current_island != NULL) {
+			[self player_jump_from_island:player override:YES override_power:3];
+			
+		}
+	}
 	
 	if (player.current_cannon != NULL && (queue_jump)) {
 		[AudioManager playsfx:SFX_ROCKET_LAUNCH];
@@ -121,7 +129,7 @@ float nodash_time = 0;
 		queue_swipe = NO;
     }
     
-    if (player.current_island != NULL) { //reset jump count on ground
+    if (player.current_island != NULL) {
         [[player get_current_params] add_airjump_count];
     }
     
@@ -137,11 +145,9 @@ float nodash_time = 0;
     queue_swipe = NO;
     
     
-    if (queue_jump == YES && ![[player get_current_params] isKindOfClass:[DashEffect class]]) { //initial jump
-        /*if (player.dashing) { //not a bug?
-            [player remove_temp_params:g]; //note bug here is dashing then jump into ndir -1 wall, fix by removing dash param
-        }
-         */
+    if (queue_jump == YES &&
+		![[player get_current_params] isKindOfClass:[DashEffect class]] &&
+		[[player get_current_params] class] != [DogRocketEffect class]) {
         
         if (player.current_island != NULL) {
 			
@@ -229,9 +235,11 @@ float nodash_time = 0;
     touch_dist_sum = 0;
 }
 
-
-
 +(void)player_jump_from_island:(Player*)player {
+	[self player_jump_from_island:player override:NO override_power:0];
+}
+
++(void)player_jump_from_island:(Player*)player override:(BOOL)override override_power:(float)override_power {
     [AudioManager playsfx:SFX_JUMP];
     
     float mov_speed = sqrtf(powf(player.vx, 2) + powf(player.vy, 2));
@@ -245,7 +253,9 @@ float nodash_time = 0;
     }
     
     tangent = [VecLib scale:tangent by:mov_speed];
-    if ([Player current_character_has_power:CharacterPower_HIGHERJUMP]) {
+	if (override) {
+		up = [VecLib scale:up by:override_power];
+    } else if ([Player current_character_has_power:CharacterPower_HIGHERJUMP]) {
         up = [VecLib scale:up by:HIGHER_JUMP_POWER];
     } else {
         up = [VecLib scale:up by:JUMP_POWER];

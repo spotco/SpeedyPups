@@ -17,7 +17,7 @@
     if (player.current_swingvine != NULL || player.current_cannon != NULL) {
         return;
     }
-    
+	
     if (player.current_island == NULL) {
         player.position = [GamePhysicsImplementation player_free_fall:player islands:islands];
     } else {
@@ -200,6 +200,7 @@
         player.vy += grav_const * player.up_vec.y * [Common get_dt_Scale];
     }
     
+	//note: rotation code for this is in Player.m
     return player_post;
 }
 

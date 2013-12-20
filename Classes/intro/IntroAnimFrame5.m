@@ -1,6 +1,7 @@
 #import "IntroAnimFrame5.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "AudioManager.h"
 
 @implementation IntroAnimFrame5
 
@@ -37,6 +38,7 @@ static int END_AT = 150;
 
 
 -(void)update {
+	if (ct == 0) [AudioManager playsfx:SFX_BARK_MID];
 	ct++;
 	CGPoint excl_tar = [Common screen_pctwid:0.75 pcthei:0.75];
 	excl_tar.x += float_random(-2, 2);
