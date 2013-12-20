@@ -43,3 +43,38 @@
 	return self;
 }
 @end
+
+@implementation FreePupsUIAnimation
+
++(FreePupsUIAnimation*)cons {
+	return [FreePupsUIAnimation node];
+}
+
+-(id)init {
+	self = [super init];
+	self.TRANS_LEN = DEFAULT_TRANS_LEN;
+	self.STAY_LEN = DEFAULT_STAY_LEN;
+	self.YPOS_START = -0.3;
+	self.YPOS_END = 0.125;
+	
+	base = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+								  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengeintrocard"]];
+	[base setPosition:[Common screen_pctwid:XPOS pcthei:self.YPOS_START]];
+	[self addChild:base];
+	
+	ct = 1;
+	mode = TitleCardMode_DOWN;
+	animct = self.TRANS_LEN;
+	
+	[base addChild:[Common cons_label_pos:[Common pct_of_obj:base pctx:0.5 pcty:0.65]
+									color:ccc3(0,0,0)
+								 fontsize:18
+									  str:@"You freed the pups!"]];
+	[base addChild:[Common cons_label_pos:[Common pct_of_obj:base pctx:0.5 pcty:0.3]
+									color:ccc3(40,40,40)
+								 fontsize:11
+									  str:@"(But there are still more to free!)"]];
+	return self;
+}
+
+@end

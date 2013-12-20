@@ -54,6 +54,7 @@
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
 		7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */; };
 		7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */; };
+		7E10128C1864F06400671101 /* FreePupsAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E10128B1864F06400671101 /* FreePupsAnim.m */; };
 		7E10667D1772E85B001B03EC /* classic_manyoptredux.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667C1772E85B001B03EC /* classic_manyoptredux.map */; };
 		7E10667F1772F755001B03EC /* swingvine_totalmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667E1772F755001B03EC /* swingvine_totalmix.map */; };
 		7E115ABA182EF73100C18CFD /* cannon_cannonsandrobots.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */; };
@@ -807,6 +808,8 @@
 		7E0F9FA0170D1AEA00F2D342 /* armored_dog_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = armored_dog_ss.png; sourceTree = "<group>"; };
 		7E0F9FA3170D350C00F2D342 /* ArmorBreakEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArmorBreakEffect.h; sourceTree = "<group>"; };
 		7E0F9FA4170D350C00F2D342 /* ArmorBreakEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArmorBreakEffect.m; sourceTree = "<group>"; };
+		7E10128A1864F06400671101 /* FreePupsAnim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreePupsAnim.h; path = freepups/FreePupsAnim.h; sourceTree = "<group>"; };
+		7E10128B1864F06400671101 /* FreePupsAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FreePupsAnim.m; path = freepups/FreePupsAnim.m; sourceTree = "<group>"; };
 		7E10667C1772E85B001B03EC /* classic_manyoptredux.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_manyoptredux.map; sourceTree = "<group>"; };
 		7E10667E1772F755001B03EC /* swingvine_totalmix.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_totalmix.map; sourceTree = "<group>"; };
 		7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_cannonsandrobots.map; sourceTree = "<group>"; };
@@ -1809,6 +1812,15 @@
 			path = armored;
 			sourceTree = "<group>";
 		};
+		7E1012891864F02A00671101 /* freepups */ = {
+			isa = PBXGroup;
+			children = (
+				7E10128A1864F06400671101 /* FreePupsAnim.h */,
+				7E10128B1864F06400671101 /* FreePupsAnim.m */,
+			);
+			name = freepups;
+			sourceTree = "<group>";
+		};
 		7E115AB8182EF71700C18CFD /* cannon */ = {
 			isa = PBXGroup;
 			children = (
@@ -2595,6 +2607,7 @@
 		7EB8B3AD16D9FC0800F58961 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				7E1012891864F02A00671101 /* freepups */,
 				7E4532A317E438E5005EE7CB /* capegame */,
 				7E4922D917115F8F0032665B /* challenge */,
 				7EA5680516FF8C170003F2A5 /* tutorial */,
@@ -4099,6 +4112,7 @@
 				7EB8B4A016D9FC0900F58961 /* Spike.m in Sources */,
 				7EB8B4A116D9FC0900F58961 /* SpikeVine.m in Sources */,
 				7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */,
+				7E10128C1864F06400671101 /* FreePupsAnim.m in Sources */,
 				7EB8B4A216D9FC0900F58961 /* SwingVine.m in Sources */,
 				7EB8B4A316D9FC0900F58961 /* Water.m in Sources */,
 				7EB8B4A416D9FC0900F58961 /* World1ParticleGenerator.m in Sources */,

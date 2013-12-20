@@ -3,11 +3,11 @@
 #import "FileCache.h"
 #import "AudioManager.h"
 
-@interface CCSprite_WithVel : CCSprite
+@interface CCSprite_WithVr : CCSprite
 @property(readwrite,assign) float v_r;
 @end
 
-@implementation CCSprite_WithVel
+@implementation CCSprite_WithVr
 @synthesize v_r;
 @end
 
@@ -53,7 +53,7 @@
 	
     debris = [NSMutableArray array];
     for (int i = 0; i < 16; i++) {
-        CCSprite_WithVel *particle = [CCSprite_WithVel spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
+        CCSprite_WithVr *particle = [CCSprite_WithVr spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS
 																				   idname:[NSString stringWithFormat:@"frame3_debris_%d",i%8]]];
         [particle setPosition:ccp([Common SCREEN].width/7*i+float_random(-50, 50),float_random([Common SCREEN].height, [Common SCREEN].height+500))];
@@ -62,7 +62,7 @@
 		particle.v_r = float_random(10, 30);
 		[self addChild:particle];
 		
-		particle = [CCSprite_WithVel spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
+		particle = [CCSprite_WithVr spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 												  rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS
 																				 idname:[NSString stringWithFormat:@"frame3_debris_%d",i%8]]];
         [particle setPosition:ccp([Common SCREEN].width/7*i+float_random(-50, 50),float_random([Common SCREEN].height+450, [Common SCREEN].height+750))];
@@ -90,7 +90,7 @@ static int END_AT = 150;
 		if (ct%4==0) {
 			[self setPosition:ccp(float_random(-1, 1),float_random(-1, 1))];
 		}
-		for (CCSprite_WithVel *particle in debris) {
+		for (CCSprite_WithVr *particle in debris) {
 			[particle setPosition:CGPointAdd(ccp(0,-10), particle.position)];
 			[particle setRotation:particle.rotation+particle.v_r];
 		}

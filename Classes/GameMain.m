@@ -1,5 +1,6 @@
 #import "GameMain.h"
 #import "GameModeCallback.h" 
+#import "FreePupsAnim.h"
 
 #import "UserInventory.h"
 #import "Challenge.h"
@@ -28,6 +29,9 @@
  sfx tutorialdog float in/out
  cape game end big bone + applause
  cannon move track graphics
+ 
+ new icon
+ clock item make hold to activate
  
  website
  
@@ -77,6 +81,7 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
+	//[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 	
 	/*
@@ -120,7 +125,8 @@ Stretch goals:
 }
 
 +(void)start_testlevel {
-	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
+	//[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
+	[self run_scene:[FreePupsAnim scene_with:LabNum_1]];
 }
 
 +(void)start_from_callback:(GameModeCallback *)c {
