@@ -135,9 +135,13 @@ static BOOL playbgm = YES;
 +(void)set_play_bgm:(BOOL)t {
 	playbgm = t;
 	if (t == NO) {
-		[bgm_1 stop];
-		[bgm_2 stop];
+		[self stop_bgm];
 	}
+}
+
++(void)stop_bgm {
+	[bgm_1 stop];
+	[bgm_2 stop];
 }
 
 +(void)set_play_sfx:(BOOL)t {

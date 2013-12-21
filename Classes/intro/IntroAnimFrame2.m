@@ -47,17 +47,17 @@ static int GROUND_TEX_WID;
 	
 	robot1 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 									rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame2_robolauncher"]];
-	[robot1 setPosition:[Common screen_pctwid:1.42 pcthei:0.5]];
+	[robot1 setPosition:[Common screen_pctwid:1.42 pcthei:0.7]];
 	[self addChild:robot1];
 	
 	robot2 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 									rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame2_copter"]];
-	[robot2 setPosition:[Common screen_pctwid:1.7 pcthei:0.56]];
+	[robot2 setPosition:[Common screen_pctwid:1.7 pcthei:0.76]];
 	[self addChild:robot2];
 	
 	robot3 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 									rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"frame2_robominion"]];
-	[robot3 setPosition:[Common screen_pctwid:1.9 pcthei:0.48]];
+	[robot3 setPosition:[Common screen_pctwid:1.9 pcthei:0.68]];
 	[self addChild:robot3];
 	
 	ct = 0;

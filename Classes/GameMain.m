@@ -13,8 +13,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -23,15 +23,27 @@
 #define DRAW_HITBOX NO
 
 /**
- beat boss free pups cartoon scene
+ separate unlock and upgrade item, different prices (also empty inventory pane + design)
+ tabs in popup window:
+	-inventory
+	-upgrades
+	-settings
+	-extras
+ tabs in shop:
+	-items
+	-dogs
+	-extras
+	-$$$
  
+ icons when using immediate item
  sfx fireworks
  sfx tutorialdog float in/out
+ sfx powerup end
  cape game end big bone + applause
  cannon move track graphics
- 
  new icon
  clock item make hold to activate
+ tweak item use durations
  
  website
  
@@ -48,9 +60,9 @@
 
 /**
 Stretch goals:
+ flip match-2 minigame (collect tokens ingame for tries)
  stats tracking
- make floatingwindow tabs classes
- implement level of the week
+ implement challenge of the week
  integrate speedypups full
  integrate ads
  goober pet
@@ -58,7 +70,6 @@ Stretch goals:
  challenges based around capegame
  challenges based around bossrush
  store sales (streamed from online)
- daily challenges
  object pool system
  **/
 
@@ -92,17 +103,19 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
 	*/
+	
+	//[UserInventory add_bones:100000];
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
@@ -125,8 +138,7 @@ Stretch goals:
 }
 
 +(void)start_testlevel {
-	//[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
-	[self run_scene:[FreePupsAnim scene_with:LabNum_1]];
+	[self run_scene:[GameEngineLayer scene_with:TESTLEVEL lives:GAMEENGINE_INF_LIVES world:WorldNum_1]];
 }
 
 +(void)start_from_callback:(GameModeCallback *)c {

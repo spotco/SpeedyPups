@@ -33,7 +33,9 @@ typedef enum {
     GameEngineLayerMode_GAMEOVER,
     GameEngineLayerMode_RUNOUT,
 	GameEngineLayerMode_CAPEOUT,
-	GameEngineLayerMode_CAPEIN
+	GameEngineLayerMode_CAPEIN,
+	GameEngineLayerMode_FADEOUT_TO_FREEPUPS,
+	GameEngineLayerMode_FADEIN_FROM_FREEPUPS
 } GameEngineLayerMode;
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
@@ -58,16 +60,12 @@ typedef enum {
     BOOL do_runin_anim;
     float scrollup_pct,defcey;
 	
-	//BGMode cur_bg_mode;
-	
 	float follow_clamp_y_min,follow_clamp_y_max;
 	float actual_follow_clamp_y_min,actual_follow_clamp_y_max;
 	
 	GameEngineStats *stats;
 	
 	GameEngineLayerMode stored_mode;
-	//WorldNum cur_world_num;
-	//LabNum cur_lab_num;
 }
 
 

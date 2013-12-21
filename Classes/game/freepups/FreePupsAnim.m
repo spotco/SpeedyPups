@@ -139,8 +139,7 @@ static float GROUNDLEVEL;
 			}
 		} else {
 			if (dog.position.x > [Common SCREEN].width+100) {
-				[self unschedule:@selector(update:)];
-				NSLog(@"end now");
+				[self exit];
 			}
 		}
 		
@@ -186,6 +185,12 @@ static float GROUNDLEVEL;
 		}
 		
 	}
+}
+
+-(void)exit {
+	[self unscheduleAllSelectors];
+	[self removeAllChildrenWithCleanup:YES];
+	[[CCDirector sharedDirector] popScene];
 }
 
 -(void)cons_anim {

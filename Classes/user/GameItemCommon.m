@@ -118,4 +118,10 @@ static NSDictionary* descriptions;
 	}
 }
 
++(NSString*)stars_for_level:(int)i {
+	NSString *whitestar = @"\u2606";
+	NSString *blackstar = @"\u2605";
+	return [NSString stringWithFormat:@"%@%@%@",i>=1?blackstar:whitestar,i>=2?blackstar:whitestar,i>=3?blackstar:whitestar];
+}
+
 @end

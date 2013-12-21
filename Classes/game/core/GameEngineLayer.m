@@ -11,6 +11,7 @@
 #import "CapeGameEngineLayer.h"
 #import "TutorialEnd.h"
 #import "DogBone.h"
+#import "FreePupsAnim.h"
 
 @implementation GameEngineLayer
 
@@ -19,6 +20,7 @@
 #define tFGLAYER 4
 #define tUILAYER 5
 #define tTTRACKLAYER 6
+#define tFADEOUTLAYER 7
 
 #define DEFAULT_CONTINUE_COST 100
 
@@ -39,6 +41,7 @@
     [scene addChild:glayer z:0 tag:tGLAYER];
     [scene addChild:uilayer z:0 tag:tUILAYER];
     [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
+	[scene addChild:[CCLayerColor layerWithColor:ccc4(0,0,0,0)] z:999 tag:tFADEOUTLAYER];
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
@@ -481,7 +484,27 @@
             [self push_added_particles];
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
         }
-    }
+		
+    } else if (current_mode == GameEngineLayerMode_FADEOUT_TO_FREEPUPS) {
+		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
+		fadeoutlayer.opacity = fadeoutlayer.opacity + 15 > 255 ? 255 : fadeoutlayer.opacity + 15;
+		
+		if (fadeoutlayer.opacity >= 255) {
+			current_mode = GameEngineLayerMode_FADEIN_FROM_FREEPUPS;
+			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:[GameWorldMode get_labnum]]];
+			[AudioManager stop_bgm];
+			[GameControlImplementation reset_control_state];
+			[Common unset_dt];
+		}
+		
+	} else if (current_mode == GameEngineLayerMode_FADEIN_FROM_FREEPUPS) {
+		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
+		fadeoutlayer.opacity = fadeoutlayer.opacity - 15 < 0 ? 0 : fadeoutlayer.opacity - 15;
+		if (fadeoutlayer.opacity == 0) {
+			current_mode = GameEngineLayerMode_GAMEPLAY;
+			[AudioManager playbgm_imm:BGM_GROUP_LAB];
+		}
+	}
     
     [GEventDispatcher dispatch_events];
 }
@@ -574,22 +597,14 @@
 		runout_ct = 100;
 		player.current_island = NULL;
 		
+	} else if (e.type == GEventType_BOSS1_DEFEATED) {
+		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		
+	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		
 	}
 }
-
-/*
--(WorldNum)get_world_num {
-	return cur_world_num;
-}
-
--(LabNum)get_lab_num {
-	return cur_lab_num;
-}
-
--(BGMode)get_cur_bg_mode {
-	return cur_bg_mode;
-}
-*/
 
 -(void)update_gameobjs {
     for(int i = [game_objects count]-1; i>=0 ; i--) {

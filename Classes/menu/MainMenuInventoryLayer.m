@@ -18,7 +18,7 @@
 @implementation MainMenuInventoryLayer
 
 static NSString* default_text = @"Equip to use powerups on your next run. Unlock upgrades at the store!";
-static NSString* locked_text = @"Buy at the store to unlock and equip!";
+static NSString* locked_text = @"Buy at the store to unlock and equip on your next run!";
 
 +(MainMenuInventoryLayer*)cons {
     return [MainMenuInventoryLayer node];
@@ -311,11 +311,11 @@ static NSString* locked_text = @"Buy at the store to unlock and equip!";
 		[UserInventory set_equipped_gameitem:t];
 		[UserInventory set_current_gameitem:t];
 		pane_anim_scale = 2;
-		[infoname setString:[NSString stringWithFormat:@"%@ (level %d)",[GameItemCommon name_from:t],[UserInventory get_upgrade_level:t]]];
+		[infoname setString:[NSString stringWithFormat:@"%@ (%@)",[GameItemCommon name_from:t],[GameItemCommon stars_for_level:[UserInventory get_upgrade_level:t]]]];
 		[AudioManager playsfx:SFX_MENU_UP];
 	
 	} else {
-		[infoname setString:[NSString stringWithFormat:@"%@ (locked)",[GameItemCommon name_from:t]]];
+		[infoname setString:[NSString stringWithFormat:@"%@ (%@)",[GameItemCommon name_from:t],[GameItemCommon stars_for_level:[UserInventory get_upgrade_level:t]]]];
 	}
 	
     [self update_invpane];

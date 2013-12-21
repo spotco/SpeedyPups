@@ -31,4 +31,6 @@ typedef enum {
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g;
 +(int)get_uselength_for:(GameItem)gi g:(GameEngineLayer*)g;
 
++(NSString*)stars_for_level:(int)i;
+
 @end
