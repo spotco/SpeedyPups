@@ -13,8 +13,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_SFX NO
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -23,6 +23,10 @@
 #define DRAW_HITBOX NO
 
 /**
+ thomas level add
+ swingvine easy fix
+ lab1 same levels, fix
+ 
  separate unlock and upgrade item, different prices (also empty inventory pane + design)
  tabs in popup window:
 	-inventory
@@ -34,6 +38,14 @@
 	-dogs
 	-extras
 	-$$$
+ like the game on facebook, reward character etc
+ rocketwall rocket shadow
+ no swipe rocket
+ fix lots of lives level
+ random super reward level
+ flash big spike when hit (like rayman)
+ 
+ COLLECT TOKENS TO UNLOCK CHARACTERS
  
  icons when using immediate item
  sfx fireworks
@@ -110,12 +122,12 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }

@@ -175,7 +175,7 @@
 	
 	if (has_rotation_all) {
 		Vec3D cur_dir = [VecLib cons_x:dir.x y:dir.y z:0];
-		float spd = ABS(rotation_angle1) > 90 ? -3 : 3;
+		float spd = ABS(rotation_angle1) > 90 ? -1.5 : 1.5;
 		cur_dir = [VecLib normalize:[VecLib rotate:cur_dir by_rad:[Common deg_to_rad:spd*[Common get_dt_Scale]]]];
 		dir.x = cur_dir.x;
 		dir.y = cur_dir.y;

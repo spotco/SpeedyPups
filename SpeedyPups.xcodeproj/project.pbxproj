@@ -697,6 +697,8 @@
 		7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE5B531804CA8D00A4A64F /* LoadingScene.m */; };
 		7EEE5B561804CE3400A4A64F /* load_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B551804CE3400A4A64F /* load_icon.png */; };
 		7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B571804CEF100A4A64F /* loadinganim.plist */; };
+		7EEE757A18722D50004512E1 /* cannon_cannoncave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE757918722D50004512E1 /* cannon_cannoncave.map */; };
+		7EEE757C187239EA004512E1 /* lab_bounceycannon.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE757B187239EA004512E1 /* lab_bounceycannon.map */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
 		7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE955B1776F98500474FD3 /* RocketWall.m */; };
 		7EF02D1F17856B6200C2DD50 /* lab_tube.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D1E17856B6200C2DD50 /* lab_tube.map */; };
@@ -1636,6 +1638,8 @@
 		7EEE5B531804CA8D00A4A64F /* LoadingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingScene.m; path = loading/LoadingScene.m; sourceTree = "<group>"; };
 		7EEE5B551804CE3400A4A64F /* load_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_icon.png; sourceTree = "<group>"; };
 		7EEE5B571804CEF100A4A64F /* loadinganim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loadinganim.plist; sourceTree = "<group>"; };
+		7EEE757918722D50004512E1 /* cannon_cannoncave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_cannoncave.map; sourceTree = "<group>"; };
+		7EEE757B187239EA004512E1 /* lab_bounceycannon.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_bounceycannon.map; sourceTree = "<group>"; };
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
 		7EEE955A1776F98500474FD3 /* RocketWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketWall.h; sourceTree = "<group>"; };
 		7EEE955B1776F98500474FD3 /* RocketWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketWall.m; sourceTree = "<group>"; };
@@ -1825,6 +1829,7 @@
 			isa = PBXGroup;
 			children = (
 				7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */,
+				7EEE757918722D50004512E1 /* cannon_cannoncave.map */,
 			);
 			name = cannon;
 			sourceTree = "<group>";
@@ -3017,6 +3022,7 @@
 				7E29D829183376D100A92C2A /* lab_rocketfever.map */,
 				7E0E92431860199900197F7B /* lab_clusterphobia.map */,
 				7E0E92451860259900197F7B /* lab_towerfall.map */,
+				7EEE757B187239EA004512E1 /* lab_bounceycannon.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3879,6 +3885,7 @@
 				7E98648216E874CF00109092 /* nmenu_items.plist in Resources */,
 				7E98648316E874CF00109092 /* nmenu_items.png in Resources */,
 				7E9A784D16FC6D890014B7E0 /* easy_puddles.map in Resources */,
+				7EEE757C187239EA004512E1 /* lab_bounceycannon.map in Resources */,
 				7E9A784F16FC72D50014B7E0 /* easy_gottagofast.map in Resources */,
 				7EA567FF16FF8B200003F2A5 /* tut_anim_1.plist in Resources */,
 				7EA5680016FF8B200003F2A5 /* tut_anim_1.png in Resources */,
@@ -3992,6 +3999,7 @@
 				7EE3C4AE17DA7C0C00DCAF76 /* sfx_checkpoint.wav in Resources */,
 				7EE3C4AF17DA7C0C00DCAF76 /* sfx_copter_flyby.wav in Resources */,
 				7EE3C4B017DA7C0C00DCAF76 /* sfx_electric.wav in Resources */,
+				7EEE757A18722D50004512E1 /* cannon_cannoncave.map in Resources */,
 				7EE3C4B117DA7C0C00DCAF76 /* sfx_explosion.wav in Resources */,
 				7EEE5B561804CE3400A4A64F /* load_icon.png in Resources */,
 				7EE3C4B217DA7C0C00DCAF76 /* sfx_go.wav in Resources */,
