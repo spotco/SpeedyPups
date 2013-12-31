@@ -26,8 +26,9 @@
             [to_remove addObject:o];
         }
     }
-    for (GameObject *o in to_remove) {
-        [g remove_gameobject:o];
+    for (LauncherRocket *o in to_remove) {
+        [g remove_gameobject:[o get_shadow]];
+		[g remove_gameobject:o];
     }
     [to_remove removeAllObjects];
 }

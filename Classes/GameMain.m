@@ -15,7 +15,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"lab_clusterphobia"
+#define TESTLEVEL @"tutorial_spikes"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,8 +23,10 @@
 #define DRAW_HITBOX NO
 
 /**
- swingvine easy fix
- lab1 same levels, fix
+ icons when using immediate item
+ cannon move track graphics
+ clock item make hold to activate
+ tweak item use durations
  
  separate unlock and upgrade item, different prices (also empty inventory pane + design)
  tabs in popup window:
@@ -37,24 +39,13 @@
 	-dogs
 	-extras
 	-$$$
- like the game on facebook, reward character etc
- rocketwall rocket shadow
- no swipe rocket
- fix lots of lives level
- random super reward level
- flash big spike when hit (like rayman)
  
  COLLECT TOKENS TO UNLOCK CHARACTERS
- 
- icons when using immediate item
  sfx fireworks
  sfx tutorialdog float in/out
  sfx powerup end
  cape game end big bone + applause
- cannon move track graphics
- new icon
- clock item make hold to activate
- tweak item use durations
+
  
  website
  
@@ -71,6 +62,9 @@
 
 /**
 Stretch goals:
+ like the game on facebook, reward character etc
+ random super reward level
+ 
  flip match-2 minigame (collect tokens ingame for tries)
  stats tracking
  implement challenge of the week

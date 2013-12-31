@@ -136,7 +136,7 @@ float nodash_time = 0;
     if (queue_swipe == YES &&
 		player.current_island == NULL &&
 		[player get_current_params].cur_dash_count > 0 &&
-		([[player get_current_params] isKindOfClass:[DogRocketEffect class]] || player.dashing == NO) && nodash_time <= 0) {
+		(/*[[player get_current_params] isKindOfClass:[DogRocketEffect class]] ||*/ player.dashing == NO) && nodash_time <= 0) {
 		
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];

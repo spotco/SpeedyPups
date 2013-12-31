@@ -17,8 +17,8 @@
 -(void)update_position;
 -(id)set_remlimit:(int)t;
 -(LauncherRocket*)no_vibration;
-
 -(BOOL)is_active;
+-(GameObject*)get_shadow;
 
 @end
 

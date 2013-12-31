@@ -35,6 +35,7 @@
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g {
     [super update:player g:g];
+	[self setScale:self.scale+(1-self.scale)/4];
     if(activated) {
         return;
     }
@@ -58,6 +59,7 @@
 			[DazedParticle cons_effect:g tar:player time:40];
 			[AudioManager playsfx:SFX_HIT];
 			[g.get_stats increment:GEStat_SPIKES];
+			[self setScale:2];
 			
 		}
 		
