@@ -18,4 +18,7 @@
 +(void)touch_move:(CGPoint)pt;
 +(void)touch_end:(CGPoint)pt;
 
++(BOOL)get_clockbutton_hold;
++(void)set_clockbutton_hold:(BOOL)hold;
+
 @end

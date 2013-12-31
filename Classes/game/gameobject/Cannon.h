@@ -1,6 +1,7 @@
 #import "GameObject.h"
+#import "SpikeVine.h"
 
-@interface CannonMoveTrack : GameObject {
+@interface CannonMoveTrack : SpikeVine {
 	CGPoint pt1, pt2;
 }
 +(CannonMoveTrack*)cons_pt1:(CGPoint)pt1 pt2:(CGPoint)pt2;

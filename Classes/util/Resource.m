@@ -159,7 +159,9 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_FREERUNSTARTICONS:@"freerunstart_icons.png",
 	 TEX_BLANK:@"blank.png",
 	 TEX_PARTICLES:@"particles.png",
-	 TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png"
+	 TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png",
+	 TEX_CANNONMOVETRACK_BODY:@"cannonmovetrack_body.png",
+	 TEX_CANNONMOVETRACK_EDGE:@"cannonmovetrack_edge.png"
 	};
 	
 	

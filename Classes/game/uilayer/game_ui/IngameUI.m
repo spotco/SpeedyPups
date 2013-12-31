@@ -163,9 +163,11 @@
 -(void)itemslot_use {
     UILayer *p = (UILayer*)[self parent];
     [p itemslot_use];
-	TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
+	
+	//set itemlenbaricon in [ingameui set_item_duration_pct] instead
+	/*TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
 	itemlenbaricon.texture = curitem.tex;
-	itemlenbaricon.textureRect = curitem.rect;
+	itemlenbaricon.textureRect = curitem.rect;*/
 }
 
 -(void)enable_challengedesc_type:(ChallengeType)type {
@@ -287,8 +289,13 @@ static int ct  = 0;
     [enemy_alert_ui set_ct:i];
 }
 
--(void)set_item_duration_pct:(float)f {
+-(void)set_item_duration_pct:(float)f item:(GameItem)item {
     item_duration_pct = f;
+	
+	TexRect *curitem = [GameItemCommon texrect_from:item];
+	itemlenbaricon.texture = curitem.tex;
+	itemlenbaricon.textureRect = curitem.rect;
+	
 	if (f == 0) {
 		itemlenbar_target_pos = ITEM_LENBAR_HIDDEN_POSITION;
 	}

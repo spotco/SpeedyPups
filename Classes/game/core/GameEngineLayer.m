@@ -327,14 +327,16 @@
 }
 
 -(void)update:(ccTime)delta {
-	[Common set_dt:delta];
-	[self reset_follow_clamp_y];
+	NSLog(@"%d",[GameControlImplementation get_clockbutton_hold]);
 	
-	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY) {
-		[CCDirectorDisplayLink set_framemodct:2];
+	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY && [GameControlImplementation get_clockbutton_hold]) {
+		[CCDirectorDisplayLink set_framemodct:4];
+		[Common set_dt:delta/4];
 	} else {
 		[CCDirectorDisplayLink set_framemodct:1];
+		[Common set_dt:delta];
 	}
+	[self reset_follow_clamp_y];
 	
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
@@ -552,6 +554,7 @@
     } else if (e.type == GEventType_PAUSE) {
 		stored_mode = current_mode;
         current_mode = GameEngineLayerMode_PAUSED;
+		[CCDirectorDisplayLink set_framemodct:1];
         
     } else if (e.type == GEventType_UNPAUSE) {
         current_mode = stored_mode;
@@ -567,9 +570,6 @@
             [self player_reset];
             [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         }
-        
-    } else if (e.type == GEventType_USE_ITEM) {
-        [GameItemCommon use_item:e.i1 on:self];
         
     } else if (e.type == GEventType_CONTINUE_GAME) {
         lives = default_starting_lives;
@@ -761,36 +761,40 @@
 }
 
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {
-    if (current_mode != GameEngineLayerMode_GAMEPLAY) {
-        return;
-    }
-    
-    CGPoint touch;
-    for (UITouch *t in pTouches) {
-        touch = [t locationInView:[t view]];
-    }
-    [GameControlImplementation touch_begin:touch];
+    if (current_mode != GameEngineLayerMode_GAMEPLAY) return;
+	
+	UITouch *t = [[pTouches allObjects] objectAtIndex:0];
+	CGPoint touch = [t locationInView:[t view]];
+	
+	if (player.is_clockeffect) {
+		CGPoint yflipped_touch = ccp(touch.x,[Common SCREEN].height-touch.y);
+		CGPoint touch_corner = [Common screen_pctwid:0.82 pcthei:0.09];
+		touch_corner.y += 40;
+		touch_corner.x -= 20;
+		if (yflipped_touch.x > touch_corner.x && yflipped_touch.y < touch_corner.y) {
+			[GameControlImplementation set_clockbutton_hold:YES];
+		}
+	}
+	
+	if (![GameControlImplementation get_clockbutton_hold]) [GameControlImplementation touch_begin:touch];
+	
 }
 -(void) ccTouchesMoved:(NSSet *)pTouches withEvent:(UIEvent *)event {
-    if (current_mode != GameEngineLayerMode_GAMEPLAY) {
-        return;
-    }
+    if (current_mode != GameEngineLayerMode_GAMEPLAY) return;
     
-    CGPoint touch;
-    for (UITouch *t in pTouches) {
-        touch = [t locationInView:[t view]];
-    }
-    [GameControlImplementation touch_move:touch];
+    UITouch *t = [[pTouches allObjects] objectAtIndex:0];
+	CGPoint touch = [t locationInView:[t view]];
+	
+	if (![GameControlImplementation get_clockbutton_hold]) [GameControlImplementation touch_move:touch];
 }
 -(void) ccTouchesEnded:(NSSet*)pTouches withEvent:(UIEvent*)event {
-    if (current_mode != GameEngineLayerMode_GAMEPLAY) {
-        return;
-    }
+    if (current_mode != GameEngineLayerMode_GAMEPLAY) return;
     
-    CGPoint touch;
-    for (UITouch *t in pTouches) {
-        touch = [t locationInView:[t view]];
-    }
+    UITouch *t = [[pTouches allObjects] objectAtIndex:0];
+	CGPoint touch = [t locationInView:[t view]];
+	
+	[GameControlImplementation set_clockbutton_hold:NO];
+	
     [GameControlImplementation touch_end:touch];
 }
 

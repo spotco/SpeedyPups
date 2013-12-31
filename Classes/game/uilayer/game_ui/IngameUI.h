@@ -29,7 +29,7 @@
 +(IngameUI*)cons;
 
 -(void)set_enemy_alert_ui_ct:(int)i;
--(void)set_item_duration_pct:(float)f;
+-(void)set_item_duration_pct:(float)f item:(GameItem)item;
 -(void)update_item_slot;
 -(void)update:(GameEngineLayer*)g;
 

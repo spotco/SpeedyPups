@@ -14,6 +14,14 @@
 
 @implementation GameControlImplementation
 
+static bool itembutton_hold = NO;
++(BOOL)get_clockbutton_hold {
+	return itembutton_hold;
+}
++(void)set_clockbutton_hold:(BOOL)hold {
+	itembutton_hold = hold;
+}
+
 static BOOL queue_swipe = NO;
 static CGPoint swipe_dir;
 static BOOL queue_jump = NO;

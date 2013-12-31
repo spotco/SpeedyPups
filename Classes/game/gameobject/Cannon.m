@@ -9,8 +9,17 @@
 -(id)cons_pt1:(CGPoint)_pt1 pt2:(CGPoint)_pt2 {
 	pt1 = _pt1;
 	pt2 = _pt2;
-	[self setPosition:pt1];
+	[super cons_x:pt1.x y:pt1.y x2:pt2.x y2:pt2.y];
+	//[self setPosition:pt1];
 	return self;
+}
+
+-(void)hit:(Player *)player g:(GameEngineLayer *)g {}
+-(CCTexture2D*)get_base_tex {
+	return [Resource get_tex:TEX_CANNONMOVETRACK_EDGE];
+}
+-(CCTexture2D*)get_section_tex {
+	return [Resource get_tex:TEX_CANNONMOVETRACK_BODY];
 }
 
 -(CGPoint)get_pt1 {
@@ -22,8 +31,16 @@
 	return CGPointAdd(self.position, delta);
 }
 
+-(CGSize)get_base_size {
+	return [Resource get_tex:TEX_CANNONMOVETRACK_EDGE].contentSize;
+}
+/*
 -(HitRect)get_hit_rect {
 	return [Common hitrect_cons_x1:MIN(pt1.x,pt2.x) y1:MIN(pt1.y,pt2.y) x2:MAX(pt1.x,pt2.x) y2:MAX(pt1.y,pt2.y)];
+}
+*/
+-(int)get_render_ord {
+	return [GameRenderImplementation GET_BEHIND_GAMEOBJ_ORD];
 }
 @end
 

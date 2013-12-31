@@ -15,7 +15,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial_spikes"
+#define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,10 +23,8 @@
 #define DRAW_HITBOX NO
 
 /**
- icons when using immediate item
- cannon move track graphics
- clock item make hold to activate
- tweak item use durations
+ itemlenbar make square
+ new ready and hold notifications on itembar
  
  separate unlock and upgrade item, different prices (also empty inventory pane + design)
  tabs in popup window:
@@ -80,7 +78,7 @@ Stretch goals:
 
 +(void)main {
 	[[CCDirector sharedDirector] setDisplayFPS:NO];
-	
+	//[[CCDirector sharedDirector].openGLView setMultipleTouchEnabled:YES];
 	[GEventDispatcher lazy_alloc];
     [DataStore cons];
     [BatchDraw cons];
@@ -115,10 +113,10 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//to try the boss
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	

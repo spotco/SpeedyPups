@@ -586,6 +586,8 @@
 		7EC5ED2316D9DE9300E9D431 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC5ED2216D9DE9300E9D431 /* main.m */; };
 		7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EC7B8A01782B41E00C26314 /* lab_swingers.map */; };
 		7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EC7B8A21782BF7600C26314 /* lab_alladat.map */; };
+		7EC8AD3D1872BB86002E3B04 /* cannonmovetrack_body.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC8AD3B1872BB86002E3B04 /* cannonmovetrack_body.png */; };
+		7EC8AD3E1872BB86002E3B04 /* cannonmovetrack_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC8AD3C1872BB86002E3B04 /* cannonmovetrack_edge.png */; };
 		7ECADE0F17646AF00032A1E6 /* OALAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDCF17646AF00032A1E6 /* OALAction.m */; };
 		7ECADE1017646AF00032A1E6 /* OALActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDD117646AF00032A1E6 /* OALActionManager.m */; };
 		7ECADE1117646AF00032A1E6 /* OALAudioActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ECADDD317646AF00032A1E6 /* OALAudioActions.m */; };
@@ -1473,6 +1475,8 @@
 		7EC5ED2216D9DE9300E9D431 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7EC7B8A01782B41E00C26314 /* lab_swingers.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_swingers.map; sourceTree = "<group>"; };
 		7EC7B8A21782BF7600C26314 /* lab_alladat.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_alladat.map; sourceTree = "<group>"; };
+		7EC8AD3B1872BB86002E3B04 /* cannonmovetrack_body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannonmovetrack_body.png; sourceTree = "<group>"; };
+		7EC8AD3C1872BB86002E3B04 /* cannonmovetrack_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cannonmovetrack_edge.png; sourceTree = "<group>"; };
 		7ECADDCD17646AF00032A1E6 /* OALAction+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OALAction+Private.h"; sourceTree = "<group>"; };
 		7ECADDCE17646AF00032A1E6 /* OALAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OALAction.h; sourceTree = "<group>"; };
 		7ECADDCF17646AF00032A1E6 /* OALAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OALAction.m; sourceTree = "<group>"; };
@@ -2458,6 +2462,8 @@
 		7EB8B27A16D9F8E700F58961 /* boost */ = {
 			isa = PBXGroup;
 			children = (
+				7EC8AD3B1872BB86002E3B04 /* cannonmovetrack_body.png */,
+				7EC8AD3C1872BB86002E3B04 /* cannonmovetrack_edge.png */,
 				7EEAA7F51817689700BEE8D2 /* cannon_ss.plist */,
 				7EEAA7F61817689700BEE8D2 /* cannon_ss.png */,
 				7EB97765170261FD00459DEF /* jumppad.plist */,
@@ -3813,6 +3819,7 @@
 				7EB8B32B16D9F8E700F58961 /* swingvine_someswings.map in Resources */,
 				7EB8B32C16D9F8E700F58961 /* jumppad_bigjump.map in Resources */,
 				7EB8B32D16D9F8E700F58961 /* jumppad_bouncyroom.map in Resources */,
+				7EC8AD3E1872BB86002E3B04 /* cannonmovetrack_edge.png in Resources */,
 				7E0D74ED182CE6CD002F5B9A /* BG3_sky.png in Resources */,
 				7EB8B32E16D9F8E700F58961 /* jumppad_crazyloop.map in Resources */,
 				7EB8B32F16D9F8E700F58961 /* jumppad_hiddenislands.map in Resources */,
@@ -3828,6 +3835,7 @@
 				7EB8B33816D9F8E700F58961 /* swingvine_swingintro.map in Resources */,
 				7EB8B33916D9F8E700F58961 /* bossloadertest.map in Resources */,
 				7EB8B33A16D9F8E700F58961 /* bridge_test.map in Resources */,
+				7EC8AD3D1872BB86002E3B04 /* cannonmovetrack_body.png in Resources */,
 				7EB8B33B16D9F8E700F58961 /* bwall_test.map in Resources */,
 				7EB8B33C16D9F8E700F58961 /* cannon_test.map in Resources */,
 				7EB8B33D16D9F8E700F58961 /* cave_test.map in Resources */,

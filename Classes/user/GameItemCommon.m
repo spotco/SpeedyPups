@@ -10,8 +10,9 @@
 
 static NSDictionary* names;
 static NSDictionary* descriptions;
+static NSDictionary* texrects;
 
-+(void)initialize {
++(void)cons_after_textures_loaded {
     names = @{
         [NSValue valueWithGameItem:Item_Heart]: @"Heart",
         [NSValue valueWithGameItem:Item_Magnet]: @"Magnet",
@@ -27,18 +28,23 @@ static NSDictionary* descriptions;
         [NSValue valueWithGameItem:Item_Shield]: @"Brief invincibility. Break past anything!",
 		[NSValue valueWithGameItem:Item_Clock]: @"Slow down time."
     };
+	
+	CCTexture2D* tex = [Resource get_tex:TEX_ITEM_SS]; //do after textures loaded
+	texrects = @{
+        [NSValue valueWithGameItem:Item_Heart]: [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_heart"]],
+        [NSValue valueWithGameItem:Item_Magnet]: [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_magnet"]],
+        [NSValue valueWithGameItem:Item_Rocket]: [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_rocket"]],
+        [NSValue valueWithGameItem:Item_Shield]: [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_shield"]],
+		[NSValue valueWithGameItem:Item_Clock]:[TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_clock"]]
+	};
 }
 
-+(TexRect*)texrect_from:(GameItem)gameitem {
-    CCTexture2D* tex = [Resource get_tex:TEX_ITEM_SS];
-    if (gameitem == Item_Magnet) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_magnet"]];
-    if (gameitem == Item_Rocket) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_rocket"]];
-    if (gameitem == Item_Shield) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_shield"]];
-    if (gameitem == Item_Heart) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_heart"]];
-	if (gameitem == Item_Clock) return [TexRect cons_tex:tex rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_clock"]];
-    if (gameitem == Item_NOITEM) return [TexRect cons_tex:tex rect:CGRectZero];
-    [NSException raise:@"unknown gameitem" format:@"%d",gameitem];
-    return NULL;
++(TexRect*)texrect_from:(GameItem)gameitem {	
+	if (gameitem == Item_NOITEM) return [TexRect cons_tex:[Resource get_tex:TEX_ITEM_SS] rect:CGRectZero];
+	TexRect *rtv = [texrects objectForKey:[NSValue valueWithGameItem:gameitem]];
+	if (rtv == NULL) [NSException raise:@"unknown gameitem" format:@"%d",gameitem];
+    return rtv;
+	
 }
 
 +(TexRect*)object_textrect_from:(GameItem)type {
@@ -68,7 +74,7 @@ static NSDictionary* descriptions;
     return [descriptions objectForKey:[NSValue valueWithGameItem:gameitem]];
 }
 
-+(void)use_item:(GameItem)it on:(GameEngineLayer*)g {
++(void)use_item:(GameItem)it on:(GameEngineLayer*)g clearitem:(BOOL)clearitem {
 	if (g.player.dead) return;
 	[AudioManager playsfx:SFX_POWERUP];
 	
@@ -86,10 +92,11 @@ static NSDictionary* descriptions;
         
     } else if (it == Item_Clock) {
 		[g.player set_clockeffect:[self get_uselength_for:Item_Clock g:g]];
+		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:1 f2:0] add_i1:Item_Clock i2:0]];
 		
 	}
 	
-	[UserInventory set_current_gameitem:Item_NOITEM];
+	if (clearitem) [UserInventory set_current_gameitem:Item_NOITEM];
 }
 
 +(int)get_uselength_for:(GameItem)gi g:(GameEngineLayer *)g {

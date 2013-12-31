@@ -145,5 +145,7 @@
 #define TEX_BLANK @"blank"
 
 #define TEX_CLOUDGAME_CLOUDFLOOR @"cloudfloor"
+#define TEX_CANNONMOVETRACK_BODY @"cannonmovetrack_body"
+#define TEX_CANNONMOVETRACK_EDGE @"cannonmovetrack_edge"
 
 @end

@@ -342,7 +342,7 @@ static NSDictionary* ID_TO_POWERDESC;
             [self reset_is_armored];
         }
     }
-	if (clock_ct > 0) {
+	if (clock_ct > 0 && [GameControlImplementation get_clockbutton_hold]) {
 		clock_ct--;
 		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)clock_ct)/[GameItemCommon get_uselength_for:Item_Clock g:game_engine_layer] f2:0] add_i1:Item_Clock i2:0]];
 		if (clock_ct == 0) {

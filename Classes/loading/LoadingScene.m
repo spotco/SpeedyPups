@@ -9,6 +9,7 @@
 #import "Resource.h"
 #import "BatchDraw.h"
 #import "AutoLevelState.h"
+#import "GameItemCommon.h"
 
 @interface OrigPtCCSpr : CCSprite
 @property(readwrite,assign) CGPoint origpt;
@@ -96,6 +97,8 @@
 -(void)update {
 	if (finished_loading) {
 		[AudioManager schedule_update];
+		[GameItemCommon cons_after_textures_loaded];
+		
 		[self unschedule:@selector(update)];
 		[Common run_callback:on_finish];
 		[self removeAllChildrenWithCleanup:YES];

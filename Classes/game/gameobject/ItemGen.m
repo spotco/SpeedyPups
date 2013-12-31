@@ -44,7 +44,8 @@
 
 -(void)hit {
 	if (immediate) {
-		[GameItemCommon use_item:item on:gameengine];
+		[GameItemCommon use_item:item on:gameengine clearitem:NO];
+		
 	} else {
 	    [UserInventory set_current_gameitem:item];
 		[GEventDispatcher push_event:[GEvent cons_type:GEVentType_PICKUP_ITEM]];

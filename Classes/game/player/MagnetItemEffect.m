@@ -139,4 +139,8 @@
         kill = YES;
     }
 }
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+	[super update:player g:g];
+	[self setVisible:[GameControlImplementation get_clockbutton_hold]];
+}
 @end

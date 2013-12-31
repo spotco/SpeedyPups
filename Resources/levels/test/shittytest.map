@@ -1,8 +1,8 @@
 {
-    "start_y": 343.0166666666664,
-    "connect_pts": {"y1": 285, "x2": 743, "y2": 355, "x1": 154},
+    "connect_pts": {"y1": 276, "x2": 794, "y2": 310, "x1": 117},
+    "start_y": 308,
     "assert_links": 0,
-    "objects": [{"x": 1403.4, "y2": 303.3, "y": 2046.7, "x2": 610, "label": "4", "type": "spikevine"}],
-    "islands": [{"ground": "open", "y1": 285, "hei": 50, "y2": 355, "type": "line", "x1": 154, "can_fall": true, "x2": 743, "ndir": "left"}],
-    "start_x": 244
+    "objects": [{"x": 568, "label": "1", "y": 384, "type": "dogarmor"}, {"x": 829, "label": "3", "y": 569, "type": "dogrocket"}],
+    "islands": [{"ground": "open", "y1": 276, "hei": 50, "y2": 310, "type": "line", "x1": 117, "can_fall": true, "x2": 794, "ndir": "left"}],
+    "start_x": 194
 }

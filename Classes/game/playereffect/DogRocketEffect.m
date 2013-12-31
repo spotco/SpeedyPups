@@ -40,11 +40,11 @@
 		sound_ct = 20;
 	}
 	
-    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)time_left)/fulltime f2:0]];
+    [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)time_left)/fulltime f2:0] add_i1:Item_Rocket i2:0]];
 }
 
 -(void)effect_end {
-    [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Rocket i2:0]];
+    [GEventDispatcher push_event:[[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:0 f2:0] add_i1:Item_Rocket i2:0] add_i1:Item_Rocket i2:0]];
 }
 
 -(player_anim_mode)get_anim {

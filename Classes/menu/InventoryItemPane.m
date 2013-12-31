@@ -124,6 +124,7 @@
     return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"itemslot_small"];
 }
 -(void)set_item:(GameItem)item {
+	//if (item == cur_item) return;
     cur_item = item;
     for (CCSprite* s in @[w1,w2]) {
         TexRect *tr = [GameItemCommon texrect_from:item];

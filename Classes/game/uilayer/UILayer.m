@@ -107,10 +107,10 @@
         [self start_initial_anim];
         
     } else if (e.type == GEventType_ITEM_DURATION_PCT) {
-        [ingameui set_item_duration_pct:e.f1];
-		if (e.f1 == 0) {
+        [ingameui set_item_duration_pct:e.f1 item:e.i1];
+		/*if (e.f1 == 0) {
 			[ingameui update_item_slot];
-		}
+		}*/
         
     } else if (e.type == GEventType_TUTORIAL_MESSAGE) {
 		[self start_tutorialmessage_anim:[e get_value:@"msg"]];
@@ -193,8 +193,7 @@
 
 -(void)itemslot_use {
 	if ([UserInventory get_current_gameitem] != Item_NOITEM) {
-		GameItem i = [UserInventory get_current_gameitem];
-		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_USE_ITEM] add_i1:i i2:0]];
+		[GameItemCommon use_item:[UserInventory get_current_gameitem] on:game_engine_layer clearitem:YES];
 		
 		UIIngameAnimation *ua = [ItemUseUIAnimation cons_around:[Common screen_pctwid:0.93 pcthei:0.09]];
 		[ingameuianimholder addChild:ua];
@@ -203,7 +202,7 @@
 }
 
 -(void)pause {
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_PAUSE]];
+    [GEventDispatcher immediate_event:[GEvent cons_type:GEventType_PAUSE]];
     [pauseui update_labels_lives:ingameui.lives_disp.string bones:ingameui.bones_disp.string time:ingameui.time_disp.string];
     [self set_this_visible:pauseui];
     [[CCDirector sharedDirector] pause];
@@ -293,12 +292,12 @@
 }
 
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {
-    CGPoint touch;
+	CGPoint touch;
     for (UITouch *t in pTouches) touch = [t locationInView:[t view]];
 	[gameoverui touch_begin:touch];
 }
 -(void) ccTouchesMoved:(NSSet *)pTouches withEvent:(UIEvent *)event {
-    CGPoint touch;
+	CGPoint touch;
     for (UITouch *t in pTouches) touch = [t locationInView:[t view]];
 	[gameoverui touch_move:touch];
 }

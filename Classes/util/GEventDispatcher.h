@@ -22,7 +22,6 @@ typedef enum {
     GEventType_ENTER_LABAREA,
     GEventType_EXIT_TO_DEFAULTAREA,
     GEventType_START_INTIAL_ANIM,
-    GEventType_USE_ITEM, //18
 	GEVentType_PICKUP_ITEM,
 	
     GEventType_ITEM_DURATION_PCT,
