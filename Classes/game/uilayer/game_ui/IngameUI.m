@@ -97,8 +97,8 @@
 	[itemlenbarback setAnchorPoint:ccp(0,0.5)];
 	[itemlenbarfill setAnchorPoint:ccp(0,0.5)];
 	
-	[itemlenbarback setPosition:ccp(-72,0)];
-	[itemlenbarfill setPosition:ccp(-72,0)];
+	[itemlenbarback setPosition:ccp(-68,0)];
+	[itemlenbarfill setPosition:ccp(-68,0)];
 	
 	[itemlenbarroot addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
@@ -113,7 +113,7 @@
 		[i setOpacity:175];
 	}
 	itemlenbaricon = [CCSprite node];
-	[itemlenbaricon setPosition:ccp(55,0)];
+	[itemlenbaricon setPosition:ccp(52.5,0)];
 	[itemlenbaricon setScale:0.8];
 	[itemlenbaricon setOpacity:200];
 	[itemlenbarroot addChild:itemlenbaricon];
@@ -125,6 +125,12 @@
 	[readynotif setOpacity:220];
 	[self addChild:readynotif];
 	[readynotif setVisible:NO];
+	
+#define tag_readynotif_label 234
+	CCLabelTTF *readynotif_label = [Common cons_label_pos:CGPointZero color:ccc3(0,0,0) fontsize:15 str:@"Tap!"];
+	[readynotif_label setPosition:[Common pct_of_obj:readynotif pctx:0.5 pcty:0.61]];
+	[readynotif_label setOpacity:150];
+	[readynotif addChild:readynotif_label z:0 tag:tag_readynotif_label];
 	
 	challengedescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
@@ -204,9 +210,24 @@ static int ct  = 0;
 	if (item_duration_pct > 0) {
 		[itemlenbarroot setVisible:YES];
 		[ingame_ui_item_slot setVisible:NO];
-		[readynotif setVisible:NO];
 		[itemlenbarfill setScaleX:item_duration_pct];
 		itemlenbar_target_pos = ITEM_LENBAR_DEFAULT_POSITION;
+		
+		if (g.player.is_clockeffect && ![GameControlImplementation get_clockbutton_hold]) {
+			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Hold!"];
+			[readynotif setVisible:YES];
+			[itemlenbaricon setScale:1];
+			
+		} else {
+			if (g.player.is_clockeffect && [GameControlImplementation get_clockbutton_hold]) {
+				[itemlenbaricon setScale:1.3];
+			} else {
+				[itemlenbaricon setScale:1];
+			}
+			[readynotif setVisible:NO];
+			
+		}
+		
 		
 	} else {
 		//[itemlenbarroot setVisible:NO];
@@ -217,7 +238,10 @@ static int ct  = 0;
 			[readynotif setVisible:YES];
 			[ingame_ui_item_slot setVisible:YES];
 			if (last_item != [UserInventory get_current_gameitem]) [self update_item_slot];
+			
 			[readynotif setVisible:(ct/25)%2==0];
+			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Tap!"];
+			
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
 			[readynotif setVisible:NO];

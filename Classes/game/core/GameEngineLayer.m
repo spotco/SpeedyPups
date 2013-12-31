@@ -327,8 +327,6 @@
 }
 
 -(void)update:(ccTime)delta {
-	NSLog(@"%d",[GameControlImplementation get_clockbutton_hold]);
-	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY && [GameControlImplementation get_clockbutton_hold]) {
 		[CCDirectorDisplayLink set_framemodct:4];
 		[Common set_dt:delta/4];
