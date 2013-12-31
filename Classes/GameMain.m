@@ -15,7 +15,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"lab_clusterphobia"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,7 +23,6 @@
 #define DRAW_HITBOX NO
 
 /**
- thomas level add
  swingvine easy fix
  lab1 same levels, fix
  

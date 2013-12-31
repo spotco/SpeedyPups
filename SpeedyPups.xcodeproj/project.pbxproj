@@ -699,6 +699,7 @@
 		7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B571804CEF100A4A64F /* loadinganim.plist */; };
 		7EEE757A18722D50004512E1 /* cannon_cannoncave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE757918722D50004512E1 /* cannon_cannoncave.map */; };
 		7EEE757C187239EA004512E1 /* lab_bounceycannon.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE757B187239EA004512E1 /* lab_bounceycannon.map */; };
+		7EEE757E18723FFA004512E1 /* lab_minionwallshard.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE757D18723FFA004512E1 /* lab_minionwallshard.map */; };
 		7EEE95591776F52300474FD3 /* labintro_tutoriallauncher.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */; };
 		7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE955B1776F98500474FD3 /* RocketWall.m */; };
 		7EF02D1F17856B6200C2DD50 /* lab_tube.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D1E17856B6200C2DD50 /* lab_tube.map */; };
@@ -1640,6 +1641,7 @@
 		7EEE5B571804CEF100A4A64F /* loadinganim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = loadinganim.plist; sourceTree = "<group>"; };
 		7EEE757918722D50004512E1 /* cannon_cannoncave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_cannoncave.map; sourceTree = "<group>"; };
 		7EEE757B187239EA004512E1 /* lab_bounceycannon.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_bounceycannon.map; sourceTree = "<group>"; };
+		7EEE757D18723FFA004512E1 /* lab_minionwallshard.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_minionwallshard.map; sourceTree = "<group>"; };
 		7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutoriallauncher.map; path = levels/labintro_tutoriallauncher.map; sourceTree = "<group>"; };
 		7EEE955A1776F98500474FD3 /* RocketWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketWall.h; sourceTree = "<group>"; };
 		7EEE955B1776F98500474FD3 /* RocketWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketWall.m; sourceTree = "<group>"; };
@@ -3023,6 +3025,7 @@
 				7E0E92431860199900197F7B /* lab_clusterphobia.map */,
 				7E0E92451860259900197F7B /* lab_towerfall.map */,
 				7EEE757B187239EA004512E1 /* lab_bounceycannon.map */,
+				7EEE757D18723FFA004512E1 /* lab_minionwallshard.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3987,6 +3990,7 @@
 				7E73334517D7B31F00E5D6F6 /* labintro_entrance.map in Resources */,
 				7E2C8AE117D853B100DC08AE /* lab_alladat_challenge.map in Resources */,
 				7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */,
+				7EEE757E18723FFA004512E1 /* lab_minionwallshard.map in Resources */,
 				7EEAC33C17D90A2B0032CE7D /* particles.png in Resources */,
 				7EE3C4A517DA7C0C00DCAF76 /* bark_high.wav in Resources */,
 				7EE3C4A617DA7C0C00DCAF76 /* bark_low.wav in Resources */,

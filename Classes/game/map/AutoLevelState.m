@@ -129,8 +129,7 @@ static NSSet *lab_levels_world3;
 		},
 		L_CANNON: @{								//TODO -- 7 cannon levels
 			@"cannon_cannonsandrobots" : @2,
-			@"jumppad_launch" : @2,
-			@"jumppad_lotsobwalls" : @3,
+			@"cannon_cannoncave" : @2,
 			@"jumppad_spikeceil" : @3
 		},
 		L_HARD: @{									//TODO -- 6 hard levels
@@ -175,7 +174,11 @@ static NSSet *lab_levels_world3;
 			@"lab_alladat" : @4,
 			@"lab_tube" : @4,
 			@"lab_muhfiller" : @2,
-			@"lab_rocketfever" : @4
+			@"lab_rocketfever" : @4,
+			@"lab_towerfall" : @2,
+			@"lab_clusterphobia": @3,
+			@"lab_bounceycannon" : @4,
+			@"lab_minionwallshard" : @4
 		}
 	};
 	
@@ -194,7 +197,8 @@ static NSSet *lab_levels_world3;
 		@"lab_alladat",
 		@"lab_tube",
 		@"lab_muhfiller",
-		@"lab_rocketfever"
+		@"lab_rocketfever",
+		@"lab_minionwallshard"
 	);
 	lab_levels_world3 = _NSSET(
 		@"lab_basicmix",
@@ -205,7 +209,9 @@ static NSSet *lab_levels_world3;
 		@"lab_alladat",
 		@"lab_tube",
 		@"lab_muhfiller",
-		@"lab_rocketfever"
+		@"lab_rocketfever",
+		@"lab_minionwallshard",
+		@"lab_bounceycannon"
 	);
 }
 
@@ -435,7 +441,7 @@ static NSSet *lab_levels_world3;
 		return [[levelsets[L_LABEXIT] allKeys] random];
 	
 	} else if ([cur_set isEqualToString:L_LAB]) {
-		sets_until_next_lab--;
+		sets_until_next_lab--; //TODO -- fix me
 		if (sets_until_next_lab < 0) {
 			if ([GameWorldMode get_labnum] == LabNum_2) {
 				return [[levelsets[L_BOSS2START] allKeys] random];
