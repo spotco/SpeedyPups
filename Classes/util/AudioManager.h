@@ -32,6 +32,8 @@ typedef enum {
 #define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
 #define BGMUSIC_GAMELOOP3_NIGHT @"gameloop3_night.aiff"
 
+#define SFX_INVINCIBLE @"invincible.aiff"
+
 #define SFX_BONE @"sfx_bone_1.wav"
 #define SFX_BONE_2 @"sfx_bone_2.wav"
 #define SFX_BONE_3 @"sfx_bone_3.wav"
@@ -52,6 +54,7 @@ typedef enum {
 #define SFX_CHECKPOINT @"sfx_checkpoint.wav" 
 #define SFX_SWING @"sfx_swing.wav" 
 #define SFX_POWERUP @"sfx_powerup.wav"
+#define SFX_POWERDOWN @"sfx_powerdown.wav"
 #define SFX_1UP @"sfx_1up.wav"
 #define SFX_BIG_EXPLOSION @"sfx_big_explosion.wav"
 #define SFX_FAIL @"sfx_fail.wav"

@@ -77,8 +77,8 @@
 	[itemlenbarback setAnchorPoint:ccp(0,0.5)];
 	[itemlenbarfill setAnchorPoint:ccp(0,0.5)];
 	
-	[itemlenbarback setPosition:ccp(-72,0)];
-	[itemlenbarfill setPosition:ccp(-72,0)];
+	[itemlenbarback setPosition:ccp(-68,0)];
+	[itemlenbarfill setPosition:ccp(-68,0)];
 	
 	[itemlenbarroot addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
@@ -91,7 +91,7 @@
 		[i setOpacity:175];
 	}
 	itemlenbaricon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_dogcape"]];
-	[itemlenbaricon setPosition:ccp(55,0)];
+	[itemlenbaricon setPosition:ccp(52.5,0)];
 	[itemlenbaricon setScale:0.8];
 	[itemlenbaricon setOpacity:200];
 	[itemlenbarroot addChild:itemlenbaricon];

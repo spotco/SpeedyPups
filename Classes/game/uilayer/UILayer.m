@@ -108,9 +108,6 @@
         
     } else if (e.type == GEventType_ITEM_DURATION_PCT) {
         [ingameui set_item_duration_pct:e.f1 item:e.i1];
-		/*if (e.f1 == 0) {
-			[ingameui update_item_slot];
-		}*/
         
     } else if (e.type == GEventType_TUTORIAL_MESSAGE) {
 		[self start_tutorialmessage_anim:[e get_value:@"msg"]];

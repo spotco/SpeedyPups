@@ -104,11 +104,14 @@ typedef enum {
 
 -(void)set_armored:(int)time;
 -(BOOL)is_armored;
+-(void)end_armored;
 
+/*
 -(void)set_heart:(int)time;
 -(BOOL)has_heart;
 -(void)reset_heart;
-
+*/
+ 
 -(void)set_clockeffect:(int)time;
 -(BOOL)is_clockeffect;
 

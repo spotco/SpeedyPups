@@ -3,6 +3,7 @@
 #import "LauncherRocket.h"
 #import "ExplosionParticle.h"
 #import "DogRocketEffect.h"
+#import "GameItemCommon.h"
 
 @implementation RocketWall
 
@@ -45,6 +46,9 @@
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     if ([[player get_current_params] class] == [DogRocketEffect class] && [Common hitrect_touch:[player get_hit_rect] b:[self get_hit_rect]]) {
 		[player remove_temp_params:g];
+	}
+	if ([player is_armored] && [Common hitrect_touch:[player get_hit_rect] b:[self get_hit_rect]]) {
+		[player end_armored];
 	}
 }
 

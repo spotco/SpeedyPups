@@ -11,7 +11,9 @@
 	
 	NSMutableArray *tabs;
 	InventoryLayerTab *tab_inventory;
+	InventoryLayerTab *tab_upgrades;
 	InventoryLayerTab *tab_settings;
+	InventoryLayerTab *tab_extras;
 	
 	//old inventory tab stuff, uses ccmenu
     NSArray *inventory_panes;

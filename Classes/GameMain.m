@@ -23,6 +23,9 @@
 #define DRAW_HITBOX NO
 
 /**
+ tap activate/desactiv clock
+ add armor tune
+ 
  separate unlock and upgrade item, different prices (also empty inventory pane + design)
  tabs in popup window:
 	-inventory
@@ -34,14 +37,17 @@
 	-dogs
 	-extras
 	-$$$
+ unify challengelevelselectui with other ui chrome
  
- COLLECT TOKENS TO UNLOCK CHARACTERS
+ fix level selection algo, getting repeating levels (especially in lab1)
+ 
+ second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
+ 
  sfx fireworks
  sfx tutorialdog float in/out
  sfx powerup end
- cape game end big bone + applause
+ sfx cape game end applause
 
- 
  website
  
  some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)

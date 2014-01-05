@@ -8,12 +8,12 @@
 -(id)cons_pt:(CGPoint)pt text:(NSString*)text cb:(CallBack*)tcb {
 	[super cons_pt:pt
 			   tex:[Resource get_tex:TEX_NMENU_ITEMS]
-		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"inventorypane_tab_select"]
+		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_tabpane_tab"]
 				cb:tcb];
 	[self setAnchorPoint:ccp(0,0)];
 	[self addChild:[Common cons_label_pos:[Common pct_of_obj:self pctx:0.5 pcty:0.5]
 									color:ccc3(0,0,0)
-								 fontsize:17
+								 fontsize:14
 									  str:text]];
 	
 	tar_scale_y = 0.97;
@@ -22,11 +22,9 @@
 
 -(void)set_selected:(BOOL)t {
 	if (t) {
-		tar_scale_y = 1.03;
-		[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"inventorypane_tab_select"]];
+		tar_scale_y = 1.1;
 	} else {
-		tar_scale_y = 0.97;
-		[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"inventorypane_tab_unselect"]];
+		tar_scale_y = 0.95;
 	}
 }
 

@@ -34,11 +34,11 @@
 	
 	CGPoint tabanchor = [Common pct_of_obj:tabbedpane pctx:0 pcty:0.99];
 	CGSize tabsize = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_tabpane_tab"].size;
-	ShopTabTouchButton *first_tab = [self cons_tab_pos:tabanchor sel:@selector(tab0:) text:@"Upgrade" parent:tabbedpane];
+	ShopTabTouchButton *first_tab = [self cons_tab_pos:tabanchor sel:@selector(tab0:) text:@"Items" parent:tabbedpane];
 	[first_tab set_selected:YES];
 	cur_selected_tab = first_tab;
 	[self cons_tab_pos:ccp(tabanchor.x + tabsize.width,tabanchor.y) sel:@selector(tab1:) text:@"Dogs" parent:tabbedpane];
-	[self cons_tab_pos:ccp(tabanchor.x + tabsize.width*2,tabanchor.y) sel:@selector(tab2:) text:@"Unlock" parent:tabbedpane];
+	[self cons_tab_pos:ccp(tabanchor.x + tabsize.width*2,tabanchor.y) sel:@selector(tab2:) text:@"Extras" parent:tabbedpane];
 	[self cons_tab_pos:ccp(tabanchor.x + tabsize.width*3,tabanchor.y) sel:@selector(tab3:) text:@"$$$" parent:tabbedpane];
 	
 	

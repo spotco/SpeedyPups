@@ -324,6 +324,7 @@ static NSDictionary* ID_TO_POWERDESC;
             [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)new_magnetrad_ct)/[GameItemCommon get_uselength_for:Item_Magnet g:game_engine_layer] f2:0] add_i1:Item_Magnet i2:0]];
         } else {
             [self reset_magnet_ieffect];
+			[AudioManager playsfx:SFX_POWERDOWN];
         }
     }
     if (heart_ct) {
@@ -340,6 +341,7 @@ static NSDictionary* ID_TO_POWERDESC;
         if (armored_ct == 0) {
             [ArmorBreakEffect cons_at:[self get_center] in:game_engine_layer];
             [self reset_is_armored];
+			[AudioManager playsfx:SFX_POWERDOWN];
         }
     }
 	if (clock_ct > 0 && [GameControlImplementation get_clockbutton_hold]) {
@@ -347,6 +349,7 @@ static NSDictionary* ID_TO_POWERDESC;
 		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)clock_ct)/[GameItemCommon get_uselength_for:Item_Clock g:game_engine_layer] f2:0] add_i1:Item_Clock i2:0]];
 		if (clock_ct == 0) {
 			[self reset_clockeffect];
+			[AudioManager playsfx:SFX_POWERDOWN];
 		}
 	}
 }
@@ -396,6 +399,10 @@ static NSDictionary* ID_TO_POWERDESC;
 
 -(BOOL)is_armored {
     return armored_ct > 0;
+}
+
+-(void)end_armored {
+	armored_ct = 1;
 }
 
 -(void)reset_is_armored {

@@ -559,9 +559,9 @@
         
     } else if (e.type == GEventType_PLAYER_DIE) {
         [stats increment:GEStat_DEATHS];
-        if (![player has_heart]) {
+        /*if (![player has_heart]) {
             lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
-        }
+        }*/
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
             [self ask_continue];
         } else {

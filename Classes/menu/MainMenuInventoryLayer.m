@@ -54,16 +54,30 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	[settings_tab_items setVisible:NO];
 	
 	tabs = [NSMutableArray array];
-	tab_inventory = [InventoryLayerTab cons_pt:[Common pct_of_obj:inventory_window pctx:0 pcty:0.9525]
+	CGPoint lefttab_pos = [Common pct_of_obj:inventory_window pctx:0 pcty:0.98];
+	tab_inventory = [InventoryLayerTab cons_pt:ccp(lefttab_pos.x+1,lefttab_pos.y)
 										  text:@"Inventory"
 											cb:[Common cons_callback:self sel:@selector(tab_inventory)]];
 	[tabs addObject:tab_inventory];
 	[inventory_window addChild:tab_inventory];
-	tab_settings = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width,tab_inventory.position.y)
+	
+	tab_upgrades = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width,tab_inventory.position.y)
+										 text:@"Upgrades"
+										   cb:[Common cons_callback:self sel:@selector(tab_upgrades)]];
+	[tabs addObject:tab_upgrades];
+	[inventory_window addChild:tab_upgrades];
+	
+	tab_settings = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width*2,tab_inventory.position.y)
 										 text:@"Settings"
 										   cb:[Common cons_callback:self sel:@selector(tab_settings)]];
 	[tabs addObject:tab_settings];
 	[inventory_window addChild:tab_settings];
+	
+	tab_extras = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width*3,tab_inventory.position.y)
+										 text:@"Extras"
+										   cb:[Common cons_callback:self sel:@selector(tab_extras)]];
+	[tabs addObject:tab_extras];
+	[inventory_window addChild:tab_extras];
 	
 	[tab_inventory set_selected:YES];
 	[tab_settings set_selected:NO];
@@ -86,6 +100,14 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	[inventory_tab_items setVisible:NO];
 	[settings_tab_items setVisible:YES];
 	[AudioManager playsfx:SFX_MENU_UP];
+}
+
+-(void)tab_upgrades {
+	
+}
+
+-(void)tab_extras {
+	
 }
 
 -(void)cons_inventory_tab_items {
