@@ -15,7 +15,7 @@
 #define USE_BG YES
 #define PLAY_SFX NO
 #define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"lab_cage_cannons"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10

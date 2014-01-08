@@ -69,7 +69,7 @@
     CameraZoom target = layer.tar_camera_state;
 	
 	if ([[layer.player get_current_params] class] == [DogRocketEffect class]) {
-		target = [Common cons_normalcoord_camera_zoom_x:140 y:110 z:290];
+		target = [Common cons_normalcoord_camera_zoom_x:50 y:150 z:350];
 	}
 	
 	if (![Common fuzzyeq_a:layer.camera_state.x b:target.x delta:0.1]) {

@@ -130,7 +130,7 @@ static NSSet *lab_levels_world3;
 		L_CANNON: @{								//TODO -- 7 cannon levels
 			@"cannon_cannonsandrobots" : @2,
 			@"cannon_cannoncave" : @2,
-			@"jumppad_spikeceil" : @3
+			@"cannon_jetpackthorns" : @3,
 		},
 		L_HARD: @{									//TODO -- 6 hard levels
 			@"classic_twopath" : @2,
@@ -178,7 +178,8 @@ static NSSet *lab_levels_world3;
 			@"lab_towerfall" : @2,
 			@"lab_clusterphobia": @3,
 			@"lab_bounceycannon" : @4,
-			@"lab_minionwallshard" : @4
+			@"lab_minionwallshard" : @4,
+			@"lab_cage_cannons" : @4
 		}
 	};
 	
@@ -211,7 +212,8 @@ static NSSet *lab_levels_world3;
 		@"lab_muhfiller",
 		@"lab_rocketfever",
 		@"lab_minionwallshard",
-		@"lab_bounceycannon"
+		@"lab_bounceycannon",
+		@"lab_cage_cannons"
 	);
 }
 

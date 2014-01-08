@@ -129,6 +129,8 @@
 		7E73334317D7AA9E00E5D6F6 /* UIEnemyAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73334217D7AA9E00E5D6F6 /* UIEnemyAlert.m */; };
 		7E73334517D7B31F00E5D6F6 /* labintro_entrance.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */; };
 		7E73334817D7B48D00E5D6F6 /* UIWaterAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */; };
+		7E74ECF4187D489400C0A5C6 /* lab_cage_cannons.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E74ECF3187D489400C0A5C6 /* lab_cage_cannons.map */; };
+		7E74ECF6187D4E5D00C0A5C6 /* cannon_jetpackthorns.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E74ECF5187D4E5D00C0A5C6 /* cannon_jetpackthorns.map */; };
 		7E80D7C1181276AE007E48C5 /* classic_twopath.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C0181276AE007E48C5 /* classic_twopath.map */; };
 		7E80D7C818127B53007E48C5 /* gameloop2_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */; };
 		7E80D7C918127B53007E48C5 /* gameloop3.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C718127B53007E48C5 /* gameloop3.aiff */; };
@@ -913,6 +915,8 @@
 		7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_entrance.map; path = levels/labintro_entrance.map; sourceTree = "<group>"; };
 		7E73334617D7B48D00E5D6F6 /* UIWaterAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWaterAlert.h; sourceTree = "<group>"; };
 		7E73334717D7B48D00E5D6F6 /* UIWaterAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWaterAlert.m; sourceTree = "<group>"; };
+		7E74ECF3187D489400C0A5C6 /* lab_cage_cannons.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_cage_cannons.map; sourceTree = "<group>"; };
+		7E74ECF5187D4E5D00C0A5C6 /* cannon_jetpackthorns.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_jetpackthorns.map; sourceTree = "<group>"; };
 		7E80D7C0181276AE007E48C5 /* classic_twopath.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_twopath.map; sourceTree = "<group>"; };
 		7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2_night.aiff; sourceTree = "<group>"; };
 		7E80D7C718127B53007E48C5 /* gameloop3.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3.aiff; sourceTree = "<group>"; };
@@ -1840,6 +1844,7 @@
 			children = (
 				7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */,
 				7EEE757918722D50004512E1 /* cannon_cannoncave.map */,
+				7E74ECF5187D4E5D00C0A5C6 /* cannon_jetpackthorns.map */,
 			);
 			name = cannon;
 			sourceTree = "<group>";
@@ -3038,6 +3043,7 @@
 				7E0E92451860259900197F7B /* lab_towerfall.map */,
 				7EEE757B187239EA004512E1 /* lab_bounceycannon.map */,
 				7EEE757D18723FFA004512E1 /* lab_minionwallshard.map */,
+				7E74ECF3187D489400C0A5C6 /* lab_cage_cannons.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -3895,6 +3901,7 @@
 				7EFD5D81185DD7B30059CC39 /* gameloop3_night.aiff in Resources */,
 				7E269C6916DA00E7005F446C /* Carton_Six.ttf in Resources */,
 				7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */,
+				7E74ECF6187D4E5D00C0A5C6 /* cannon_jetpackthorns.map in Resources */,
 				7E4D771C184C315A009FB73F /* intro_anim_ss.plist in Resources */,
 				7EFEAFFE187981AE00456155 /* invincible.aiff in Resources */,
 				7E269C6A16DA00EB005F446C /* Default.png in Resources */,
@@ -4060,6 +4067,7 @@
 				7E4942631837478500E63573 /* tutorial_cannons.map in Resources */,
 				7E24A35C17ECD02F0085154C /* sfx_bone_3.wav in Resources */,
 				7E24A35D17ECD02F0085154C /* sfx_bone_4.wav in Resources */,
+				7E74ECF4187D489400C0A5C6 /* lab_cage_cannons.map in Resources */,
 				7E24A35F17ECD7F70085154C /* sfx_boss_enter.wav in Resources */,
 				7EBEA3AD17EEB078009C9930 /* BG2_backhills.png in Resources */,
 				7EBEA3AE17EEB078009C9930 /* BG2_fronthills.png in Resources */,
