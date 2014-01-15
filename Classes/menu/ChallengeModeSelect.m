@@ -48,7 +48,6 @@
     status_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                           rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
                    pos:[Common pct_of_obj:self pctx:0.53 pcty:0.27]];
-	[status_star setScale:0.25];
     [self addChild:status_star];
     
     [locked setVisible:NO];
@@ -119,7 +118,7 @@
     CCMenuItem *closebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                rect:@"nmenu_closebutton"
                                                 tar:self sel:@selector(close)
-                                                pos:ccp(windowsize.size.width*0.975,windowsize.size.height*0.95)];
+                                                pos:ccp(windowsize.size.width*0.955,windowsize.size.height*0.96)];
     CCMenu *m = [CCMenu menuWithItems:closebutton, nil];
     [m setPosition:CGPointZero];
     [pagewindow addChild:m];
@@ -242,7 +241,7 @@
     CCMenuItem *closebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
                                                rect:@"nmenu_closebutton"
                                                 tar:self sel:@selector(close)
-                                                pos:[Common pct_of_obj:chosen_window pctx:0.975 pcty:0.91]];
+                                                pos:[Common pct_of_obj:chosen_window pctx:0.975 pcty:0.95]];
     CCMenu *m = [CCMenu menuWithItems:closebutton, nil];
     [m setPosition:CGPointZero];
 	[chosen_window addChild:m];
@@ -255,12 +254,12 @@
     CCMenuItem *back = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
                                         rect:@"gobackbutton"
                                          tar:self sel:@selector(back_to_select)
-                                         pos:[Common pct_of_obj:chosen_window pctx:0.1 pcty:0]];
+                                         pos:[Common pct_of_obj:chosen_window pctx:0.05 pcty:0]];
     
     CCMenuItem *play = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
                                         rect:@"runbutton"
                                          tar:self sel:@selector(play)
-                                         pos:[Common pct_of_obj:chosen_window pctx:0.95 pcty:0]];
+                                         pos:[Common pct_of_obj:chosen_window pctx:0.97 pcty:0]];
     
     CCMenu *but = [CCMenu menuWithItems:back,play, nil];
     [but setPosition:CGPointZero];

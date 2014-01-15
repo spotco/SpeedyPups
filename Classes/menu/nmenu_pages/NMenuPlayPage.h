@@ -36,6 +36,8 @@ typedef enum {
 	LabelGroup *startworld_disp;
 	SpriteGroup *startworld_disp_icon;
 	CCLabelTTF *challenges_completed_disp;
+	
+	CCSprite *first_time_popup;
 }
 
 +(NMenuPlayPage*)cons;

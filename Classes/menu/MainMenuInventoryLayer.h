@@ -3,6 +3,13 @@
 @class MainSlotItemPane;
 @class InventoryLayerTab;
 
+@interface InventoryTabWindow : CCSprite
+-(void)set_window_open:(BOOL)t;
+-(void)touch_begin:(CGPoint)pt;
+-(void)touch_move:(CGPoint)pt;
+-(void)touch_end:(CGPoint)pt;
+@end
+
 @interface MainMenuInventoryLayer : CCLayer <GEventListener> {
     CCSprite *inventory_window;
 	

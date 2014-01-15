@@ -98,8 +98,15 @@ Stretch goals:
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 	
-	//[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	BOOL compress_textures = [defaults boolForKey:@"Compress Textures?"];
+	if (compress_textures) {
+		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
+	} else {
+		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+	}
+	
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -116,13 +123,13 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

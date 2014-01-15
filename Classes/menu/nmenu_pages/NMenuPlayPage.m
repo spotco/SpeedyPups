@@ -135,6 +135,19 @@
     challengeselect = [ChallengeModeSelect cons];
     [challengeselect setVisible:NO];
     [self addChild:challengeselect];
+	
+	first_time_popup = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"first_time_popup"]];
+	[first_time_popup setAnchorPoint:ccp(1,0)];
+	[first_time_popup addChild:[Common cons_label_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.8]
+												color:ccc3(10,10,10)
+											 fontsize:11
+												  str:@"First time?"]];
+	[first_time_popup addChild:[Common cons_label_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.5]
+												color:ccc3(10,10,10)
+											 fontsize:15
+												  str:@"Click me!"]];
+	[freerunmodebutton addChild:first_time_popup];
+	[first_time_popup setPosition:[Common pct_of_obj:freerunmodebutton pctx:0.25 pcty:0.9]];
     
     return self;
 }
@@ -153,6 +166,8 @@
 		TexRect *tr = [FreeRunStartAtManager get_icon_for_loc:[FreeRunStartAtManager get_starting_loc]];
 		[startworld_disp_icon set_texture:tr.tex];
 		[startworld_disp_icon set_texturerect:tr.rect];
+		
+		[first_time_popup setVisible:[FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL];
 		
 		[challenges_completed_disp setString:[NSString stringWithFormat:@"%d/%d",[ChallengeRecord get_highest_available_challenge],[ChallengeRecord get_num_challenges]]];
 	}

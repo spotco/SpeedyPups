@@ -13,8 +13,13 @@
 
 #import "AudioManager.h"
 
+@implementation InventoryTabWindow
+-(void)set_window_open:(BOOL)t{}
+-(void)touch_begin:(CGPoint)pt{}
+-(void)touch_move:(CGPoint)pt{}
+-(void)touch_end:(CGPoint)pt{};
+@end
 
-//todo -- seperate me into class for every tab, this is popupwindowlayer now (not just inventory)
 @implementation MainMenuInventoryLayer
 
 static NSString* default_text = @"Equip to use powerups on your next run. Unlock upgrades at the store!";
@@ -222,47 +227,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 										   str:@"Reset Data"]];
 	[settings_tab_items addChild:cleardata];
 	[settings_touches addObject:cleardata];
-	
-	/*
-	TouchButton *cloudup = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.575 pcty:0.675]
-													tex:[Resource get_tex:TEX_NMENU_ITEMS]
-												texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]
-													 cb:[Common cons_callback:self sel:@selector(cloud_save)]];
-	[cloudup addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"cloudup"]] pos:[Common pct_of_obj:cloudup pctx:0.5 pcty:0.5]]];
-	[settings_tab_items addChild:cloudup];
-	[settings_touches addObject:cloudup];
-	
-	
-	TouchButton *clouddown = [AnimatedTouchButton cons_pt:[Common pct_of_obj:inventory_window pctx:0.575 pcty:0.3]
-													tex:[Resource get_tex:TEX_NMENU_ITEMS]
-												texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]
-													 cb:[Common cons_callback:self sel:@selector(cloud_load)]];
-	[clouddown addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"clouddown"]] pos:[Common pct_of_obj:cloudup pctx:0.5 pcty:0.5]]];
-	[settings_tab_items addChild:clouddown];
-	[settings_touches addObject:clouddown];
-	
-	
-	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.675]
-												   color:ccc3(0,0,0)
-												fontsize:16
-													 str:@"cloud save"] anchor_pt:ccp(0,0.5)]];
-	
-	[settings_tab_items addChild:[[Common cons_label_pos:[Common pct_of_obj:inventory_window pctx:0.7 pcty:0.3]
-												   color:ccc3(0,0,0)
-												fontsize:16
-													 str:@"cloud load"] anchor_pt:ccp(0,0.5)]];
-	*/
 }
-
-/*
--(void)cloud_save {
-	NSLog(@"cloud save");
-}
-
--(void)cloud_load {
-	NSLog(@"cloud load");
-}
- */
 
 -(void)toggle_play_bgm {
 	[AudioManager set_play_bgm:![AudioManager get_play_bgm]];
