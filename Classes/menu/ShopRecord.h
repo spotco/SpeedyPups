@@ -29,6 +29,12 @@ typedef enum {
 @property(readwrite,strong) NSString *name, *desc;
 @property(readwrite,strong) NSString *val;
 @property(readwrite,strong) NSString *short_name;
++(ItemInfo*)cons_tex:(NSString*)texn
+			  rectid:(NSString*)rectid
+				name:(NSString*)name
+				desc:(NSString*)desc
+			   price:(int)price
+				 val:(NSString*)val;
 @end
 
 @interface ShopRecord : NSObject

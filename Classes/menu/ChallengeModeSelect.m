@@ -193,13 +193,15 @@
                                                       rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"leveldescriptionpanel"]]
                                pos:[Common screen_pctwid:0.5 pcthei:0.57]];
 	
-	chosen_name = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775]
+	float offset = 0.06;
+	
+	chosen_name = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775 + offset]
 								   color:ccc3(200,30,30)
 								fontsize:17
 									 str:@""];
 	[chosen_window addChild:chosen_name];
 	
-	chosen_mapname = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69]
+	chosen_mapname = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69 + offset]
 									  color:ccc3(200,30,30)
 								   fontsize:9 str:@""];
 	[chosen_window addChild:chosen_mapname];
@@ -214,27 +216,27 @@
                                      fontName:@"Carton Six"
                                      fontSize:12];
     [chosen_goal setColor:ccc3(0, 0, 0)];
-    [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.47]];
+    [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.47 + offset]];
     [chosen_window addChild:chosen_goal];
 	
 	show_reward = [CCSprite node];
 	[chosen_window addChild:show_reward];
 	
-	[show_reward addChild:[Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.74 pcty:0.3]
+	[show_reward addChild:[Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.74 pcty:0.3 + offset]
 											 color:ccc3(200,0,0)
 										  fontsize:11 str:@"Reward:"]];
 	
-	reward_amount = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.84 pcty:0.2]
+	reward_amount = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.84 pcty:0.2 + offset]
 									 color:ccc3(0,0,0)
 								  fontsize:19
 									   str:@"000000"];
 	[show_reward addChild:reward_amount];
 	
 	TexRect *bones = [ChallengeRecord get_for:ChallengeType_COLLECT_BONES];
-	[show_reward addChild:[[CCSprite spriteWithTexture:bones.tex rect:bones.rect] pos:[Common pct_of_obj:chosen_window pctx:0.7275 pcty:0.17]]];
+	[show_reward addChild:[[CCSprite spriteWithTexture:bones.tex rect:bones.rect] pos:[Common pct_of_obj:chosen_window pctx:0.7275 pcty:0.17 + offset]]];
     
 	show_already_beaten = [CCSprite node];
-	[show_already_beaten addChild:[Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.27]
+	[show_already_beaten addChild:[Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.27 + offset]
 												   color:ccc3(110,110,110) fontsize:17 str:@"Completed!"]];
 	[chosen_window addChild:show_already_beaten];
 	
@@ -248,7 +250,7 @@
     
     chosen_preview = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                              rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@""]]
-                      pos:[Common pct_of_obj:chosen_window pctx:0.35 pcty:0.46]];
+                      pos:[Common pct_of_obj:chosen_window pctx:0.3 pcty:0.51]];
     [chosen_window addChild:chosen_preview];
     
     CCMenuItem *back = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ

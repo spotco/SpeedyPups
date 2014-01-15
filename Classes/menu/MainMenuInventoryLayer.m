@@ -180,11 +180,17 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 }
 
 -(void)touch_begin:(CGPoint)pt {
+	if (![self window_open]) return;
 	for (InventoryLayerTab *tab in tabs) [tab touch_begin:pt];
 	for (InventoryTabPane *pane in tabpanes) [pane touch_begin:pt];
 }
--(void)touch_move:(CGPoint)pt{}
+-(void)touch_move:(CGPoint)pt{
+	if (![self window_open]) return;
+	for (InventoryLayerTab *tab in tabs) [tab touch_move:pt];
+	for (InventoryTabPane *pane in tabpanes) [pane touch_move:pt];
+}
 -(void)touch_end:(CGPoint)pt{
+	if (![self window_open]) return;
 	for (InventoryLayerTab *tab in tabs) [tab touch_end:pt];
 	for (InventoryTabPane *pane in tabpanes) [pane touch_end:pt];
 }

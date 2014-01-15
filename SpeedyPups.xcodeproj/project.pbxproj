@@ -17,6 +17,7 @@
 		7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E01957018866506000DCF6D /* InventoryTabPane_Settings.m */; };
 		7E0195741886654B000DCF6D /* InventoryTabPane_Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */; };
 		7E019578188665E7000DCF6D /* InventoryItemPane_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E019577188665E7000DCF6D /* InventoryItemPane_Deprecated.m */; };
+		7E01957B18868546000DCF6D /* InventoryLayerTabScrollList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E01957A18868546000DCF6D /* InventoryLayerTabScrollList.m */; };
 		7E02221717F93A200083815C /* lab2_docks.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02221417F93A200083815C /* lab2_docks.png */; };
 		7E02221817F93A200083815C /* lab2_windowwall.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02221517F93A200083815C /* lab2_windowwall.png */; };
 		7E02221B17F93AFC0083815C /* Lab2BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E02221A17F93AFC0083815C /* Lab2BGLayerSet.m */; };
@@ -769,6 +770,8 @@
 		7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Extras.m; path = inventory_tab_panes/InventoryTabPane_Extras.m; sourceTree = "<group>"; };
 		7E019576188665E7000DCF6D /* InventoryItemPane_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryItemPane_Deprecated.h; path = deprecated/InventoryItemPane_Deprecated.h; sourceTree = "<group>"; };
 		7E019577188665E7000DCF6D /* InventoryItemPane_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryItemPane_Deprecated.m; path = deprecated/InventoryItemPane_Deprecated.m; sourceTree = "<group>"; };
+		7E01957918868546000DCF6D /* InventoryLayerTabScrollList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryLayerTabScrollList.h; path = inventory_tab_panes/InventoryLayerTabScrollList.h; sourceTree = "<group>"; };
+		7E01957A18868546000DCF6D /* InventoryLayerTabScrollList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryLayerTabScrollList.m; path = inventory_tab_panes/InventoryLayerTabScrollList.m; sourceTree = "<group>"; };
 		7E02221417F93A200083815C /* lab2_docks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_docks.png; sourceTree = "<group>"; };
 		7E02221517F93A200083815C /* lab2_windowwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_windowwall.png; sourceTree = "<group>"; };
 		7E02221917F93AFC0083815C /* Lab2BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lab2BGLayerSet.h; sourceTree = "<group>"; };
@@ -1757,6 +1760,8 @@
 				7E01957018866506000DCF6D /* InventoryTabPane_Settings.m */,
 				7E0195721886654B000DCF6D /* InventoryTabPane_Extras.h */,
 				7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */,
+				7E01957918868546000DCF6D /* InventoryLayerTabScrollList.h */,
+				7E01957A18868546000DCF6D /* InventoryLayerTabScrollList.m */,
 			);
 			name = inventorytabpanes;
 			sourceTree = "<group>";
@@ -4149,6 +4154,7 @@
 				7EB8B47F16D9FC0900F58961 /* GamePhysicsImplementation.m in Sources */,
 				7EB8B48016D9FC0900F58961 /* GameRenderImplementation.m in Sources */,
 				7EB8B48116D9FC0900F58961 /* PhysicsEnabledObject.m in Sources */,
+				7E01957B18868546000DCF6D /* InventoryLayerTabScrollList.m in Sources */,
 				7EB8B48216D9FC0900F58961 /* BirdFlock.m in Sources */,
 				7EB8B48316D9FC0900F58961 /* Blocker.m in Sources */,
 				7EB8B48416D9FC0900F58961 /* BreakableWall.m in Sources */,

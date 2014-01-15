@@ -13,8 +13,8 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX NO
-#define PLAY_BGM NO
+#define PLAY_SFX YES
+#define PLAY_BGM YES
 #define TESTLEVEL @"lab_cage_cannons"
 
 #define RESET_STATS NO
@@ -23,23 +23,11 @@
 #define DRAW_HITBOX NO
 
 /**
+ hide shop and salesdog when inventorywindow
  tap activate/desactiv clock
  add armor tune
- 
- separate unlock and upgrade item, different prices (also empty inventory pane + design)
- tabs in popup window:
-	-inventory
-	-upgrades
-	-settings
-	-extras
- tabs in shop:
-	-items
-	-dogs
-	-extras
-	-$$$
- unify challengelevelselectui with other ui chrome
- 
  fix level selection algo, getting repeating levels (especially in lab1)
+ implement inventory and upgrade in inventorywindow
  
  second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
  
@@ -51,7 +39,7 @@
  website
  
  some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
- make 17 more levels, possibly some rocket ones
+ make 10 more levels, possibly some rocket ones
  
  -art ask for:
 	cannon redesign
@@ -127,9 +115,9 @@ Stretch goals:
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {
