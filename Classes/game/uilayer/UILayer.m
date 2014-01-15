@@ -1,7 +1,7 @@
 #import "UILayer.h"
 #import "Player.h"
 #import "MenuCommon.h"
-#import "InventoryItemPane.h"
+#import "InventoryItemPane_Deprecated.h"
 #import "UserInventory.h"
 #import "IngameUI.h"
 #import "PauseUI.h"

@@ -1,5 +1,5 @@
 #import "cocos2d.h"
-#import "InventoryItemPane.h"
+#import "InventoryItemPane_Deprecated.h"
 #import "Challenge.h"
 @class UIEnemyAlert;
 @class UIWaterAlert;

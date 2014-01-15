@@ -12,6 +12,11 @@
 		4512283217705E7F0088D298 /* filler_genome.map in Resources */ = {isa = PBXBuildFile; fileRef = 4512283117705E7F0088D298 /* filler_genome.map */; };
 		45528CD71771A054002EF02E /* filler_manyopt.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD61771A054002EF02E /* filler_manyopt.map */; };
 		45528CD91771A9F3002EF02E /* filler_cuhrazyloop.map in Resources */ = {isa = PBXBuildFile; fileRef = 45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */; };
+		7E01956A188663D7000DCF6D /* InventoryTabPane_Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E019569188663D7000DCF6D /* InventoryTabPane_Inventory.m */; };
+		7E01956E18866491000DCF6D /* InventoryTabPane_Upgrades.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E01956D18866491000DCF6D /* InventoryTabPane_Upgrades.m */; };
+		7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E01957018866506000DCF6D /* InventoryTabPane_Settings.m */; };
+		7E0195741886654B000DCF6D /* InventoryTabPane_Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */; };
+		7E019578188665E7000DCF6D /* InventoryItemPane_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E019577188665E7000DCF6D /* InventoryItemPane_Deprecated.m */; };
 		7E02221717F93A200083815C /* lab2_docks.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02221417F93A200083815C /* lab2_docks.png */; };
 		7E02221817F93A200083815C /* lab2_windowwall.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02221517F93A200083815C /* lab2_windowwall.png */; };
 		7E02221B17F93AFC0083815C /* Lab2BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E02221A17F93AFC0083815C /* Lab2BGLayerSet.m */; };
@@ -59,7 +64,6 @@
 		7E10667F1772F755001B03EC /* swingvine_totalmix.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E10667E1772F755001B03EC /* swingvine_totalmix.map */; };
 		7E115ABA182EF73100C18CFD /* cannon_cannonsandrobots.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */; };
 		7E13D7F417B83A75003F723F /* NMenuTabShopPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */; };
-		7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17491D1706CB09004EA720 /* InventoryItemPane.m */; };
 		7E24A35A17ECD02F0085154C /* sfx_bone_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35617ECD02F0085154C /* sfx_bone_1.wav */; };
 		7E24A35B17ECD02F0085154C /* sfx_bone_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35717ECD02F0085154C /* sfx_bone_2.wav */; };
 		7E24A35C17ECD02F0085154C /* sfx_bone_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35817ECD02F0085154C /* sfx_bone_3.wav */; };
@@ -755,6 +759,16 @@
 		4512283117705E7F0088D298 /* filler_genome.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_genome.map; sourceTree = "<group>"; };
 		45528CD61771A054002EF02E /* filler_manyopt.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_manyopt.map; sourceTree = "<group>"; };
 		45528CD81771A9F3002EF02E /* filler_cuhrazyloop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_cuhrazyloop.map; sourceTree = "<group>"; };
+		7E019568188663D7000DCF6D /* InventoryTabPane_Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryTabPane_Inventory.h; path = inventory_tab_panes/InventoryTabPane_Inventory.h; sourceTree = "<group>"; };
+		7E019569188663D7000DCF6D /* InventoryTabPane_Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Inventory.m; path = inventory_tab_panes/InventoryTabPane_Inventory.m; sourceTree = "<group>"; };
+		7E01956C18866491000DCF6D /* InventoryTabPane_Upgrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryTabPane_Upgrades.h; path = inventory_tab_panes/InventoryTabPane_Upgrades.h; sourceTree = "<group>"; };
+		7E01956D18866491000DCF6D /* InventoryTabPane_Upgrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Upgrades.m; path = inventory_tab_panes/InventoryTabPane_Upgrades.m; sourceTree = "<group>"; };
+		7E01956F18866506000DCF6D /* InventoryTabPane_Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryTabPane_Settings.h; path = inventory_tab_panes/InventoryTabPane_Settings.h; sourceTree = "<group>"; };
+		7E01957018866506000DCF6D /* InventoryTabPane_Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Settings.m; path = inventory_tab_panes/InventoryTabPane_Settings.m; sourceTree = "<group>"; };
+		7E0195721886654B000DCF6D /* InventoryTabPane_Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryTabPane_Extras.h; path = inventory_tab_panes/InventoryTabPane_Extras.h; sourceTree = "<group>"; };
+		7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Extras.m; path = inventory_tab_panes/InventoryTabPane_Extras.m; sourceTree = "<group>"; };
+		7E019576188665E7000DCF6D /* InventoryItemPane_Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryItemPane_Deprecated.h; path = deprecated/InventoryItemPane_Deprecated.h; sourceTree = "<group>"; };
+		7E019577188665E7000DCF6D /* InventoryItemPane_Deprecated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryItemPane_Deprecated.m; path = deprecated/InventoryItemPane_Deprecated.m; sourceTree = "<group>"; };
 		7E02221417F93A200083815C /* lab2_docks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_docks.png; sourceTree = "<group>"; };
 		7E02221517F93A200083815C /* lab2_windowwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_windowwall.png; sourceTree = "<group>"; };
 		7E02221917F93AFC0083815C /* Lab2BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lab2BGLayerSet.h; sourceTree = "<group>"; };
@@ -826,8 +840,6 @@
 		7E13D7F217B83A75003F723F /* NMenuTabShopPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMenuTabShopPage.h; sourceTree = "<group>"; };
 		7E13D7F317B83A75003F723F /* NMenuTabShopPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMenuTabShopPage.m; sourceTree = "<group>"; };
 		7E1749191706C060004EA720 /* GameItemCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameItemCommon.h; path = user/GameItemCommon.h; sourceTree = "<group>"; };
-		7E17491C1706CB09004EA720 /* InventoryItemPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryItemPane.h; sourceTree = "<group>"; };
-		7E17491D1706CB09004EA720 /* InventoryItemPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryItemPane.m; sourceTree = "<group>"; };
 		7E24A35617ECD02F0085154C /* sfx_bone_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_1.wav; sourceTree = "<group>"; };
 		7E24A35717ECD02F0085154C /* sfx_bone_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_2.wav; sourceTree = "<group>"; };
 		7E24A35817ECD02F0085154C /* sfx_bone_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_3.wav; sourceTree = "<group>"; };
@@ -1732,6 +1744,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E01956B188663DB000DCF6D /* inventorytabpanes */ = {
+			isa = PBXGroup;
+			children = (
+				7E4507C017F3FD4100287716 /* InventoryLayerTab.h */,
+				7E4507C117F3FD4100287716 /* InventoryLayerTab.m */,
+				7E019568188663D7000DCF6D /* InventoryTabPane_Inventory.h */,
+				7E019569188663D7000DCF6D /* InventoryTabPane_Inventory.m */,
+				7E01956C18866491000DCF6D /* InventoryTabPane_Upgrades.h */,
+				7E01956D18866491000DCF6D /* InventoryTabPane_Upgrades.m */,
+				7E01956F18866506000DCF6D /* InventoryTabPane_Settings.h */,
+				7E01957018866506000DCF6D /* InventoryTabPane_Settings.m */,
+				7E0195721886654B000DCF6D /* InventoryTabPane_Extras.h */,
+				7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */,
+			);
+			name = inventorytabpanes;
+			sourceTree = "<group>";
+		};
+		7E019575188665C4000DCF6D /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				7E019576188665E7000DCF6D /* InventoryItemPane_Deprecated.h */,
+				7E019577188665E7000DCF6D /* InventoryItemPane_Deprecated.m */,
+			);
+			name = deprecated;
+			sourceTree = "<group>";
+		};
 		7E02221217F93A200083815C /* BG_lab2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1879,15 +1917,6 @@
 				7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */,
 			);
 			name = challenge_only;
-			sourceTree = "<group>";
-		};
-		7E4507BF17F3FD2100287716 /* inventorytab */ = {
-			isa = PBXGroup;
-			children = (
-				7E4507C017F3FD4100287716 /* InventoryLayerTab.h */,
-				7E4507C117F3FD4100287716 /* InventoryLayerTab.m */,
-			);
-			name = inventorytab;
 			sourceTree = "<group>";
 		};
 		7E4532A317E438E5005EE7CB /* capegame */ = {
@@ -2830,7 +2859,8 @@
 		7EB8B45316D9FC0900F58961 /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				7E4507BF17F3FD2100287716 /* inventorytab */,
+				7E019575188665C4000DCF6D /* deprecated */,
+				7E01956B188663DB000DCF6D /* inventorytabpanes */,
 				7E45DA67172DE6E9009C43DD /* shop */,
 				7E0A788216ED6BBC0026C418 /* details */,
 				7E0A787816ED57430026C418 /* nmenu_pages */,
@@ -2842,8 +2872,6 @@
 				7E0A787D16ED5DEC0026C418 /* MenuCommon.m */,
 				7EC460EA1705822F00656A48 /* MainMenuInventoryLayer.h */,
 				7EC460EB1705823100656A48 /* MainMenuInventoryLayer.m */,
-				7E17491C1706CB09004EA720 /* InventoryItemPane.h */,
-				7E17491D1706CB09004EA720 /* InventoryItemPane.m */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -4141,6 +4169,7 @@
 				7EB8B49516D9FC0900F58961 /* GameObject.m in Sources */,
 				7EB8B49616D9FC0900F58961 /* GroundDetail.m in Sources */,
 				7EB8B49716D9FC0900F58961 /* IslandFill.m in Sources */,
+				7E01956E18866491000DCF6D /* InventoryTabPane_Upgrades.m in Sources */,
 				7EB8B49816D9FC0900F58961 /* JumpPad.m in Sources */,
 				7EB8B49916D9FC0900F58961 /* LabEntrance.m in Sources */,
 				7EB8B49A16D9FC0900F58961 /* LabExit.m in Sources */,
@@ -4202,6 +4231,7 @@
 				7EB8B4D316D9FC0900F58961 /* DataStore.m in Sources */,
 				7EB8B4D416D9FC0900F58961 /* FileCache.m in Sources */,
 				7EB8B4D516D9FC0900F58961 /* GEventDispatcher.m in Sources */,
+				7E0195741886654B000DCF6D /* InventoryTabPane_Extras.m in Sources */,
 				7EB8B4D616D9FC0900F58961 /* PolyLib.m in Sources */,
 				7EB8B4D716D9FC0900F58961 /* Resource.m in Sources */,
 				7EB8B4D816D9FC0900F58961 /* Vec3D.m in Sources */,
@@ -4224,7 +4254,6 @@
 				7EC460E717054D9700656A48 /* AutoLevelState.m in Sources */,
 				7EC460EC1705823200656A48 /* MainMenuInventoryLayer.m in Sources */,
 				7ECFA6A21706A23A00496002 /* UserInventory.m in Sources */,
-				7E17491E1706CB09004EA720 /* InventoryItemPane.m in Sources */,
 				7EFD034D1707B945002492D6 /* UsedItem.m in Sources */,
 				7EC4DF58170AA715002E0110 /* MagnetItemEffect.m in Sources */,
 				7E0F9FA5170D350C00F2D342 /* ArmorBreakEffect.m in Sources */,
@@ -4245,6 +4274,7 @@
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,
 				7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */,
 				7ECADE0F17646AF00032A1E6 /* OALAction.m in Sources */,
+				7E019578188665E7000DCF6D /* InventoryItemPane_Deprecated.m in Sources */,
 				7E0C6369184C85B300D3C4B9 /* IntroAnimFrame3.m in Sources */,
 				7ECADE1017646AF00032A1E6 /* OALActionManager.m in Sources */,
 				7ECADE1117646AF00032A1E6 /* OALAudioActions.m in Sources */,
@@ -4260,6 +4290,7 @@
 				7E0C6360184C674A00D3C4B9 /* IntroAnimFrame1.m in Sources */,
 				7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */,
 				7ECADE1B17646AF00032A1E6 /* ALDevice.m in Sources */,
+				7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
 				7ECADE1D17646AF00032A1E6 /* ALSoundSourcePool.m in Sources */,
 				7ECADE1E17646AF00032A1E6 /* ALSource.m in Sources */,
@@ -4304,6 +4335,7 @@
 				7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */,
 				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
 				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
+				7E01956A188663D7000DCF6D /* InventoryTabPane_Inventory.m in Sources */,
 				7E99416B17F1758300B363F3 /* WebRequest.m in Sources */,
 				7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */,
 				7E02221B17F93AFC0083815C /* Lab2BGLayerSet.m in Sources */,

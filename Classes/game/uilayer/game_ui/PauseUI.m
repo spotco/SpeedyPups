@@ -7,8 +7,6 @@
 #import "UICommon.h"
 #import "UILayer.h"
 
-#import "InventoryItemPane.h"
-
 @implementation PauseUI
 
 +(PauseUI*)cons {

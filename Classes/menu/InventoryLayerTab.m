@@ -17,15 +17,17 @@
 									  str:text]];
 	
 	tar_scale_y = 0.97;
+	
+	tabcover = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_tabcover"]];
+	[tabcover setPosition:[Common pct_of_obj:self pctx:0.5 pcty:0]];
+	[self addChild:tabcover];
+	
 	return self;
 }
 
 -(void)set_selected:(BOOL)t {
-	if (t) {
-		tar_scale_y = 1.1;
-	} else {
-		tar_scale_y = 0.95;
-	}
+	tar_scale_y = t ? 1.1 : 0.95;
+	[tabcover setVisible:t];
 }
 
 -(void)update {
@@ -61,18 +63,14 @@
 			   tex:[Resource get_tex:_texkey]
 		   texrect:CGRectZero
 				cb:_click];
-	
-	[self update];
+	[self setTextureRect:[poll.target performSelector:poll.selector]?yes:no];
 	
 	return self;
 }
 
--(void)update {
-	if ([poll.target performSelector:poll.selector]) {
-		[self setTextureRect:yes];
-	} else {
-		[self setTextureRect:no];
-	}
+-(void)on_touch {
+	[super on_touch];
+	[self setTextureRect:[poll.target performSelector:poll.selector]?yes:no];
 }
 
 @end

@@ -1,4 +1,4 @@
-#import "InventoryItemPane.h"
+#import "InventoryItemPane_Deprecated.h"
 #import "Resource.h"
 #import "FileCache.h"
 #import "UserInventory.h"
