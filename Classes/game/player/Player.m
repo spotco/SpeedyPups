@@ -336,6 +336,7 @@ static NSDictionary* ID_TO_POWERDESC;
         }
     }
     if (armored_ct) {
+		[AudioManager play_invincible_for:2];
         armored_ct--;
         [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)armored_ct)/[GameItemCommon get_uselength_for:Item_Shield g:game_engine_layer] f2:0] add_i1:Item_Shield i2:0]];
         if (armored_ct == 0) {

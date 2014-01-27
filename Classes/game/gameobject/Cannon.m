@@ -129,11 +129,11 @@
 			if (head_out_ct < 0) head_out_ct = 0;
 			float pct = 1-head_out_ct/10;
 			
-			CGPoint tarp = [self get_nozzel_position];
+			CGPoint tarp = [self get_nozzel_position:player];
 			CGPoint neup = ccp(player.position.x+(tarp.x-player.position.x)*pct,player.position.y+(tarp.y-player.position.y)*pct);
 			[player setPosition:neup];
 		} else {
-			[player setPosition:[self get_nozzel_position]];
+			[player setPosition:[self get_nozzel_position:player]];
 		}
 		player_head_out = [self cannon_show_head:player];
 		
@@ -215,7 +215,7 @@
 }
 
 -(BOOL)cannon_show_head:(Player*)p {
-	return player_head_out || CGPointDist([self get_nozzel_position], p.position) < 1;
+	return player_head_out || CGPointDist([self get_nozzel_position:p], p.position) < 1;
 }
 
 -(void)detach_player {
@@ -226,8 +226,14 @@
 	deactivate_ct = time;
 }
 
--(CGPoint)get_nozzel_position {
+-(CGPoint)get_nozzel_position:(Player*)p {
 	Vec3D nozzel = [VecLib scale:[VecLib cons_x:dir.x y:dir.y z:0] by:91];
+	if (p.is_armored) {
+		Vec3D down = [VecLib scale:[VecLib normalize:[VecLib cross:nozzel with:[VecLib Z_VEC]]] by:20];
+		nozzel.x += down.x;
+		nozzel.y += down.y;
+		
+	}
 	return CGPointAdd(position_, ccp(nozzel.x,nozzel.y));
 }
 

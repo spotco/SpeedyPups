@@ -35,7 +35,7 @@
 
 -(BOOL)cannon_show_head:(Player*)p;
 -(void)detach_player;
--(CGPoint)get_nozzel_position;
+-(CGPoint)get_nozzel_position:(Player*)p;
 -(void)deactivate_for:(int)time;
 
 @end

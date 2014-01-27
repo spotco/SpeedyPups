@@ -32,7 +32,7 @@ typedef enum {
 #define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
 #define BGMUSIC_GAMELOOP3_NIGHT @"gameloop3_night.aiff"
 
-#define SFX_INVINCIBLE @"invincible.aiff"
+#define BGMUSIC_INVINCIBLE @"invincible.aiff"
 
 #define SFX_BONE @"sfx_bone_1.wav"
 #define SFX_BONE_2 @"sfx_bone_2.wav"
@@ -119,5 +119,7 @@ typedef enum {
 +(void)todos_remove_all;
 +(void)sto_prev_group;
 +(void)play_prev_group;
+
++(void)play_invincible_for:(int)t;
 
 @end

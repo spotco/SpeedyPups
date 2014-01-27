@@ -214,7 +214,7 @@ static int ct  = 0;
 		itemlenbar_target_pos = ITEM_LENBAR_DEFAULT_POSITION;
 		
 		if (g.player.is_clockeffect && ![GameControlImplementation get_clockbutton_hold]) {
-			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Hold!"];
+			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Slow!"];
 			[readynotif setVisible:YES];
 			[itemlenbaricon setScale:1];
 			
@@ -224,7 +224,12 @@ static int ct  = 0;
 			} else {
 				[itemlenbaricon setScale:1];
 			}
-			[readynotif setVisible:NO];
+			if (g.player.is_clockeffect) {
+				[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Fast!"];
+				[readynotif setVisible:YES];
+			} else {
+				[readynotif setVisible:NO];
+			}
 			
 		}
 		

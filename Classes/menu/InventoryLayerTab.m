@@ -34,6 +34,12 @@
 	[self setScaleY:(tar_scale_y-self.scaleY)/3.0+self.scaleY];
 }
 
+-(CGRect)boundingBox {
+	CGRect rtv = [super boundingBox];
+	rtv.size.height+=30;
+	return rtv;
+}
+
 @end
 
 

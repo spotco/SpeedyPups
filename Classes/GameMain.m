@@ -15,7 +15,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"lab_cage_cannons"
+#define TESTLEVEL @"cannon_test"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,17 +23,13 @@
 #define DRAW_HITBOX NO
 
 /**
- hide shop and salesdog when inventorywindow
- tap activate/desactiv clock
- add armor tune
- fix level selection algo, getting repeating levels (especially in lab1)
  implement inventory and upgrade in inventorywindow
+ fix level selection algo, getting repeating levels (especially in lab1)
  
  second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
  
  sfx fireworks
  sfx tutorialdog float in/out
- sfx powerup end
  sfx cape game end applause
 
  website
@@ -105,17 +101,19 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
 	*/
 	
+	[UserInventory set_equipped_gameitem:Item_Shield];
+	
 	//[UserInventory add_bones:100000];
 	 
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }

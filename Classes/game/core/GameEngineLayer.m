@@ -559,9 +559,9 @@
         
     } else if (e.type == GEventType_PLAYER_DIE) {
         [stats increment:GEStat_DEATHS];
-        /*if (![player has_heart]) {
-            lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
-        }*/
+		
+        lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
+		
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
             [self ask_continue];
         } else {
@@ -758,6 +758,7 @@
     [particles removeObjectsInArray:toremove];
 }
 
+static bool _began_hold_clockbutton = NO;
 -(void) ccTouchesBegan:(NSSet*)pTouches withEvent:(UIEvent*)pEvent {
     if (current_mode != GameEngineLayerMode_GAMEPLAY) return;
 	
@@ -770,11 +771,15 @@
 		touch_corner.y += 40;
 		touch_corner.x -= 20;
 		if (yflipped_touch.x > touch_corner.x && yflipped_touch.y < touch_corner.y) {
-			[GameControlImplementation set_clockbutton_hold:YES];
+			_began_hold_clockbutton = YES;
+		} else {
+			_began_hold_clockbutton = NO;
 		}
+	} else {
+		_began_hold_clockbutton = NO;
 	}
 	
-	if (![GameControlImplementation get_clockbutton_hold]) [GameControlImplementation touch_begin:touch];
+	if (!_began_hold_clockbutton) [GameControlImplementation touch_begin:touch];
 	
 }
 -(void) ccTouchesMoved:(NSSet *)pTouches withEvent:(UIEvent *)event {
@@ -783,7 +788,7 @@
     UITouch *t = [[pTouches allObjects] objectAtIndex:0];
 	CGPoint touch = [t locationInView:[t view]];
 	
-	if (![GameControlImplementation get_clockbutton_hold]) [GameControlImplementation touch_move:touch];
+	if (!_began_hold_clockbutton) [GameControlImplementation touch_move:touch];
 }
 -(void) ccTouchesEnded:(NSSet*)pTouches withEvent:(UIEvent*)event {
     if (current_mode != GameEngineLayerMode_GAMEPLAY) return;
@@ -791,9 +796,12 @@
     UITouch *t = [[pTouches allObjects] objectAtIndex:0];
 	CGPoint touch = [t locationInView:[t view]];
 	
-	[GameControlImplementation set_clockbutton_hold:NO];
+	if (!_began_hold_clockbutton) [GameControlImplementation touch_end:touch];
 	
-    [GameControlImplementation touch_end:touch];
+	if (_began_hold_clockbutton) [GameControlImplementation set_clockbutton_hold:![GameControlImplementation get_clockbutton_hold]];
+	_began_hold_clockbutton = NO;
+	
+    
 }
 
 -(void)draw {

@@ -9,6 +9,7 @@ static ALChannelSource* channel;
 
 static OALAudioTrack *bgm_1;
 static OALAudioTrack *bgm_2;
+static OALAudioTrack *bgm_invincible;
 
 static NSMutableDictionary *sfx_buffers;
 static NSDictionary *bgm_groups;
@@ -121,12 +122,14 @@ static BOOL playbgm = YES;
 	
 	bgm_1 = [OALAudioTrack track];
 	bgm_2 = [OALAudioTrack track];
+	bgm_invincible = [OALAudioTrack track];
 	
 	for (NSNumber *key in [bgm_groups keyEnumerator]) {
 		NSArray *val = bgm_groups[key];
 		if (val.count >= 1) [bgm_1 preloadFile:val[0]];
 		if (val.count >= 2) [bgm_2 preloadFile:val[1]];
 	}
+	[bgm_invincible preloadFile:BGMUSIC_INVINCIBLE];
 }
 
 +(void)schedule_update {
@@ -247,6 +250,21 @@ static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
 	sto_bgm2_gain = [bgm_2 gain];
 }
 
+static int _play_invincible = 0;
+static float _invincible_start_bgm1_gain = 0.0, _invincible_start_bgm2_gain;
++(void)play_invincible_for:(int)t {
+	if (!playbgm) return;
+	int prev_play_invincible = _play_invincible;
+	_play_invincible = t;
+	_invincible_start_bgm1_gain = [bgm_1 gain];
+	_invincible_start_bgm2_gain = [bgm_2 gain];
+	if (prev_play_invincible <= 0) {
+		[bgm_1 setGain:0];
+		[bgm_2 setGain:0];
+		[bgm_invincible playFile:BGMUSIC_INVINCIBLE loops:-1];
+	}
+}
+
 +(void)update {
 	if (todos_remove_all) {
 		[todos removeAllObjects];
@@ -270,6 +288,19 @@ static float sto_bgm1_gain = 0, sto_bgm2_gain = 0;
 		} else {
 			[bgm_1 setGain:sto_bgm1_gain];
 			[bgm_2 setGain:sto_bgm2_gain];
+		}
+	}
+	
+	if (_play_invincible > 0) {
+		_play_invincible--;
+		if (_play_invincible <= 0) {
+			[bgm_invincible stop];
+			[bgm_1 setGain:_invincible_start_bgm1_gain];
+			[bgm_2 setGain:_invincible_start_bgm2_gain];
+
+		} else {
+			return;
+			
 		}
 	}
 	

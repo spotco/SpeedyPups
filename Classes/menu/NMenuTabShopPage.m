@@ -15,14 +15,17 @@
 	return [NMenuTabShopPage node];
 }
 
+#define t_SHOPKEEPER 0
+#define t_SHOPSIGN 1
+#define t_TOTALBONESPANE 2
 -(id)init {
 	self = [super init];
 	
 	[GEventDispatcher add_listener:self];
 	scroll_items = [NSMutableArray array];
 	current_tab = ShopTab_UPGRADE;
-	[self addChild:[Shopkeeper cons_pt:[Common screen_pctwid:0.1 pcthei:0.45]]];
-	[self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopsign" pos:[Common screen_pctwid:0.1 pcthei:0.88]]];
+	[self addChild:[Shopkeeper cons_pt:[Common screen_pctwid:0.1 pcthei:0.45]] z:0 tag:t_SHOPKEEPER];
+	[self addChild:[MenuCommon menu_item:TEX_NMENU_ITEMS id:@"nmenu_shopsign" pos:[Common screen_pctwid:0.1 pcthei:0.88]] z:0 tag:t_SHOPSIGN];
 	[self addChild:[MenuCommon cons_common_nav_menu]];
 	
 	
@@ -136,7 +139,7 @@
 									str:@"000000"];
 	[total_disp setString:strf("%d",[UserInventory get_current_bones])];
 	[total_bones_pane addChild:total_disp];
-	[self addChild:total_bones_pane];
+	[self addChild:total_bones_pane z:0 tag:t_TOTALBONESPANE];
 	
 	particles = [NSMutableArray array];
 	particleholder = [CCSprite node];
@@ -256,9 +259,15 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_INVENTORY) {
         [tabbedpane setVisible:NO];
+		[[self getChildByTag:t_SHOPKEEPER] setVisible:NO];
+		[[self getChildByTag:t_SHOPSIGN] setVisible:NO];
+		[[self getChildByTag:t_TOTALBONESPANE] setVisible:NO];
         
     } else if (e.type == GEVentType_MENU_CLOSE_INVENTORY) {
         [tabbedpane setVisible:YES];
+		[[self getChildByTag:t_SHOPKEEPER] setVisible:YES];
+		[[self getChildByTag:t_SHOPSIGN] setVisible:YES];
+		[[self getChildByTag:t_TOTALBONESPANE] setVisible:YES];
         
     } else if (e.type == GEventType_MENU_TICK && self.visible) {
 		[self update];

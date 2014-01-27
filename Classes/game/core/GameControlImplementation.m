@@ -108,7 +108,7 @@ float nodash_time = 0;
 		dir = [VecLib scale:dir by:25];
 		player.vx = dir.x;
 		player.vy = dir.y;
-		[LauncherRobot explosion:g at:[player.current_cannon get_nozzel_position]];
+		[LauncherRobot explosion:g at:[player.current_cannon get_nozzel_position:player]];
 		[player.current_cannon detach_player];
 		[player.current_cannon deactivate_for:20];
 		player.current_cannon = NULL;
