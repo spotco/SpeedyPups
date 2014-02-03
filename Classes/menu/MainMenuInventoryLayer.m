@@ -125,24 +125,28 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	[self unselect_all];
 	[tab_inventory set_selected:YES];
 	[tabpane_inventory set_pane_open:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)tab_settings {
 	[self unselect_all];
 	[tab_settings set_selected:YES];
 	[tabpane_settings set_pane_open:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)tab_upgrades {
 	[self unselect_all];
 	[tab_upgrades set_selected:YES];
 	[tabpane_upgrades set_pane_open:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)tab_extras {
 	[self unselect_all];
 	[tab_extras set_selected:YES];
 	[tabpane_extras set_pane_open:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
 }
 
 -(void)update {
@@ -165,7 +169,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
         [self open];
 		
     } else if (e.type == GeventType_MENU_UPDATE_INVENTORY) {
-		//[self update_invpane];
+		[(InventoryTabPane_Inventory*)tabpane_inventory update_available_items];
 		
 	} else if (e.type == GEventType_MENU_TICK) {
 		[self update];

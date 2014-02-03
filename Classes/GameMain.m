@@ -14,8 +14,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"cannon_test"
+#define PLAY_BGM NO
+#define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,30 +23,35 @@
 #define DRAW_HITBOX NO
 
 /**
- implement inventory and upgrade in inventorywindow
+ implement upgrade in inventorywindow
+ integrate lab3 assets
  fix level selection algo, getting repeating levels (especially in lab1)
  
- second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
+ make lab 1 levels easier
+ make dogrocket level easier
+ 
+ add second currency and separate upgrade/unlock for items
  
  sfx fireworks
  sfx tutorialdog float in/out
  sfx cape game end applause
-
- website
  
  some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
- make 10 more levels, possibly some rocket ones
  
  -art ask for:
-	cannon redesign
 	freerun progress popup redesign
 	freerun start menu redesign + button
-	lab 3 + boss 3
 	speedypups pro button + window
+	bonus currency
+ 
+	website
+	video
  **/
 
 /**
 Stretch goals:
+ bug armor -> rocket -> end -> swingvine, still in rocket form
+ second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
  like the game on facebook, reward character etc
  random super reward level
  
@@ -109,13 +114,13 @@ Stretch goals:
 	[self run_scene:loader];
 	
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

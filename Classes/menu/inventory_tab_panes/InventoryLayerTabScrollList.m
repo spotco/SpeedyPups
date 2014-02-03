@@ -57,7 +57,7 @@
 	return self;
 }
 
--(void)add_tab:(CCTexture2D *)tex rect:(CGRect)rect main_text:(NSString *)main_text sub_text:(NSString *)sub_text callback:(CallBack *)cb {
+-(GenericListTouchButton*)add_tab:(CCTexture2D *)tex rect:(CGRect)rect main_text:(NSString *)main_text sub_text:(NSString *)sub_text callback:(CallBack *)cb {
 	CGRect bbox = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"];
 	GenericListTouchButton *tmp = [[GenericListTouchButton cons_pt:ccp(clipper_anchor.x,clipper_anchor.y - bbox.size.height * mult)
 														   texrect:[TexRect cons_tex:tex rect:rect]
@@ -73,6 +73,8 @@
 	[touches addObject:tmp];
 	[clipperholder addChild:tmp];
 	mult++;
+	
+	return tmp;
 }
 
 -(void)sellist:(id)obj {

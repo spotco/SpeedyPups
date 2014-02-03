@@ -340,6 +340,8 @@
 		[AudioManager playsfx:SFX_BUY];
 		[AudioManager playsfx:SFX_BARK_MID];
 		
+		[GEventDispatcher push_event:[GEvent cons_type:GeventType_MENU_UPDATE_INVENTORY]];
+		
 	} else {
 		NSLog(@"buying failed");
 	}

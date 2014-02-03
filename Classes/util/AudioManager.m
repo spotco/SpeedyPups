@@ -194,9 +194,13 @@ static float bgm_2_gain_tar;
 	
 	curgroup = tar;
 	bgm_1_gain_tar = 1;
-	[bgm_1 setGain:bgm_1_gain_tar];
+	
 	bgm_2_gain_tar = 0;
-	[bgm_2 setGain:bgm_2_gain_tar];
+	
+	if (_play_invincible <= 0) {
+		[bgm_1 setGain:bgm_1_gain_tar];
+		[bgm_2 setGain:bgm_2_gain_tar];
+	}
 	
 	NSArray *val = bgm_groups[enumkey(tar)];
 	if (val.count >= 1) [bgm_1 playFile:val[0] loops:-1];

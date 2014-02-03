@@ -1,5 +1,6 @@
 #import "CCSprite.h"
 @class CallBack;
+@class GenericListTouchButton;
 
 @interface InventoryLayerTabScrollList : NSObject {
 	CCSprite *clipperholder;
@@ -19,7 +20,7 @@
 }
 
 +(InventoryLayerTabScrollList*)cons_parent:(CCSprite*)parent add_to:(CCSprite*)add_to;
--(void)add_tab:(CCTexture2D*)tex rect:(CGRect)rect main_text:(NSString*)main_text sub_text:(NSString*)sub_text callback:(CallBack*)cb;
+-(GenericListTouchButton*)add_tab:(CCTexture2D*)tex rect:(CGRect)rect main_text:(NSString*)main_text sub_text:(NSString*)sub_text callback:(CallBack*)cb;
 
 -(void)update;
 -(void)touch_begin:(CGPoint)pt;

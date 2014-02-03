@@ -40,6 +40,10 @@ static GameItem current_item = Item_NOITEM;
 	[DataStore set_key:STO_EQUIPPED int_value:(int)g];
 }
 
++(GameItem)get_equipped_gameitem {
+	return (GameItem)[DataStore get_int_for_key:STO_EQUIPPED];
+}
+
 +(void)reset_to_equipped_gameitem {
 	[self set_current_gameitem:[DataStore get_int_for_key:STO_EQUIPPED]];
 }

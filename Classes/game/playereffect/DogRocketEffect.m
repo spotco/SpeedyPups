@@ -23,6 +23,8 @@
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
 	self.player = p;
 	
+	[AudioManager play_invincible_for:2];
+	
 	Vec3D vdir_vec = [VecLib cons_x:30 y:p.vy z:0];
 	if (p.current_island == NULL) [p setRotation:[VecLib get_rotation:vdir_vec offset:0]+180];
 	

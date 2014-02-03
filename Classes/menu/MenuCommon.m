@@ -62,6 +62,8 @@
 }
 
 -(void)touch_begin:(CGPoint)pt {
+	if (!self.visible) return;
+	
 	pt = [self convertToNodeSpace:pt];
 	CGRect hitrect = [self hit_rect_local];
 	if (CGRectContainsPoint(hitrect, pt)) {
@@ -72,6 +74,8 @@
 	}
 }
 -(void)touch_move:(CGPoint)pt{
+	if (!self.visible) return;
+	
 	pt = [self convertToNodeSpace:pt];
 	CGRect hitrect = [self hit_rect_local];
 	if (!CGRectContainsPoint(hitrect, pt)) {
@@ -79,6 +83,8 @@
 	}
 }
 -(void)touch_end:(CGPoint)pt{
+	if (!self.visible) return;
+	
 	self.pressed  = NO;
 }
 
@@ -133,6 +139,8 @@
 }
 
 -(void)touch_end:(CGPoint)pt {
+	if (!self.visible) return;
+	
 	pt = [self convertToNodeSpace:pt];
 	CGRect hitrect = [self hit_rect_local];
 	if (started_on && CGRectContainsPoint(hitrect, pt)) {
