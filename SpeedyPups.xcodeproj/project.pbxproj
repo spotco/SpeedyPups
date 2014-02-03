@@ -717,6 +717,12 @@
 		7EF02D2117857D7100C2DD50 /* lab_muhfiller.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */; };
 		7EF06C0817476E3F009C6102 /* swingvine_hillvine.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF06C0717476E3F009C6102 /* swingvine_hillvine.map */; };
 		7EF06C0A17477C4A009C6102 /* swingvine_awesome.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EF06C0917477C4A009C6102 /* swingvine_awesome.map */; };
+		7EF2C11E189F93FE005559F4 /* cloudlevel_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF2C11D189F93FE005559F4 /* cloudlevel_bg.png */; };
+		7EF2C120189F94E2005559F4 /* cloudlevel_bgclouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF2C11F189F94E2005559F4 /* cloudlevel_bgclouds.png */; };
+		7EF2C125189F9A59005559F4 /* lab3_bgback.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF2C122189F9A59005559F4 /* lab3_bgback.png */; };
+		7EF2C126189F9A59005559F4 /* lab3_bgfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF2C123189F9A59005559F4 /* lab3_bgfront.png */; };
+		7EF2C127189F9A59005559F4 /* lab3_bgwall.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF2C124189F9A59005559F4 /* lab3_bgwall.png */; };
+		7EF2C12A189F9AD4005559F4 /* Lab3BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF2C129189F9AD4005559F4 /* Lab3BGLayerSet.m */; };
 		7EF8A66B16D9BA5C009A1FC5 /* CDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */; };
 		7EF8A66C16D9BA5C009A1FC5 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF8A65D16D9BA5C009A1FC5 /* CDataScanner.m */; };
 		7EF8A66D16D9BA5C009A1FC5 /* CDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF8A65F16D9BA5C009A1FC5 /* CDataScanner_Extensions.h */; };
@@ -1677,6 +1683,13 @@
 		7EF02D2017857D7100C2DD50 /* lab_muhfiller.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_muhfiller.map; sourceTree = "<group>"; };
 		7EF06C0717476E3F009C6102 /* swingvine_hillvine.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_hillvine.map; sourceTree = "<group>"; };
 		7EF06C0917477C4A009C6102 /* swingvine_awesome.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_awesome.map; sourceTree = "<group>"; };
+		7EF2C11D189F93FE005559F4 /* cloudlevel_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_bg.png; sourceTree = "<group>"; };
+		7EF2C11F189F94E2005559F4 /* cloudlevel_bgclouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_bgclouds.png; sourceTree = "<group>"; };
+		7EF2C122189F9A59005559F4 /* lab3_bgback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab3_bgback.png; sourceTree = "<group>"; };
+		7EF2C123189F9A59005559F4 /* lab3_bgfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab3_bgfront.png; sourceTree = "<group>"; };
+		7EF2C124189F9A59005559F4 /* lab3_bgwall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab3_bgwall.png; sourceTree = "<group>"; };
+		7EF2C128189F9AD4005559F4 /* Lab3BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lab3BGLayerSet.h; sourceTree = "<group>"; };
+		7EF2C129189F9AD4005559F4 /* Lab3BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lab3BGLayerSet.m; sourceTree = "<group>"; };
 		7EF8A65C16D9BA5C009A1FC5 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		7EF8A65D16D9BA5C009A1FC5 /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		7EF8A65F16D9BA5C009A1FC5 /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
@@ -1941,7 +1954,9 @@
 		7E4532A717E4417E005EE7CB /* capegame */ = {
 			isa = PBXGroup;
 			children = (
+				7EF2C11F189F94E2005559F4 /* cloudlevel_bgclouds.png */,
 				7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */,
+				7EF2C11D189F93FE005559F4 /* cloudlevel_bg.png */,
 			);
 			path = capegame;
 			sourceTree = "<group>";
@@ -2087,6 +2102,8 @@
 				7E908F8117EFEC69004DB956 /* Lab1BGLayerSet.m */,
 				7E02221917F93AFC0083815C /* Lab2BGLayerSet.h */,
 				7E02221A17F93AFC0083815C /* Lab2BGLayerSet.m */,
+				7EF2C128189F9AD4005559F4 /* Lab3BGLayerSet.h */,
+				7EF2C129189F9AD4005559F4 /* Lab3BGLayerSet.m */,
 			);
 			name = bglayerset;
 			sourceTree = "<group>";
@@ -2258,6 +2275,7 @@
 		7EB8B1E116D9F8E600F58961 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				7EF2C121189F9A59005559F4 /* BG_lab3 */,
 				7E0D74E3182CE6CD002F5B9A /* BG3 */,
 				7E02221217F93A200083815C /* BG_lab2 */,
 				7EBEA3A717EEB078009C9930 /* BG2 */,
@@ -3536,6 +3554,16 @@
 			name = loading;
 			sourceTree = "<group>";
 		};
+		7EF2C121189F9A59005559F4 /* BG_lab3 */ = {
+			isa = PBXGroup;
+			children = (
+				7EF2C122189F9A59005559F4 /* lab3_bgback.png */,
+				7EF2C123189F9A59005559F4 /* lab3_bgfront.png */,
+				7EF2C124189F9A59005559F4 /* lab3_bgwall.png */,
+			);
+			path = BG_lab3;
+			sourceTree = "<group>";
+		};
 		7EF8A65B16D9BA5C009A1FC5 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3820,6 +3848,7 @@
 				7EB8B2E916D9F8E700F58961 /* breakablewall_base.png in Resources */,
 				7EB8B2EA16D9F8E700F58961 /* breakablewall_body.png in Resources */,
 				7EB8B2F016D9F8E700F58961 /* lab_bg.png in Resources */,
+				7EF2C120189F94E2005559F4 /* cloudlevel_bgclouds.png in Resources */,
 				7EB8B2F116D9F8E700F58961 /* back_labentrance_pillar.png in Resources */,
 				7EB8B2F216D9F8E700F58961 /* ceil_labentrance.png in Resources */,
 				7E60A69718128FD900CC7C07 /* subboss.plist in Resources */,
@@ -3846,6 +3875,7 @@
 				7EB8B30616D9F8E700F58961 /* dog5ss.png in Resources */,
 				7EB8B30716D9F8E700F58961 /* dog6ss.plist in Resources */,
 				7EB8B30816D9F8E700F58961 /* dog6ss.png in Resources */,
+				7EF2C125189F9A59005559F4 /* lab3_bgback.png in Resources */,
 				7EB8B30916D9F8E700F58961 /* dog7ss.plist in Resources */,
 				7EB8B30A16D9F8E700F58961 /* dog7ss.png in Resources */,
 				7EB8B30B16D9F8E700F58961 /* dog_shadow.png in Resources */,
@@ -3902,6 +3932,7 @@
 				7EB8B35716D9F8E700F58961 /* bird_ss.png in Resources */,
 				7EB8B35816D9F8E700F58961 /* speedup_ss.plist in Resources */,
 				7EB8B35916D9F8E700F58961 /* speedup_ss.png in Resources */,
+				7EF2C127189F9A59005559F4 /* lab3_bgwall.png in Resources */,
 				7E071F341802A24F0003F8AA /* loadinganim.png in Resources */,
 				7EB8B35D16D9F8E700F58961 /* checkpoint1.png in Resources */,
 				7EB8B35E16D9F8E700F58961 /* checkpoint2.png in Resources */,
@@ -3961,6 +3992,7 @@
 				7ED3CE101701883B00ED9873 /* loadingicon.png in Resources */,
 				7E29D8321833805800A92C2A /* BG3_island_top_edge.png in Resources */,
 				7EB97767170261FD00459DEF /* jumppad.plist in Resources */,
+				7EF2C11E189F93FE005559F4 /* cloudlevel_bg.png in Resources */,
 				7EB97768170261FD00459DEF /* jumppad.png in Resources */,
 				7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */,
 				7EB9776C170273F200459DEF /* nmenu_levelselectobj.png in Resources */,
@@ -3994,6 +4026,7 @@
 				7EA3B99F1744D18400139608 /* lab_bg_layer.png in Resources */,
 				7E511BE7174623E200B41826 /* easy_curvybreak.map in Resources */,
 				7E511BE917462B0F00B41826 /* easy_breakdetail.map in Resources */,
+				7EF2C126189F9A59005559F4 /* lab3_bgfront.png in Resources */,
 				7EF06C0817476E3F009C6102 /* swingvine_hillvine.map in Resources */,
 				7EF06C0A17477C4A009C6102 /* swingvine_awesome.map in Resources */,
 				7EBC124C1755DD1600645077 /* swingvine_morecave.map in Resources */,
@@ -4233,6 +4266,7 @@
 				7EB8B4CA16D9FC0900F58961 /* MainMenuLayer.m in Sources */,
 				7EB8B4D016D9FC0900F58961 /* AudioManager.m in Sources */,
 				7EB8B4D116D9FC0900F58961 /* BatchDraw.m in Sources */,
+				7EF2C12A189F9AD4005559F4 /* Lab3BGLayerSet.m in Sources */,
 				7EB8B4D216D9FC0900F58961 /* Common.m in Sources */,
 				7EB8B4D316D9FC0900F58961 /* DataStore.m in Sources */,
 				7EB8B4D416D9FC0900F58961 /* FileCache.m in Sources */,

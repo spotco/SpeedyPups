@@ -34,7 +34,8 @@
     [self addChild:starsbg z:ORD_STARS];
     [starsbg setOpacity:0];
     
-    clouds = [CloudGenerator cons];
+    clouds = [[[CloudGenerator cons_texkey:TEX_BG2_CLOUDS_SS scaley:0.003] set_speedmult:0.3] set_generate_speed:140];
+	//[CloudGenerator cons];
     [self addChild:clouds z:ORD_CLOUDS];
     
     hills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.02];

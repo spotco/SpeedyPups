@@ -35,8 +35,9 @@
 	BGLayerSet *bglayerset_world2;
 	BGLayerSet *bglayerset_lab2;
 	BGLayerSet *bglayerset_world3;
+	BGLayerSet *bglayerset_lab3;
 	
-#define ALL_SETS @[bglayerset_world1,bglayerset_world2,bglayerset_world3,bglayerset_lab1,bglayerset_lab2]
+#define ALL_SETS @[bglayerset_world1,bglayerset_world2,bglayerset_world3,bglayerset_lab1,bglayerset_lab2,bglayerset_lab3]
 	
 	BGLayerSet *current_set;
     

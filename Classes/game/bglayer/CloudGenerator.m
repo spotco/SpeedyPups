@@ -78,7 +78,7 @@
 -(void)cons {
     clouds = [[NSMutableArray alloc] init];
     nextct = 0;
-	texkey = TEX_CLOUD_SS;
+	texkey = TEX_BG2_CLOUDS_SS;
 	scaley = 0.025;
 	speedmult = 1;
 	generatespeed = 50;

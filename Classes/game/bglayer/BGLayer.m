@@ -6,6 +6,7 @@
 #import "World2BGLayerSet.h"
 #import "Lab2BGLayerSet.h"
 #import "World3BGLayerSet.h"
+#import "Lab3BGLayerSet.h"
 
 @implementation BGLayerSet
 -(void)set_scrollup_pct:(float)pct{}
@@ -89,6 +90,10 @@
 	[bglayerset_world3 setVisible:NO];
 	[self bglayer_addChild:bglayerset_world3];
 	
+	bglayerset_lab3 = [Lab3BGLayerSet cons];
+	[bglayerset_lab3 setVisible:NO];
+	[self bglayer_addChild:bglayerset_lab3];
+	
 	current_set = [self set_for_world:[GameWorldMode get_worldnum]];
 	[current_set setVisible:YES];
 	
@@ -119,8 +124,7 @@
 		return bglayerset_lab2;
 		
 	} else if (labnum == LabNum_3) {
-		return bglayerset_lab2; //TODO FIX;
-		
+		return bglayerset_lab3;
 	} else {
 		NSLog(@"bglayerset::set_for_lab::error");
 		return NULL;

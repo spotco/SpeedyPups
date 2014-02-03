@@ -14,8 +14,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_BGM YES
+#define TESTLEVEL @"capegame_launcher"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,8 +23,7 @@
 #define DRAW_HITBOX NO
 
 /**
- implement upgrade in inventorywindow
- integrate lab3 assets
+ boss3
  fix level selection algo, getting repeating levels (especially in lab1)
  
  make lab 1 levels easier
@@ -50,7 +49,9 @@
 
 /**
 Stretch goals:
+ new look for upgrade pane
  bug armor -> rocket -> end -> swingvine, still in rocket form
+ 
  second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
  like the game on facebook, reward character etc
  random super reward level
@@ -106,7 +107,7 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
 	*/
 	
-	[UserInventory set_equipped_gameitem:Item_Shield];
+	//[UserInventory set_equipped_gameitem:Item_Shield];
 	
 	//[UserInventory add_bones:100000];
 	 

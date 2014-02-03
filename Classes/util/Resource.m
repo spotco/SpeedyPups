@@ -70,6 +70,10 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_LAB2_TANKER_FRONT: @"lab2_tanker_front.png",
 	 TEX_LAB2_WATER_FG: @"lab2_water_fg.png",
 	 
+	 TEX_LAB3_BGBACK:@"lab3_bgback.png",
+	 TEX_LAB3_BGWALL:@"lab3_bgwall.png",
+	 TEX_LAB3_BGFRONT:@"lab3_bgfront.png",
+	 
 	 TEX_CAVE_ROCKWALL_BASE:@"breakablewall_base.png",
 	 TEX_CAVE_ROCKWALL_SECTION:@"breakablewall_body.png",
 	 TEX_LAB_ROCKWALL_BASE:@"labbreakablewall_base.png",
@@ -82,7 +86,7 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_BG_LAYER_1:@"BG1_layer_1.png",
 	 TEX_BG_LAYER_3:@"BG1_layer_3.png",
 	 TEX_ISLAND_BORDER:@"BG1_island_border.png",
-	 TEX_CLOUD_SS:@"cloud_ss.png",
+	 //TEX_CLOUD_SS:@"cloud_ss.png",
 	 TEX_WATER:@"water.png",
 	 TEX_CANNON_SS:@"cannon_ss.png",
 	 
@@ -160,6 +164,8 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_BLANK:@"blank.png",
 	 TEX_PARTICLES:@"particles.png",
 	 TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png",
+	 TEX_CLOUDGAME_BG:@"cloudlevel_bg.png",
+	 TEX_CLOUDGAME_BGCLOUDS:@"cloudlevel_bgclouds.png",
 	 TEX_CANNONMOVETRACK_BODY:@"cannonmovetrack_body.png",
 	 TEX_CANNONMOVETRACK_EDGE:@"cannonmovetrack_edge.png"
 	};

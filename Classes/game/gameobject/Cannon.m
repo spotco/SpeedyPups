@@ -227,13 +227,16 @@
 }
 
 -(CGPoint)get_nozzel_position:(Player*)p {
-	Vec3D nozzel = [VecLib scale:[VecLib cons_x:dir.x y:dir.y z:0] by:91];
+	Vec3D nozzel = [VecLib scale:[VecLib cons_x:dir.x y:dir.y z:0] by:83];
+	Vec3D down;
 	if (p.is_armored) {
-		Vec3D down = [VecLib scale:[VecLib normalize:[VecLib cross:nozzel with:[VecLib Z_VEC]]] by:20];
-		nozzel.x += down.x;
-		nozzel.y += down.y;
-		
+		down = [VecLib scale:[VecLib normalize:[VecLib cross:nozzel with:[VecLib Z_VEC]]] by:20];
+	} else {
+		down = [VecLib scale:[VecLib normalize:[VecLib cross:nozzel with:[VecLib Z_VEC]]] by:7];
 	}
+
+	nozzel.x += down.x;
+	nozzel.y += down.y;
 	return CGPointAdd(position_, ccp(nozzel.x,nozzel.y));
 }
 

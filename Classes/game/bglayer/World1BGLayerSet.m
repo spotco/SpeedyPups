@@ -18,14 +18,15 @@
     [starsbg setOpacity:0];
 	time = [BGTimeManager cons];
 	backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005];
-	clouds = [CloudGenerator cons];
+	clouds = [[[CloudGenerator cons_texkey:TEX_BG2_CLOUDS_SS scaley:0.003] set_speedmult:0.3] set_generate_speed:140];
+	//[CloudGenerator cons];
 	fronthills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03];
 	
 	[bg_objects addObject:sky];
 	[bg_objects addObject:starsbg];
 	[bg_objects addObject:time];
-	[bg_objects addObject:backhills];
 	[bg_objects addObject:clouds];
+	[bg_objects addObject:backhills];
 	[bg_objects addObject:fronthills];
 	 
 	for (BackgroundObject *o in bg_objects) {

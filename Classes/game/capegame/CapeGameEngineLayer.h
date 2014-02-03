@@ -30,6 +30,9 @@ typedef enum {
 	
 	int duration;
 	CapeGameMode current_mode;
+	
+	BackgroundObject *bgclouds;
+	float bgclouds_scroll_x;
 }
 
 +(NSString*)get_level;

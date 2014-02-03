@@ -170,6 +170,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 		
     } else if (e.type == GeventType_MENU_UPDATE_INVENTORY) {
 		[(InventoryTabPane_Inventory*)tabpane_inventory update_available_items];
+		[(InventoryTabPane_Upgrades*)tabpane_upgrades update_labels_and_buttons];
 		
 	} else if (e.type == GEventType_MENU_TICK) {
 		[self update];

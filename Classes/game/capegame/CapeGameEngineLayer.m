@@ -46,9 +46,12 @@ static NSString *blank = @"";
 	
 	main_game = g;
 	
-	BackgroundObject *bg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0];
+	BackgroundObject *bg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BG] scrollspd_x:0 scrollspd_y:0];
 	[bg setScaleX:[Common scale_from_default].x];
 	[self addChild:bg];
+	
+	bgclouds = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BGCLOUDS] scrollspd_x:0.1 scrollspd_y:0];
+	[self addChild:bgclouds];
 	
 	player = [CapeGamePlayer cons];
 	[player setPosition:END_TARPOS];
@@ -160,6 +163,9 @@ static NSString *blank = @"";
 	}
 	
 	float speed = (1-duration/GAME_DURATION)*6 + 4;
+	
+	bgclouds_scroll_x += speed;
+	[bgclouds update_posx:bgclouds_scroll_x posy:0];
 	
 	CGRect scroll_rect = top_scroll.textureRect;
 	scroll_rect.origin.x += speed;

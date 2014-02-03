@@ -40,6 +40,10 @@
 #define TEX_LAB2_TANKER_FRONT @"lab2_tanker_front"
 #define TEX_LAB2_WATER_FG @"lab2_water_fg"
 
+#define TEX_LAB3_BGBACK @"lab3_bgback" 
+#define TEX_LAB3_BGWALL @"lab3_bgwall" 
+#define TEX_LAB3_BGFRONT @"lab3_bgfront"
+
 #define TEX_CAVE_ROCKWALL_BASE @"RockWallBase"
 #define TEX_CAVE_ROCKWALL_SECTION @"RockWallSection"
 #define TEX_LAB_ROCKWALL_BASE @"LabRockWallBase"
@@ -60,7 +64,7 @@
 #define TEX_DASHJUMPPARTICLES_SS @"dashjumpparticles_ss"
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
-#define TEX_CLOUD_SS @"cloud_ss"
+//#define TEX_CLOUD_SS @"cloud_ss"
 
 #define TEX_GOAL_SS @"goal_ss"
 
@@ -144,7 +148,9 @@
 
 #define TEX_BLANK @"blank"
 
+#define TEX_CLOUDGAME_BG @"cloudbg"
 #define TEX_CLOUDGAME_CLOUDFLOOR @"cloudfloor"
+#define TEX_CLOUDGAME_BGCLOUDS @"bgclouds"
 #define TEX_CANNONMOVETRACK_BODY @"cannonmovetrack_body"
 #define TEX_CANNONMOVETRACK_EDGE @"cannonmovetrack_edge"
 
