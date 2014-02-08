@@ -132,6 +132,7 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_ENEMY_ROCKET:@"rocket.png",
 	 TEX_ENEMY_COPTER:@"copter_default.png",
 	 TEX_ENEMY_SUBBOSS:@"subboss.png",
+	 TEX_ENEMY_ROBOTBOSS:@"robotboss.png",
 	 TEX_ROBOT_PARTICLE:@"robot_particle.png",
 	 TEX_EXPLOSION:@"explosion_default.png",
 	 TEX_ENEMY_BOMB:@"bomb.png",

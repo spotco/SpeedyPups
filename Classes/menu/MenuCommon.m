@@ -83,9 +83,8 @@
 	}
 }
 -(void)touch_end:(CGPoint)pt{
-	if (!self.visible) return;
-	
 	self.pressed  = NO;
+	if (!self.visible) return;
 }
 
 -(void)update {

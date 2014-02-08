@@ -25,6 +25,10 @@
 
 -(void)to_boss1_mode;
 -(void)to_boss2_mode;
+-(void)to_boss3_mode;
+
+-(BOOL)is_boss_mode;
+
 -(void)to_labexit_mode;
 
 @end

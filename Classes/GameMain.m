@@ -14,7 +14,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"capegame_launcher"
 
 #define RESET_STATS NO
@@ -117,11 +117,11 @@ Stretch goals:
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

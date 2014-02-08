@@ -43,6 +43,9 @@ typedef enum {
 	GEventType_BOSS2_ACTIVATE,
 	GEventType_BOSS2_DEFEATED,
 	
+	GEventType_BOSS3_ACTIVATE,
+	GEventType_BOSS3_DEFEATED,
+	
     GEventType_MENU_TICK,
     GEventType_MENU_MAKERUNPARTICLE, //34
 	

@@ -121,7 +121,7 @@
 	[DogBone reset_play_collect_sound];
 	stats = [GameEngineStats cons];
     default_starting_lives = starting_lives;
-	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
+	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES] && default_starting_lives != GAMEENGINE_INF_LIVES) {
 		default_starting_lives *= 2;
 	}
 	lives = default_starting_lives;

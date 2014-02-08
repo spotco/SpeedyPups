@@ -6,7 +6,7 @@
 @implementation AutoLevel
 
 #define REMOVEBUFFER 400
-#define ADDBUFFER 900
+#define ADDBUFFER 1300
 
 +(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer {
     AutoLevel* a = [AutoLevel node];
@@ -46,6 +46,17 @@
         [self shift_queue_into_current];
 		
 	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+		[cur_state to_labexit_mode];
+        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
+        [self remove_all_ahead_but_current:e.pt];
+        [tglayer follow_player];
+		
+	} else if (e.type == GEventType_BOSS3_ACTIVATE) {
+		[cur_state to_boss3_mode];
+        [self remove_all_ahead_but_current:e.pt];
+        [self shift_queue_into_current];
+		
+	} else if (e.type == GEventType_BOSS3_DEFEATED) {
 		[cur_state to_labexit_mode];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
@@ -175,7 +186,7 @@
     
     if ([tostore count] > 0) { //move past ones to stored
         for (MapSection *i in tostore) {
-            [stored addObject:i];
+			[stored addObject:i];
             [self remove_map_section_from_current:i];
         }
     }

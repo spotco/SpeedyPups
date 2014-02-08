@@ -43,6 +43,7 @@
 #import "LabHandRail.h"
 #import "SubBossLoader.h"
 #import "Cannon.h"
+#import "RobotBossLoader.h" 
 
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
@@ -399,6 +400,12 @@ static NSMutableDictionary* cached_json;
             float x2 = getflt(j_object, @"x2");
             float y2 = getflt(j_object, @"y2");
 			[map.game_objects addObject:[CannonRotationPoint cons_pt1:ccp(x,y) pt2:ccp(x2,y2)]];
+			
+		} else if ([type isEqualToString:@"robotbossloader"]) {
+			float x = getflt(j_object, @"x");
+            float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[RobotBossLoader cons_pt:ccp(x,y)]];
+			
 		}
 		
 		if (cur_mode == MapLoaderMode_AUTO) {

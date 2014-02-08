@@ -1,8 +1,8 @@
 {
-    "start_x": 303.4,
-    "islands": [{"ndir": "left", "y1": 221, "hei": 50, "y2": 309.9, "x2": 3236.8, "x1": 76, "can_fall": true, "type": "line", "ground": "open"}],
-    "start_y": 369.9166666666665,
+    "start_x": 251.3,
+    "start_y": 465,
     "assert_links": 0,
-    "objects": [{"x": 1806.8, "type": "labentrance", "y": 269.9, "label": "0"}, {"x": 993.4, "type": "dogrocket", "y": 363.3, "label": "1"}],
-    "connect_pts": {"x1": 76, "y1": 221, "x2": 3236.8, "y2": 309.9}
+    "connect_pts": {"x1": 117.5, "y1": 85, "x2": 756.3, "y2": 88.79999999999995},
+    "islands": [{"ndir": "left", "y1": 85, "hei": 50, "y2": 88.79999999999995, "x2": 756.3, "x1": 117.5, "can_fall": true, "type": "line", "ground": "open"}],
+    "objects": []
 }

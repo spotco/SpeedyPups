@@ -26,6 +26,9 @@
 #define L_BOSS2START @"levelset_boss2start"
 #define L_BOSS2AREA @"levelset_boss2area"
 
+#define L_BOSS3START @"levelset_boss3start"
+#define L_BOSS3AREA @"levelset_boss3area"
+
 #define L_LABINTRO @"levelset_labintro"
 #define L_LABEXIT @"levelset_labexit"
 
@@ -139,7 +142,8 @@ static NSSet *lab_levels_world3;
 			@"classic_totalmix" : @3
 		},
 		L_AUTOSTART: @{
-			@"autolevel_start": @1
+			@"shittytest":@1
+			//@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -154,7 +158,13 @@ static NSSet *lab_levels_world3;
 			@"boss2_start":@1
 		},
 		L_BOSS2AREA: @{
-			@"boss2_area":@1,
+			@"boss2_area":@1
+		},
+		L_BOSS3START: @{
+			@"boss3_start":@1
+		},
+		L_BOSS3AREA: @{
+			@"boss3_area":@1
 		},
 		L_LABINTRO: @{
 			@"labintro_entrance" : @1
@@ -272,12 +282,20 @@ static NSSet *lab_levels_world3;
 	cur_set = L_BOSS1AREA;
 }
 
+-(void)to_boss3_mode {
+	cur_set = L_BOSS3AREA;
+}
+
 -(void)to_labexit_mode {
 	cur_set = L_LABEXIT;
 }
 
 -(void)to_progress_mode {
 	cur_set = L_FREERUN_PROGRESS;
+}
+
+-(BOOL)is_boss_mode {
+	return streq(cur_set, L_BOSS1AREA) || streq(cur_set, L_BOSS2AREA) || streq(cur_set, L_BOSS3AREA);
 }
 
 -(NSString*)pick_set {
@@ -398,6 +416,9 @@ static NSSet *lab_levels_world3;
 	} else if ([cur_set isEqualToString:L_BOSS2AREA]) {
 		return [[levelsets[L_BOSS2AREA] allKeys] random];
 		
+	} else if ([cur_set isEqualToString:L_BOSS3AREA]) {
+		return [[levelsets[L_BOSS3AREA] allKeys] random];
+		
 	} else if ([cur_set isEqualToString:L_TUTORIAL]) {
 		NSString *tar = [tutorial_levels get:tutorial_ct];
 		tutorial_ct++;
@@ -406,8 +427,8 @@ static NSSet *lab_levels_world3;
 		}
 		//return @"boss1_start";
 		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
-		//return @"boss2_start";
-		return tar;
+		return @"boss3_start";
+		//return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
 		sets_until_next_lab = SETS_BETWEEN_LABS;
