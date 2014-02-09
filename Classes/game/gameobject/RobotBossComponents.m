@@ -99,7 +99,7 @@ static CCAction *_cat_damage;
 -(void)update {
 	
 	if (mode == RobotBossBodyMode_STAND) {
-		passive_arm_rotation_theta+=0.01*[Common get_dt_Scale];
+		passive_arm_rotation_theta+=0.05*[Common get_dt_Scale];
 		[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
 		[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
 	

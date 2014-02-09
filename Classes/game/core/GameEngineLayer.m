@@ -716,10 +716,10 @@
     
     if (refresh_viewbox_cache) {
         refresh_viewbox_cache = NO;
-        cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1
-                                              y1:-self.position.y-[Common SCREEN].height*1
-                                             wid:[Common SCREEN].width*4
-                                             hei:[Common SCREEN].height*4];
+        cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1.5
+                                              y1:-self.position.y-[Common SCREEN].height*1.5
+                                             wid:[Common SCREEN].width*4.5
+                                             hei:[Common SCREEN].height*4.5];
     }
     return cached_viewbox;
 }

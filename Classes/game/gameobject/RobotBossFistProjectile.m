@@ -7,6 +7,8 @@
 #define MODE_LINE 0
 #define MODE_PARABOLA_A 1
 #define MODE_PARABOLA_AT_CAT 2
+#define MODE_PARABOLA_B 3
+#define MODE_PARABOLA_CAT_LEFT 4
 
 #define ROBOT_DEFAULT_POS ccp(725,0)
 
@@ -47,6 +49,12 @@
 	} else if (mode == MODE_PARABOLA_AT_CAT) {
 		y = -0.0115646*x*x + 17.649*x - 6017.35; //quadratic fit {900,500}, {585,350}, {725,700}
 		
+	} else if (mode == MODE_PARABOLA_B) {
+		y = -0.00995*x*x - 4.74*x; //quadratic fit {-385,350}, {-200,550}, {0,0}
+		
+	} else if (mode == MODE_PARABOLA_CAT_LEFT) {
+		y = -0.012987*x*x - 14.561*x - 3333.33; //quadratic fit {-385,350}, {-550,750}, {-700,500}
+		
 	} else {
 		y = tarpos.y + (startpos.y - tarpos.y)*time_pct;
 	
@@ -61,7 +69,9 @@
             time_total = 55;
 			time_left = 55;
 			startpos = ccp(x,y);
-			tarpos = ccp(ROBOT_DEFAULT_POS.x,ROBOT_DEFAULT_POS.y+150);
+			
+			tarpos = bosspos;
+			
 			direction = RobotBossFistProjectileDirection_AT_BOSS;
 			[self mode_line];
 			[AudioManager playsfx:SFX_ROCKBREAK];
@@ -75,6 +85,11 @@
 		}
 		
 	}
+}
+
+-(id)set_boss_pos:(CGPoint)pos {
+	bosspos = pos;
+	return self;
 }
 
 -(id)set_startpos:(CGPoint)_startpos tarpos:(CGPoint)_tarpos time_left:(float)_time_left time_total:(float)_time_total {
@@ -94,8 +109,18 @@
 	return self;
 }
 
+-(id)mode_parabola_b {
+	mode = MODE_PARABOLA_B;
+	return self;
+}
+
 -(id)mode_parabola_at_cat {
 	mode = MODE_PARABOLA_AT_CAT;
+	return self;
+}
+
+-(id)mode_parabola_at_cat_left {
+	mode = MODE_PARABOLA_CAT_LEFT;
 	return self;
 }
 

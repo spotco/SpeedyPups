@@ -14,7 +14,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"capegame_launcher"
 
 #define RESET_STATS NO

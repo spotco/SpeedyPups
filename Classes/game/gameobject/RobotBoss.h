@@ -13,7 +13,12 @@ typedef enum RobotBossMode {
 	RobotBossMode_WHIFF_AT_CAT_RIGHT_1,
 	RobotBossMode_CAT_HURT_OUT_1,
 	
-	RobotBossMode_CAT_IN_LEFT1
+	RobotBossMode_CAT_IN_LEFT1,
+	RobotBossMode_CAT_TAUNT_LEFT1,
+	RobotBossMode_CAT_ROBOT_IN_LEFT1,
+	RobotBossMode_VOLLEY_LEFT_1,
+	RobotBossMode_WHIFF_AT_CAT_LEFT_1,
+	RobotBossMode_CAT_HURT_OUT_LEFT_1
 	
 } RobotBossMode;
 
