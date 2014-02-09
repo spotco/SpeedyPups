@@ -6,11 +6,14 @@
 
 typedef enum RobotBossMode {
 	RobotBossMode_TOREMOVE,
-	RobotBossMode_CAT_IN,
-	RobotBossMode_ROBOT_IN,
-	RobotBossMode_WINDUP,
-	RobotBossMode_WAIT_REVOLLEY,
-	RobotBossMode_REVOLLEY
+	RobotBossMode_CAT_IN_RIGHT1,
+	RobotBossMode_CAT_TAUNT_RIGHT1,
+	RobotBossMode_CAT_ROBOT_IN_RIGHT1,
+	RobotBossMode_VOLLEY_RIGHT_1,
+	RobotBossMode_WHIFF_AT_CAT_RIGHT_1,
+	RobotBossMode_CAT_HURT_OUT_1,
+	
+	RobotBossMode_CAT_IN_LEFT1
 	
 } RobotBossMode;
 
@@ -23,11 +26,16 @@ typedef enum RobotBossMode {
 	CGPoint cat_body_rel_pos;
 	CGPoint robot_body_rel_pos;
 	
+	NSMutableArray *fist_projectiles;
+	
+	float delay_ct;
 	float groundlevel;
 	
 	RobotBossMode cur_mode;
 	
-	NSMutableArray *fist_projectiles;
+	int volley_ct;
+	
+	
 }
 
 +(RobotBoss*)cons_with:(GameEngineLayer*)g;

@@ -6,6 +6,7 @@
 
 #define MODE_LINE 0
 #define MODE_PARABOLA_A 1
+#define MODE_PARABOLA_AT_CAT 2
 
 #define ROBOT_DEFAULT_POS ccp(725,0)
 
@@ -43,16 +44,17 @@
 	if (mode == MODE_PARABOLA_A) {
 		y = 3.39*x - 0.0047*x*x; //quadratic fit {0,0}, {585,350}, {250,550}
 		
+	} else if (mode == MODE_PARABOLA_AT_CAT) {
+		y = -0.0115646*x*x + 17.649*x - 6017.35; //quadratic fit {900,500}, {585,350}, {725,700}
+		
 	} else {
 		y = tarpos.y + (startpos.y - tarpos.y)*time_pct;
 	
 	}
 	
-	CGPoint last_pos = position_;
-	
 	[self setPosition:CGPointAdd(ccp(g.player.position.x,groundlevel), ccp(x,y))];
 	
-	self.rotation += CGPointDist(last_pos, position_) * [Common get_dt_Scale] * 2;
+	self.rotation += [Common get_dt_Scale] * (direction == RobotBossFistProjectileDirection_AT_PLAYER ? 5 : 12);
 	
 	if (direction == RobotBossFistProjectileDirection_AT_PLAYER && !player.dead) {
 		if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && (player.dashing || [player is_armored])) {
@@ -89,6 +91,11 @@
 
 -(id)mode_parabola_a {
 	mode = MODE_PARABOLA_A;
+	return self;
+}
+
+-(id)mode_parabola_at_cat {
+	mode = MODE_PARABOLA_AT_CAT;
 	return self;
 }
 

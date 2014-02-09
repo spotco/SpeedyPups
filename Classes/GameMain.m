@@ -12,7 +12,7 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
 #define TESTLEVEL @"capegame_launcher"
