@@ -72,6 +72,7 @@
 		7E1A168F18A5FDA9001FCD86 /* robotboss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E1A168D18A5FDA8001FCD86 /* robotboss.plist */; };
 		7E1A169018A5FDA9001FCD86 /* robotboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1A168E18A5FDA9001FCD86 /* robotboss.png */; };
 		7E1A169318A60572001FCD86 /* RobotBossComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A169218A60572001FCD86 /* RobotBossComponents.m */; };
+		7E1A169618A62CD1001FCD86 /* RobotBossFistProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A169518A62CD1001FCD86 /* RobotBossFistProjectile.m */; };
 		7E24A35A17ECD02F0085154C /* sfx_bone_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35617ECD02F0085154C /* sfx_bone_1.wav */; };
 		7E24A35B17ECD02F0085154C /* sfx_bone_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35717ECD02F0085154C /* sfx_bone_2.wav */; };
 		7E24A35C17ECD02F0085154C /* sfx_bone_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E24A35817ECD02F0085154C /* sfx_bone_3.wav */; };
@@ -866,6 +867,8 @@
 		7E1A168E18A5FDA9001FCD86 /* robotboss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robotboss.png; sourceTree = "<group>"; };
 		7E1A169118A60572001FCD86 /* RobotBossComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotBossComponents.h; sourceTree = "<group>"; };
 		7E1A169218A60572001FCD86 /* RobotBossComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotBossComponents.m; sourceTree = "<group>"; };
+		7E1A169418A62CD1001FCD86 /* RobotBossFistProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RobotBossFistProjectile.h; sourceTree = "<group>"; };
+		7E1A169518A62CD1001FCD86 /* RobotBossFistProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RobotBossFistProjectile.m; sourceTree = "<group>"; };
 		7E24A35617ECD02F0085154C /* sfx_bone_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_1.wav; sourceTree = "<group>"; };
 		7E24A35717ECD02F0085154C /* sfx_bone_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_2.wav; sourceTree = "<group>"; };
 		7E24A35817ECD02F0085154C /* sfx_bone_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_bone_3.wav; sourceTree = "<group>"; };
@@ -2980,6 +2983,8 @@
 				7E1A168718A5E1C4001FCD86 /* RobotBoss.m */,
 				7E1A169118A60572001FCD86 /* RobotBossComponents.h */,
 				7E1A169218A60572001FCD86 /* RobotBossComponents.m */,
+				7E1A169418A62CD1001FCD86 /* RobotBossFistProjectile.h */,
+				7E1A169518A62CD1001FCD86 /* RobotBossFistProjectile.m */,
 			);
 			name = enemy;
 			sourceTree = "<group>";
@@ -4343,6 +4348,7 @@
 				7EDB544B1712C4F000218A46 /* OneUpParticle.m in Sources */,
 				7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */,
 				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
+				7E1A169618A62CD1001FCD86 /* RobotBossFistProjectile.m in Sources */,
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
 				7EBD7618171A855F00EBEB3C /* Coin.m in Sources */,
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,

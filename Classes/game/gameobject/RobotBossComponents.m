@@ -48,12 +48,17 @@ static CCAction *_cat_damage;
 									 @"cat_laugh_3",
 									 @"cat_laugh_0"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_cat_hurt = [Common cons_anim:@[@"cat_hurt_0",@"cat_hurt_1",@"cat_hurt_2"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_damage = _cat_stand = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_damage = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 }
 
 @end
 
 @implementation RobotBossBody
+@synthesize body,frontarm,backarm;
+#define RobotBossBodyMode_STAND 0
+#define RobotBossBodyMode_WINDUP 1
+#define RobotBossBodyMode_WINDDOWN 2
+#define RobotBossBodyMode_VOLLEY 3
 
 +(RobotBossBody*)cons {
 	return [RobotBossBody node];
@@ -61,6 +66,8 @@ static CCAction *_cat_damage;
 
 -(id)init {
 	self = [super init];
+	
+	mode = RobotBossBodyMode_STAND;
 	
 	self.backarm = [CCSprite node];
 	self.body = [CCSprite node];
@@ -92,15 +99,77 @@ static CCAction *_cat_damage;
 }
 
 -(void)update {
-	passive_arm_rotation_theta+=0.025*[Common get_dt_Scale];
-	[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
-	[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
+	if (front_arm_empty_ct > 0) {
+		front_arm_empty_ct-=[Common get_dt_Scale];
+		if (front_arm_empty_ct <= 0) {
+			[self.frontarm stopAllActions];
+			[self.frontarm runAction:_robot_arm_front_loaded];
+		}
+	}
+	
+	if (mode == RobotBossBodyMode_STAND) {
+		passive_arm_rotation_theta+=0.025*[Common get_dt_Scale];
+		[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
+		[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
+	
+	} else if (mode == RobotBossBodyMode_WINDUP) {
+		self.frontarm.rotation-=6*[Common get_dt_Scale];
+		if (self.frontarm.rotation < -105) {
+			mode = RobotBossBodyMode_WINDDOWN;
+			self.frontarm.rotation = 360 + self.frontarm.rotation;
+			front_arm_empty_ct = 50;
+			[self.frontarm stopAllActions];
+			[self.frontarm runAction:_robot_arm_front_unloaded];
+		}
+		
+	} else if (mode == RobotBossBodyMode_WINDDOWN) {
+		if (self.frontarm.rotation > tar_front_rotation) {
+			self.frontarm.rotation -= 6*[Common get_dt_Scale];
+		} else {
+			self.frontarm.rotation = tar_front_rotation;
+		}
+		
+	} else if (mode == RobotBossBodyMode_VOLLEY) {
+		if (frontarm.rotation > tar_front_rotation) {
+			front_vr-=1*[Common get_dt_Scale];
+			front_vr = clampf(front_vr, -15, 10);
+			frontarm.rotation += front_vr;
+			backarm.rotation += front_vr;
+			if (frontarm.rotation < tar_front_rotation) {
+				tar_front_rotation = 0;
+			}
+			
+		} else if (frontarm.rotation < tar_front_rotation) {
+			front_vr+=1*[Common get_dt_Scale];
+			frontarm.rotation += front_vr;
+			backarm.rotation += front_vr;
+			if (frontarm.rotation > tar_front_rotation) {
+				mode = RobotBossBodyMode_STAND;
+			}
+		}
+	}
+}
+
+-(void)do_volley {
+	if (mode == RobotBossBodyMode_VOLLEY) return;
+	mode = RobotBossBodyMode_VOLLEY;
+	tar_front_rotation = -105;
+	front_vr = 0;
+}
+
+-(void)do_windup {
+	mode = RobotBossBodyMode_WINDUP;
+	tar_front_rotation = self.frontarm.rotation;
+}
+
+-(BOOL)windup_finished {
+	return mode != RobotBossBodyMode_WINDUP;
 }
 
 @end
 
 @implementation CatBossBody
-
+@synthesize base,cape,top;
 +(CatBossBody*)cons {
 	return [CatBossBody node];
 }
@@ -121,7 +190,11 @@ static CCAction *_cat_damage;
 	
 	[self.base runAction:_cat_tail_base];
 	[self.cape runAction:_cat_cape];
-	[self.top runAction:_cat_laugh];
+	[self.top runAction:_cat_stand];
+	
+	base_anim = _cat_tail_base;
+	cape_anim = _cat_cape;
+	top_anim = _cat_stand;
 	
 	[self setScaleX:-1];
 	
@@ -131,6 +204,20 @@ static CCAction *_cat_damage;
 -(void)update {
 	vib_theta+=0.075;
 	[vib_base setPosition:ccp(0,10*cosf(vib_theta))];
+}
+
+-(void)laugh_anim {
+	if (top_anim == _cat_laugh) return;
+	[self.top stopAllActions];
+	[self.top runAction:_cat_laugh];
+	top_anim = _cat_laugh;
+}
+
+-(void)stand_anim {
+	if (top_anim == _cat_stand) return;
+	[self.top stopAllActions];
+	[self.top runAction:_cat_stand];
+	top_anim = _cat_stand;
 }
 
 @end

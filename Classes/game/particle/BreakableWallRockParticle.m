@@ -33,6 +33,7 @@
     [self setScale:float_random(0.5, 1.5)];
     [self setRotation:float_random(-180, 180)];
     ct = (int)BreakableWallRockParticle_CT_DEFAULT;
+	gravity = 0.3;
 }
 
 -(void)cons {
@@ -40,12 +41,13 @@
     vy = float_random(0, 2);
     [self setScale:float_random(0.5, 2)];
     ct = (int)BreakableWallRockParticle_CT_DEFAULT;
+	gravity = 0.3;
 }
 
 -(void)update:(GameEngineLayer*)g{
     [self setPosition:ccp(position_.x+vx,position_.y+vy)];
     [self setOpacity:((int)(ct/BreakableWallRockParticle_CT_DEFAULT*255))];
-    vy-=0.3;
+    vy-=gravity;
     ct--;
 }
 
@@ -55,6 +57,11 @@
 
 -(BOOL)should_remove {
     return ct <= 0;
+}
+
+-(id)set_gravity:(float)f {
+	gravity = f;
+	return self;
 }
 
 @end
