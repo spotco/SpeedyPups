@@ -2,6 +2,7 @@
 #import "RobotBossComponents.h"
 #import "GameEngineLayer.h"
 #import "RobotBossFistProjectile.h"
+#import "JumpParticle.h"
 
 @implementation RobotBoss
 
@@ -58,7 +59,7 @@
 	for (RobotBossFistProjectile *p in fist_projectiles) {
 		if (p.direction == RobotBossFistProjectileDirection_AT_BOSS) {
 			if (p.time_left < 20 && ![robot_body swing_in_progress]) [robot_body do_swing];
-			if (p.time_left <= 10) [self volley_return:p];
+			if (p.time_left <= 15) [self volley_return:p];
 			
 		} else if (p.direction == RobotBossFistProjectileDirection_AT_CAT && p.time_left <= 5) {
 			if (cur_mode == RobotBossMode_WHIFF_AT_CAT_RIGHT_1) {
@@ -225,6 +226,7 @@
 								   time_total:60];
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			[AudioManager playsfx:SFX_BOSS_ENTER];
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:1];
 			
 		} else {
 			p.direction = RobotBossFistProjectileDirection_AT_CAT;
@@ -236,6 +238,7 @@
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			[AudioManager playsfx:SFX_BOSS_ENTER];
 			cur_mode = RobotBossMode_WHIFF_AT_CAT_RIGHT_1;
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.8) scx:1];
 			
 		}
 		
@@ -245,8 +248,8 @@
 			float speed = 100;
 			if (volley_ct == 4) speed = 80;
 			if (volley_ct == 3) speed = 60;
-			if (volley_ct == 2) speed = 40;
-			if (volley_ct == 1) speed = 120;
+			if (volley_ct == 2) speed = 50;
+			if (volley_ct == 1) speed = 90;
 			
 			p.direction = RobotBossFistProjectileDirection_AT_PLAYER;
 			[p mode_parabola_b];
@@ -256,6 +259,7 @@
 				 time_total:speed];
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			[AudioManager playsfx:SFX_BOSS_ENTER];
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:-1];
 			
 		} else {
 			p.direction = RobotBossFistProjectileDirection_AT_CAT;
@@ -267,6 +271,7 @@
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			[AudioManager playsfx:SFX_BOSS_ENTER];
 			cur_mode = RobotBossMode_WHIFF_AT_CAT_LEFT_1;
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:-1];
 			
 		}
 		
@@ -280,6 +285,14 @@
 	}
 	[fist_projectiles removeAllObjects];
 	cur_mode = RobotBossMode_TOREMOVE;
+}
+
+-(void)add_pow:(CGPoint)pos dir:(CGPoint)dir scx:(float)scx {
+	[g add_particle:[[[JumpParticle cons_pt:pos
+									  vel:dir
+									   up:ccp(0,1)
+									  tex:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]
+									  rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"pow"] relpos:YES] set_scale:0.3] set_scx:scx]];
 }
 
 -(void)check_should_render:(GameEngineLayer *)g { do_render = YES; }

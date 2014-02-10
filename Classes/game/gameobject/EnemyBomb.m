@@ -4,13 +4,6 @@
 #import "ExplosionParticle.h" 
 #import "HitEffect.h" 
 
-@interface BombSparkParticle : Particle {
-    CGPoint vel;
-    int ct;
-}
-+(BombSparkParticle*)cons_pt:(CGPoint)pt v:(CGPoint)v;
-@end
-
 @implementation BombSparkParticle
 +(BombSparkParticle*)cons_pt:(CGPoint)pt v:(CGPoint)v {
     return [[BombSparkParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]] cons_pt:pt v:v];

@@ -18,6 +18,11 @@ static const float MAXSCALE = 0.5;
     return [[ExplosionParticle node] cons_x:x y:y];
 }
 
+-(id)set_scale:(float)scale {
+	sc = scale;
+	[self setScale:((1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE)*sc];
+	return self;
+}
 
 -(id)cons_x:(float)x y:(float)y {
     CCAction* anim = [self cons_anim:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"empty", nil] speed:0.075];
@@ -32,7 +37,7 @@ static const float MAXSCALE = 0.5;
 
 -(void)update:(GameEngineLayer*)g{
     ct--;
-    [self setScale:(1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE];
+    [self setScale:((1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE)*sc];
     [self setOpacity:(ct/TIME)*255];
 }
 

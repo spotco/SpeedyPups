@@ -20,3 +20,10 @@
 +(RelativePositionEnemyBomb*)cons_pt:(CGPoint)pt v:(CGPoint)vel player:(CGPoint)player;
 -(id)do_bg_to_front_anim;
 @end
+
+@interface BombSparkParticle : Particle {
+    CGPoint vel;
+    int ct;
+}
++(BombSparkParticle*)cons_pt:(CGPoint)pt v:(CGPoint)v;
+@end

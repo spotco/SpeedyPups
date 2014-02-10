@@ -1,8 +1,9 @@
 #import "RobotBossFistProjectile.h"
 #import "GameEngineLayer.h"
-#import "BreakableWallRockParticle.h"
+#import "ExplosionParticle.h"
 #import "Player.h" 
 #import "HitEffect.h"
+#import "EnemyBomb.h"
 
 #define MODE_LINE 0
 #define MODE_PARABOLA_A 1
@@ -16,8 +17,7 @@
 @synthesize direction;
 
 +(RobotBossFistProjectile*)cons_g:(GameEngineLayer*)g relpos:(CGPoint)relpos tarpos:(CGPoint)tarpos time:(float)time groundlevel:(float)groundlevel {
-	return [[RobotBossFistProjectile spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]
-												  rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"fist"]]
+	return [[RobotBossFistProjectile spriteWithTexture:[Resource get_tex:TEX_ENEMY_BOMB]]
 			cons_g:g relpos:relpos tarpos:tarpos time:time groundlevel:groundlevel];
 }
 
@@ -27,6 +27,9 @@
 	startpos = _relpos;
 	tarpos = _tarpos;
 	groundlevel = _groundlevel;
+	
+	[self setAnchorPoint:ccp(15/31.0,16/45.0)];
+	[self setScale:3];
 	
 	mode = MODE_LINE;
 	
@@ -53,7 +56,7 @@
 		y = -0.00995*x*x - 4.74*x; //quadratic fit {-385,350}, {-200,550}, {0,0}
 		
 	} else if (mode == MODE_PARABOLA_CAT_LEFT) {
-		y = -0.012987*x*x - 14.561*x - 3333.33; //quadratic fit {-385,350}, {-550,750}, {-700,500}
+		y = -0.014454*x*x - 16.4014*x - 3898.29; //quadratic fit {-395,325}, {-550,750}, {-700,500}
 		
 	} else {
 		y = tarpos.y + (startpos.y - tarpos.y)*time_pct;
@@ -63,6 +66,8 @@
 	[self setPosition:CGPointAdd(ccp(g.player.position.x,groundlevel), ccp(x,y))];
 	
 	self.rotation += [Common get_dt_Scale] * (direction == RobotBossFistProjectileDirection_AT_PLAYER ? 5 : 12);
+	
+	[g add_particle:[BombSparkParticle cons_pt:[self get_tip] v:ccp(float_random(-5,5),float_random(-5, 5))]];
 	
 	if (direction == RobotBossFistProjectileDirection_AT_PLAYER && !player.dead) {
 		if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && (player.dashing || [player is_armored])) {
@@ -146,11 +151,13 @@
 }
 
 -(void)explosion_effect:(GameEngineLayer*)g {
-	DO_FOR(20, [g add_particle:
-				[[BreakableWallRockParticle cons_lab_x:position_.x
-													y:position_.y
-												   vx:float_random(-10, 10)
-												   vy:float_random(-1, 15)] set_gravity:0.8] ];)
+	[g add_particle:[[ExplosionParticle cons_x:position_.x y:position_.y] set_scale:1.5]];
+}
+
+#define TIPSCALE 115
+-(CGPoint)get_tip {
+    float arad = -[Common deg_to_rad:[self rotation]]+45;
+    return ccp(position_.x+cosf(arad)*TIPSCALE*0.65,position_.y+sinf(arad)*TIPSCALE);
 }
 
 -(void)check_should_render:(GameEngineLayer *)g { do_render = YES; }

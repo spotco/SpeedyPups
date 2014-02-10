@@ -1,6 +1,7 @@
 #import "JumpParticle.h"
 #import "FileCache.h"
 #import "GameRenderImplementation.h"
+#import "GameEngineLayer.h"
 
 @implementation JumpParticle
 
@@ -9,13 +10,17 @@ static const float MINSCALE = 3;
 static const float MAXSCALE = 5;
 
 +(JumpParticle*)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up {
-	return [[JumpParticle node] cons_pt:pt vel:vel up:up];
+	return [JumpParticle cons_pt:pt vel:vel up:up tex:[Resource get_tex:TEX_DASHJUMPPARTICLES_SS] rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"jumpparticle"] relpos:NO];
 }
 
--(id)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up  {
-    [self setTexture:[Resource get_tex:TEX_DASHJUMPPARTICLES_SS]];
-	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS
-												   idname:@"jumpparticle"]];
++(JumpParticle*)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up tex:(CCTexture2D *)tex rect:(CGRect)rect relpos:(BOOL)relpos {
+	return [[JumpParticle node] cons_pt:pt vel:vel up:up tex:tex rect:rect relpos:relpos];
+}
+
+-(id)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up tex:(CCTexture2D*)tex rect:(CGRect)rect relpos:(BOOL)_relpos {
+	[self setTexture:tex];
+	[self setTextureRect:rect];
+	
     [self setPosition:pt];
 	[self setScale:3];
 	
@@ -27,19 +32,48 @@ static const float MAXSCALE = 5;
 										   by:0.75]
 					 ]
 					];
-	//NSLog(@"dir(%f,%f)",dirvec.x,dirvec.y);
+	
 	float ccwt = [Common rad_to_deg:[VecLib get_angle_in_rad:dirvec]+45];
 	[self setRotation:ccwt > 0 ? 180-ccwt : -(180-ABS(ccwt))];
 	
     ct = TIME;
-    
-    return self;
 	
+    scx = 1;
+    scale = 1;
+	
+	is_relpos = _relpos;
+	set_relpos = NO;
+	
+	return self;
+	
+}
+
+-(id)set_scale:(float)s {
+	scale = s;
+	float tar_sc = ((1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE)*scale;
+	[self setScaleX:tar_sc*scx];
+	[self setScaleY:tar_sc];
+	return self;
+}
+
+-(id)set_scx:(float)_scx {
+	scx = _scx;
+	return self;
 }
 
 -(void)update:(GameEngineLayer*)g{
     ct--;
-	[self setScale:(1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE];
+	if (is_relpos) {
+		if (!set_relpos) {
+			rel_pos = ccp(position_.x-g.player.position.x,position_.y-g.player.position.y);
+			set_relpos = YES;
+		}
+		[self setPosition:CGPointAdd(g.player.position, rel_pos)];
+	}
+	
+	float tar_sc = ((1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE)*scale;
+	[self setScaleX:tar_sc*scx];
+	[self setScaleY:tar_sc];
     [self setOpacity:(int)(200*(ct/TIME))+55];
 }
 
