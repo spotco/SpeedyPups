@@ -27,6 +27,7 @@ static const float MAXSCALE = 0.5;
 -(id)cons_x:(float)x y:(float)y {
     CCAction* anim = [self cons_anim:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"empty", nil] speed:0.075];
     [self runAction:anim];
+	sc = 1;
     
     [self setPosition:ccp(x,y)];
     ct = TIME;

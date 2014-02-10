@@ -14,17 +14,12 @@
 @implementation CapeGameUILayer
 
 +(CapeGameUILayer*)cons_g:(CapeGameEngineLayer*)g {
-	CapeGameUILayer *l = [CapeGameUILayer node];
-	[l set_game:g];
+	CapeGameUILayer *l = [[CapeGameUILayer node] cons:g];
 	return l;
 }
 
--(void)set_game:(CapeGameEngineLayer*)g {
+-(id)cons:(CapeGameEngineLayer*)g {
 	cape_game = g;
-}
-
--(id)init {
-	self = [super init];
 	
 	ingame_ui = [CCNode node];
 	
@@ -65,6 +60,7 @@
     [ingame_ui addChild:ingame_ui_m];
 	
 	itemlenbarroot = [CCSprite node];
+	if (cape_game.is_boss_capegame) [itemlenbarroot setVisible:NO];
 	CCSprite *itemlenbarback = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					 idname:@"item_timebaremptytex"]];

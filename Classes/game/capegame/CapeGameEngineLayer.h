@@ -6,6 +6,8 @@
 @class GameEngineLayer;
 @class Particle;
 
+@class CapeGameObject;
+
 typedef enum {
 	CapeGameMode_FALLIN,
 	CapeGameMode_GAMEPLAY,
@@ -20,6 +22,7 @@ typedef enum {
 	GameEngineLayer* __unsafe_unretained main_game;
 	
 	NSMutableArray *game_objects;
+	NSMutableArray *gameobjects_tbr;
 	
 	CCSprite *particleholder;
 	NSMutableArray *particles;
@@ -31,13 +34,15 @@ typedef enum {
 	int duration;
 	CapeGameMode current_mode;
 	
+	BackgroundObject *bg;
 	BackgroundObject *bgclouds;
 	float bgclouds_scroll_x;
 }
+@property(readwrite,assign) BOOL is_boss_capegame;
 
 +(NSString*)get_level;
 
-+(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g;
++(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss;
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;
 
@@ -46,6 +51,10 @@ typedef enum {
 -(void)collect_bone:(CGPoint)screen_pos;
 -(void)do_get_hit;
 -(void)do_tutorial_anim;
+
+-(void)add_gameobject:(CapeGameObject*)o;
+-(void)remove_gameobject:(CapeGameObject*)o;
+
 @end
 
 @interface CapeGameObject : CCSprite

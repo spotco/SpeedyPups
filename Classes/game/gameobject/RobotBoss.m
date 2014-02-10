@@ -41,8 +41,8 @@
 	
 	fist_projectiles = [NSMutableArray array];
 	
-	//cur_mode = RobotBossMode_CAT_IN_RIGHT1;
-	cur_mode = RobotBossMode_CAT_IN_RIGHT2;
+	cur_mode = RobotBossMode_CAT_IN_RIGHT1;
+	//cur_mode = RobotBossMode_CAT_IN_RIGHT2;
 	
 	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	[cape_item_body setScale:1.75];
@@ -204,8 +204,7 @@
 			}
 			
 		} else if (fist_projectiles.count <= 1 && [robot_body swing_in_progress] && [robot_body swing_launched] && ![robot_body swing_has_thrown_bomb]) {
-			//volley_ct = 6;
-			volley_ct = 1;
+			volley_ct = 6;
 			[robot_body set_swing_has_thrown_bomb];
 			
 			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
@@ -222,7 +221,7 @@
 		
 	} else if (cur_mode == RobotBossMode_CAT_HURT_OUT_RIGHT_2) {
 		[cat_body hurt_anim];
-		
+		[cat_body brownian];
 		delay_ct -= [Common get_dt_Scale];
 		
 		if (delay_ct <= 0) {

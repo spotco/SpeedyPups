@@ -12,9 +12,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"capegame_launcher"
 
 #define RESET_STATS NO
@@ -23,7 +23,11 @@
 #define DRAW_HITBOX NO
 
 /**
- boss3
+ boss3 todo:
+	add particle effects to robot
+	bug exit capegame wrong music
+	laugh sfx
+ 
  fix level selection algo, getting repeating levels (especially in lab1)
  
  make lab 1 levels easier

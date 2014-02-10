@@ -1,8 +1,8 @@
 {
     "start_x": 251.3,
     "start_y": 465,
-    "assert_links": 0,
-    "connect_pts": {"x1": 117.5, "y1": 85, "x2": 756.3, "y2": 88.79999999999995},
-    "islands": [{"ndir": "left", "y1": 85, "hei": 50, "y2": 88.79999999999995, "x2": 756.3, "x1": 117.5, "can_fall": true, "type": "line", "ground": "open"}],
-    "objects": []
+    "connect_pts": {"x1": 117.5, "y1": 85, "x2": 1156.3, "y2": 91.3},
+    "islands": [{"ndir": "left", "y1": 85, "hei": 50, "y2": 91.3, "x2": 1156.3, "x1": 117.5, "can_fall": true, "type": "line", "ground": "open"}],
+    "objects": [{"x": 846.3, "type": "dogcape", "y": 248.8, "label": "0"}],
+    "assert_links": 0
 }

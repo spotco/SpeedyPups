@@ -64,6 +64,7 @@ static CCAction *_cat_damage;
 
 -(id)init {
 	self = [super init];
+	[RobotBossComponents cons_anims];
 	
 	mode = RobotBossBodyMode_STAND;
 	
@@ -147,6 +148,7 @@ static CCAction *_cat_damage;
 
 -(id)init {
 	self = [super init];
+	[RobotBossComponents cons_anims];
 	
 	vib_base = [CCSprite node];
 	[self addChild:vib_base];

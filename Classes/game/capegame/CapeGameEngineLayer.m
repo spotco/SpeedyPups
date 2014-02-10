@@ -8,6 +8,8 @@
 #import "UICommon.h"
 #import "Common.h"
 
+#import "CapeGameBossCat.h"
+
 #import "OneUpParticle.h"
 #import "DazedParticle.h"
 
@@ -16,6 +18,7 @@
 @end
 
 @implementation CapeGameEngineLayer
+@synthesize is_boss_capegame;
 
 static int lvl_ct = 0;
 static NSString *blank = @"";
@@ -32,37 +35,38 @@ static NSString *blank = @"";
 	return rtv;
 }
 
-+(CCScene*)scene_with_level:(NSString *)file g:(GameEngineLayer *)g {
++(CCScene*)scene_with_level:(NSString *)file g:(GameEngineLayer *)g boss:(BOOL)boss {
 	CCScene *scene = [CCScene node];
-	[scene addChild:[[CapeGameEngineLayer node] cons_with_level:file g:g]];
+	[scene addChild:[[CapeGameEngineLayer node] cons_with_level:file g:g boss:boss]];
 	return scene;
 }
 
-#define GAME_DURATION 2100.0
+#define GAME_DURATION 2100
+#define BOSS_INFINITE_DURATION 9999
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
 #define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.1]
 
--(id)cons_with_level:(NSString*)file g:(GameEngineLayer*)g {
-	
+-(id)cons_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss {
+	is_boss_capegame = boss;
 	main_game = g;
 	
-	BackgroundObject *bg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BG] scrollspd_x:0 scrollspd_y:0];
+	bg = [BackgroundObject backgroundFromTex:[Resource get_tex:is_boss_capegame?TEX_CLOUDGAME_BOSS_BG:TEX_CLOUDGAME_BG] scrollspd_x:0.1 scrollspd_y:0];
 	[bg setScaleX:[Common scale_from_default].x];
 	[self addChild:bg];
 	
 	bgclouds = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BGCLOUDS] scrollspd_x:0.1 scrollspd_y:0];
-	[self addChild:bgclouds];
+	if (!is_boss_capegame) [self addChild:bgclouds];
 	
 	player = [CapeGamePlayer cons];
 	[player setPosition:END_TARPOS];
 	[self addChild:player z:2];
 	
 	
-	top_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
+	top_scroll = [CCSprite spriteWithTexture:[Resource get_tex:is_boss_capegame?TEX_CLOUDGAME_BOSS_CLOUDFLOOR:TEX_CLOUDGAME_CLOUDFLOOR]];
 	[top_scroll setScaleX:[Common scale_from_default].x];
 	[top_scroll setScaleY:-1];
 	[top_scroll setPosition:[Common screen_pctwid:0 pcthei:1]];
-	bottom_scroll = [CCSprite spriteWithTexture:[Resource get_tex:TEX_CLOUDGAME_CLOUDFLOOR]];
+	bottom_scroll = [CCSprite spriteWithTexture:[Resource get_tex:is_boss_capegame?TEX_CLOUDGAME_BOSS_CLOUDFLOOR:TEX_CLOUDGAME_CLOUDFLOOR]];
 	[bottom_scroll setScaleX:[Common scale_from_default].x];
 	[top_scroll setAnchorPoint:ccp(0,0)];
 	[bottom_scroll setAnchorPoint:ccp(0,0)];
@@ -77,12 +81,18 @@ static NSString *blank = @"";
 	particles_tba = [NSMutableArray array];
 	
 	game_objects = [NSMutableArray array];
-	GameMap *map = [MapLoader load_capegame_map:file];
-	for (CapeGameObject *o in map.game_objects) {
-		[game_objects addObject:o];
-		[self addChild:o];
+	if (is_boss_capegame) {
+		[self add_gameobject:[CapeGameBossCat cons]];
+		duration = BOSS_INFINITE_DURATION;
+		
+	} else {
+		GameMap *map = [MapLoader load_capegame_map:file];
+		for (CapeGameObject *o in map.game_objects) {
+			[self add_gameobject:o];
+		}
+		[map.game_objects removeAllObjects];
+		duration = GAME_DURATION;
 	}
-	[map.game_objects removeAllObjects];
 	
 	ui = [CapeGameUILayer cons_g:self];
 	[self addChild:ui z:4];
@@ -94,8 +104,8 @@ static NSString *blank = @"";
 	touch_down = NO;
 	initial_hold = YES;
 	
-	duration = GAME_DURATION;
 	current_mode = CapeGameMode_FALLIN;
+	gameobjects_tbr = [NSMutableArray array];
 	
 	return self;
 }
@@ -116,7 +126,17 @@ static NSString *blank = @"";
     [particles_tba removeAllObjects];
 }
 
+-(void)add_gameobject:(CapeGameObject*)o {
+    [game_objects addObject:o];
+    [self addChild:o];
+}
+
+-(void)remove_gameobject:(CapeGameObject*)o {
+	[gameobjects_tbr addObject:o];
+}
+
 -(void)update:(ccTime)dt {
+	
 	[Common set_dt:dt];
 	[main_game incr_time:[Common get_dt_Scale]];
 	[ui update];
@@ -135,6 +155,12 @@ static NSString *blank = @"";
         }
     }
     [particles removeObjectsInArray:toremove];
+	
+	for (CapeGameObject *o in gameobjects_tbr) {
+		[game_objects removeObject:o];
+		[self removeChild:o cleanup:YES];
+	}
+	[gameobjects_tbr removeAllObjects];
 	
 	if (current_mode == CapeGameMode_FALLIN) {
 		CGPoint tar = START_TARPOS;
@@ -162,10 +188,11 @@ static NSString *blank = @"";
 		return;
 	}
 	
-	float speed = (1-duration/GAME_DURATION)*6 + 4;
+	float speed = is_boss_capegame ? 7 : (1-duration/GAME_DURATION)*6 + 4;
 	
 	bgclouds_scroll_x += speed;
 	[bgclouds update_posx:bgclouds_scroll_x posy:0];
+	if (is_boss_capegame) [bg update_posx:bgclouds_scroll_x posy:0];
 	
 	CGRect scroll_rect = top_scroll.textureRect;
 	scroll_rect.origin.x += speed;
@@ -185,12 +212,13 @@ static NSString *blank = @"";
 	player.position = neupos;
 	[player set_rotation];
 	
-	for (CapeGameObject *o in game_objects) {
+	for (int i = game_objects.count-1; i >= 0; i--) {
+		CapeGameObject *o = game_objects[i];
 		[o setPosition:CGPointAdd(ccp(-speed,0), o.position)];
 		[o update:self];
 	}
 	
-	duration--;
+	if (duration != BOSS_INFINITE_DURATION) duration--;
 	if (duration <= 0) {
 		[player do_stand];
 		current_mode = CapeGameMode_FALLOUT;

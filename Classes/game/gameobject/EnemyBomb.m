@@ -10,6 +10,7 @@
 }
 -(id)cons_pt:(CGPoint)pt v:(CGPoint)v {
     [self setPosition:pt];
+	sc = 1;
     vel = v;
     ct = 15;
     [self setScale:float_random(0.5, 0.9)];
@@ -17,7 +18,7 @@
     return self;
 }
 -(void)update:(GameEngineLayer *)g {
-    [self setPosition:CGPointAdd(position_, vel)];
+    [self setPosition:CGPointAdd(position_, ccp(vel.x*sc,vel.y*sc))];
     [self setOpacity:255*(ct/15.0)];
     ct--;
 }
@@ -26,6 +27,11 @@
 }
 -(BOOL)should_remove {
     return ct <= 0;
+}
+-(id)set_scale:(float)scale {
+	[self setScale:scale];
+	sc = scale;
+	return self;
 }
 @end
 

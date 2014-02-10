@@ -24,6 +24,8 @@
 @interface BombSparkParticle : Particle {
     CGPoint vel;
     int ct;
+	float sc;
 }
 +(BombSparkParticle*)cons_pt:(CGPoint)pt v:(CGPoint)v;
+-(id)set_scale:(float)scale;
 @end

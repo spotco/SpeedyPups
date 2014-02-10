@@ -147,6 +147,8 @@
 		7E7952A118A8C4B7002337F9 /* cloudlevel_boss_bg_thunder.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E79529E18A8C4B7002337F9 /* cloudlevel_boss_bg_thunder.png */; };
 		7E7952A218A8C4B7002337F9 /* cloudlevel_boss_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E79529F18A8C4B7002337F9 /* cloudlevel_boss_bg.png */; };
 		7E7952A318A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7952A018A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png */; };
+		7E7952A618A8D737002337F9 /* CapeGameBossCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7952A518A8D737002337F9 /* CapeGameBossCat.m */; };
+		7E7952A918A8E516002337F9 /* CapeGameBossBomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */; };
 		7E80D7C1181276AE007E48C5 /* classic_twopath.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C0181276AE007E48C5 /* classic_twopath.map */; };
 		7E80D7C818127B53007E48C5 /* gameloop2_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */; };
 		7E80D7C918127B53007E48C5 /* gameloop3.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C718127B53007E48C5 /* gameloop3.aiff */; };
@@ -965,6 +967,10 @@
 		7E79529E18A8C4B7002337F9 /* cloudlevel_boss_bg_thunder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_boss_bg_thunder.png; sourceTree = "<group>"; };
 		7E79529F18A8C4B7002337F9 /* cloudlevel_boss_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_boss_bg.png; sourceTree = "<group>"; };
 		7E7952A018A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudlevel_boss_cloudfloor.png; sourceTree = "<group>"; };
+		7E7952A418A8D737002337F9 /* CapeGameBossCat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameBossCat.h; sourceTree = "<group>"; };
+		7E7952A518A8D737002337F9 /* CapeGameBossCat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameBossCat.m; sourceTree = "<group>"; };
+		7E7952A718A8E516002337F9 /* CapeGameBossBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameBossBomb.h; sourceTree = "<group>"; };
+		7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameBossBomb.m; sourceTree = "<group>"; };
 		7E80D7C0181276AE007E48C5 /* classic_twopath.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_twopath.map; sourceTree = "<group>"; };
 		7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2_night.aiff; sourceTree = "<group>"; };
 		7E80D7C718127B53007E48C5 /* gameloop3.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3.aiff; sourceTree = "<group>"; };
@@ -3582,6 +3588,10 @@
 				7EE30D1D17E6D05E00DC2A21 /* CapeGameSpikeVine.m */,
 				7E0C57A617E6E1E900786CE5 /* CapeTutorialLauncher.h */,
 				7E0C57A717E6E1E900786CE5 /* CapeTutorialLauncher.m */,
+				7E7952A418A8D737002337F9 /* CapeGameBossCat.h */,
+				7E7952A518A8D737002337F9 /* CapeGameBossCat.m */,
+				7E7952A718A8E516002337F9 /* CapeGameBossBomb.h */,
+				7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */,
 			);
 			name = capegameobject;
 			sourceTree = "<group>";
@@ -4354,6 +4364,7 @@
 				7ED28FAA17124DDE0037B916 /* PauseUI.m in Sources */,
 				7ED28FAD17124DF30037B916 /* AskContinueUI.m in Sources */,
 				7ED28FB017124E110037B916 /* GameOverUI.m in Sources */,
+				7E7952A618A8D737002337F9 /* CapeGameBossCat.m in Sources */,
 				7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */,
 				7ED28FB61712547E0037B916 /* UICommon.m in Sources */,
 				7E0C6366184C7DFF00D3C4B9 /* RepeatFillSprite.m in Sources */,
@@ -4390,6 +4401,7 @@
 				7ECADE2017646AF00032A1E6 /* OpenALManager.m in Sources */,
 				7ECADE2117646AF00032A1E6 /* OALAudioSession.m in Sources */,
 				7ECADE2217646AF00032A1E6 /* OALSuspendHandler.m in Sources */,
+				7E7952A918A8E516002337F9 /* CapeGameBossBomb.m in Sources */,
 				7ECADE2317646AF00032A1E6 /* IOSVersion.m in Sources */,
 				7ECADE2417646AF00032A1E6 /* mach_timing.c in Sources */,
 				7ECADE2517646AF00032A1E6 /* NSMutableArray+WeakReferences.m in Sources */,

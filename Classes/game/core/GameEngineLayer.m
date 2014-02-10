@@ -372,11 +372,7 @@
 		
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
-			if (do_boss_capegame) {
-				[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
-			} else {
-				[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
-			}
+			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self boss:do_boss_capegame]];
 			[AudioManager playbgm_imm:BGM_GROUP_CAPEGAME];
 			[Player character_bark];
 			current_mode = GameEngineLayerMode_CAPEIN;
@@ -598,7 +594,7 @@
 		[GameControlImplementation reset_control_state];
 		runout_ct = 100;
 		player.current_island = NULL;
-		do_boss_capegame = NO;
+		do_boss_capegame = YES; //TODO -- UNDO
 		
 	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {
 		current_mode = GameEngineLayerMode_CAPEOUT;
