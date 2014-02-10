@@ -8,6 +8,8 @@
 	float passive_arm_rotation_theta;
 	float swing_theta;
 	int mode;
+	
+	BOOL swing_has_thrown_bomb;
 }
 +(RobotBossBody*)cons;
 @property(readwrite,strong) CCSprite *body;
@@ -17,6 +19,9 @@
 -(void)do_swing;
 -(BOOL)swing_launched;
 -(BOOL)swing_in_progress;
+
+-(void)set_swing_has_thrown_bomb;
+-(BOOL)swing_has_thrown_bomb;
 
 @end
 

@@ -23,12 +23,13 @@
 	
 	[self set_bounds_and_ground:g];
 	
-	cur_mode = RobotBossMode_CAT_IN_RIGHT1;
-	
 	cat_body_rel_pos = ccp(2000,800);
 	robot_body_rel_pos = ccp(1500,0);
 	
 	fist_projectiles = [NSMutableArray array];
+	
+	cur_mode = RobotBossMode_CAT_IN_RIGHT1;
+	//cur_mode = RobotBossMode_CAT_IN_RIGHT2;
 	
 	self.active = YES;
 	return self;
@@ -58,7 +59,10 @@
 	NSMutableArray *to_remove = [NSMutableArray array];
 	for (RobotBossFistProjectile *p in fist_projectiles) {
 		if (p.direction == RobotBossFistProjectileDirection_AT_BOSS) {
-			if (p.time_left < 20 && ![robot_body swing_in_progress]) [robot_body do_swing];
+			if (p.time_left < 20 && ![robot_body swing_in_progress])  {
+				[robot_body do_swing];
+				[robot_body set_swing_has_thrown_bomb];
+			}
 			if (p.time_left <= 15) [self volley_return:p];
 			
 		} else if (p.direction == RobotBossFistProjectileDirection_AT_CAT && p.time_left <= 5) {
@@ -69,6 +73,10 @@
 			} else if (cur_mode == RobotBossMode_WHIFF_AT_CAT_LEFT_1) {
 				delay_ct = 40;
 				cur_mode = RobotBossMode_CAT_HURT_OUT_LEFT_1;
+				
+			} else if (cur_mode == RobotBossMode_WHIFF_AT_CAT_RIGHT_2) {
+				delay_ct = 40;
+				cur_mode = RobotBossMode_CAT_HURT_OUT_RIGHT_2;
 			}
 		}
 			
@@ -90,32 +98,15 @@
 	
 	} else if (cur_mode == RobotBossMode_CAT_IN_RIGHT1) {
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:54 y:54 z:400]];
-		[cat_body stand_anim];
-		
-		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, RPOS_CAT_TAUNT_POS, 15.0);
-		
-		
-		if (CGPointDist(cat_body_rel_pos, RPOS_CAT_TAUNT_POS) < 5) {
-			cur_mode = RobotBossMode_CAT_TAUNT_RIGHT1;
-			[cat_body laugh_anim];
-			delay_ct = 80;
-		}
+		[cat_body setScaleX:-1];
+		[robot_body setScaleX:-1];
+		[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:RobotBossMode_CAT_TAUNT_RIGHT1];
 		
 	} else if (cur_mode == RobotBossMode_CAT_TAUNT_RIGHT1) {
-		delay_ct-=[Common get_dt_Scale];
-		if (delay_ct <= 0) {
-			cur_mode = RobotBossMode_CAT_ROBOT_IN_RIGHT1;
-			[cat_body stand_anim];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
-		}
+		[self update_taunt_transition_to:RobotBossMode_CAT_ROBOT_IN_RIGHT1];
 		
 	} else if (cur_mode == RobotBossMode_CAT_ROBOT_IN_RIGHT1) {
-		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, RPOS_CAT_DEFAULT_POS, 15.0);
-		robot_body_rel_pos = LERP_TO(robot_body_rel_pos, RPOS_ROBOT_DEFAULT_POS, 25.0);
-		if (CGPointDist(robot_body_rel_pos, RPOS_ROBOT_DEFAULT_POS) < 5) {
-			cur_mode = RobotBossMode_VOLLEY_RIGHT_1;
-			delay_ct = 20;
-		}
+		[self update_robot_body_in_robotpos:RPOS_ROBOT_DEFAULT_POS catpos:RPOS_CAT_DEFAULT_POS transition_to:RobotBossMode_VOLLEY_RIGHT_1];
 		
 	} else if (cur_mode == RobotBossMode_VOLLEY_RIGHT_1) {
 		delay_ct -= [Common get_dt_Scale];
@@ -137,56 +128,23 @@
 		}
 		
 	} else if (cur_mode == RobotBossMode_CAT_HURT_OUT_1) {
-		[cat_body damage_anim];
-		delay_ct -= [Common get_dt_Scale];
-		
-		if (delay_ct <= 0) {
-			CGPoint flyout_pos = ccp(RPOS_CAT_DEFAULT_POS.x+600,RPOS_CAT_DEFAULT_POS.y+50);
-			cat_body_rel_pos = LERP_TO(cat_body_rel_pos, flyout_pos, 25.0);
-			if (CGPointDist(cat_body_rel_pos, flyout_pos) < 100) {
-				robot_body_rel_pos.x += 10*[Common get_dt_Scale];
-				if (robot_body_rel_pos.x > RPOS_ROBOT_DEFAULT_POS.x+1200) {
-					cur_mode = RobotBossMode_CAT_IN_LEFT1;
-					cat_body_rel_pos = ccp(-2000,800);
-					robot_body_rel_pos = ccp(-1500,0);
-				}
-			}
-		} else {
-			[cat_body brownian];
-		}
+		[self update_cat_hurt_out_catpos:ccp(RPOS_CAT_DEFAULT_POS.x+600,RPOS_CAT_DEFAULT_POS.y+50)
+							   robot_pos:ccp(RPOS_ROBOT_DEFAULT_POS.x+1200,0)
+						   transition_to:RobotBossMode_CAT_IN_LEFT1
+							after_catpos:ccp(-2000,800)
+							after_catpos:ccp(-1500,0)];
 		
 	} else if (cur_mode == RobotBossMode_CAT_IN_LEFT1) {
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:320 y:54 z:400]];
-		[cat_body stand_anim];
 		[cat_body setScaleX:1];
 		[robot_body setScaleX:1];
-		
-		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, LPOS_CAT_TAUNT_POS, 15.0);
-		
-		
-		if (CGPointDist(cat_body_rel_pos, LPOS_CAT_TAUNT_POS) < 5) {
-			cur_mode = RobotBossMode_CAT_TAUNT_LEFT1;
-			[cat_body laugh_anim];
-			delay_ct = 80;
-		}
+		[self update_cat_body_flyin_to:LPOS_CAT_TAUNT_POS transition_to:RobotBossMode_CAT_TAUNT_LEFT1];
 		
 	} else if (cur_mode == RobotBossMode_CAT_TAUNT_LEFT1) {
-		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:320 y:54 z:400]];
-		[cat_body laugh_anim];
-		delay_ct-=[Common get_dt_Scale];
-		if (delay_ct <= 0) {
-			cur_mode = RobotBossMode_CAT_ROBOT_IN_LEFT1;
-			[cat_body stand_anim];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
-		}
+		[self update_taunt_transition_to:RobotBossMode_CAT_ROBOT_IN_LEFT1];
 		
 	} else if  (cur_mode == RobotBossMode_CAT_ROBOT_IN_LEFT1) {
-		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, LPOS_CAT_DEFAULT_POS, 15.0);
-		robot_body_rel_pos = LERP_TO(robot_body_rel_pos, LPOS_ROBOT_DEFAULT_POS, 25.0);
-		if (CGPointDist(robot_body_rel_pos, LPOS_ROBOT_DEFAULT_POS) < 5) {
-			cur_mode = RobotBossMode_VOLLEY_LEFT_1;
-			delay_ct = 20;
-		}
+		[self update_robot_body_in_robotpos:LPOS_ROBOT_DEFAULT_POS catpos:LPOS_CAT_DEFAULT_POS transition_to:RobotBossMode_VOLLEY_LEFT_1];
 		
 	} else if (cur_mode == RobotBossMode_VOLLEY_LEFT_1) {
 		delay_ct -= [Common get_dt_Scale];
@@ -208,35 +166,76 @@
 		}
 		
 	} else if (cur_mode == RobotBossMode_CAT_HURT_OUT_LEFT_1) {
-		[cat_body damage_anim];
-		NSLog(@"fin");
+		[self update_cat_hurt_out_catpos:ccp(LPOS_CAT_DEFAULT_POS.x-600,LPOS_CAT_DEFAULT_POS.y+50)
+							   robot_pos:ccp(LPOS_ROBOT_DEFAULT_POS.x-1200,0)
+						   transition_to:RobotBossMode_CAT_IN_RIGHT2
+							after_catpos:ccp(2000,800)
+							after_catpos:ccp(1500,0)];
 		
+	} else if (cur_mode == RobotBossMode_CAT_IN_RIGHT2) {
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:54 y:54 z:400]];
+		[cat_body setScaleX:-1];
+		[robot_body setScaleX:-1];
+		[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:RobotBossMode_CAT_TAUNT_RIGHT2];
+		
+	} else if (cur_mode == RobotBossMode_CAT_TAUNT_RIGHT2) {
+		[self update_taunt_transition_to:RobotBossMode_CAT_ROBOT_IN_RIGHT2];
+		
+	} else if (cur_mode == RobotBossMode_CAT_ROBOT_IN_RIGHT2) {
+		[self update_robot_body_in_robotpos:RPOS_ROBOT_DEFAULT_POS catpos:RPOS_CAT_DEFAULT_POS transition_to:RobotBossMode_VOLLEY_RIGHT_2];
+		
+	} else if (cur_mode == RobotBossMode_VOLLEY_RIGHT_2) {
+		delay_ct -= [Common get_dt_Scale];
+		if (fist_projectiles.count == 0 && delay_ct <= 0 && ![robot_body swing_in_progress]) {
+			[robot_body do_swing];
+			
+		} else if (fist_projectiles.count == 1 && delay_ct <= 0 && ![robot_body swing_in_progress]) {
+			RobotBossFistProjectile *p = fist_projectiles[0];
+			if (p.direction == RobotBossFistProjectileDirection_AT_PLAYER && (p.time_left < 65 && p.time_left > 30)) {
+				[robot_body do_swing];
+			}
+			
+		} else if (fist_projectiles.count <= 1 && [robot_body swing_in_progress] && [robot_body swing_launched] && ![robot_body swing_has_thrown_bomb]) {
+			volley_ct = 6;
+			[robot_body set_swing_has_thrown_bomb];
+			
+			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
+																	 relpos:CGPointAdd(robot_body_rel_pos, ccp(-140,350))
+																	 tarpos:CGPointZero
+																	   time:120 groundlevel:groundlevel] mode_parabola_a];
+			[neu set_boss_pos:CGPointAdd(RPOS_ROBOT_DEFAULT_POS, ccp(0,200))];
+			neu.direction = RobotBossFistProjectileDirection_AT_PLAYER;
+			[g add_gameobject:neu];
+			[fist_projectiles addObject:neu];
+			[AudioManager playsfx:SFX_BOSS_ENTER];
+			
+		}
+		
+	} else if (cur_mode == RobotBossMode_CAT_HURT_OUT_RIGHT_2) {
+		[cat_body damage_anim];
+		[cat_body brownian];
+		//todo --
 	}
 }
 
 -(void)volley_return:(RobotBossFistProjectile*)p {
+	[AudioManager playsfx:SFX_ROCKBREAK];
+	[AudioManager playsfx:SFX_BOSS_ENTER];
+	
 	if (cur_mode == RobotBossMode_VOLLEY_RIGHT_1) {
 		volley_ct--;
 		if (volley_ct == 1) {
 			p.direction = RobotBossFistProjectileDirection_AT_PLAYER;
 			[p mode_parabola_a];
 			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
-									   tarpos:ccp(0,0)
-									time_left:60
-								   time_total:60];
-			[AudioManager playsfx:SFX_ROCKBREAK];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
+					 tarpos:ccp(0,0) time_left:60 time_total:60];
 			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:1];
 			
 		} else {
 			p.direction = RobotBossFistProjectileDirection_AT_CAT;
 			[p mode_parabola_at_cat];
 			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
-					 tarpos:RPOS_CAT_DEFAULT_POS
-				  time_left:60
-				 time_total:60];
-			[AudioManager playsfx:SFX_ROCKBREAK];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
+					 tarpos:RPOS_CAT_DEFAULT_POS time_left:60 time_total:60];
 			cur_mode = RobotBossMode_WHIFF_AT_CAT_RIGHT_1;
 			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.8) scx:1];
 			
@@ -254,27 +253,44 @@
 			p.direction = RobotBossFistProjectileDirection_AT_PLAYER;
 			[p mode_parabola_b];
 			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
-					 tarpos:ccp(0,0)
-				  time_left:speed
-				 time_total:speed];
-			[AudioManager playsfx:SFX_ROCKBREAK];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
+					 tarpos:ccp(0,0) time_left:speed time_total:speed];
 			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:-1];
 			
 		} else {
 			p.direction = RobotBossFistProjectileDirection_AT_CAT;
 			[p mode_parabola_at_cat_left];
 			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
-					 tarpos:LPOS_CAT_DEFAULT_POS
-				  time_left:60
-				 time_total:60];
-			[AudioManager playsfx:SFX_ROCKBREAK];
-			[AudioManager playsfx:SFX_BOSS_ENTER];
+					 tarpos:LPOS_CAT_DEFAULT_POS time_left:60 time_total:60];
 			cur_mode = RobotBossMode_WHIFF_AT_CAT_LEFT_1;
 			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:-1];
 			
 		}
 		
+	} else if (cur_mode == RobotBossMode_VOLLEY_RIGHT_2) {
+		volley_ct--;
+		if (volley_ct > 0) {
+			p.direction = RobotBossFistProjectileDirection_AT_PLAYER;
+			[p mode_parabola_a];
+			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
+					 tarpos:ccp(0,0) time_left:100 time_total:100];
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:1];
+			
+		} else {
+			p.direction = RobotBossFistProjectileDirection_AT_CAT;
+			[p mode_parabola_at_cat];
+			[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
+					 tarpos:RPOS_CAT_DEFAULT_POS time_left:60 time_total:60];
+			cur_mode = RobotBossMode_WHIFF_AT_CAT_RIGHT_2;
+			[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.8) scx:1];
+		}
+		
+	} else {
+		p.direction = RobotBossFistProjectileDirection_AT_CAT;
+		[p mode_parabola_at_cat];
+		[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
+				 tarpos:RPOS_CAT_DEFAULT_POS time_left:60 time_total:60];
+		cur_mode = RobotBossMode_WHIFF_AT_CAT_RIGHT_2;
+		[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.8) scx:1];
 	}
 }
 
@@ -313,6 +329,54 @@
 	}
 	[g frame_set_follow_clamp_y_min:yl_min-500 max:yl_min+300];
 	groundlevel = yl_min;
+}
+
+-(void)update_cat_body_flyin_to:(CGPoint)tar transition_to:(RobotBossMode)mode {
+	[cat_body stand_anim];
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, tar, 15.0);
+	
+	if (CGPointDist(cat_body_rel_pos, tar) < 5) {
+		cur_mode = mode;
+		[cat_body laugh_anim];
+		delay_ct = 80;
+	}
+}
+
+-(void)update_taunt_transition_to:(RobotBossMode)mode {
+	delay_ct-=[Common get_dt_Scale];
+	if (delay_ct <= 0) {
+		cur_mode = mode;
+		[cat_body stand_anim];
+		[AudioManager playsfx:SFX_BOSS_ENTER];
+	}
+}
+
+-(void)update_robot_body_in_robotpos:(CGPoint)robot_pos catpos:(CGPoint)cat_pos transition_to:(RobotBossMode)mode {
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, cat_pos, 15.0);
+	robot_body_rel_pos = LERP_TO(robot_body_rel_pos, robot_pos, 25.0);
+	if (CGPointDist(robot_body_rel_pos, robot_pos) < 5) {
+		cur_mode = mode;
+		delay_ct = 20;
+	}
+}
+
+-(void)update_cat_hurt_out_catpos:(CGPoint)catpos robot_pos:(CGPoint)robotpos transition_to:(RobotBossMode)mode after_catpos:(CGPoint)after_catpos after_catpos:(CGPoint)after_robotpos {
+	[cat_body damage_anim];
+	delay_ct -= [Common get_dt_Scale];
+	if (delay_ct <= 0) {
+		CGPoint flyout_pos = catpos;
+		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, flyout_pos, 25.0);
+		if (CGPointDist(cat_body_rel_pos, flyout_pos) < 100) {
+			robot_body_rel_pos.x += ((robotpos.x>robot_body_rel_pos.x)?10:-10)*[Common get_dt_Scale];
+			if (CGPointDist(robot_body_rel_pos, robotpos) < 50) {
+				cur_mode = mode;
+				cat_body_rel_pos = after_catpos;
+				robot_body_rel_pos = after_robotpos;
+			}
+		}
+	} else {
+		[cat_body brownian];
+	}
 }
 
 @end

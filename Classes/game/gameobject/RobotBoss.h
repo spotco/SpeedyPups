@@ -18,8 +18,14 @@ typedef enum RobotBossMode {
 	RobotBossMode_CAT_ROBOT_IN_LEFT1,
 	RobotBossMode_VOLLEY_LEFT_1,
 	RobotBossMode_WHIFF_AT_CAT_LEFT_1,
-	RobotBossMode_CAT_HURT_OUT_LEFT_1
+	RobotBossMode_CAT_HURT_OUT_LEFT_1,
 	
+	RobotBossMode_CAT_IN_RIGHT2,
+	RobotBossMode_CAT_TAUNT_RIGHT2,
+	RobotBossMode_CAT_ROBOT_IN_RIGHT2,
+	RobotBossMode_VOLLEY_RIGHT_2,
+	RobotBossMode_WHIFF_AT_CAT_RIGHT_2,
+	RobotBossMode_CAT_HURT_OUT_RIGHT_2
 } RobotBossMode;
 
 @interface RobotBoss : GameObject {

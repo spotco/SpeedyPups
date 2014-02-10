@@ -91,15 +91,16 @@ static CCAction *_cat_damage;
 	
 	passive_arm_rotation_theta = 0;
 	
+	swing_has_thrown_bomb = NO;
+	
 	[self setScaleX:-1];
 	
 	return self;
 }
 
 -(void)update {
-	
 	if (mode == RobotBossBodyMode_STAND) {
-		passive_arm_rotation_theta+=0.05*[Common get_dt_Scale];
+		passive_arm_rotation_theta+=0.09*[Common get_dt_Scale];
 		[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
 		[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
 	
@@ -117,6 +118,15 @@ static CCAction *_cat_damage;
 -(void)do_swing {
 	mode = RobotBossBodyMode_SWING;
 	swing_theta = 0;
+	swing_has_thrown_bomb = NO;
+}
+
+-(void)set_swing_has_thrown_bomb {
+	swing_has_thrown_bomb = YES;
+}
+
+-(BOOL)swing_has_thrown_bomb {
+	return swing_has_thrown_bomb;
 }
 
 -(BOOL)swing_launched {

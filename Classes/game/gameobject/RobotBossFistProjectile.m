@@ -7,9 +7,10 @@
 
 #define MODE_LINE 0
 #define MODE_PARABOLA_A 1
-#define MODE_PARABOLA_AT_CAT 2
-#define MODE_PARABOLA_B 3
-#define MODE_PARABOLA_CAT_LEFT 4
+#define MODE_PARABOLA_A2 2
+#define MODE_PARABOLA_AT_CAT 3
+#define MODE_PARABOLA_B 4
+#define MODE_PARABOLA_CAT_LEFT 5
 
 #define ROBOT_DEFAULT_POS ccp(725,0)
 
@@ -48,6 +49,9 @@
 	
 	if (mode == MODE_PARABOLA_A) {
 		y = 3.39*x - 0.0047*x*x; //quadratic fit {0,0}, {585,350}, {250,550}
+		
+	} else if (mode == MODE_PARABOLA_A2) {
+		y = 3.16179*x - 0.003847*x*x; //quadratic fit {0,0}, {690,350}, {250,550}
 		
 	} else if (mode == MODE_PARABOLA_AT_CAT) {
 		y = -0.0115646*x*x + 17.649*x - 6017.35; //quadratic fit {900,500}, {585,350}, {725,700}
@@ -111,6 +115,11 @@
 
 -(id)mode_parabola_a {
 	mode = MODE_PARABOLA_A;
+	return self;
+}
+
+-(id)mode_parabola_a2 {
+	mode = MODE_PARABOLA_A2;
 	return self;
 }
 

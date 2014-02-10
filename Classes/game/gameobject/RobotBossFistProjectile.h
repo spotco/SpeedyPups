@@ -20,6 +20,7 @@
 -(id)set_startpos:(CGPoint)_startpos tarpos:(CGPoint)_tarpos time_left:(float)_time_left time_total:(float)_time_total;
 
 -(id)mode_parabola_a;
+-(id)mode_parabola_a2;
 -(id)mode_parabola_b;
 -(id)mode_line;
 -(id)mode_parabola_at_cat;
