@@ -55,6 +55,8 @@ typedef enum {
     HitRect cached_viewbox;
     BOOL refresh_worldbounds_cache;
     HitRect cached_worldsbounds;
+	
+	BOOL do_boss_capegame;
     
     CGPoint player_starting_pos;
     BOOL do_runin_anim;

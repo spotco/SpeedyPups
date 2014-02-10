@@ -372,7 +372,11 @@
 		
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
-			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
+			if (do_boss_capegame) {
+				[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
+			} else {
+				[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self]];
+			}
 			[AudioManager playbgm_imm:BGM_GROUP_CAPEGAME];
 			[Player character_bark];
 			current_mode = GameEngineLayerMode_CAPEIN;
@@ -594,6 +598,15 @@
 		[GameControlImplementation reset_control_state];
 		runout_ct = 100;
 		player.current_island = NULL;
+		do_boss_capegame = NO;
+		
+	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {
+		current_mode = GameEngineLayerMode_CAPEOUT;
+		[player reset_params];
+		[GameControlImplementation reset_control_state];
+		runout_ct = 100;
+		player.current_island = NULL;
+		do_boss_capegame = YES;
 		
 	} else if (e.type == GEventType_BOSS1_DEFEATED) {
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;

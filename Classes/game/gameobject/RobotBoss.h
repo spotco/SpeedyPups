@@ -25,7 +25,10 @@ typedef enum RobotBossMode {
 	RobotBossMode_CAT_ROBOT_IN_RIGHT2,
 	RobotBossMode_VOLLEY_RIGHT_2,
 	RobotBossMode_WHIFF_AT_CAT_RIGHT_2,
-	RobotBossMode_CAT_HURT_OUT_RIGHT_2
+	RobotBossMode_CAT_HURT_OUT_RIGHT_2,
+	
+	RobotBossMode_CAT_HURT_WAIT,
+	RobotBossMode_CAT_OUT_TO_CAPEGAME
 } RobotBossMode;
 
 @interface RobotBoss : GameObject {
@@ -33,9 +36,11 @@ typedef enum RobotBossMode {
 	
 	RobotBossBody *robot_body;
 	CatBossBody *cat_body;
+	CCSprite *cape_item_body;
 	
 	CGPoint cat_body_rel_pos;
 	CGPoint robot_body_rel_pos;
+	CGPoint cape_item_rel_pos;
 	
 	NSMutableArray *fist_projectiles;
 	

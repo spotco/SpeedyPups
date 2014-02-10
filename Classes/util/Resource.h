@@ -64,7 +64,6 @@
 #define TEX_DASHJUMPPARTICLES_SS @"dashjumpparticles_ss"
 
 #define TEX_ISLAND_BORDER @"IslandBorder"
-//#define TEX_CLOUD_SS @"cloud_ss"
 
 #define TEX_GOAL_SS @"goal_ss"
 
@@ -152,6 +151,10 @@
 #define TEX_CLOUDGAME_BG @"cloudbg"
 #define TEX_CLOUDGAME_CLOUDFLOOR @"cloudfloor"
 #define TEX_CLOUDGAME_BGCLOUDS @"bgclouds"
+
+#define TEX_CLOUDGAME_BOSS_BG @"cloudgame_boss_bg"
+#define TEX_CLOUDGAME_BOSS_CLOUDFLOOR @"cloudgame_boss_cloudfloor"
+
 #define TEX_CANNONMOVETRACK_BODY @"cannonmovetrack_body"
 #define TEX_CANNONMOVETRACK_EDGE @"cannonmovetrack_edge"
 

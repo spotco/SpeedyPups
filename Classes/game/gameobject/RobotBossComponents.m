@@ -194,6 +194,7 @@ static int brownian_ct = 0;
 	[cape stopAllActions];
 	[self.cape runAction:_cat_cape];
 	[self.base runAction:_cat_tail_base];
+	[cape setVisible:YES];
 }
 
 -(void)stand_anim {
@@ -206,6 +207,7 @@ static int brownian_ct = 0;
 	[cape stopAllActions];
 	[self.cape runAction:_cat_cape];
 	[self.base runAction:_cat_tail_base];
+	[cape setVisible:YES];
 }
 
 -(void)damage_anim {
@@ -215,6 +217,20 @@ static int brownian_ct = 0;
 	top_anim = _cat_damage;
 	[base stopAllActions];
 	[cape stopAllActions];
+	[cape setVisible:NO];
 }
+
+-(void)hurt_anim {
+	if (top_anim == _cat_hurt) return;
+	[self.top stopAllActions];
+	[self.top runAction:_cat_hurt];
+	top_anim = _cat_hurt;
+	
+	[cape setVisible:NO];
+	[base stopAllActions];
+	[cape stopAllActions];
+	[self.base runAction:_cat_tail_base];
+}
+
 
 @end

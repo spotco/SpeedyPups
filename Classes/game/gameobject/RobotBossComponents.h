@@ -40,5 +40,6 @@
 -(void)laugh_anim;
 -(void)stand_anim;
 -(void)damage_anim;
+-(void)hurt_anim;
 -(void)brownian;
 @end

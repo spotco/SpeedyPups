@@ -86,7 +86,6 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_BG_LAYER_1:@"BG1_layer_1.png",
 	 TEX_BG_LAYER_3:@"BG1_layer_3.png",
 	 TEX_ISLAND_BORDER:@"BG1_island_border.png",
-	 //TEX_CLOUD_SS:@"cloud_ss.png",
 	 TEX_WATER:@"water.png",
 	 TEX_CANNON_SS:@"cannon_ss.png",
 	 
@@ -164,9 +163,13 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_FREERUNSTARTICONS:@"freerunstart_icons.png",
 	 TEX_BLANK:@"blank.png",
 	 TEX_PARTICLES:@"particles.png",
+	 
 	 TEX_CLOUDGAME_CLOUDFLOOR:@"cloudlevel_cloudfloor.png",
 	 TEX_CLOUDGAME_BG:@"cloudlevel_bg.png",
 	 TEX_CLOUDGAME_BGCLOUDS:@"cloudlevel_bgclouds.png",
+	 TEX_CLOUDGAME_BOSS_BG:@"cloudlevel_boss_bg.png",
+	 TEX_CLOUDGAME_BOSS_CLOUDFLOOR:@"cloudlevel_boss_cloudfloor.png",
+	 
 	 TEX_CANNONMOVETRACK_BODY:@"cannonmovetrack_body.png",
 	 TEX_CANNONMOVETRACK_EDGE:@"cannonmovetrack_edge.png"
 	};

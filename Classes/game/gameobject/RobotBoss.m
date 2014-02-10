@@ -10,6 +10,19 @@
 	return [[RobotBoss node] cons:g];
 }
 
+#define RPOS_CAT_TAUNT_POS ccp(400,300)
+#define RPOS_CAT_DEFAULT_POS ccp(900,500)
+#define RPOS_ROBOT_DEFAULT_POS ccp(725,0)
+
+#define LPOS_CAT_TAUNT_POS ccp(-400,300)
+#define LPOS_CAT_DEFAULT_POS ccp(-700,500)
+#define LPOS_ROBOT_DEFAULT_POS ccp(-525,0)
+
+#define CAPE_WAIT_POS ccp(500,150)
+
+#define CENTER_POS ccp(player.position.x,groundlevel)
+#define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
+
 -(id)cons:(GameEngineLayer*)_g {
 	[RobotBossComponents cons_anims];
 
@@ -28,23 +41,17 @@
 	
 	fist_projectiles = [NSMutableArray array];
 	
-	cur_mode = RobotBossMode_CAT_IN_RIGHT1;
-	//cur_mode = RobotBossMode_CAT_IN_RIGHT2;
+	//cur_mode = RobotBossMode_CAT_IN_RIGHT1;
+	cur_mode = RobotBossMode_CAT_IN_RIGHT2;
+	
+	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
+	[cape_item_body setScale:1.75];
+	[cape_item_body setVisible:NO];
+	[self addChild:cape_item_body];
 	
 	self.active = YES;
 	return self;
 }
-
-#define RPOS_CAT_TAUNT_POS ccp(400,300)
-#define RPOS_CAT_DEFAULT_POS ccp(900,500)
-#define RPOS_ROBOT_DEFAULT_POS ccp(725,0)
-
-#define LPOS_CAT_TAUNT_POS ccp(-400,300)
-#define LPOS_CAT_DEFAULT_POS ccp(-700,500)
-#define LPOS_ROBOT_DEFAULT_POS ccp(-525,0)
-
-#define CENTER_POS ccp(player.position.x,groundlevel)
-#define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
 
 -(void)update:(Player *)player g:(GameEngineLayer *)_g {
 	[self set_bounds_and_ground:g];
@@ -55,6 +62,7 @@
 	[cat_body setPosition:CGPointAdd(CENTER_POS, cat_body_rel_pos)];
 	[cat_body update];
 	
+	[cape_item_body setPosition:CGPointAdd(CENTER_POS, cape_item_rel_pos)];
 	
 	NSMutableArray *to_remove = [NSMutableArray array];
 	for (RobotBossFistProjectile *p in fist_projectiles) {
@@ -196,7 +204,8 @@
 			}
 			
 		} else if (fist_projectiles.count <= 1 && [robot_body swing_in_progress] && [robot_body swing_launched] && ![robot_body swing_has_thrown_bomb]) {
-			volley_ct = 6;
+			//volley_ct = 6;
+			volley_ct = 1;
 			[robot_body set_swing_has_thrown_bomb];
 			
 			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
@@ -212,9 +221,38 @@
 		}
 		
 	} else if (cur_mode == RobotBossMode_CAT_HURT_OUT_RIGHT_2) {
-		[cat_body damage_anim];
-		[cat_body brownian];
-		//todo --
+		[cat_body hurt_anim];
+		
+		delay_ct -= [Common get_dt_Scale];
+		
+		if (delay_ct <= 0) {
+			cat_body_rel_pos = LERP_TO(cat_body_rel_pos, RPOS_CAT_TAUNT_POS, 15);
+			robot_body_rel_pos = LERP_TO(robot_body_rel_pos, CGPointAdd(RPOS_ROBOT_DEFAULT_POS, ccp(1000,0)), 45);
+			if (CGPointDist(cat_body_rel_pos, RPOS_CAT_TAUNT_POS) < 10) {
+				cur_mode = RobotBossMode_CAT_HURT_WAIT;
+				delay_ct = 40;
+				cape_item_rel_pos = cat_body_rel_pos;
+			}
+		}
+		
+	} else if (cur_mode == RobotBossMode_CAT_HURT_WAIT) {
+		robot_body_rel_pos = LERP_TO(robot_body_rel_pos, CGPointAdd(RPOS_ROBOT_DEFAULT_POS, ccp(1000,0)), 45);
+		[cape_item_body setVisible:YES];
+		cape_item_rel_pos = LERP_TO(cape_item_rel_pos, CAPE_WAIT_POS, 15.0);
+		delay_ct-=[Common get_dt_Scale];
+		if (delay_ct <= 0) cur_mode = RobotBossMode_CAT_OUT_TO_CAPEGAME;
+		
+	} else if (cur_mode == RobotBossMode_CAT_OUT_TO_CAPEGAME) {
+		robot_body_rel_pos = LERP_TO(robot_body_rel_pos, CGPointAdd(RPOS_ROBOT_DEFAULT_POS, ccp(1000,0)), 45);
+		cat_body_rel_pos = LERP_TO(cat_body_rel_pos, CGPointAdd(RPOS_CAT_TAUNT_POS,ccp(0,1000)), 15);
+		cape_item_rel_pos = LERP_TO(cape_item_rel_pos, CGPointZero, 15.0);
+		if  (CGPointDist(cape_item_body.position, player.position) < 50) {
+			[AudioManager playsfx:SFX_POWERUP];
+			[cape_item_body setVisible:NO];
+			cur_mode = RobotBossMode_TOREMOVE;
+			[GEventDispatcher push_event:[GEvent cons_type:GEventType_BEGIN_BOSS_CAPE_GAME]];
+		}
+		
 	}
 }
 
