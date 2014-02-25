@@ -14,6 +14,12 @@
 
 #define DEFAULT_SCALE 0.75
 
+-(id)set_scale:(float)sc {
+	[self setScale:sc];
+	trail_scale = sc;
+	return self;
+}
+
 -(CCAction*)cons_anim:(NSArray*)a speed:(float)speed {
 	CCTexture2D *texture = [Resource get_tex:TEX_CANNONTRAIL];
 	NSMutableArray *animFrames = [NSMutableArray array];
@@ -33,7 +39,7 @@
     remlimit = -1;
     [self setRotation:[self get_tar_angle_deg_self:pt tar:ccp(pt.x+vel.x,pt.y+vel.y)]];
     [self setScale:DEFAULT_SCALE];
-    
+    trail_scale = 0.75;
     CCSprite *body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROCKET]];
     [self addChild:body z:2];
     
@@ -93,13 +99,14 @@
     dv =[VecLib scale:dv by:-1];
     dv =[VecLib scale:dv by:90];
     ct++;
-    ct%PARTICLE_FREQ==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y]]:0;
+    ct%PARTICLE_FREQ==0?[g add_particle:[[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y] set_scale:trail_scale]]:0;
     
     
     if (position_.x + REMOVE_BEHIND_BUFFER < player.position.x) {
         kill = YES;
     } else if (remlimit != -1 && ct > remlimit) {
-        kill = YES;
+		[self remove_from:g];
+		return;
     }
     
     if (kill || ![Common hitrect_touch:[self get_hit_rect] b:[g get_world_bounds]]) {
@@ -171,7 +178,11 @@
 -(int)get_render_ord{ return [GameRenderImplementation GET_RENDER_PLAYER_ON_FG_ORD];}
 -(void)reset{[super reset];kill = YES;}
 -(void)set_active:(BOOL)t_active {active = t_active;}
--(HitRect)get_hit_rect {return [Common hitrect_cons_x1:position_.x-30 y1:position_.y-25 wid:60 hei:50];}
+-(HitRect)get_hit_rect {
+	//float hsc = trail_scale/DEFAULT_SCALE;
+	float hsc = 1;
+	return [Common hitrect_cons_x1:position_.x-30*hsc y1:position_.y-25*hsc wid:60*hsc hei:50*hsc];
+}
 
 @end
 
@@ -189,7 +200,7 @@
     v = vel;
     [self update_position];
     [self setScale:DEFAULT_SCALE];
-    
+    trail_scale = 0.75;
     CCSprite *body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROCKET]];
     [self addChild:body z:2];
     
@@ -201,13 +212,40 @@
     
     active = YES;
     [self setRotation:[self get_tar_angle_deg_self:pt tar:ccp(pt.x+vel.x,pt.y+vel.y)]];
+	
     return self;
+}
+
+-(id)set_homing {
+	homing = YES;
+	return self;
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     player_pos = player.position;
     rel_pos.x += v.x * [Common get_dt_Scale];
     [super update:player g:g];
+	
+	if (homing && broken_ct == 0) {
+		float spd = [VecLib length:[VecLib cons_x:v.x y:v.y z:0]];
+		Vec3D to_player = [VecLib scale:
+						   [VecLib normalize:
+							[VecLib cons_x:player.position.x - position_.x y:player.position.y - position_.y z:0]]
+									 by:spd*0.03];
+		v.x+=to_player.x;
+		v.y+=to_player.y;
+	
+		Vec3D neu_v = [VecLib scale:[VecLib normalize:[VecLib cons_x:v.x y:v.y z:0]] by:spd];
+		v.x = neu_v.x;
+		v.y = neu_v.y;
+		
+		[self setRotation:[self get_tar_angle_deg_self:position_ tar:ccp(position_.x+v.x,position_.y+v.y)]];
+		
+		if (position_.y + 400 < player.position.y) {
+			[self remove_from:g];
+			return;
+		}
+	}
 }
 
 -(void)update_vibration {

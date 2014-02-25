@@ -1,7 +1,7 @@
 #import "RobotBossLoader.h"
 #import "AudioManager.h"
 #import "GameEngineLayer.h"
-#import "RobotBoss.h"
+#import "NRobotBoss.h"
 
 @implementation RobotBossLoader
 +(RobotBossLoader*)cons_pt:(CGPoint)pt {
@@ -18,7 +18,7 @@
     if (!self.active && player.position.x > position_.x) {
         active = YES;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS3_ACTIVATE] add_pt:player.position]];
-		[g add_gameobject:[RobotBoss cons_with:g]];
+		[g add_gameobject:[NRobotBoss cons_with:g]];
 		if ([AudioManager get_cur_group] != BGM_GROUP_BOSS1) {
 			[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
 		}

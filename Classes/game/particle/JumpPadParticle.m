@@ -58,6 +58,11 @@
     [super update:g];
     [self setRotation:rotation_+5];
 }
+
+-(id)set_scale:(float)sc {
+	[self setScale:sc];
+	return self;
+}
 @end
 
 @implementation RocketExplodeParticle

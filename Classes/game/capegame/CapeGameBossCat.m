@@ -1,7 +1,7 @@
 #import "CapeGameBossCat.h"
 #import "Resource.h"
 #import "FileCache.h"
-#import "RobotBossComponents.h"
+#import "VolleyRobotBossComponents.h"
 #import "CapeGameBossBomb.h"
 
 @implementation CapeGameBossCat
@@ -16,7 +16,7 @@
 -(id)init {
 	self = [super init];
 	
-	cat_body = [CatBossBody cons];
+	cat_body = [VolleyCatBossBody cons];
 	[cat_body setPosition:[Common screen_pctwid:0.4 pcthei:1.5]];
 	[cat_body setScaleX:-0.5];
 	[cat_body setScaleY:0.5];

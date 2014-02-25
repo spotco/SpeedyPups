@@ -9,6 +9,8 @@
 	BOOL no_vibration;
     int ct,remlimit,broken_ct;
     float vibration_ct;
+	
+	float trail_scale;
     
     ObjectShadow *shadow;
 }
@@ -20,11 +22,14 @@
 -(BOOL)is_active;
 -(GameObject*)get_shadow;
 
+-(id)set_scale:(float)sc;
+
 @end
 
 @interface RelativePositionLauncherRocket : LauncherRocket {
     CGPoint rel_pos,player_pos;
+	BOOL homing;
 }
 +(RelativePositionLauncherRocket*)cons_at:(CGPoint)pt player:(CGPoint)player vel:(CGPoint)vel;
-
+-(id)set_homing;
 @end

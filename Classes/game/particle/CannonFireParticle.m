@@ -6,8 +6,6 @@
 @implementation CannonFireParticle
 
 static const float TIME = 30.0;
-static const float MINSCALE = 0.75;
-static const float MAXSCALE = 0.75;
 
 -(CCAction*)cons_anim:(NSArray*)a speed:(float)speed {
 	CCTexture2D *texture = [Resource get_tex:TEX_CANNONFIRE_PARTICLE];
@@ -32,6 +30,12 @@ static const float MAXSCALE = 0.75;
     return self;
 }
 
+-(id)set_scale:(float)sc {
+	MINSCALE = sc;
+	MAXSCALE = sc;
+	return self;
+}
+
 -(void)update:(GameEngineLayer*)g{
     ct--;
     [self setScale:(1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE];
@@ -43,7 +47,7 @@ static const float MAXSCALE = 0.75;
 }
 
 -(int)get_render_ord {
-    return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD];
+    return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD]+2;
 }
 
 

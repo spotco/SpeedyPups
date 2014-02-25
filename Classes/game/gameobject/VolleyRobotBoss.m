@@ -1,13 +1,13 @@
-#import "RobotBoss.h"
-#import "RobotBossComponents.h"
+#import "VolleyRobotBoss.h"
+#import "VolleyRobotBossComponents.h"
 #import "GameEngineLayer.h"
-#import "RobotBossFistProjectile.h"
+#import "VolleyRobotBossFistProjectile.h"
 #import "JumpParticle.h"
 
-@implementation RobotBoss
+@implementation VolleyRobotBoss
 
-+(RobotBoss*)cons_with:(GameEngineLayer*)g {
-	return [[RobotBoss node] cons:g];
++(VolleyRobotBoss*)cons_with:(GameEngineLayer*)g {
+	return [[VolleyRobotBoss node] cons:g];
 }
 
 #define RPOS_CAT_TAUNT_POS ccp(400,300)
@@ -24,14 +24,14 @@
 #define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
 
 -(id)cons:(GameEngineLayer*)_g {
-	[RobotBossComponents cons_anims];
+	[VolleyRobotBossComponents cons_anims];
 
 	g = _g;
 	
-	robot_body = [RobotBossBody cons];
+	robot_body = [VolleyRobotBossBody cons];
 	[self addChild:robot_body];
 	
-	cat_body = [CatBossBody cons];
+	cat_body = [VolleyCatBossBody cons];
 	[self addChild:cat_body];
 	
 	[self set_bounds_and_ground:g];
@@ -65,7 +65,7 @@
 	[cape_item_body setPosition:CGPointAdd(CENTER_POS, cape_item_rel_pos)];
 	
 	NSMutableArray *to_remove = [NSMutableArray array];
-	for (RobotBossFistProjectile *p in fist_projectiles) {
+	for (VolleyRobotBossFistProjectile *p in fist_projectiles) {
 		if (p.direction == RobotBossFistProjectileDirection_AT_BOSS) {
 			if (p.time_left < 20 && ![robot_body swing_in_progress])  {
 				[robot_body do_swing];
@@ -123,7 +123,7 @@
 			
 		} else if (fist_projectiles.count == 0 && [robot_body swing_in_progress] && [robot_body swing_launched]) {
 			volley_ct = 2;
-			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
+			VolleyRobotBossFistProjectile *neu = [[VolleyRobotBossFistProjectile cons_g:g
 																	 relpos:CGPointAdd(robot_body_rel_pos, ccp(-140,350))
 																	 tarpos:CGPointZero
 																	   time:100 groundlevel:groundlevel] mode_parabola_a];
@@ -161,7 +161,7 @@
 			
 		} else if (fist_projectiles.count == 0 && [robot_body swing_in_progress] && [robot_body swing_launched]) {
 			volley_ct = 5;
-			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
+			VolleyRobotBossFistProjectile *neu = [[VolleyRobotBossFistProjectile cons_g:g
 																	 relpos:CGPointAdd(robot_body_rel_pos, ccp(140,350))
 																	 tarpos:CGPointZero
 																	   time:100 groundlevel:groundlevel] mode_parabola_b];
@@ -198,7 +198,7 @@
 			[robot_body do_swing];
 			
 		} else if (fist_projectiles.count == 1 && delay_ct <= 0 && ![robot_body swing_in_progress]) {
-			RobotBossFistProjectile *p = fist_projectiles[0];
+			VolleyRobotBossFistProjectile *p = fist_projectiles[0];
 			if (p.direction == RobotBossFistProjectileDirection_AT_PLAYER && (p.time_left < 65 && p.time_left > 30)) {
 				[robot_body do_swing];
 			}
@@ -207,7 +207,7 @@
 			volley_ct = 6;
 			[robot_body set_swing_has_thrown_bomb];
 			
-			RobotBossFistProjectile *neu = [[RobotBossFistProjectile cons_g:g
+			VolleyRobotBossFistProjectile *neu = [[VolleyRobotBossFistProjectile cons_g:g
 																	 relpos:CGPointAdd(robot_body_rel_pos, ccp(-140,350))
 																	 tarpos:CGPointZero
 																	   time:120 groundlevel:groundlevel] mode_parabola_a];
@@ -255,7 +255,7 @@
 	}
 }
 
--(void)volley_return:(RobotBossFistProjectile*)p {
+-(void)volley_return:(VolleyRobotBossFistProjectile*)p {
 	[AudioManager playsfx:SFX_ROCKBREAK];
 	[AudioManager playsfx:SFX_BOSS_ENTER];
 	
@@ -333,7 +333,7 @@
 
 -(void)reset {
 	[super reset];
-	for (RobotBossFistProjectile *p in fist_projectiles) {
+	for (VolleyRobotBossFistProjectile *p in fist_projectiles) {
 		[g remove_gameobject:p];
 	}
 	[fist_projectiles removeAllObjects];

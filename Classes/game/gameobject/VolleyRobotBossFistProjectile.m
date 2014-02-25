@@ -1,4 +1,4 @@
-#import "RobotBossFistProjectile.h"
+#import "VolleyRobotBossFistProjectile.h"
 #import "GameEngineLayer.h"
 #import "ExplosionParticle.h"
 #import "Player.h" 
@@ -14,11 +14,11 @@
 
 #define ROBOT_DEFAULT_POS ccp(725,0)
 
-@implementation RobotBossFistProjectile
+@implementation VolleyRobotBossFistProjectile
 @synthesize direction;
 
-+(RobotBossFistProjectile*)cons_g:(GameEngineLayer*)g relpos:(CGPoint)relpos tarpos:(CGPoint)tarpos time:(float)time groundlevel:(float)groundlevel {
-	return [[RobotBossFistProjectile spriteWithTexture:[Resource get_tex:TEX_ENEMY_BOMB]]
++(VolleyRobotBossFistProjectile*)cons_g:(GameEngineLayer*)g relpos:(CGPoint)relpos tarpos:(CGPoint)tarpos time:(float)time groundlevel:(float)groundlevel {
+	return [[VolleyRobotBossFistProjectile spriteWithTexture:[Resource get_tex:TEX_ENEMY_BOMB]]
 			cons_g:g relpos:relpos tarpos:tarpos time:time groundlevel:groundlevel];
 }
 

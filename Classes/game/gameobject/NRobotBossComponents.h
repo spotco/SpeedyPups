@@ -1,37 +1,43 @@
 #import "CCSprite.h"
 
-@interface RobotBossComponents : NSObject
+@interface NRobotBossComponents : NSObject
 +(void)cons_anims;
 @end
 
-@interface RobotBossBody : CCSprite {
+@interface NRobotBossBody : CCSprite {
 	float passive_arm_rotation_theta;
+	float passive_arm_rotation_theta_speed;
 	float swing_theta;
-	int mode;
+	BOOL firing;
 	
-	BOOL swing_has_thrown_bomb;
+	CCAction *current_front_arm_anim;
+	
+	CCSprite *frontarm_anchor, *body_anchor;
+	CCSprite *hopanchor;
+	float hop_vy;
 }
-+(RobotBossBody*)cons;
++(NRobotBossBody*)cons;
 @property(readwrite,strong) CCSprite *body;
 @property(readwrite,strong) CCSprite *frontarm;
 @property(readwrite,strong) CCSprite *backarm;
 -(void)update;
--(void)do_swing;
--(BOOL)swing_launched;
--(BOOL)swing_in_progress;
 
--(void)set_swing_has_thrown_bomb;
--(BOOL)swing_has_thrown_bomb;
+-(void)set_passive_rotation_theta_speed:(float)t;
+-(void)do_fire;
+-(void)arm_fire;
+-(void)stop_fire;
+
+-(void)hop;
 
 @end
 
-@interface CatBossBody :CCSprite {
+@interface NCatBossBody :CCSprite {
 	CCSprite *vib_base;
 	float vib_theta;
 	
 	CCAction *top_anim;
 }
-+(CatBossBody*)cons;
++(NCatBossBody*)cons;
 @property(readwrite,strong) CCSprite *base;
 @property(readwrite,strong) CCSprite *cape;
 @property(readwrite,strong) CCSprite *top;

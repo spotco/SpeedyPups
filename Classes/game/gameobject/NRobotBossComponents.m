@@ -1,15 +1,15 @@
-#import "RobotBossComponents.h"
-#import "Common.h" 
+#import "Common.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "NRobotBossComponents.h"
+#import "AudioManager.h"
 
-@implementation RobotBossComponents
-
+@implementation NRobotBossComponents
 static CCAction *_robot_body;
 static CCAction *_robot_body_hurt;
-static CCAction *_robot_arm_front_loaded;
-static CCAction *_robot_arm_front_unloaded;
-static CCAction *_robot_arm_back;
+
+static CCAction *_arm_none,*_arm_load,*_arm_fire,*_arm_ready,*_arm_unload;
+static CCAction *_backarm;
 
 static CCAction *_cat_tail_base;
 static CCAction *_cat_cape;
@@ -17,14 +17,18 @@ static CCAction *_cat_stand;
 static CCAction *_cat_laugh;
 static CCAction *_cat_hurt;
 static CCAction *_cat_damage;
-
 +(void)cons_anims {
 	if (_robot_body != NULL) return;
 	_robot_body = [Common cons_anim:@[@"body_0",@"body_1"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_robot_body_hurt = [Common cons_anim:@[@"body_hurt"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_robot_arm_front_loaded = [Common cons_anim:@[@"arm_front_fist"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_robot_arm_front_unloaded = [Common cons_anim:@[@"arm_front_empty"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_robot_arm_back = [Common cons_anim:@[@"back_arm"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	
+	_arm_none = [Common cons_anim:@[@"arm_0"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_arm_load = [Common cons_nonrepeating_anim:@[@"arm_0",@"arm_1",@"arm_2",@"arm_3"] speed:0.05 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_arm_ready = [Common cons_anim:@[@"arm_3"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_arm_fire = [Common cons_nonrepeating_anim:@[@"arm_3",@"arm_4",@"arm_5",@"arm_3"] speed:0.05 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_arm_unload = [Common cons_nonrepeating_anim:@[@"arm_3",@"arm_2",@"arm_1",@"arm_0"] speed:0.05 tex_key:TEX_ENEMY_ROBOTBOSS];
+	
+	_backarm = [Common cons_anim:@[@"backarm"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 	
 	_cat_tail_base = [Common cons_anim:@[@"cat_tail_0",@"cat_tail_1",@"cat_tail_2",@"cat_tail_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_cat_cape = [Common cons_anim:@[@"cat_cape_0",@"cat_cape_1",@"cat_cape_2",@"cat_cape_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
@@ -50,31 +54,35 @@ static CCAction *_cat_damage;
 	_cat_hurt = [Common cons_anim:@[@"cat_hurt_0",@"cat_hurt_1",@"cat_hurt_2"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_cat_damage = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 }
-
 @end
 
-@implementation RobotBossBody
+@implementation NRobotBossBody
 @synthesize body,frontarm,backarm;
-#define RobotBossBodyMode_STAND 0
-#define RobotBossBodyMode_SWING 1
 
-+(RobotBossBody*)cons {
-	return [RobotBossBody node];
++(NRobotBossBody*)cons {
+	return [NRobotBossBody node];
 }
 
 -(id)init {
 	self = [super init];
-	[RobotBossComponents cons_anims];
-	
-	mode = RobotBossBodyMode_STAND;
+	[NRobotBossComponents cons_anims];
 	
 	self.backarm = [CCSprite node];
 	self.body = [CCSprite node];
 	self.frontarm = [CCSprite node];
 	
-	[self addChild:self.backarm];
-	[self addChild:self.body];
-	[self addChild:self.frontarm];
+	frontarm_anchor = [CCSprite node];
+	body_anchor = [CCSprite node];
+	hopanchor = [CCSprite node];
+	
+	[body_anchor addChild:self.backarm];
+	[body_anchor addChild:self.body];
+	[frontarm_anchor addChild:self.frontarm];
+	
+	[hopanchor addChild:body_anchor];
+	[hopanchor addChild:frontarm_anchor];
+	
+	[self addChild:hopanchor];
 	
 	CGRect body_rect = [FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"body_0"];
 	
@@ -83,72 +91,91 @@ static CCAction *_cat_damage;
 	
 	[self.body setAnchorPoint:ccp(0.5,0.1)];
 	
-	[self.frontarm setAnchorPoint:ccp(0.35,0.8)];
+	[self.frontarm setAnchorPoint:ccp(0.15,0.835)];
 	[self.frontarm setPosition:ccp(-body_rect.size.width*0.35,body_rect.size.height*0.55)];
 	
-	[self.backarm runAction:_robot_arm_back];
+	[self.backarm runAction:_backarm];
 	[self.body runAction:_robot_body];
-	[self.frontarm runAction:_robot_arm_front_loaded];
+	[self.frontarm runAction:_arm_none];
+	current_front_arm_anim = _arm_none;
 	
 	passive_arm_rotation_theta = 0;
 	
-	swing_has_thrown_bomb = NO;
-	
 	[self setScaleX:-1];
 	
+	firing = NO;
+	passive_arm_rotation_theta_speed = 0.09;
 	return self;
 }
 
 -(void)update {
-	if (mode == RobotBossBodyMode_STAND) {
-		passive_arm_rotation_theta+=0.09*[Common get_dt_Scale];
+	frontarm_anchor.position = ccp(frontarm_anchor.position.x*0.5,frontarm_anchor.position.y*0.5);
+	body_anchor.position = ccp(body_anchor.position.x*0.8,body_anchor.position.y*0.8);
+	
+	hopanchor.position = ccp(0,MAX(hopanchor.position.y+hop_vy*[Common get_dt_Scale], 0));
+	hop_vy-=1*[Common get_dt_Scale];
+	
+	if (!firing) {
+		passive_arm_rotation_theta+=passive_arm_rotation_theta_speed*[Common get_dt_Scale];
 		[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
 		[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
-	
-	} else if (mode == RobotBossBodyMode_SWING) {
-		swing_theta += [Common get_dt_Scale] * 3.14 * 0.035;
-		[self.frontarm setRotation:-110*sinf(swing_theta)];
-		[self.backarm setRotation:-110*sinf(swing_theta)-5];
-		
-		if (swing_theta > 3.14) {
-			mode = RobotBossBodyMode_STAND;
-		}
+	} else {
+		[self.backarm setRotation:0];
+		[self.frontarm setRotation:0];
 	}
 }
 
--(void)do_swing {
-	mode = RobotBossBodyMode_SWING;
-	swing_theta = 0;
-	swing_has_thrown_bomb = NO;
+-(void)hop {
+	hop_vy = 8;
+	[AudioManager playsfx:SFX_ROCKBREAK];
 }
 
--(void)set_swing_has_thrown_bomb {
-	swing_has_thrown_bomb = YES;
+-(void)set_passive_rotation_theta_speed:(float)t {
+	passive_arm_rotation_theta_speed = t;
 }
 
--(BOOL)swing_has_thrown_bomb {
-	return swing_has_thrown_bomb;
+-(void)do_fire {
+	if (firing) return;
+	[frontarm stopAllActions];
+	[frontarm runAction:[CCSequence actions:(CCFiniteTimeAction*)_arm_load,[CCCallFunc actionWithTarget:self selector:@selector(arm_loaded)], nil]];
+	firing = YES;
 }
 
--(BOOL)swing_launched {
-	return swing_theta > 3.14/2;
+-(void)arm_loaded {
+	[frontarm stopAllActions];
+	[frontarm runAction:_arm_ready];
 }
 
--(BOOL)swing_in_progress {
-	return mode == RobotBossBodyMode_SWING;
+-(void)arm_fire {
+	[frontarm stopAllActions];
+	[frontarm runAction:_arm_fire];
+	frontarm_anchor.position = ccp(-15,0);
+	body_anchor.position = ccp(-7,0);
+}
+
+-(void)stop_fire {
+	if (!firing) return;
+	[frontarm stopAllActions];
+	[frontarm runAction:[CCSequence actions:(CCFiniteTimeAction*)_arm_unload,[CCCallFunc actionWithTarget:self selector:@selector(arm_unloaded)], nil]];
+	firing = NO;
+}
+
+-(void)arm_unloaded {
+	[frontarm stopAllActions];
+	[frontarm runAction:_arm_none];
 }
 
 @end
 
-@implementation CatBossBody
+@implementation NCatBossBody
 @synthesize base,cape,top;
-+(CatBossBody*)cons {
-	return [CatBossBody node];
++(NCatBossBody*)cons {
+	return [NCatBossBody node];
 }
 
 -(id)init {
 	self = [super init];
-	[RobotBossComponents cons_anims];
+	[NRobotBossComponents cons_anims];
 	
 	vib_base = [CCSprite node];
 	[self addChild:vib_base];

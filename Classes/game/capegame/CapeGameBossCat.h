@@ -1,5 +1,5 @@
 #import "CapeGameEngineLayer.h"
-@class CatBossBody;
+@class VolleyCatBossBody;
 
 typedef enum CapeGameBossCatMode {
 	CapeGameBossCatMode_INITIAL_IN,
@@ -9,7 +9,7 @@ typedef enum CapeGameBossCatMode {
 } CapeGameBossCatMode;
 
 @interface CapeGameBossCat : CapeGameObject {
-	CatBossBody *cat_body;
+	VolleyCatBossBody *cat_body;
 	float delay_ct;
 	CapeGameBossCatMode mode;
 	

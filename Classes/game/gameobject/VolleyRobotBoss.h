@@ -1,8 +1,8 @@
 #import "GameObject.h"
 
-@class RobotBossBody;
-@class CatBossBody;
-@class RobotBossFistProjectile;
+@class VolleyRobotBossBody;
+@class VolleyCatBossBody;
+@class VolleyRobotBossFistProjectile;
 
 typedef enum RobotBossMode {
 	RobotBossMode_TOREMOVE,
@@ -31,11 +31,11 @@ typedef enum RobotBossMode {
 	RobotBossMode_CAT_OUT_TO_CAPEGAME
 } RobotBossMode;
 
-@interface RobotBoss : GameObject {
+@interface VolleyRobotBoss : GameObject {
 	GameEngineLayer __unsafe_unretained *g;
 	
-	RobotBossBody *robot_body;
-	CatBossBody *cat_body;
+	VolleyRobotBossBody *robot_body;
+	VolleyCatBossBody *cat_body;
 	CCSprite *cape_item_body;
 	
 	CGPoint cat_body_rel_pos;
@@ -54,6 +54,6 @@ typedef enum RobotBossMode {
 	
 }
 
-+(RobotBoss*)cons_with:(GameEngineLayer*)g;
++(VolleyRobotBoss*)cons_with:(GameEngineLayer*)g;
 
 @end
