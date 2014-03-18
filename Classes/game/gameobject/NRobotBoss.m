@@ -4,6 +4,10 @@
 #import "JumpParticle.h"
 #import "LauncherRocket.h"
 #import "CannonFireParticle.h"
+#import "VolleyRobotBossFistProjectile.h"
+#import "ExplosionParticle.h"
+#import "HitEffect.h"
+#import "DazedParticle.h"
 
 @implementation NRobotBoss
 
@@ -38,6 +42,13 @@
 	cat_body_rel_pos = ccp(2000,800);
 	robot_body_rel_pos = ccp(1500,0);
 	
+	head_chaser = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]
+															rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"head"]];
+	[self addChild:head_chaser];
+	[head_chaser setVisible:NO];
+	
+	fist_projectiles = [NSMutableArray array];
+	
 	cur_mode = NRobotBossMode_CAT_IN_RIGHT1;
 	
 	self.active = YES;
@@ -48,7 +59,7 @@
 	[self set_bounds_and_ground:g];
 	
 	[robot_body setPosition:CGPointAdd(CENTER_POS, robot_body_rel_pos)];
-	[robot_body update];
+	[robot_body update:robot_body_rel_pos];
 	
 	[cat_body setPosition:CGPointAdd(CENTER_POS, cat_body_rel_pos)];
 	[cat_body update];
@@ -69,7 +80,19 @@
 	} else if (cur_mode == NRobotBossMode_CAT_ROBOT_IN_RIGHT1) {
 		[self update_robot_body_in_robotpos:ccp(1500,0) catpos:RPOS_CAT_DEFAULT_POS transition_to:NRobotBossMode_CHOOSING];
 		if (cur_mode != NRobotBossMode_CAT_ROBOT_IN_RIGHT1) {
-			[self attack_wallrockets_right];
+			
+			attack_ct = int_random(0, 10);
+			if (attack_ct%2==1) {
+				[self attack_throwfist_right];
+			} else {
+				[self attack_wallrockets_right];
+			}
+			//[self attack_wallrockets_right];
+			//[self attack_throwfist_right];
+			//cur_mode = NRobotBossMode_ATTACK_CHARGE_LEFT;
+			//robot_body_rel_pos = LPOS_ROBOT_DEFAULT_POS;
+			//cur_mode = NRobotBossMode_ATTACK_CHARGE_RIGHT;
+			
 			[AudioManager playsfx:SFX_BOSS_ENTER];
 		}
 
@@ -141,11 +164,60 @@
 		} else if (delay_ct <= 0) {
 			robot_body_rel_pos.x -= 12.5*[Common get_dt_Scale];
 			if (robot_body_rel_pos.x < -500) {
-				[self attack_stream_homing_left];
+				if ([robot_body headless]) {
+					delay_ct = 1;
+					cur_mode = NRobotBossMode_HEAD_CHASE_LEFT;
+				} else {
+					[self attack_stream_homing_left];
+				}
+				[robot_body end_headless];
 				[robot_body set_passive_rotation_theta_speed:0.09];
 				robot_body_rel_pos.x = -1500;
 			}
 		}
+		
+		if (!robot_body.headless && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+			if (player.dashing || player.is_armored) {
+				[robot_body headless_flyoff];
+				[g add_particle:[[RelativePositionExplosionParticle cons_x:robot_body.position.x y:robot_body.position.y+290 player:player.position] set_scale:2.5]];
+				[g add_particle:[NRobotBossHeadFlyoffParticle cons_pos:CGPointAdd(robot_body.position, ccp(0,290))
+																   vel:CGPointAdd(ccp(player.vx*1.3,player.vy*1.3), ccp(0,5)) player:player.position]];
+				[AudioManager playsfx:SFX_EXPLOSION];
+				
+			} else if (!player.dead) {
+				[DazedParticle cons_effect:g tar:player time:40];
+				[player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
+				[AudioManager playsfx:SFX_HIT];
+				[g.get_stats increment:GEStat_ROBOT];
+				cur_mode = NRobotBossMode_WAIT;
+			}
+		}
+		
+	} else if (cur_mode == NRobotBossMode_HEAD_CHASE_LEFT) {
+		if (delay_ct > 0) {
+			delay_ct = -20;
+			head_chaser_rel_pos = ccp(2000,500);
+			[AudioManager playsfx:SFX_BOSS_ENTER];
+			[AudioManager playsfx:SFX_ROCKET];
+		}
+		
+		delay_ct+=[Common get_dt_Scale];
+		if (delay_ct > 0) {
+			delay_ct = -20;
+			[AudioManager playsfx:SFX_ROCKET];
+		}
+		
+		
+		[head_chaser setScaleX:-1];
+		[head_chaser setVisible:YES];
+		head_chaser_rel_pos.x -= 20*[Common get_dt_Scale];
+		[g add_particle:[RocketParticle cons_x:head_chaser.position.x+65 y:head_chaser.position.y-20+float_random(-10, 10)]];
+		
+		[head_chaser setPosition:CGPointAdd(CENTER_POS, head_chaser_rel_pos)];
+		if (head_chaser_rel_pos.x < -1000) {
+			[self attack_stream_homing_left];
+		}
+		
 		
 	} else if (cur_mode == NRobotBossMode_ATTACK_STREAMHOMING_IN) {
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:320 y:54 z:400]];
@@ -222,12 +294,166 @@
 		} else if (delay_ct <= 0) {
 			robot_body_rel_pos.x += 12.5*[Common get_dt_Scale];
 			if (robot_body_rel_pos.x > 800) {
-				[self attack_wallrockets_right];
+				attack_ct++;
+				
+				if ([robot_body headless]) {
+					delay_ct = 1;
+					cur_mode = NRobotBossMode_HEAD_CHASE_RIGHT;
+				} else {
+					if (attack_ct%2==1) {
+						[self attack_throwfist_right];
+					} else {
+						[self attack_wallrockets_right];
+					}
+				}
+				[robot_body end_headless];
+				
 				[robot_body set_passive_rotation_theta_speed:0.09];
 				robot_body_rel_pos.x = 1500;
 			}
 		}
+		
+		if (!robot_body.headless && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+			if (player.dashing || player.is_armored) {
+				[robot_body headless_flyoff];
+				[g add_particle:[[RelativePositionExplosionParticle cons_x:robot_body.position.x y:robot_body.position.y+290 player:player.position] set_scale:2.5]];
+				[g add_particle:[NRobotBossHeadFlyoffParticle cons_pos:CGPointAdd(robot_body.position, ccp(0,290))
+																   vel:CGPointAdd(ccp(-player.vx*0.6,player.vy*1), ccp(-5,3)) player:player.position]];
+				[AudioManager playsfx:SFX_EXPLOSION];
+				
+			} else if (!player.dead) {
+				[DazedParticle cons_effect:g tar:player time:40];
+				[player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
+				[AudioManager playsfx:SFX_HIT];
+				[g.get_stats increment:GEStat_ROBOT];
+				cur_mode = NRobotBossMode_WAIT;
+			}
+		}
+		
+	} else if (cur_mode == NRobotBossMode_HEAD_CHASE_RIGHT) {
+		if (delay_ct > 0) {
+			delay_ct = -20;
+			head_chaser_rel_pos = ccp(-2000,500);
+			[AudioManager playsfx:SFX_BOSS_ENTER];
+			[AudioManager playsfx:SFX_ROCKET];
+		}
+		
+		delay_ct+=[Common get_dt_Scale];
+		if (delay_ct > 0) {
+			delay_ct = -20;
+			[AudioManager playsfx:SFX_ROCKET];
+		}
+		
+		
+		[head_chaser setScaleX:1];
+		[head_chaser setVisible:YES];
+		head_chaser_rel_pos.x += 20*[Common get_dt_Scale];
+		[g add_particle:[RocketParticle cons_x:head_chaser.position.x-65 y:head_chaser.position.y-20+float_random(-10, 10)]];
+		
+		[head_chaser setPosition:CGPointAdd(CENTER_POS, head_chaser_rel_pos)];
+		if (head_chaser_rel_pos.x > 1000) {
+			if (attack_ct%2==1) {
+				[self attack_throwfist_right];
+			} else {
+				[self attack_wallrockets_right];
+			}
+			[head_chaser setVisible:NO];
+		}
+		
+		
+		
+	} else if (cur_mode == NRobotBossMode_ATTACK_THROWFIST_IN) {
+		[robot_body setScaleX:-1];
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:54 y:54 z:400]];
+		[self update_robot_body_in_robotpos:RPOS_ROBOT_DEFAULT_POS catpos:RPOS_CAT_DEFAULT_POS transition_to:NRobotBossMode_CHOOSING];
+		if (cur_mode != NRobotBossMode_ATTACK_THROWFIST_IN) {
+			cur_mode = NRobotBossMode_ATTACK_THROWFIST;
+			delay_ct = 100;
+		}
+		
+	} else if (cur_mode == NRobotBossMode_ATTACK_THROWFIST) {
+		
+		if (fist_projectiles.count == 0) {
+			if ([robot_body get_swing_state] == NRBCSwingState_NONE) {
+				[robot_body do_swing];
+				
+			} else if ([robot_body get_swing_state] == NRBCSwingState_PEAK) {
+				volley_ct = 2;
+				[robot_body swing_peak_throw];
+				VolleyRobotBossFistProjectile *neu = [[VolleyRobotBossFistProjectile cons_g:g
+																					 relpos:CGPointAdd(robot_body_rel_pos, ccp(-140,350))
+																					 tarpos:CGPointZero
+																					   time:100 groundlevel:groundlevel] mode_parabola_a];
+				[neu set_boss_pos:CGPointAdd(RPOS_ROBOT_DEFAULT_POS, ccp(0,200))];
+				neu.direction = RobotBossFistProjectileDirection_AT_PLAYER;
+				[g add_gameobject:neu];
+				[fist_projectiles addObject:neu];
+				[AudioManager playsfx:SFX_BOSS_ENTER];
+				
+			}
+		} else {
+			for (int i = fist_projectiles.count-1; i >= 0; i--) {
+				VolleyRobotBossFistProjectile *p = fist_projectiles[i];
+				
+				if ([robot_body get_swing_state] == NRBCSwingState_PEAK) [robot_body swing_peak_throw];
+				
+				if (volley_ct > 0) {
+					if (p.direction == RobotBossFistProjectileDirection_AT_BOSS) {
+						if (p.time_left < 20 && [robot_body get_swing_state] == NRBCSwingState_NONE)  {
+							[robot_body do_swing];
+							
+						}
+						if (p.time_left <= 15) {
+							[AudioManager playsfx:SFX_ROCKBREAK];
+							[AudioManager playsfx:SFX_BOSS_ENTER];
+							
+							p.direction = RobotBossFistProjectileDirection_AT_PLAYER;
+							[p mode_parabola_a];
+							[p set_startpos:ccp(p.position.x-g.player.position.x,p.position.y-groundlevel)
+									 tarpos:ccp(0,0)
+								  time_left:60
+								 time_total:60];
+							[self add_pow:CGPointAdd(p.position, ccp(0,100)) dir:ccp(0.5,-0.5) scx:1];
+							volley_ct--;
+							
+						}
+					}
+				} else {
+					if (p.direction == RobotBossFistProjectileDirection_AT_BOSS && p.time_left <= 5) {
+						delay_ct = 20;
+						[p force_remove];
+						
+						[robot_body hurt_anim];
+						delay_ct = 200;
+						pattern_ct = 5;
+						cur_mode = NRobotBossMode_ATTACK_CHARGE_LEFT;
+						[AudioManager playsfx:SFX_BOSS_ENTER];
+					}
+				}
+				
+				if ([p should_remove]) {
+					[g add_particle:[[ExplosionParticle cons_x:p.position.x y:p.position.y] set_scale:1.5]];
+					[fist_projectiles removeObject:p];
+					[g remove_gameobject:p];
+					[AudioManager playsfx:SFX_EXPLOSION];
+				}
+				
+			}
+			
+		}
+		
+	} else if (cur_mode == NRobotBossMode_EXPLODE_OUT) {
+		NSLog(@"explode out");
+		
 	}
+}
+
+-(void)add_pow:(CGPoint)pos dir:(CGPoint)dir scx:(float)scx {
+	[g add_particle:[[[JumpParticle cons_pt:pos
+										vel:dir
+										 up:ccp(0,1)
+										tex:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]
+									   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"pow"] relpos:YES] set_scale:0.3] set_scx:scx]];
 }
 
 -(CGPoint)get_arm_fire_position {
@@ -252,13 +478,20 @@
 	pattern_ct = 3;
 }
 
+-(void)attack_throwfist_right {
+	cur_mode = NRobotBossMode_ATTACK_THROWFIST_IN;
+	delay_ct = 0;
+	tmp_ct = 0;
+	pattern_ct = 0;
+}
+
 -(void)reset {
 	[super reset];
 	cur_mode = NRobotBossMode_TOREMOVE;
 }
 
 -(void)check_should_render:(GameEngineLayer *)g { do_render = YES; }
--(int)get_render_ord{ return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD]; }
+-(int)get_render_ord{ return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND]; }
 
 -(void)set_bounds_and_ground:(GameEngineLayer*)_g {
     float yl_min = g.player.position.y;
@@ -303,6 +536,10 @@
 		cur_mode = mode;
 		delay_ct = 20;
 	}
+}
+
+-(HitRect) get_hit_rect {
+	return [Common hitrect_cons_x1:robot_body.position.x-120 y1:robot_body.position.y wid:240 hei:250];
 }
 
 @end

@@ -4,5 +4,5 @@
     "start_y": 465,
     "start_x": 251.3,
     "islands": [{"ndir": "left", "y1": 85, "hei": 50, "y2": 89, "x2": 486, "x1": 117.5, "can_fall": true, "type": "line", "ground": "open"}],
-    "objects": [{"x": 397, "type": "labentrance", "y": 87, "label": "0"}]
+    "objects": [{"x": 397, "type": "dogcape", "y": 200, "label": "0"}]
 }

@@ -30,6 +30,7 @@
 
 -(float)time_left;
 
+-(void)force_remove;
 -(BOOL)should_remove;
 -(void)do_remove:(GameEngineLayer*)g;
 @end

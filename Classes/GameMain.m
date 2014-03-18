@@ -24,6 +24,8 @@
 
 /**
  boss3 todo:
+	homing rocket different graphic
+	explode out and up
 	add particle effects to robot
 	bug exit capegame wrong music
 	laugh sfx

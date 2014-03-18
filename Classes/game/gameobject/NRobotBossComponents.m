@@ -3,10 +3,13 @@
 #import "FileCache.h"
 #import "NRobotBossComponents.h"
 #import "AudioManager.h"
+#import "Particle.h"
+#import "GameEngineLayer.h"
 
 @implementation NRobotBossComponents
 static CCAction *_robot_body;
 static CCAction *_robot_body_hurt;
+static CCAction *_robot_body_headless;
 
 static CCAction *_arm_none,*_arm_load,*_arm_fire,*_arm_ready,*_arm_unload;
 static CCAction *_backarm;
@@ -21,6 +24,7 @@ static CCAction *_cat_damage;
 	if (_robot_body != NULL) return;
 	_robot_body = [Common cons_anim:@[@"body_0",@"body_1"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_robot_body_hurt = [Common cons_anim:@[@"body_hurt"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_robot_body_headless = [Common cons_anim:@[@"body_headless"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 	
 	_arm_none = [Common cons_anim:@[@"arm_0"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_arm_load = [Common cons_nonrepeating_anim:@[@"arm_0",@"arm_1",@"arm_2",@"arm_3"] speed:0.05 tex_key:TEX_ENEMY_ROBOTBOSS];
@@ -96,6 +100,8 @@ static CCAction *_cat_damage;
 	
 	[self.backarm runAction:_backarm];
 	[self.body runAction:_robot_body];
+	current_body_anim = _robot_body;
+	hurt_anim_ct = 0;
 	[self.frontarm runAction:_arm_none];
 	current_front_arm_anim = _arm_none;
 	
@@ -105,10 +111,56 @@ static CCAction *_cat_damage;
 	
 	firing = NO;
 	passive_arm_rotation_theta_speed = 0.09;
+	
+	cur_swing_state = NRBCSwingState_NONE;
 	return self;
 }
 
--(void)update {
+-(void)play_anim:(CCAction*)anim {
+	if (current_body_anim != anim) {
+		[body stopAllActions];
+		[body runAction:anim];
+		current_body_anim = anim;
+	}
+}
+
+-(void)hurt_anim {
+	hurt_anim_ct = 50;
+}
+
+-(void)headless_anim {
+	headless_anim_ct = 200;
+}
+
+-(void)reset_anim {
+	hurt_anim_ct = 0;
+	headless_anim_ct = 0;
+}
+
+-(void)update:(CGPoint)body_rel_pos {
+	
+	if (headless_anim_ct > 0) {
+		[self play_anim:_robot_body_headless];
+		headless_anim_ct--;
+		
+	} else if (hurt_anim_ct > 0) {
+		[self play_anim:_robot_body_hurt];
+		hurt_anim_ct--;
+		
+	} else {
+		[self play_anim:_robot_body];
+		
+	}
+		
+	[self swing_update];
+	if (cur_swing_state != NRBCSwingState_NONE) return;
+	
+	if (current_body_anim == _robot_body_hurt) {
+		frontarm_anchor.position = ccp(float_random(-2, 2),float_random(-2, 2));
+		body_anchor.position = frontarm_anchor.position;
+		return;
+	}
+
 	frontarm_anchor.position = ccp(frontarm_anchor.position.x*0.5,frontarm_anchor.position.y*0.5);
 	body_anchor.position = ccp(body_anchor.position.x*0.8,body_anchor.position.y*0.8);
 	
@@ -165,7 +217,91 @@ static CCAction *_cat_damage;
 	[frontarm runAction:_arm_none];
 }
 
+-(void)swing_update {
+	if (cur_swing_state == NRBCSwingState_SWINGING) {
+		swing_theta += [Common get_dt_Scale] * 3.14 * 0.035;
+		[self.backarm setRotation:-110*sinf(swing_theta)];
+		if (swing_theta >= 3.14/2) cur_swing_state = NRBCSwingState_PEAK;
+		
+	} else if (cur_swing_state == NRBCSwingState_PEAK) {
+		//wait for swing_peak_throw
+		
+	} else if (cur_swing_state == NRBCSwingState_RETURN) {
+		swing_theta += [Common get_dt_Scale] * 3.14 * 0.035;
+		[self.backarm setRotation:-110*sinf(swing_theta)];
+		if (swing_theta >= 3.14) cur_swing_state = NRBCSwingState_NONE;
+		
+	}
+}
+-(NRBCSwingState)get_swing_state {
+	return cur_swing_state;
+}
+-(void)swing_peak_throw {
+	if (cur_swing_state == NRBCSwingState_PEAK) {
+		cur_swing_state = NRBCSwingState_RETURN;
+	}
+}
+-(void)do_swing {
+	if (cur_swing_state == NRBCSwingState_NONE) {
+		cur_swing_state = NRBCSwingState_SWINGING;
+		swing_theta = 0;
+	}
+}
+-(void)reset_swing_state {
+	cur_swing_state = NRBCSwingState_NONE;
+}
+
+
+-(BOOL)headless {
+	return headless_anim_ct > 0;
+}
+-(void)headless_flyoff {
+	headless_anim_ct = 1000;
+	
+}
+-(void)end_headless {
+	headless_anim_ct = 0;
+}
 @end
+
+@implementation NRobotBossHeadFlyoffParticle
+
++(NRobotBossHeadFlyoffParticle*)cons_pos:(CGPoint)pos vel:(CGPoint)vel player:(CGPoint)player {
+	return [[NRobotBossHeadFlyoffParticle spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"head"]] cons_pos:pos vel:vel player:player];
+}
+
+-(id)cons_pos:(CGPoint)pos vel:(CGPoint)vel player:(CGPoint)player {
+	[self setPosition:pos];
+	rel_pos = ccp(pos.x-player.x,pos.y-player.y);
+	self.vx = vel.x;
+	self.vy = vel.y;
+	off_screen = false;
+	return self;
+}
+
+-(void)update:(GameEngineLayer *)g {
+	
+	rel_pos.x += self.vx;
+	rel_pos.y += self.vy;
+	
+	[self setPosition:CGPointAdd(g.player.position, rel_pos)];
+	[self setRotation:self.rotation+20*[Common get_dt_Scale]];
+	if (![Common hitrect_touch:[g get_viewbox] b:[Common hitrect_cons_x1:position_.x y1:position_.y wid:5 hei:5]]) {
+		off_screen = true;
+	}
+}
+
+-(BOOL)should_remove {
+	return off_screen;
+}
+
+-(int)get_render_ord {
+	return [GameRenderImplementation GET_RENDER_FG_ISLAND_ORD];
+}
+
+@end
+
 
 @implementation NCatBossBody
 @synthesize base,cape,top;
