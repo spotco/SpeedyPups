@@ -14,7 +14,9 @@ typedef enum CapeGameBossCatMode {
 	CapeGameBossCatMode mode;
 	
 	CGPoint cat_screen_pos;
-	int pts_itr;
+	float pos_theta;
+	
+	int bomb_count;
 }
 
 +(CapeGameBossCat*)cons;

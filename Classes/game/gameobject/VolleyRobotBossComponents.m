@@ -5,6 +5,7 @@
 
 @implementation VolleyRobotBossComponents
 
+//TODO -- make this and NRobot non-static
 static CCAction *_robot_body;
 static CCAction *_robot_body_hurt;
 static CCAction *_robot_arm_front_loaded;
@@ -17,6 +18,7 @@ static CCAction *_cat_stand;
 static CCAction *_cat_laugh;
 static CCAction *_cat_hurt;
 static CCAction *_cat_damage;
+static CCAction *_cat_throw;
 
 +(void)cons_anims {
 	if (_robot_body != NULL) return;
@@ -49,6 +51,14 @@ static CCAction *_cat_damage;
 									 @"cat_laugh_0"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_cat_hurt = [Common cons_anim:@[@"cat_hurt_0",@"cat_hurt_1",@"cat_hurt_2"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_cat_damage = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_throw = [Common cons_nonrepeating_anim:@[
+									 @"throw_0",
+									 @"throw_1",
+									 @"throw_2",
+									 @"throw_3",
+									 @"throw_4",
+									 @"throw_5",
+									 @"throw_6"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 }
 
 @end
@@ -187,6 +197,8 @@ static int brownian_ct = 0;
 }
 
 -(void)laugh_anim {
+	throw_in_progress = NO;
+	throw_finished = NO;
 	if (top_anim == _cat_laugh) return;
 	[self.top stopAllActions];
 	[self.top runAction:_cat_laugh];
@@ -200,6 +212,8 @@ static int brownian_ct = 0;
 }
 
 -(void)stand_anim {
+	throw_in_progress = NO;
+	throw_finished = NO;
 	if (top_anim == _cat_stand) return;
 	[self.top stopAllActions];
 	[self.top runAction:_cat_stand];
@@ -213,6 +227,8 @@ static int brownian_ct = 0;
 }
 
 -(void)damage_anim {
+	throw_in_progress = NO;
+	throw_finished = NO;
 	if (top_anim == _cat_damage) return;
 	[self.top stopAllActions];
 	[self.top runAction:_cat_damage];
@@ -223,6 +239,8 @@ static int brownian_ct = 0;
 }
 
 -(void)hurt_anim {
+	throw_in_progress = NO;
+	throw_finished = NO;
 	if (top_anim == _cat_hurt) return;
 	[self.top stopAllActions];
 	[self.top runAction:_cat_hurt];
@@ -233,6 +251,29 @@ static int brownian_ct = 0;
 	[cape stopAllActions];
 	[self.base runAction:_cat_tail_base];
 }
+
+-(void)throw_anim_force:(BOOL)force {
+	if (!force && top_anim == _cat_throw) return;
+	[self.top stopAllActions];
+	[self.top runAction:[CCSequence actions:(CCFiniteTimeAction*)_cat_throw, [CCCallFunc actionWithTarget:self selector:@selector(throw_end)], nil]];
+	top_anim = _cat_throw;
+	throw_in_progress = YES;
+	throw_finished = NO;
+	
+	[base stopAllActions];
+	[cape stopAllActions];
+	[self.cape runAction:_cat_cape];
+	[self.base runAction:_cat_tail_base];
+	[cape setVisible:YES];
+}
+
+-(void)throw_end {
+	throw_in_progress = YES;
+	throw_finished = YES;
+}
+
+-(BOOL)get_throw_in_progress { return throw_in_progress; }
+-(BOOL)get_throw_finished { return throw_finished; }
 
 
 @end

@@ -3,6 +3,7 @@
 #import "FileCache.h"
 #import "VolleyRobotBossComponents.h"
 #import "CapeGameBossBomb.h"
+#import "AudioManager.h"
 
 @implementation CapeGameBossCat
 
@@ -23,7 +24,6 @@
 	[self addChild:cat_body];
 	
 	mode = CapeGameBossCatMode_INITIAL_IN;
-	
 	return self;
 }
 
@@ -36,6 +36,7 @@
 			mode = CapeGameBossCatMode_TAUNT;
 			delay_ct = 60;
 			[cat_body laugh_anim];
+			[AudioManager playsfx:SFX_LAUGH];
 		}
 		
 	} else if (mode == CapeGameBossCatMode_TAUNT) {
@@ -44,28 +45,34 @@
 			mode = CapeGameBossCatMode_PATTERN_1;
 			[cat_body stand_anim];
 			cat_screen_pos = ccp(DEFAULT_X_PCT,0.5);
-			pts_itr = 0;
 			delay_ct = 0;
+			pos_theta = 0;
 		}
 		
 	} else if (mode == CapeGameBossCatMode_PATTERN_1) {
-		if (delay_ct > 0 && delay_ct - [Common get_dt_Scale] <= 0) {
-			[g add_gameobject:[CapeGameBossBomb cons_pos:cat_body.position]];
-		}
-		
-		delay_ct -= [Common get_dt_Scale];
+		cat_screen_pos.y = sinf(pos_theta) * 0.35 + 0.5;
+		pos_theta+=0.02*[Common get_dt_Scale];
+		[cat_body setPosition:[Common screen_pctwid:cat_screen_pos.x pcthei:cat_screen_pos.y]];
 		
 		if (delay_ct <= 0) {
-			CGPoint pts[] = {ccp(DEFAULT_X_PCT,0.2), ccp(DEFAULT_X_PCT,0.5), ccp(DEFAULT_X_PCT,0.8), ccp(DEFAULT_X_PCT,0.5)};
-			int pts_len = 4;
-			
-			CGPoint tar_pt = pts[pts_itr];
-			cat_screen_pos = LERP_TO(cat_screen_pos, tar_pt, 30.0);
-			[cat_body setPosition:[Common screen_pctwid:cat_screen_pos.x pcthei:cat_screen_pos.y]];
-			if (CGPointDist(cat_body.position, [Common screen_pctwid:tar_pt.x pcthei:tar_pt.y]) < 5) {
-				pts_itr = (pts_itr+1)%pts_len;
-				delay_ct = 30;
+			if (![cat_body get_throw_in_progress]) {
+				[cat_body throw_anim_force:YES];
+				
+			} else if ([cat_body get_throw_finished]) {
+				bomb_count++;
+				if (bomb_count%7==0) {
+					[g add_gameobject:[CapeGameBossPowerupRocket cons_pos:cat_body.position]];
+				} else {
+					[g add_gameobject:[CapeGameBossBomb cons_pos:cat_body.position]];
+				}
+				
+				delay_ct = float_random(5, 70);
+				[cat_body stand_anim];
+				
 			}
+			
+		} else {
+			delay_ct -= [Common get_dt_Scale];
 		}
 	}
 	

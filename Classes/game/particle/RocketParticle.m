@@ -18,6 +18,12 @@
     [self setColor:ccc3(255, 0, 0)];
 }
 
+-(id)set_vel:(CGPoint)vel {
+	vx = vel.x;
+	vy = vel.y;
+	return self;
+}
+
 -(void)update:(GameEngineLayer*)g{
     [super update:g];
     int pct_y = (int)(((float)ct/STREAMPARTICLE_CT_DEFAULT)*200);

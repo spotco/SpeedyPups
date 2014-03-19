@@ -37,6 +37,9 @@ typedef enum {
 	BackgroundObject *bg;
 	BackgroundObject *bgclouds;
 	float bgclouds_scroll_x;
+	
+	BOOL count_as_death;
+	BOOL behind_catchup;
 }
 @property(readwrite,assign) BOOL is_boss_capegame;
 
@@ -50,6 +53,7 @@ typedef enum {
 
 -(void)collect_bone:(CGPoint)screen_pos;
 -(void)do_get_hit;
+-(void)do_powerup_rocket;
 -(void)do_tutorial_anim;
 
 -(void)add_gameobject:(CapeGameObject*)o;

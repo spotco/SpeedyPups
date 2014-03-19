@@ -30,6 +30,7 @@
 	float vib_theta;
 	
 	CCAction *top_anim;
+	BOOL throw_in_progress, throw_finished;
 }
 +(VolleyCatBossBody*)cons;
 @property(readwrite,strong) CCSprite *base;
@@ -42,4 +43,7 @@
 -(void)damage_anim;
 -(void)hurt_anim;
 -(void)brownian;
+-(void)throw_anim_force:(BOOL)force;
+-(BOOL)get_throw_in_progress;
+-(BOOL)get_throw_finished;
 @end

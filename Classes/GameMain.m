@@ -24,9 +24,7 @@
 
 /**
  boss3 todo:
-	add particle effects to robot
 	bug exit capegame wrong music
-	laugh sfx
  
  fix level selection algo, getting repeating levels (especially in lab1)
  

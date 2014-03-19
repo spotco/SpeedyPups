@@ -594,6 +594,7 @@
 		[GameControlImplementation reset_control_state];
 		runout_ct = 100;
 		player.current_island = NULL;
+		//do_boss_capegame = NO;
 		do_boss_capegame = YES; //TODO -- UNDO
 		
 	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {

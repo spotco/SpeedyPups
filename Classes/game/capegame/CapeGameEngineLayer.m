@@ -107,6 +107,8 @@ static NSString *blank = @"";
 	current_mode = CapeGameMode_FALLIN;
 	gameobjects_tbr = [NSMutableArray array];
 	
+	count_as_death = NO;
+	
 	return self;
 }
 
@@ -184,9 +186,42 @@ static NSString *blank = @"";
 		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
 		if (player.position.y < tar.y) {
 			[self exit];
+			
+			if (count_as_death) {
+				[GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
+			}
 		}
 		return;
 	}
+	
+	if ([player is_rocket]) {
+		
+		[self add_particle:[[[RocketParticle cons_x:player.position.x-25 y:player.position.y+5]
+							 set_vel:ccp(float_random(-8, -5),float_random(-1.5, 1.5))]
+							set_scale:float_random(0.3, 0.8)]];
+		
+		if (!behind_catchup) {
+			player.position = ccp(player.position.x+[Common get_dt_Scale] * 2,player.position.y);
+			if (player.position.x > [Common SCREEN].width*1.1) {
+				player.position = ccp(-50,player.position.y);
+				behind_catchup = YES;
+			}
+		} else {
+			if (player.position.x < START_TARPOS.x) {
+				player.position = ccp(player.position.x+[Common get_dt_Scale]*2,player.position.y);
+			} else {
+				player.position = ccp(START_TARPOS.x,player.position.y);
+				behind_catchup = NO;
+				[player do_cape_anim];
+				[AudioManager playsfx:SFX_POWERDOWN];
+			}
+			
+		}
+		
+	} else if (player.position.x < START_TARPOS.x) {
+		
+	}
+	
 	
 	float speed = is_boss_capegame ? 7 : (1-duration/GAME_DURATION)*6 + 4;
 	
@@ -230,9 +265,14 @@ static NSString *blank = @"";
 }
 
 -(void)do_get_hit {
+	count_as_death = self.is_boss_capegame;
 	[player do_hit];
 	current_mode = CapeGameMode_FALLOUT;
 	[DazedParticle cons_effect:self sprite:player time:40];
+}
+
+-(void)do_powerup_rocket {
+	[player do_rocket];
 }
 
 -(void)collect_bone:(CGPoint)screen_pos {

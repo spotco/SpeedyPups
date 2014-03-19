@@ -10,6 +10,21 @@
 
 -(id)init {
 	self = [super init];
+	
+	_anim_cape = [Common cons_anim:@[@"cape_0",@"cape_1",@"cape_2",@"cape_3"]
+							 speed:0.1
+						   tex_key:[Player get_character]];
+	_anim_stand = [Common cons_anim:@[@"run_0",@"run_1",@"run_2",@"run_3"]
+							  speed:0.1
+							tex_key:[Player get_character]];
+	_anim_rocket = [Common cons_anim:@[@"rocket_0",@"rocket_1",@"rocket_2"]
+							   speed:0.1
+							 tex_key:[Player get_character]];
+	_anim_hit = [Common cons_anim:@[@"hit_2"]
+							speed:200
+						  tex_key:[Player get_character]];
+	
+	
 	[self do_cape_anim];
 	[self setScale:0.6];
 	return self;
@@ -21,24 +36,40 @@
 }
 
 -(void)do_cape_anim {
-	[self stopAllActions];
-	[self runAction:[Common cons_anim:@[@"cape_0",@"cape_1",@"cape_2",@"cape_3"]
-								speed:0.1
-							  tex_key:[Player get_character]]];
+	if (cur_anim != _anim_cape) {
+		[self stopAllActions];
+		[self runAction:_anim_cape];
+		cur_anim = _anim_cape;
+	}
 }
 
 -(void)do_stand {
-	[self stopAllActions];
-	[self runAction:[Common cons_anim:@[@"run_0",@"run_1",@"run_2",@"run_3"]
-								speed:0.1
-							  tex_key:[Player get_character]]];
+	if (cur_anim != _anim_stand) {
+		[self stopAllActions];
+		[self runAction:_anim_stand];
+		cur_anim = _anim_stand;
+	}
+}
+
+-(void)do_rocket {
+	if (cur_anim != _anim_rocket) {
+		[self stopAllActions];
+		[self runAction:_anim_rocket];
+		cur_anim = _anim_rocket;
+	}
+	
 }
 
 -(void)do_hit {
-	[self stopAllActions];
-	[self runAction:[Common cons_anim:@[@"hit_2"]
-								speed:200
-							  tex_key:[Player get_character]]];
+	if (cur_anim != _anim_hit) {
+		[self stopAllActions];
+		[self runAction:_anim_hit];
+		cur_anim = _anim_hit;
+	}
+}
+
+-(BOOL)is_rocket {
+	return cur_anim == _anim_rocket;
 }
 
 -(HitRect)get_hitrect {
