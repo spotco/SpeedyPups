@@ -113,6 +113,8 @@ static CCAction *_cat_damage;
 	passive_arm_rotation_theta_speed = 0.09;
 	
 	cur_swing_state = NRBCSwingState_NONE;
+	
+	stop_rotate = NO;
 	return self;
 }
 
@@ -168,6 +170,7 @@ static CCAction *_cat_damage;
 	hop_vy-=1*[Common get_dt_Scale];
 	
 	if (!firing) {
+		if (stop_rotate) return;
 		passive_arm_rotation_theta+=passive_arm_rotation_theta_speed*[Common get_dt_Scale];
 		[self.backarm setRotation:cosf(passive_arm_rotation_theta)*15];
 		[self.frontarm setRotation:-cosf(passive_arm_rotation_theta)*15];
@@ -261,6 +264,9 @@ static CCAction *_cat_damage;
 }
 -(void)end_headless {
 	headless_anim_ct = 0;
+}
+-(void)stop_rotate {
+	stop_rotate = YES;
 }
 @end
 

@@ -8,6 +8,8 @@
 #import "ExplosionParticle.h"
 #import "HitEffect.h"
 #import "DazedParticle.h"
+#import "BrokenMachineParticle.h"
+#import "FireworksParticleA.h"
 
 @implementation NRobotBoss
 
@@ -21,7 +23,7 @@
 
 #define LPOS_ROBOT_DEFAULT_POS ccp(-650,0)
 
-#define CAPE_WAIT_POS ccp(500,150)
+#define CAPE_WAIT_POS ccp(500,300)
 
 #define CENTER_POS ccp(player.position.x,groundlevel)
 #define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
@@ -51,6 +53,14 @@
 	
 	cur_mode = NRobotBossMode_CAT_IN_RIGHT1;
 	
+	//hp = 1;
+	hp = 3;
+	
+	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
+	[cape_item_body setScale:1.75];
+	[cape_item_body setVisible:NO];
+	[self addChild:cape_item_body];
+	
 	self.active = YES;
 	return self;
 }
@@ -64,6 +74,51 @@
 	[cat_body setPosition:CGPointAdd(CENTER_POS, cat_body_rel_pos)];
 	[cat_body update];
 	
+	if (last_robot_body_rel_pos.x != robot_body_rel_pos.x) {
+		float delta = ABS(last_robot_body_rel_pos.x - robot_body_rel_pos.x);
+		if (delta > 10) {
+			spark_emit_rate = 1;
+		} else if (delta > 2) {
+			spark_emit_rate = 5;
+		} else if (delta > 1) {
+			spark_emit_rate = 10;
+		} else if (delta > 0.5) {
+			spark_emit_rate = 20;
+		
+		} else {
+			spark_emit_rate += 100;
+		}
+		
+	} else if (spark_emit_rate < 99999) {
+		spark_emit_rate+=1000;
+	}
+	
+	if (int_random(0, (int)spark_emit_rate) == 0) {
+		[g add_particle:[[[[[[StreamParticle cons_x:robot_body.position.x + float_random(-125, -95)
+												  y:robot_body.position.y
+												 vx:float_random(-8, -3)
+												 vy:float_random(0.5, 12)]
+							 set_color:ccc3(251,232,52)]
+							set_scale_x:0.75 y:2]
+						   set_ctmax:10]
+						  set_vel_rotation_facing]
+						 set_relpos:player.position]];
+	}
+	if (int_random(0, (int)spark_emit_rate) == 0) {
+		[g add_particle:[[[[[[[StreamParticle cons_x:robot_body.position.x + float_random(95, 125)
+												   y:robot_body.position.y
+												  vx:float_random(3, 8)
+												  vy:float_random(0.5, 12)]
+							  set_color:ccc3(251,232,52)]
+							 set_scale_x:0.75 y:2]
+							set_ctmax:10]
+						   set_vel_rotation_facing]
+						  set_relpos:player.position]
+						 set_render_ord:[GameRenderImplementation GET_RENDER_ABOVE_FG_ORD]]];
+	}
+	
+	last_robot_body_rel_pos = robot_body_rel_pos;
+	
 	if (cur_mode == NRobotBossMode_TOREMOVE) {
 		[g remove_gameobject:self];
 		return;
@@ -73,6 +128,9 @@
 		[cat_body setScaleX:-1];
 		[robot_body setScaleX:-1];
 		[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:NRobotBossMode_CAT_TAUNT_RIGHT1];
+		if (cur_mode != NRobotBossMode_CAT_IN_RIGHT1) {
+			[AudioManager playsfx:SFX_LAUGH];
+		}
 		
 	} else if (cur_mode == NRobotBossMode_CAT_TAUNT_RIGHT1) {
 		[self update_taunt_transition_to:NRobotBossMode_CAT_ROBOT_IN_RIGHT1];
@@ -81,6 +139,7 @@
 		[self update_robot_body_in_robotpos:ccp(1500,0) catpos:RPOS_CAT_DEFAULT_POS transition_to:NRobotBossMode_CHOOSING];
 		if (cur_mode != NRobotBossMode_CAT_ROBOT_IN_RIGHT1) {
 			
+			//attack_ct = 0;
 			attack_ct = int_random(0, 10);
 			if (attack_ct%2==1) {
 				[self attack_throwfist_right];
@@ -113,7 +172,7 @@
 		}
 		delay_ct-=[Common get_dt_Scale];
 		if (delay_ct <= 0) {
-			float mvx = -7, mvy = float_random(-5, 5);
+			float mvx = -7, mvy = 2 * sinf(tmp_ct/8.0 * 3.14 * 3 - 3.14/2 + pattern_ct * 3.14/2) + float_random(-2.5, 2.5);
 			if (tmp_ct > 0) {
 				delay_ct = 20;
 				tmp_ct--;
@@ -183,6 +242,11 @@
 				[g add_particle:[NRobotBossHeadFlyoffParticle cons_pos:CGPointAdd(robot_body.position, ccp(0,290))
 																   vel:CGPointAdd(ccp(player.vx*1.3,player.vy*1.3), ccp(0,5)) player:player.position]];
 				[AudioManager playsfx:SFX_EXPLOSION];
+				hp--;
+				if (hp <= 0) {
+					delay_ct = 0;
+					cur_mode = NRobotBossMode_EXPLODE_OUT;
+				}
 				
 			} else if (!player.dead) {
 				[DazedParticle cons_effect:g tar:player time:40];
@@ -320,6 +384,11 @@
 				[g add_particle:[NRobotBossHeadFlyoffParticle cons_pos:CGPointAdd(robot_body.position, ccp(0,290))
 																   vel:CGPointAdd(ccp(-player.vx*0.6,player.vy*1), ccp(-5,3)) player:player.position]];
 				[AudioManager playsfx:SFX_EXPLOSION];
+				hp--;
+				if (hp <= 0) {
+					delay_ct = 0;
+					cur_mode = NRobotBossMode_EXPLODE_OUT;
+				}
 				
 			} else if (!player.dead) {
 				[DazedParticle cons_effect:g tar:player time:40];
@@ -443,8 +512,63 @@
 		}
 		
 	} else if (cur_mode == NRobotBossMode_EXPLODE_OUT) {
-		NSLog(@"explode out");
+		delay_ct++;
+		[robot_body.frontarm setOpacity:200];
+		[robot_body.body setOpacity:200];
+		[robot_body.backarm setOpacity:200];
+		[robot_body stop_rotate];
 		
+		if (delay_ct > 150) {
+			for(float i = 0; i < 5; i++) {
+				[g add_particle:[BrokenCopterMachineParticle cons_robot_x:robot_body.position.x + float_random(-130, 130)
+																	  y:robot_body.position.y + float_random(0, 350)
+																	 vx:float_random(-5, 10)
+																	 vy:float_random(-10, 10)
+																   pimg:i]];
+			}
+			[AudioManager playsfx:SFX_BIG_EXPLOSION];
+			cur_mode = NRobotBossMode_CAPE_OUT;
+			cape_item_rel_pos = ccp(1200,800);
+			[robot_body setVisible:NO];
+			pattern_ct = 0;
+
+		} else if (((int) delay_ct) % 10 == 0) {
+			[g add_particle:[RelativePositionExplosionParticle cons_x:robot_body.position.x + float_random(-130, 130)
+																	y:robot_body.position.y + float_random(0, 350)
+															   player:player.position]];
+			[AudioManager playsfx:SFX_EXPLOSION];
+		}
+		
+	} else if (cur_mode == NRobotBossMode_CAPE_OUT) {
+		tmp_ct += 0.075;
+		[cape_item_body setRotation:sinf(tmp_ct)*12.5];
+		
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:54 y:54 z:400]];
+		[cape_item_body setVisible:YES];
+		[robot_body setVisible:NO];
+		[cape_item_body setPosition:CGPointAdd(player.position, cape_item_rel_pos)];
+		
+		if (pattern_ct == 0) {
+			cape_item_rel_pos = LERP_TO(cape_item_rel_pos, CAPE_WAIT_POS, 15.0);
+			if (CGPointDist(cape_item_rel_pos, CAPE_WAIT_POS) < 20) {
+				pattern_ct = 1;
+				delay_ct = 75;
+			}
+			
+		} else if (pattern_ct == 1) {
+			delay_ct-=[Common get_dt_Scale];
+			if (delay_ct <= 0) pattern_ct = 2;
+			
+		} else {
+			cape_item_rel_pos = LERP_TO(cape_item_rel_pos, CGPointZero, 15.0);
+			if (CGPointDist(cape_item_body.position, player.position) < 50) {
+				[AudioManager playsfx:SFX_POWERUP];
+				[cape_item_body setVisible:NO];
+				cur_mode = NRobotBossMode_TOREMOVE;
+				[GEventDispatcher push_event:[GEvent cons_type:GEventType_BEGIN_BOSS_CAPE_GAME]];
+			}
+		}
+	
 	}
 }
 

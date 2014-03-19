@@ -29,7 +29,8 @@ typedef enum NRobotBossMode {
 	NRobotBossMode_HEAD_CHASE_LEFT,
 	NRobotBossMode_HEAD_CHASE_RIGHT,
 	
-	NRobotBossMode_EXPLODE_OUT
+	NRobotBossMode_EXPLODE_OUT,
+	NRobotBossMode_CAPE_OUT
 } NRobotBossMode;
 
 @interface NRobotBoss : GameObject {
@@ -57,6 +58,12 @@ typedef enum NRobotBossMode {
 	
 	CCSprite *head_chaser;
 	CGPoint head_chaser_rel_pos;
+	
+	int hp;
+	CCSprite *cape_item_body;
+	
+	CGPoint last_robot_body_rel_pos;
+	float spark_emit_rate;
 }
 
 +(NRobotBoss*)cons_with:(GameEngineLayer*)g;

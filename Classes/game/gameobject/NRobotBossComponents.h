@@ -37,6 +37,8 @@ typedef enum  NRBCSwingState {
 	float hop_vy;
 
 	NRBCSwingState cur_swing_state;
+	
+	BOOL stop_rotate;
 }
 +(NRobotBossBody*)cons;
 @property(readwrite,strong) CCSprite *body;
@@ -63,6 +65,8 @@ typedef enum  NRBCSwingState {
 -(BOOL)headless;
 -(void)headless_flyoff;
 -(void)end_headless;
+
+-(void)stop_rotate;
 
 @end
 

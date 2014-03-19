@@ -50,6 +50,8 @@
     [self addChild:trail z:1];
 	
 	no_vibration = NO;
+	
+	already_removed = NO;
     
     return self;
 }
@@ -159,6 +161,8 @@
 }
 
 -(void)remove_from:(GameEngineLayer*)g {
+	if (already_removed) return;
+	already_removed = YES;
     [AudioManager playsfx:SFX_EXPLOSION];
     [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
     //[LauncherRobot explosion:g at:position_];
@@ -201,7 +205,7 @@
     [self update_position];
     [self setScale:DEFAULT_SCALE];
     trail_scale = 0.75;
-    CCSprite *body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROCKET]];
+    body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ENEMY_ROCKET]];
     [self addChild:body z:2];
     
     trail = [CCSprite node];
@@ -218,6 +222,9 @@
 
 -(id)set_homing {
 	homing = YES;
+	[body setTexture:[Resource get_tex:TEX_ENEMY_ROBOTBOSS]];
+	[body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOTBOSS idname:@"homing_rocket"]];
+	[body setScaleY:-body.scaleY];
 	return self;
 }
 
@@ -241,7 +248,7 @@
 		
 		[self setRotation:[self get_tar_angle_deg_self:position_ tar:ccp(position_.x+v.x,position_.y+v.y)]];
 		
-		if (position_.y + 400 < player.position.y) {
+		if (position_.y + 2000 < player.position.y) {
 			[self remove_from:g];
 			return;
 		}

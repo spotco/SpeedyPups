@@ -13,6 +13,8 @@
 	float trail_scale;
     
     ObjectShadow *shadow;
+	
+	BOOL already_removed;
 }
 
 +(LauncherRocket*)cons_at:(CGPoint)pt vel:(CGPoint)vel;
@@ -29,6 +31,7 @@
 @interface RelativePositionLauncherRocket : LauncherRocket {
     CGPoint rel_pos,player_pos;
 	BOOL homing;
+	CCSprite *body;
 }
 +(RelativePositionLauncherRocket*)cons_at:(CGPoint)pt player:(CGPoint)player vel:(CGPoint)vel;
 -(id)set_homing;

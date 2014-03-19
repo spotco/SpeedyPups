@@ -234,7 +234,7 @@ static CGPoint last_pos;
 					[bgobj explosion_at:[bgobj get_nozzle]];
 					[AudioManager playsfx:SFX_ROCKET_LAUNCH];
 					
-					//optional delta time on bombs
+					//optional delta time on bombs nah we're good m8
 				}
 				if (sub_submode%4 == 2 || sub_submode%4 == 3) {
 					ct = 20;

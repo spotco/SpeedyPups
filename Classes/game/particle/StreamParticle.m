@@ -1,5 +1,7 @@
 #import "StreamParticle.h"
 #import "FileCache.h"
+#import "Player.h"
+#import "GameEngineLayer.h"
 
 @implementation StreamParticle
 @synthesize ct;
@@ -35,8 +37,38 @@
     ct = (int)STREAMPARTICLE_CT_DEFAULT;
 }
 
+-(id)set_relpos:(CGPoint)player {
+	is_relpos = YES;
+	rel_pos = ccp(position_.x-player.x,position_.y-player.y);
+	return self;
+}
+-(id)set_color:(ccColor3B)c {
+	[self setColor:c];
+	return self;
+}
+-(id)set_scale_x:(float)x y:(float)y {
+	[self setScaleX:x];
+	[self setScaleY:y];
+	return self;
+}
+-(id)set_vel_rotation_facing {
+	is_vel_rotation_facing = YES;
+	[self setRotation:[VecLib get_rotation:[VecLib cons_x:vx y:vy z:0] offset:-90]];
+	return self;
+}
 -(void)update:(GameEngineLayer*)g{
-    [self setPosition:ccp(position_.x+vx*[Common get_dt_Scale],position_.y+vy*[Common get_dt_Scale])];
+    if (is_relpos) {
+		[self setPosition:ccp(g.player.position.x+rel_pos.x,position_.y+vy*[Common get_dt_Scale])];
+		rel_pos.x += vx * [Common get_dt_Scale];
+	} else {
+		[self setPosition:ccp(position_.x+vx*[Common get_dt_Scale],position_.y+vy*[Common get_dt_Scale])];
+	}
+	
+	if (is_vel_rotation_facing) {
+		[self setRotation:[VecLib get_rotation:[VecLib cons_x:vx y:vy z:0] offset:-90]];
+	}
+	
+	
     [self setOpacity:((int)(ct/STREAMPARTICLE_CT_DEFAULT*255))];
 	if (has_set_gravity) {
 		vx += gravity.x * [Common get_dt_Scale];
