@@ -288,8 +288,8 @@ static CCAction *_cat_damage;
 
 -(void)update:(GameEngineLayer *)g {
 	
-	rel_pos.x += self.vx;
-	rel_pos.y += self.vy;
+	rel_pos.x += self.vx * [Common get_dt_Scale];
+	rel_pos.y += self.vy * [Common get_dt_Scale];
 	
 	[self setPosition:CGPointAdd(g.player.position, rel_pos)];
 	[self setRotation:self.rotation+20*[Common get_dt_Scale]];

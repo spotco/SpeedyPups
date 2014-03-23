@@ -15,7 +15,7 @@
 #define USE_BG NO
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"capegame_launcher"
+#define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10

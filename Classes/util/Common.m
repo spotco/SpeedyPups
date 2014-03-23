@@ -11,9 +11,16 @@
 @implementation GLRenderObject
     @synthesize isalloc,pts;
     @synthesize texture;
-    -(CGPoint*)tex_pts {return tex_pts;}
-    -(CGPoint*)tri_pts {return tri_pts;}
+    -(fCGPoint*)tex_pts {return tex_pts;}
+    -(fCGPoint*)tri_pts {return tri_pts;}
 @end
+
+fCGPoint fCGPointMake(float x, float y){
+	fCGPoint rtv;
+	rtv.x = x;
+	rtv.y = y;
+	return rtv;
+}
 
 @implementation TexRect
 @synthesize tex;
@@ -291,7 +298,7 @@ bool fm_a_gt_b(double a,double b,double delta) {
 
 +(void)tex_map_to_tri_loc:(GLRenderObject*)o len:(int)len {
     for (int i = 0; i < len; i++) {
-        o.tex_pts[i] = ccp(o.tri_pts[i].x/o.texture.pixelsWide, o.tri_pts[i].y/o.texture.pixelsHigh);
+        o.tex_pts[i] = fccp(o.tri_pts[i].x/o.texture.pixelsWide, o.tri_pts[i].y/o.texture.pixelsHigh);
     }
 }
 
@@ -338,10 +345,10 @@ bool fm_a_gt_b(double a,double b,double delta) {
 }
 
 +(void)transform_obj:(GLRenderObject*)o by:(CGPoint)position {
-    o.tri_pts[0] = CGPointAdd(position, o.tri_pts[0]);
-    o.tri_pts[1] = CGPointAdd(position, o.tri_pts[1]);
-    o.tri_pts[2] = CGPointAdd(position, o.tri_pts[2]);
-    o.tri_pts[3] = CGPointAdd(position, o.tri_pts[3]);
+	o.tri_pts[0] = fccp(position.x+o.tri_pts[0].x, position.y+o.tri_pts[0].y);
+	o.tri_pts[1] = fccp(position.x+o.tri_pts[1].x, position.y+o.tri_pts[1].y);
+	o.tri_pts[2] = fccp(position.x+o.tri_pts[2].x, position.y+o.tri_pts[2].y);
+	o.tri_pts[3] = fccp(position.x+o.tri_pts[3].x, position.y+o.tri_pts[3].y);
 }
 
 +(CameraZoom)cons_normalcoord_camera_zoom_x:(float)x y:(float)y z:(float)z {

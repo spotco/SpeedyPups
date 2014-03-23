@@ -1,7 +1,7 @@
 #import "BatchDraw.h"
 
 @interface BatchJob : NSObject {
-    CGPoint *pvtx,*ptex;
+    fCGPoint *pvtx,*ptex;
     ccColor4B *pclr;
     int batch_ct,cursize;
 }
@@ -37,7 +37,7 @@
 }
 
 -(void)incr_arrs_to:(int)sizef {
-    CGPoint *o_pvtx,*o_ptex;
+    fCGPoint *o_pvtx,*o_ptex;
     ccColor4B *o_pclr;
     
     o_pvtx = pvtx;
@@ -79,7 +79,7 @@
 
 -(void)draw {
     glBindTexture(GL_TEXTURE_2D, tex);
-	glVertexPointer(2, GL_FLOAT, 0, pvtx); 
+	glVertexPointer(2, GL_FLOAT, 0, pvtx);
 	glTexCoordPointer(2, GL_FLOAT, 0, ptex);
     glColorPointer(4, GL_UNSIGNED_BYTE, 0, pclr);
     glDrawArrays(GL_TRIANGLES, 0, batch_ct);

@@ -48,28 +48,28 @@
     linedir = [VecLib scale:linedir by:-BEDGE_WID];
     linenormal=[VecLib scale:linenormal by:BEDGE_HEI];
     left = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_EDGE] npts:4];
-    left.tri_pts[0] = ccp(linedir.x,linenormal.y);
-    left.tri_pts[1] = ccp(0,linenormal.y);
-    left.tri_pts[2] = ccp(linedir.x,0);
-    left.tri_pts[3] = ccp(0,0);
+    left.tri_pts[0] = fccp(linedir.x,linenormal.y);
+    left.tri_pts[1] = fccp(0,linenormal.y);
+    left.tri_pts[2] = fccp(linedir.x,0);
+    left.tri_pts[3] = fccp(0,0);
     
-    left.tex_pts[0] = ccp(0,0);
-    left.tex_pts[1] = ccp(1,0);
-    left.tex_pts[2] = ccp(0,1);
-    left.tex_pts[3] = ccp(1,1);
+    left.tex_pts[0] = fccp(0,0);
+    left.tex_pts[1] = fccp(1,0);
+    left.tex_pts[2] = fccp(0,1);
+    left.tex_pts[3] = fccp(1,1);
     
     linedir=[VecLib normalize:linedir];
     linedir = [VecLib scale:linedir by:-BEDGE_WID];
     right = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_EDGE] npts:4];
-    right.tri_pts[1] = ccp(p2off.x+linedir.x,p2off.y+linenormal.y);
-    right.tri_pts[0] = ccp(p2off.x,p2off.y+linenormal.y);
-    right.tri_pts[3] = ccp(p2off.x+linedir.x,p2off.y);
-    right.tri_pts[2] = ccp(p2off.x,p2off.y);
+    right.tri_pts[1] = fccp(p2off.x+linedir.x,p2off.y+linenormal.y);
+    right.tri_pts[0] = fccp(p2off.x,p2off.y+linenormal.y);
+    right.tri_pts[3] = fccp(p2off.x+linedir.x,p2off.y);
+    right.tri_pts[2] = fccp(p2off.x,p2off.y);
     
-    right.tex_pts[1] = ccp(0,0);
-    right.tex_pts[0] = ccp(1,0);
-    right.tex_pts[3] = ccp(0,1);
-    right.tex_pts[2] = ccp(1,1);
+    right.tex_pts[1] = fccp(0,0);
+    right.tex_pts[0] = fccp(1,0);
+    right.tex_pts[3] = fccp(0,1);
+    right.tex_pts[2] = fccp(1,1);
     
     linedir=[VecLib normalize:linedir];
     linedir = [VecLib scale:linedir by:2];
@@ -88,10 +88,10 @@
     
     [[Resource get_tex:TEX_BRIDGE_SECTION] setClampTexParameters];
     center = [Common cons_render_obj:[Resource get_tex:TEX_BRIDGE_SECTION] npts:4];
-    center.tri_pts[0] = ccp(linenormal.x,linenormal.y);
-    center.tri_pts[1] = ccp(linedir.x+linenormal.x,linedir.y+linenormal.y);
-    center.tri_pts[2] = ccp(0,0);
-    center.tri_pts[3] = ccp(linedir.x,linedir.y);
+    center.tri_pts[0] = fccp(linenormal.x,linenormal.y);
+    center.tri_pts[1] = fccp(linedir.x+linenormal.x,linedir.y+linenormal.y);
+    center.tri_pts[2] = fccp(0,0);
+    center.tri_pts[3] = fccp(linedir.x,linedir.y);
     
     linenormal = [VecLib normalize:linenormal];
     linenormal = [VecLib scale:linenormal by:-10];
@@ -103,10 +103,10 @@
     float reps = [VecLib length:linedir] / BCENTER_WID;
     reps = floorf(reps);
     
-    center.tex_pts[2] = ccp(0,0);
-    center.tex_pts[3] = ccp(reps,0);
-    center.tex_pts[0] = ccp(0,1);
-    center.tex_pts[1] = ccp(reps,1);
+    center.tex_pts[2] = fccp(0,0);
+    center.tex_pts[3] = fccp(reps,0);
+    center.tex_pts[0] = fccp(0,1);
+    center.tex_pts[1] = fccp(reps,1);
     
 }
 

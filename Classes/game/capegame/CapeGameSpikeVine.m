@@ -95,26 +95,26 @@
     
     bottom = [Common cons_render_obj:tex npts:4];
     
-    bottom.tri_pts[0] = ccp(-normal.x            ,-normal.y);
-    bottom.tri_pts[1] = ccp(normal.x             ,normal.y);
-    bottom.tri_pts[2] = ccp(-normal.x + r_dirv.x , -normal.y + r_dirv.y);
-    bottom.tri_pts[3] = ccp(normal.x + r_dirv.x  ,normal.y + r_dirv.y);
+    bottom.tri_pts[0] = fccp(-normal.x            ,-normal.y);
+    bottom.tri_pts[1] = fccp(normal.x             ,normal.y);
+    bottom.tri_pts[2] = fccp(-normal.x + r_dirv.x , -normal.y + r_dirv.y);
+    bottom.tri_pts[3] = fccp(normal.x + r_dirv.x  ,normal.y + r_dirv.y);
     
-    bottom.tex_pts[0] = ccp(0,0);
-    bottom.tex_pts[1] = ccp(s.width/bwid,0);
-    bottom.tex_pts[2] = ccp(0,s.height/bhei);
-    bottom.tex_pts[3] = ccp(s.width/bwid,s.height/bhei);
+    bottom.tex_pts[0] = fccp(0,0);
+    bottom.tex_pts[1] = fccp(s.width/bwid,0);
+    bottom.tex_pts[2] = fccp(0,s.height/bhei);
+    bottom.tex_pts[3] = fccp(s.width/bwid,s.height/bhei);
     
     top = [Common cons_render_obj:tex npts:4];
-    top.tri_pts[0] = ccp(-normal.x + dir_vec.x - r_dirv.x              , -normal.y + dir_vec.y - r_dirv.y );
-    top.tri_pts[1] = ccp(normal.x  + dir_vec.x - r_dirv.x             , normal.y + dir_vec.y - r_dirv.y);
-    top.tri_pts[2] = ccp(-normal.x  + dir_vec.x   ,  -normal.y  + dir_vec.y);
-    top.tri_pts[3] = ccp(normal.x  + dir_vec.x    , normal.y  + dir_vec.y);
+    top.tri_pts[0] = fccp(-normal.x + dir_vec.x - r_dirv.x              , -normal.y + dir_vec.y - r_dirv.y );
+    top.tri_pts[1] = fccp(normal.x  + dir_vec.x - r_dirv.x             , normal.y + dir_vec.y - r_dirv.y);
+    top.tri_pts[2] = fccp(-normal.x  + dir_vec.x   ,  -normal.y  + dir_vec.y);
+    top.tri_pts[3] = fccp(normal.x  + dir_vec.x    , normal.y  + dir_vec.y);
     
-    top.tex_pts[2] = ccp(0,0);
-    top.tex_pts[3] = ccp(s.width/bwid,0);
-    top.tex_pts[0] = ccp(0,s.height/bhei);
-    top.tex_pts[1] = ccp(s.width/bwid,s.height/bhei);
+    top.tex_pts[2] = fccp(0,0);
+    top.tex_pts[3] = fccp(s.width/bwid,0);
+    top.tex_pts[0] = fccp(0,s.height/bhei);
+    top.tex_pts[1] = fccp(s.width/bwid,s.height/bhei);
     
     
     tex = [self get_section_tex];
@@ -126,17 +126,17 @@
     
     center = [Common cons_render_obj:tex npts:4];
     
-    center.tri_pts[0] = ccp(-normal.x            ,-normal.y);
-    center.tri_pts[1] = ccp(normal.x             ,normal.y);
-    center.tri_pts[2] = ccp(-normal.x + dir_vec.x , -normal.y + dir_vec.y);
-    center.tri_pts[3] = ccp(normal.x + dir_vec.x  ,normal.y + dir_vec.y);
+    center.tri_pts[0] = fccp(-normal.x            ,-normal.y);
+    center.tri_pts[1] = fccp(normal.x             ,normal.y);
+    center.tri_pts[2] = fccp(-normal.x + dir_vec.x , -normal.y + dir_vec.y);
+    center.tri_pts[3] = fccp(normal.x + dir_vec.x  ,normal.y + dir_vec.y);
     
     float len = [VecLib length:dir_vec];
     
-    center.tex_pts[0] = ccp(0,0);
-    center.tex_pts[1] = ccp(s.width/bwid,0);
-    center.tex_pts[2] = ccp(0, (len/s.height) * s.height/bhei);
-    center.tex_pts[3] = ccp(s.width/bwid,  (len/s.height) * s.height/bhei);
+    center.tex_pts[0] = fccp(0,0);
+    center.tex_pts[1] = fccp(s.width/bwid,0);
+    center.tex_pts[2] = fccp(0, (len/s.height) * s.height/bhei);
+    center.tex_pts[3] = fccp(s.width/bwid,  (len/s.height) * s.height/bhei);
     
     
     r_hitbox = [PolyLib cons_SATPoly_quad:ccp(center.tri_pts[0].x, center.tri_pts[0].y)

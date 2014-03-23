@@ -19,15 +19,15 @@ static const float ENTR_HEI = 3000;
     float tex_wid = front_body.texture.pixelsWide;
     float hei = ENTR_HEI;
     
-    front_body.tri_pts[0] = ccp(-tex_wid/2,0);
-    front_body.tri_pts[1] = ccp(tex_wid/2,0);
-    front_body.tri_pts[2] = ccp(-tex_wid/2,hei);
-    front_body.tri_pts[3] = ccp(tex_wid/2,hei);
+    front_body.tri_pts[0] = fccp(-tex_wid/2,0);
+    front_body.tri_pts[1] = fccp(tex_wid/2,0);
+    front_body.tri_pts[2] = fccp(-tex_wid/2,hei);
+    front_body.tri_pts[3] = fccp(tex_wid/2,hei);
     
-    front_body.tex_pts[2] = ccp(0,0);
-    front_body.tex_pts[3] = ccp(1,0);
-    front_body.tex_pts[0] = ccp(0,hei/front_body.texture.pixelsHigh);
-    front_body.tex_pts[1] = ccp(1,hei/front_body.texture.pixelsHigh);
+    front_body.tex_pts[2] = fccp(0,0);
+    front_body.tex_pts[3] = fccp(1,0);
+    front_body.tex_pts[0] = fccp(0,hei/front_body.texture.pixelsHigh);
+    front_body.tex_pts[1] = fccp(1,hei/front_body.texture.pixelsHigh);
     return self;
 }
 -(void)check_should_render:(GameEngineLayer *)g {
@@ -59,15 +59,15 @@ static const float ENTR_HEI = 3000;
     float tex_wid = back_body.texture.pixelsWide;
     float hei = ENTR_HEI;
     
-    back_body.tri_pts[0] = ccp(-tex_wid/2,0);
-    back_body.tri_pts[1] = ccp(tex_wid/2,0);
-    back_body.tri_pts[2] = ccp(-tex_wid/2,hei);
-    back_body.tri_pts[3] = ccp(tex_wid/2,hei);
+    back_body.tri_pts[0] = fccp(-tex_wid/2,0);
+    back_body.tri_pts[1] = fccp(tex_wid/2,0);
+    back_body.tri_pts[2] = fccp(-tex_wid/2,hei);
+    back_body.tri_pts[3] = fccp(tex_wid/2,hei);
     
-    back_body.tex_pts[2] = ccp(0,0);
-    back_body.tex_pts[3] = ccp(1,0);
-    back_body.tex_pts[0] = ccp(0,hei/back_body.texture.pixelsHigh);
-    back_body.tex_pts[1] = ccp(1,hei/back_body.texture.pixelsHigh);
+    back_body.tex_pts[2] = fccp(0,0);
+    back_body.tex_pts[3] = fccp(1,0);
+    back_body.tex_pts[0] = fccp(0,hei/back_body.texture.pixelsHigh);
+    back_body.tex_pts[1] = fccp(1,hei/back_body.texture.pixelsHigh);
 
     [[Resource get_tex:TEX_LAB_ENTRANCE_CEIL] setHorizClampTexParameters];
     ceil_edge = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL] npts:4];
@@ -77,27 +77,27 @@ static const float ENTR_HEI = 3000;
     float ceil_wid = ceil_edge.texture.pixelsWide;
     float ceil_edge_hei = ceil_edge.texture.pixelsHigh;
     
-    ceil_edge.tri_pts[0] = ccp(ceil_leftoffset,ceil_hei);
-    ceil_edge.tri_pts[1] = ccp(ceil_leftoffset+ceil_wid,ceil_hei);
-    ceil_edge.tri_pts[2] = ccp(ceil_leftoffset,ceil_hei+ceil_edge_hei);
-    ceil_edge.tri_pts[3] = ccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei);
+    ceil_edge.tri_pts[0] = fccp(ceil_leftoffset,ceil_hei);
+    ceil_edge.tri_pts[1] = fccp(ceil_leftoffset+ceil_wid,ceil_hei);
+    ceil_edge.tri_pts[2] = fccp(ceil_leftoffset,ceil_hei+ceil_edge_hei);
+    ceil_edge.tri_pts[3] = fccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei);
     
-    ceil_edge.tex_pts[2] = ccp(0,0);
-    ceil_edge.tex_pts[3] = ccp(1,0);
-    ceil_edge.tex_pts[0] = ccp(0,1);
-    ceil_edge.tex_pts[1] = ccp(1,1);
+    ceil_edge.tex_pts[2] = fccp(0,0);
+    ceil_edge.tex_pts[3] = fccp(1,0);
+    ceil_edge.tex_pts[0] = fccp(0,1);
+    ceil_edge.tex_pts[1] = fccp(1,1);
     
     [[Resource get_tex:TEX_LAB_ENTRANCE_CEIL_REPEAT] setHorizClampTexParameters];
     ceil_body = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL_REPEAT] npts:4];
-    ceil_body.tri_pts[0] =  ccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei);
-    ceil_body.tri_pts[1]  = ccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei);
-    ceil_body.tri_pts[2] =  ccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei+ENTR_HEI);
-    ceil_body.tri_pts[3]  = ccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei+ENTR_HEI);
+    ceil_body.tri_pts[0] =  fccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei);
+    ceil_body.tri_pts[1]  = fccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei);
+    ceil_body.tri_pts[2] =  fccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei+ENTR_HEI);
+    ceil_body.tri_pts[3]  = fccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei+ENTR_HEI);
     
-    ceil_body.tex_pts[2] = ccp(0,0);
-    ceil_body.tex_pts[3] = ccp(1,0);
-    ceil_body.tex_pts[0] = ccp(0,ceil_body.tri_pts[2].y/ceil_body.texture.pixelsHigh);
-    ceil_body.tex_pts[1] = ccp(1,ceil_body.tri_pts[3].y/ceil_body.texture.pixelsHigh);
+    ceil_body.tex_pts[2] = fccp(0,0);
+    ceil_body.tex_pts[3] = fccp(1,0);
+    ceil_body.tex_pts[0] = fccp(0,ceil_body.tri_pts[2].y/ceil_body.texture.pixelsHigh);
+    ceil_body.tex_pts[1] = fccp(1,ceil_body.tri_pts[3].y/ceil_body.texture.pixelsHigh);
     
     return self;
 }

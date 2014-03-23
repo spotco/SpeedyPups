@@ -3,7 +3,6 @@
 #import "DazedParticle.h"
 
 @interface Spike : GameObject {
-    GLRenderObject *body;
     BOOL activated;
 }
 

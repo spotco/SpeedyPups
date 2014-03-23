@@ -1,5 +1,6 @@
 #import "CaveWall.h"
 #import "GameEngineLayer.h"
+#import "Common.h"
 
 @implementation CaveWall
 
@@ -18,14 +19,14 @@
     active = YES;
     /*10
       32*/
-    
-    tex.tri_pts[3] = ccp(0,0);
-    tex.tri_pts[2] = ccp(width,0);
-    tex.tri_pts[1] = ccp(0,height);
-    tex.tri_pts[0] = ccp(width,height);
+	
+    tex.tri_pts[3] = fccp(0,0);
+    tex.tri_pts[2] = fccp(width,0);
+    tex.tri_pts[1] = fccp(0,height);
+    tex.tri_pts[0] = fccp(width,height);
     
     for (int i = 0; i < 4; i++) {
-        tex.tex_pts[i] = ccp(
+        tex.tex_pts[i] = fccp(
 			(tex.tri_pts[i].x+position_.x)/tex.texture.pixelsWide,
 			-(tex.tri_pts[i].y+position_.y)/tex.texture.pixelsHigh
 		);

@@ -6,7 +6,7 @@
 @interface Water : GameObject {
     GLRenderObject* body;
     
-    CGPoint body_tex_offset[4];
+    fCGPoint body_tex_offset[4];
     float bwidth,bheight,offset_ct;
     
     BOOL activated;

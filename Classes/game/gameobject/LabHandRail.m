@@ -24,15 +24,15 @@
 	 (0,0)1--0 dir_vec->
 	 */
 	
-	center.tri_pts[0] = ccp(dir_vec.x,dir_vec.y);
-	center.tri_pts[1] = ccp(0,0);
-	center.tri_pts[2] = ccp(dir_vec.x + normal.x, dir_vec.y + normal.y);
-	center.tri_pts[3] = ccp(normal.x,normal.y);
+	center.tri_pts[0] = fccp(dir_vec.x,dir_vec.y);
+	center.tri_pts[1] = fccp(0,0);
+	center.tri_pts[2] = fccp(dir_vec.x + normal.x, dir_vec.y + normal.y);
+	center.tri_pts[3] = fccp(normal.x,normal.y);
 	
-	center.tex_pts[3] = ccp([VecLib length:dir_vec]/[tex pixelsWide],0);
-	center.tex_pts[2] = ccp(0,0);
-	center.tex_pts[1] = ccp([VecLib length:dir_vec]/[tex pixelsWide],0.95);
-	center.tex_pts[0] = ccp(0,0.95);
+	center.tex_pts[3] = fccp([VecLib length:dir_vec]/[tex pixelsWide],0);
+	center.tex_pts[2] = fccp(0,0);
+	center.tex_pts[1] = fccp([VecLib length:dir_vec]/[tex pixelsWide],0.95);
+	center.tex_pts[0] = fccp(0,0.95);
 	
 	self.active = YES;
 

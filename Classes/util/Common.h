@@ -84,15 +84,26 @@
 @property(readwrite,unsafe_unretained) NSObject *target;
 @end
 
+typedef struct _fCGPoint {
+	float x;
+	float y;
+} fCGPoint; //64bit opengl PLS USE FLOATS
+
+fCGPoint fCGPointMake(float x, float y);
+#define fccp(x,y) fCGPointMake(x, y)
+#define ccp2fccp(p) fCGPointMake(p.x,p.y)
+#define fccp2ccp(p) CGPointMake(p.x,p.y)
+
+
 @interface GLRenderObject : NSObject {
-        CGPoint tri_pts[4];
-        CGPoint tex_pts[4];
+        fCGPoint tri_pts[4];
+        fCGPoint tex_pts[4];
     }
 
     @property(readwrite,unsafe_unretained) CCTexture2D* texture;
     @property(readwrite,assign) int isalloc,pts;
-    -(CGPoint*)tri_pts;
-    -(CGPoint*)tex_pts;
+    -(fCGPoint*)tri_pts;
+    -(fCGPoint*)tex_pts;
 @end
 
 @interface TexRect : NSObject

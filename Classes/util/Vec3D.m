@@ -76,6 +76,10 @@
     return ccp(p.x+v.x,p.y+v.y);
 }
 
++(fCGPoint) ftransform_pt:(fCGPoint)p by:(Vec3D)v{
+    return fccp(p.x+v.x,p.y+v.y);
+}
+
 +(Vec3D)rotate:(Vec3D)v by_rad:(float)rad {
     float mag = [VecLib length:v];
     float ang = atan2f(v.y, v.x);

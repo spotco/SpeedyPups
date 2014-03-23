@@ -81,11 +81,11 @@
 }
 
 -(void)update_body_tex_offset {
-    body_tex_offset[0] = ccp(body.tex_pts[0].x+offset_ct, body.tex_pts[0].y);
-    body_tex_offset[1] = ccp(body.tex_pts[1].x+offset_ct, body.tex_pts[1].y);
-    body_tex_offset[2] = ccp(body.tex_pts[2].x+offset_ct, body.tex_pts[2].y);
-    body_tex_offset[3] = ccp(body.tex_pts[3].x+offset_ct, body.tex_pts[3].y);
-    offset_ct = offset_ct >= 1 ? ANIM_SPEED : offset_ct + ANIM_SPEED;
+    body_tex_offset[0] = fccp(body.tex_pts[0].x+offset_ct, body.tex_pts[0].y);
+    body_tex_offset[1] = fccp(body.tex_pts[1].x+offset_ct, body.tex_pts[1].y);
+    body_tex_offset[2] = fccp(body.tex_pts[2].x+offset_ct, body.tex_pts[2].y);
+    body_tex_offset[3] = fccp(body.tex_pts[3].x+offset_ct, body.tex_pts[3].y);
+    offset_ct = offset_ct >= 1 ? ANIM_SPEED : offset_ct + ANIM_SPEED * [Common get_dt_Scale];
 }
 
 /*0 1
@@ -97,15 +97,15 @@
     int twid = o.texture.pixelsWide;
     int thei = o.texture.pixelsHigh;
     
-    o.tri_pts[0] = ccp(0,bheight - thei + OFFSET_V);
-    o.tri_pts[1] = ccp(width,bheight -thei + OFFSET_V);
-    o.tri_pts[2] = ccp(0,bheight + OFFSET_V);
-    o.tri_pts[3] = ccp(width,bheight + OFFSET_V);
+    o.tri_pts[0] = fccp(0,bheight - thei + OFFSET_V);
+    o.tri_pts[1] = fccp(width,bheight -thei + OFFSET_V);
+    o.tri_pts[2] = fccp(0,bheight + OFFSET_V);
+    o.tri_pts[3] = fccp(width,bheight + OFFSET_V);
     
-    o.tex_pts[0] = ccp(0,1);
-    o.tex_pts[1] = ccp(o.tri_pts[1].x/twid,1);
-    o.tex_pts[2] = ccp(0,0);
-    o.tex_pts[3] = ccp(o.tri_pts[3].x/twid,0);
+    o.tex_pts[0] = fccp(0,1);
+    o.tex_pts[1] = fccp(o.tri_pts[1].x/twid,1);
+    o.tex_pts[2] = fccp(0,0);
+    o.tex_pts[3] = fccp(o.tri_pts[3].x/twid,0);
     
     return o;
 
@@ -118,9 +118,10 @@
     }
 }
 
+
 -(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx {
     glBindTexture(GL_TEXTURE_2D, obj.texture.name);
-	glVertexPointer(2, GL_FLOAT, 0, obj.tri_pts); 
+	glVertexPointer(2, GL_FLOAT, 0, obj.tri_pts);
 	glTexCoordPointer(2, GL_FLOAT, 0, body_tex_offset);
     
 	glDrawArrays(GL_TRIANGLES, 0, 3);

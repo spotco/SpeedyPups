@@ -180,7 +180,7 @@
     //init islandfill
     main_fill = [Common cons_render_obj:[self get_tex_fill] npts:4];
 	
-	CGPoint *tri_pts = main_fill.tri_pts;
+	fCGPoint *tri_pts = main_fill.tri_pts;
     
     Vec3D v3t2 = [VecLib cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
     Vec3D vZ = [VecLib Z_VEC];
@@ -195,10 +195,10 @@
      32
      10
      **/
-    tri_pts[3] = ccp(0,0);
-    tri_pts[2] = ccp(self.endX-self.startX,self.endY-self.startY);
-    tri_pts[1] = ccp(0+v3t1.x * taille,0+v3t1.y * taille);
-    tri_pts[0] = ccp(self.endX-self.startX +v3t1.x * taille ,self.endY-self.startY +v3t1.y * taille);
+    tri_pts[3] = fccp(0,0);
+    tri_pts[2] = fccp(self.endX-self.startX,self.endY-self.startY);
+    tri_pts[1] = fccp(0+v3t1.x * taille,0+v3t1.y * taille);
+    tri_pts[0] = fccp(self.endX-self.startX +v3t1.x * taille ,self.endY-self.startY +v3t1.y * taille);
 	
     [self main_fill_tex_map];
     
@@ -208,7 +208,7 @@
 
 -(void)main_fill_tex_map {
     for (int i = 0; i < 4; i++) {
-        main_fill.tex_pts[i] = ccp(( main_fill.tri_pts[i].x+self.startX)/main_fill.texture.pixelsWide,
+        main_fill.tex_pts[i] = fccp(( main_fill.tri_pts[i].x+self.startX)/main_fill.texture.pixelsWide,
                                    ( main_fill.tri_pts[i].y+self.startY)/main_fill.texture.pixelsHigh);
     }
 }
@@ -225,8 +225,8 @@
     
     v3t1 = [VecLib normalize:v3t1];
     [VecLib scale:v3t1 by:TL_DOWNOFFSET];
-    tl = ccp(tl.x + v3t1.x, tl.y + v3t1.y);
-    tr = ccp(tr.x + v3t1.x, tr.y + v3t1.y);
+    tl = fccp(tl.x + v3t1.x, tl.y + v3t1.y);
+    tr = fccp(tr.x + v3t1.x, tr.y + v3t1.y);
     
     [self cons_left_line_fill];
     [self cons_right_line_fill];
@@ -239,8 +239,8 @@
     toppts_fill = [Common cons_render_obj:[self get_corner_fill_color] npts:3];
     toppts_fill.isalloc = 0;
     
-	CGPoint* tri_pts = top_fill.tri_pts;
-	CGPoint* tex_pts = top_fill.tex_pts;
+	fCGPoint* tri_pts = top_fill.tri_pts;
+	fCGPoint* tex_pts = top_fill.tex_pts;
 	CCTexture2D* texture = top_fill.texture;
 	
 	float dist = sqrt(pow(self.endX-self.startX, 2)+pow(self.endY-self.startY, 2));
@@ -262,18 +262,18 @@
      10
      32
      **/
-    tri_pts[2] = ccp(self.endX-self.startX + d_o_x              ,self.endY-self.startY + d_o_y);
-    tri_pts[3] = ccp(d_o_x                            , d_o_y);
-    tri_pts[0] = ccp(self.endX-self.startX+v3t1.x*hei  + d_o_x  ,self.endY-self.startY+v3t1.y*hei + d_o_y);
-    tri_pts[1] = ccp(v3t1.x*hei + d_o_x               ,v3t1.y*hei + d_o_y);
+    tri_pts[2] = fccp(self.endX-self.startX + d_o_x              ,self.endY-self.startY + d_o_y);
+    tri_pts[3] = fccp(d_o_x                            , d_o_y);
+    tri_pts[0] = fccp(self.endX-self.startX+v3t1.x*hei  + d_o_x  ,self.endY-self.startY+v3t1.y*hei + d_o_y);
+    tri_pts[1] = fccp(v3t1.x*hei + d_o_x               ,v3t1.y*hei + d_o_y);
     
-    tex_pts[0] = ccp(dist/texture.pixelsWide,0);
-    tex_pts[1] = ccp(0,0);
-    tex_pts[2] = ccp(dist/texture.pixelsWide,1);
-    tex_pts[3] = ccp(0,1);
+    tex_pts[0] = fccp(dist/texture.pixelsWide,0);
+    tex_pts[1] = fccp(0,0);
+    tex_pts[2] = fccp(dist/texture.pixelsWide,1);
+    tex_pts[3] = fccp(0,1);
     
-    toppts_fill.tri_pts[0] = ccp(self.endX-self.startX,self.endY-self.startY);
-    toppts_fill.tri_pts[1] = ccp(tri_pts[2].x,tri_pts[2].y);
+    toppts_fill.tri_pts[0] = fccp(self.endX-self.startX,self.endY-self.startY);
+    toppts_fill.tri_pts[1] = fccp(tri_pts[2].x,tri_pts[2].y);
     
     v3t2 = [VecLib negate:v3t2];
     v3t2 = [VecLib normalize:v3t2];
@@ -284,51 +284,51 @@
     [self cons_bottom_line_fill];
 }
 
--(GLRenderObject*)cons_TRorTL_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
+-(GLRenderObject*)cons_TRorTL_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
     Vec3D mvr = [VecLib cons_x:-vec.x y:-vec.y z:0];
     mvr = [VecLib scale:mvr by:MVR_ROUNDED_CORNER_SCALE];
     
-    top = [VecLib transform_pt:top by:mvr];
-    bot = [VecLib transform_pt:bot by:mvr];
+    top = ccp2fccp([VecLib transform_pt:fccp2ccp(top) by:mvr]);
+    bot = ccp2fccp([VecLib transform_pt:fccp2ccp(bot) by:mvr]);
     GLRenderObject* o = [Common cons_render_obj:[self get_tex_corner] npts:4];
 	
-	CGPoint* tri_pts = o.tri_pts;
+	fCGPoint* tri_pts = o.tri_pts;
     
     vec = [VecLib scale:vec by:NORMAL_ROUNDED_CORNER_SCALE];
     
-    tri_pts[0] = ccp(top.x+vec.x,top.y+vec.y);
+    tri_pts[0] = fccp(top.x+vec.x,top.y+vec.y);
     tri_pts[1] = top;
-    tri_pts[2] = ccp(bot.x+vec.x,bot.y+vec.y);
+    tri_pts[2] = fccp(bot.x+vec.x,bot.y+vec.y);
     tri_pts[3] = bot;
     
     return o;
 }
 
--(void)cons_tl_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
+-(void)cons_tl_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
     tl_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
-    CGPoint* tex_pts = tl_top_corner.tex_pts;
+    fCGPoint* tex_pts = tl_top_corner.tex_pts;
     
-    tex_pts[0] = ccp(0,0);
-    tex_pts[1] = ccp(1,0);
-    tex_pts[3] = ccp(1,1);
-    tex_pts[2] = ccp(0,1);
+    tex_pts[0] = fccp(0,0);
+    tex_pts[1] = fccp(1,0);
+    tex_pts[3] = fccp(1,1);
+    tex_pts[2] = fccp(0,1);
 }
 
--(void)cons_tr_top:(CGPoint)top bot:(CGPoint)bot vec:(Vec3D)vec {
+-(void)cons_tr_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
     tr_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
-    CGPoint* tex_pts = tr_top_corner.tex_pts;
+    fCGPoint* tex_pts = tr_top_corner.tex_pts;
     
-    tex_pts[2] = ccp(0,0);
-    tex_pts[3] = ccp(1,0);
-    tex_pts[1] = ccp(1,1);
-    tex_pts[0] = ccp(0,1);
+    tex_pts[2] = fccp(0,0);
+    tex_pts[3] = fccp(1,0);
+    tex_pts[1] = fccp(1,1);
+    tex_pts[0] = fccp(0,1);
 }
 
--(GLRenderObject*)line_from:(CGPoint)a to:(CGPoint)b scale:(float)scale {
+-(GLRenderObject*)line_from:(fCGPoint)a to:(fCGPoint)b scale:(float)scale {
     GLRenderObject* n = [Common cons_render_obj:[self get_tex_border] npts:4];
     n.isalloc = 1;
-    CGPoint* tri_pts = n.tri_pts;
-	CGPoint* tex_pts = n.tex_pts;
+    fCGPoint* tri_pts = n.tri_pts;
+	fCGPoint* tex_pts = n.tex_pts;
     
     Vec3D v = [VecLib cons_x:b.x-a.x y:b.y-a.y z:0];
     Vec3D dirv;
@@ -345,13 +345,13 @@
     
     tri_pts[0] = a;
     tri_pts[1] = b;
-    tri_pts[2] = ccp(a.x+dirv.x,a.y+dirv.y);
-    tri_pts[3] = ccp(b.x+dirv.x,b.y+dirv.y);
+    tri_pts[2] = fccp(a.x+dirv.x,a.y+dirv.y);
+    tri_pts[3] = fccp(b.x+dirv.x,b.y+dirv.y);
     
-    tex_pts[0] = ccp(0,0);
-    tex_pts[1] = ccp(1,0);
-    tex_pts[2] = ccp(0,1);
-    tex_pts[3] = ccp(1,1);
+    tex_pts[0] = fccp(0,0);
+    tex_pts[1] = fccp(1,0);
+    tex_pts[2] = fccp(0,1);
+    tex_pts[3] = fccp(1,1);
     
     return n;
 }
@@ -370,7 +370,7 @@
     }
     
     LineIsland *n = (LineIsland*)self.next;
-    corner_line_fill = [self line_from:br to:ccp(n.bl.x-self.startX+n.self.startX,n.bl.y-self.startY+n.self.startY) scale:1];
+    corner_line_fill = [self line_from:br to:fccp(n.bl.x-self.startX+n.self.startX,n.bl.y-self.startY+n.self.startY) scale:1];
 }
 
 -(void)cons_left_line_fill {
@@ -426,7 +426,7 @@
     float offset = OFFSET;
     float d_o_x = offset * v3t1.x;
     float d_o_y = offset * v3t1.y;
-    toppts_fill.tri_pts[2] = ccp( d_o_x+self.next.startX-self.startX ,d_o_y+self.next.startY-self.startY );
+    toppts_fill.tri_pts[2] = fccp( d_o_x+self.next.startX-self.startX ,d_o_y+self.next.startY-self.startY );
     
     float corner_top_scale = [self get_corner_top_fill_scale];
     
@@ -437,22 +437,22 @@
     Vec3D reduce_left = [VecLib cons_x:toppts_fill.tri_pts[1].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[1].y-toppts_fill.tri_pts[0].y z:0];
     reduce_left = [VecLib normalize:reduce_left];
     reduce_left = [VecLib scale:reduce_left by:corner_top_scale];
-    toppts_fill.tri_pts[1] = ccp( toppts_fill.tri_pts[0].x + reduce_left.x, toppts_fill.tri_pts[0].y + reduce_left.y);
+    toppts_fill.tri_pts[1] = fccp( toppts_fill.tri_pts[0].x + reduce_left.x, toppts_fill.tri_pts[0].y + reduce_left.y);
     
     Vec3D reduce_right = [VecLib cons_x:toppts_fill.tri_pts[2].x-toppts_fill.tri_pts[0].x y:toppts_fill.tri_pts[2].y-toppts_fill.tri_pts[0].y z:0];
     reduce_right = [VecLib normalize:reduce_right];
     reduce_right = [VecLib scale:reduce_right by:corner_top_scale];
-    toppts_fill.tri_pts[2] = ccp( toppts_fill.tri_pts[0].x + reduce_right.x, toppts_fill.tri_pts[0].y + reduce_right.y);
+    toppts_fill.tri_pts[2] = fccp( toppts_fill.tri_pts[0].x + reduce_right.x, toppts_fill.tri_pts[0].y + reduce_right.y);
     
-    toppts_fill.tex_pts[0] = ccp(0,0);
-    toppts_fill.tex_pts[1] = ccp(1,0);
-    toppts_fill.tex_pts[2] = ccp(1,1);
+    toppts_fill.tex_pts[0] = fccp(0,0);
+    toppts_fill.tex_pts[1] = fccp(1,0);
+    toppts_fill.tex_pts[2] = fccp(1,1);
 }
 
 -(void)cons_corner_tex {
     corner_fill = [Common cons_render_obj:[self get_tex_fill] npts:3];
     
-    CGPoint* tri_pts = corner_fill.tri_pts;
+    fCGPoint* tri_pts = corner_fill.tri_pts;
     
     Vec3D v3t2 = [VecLib cons_x:(self.endX - self.startX) y:(self.endY - self.startY) z:0];
     Vec3D vZ = [VecLib Z_VEC];
@@ -460,14 +460,14 @@
     v3t1 = [VecLib normalize:v3t1];
     v3t1 = [self scale_ndir:v3t1];
     
-    tri_pts[0] = ccp(self.endX-self.startX,self.endY-self.startY);
-    tri_pts[1] = ccp(self.endX+v3t1.x*fill_hei-self.startX,self.endY+v3t1.y*fill_hei-self.startY);
+    tri_pts[0] = fccp(self.endX-self.startX,self.endY-self.startY);
+    tri_pts[1] = fccp(self.endX+v3t1.x*fill_hei-self.startX,self.endY+v3t1.y*fill_hei-self.startY);
     
     v3t2 = [VecLib cons_x:(self.next.endX - self.next.startX) y:(self.next.endY - self.next.startY) z:0];
     v3t1 = [VecLib cross:v3t2 with:vZ];
     v3t1 = [VecLib normalize:v3t1];
     v3t1 = [self scale_ndir:v3t1];
-    tri_pts[2] = ccp(self.next.startX+v3t1.x*self.next.fill_hei-self.startX, self.next.startY+v3t1.y*self.next.fill_hei-self.startY);
+    tri_pts[2] = fccp(self.next.startX+v3t1.x*self.next.fill_hei-self.startX, self.next.startY+v3t1.y*self.next.fill_hei-self.startY);
     
     [self corner_fill_tex_map];
     /**
@@ -483,7 +483,7 @@
      **/
     corner_fill.tex_pts[0] = main_fill.tex_pts[2];
     corner_fill.tex_pts[1] = main_fill.tex_pts[0];
-    corner_fill.tex_pts[2] = ccp(
+    corner_fill.tex_pts[2] = fccp(
         (corner_fill.tri_pts[2].x - corner_fill.tri_pts[1].x)/corner_fill.texture.pixelsWide + corner_fill.tex_pts[1].x,
         (corner_fill.tri_pts[2].y - corner_fill.tri_pts[1].y)/corner_fill.texture.pixelsHigh + corner_fill.tex_pts[1].y
     );
@@ -491,7 +491,7 @@
 
 -(void)corner_fill_tex_map {
     for (int i = 2; i < 4; i++) {
-        corner_fill.tex_pts[i] = ccp(( corner_fill.tri_pts[i].x+self.startX)/   corner_fill.texture.pixelsWide,
+        corner_fill.tex_pts[i] = fccp(( corner_fill.tri_pts[i].x+self.startX)/   corner_fill.texture.pixelsWide,
                                      ( corner_fill.tri_pts[i].y+self.startY)/   corner_fill.texture.pixelsHigh);
     }
 }

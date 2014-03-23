@@ -143,7 +143,7 @@ static NSSet *lab_levels_world3;
 		},
 		L_AUTOSTART: @{
 			@"shittytest":@1
-			//@"autolevel_start": @1
+				//@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
