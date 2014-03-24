@@ -1,15 +1,17 @@
 #import "CCSprite.h"
 
-@interface VolleyRobotBossComponents : NSObject
-+(void)cons_anims;
-@end
-
 @interface VolleyRobotBossBody : CCSprite {
 	float passive_arm_rotation_theta;
 	float swing_theta;
 	int mode;
 	
 	BOOL swing_has_thrown_bomb;
+	
+	CCAction *_robot_body;
+	CCAction *_robot_body_hurt;
+	 CCAction *_robot_arm_front_loaded;
+	 CCAction *_robot_arm_front_unloaded;
+	 CCAction *_robot_arm_back;
 }
 +(VolleyRobotBossBody*)cons;
 @property(readwrite,strong) CCSprite *body;
@@ -31,6 +33,14 @@
 	
 	CCAction *top_anim;
 	BOOL throw_in_progress, throw_finished;
+	
+	CCAction *_cat_tail_base;
+	CCAction *_cat_cape;
+	CCAction *_cat_stand;
+	CCAction *_cat_laugh;
+	CCAction *_cat_hurt;
+	CCAction *_cat_damage;
+	CCAction *_cat_throw;
 }
 +(VolleyCatBossBody*)cons;
 @property(readwrite,strong) CCSprite *base;

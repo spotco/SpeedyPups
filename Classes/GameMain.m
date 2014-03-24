@@ -24,16 +24,14 @@
 
 /**
  sfx:
- waaaah
- beep
- capegame boss boss theme
- 
+ homing beep
+ boss3 lightning
  bg3layerset freepups
- 
+ flip->swingvine fix
  fix level selection algo, getting repeating levels (especially in lab1)
- 
  make lab 1 levels easier
  make dogrocket level easier
+ score ui
  
  add second currency and separate upgrade/unlock for items
  
@@ -122,11 +120,8 @@ Stretch goals:
 	
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
-	
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 

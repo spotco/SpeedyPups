@@ -15,11 +15,15 @@ typedef enum  NRBCSwingState {
 +(NRobotBossHeadFlyoffParticle*)cons_pos:(CGPoint)pos vel:(CGPoint)vel player:(CGPoint)player;
 @end
 
-@interface NRobotBossComponents : NSObject
-+(void)cons_anims;
-@end
-
 @interface NRobotBossBody : CCSprite {
+	
+	CCAction *_robot_body;
+	CCAction *_robot_body_hurt;
+	CCAction *_robot_body_headless;
+	
+	CCAction *_arm_none,*_arm_load,*_arm_fire,*_arm_ready,*_arm_unload;
+	CCAction *_backarm;
+	
 	float passive_arm_rotation_theta;
 	float passive_arm_rotation_theta_speed;
 	float swing_theta;
@@ -75,6 +79,13 @@ typedef enum  NRBCSwingState {
 	float vib_theta;
 	
 	CCAction *top_anim;
+	
+	CCAction *_cat_tail_base;
+	CCAction *_cat_cape;
+	CCAction *_cat_stand;
+	CCAction *_cat_laugh;
+	CCAction *_cat_hurt;
+	CCAction *_cat_damage;
 }
 +(NCatBossBody*)cons;
 @property(readwrite,strong) CCSprite *base;

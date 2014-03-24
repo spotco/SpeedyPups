@@ -233,21 +233,15 @@ static float explosion_ct;
 
 
 @implementation SubBossBGObject
-static CCAction* _anim_body_normal;
-static CCAction* _anim_body_broken;
-static CCAction* _anim_hatch_closed;
-static CCAction* _anim_hatch_closed_to_cannon;
-static CCAction* _anim_hatch_cannon_to_closed;
-static CCAction* _anim_hatch_closed_to_open;
 
 +(SubBossBGObject*)cons_anchor:(CCNode*)anchor { return [[SubBossBGObject node] cons_anchor:anchor]; }
 -(id)cons_anchor:(CCNode*)tanchor {
+	[self cons_anims];
 	_body = [CCSprite node];
 	_hatch = [CCSprite node];
 	[self addChild:_body];
 	[_hatch setAnchorPoint:ccp(0.5,0)];
 	[_body addChild:_hatch];
-	[SubBossBGObject cons_anims];
 	
 	[_hatch setPosition:ccp(215*0.35,195*0.35)];
 	
@@ -302,7 +296,7 @@ static CCAction* _anim_hatch_closed_to_open;
 	[super setPosition:CGPointAdd(actual_position, recoil_delta)];
 }
 
-+(void)cons_anims {
+-(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
 	_anim_body_normal = [Common cons_anim:@[@"bg_body_normal"] speed:21 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_body_broken = [Common cons_anim:@[@"bg_body_broken"] speed:22 tex_key:TEX_ENEMY_SUBBOSS];

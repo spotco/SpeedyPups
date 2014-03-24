@@ -29,8 +29,6 @@
 #define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
 
 -(id)cons:(GameEngineLayer*)_g {
-	[NRobotBossComponents cons_anims];
-	
 	g = _g;
 	
 	robot_body = [NRobotBossBody cons];
@@ -53,8 +51,8 @@
 	
 	cur_mode = NRobotBossMode_CAT_IN_RIGHT1;
 	
-	hp = 1;
-	//hp = 3;
+	//hp = 1;
+	hp = 3;
 	
 	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	[cape_item_body setScale:1.75];

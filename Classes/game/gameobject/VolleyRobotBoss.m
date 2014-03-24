@@ -24,7 +24,6 @@
 #define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
 
 -(id)cons:(GameEngineLayer*)_g {
-	[VolleyRobotBossComponents cons_anims];
 
 	g = _g;
 	

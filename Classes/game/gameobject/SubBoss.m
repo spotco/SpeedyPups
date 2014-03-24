@@ -57,25 +57,17 @@
 
 @implementation SubBoss
 
-static CCAction* _anim_body_normal = NULL;
-static CCAction* _anim_body_broken;
-static CCAction* _anim_body_bite;
-
-static CCAction* _anim_hatch_closed_to_cannon;
-static CCAction* _anim_hatch_cannon_to_closed;
-static CCAction* _anim_hatch_closed;
-
 +(SubBoss*)cons_with:(GameEngineLayer *)g {
 	return [[SubBoss node] cons:g];
 }
 
 -(id)cons:(GameEngineLayer*)g {
+	[self cons_anims];
 	body = [CCSprite node];
 	hatch = [CCSprite node];
 	[self addChild:body];
 	[hatch setAnchorPoint:ccp(0.5,0)];
 	[body addChild:hatch];
-	[SubBoss cons_anims];
 	
 	[hatch setPosition:ccp(215,195)];
 	
@@ -504,8 +496,7 @@ static int pick_mod = 4;
 	_current_anim = NULL;
 }
 
-+(void)cons_anims {
-	if (_anim_body_normal != NULL) return;
+-(void)cons_anims {
 	_anim_body_normal = [Common cons_anim:@[@"body_normal"] speed:24 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_body_broken = [Common cons_anim:@[@"broken"] speed:25 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_body_bite = [Common cons_nonrepeating_anim:@[@"body_bite0",

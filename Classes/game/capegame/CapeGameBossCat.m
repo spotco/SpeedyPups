@@ -135,8 +135,8 @@
 			delay_ct = 60;
 			[cat_body laugh_anim];
 			[AudioManager playsfx:SFX_CAT_LAUGH];
-			//next_mode = CapeGameBossCatMode_PATTERN_1;
-			next_mode = CapeGameBossCatMode_PATTERN_3;
+			next_mode = CapeGameBossCatMode_PATTERN_1;
+			//next_mode = CapeGameBossCatMode_PATTERN_3;
 		}
 		
 	} else if (mode == CapeGameBossCatMode_TAUNT) {

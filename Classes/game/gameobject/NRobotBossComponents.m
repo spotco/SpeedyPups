@@ -6,22 +6,14 @@
 #import "Particle.h"
 #import "GameEngineLayer.h"
 
-@implementation NRobotBossComponents
-static CCAction *_robot_body;
-static CCAction *_robot_body_hurt;
-static CCAction *_robot_body_headless;
+@implementation NRobotBossBody
+@synthesize body,frontarm,backarm;
 
-static CCAction *_arm_none,*_arm_load,*_arm_fire,*_arm_ready,*_arm_unload;
-static CCAction *_backarm;
++(NRobotBossBody*)cons {
+	return [NRobotBossBody node];
+}
 
-static CCAction *_cat_tail_base;
-static CCAction *_cat_cape;
-static CCAction *_cat_stand;
-static CCAction *_cat_laugh;
-static CCAction *_cat_hurt;
-static CCAction *_cat_damage;
-+(void)cons_anims {
-	if (_robot_body != NULL) return;
+-(void)cons_anims {
 	_robot_body = [Common cons_anim:@[@"body_0",@"body_1"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_robot_body_hurt = [Common cons_anim:@[@"body_hurt"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
 	_robot_body_headless = [Common cons_anim:@[@"body_headless"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
@@ -33,43 +25,11 @@ static CCAction *_cat_damage;
 	_arm_unload = [Common cons_nonrepeating_anim:@[@"arm_3",@"arm_2",@"arm_1",@"arm_0"] speed:0.05 tex_key:TEX_ENEMY_ROBOTBOSS];
 	
 	_backarm = [Common cons_anim:@[@"backarm"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-	
-	_cat_tail_base = [Common cons_anim:@[@"cat_tail_0",@"cat_tail_1",@"cat_tail_2",@"cat_tail_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_cape = [Common cons_anim:@[@"cat_cape_0",@"cat_cape_1",@"cat_cape_2",@"cat_cape_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_stand = [Common cons_anim:@[@"cat_laugh_0"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_laugh = [Common cons_anim:@[
-									 @"cat_laugh_0",
-									 @"cat_laugh_1",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_2",
-									 @"cat_laugh_3",
-									 @"cat_laugh_0"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_hurt = [Common cons_anim:@[@"cat_hurt_0",@"cat_hurt_1",@"cat_hurt_2"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
-	_cat_damage = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
-}
-@end
-
-@implementation NRobotBossBody
-@synthesize body,frontarm,backarm;
-
-+(NRobotBossBody*)cons {
-	return [NRobotBossBody node];
 }
 
 -(id)init {
 	self = [super init];
-	[NRobotBossComponents cons_anims];
+	[self cons_anims];
 	
 	self.backarm = [CCSprite node];
 	self.body = [CCSprite node];
@@ -315,9 +275,35 @@ static CCAction *_cat_damage;
 	return [NCatBossBody node];
 }
 
+-(void)cons_anims {
+	_cat_tail_base = [Common cons_anim:@[@"cat_tail_0",@"cat_tail_1",@"cat_tail_2",@"cat_tail_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_cape = [Common cons_anim:@[@"cat_cape_0",@"cat_cape_1",@"cat_cape_2",@"cat_cape_3"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_stand = [Common cons_anim:@[@"cat_laugh_0"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_laugh = [Common cons_anim:@[
+									 @"cat_laugh_0",
+									 @"cat_laugh_1",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_2",
+									 @"cat_laugh_3",
+									 @"cat_laugh_0"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_hurt = [Common cons_anim:@[@"cat_hurt_0",@"cat_hurt_1",@"cat_hurt_2"] speed:0.1 tex_key:TEX_ENEMY_ROBOTBOSS];
+	_cat_damage = [Common cons_anim:@[@"cat_damage"] speed:10 tex_key:TEX_ENEMY_ROBOTBOSS];
+}
+
 -(id)init {
 	self = [super init];
-	[NRobotBossComponents cons_anims];
+	[self cons_anims];
 	
 	vib_base = [CCSprite node];
 	[self addChild:vib_base];

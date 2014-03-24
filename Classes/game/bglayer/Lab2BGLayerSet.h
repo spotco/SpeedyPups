@@ -7,9 +7,16 @@ typedef enum Lab2BGLayerSetState {
 } Lab2BGLayerSetState;
 
 @interface SubBossBGObject : BackgroundObject {
-	CCNode __unsafe_unretained *anchor;
+	CCNode *anchor;
 	CGPoint actual_position;
 	CGPoint recoil_delta;
+	
+	CCAction* _anim_body_normal;
+	CCAction* _anim_body_broken;
+	CCAction* _anim_hatch_closed;
+	CCAction* _anim_hatch_closed_to_cannon;
+	CCAction* _anim_hatch_cannon_to_closed;
+	CCAction* _anim_hatch_closed_to_open;
 	
 	BOOL broken;
 }

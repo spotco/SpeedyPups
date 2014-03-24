@@ -116,7 +116,7 @@
 	}
 }
 
--(BGLayerSet*)set_for_lab:(LabNum)labnum {
+-(BGLayerSet*)set_for_lab:(LabNum)labnum {	
 	if (labnum == LabNum_1) {
 		return bglayerset_lab1;
 		

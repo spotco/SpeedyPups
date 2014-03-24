@@ -1,6 +1,7 @@
 #import "FreePupsAnim.h"
 #import "Lab1BGLayerSet.h"
 #import "Lab2BGLayerSet.h"
+#import "Lab3BGLayerSet.h" 
 #import "LabLineIsland.h"
 #import "RepeatFillSprite.h"
 #import "LabHandRail.h"
@@ -37,8 +38,7 @@ static float GROUNDLEVEL;
 		[self addChild:set];
 		
 	} else if (labnum == LabNum_3) {
-		NSLog(@"TODO- add lab3bglayerset here");
-		BGLayerSet *set = [Lab2BGLayerSet cons];
+		BGLayerSet *set = [Lab3BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];
 		

@@ -34,9 +34,15 @@ typedef enum SubMode {
 	CGPoint flyoff_dir;
 	
 	int hp;
+	
+	CCAction* _anim_body_normal;
+	CCAction* _anim_body_broken;
+	CCAction* _anim_body_bite;
+	
+	CCAction* _anim_hatch_closed_to_cannon;
+	CCAction* _anim_hatch_cannon_to_closed;
+	CCAction* _anim_hatch_closed;
 }
 
 +(SubBoss*)cons_with:(GameEngineLayer*)g;
-
-+(void)cons_anims;
 @end
