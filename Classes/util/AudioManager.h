@@ -86,7 +86,8 @@ typedef enum {
 #define SFX_INTRO_SNORE @"sfx_intro_snore.wav"
 #define SFX_INTRO_SURPRISE @"sfx_intro_surprise.wav"
 
-#define SFX_LAUGH @"sfx_laugh.wav"
+#define SFX_CAT_LAUGH @"sfx_cat_laugh.wav"
+#define SFX_CAT_HIT @"sfx_cat_hit.wav" 
 #define SFX_CAPE_UP @"sfx_cape_up.wav" 
 
 @class CallBack;

@@ -30,6 +30,12 @@ static const float ENTR_HEI = 3000;
     front_body.tex_pts[1] = fccp(1,hei/front_body.texture.pixelsHigh);
     return self;
 }
+-(void)update:(Player *)player g:(GameEngineLayer *)g {
+	[super update:player g:g];
+	if (![g.game_objects containsObject:base]) {
+		[g remove_gameobject:self];
+	}
+}
 -(void)check_should_render:(GameEngineLayer *)g {
     do_render = [base get_do_render];
 }

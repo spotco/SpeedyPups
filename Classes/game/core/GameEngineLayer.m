@@ -378,29 +378,7 @@
 			current_mode = GameEngineLayerMode_CAPEIN;
 			player.vy = 0;
 			player.rotation = 0;
-			TutorialEnd *target_end = NULL;
-			for (GameObject *o in game_objects) {
-				if ([o class] == [TutorialEnd class]) {
-					if (target_end == NULL) {
-						target_end = (TutorialEnd*)o;
-					} else if (o.position.x > player.position.x && o.position.x < target_end.position.x) {
-						target_end = (TutorialEnd*)o;
-					}
-				}
-			}
-			if (target_end != NULL) {
-				player.position = ccp(target_end.position.x,target_end.position.y+600);
-				CGSize s = [[CCDirector sharedDirector] winSize];
-				CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
-				[self setPosition:ccp(
-				  clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
-				  clampf(halfScreenSize.y-target_end.position.y,follow_clamp_y_min,follow_clamp_y_max)
-				)];
-				refresh_viewbox_cache = YES;
-				[self update_render];
-				do_runin_anim = YES;
-				
-			}
+			[self cape_in_lock_on_tutorial_end];
 		}
 		
 	} else if (current_mode == GameEngineLayerMode_CAPEIN) {
@@ -508,6 +486,32 @@
     [GEventDispatcher dispatch_events];
 }
 
+-(void)cape_in_lock_on_tutorial_end {
+	TutorialEnd *target_end = NULL;
+	for (GameObject *o in game_objects) {
+		if ([o class] == [TutorialEnd class]) {
+			if (target_end == NULL) {
+				target_end = (TutorialEnd*)o;
+			} else if (o.position.x > player.position.x && o.position.x < target_end.position.x) {
+				target_end = (TutorialEnd*)o;
+			}
+		}
+	}
+	if (target_end != NULL) {
+		player.position = ccp(target_end.position.x,target_end.position.y+600);
+		CGSize s = [[CCDirector sharedDirector] winSize];
+		CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+		[self setPosition:ccp(
+							  clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
+							  clampf(halfScreenSize.y-target_end.position.y,follow_clamp_y_min,follow_clamp_y_max)
+							  )];
+		refresh_viewbox_cache = YES;
+		[self update_render];
+		do_runin_anim = YES;
+		
+	}
+}
+
 -(void)collect_bone:(BOOL)do_1up_anim {
 	collected_bones++;
 	if (challenge == NULL && collected_bones%100==0) {
@@ -520,6 +524,7 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_QUIT) {
         [self exit];
+		[GEventDispatcher remove_all_listeners];
         [GameMain start_menu];
         
     } else if (e.type == GEventType_RETRY_WITH_CALLBACK) {
@@ -588,6 +593,10 @@
 		}
 		
 	} else if (e.type == GEventType_BEGIN_CAPE_GAME) {
+		if ([player is_armored]) {
+			[player end_armored];
+			[player update:self];
+		}
 		current_mode = GameEngineLayerMode_CAPEOUT;
 		[player reset_params];
 		[GameControlImplementation reset_control_state];
@@ -597,6 +606,10 @@
 		do_boss_capegame = YES; //TODO -- UNDO
 		
 	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {
+		if ([player is_armored]) {
+			[player end_armored];
+			[player update:self];
+		}
 		current_mode = GameEngineLayerMode_CAPEOUT;
 		[player reset_params];
 		[GameControlImplementation reset_control_state];
@@ -610,8 +623,9 @@
 	} else if (e.type == GEventType_BOSS2_DEFEATED) {
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
 		
-	} else if (e.type == GEventType_BOSS3_DEFEATED) {
+	} else if (e.type == GEventType_BOSS3_DEFEATED_POST_UPDATE) {
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		[self cape_in_lock_on_tutorial_end];
 	}
 }
 

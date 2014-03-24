@@ -41,7 +41,7 @@ static NSString *blank = @"";
 	return scene;
 }
 
-#define GAME_DURATION 2100
+#define GAME_DURATION 2100.0
 #define BOSS_INFINITE_DURATION 9999
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
 #define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.4]
@@ -194,7 +194,7 @@ static NSString *blank = @"";
 			if (count_as_death) {
 				[GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
 			} else if ([self is_boss_capegame]) {
-				[GEventDispatcher push_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
+				[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
 			}
 		}
 		return;

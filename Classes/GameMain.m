@@ -28,8 +28,7 @@
  beep
  capegame boss boss theme
  
- boss3 todo:
-	bug exit capegame wrong music
+ bg3layerset freepups
  
  fix level selection algo, getting repeating levels (especially in lab1)
  

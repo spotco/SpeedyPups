@@ -304,9 +304,9 @@ static CCAction* _anim_hatch_closed_to_open;
 
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
-	_anim_body_normal = [Common cons_anim:@[@"bg_body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_body_broken = [Common cons_anim:@[@"bg_body_broken"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_hatch_closed = [Common cons_anim:@[@"bg_hatch_0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_normal = [Common cons_anim:@[@"bg_body_normal"] speed:21 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_broken = [Common cons_anim:@[@"bg_body_broken"] speed:22 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_hatch_closed = [Common cons_anim:@[@"bg_hatch_0"] speed:23 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed_to_cannon = [Common cons_nonrepeating_anim:@[@"bg_hatch_0",
 																	@"bg_hatch_1",
 																	@"bg_hatch_cannon_0",

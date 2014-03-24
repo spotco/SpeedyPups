@@ -1289,6 +1289,10 @@ static inline float bezierat( float a, float b, float c, float d, ccTime t )
 {
 	NSAssert( anim!=nil, @"Animate: argument Animation must be non-nil");
 	
+	if (duration == 20) {
+		NSLog(@"topkek");
+	}
+	
 	if( (self=[super initWithDuration:duration] ) ) {
 		
 		nextFrame_ = 0;

@@ -134,9 +134,9 @@
 			mode = CapeGameBossCatMode_TAUNT;
 			delay_ct = 60;
 			[cat_body laugh_anim];
-			[AudioManager playsfx:SFX_LAUGH];
-			next_mode = CapeGameBossCatMode_PATTERN_1;
-			//next_mode = CapeGameBossCatMode_PATTERN_3;
+			[AudioManager playsfx:SFX_CAT_LAUGH];
+			//next_mode = CapeGameBossCatMode_PATTERN_1;
+			next_mode = CapeGameBossCatMode_PATTERN_3;
 		}
 		
 	} else if (mode == CapeGameBossCatMode_TAUNT) {
@@ -163,7 +163,7 @@
 			mode = CapeGameBossCatMode_TAUNT;
 			delay_ct = 60;
 			[cat_body laugh_anim];
-			[AudioManager playsfx:SFX_LAUGH];
+			[AudioManager playsfx:SFX_CAT_LAUGH];
 		}
 		
 	} else if (mode == CapeGameBossCatMode_PATTERN_2) {
@@ -229,7 +229,7 @@
 	if ([g.player is_rocket] && [Common hitrect_touch:[self get_hit_rect] b:[g.player get_hitrect]]) {
 		[g add_particle:[ExplosionParticle cons_x:cat_body.position.x y:cat_body.position.y]];
 		[AudioManager playsfx:SFX_EXPLOSION];
-		[AudioManager playsfx:SFX_FAIL];
+		[AudioManager playsfx:SFX_CAT_HIT];
 		delay_ct = 130;
 		pos_theta = 0;
 		bomb_count = 0;

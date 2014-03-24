@@ -53,8 +53,8 @@
 	
 	cur_mode = NRobotBossMode_CAT_IN_RIGHT1;
 	
-	//hp = 1;
-	hp = 3;
+	hp = 1;
+	//hp = 3;
 	
 	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	[cape_item_body setScale:1.75];
@@ -129,7 +129,7 @@
 		[robot_body setScaleX:-1];
 		[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:NRobotBossMode_CAT_TAUNT_RIGHT1];
 		if (cur_mode != NRobotBossMode_CAT_IN_RIGHT1) {
-			[AudioManager playsfx:SFX_LAUGH];
+			[AudioManager playsfx:SFX_CAT_LAUGH];
 		}
 		
 	} else if (cur_mode == NRobotBossMode_CAT_TAUNT_RIGHT1) {

@@ -9,7 +9,8 @@
         {"img": 18, "x": 1325, "label": "(8)gd_img:18", "type": "ground_detail", "y": 550},
         {"img": 21, "x": 1826.7, "label": "(9)gd_img:21", "type": "ground_detail", "y": 551.7},
         {"img": 21, "x": 1280, "label": "(10)gd_img:21", "type": "ground_detail", "y": 548.3},
-        {"x": 299, "label": "0", "type": "tutorialend", "y": 651}
+        {"x": 299, "label": "0", "type": "tutorialend", "y": 651},
+        {"x": 702, "label": "CAM(120,110,160)", "width": 224, "y": 528, "height": 500, "camera": {"x": 120, "z": 160, "y": 110}, "type": "camera_area"}
     ],
     "start_y": 0,
     "start_x": 0,

@@ -506,15 +506,15 @@ static int pick_mod = 4;
 
 +(void)cons_anims {
 	if (_anim_body_normal != NULL) return;
-	_anim_body_normal = [Common cons_anim:@[@"body_normal"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
-	_anim_body_broken = [Common cons_anim:@[@"broken"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_normal = [Common cons_anim:@[@"body_normal"] speed:24 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_body_broken = [Common cons_anim:@[@"broken"] speed:25 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_body_bite = [Common cons_nonrepeating_anim:@[@"body_bite0",
 										  @"body_bite1",
 										  @"body_bite2"]
 								  speed:0.1
 								tex_key:TEX_ENEMY_SUBBOSS];
 	
-	_anim_hatch_closed = [Common cons_anim:@[@"hatch_0"] speed:20 tex_key:TEX_ENEMY_SUBBOSS];
+	_anim_hatch_closed = [Common cons_anim:@[@"hatch_0"] speed:26 tex_key:TEX_ENEMY_SUBBOSS];
 	_anim_hatch_closed_to_cannon = [Common cons_anim:@[@"hatch_0",
 													   @"hatch_1",
 													   @"hatch_cannon_0",
