@@ -1,21 +1,22 @@
 {
-    "islands": [
-        {"can_fall": true, "x2": 951, "ground": "lab", "ndir": "left", "type": "line", "y1": 548, "hei": 500, "y2": 551, "x1": 51},
-        {"can_fall": true, "x2": 2550, "ground": "open", "ndir": "left", "type": "line", "y1": 551, "hei": 500, "y2": 553.3, "x1": 951}
-    ],
     "objects": [
-        {"type": "checkpoint", "x": 1551.7, "y": 555, "label": "0"},
-        {"type": "labexit", "x": 935, "y": 546.6, "label": "2"},
-        {"x": 891.7, "width": 106.69999999999993, "y": 746.6, "type": "blocker", "height": 703.3833333333334, "label": "4"},
-        {"type": "ground_detail", "x": 1301.7, "img": 6, "y": 551.7, "label": "(5)gd_img:6"},
-        {"type": "ground_detail", "x": 1850, "img": 6, "y": 551.7, "label": "(6)gd_img:6"},
-        {"type": "ground_detail", "x": 1871.7, "img": 18, "y": 551.7, "label": "(7)gd_img:18"},
-        {"type": "ground_detail", "x": 1325, "img": 18, "y": 550, "label": "(8)gd_img:18"},
-        {"type": "ground_detail", "x": 1826.7, "img": 21, "y": 551.7, "label": "(9)gd_img:21"},
-        {"type": "ground_detail", "x": 1280, "img": 21, "y": 548.3, "label": "(10)gd_img:21"}
+        {"x": 1551.7, "label": "0", "type": "checkpoint", "y": 555},
+        {"x": 935, "label": "2", "type": "labexit", "y": 546.6},
+        {"x": 891.7, "label": "4", "width": 106.69999999999992, "y": 746.6, "height": 703.3833333333334, "type": "blocker"},
+        {"img": 6, "x": 1301.7, "label": "(5)gd_img:6", "type": "ground_detail", "y": 551.7},
+        {"img": 6, "x": 1850, "label": "(6)gd_img:6", "type": "ground_detail", "y": 551.7},
+        {"img": 18, "x": 1871.7, "label": "(7)gd_img:18", "type": "ground_detail", "y": 551.7},
+        {"img": 18, "x": 1325, "label": "(8)gd_img:18", "type": "ground_detail", "y": 550},
+        {"img": 21, "x": 1826.7, "label": "(9)gd_img:21", "type": "ground_detail", "y": 551.7},
+        {"img": 21, "x": 1280, "label": "(10)gd_img:21", "type": "ground_detail", "y": 548.3},
+        {"x": 299, "label": "0", "type": "tutorialend", "y": 651}
     ],
-    "start_x": 0,
-    "connect_pts": {"y1": 548, "x2": 2550, "y2": 553.3, "x1": 51},
     "start_y": 0,
-    "assert_links": 1
+    "start_x": 0,
+    "connect_pts": {"x2": 2550, "y2": 553.3, "x1": 51, "y1": 548},
+    "assert_links": 1,
+    "islands": [
+        {"x2": 951, "ground": "lab", "ndir": "left", "y1": 548, "hei": 500, "y2": 551, "type": "line", "x1": 51, "can_fall": true},
+        {"x2": 2550, "ground": "open", "ndir": "left", "y1": 551, "hei": 500, "y2": 553.3, "type": "line", "x1": 951, "can_fall": true}
+    ]
 }

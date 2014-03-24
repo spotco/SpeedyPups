@@ -60,7 +60,7 @@
     [ingame_ui addChild:ingame_ui_m];
 	
 	itemlenbarroot = [CCSprite node];
-	if (cape_game.is_boss_capegame) [itemlenbarroot setVisible:NO];
+	if (cape_game.is_boss_capegame) [self itembar_set_visible:NO];
 	CCSprite *itemlenbarback = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					 idname:@"item_timebaremptytex"]];
@@ -86,7 +86,9 @@
 	for (CCSprite *i in [itemlenbarroot children]) {
 		[i setOpacity:175];
 	}
-	itemlenbaricon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"item_dogcape"]];
+	itemlenbaricon =
+		[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS]
+							   rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:[g is_boss_capegame]?@"item_rocket":@"item_dogcape"]];
 	[itemlenbaricon setPosition:ccp(52.5,0)];
 	[itemlenbaricon setScale:0.8];
 	[itemlenbaricon setOpacity:200];
@@ -103,6 +105,10 @@
 	uianims = [NSMutableArray array];
 	
 	return self;
+}
+
+-(void)itembar_set_visible:(BOOL)b {
+	[itemlenbarroot setVisible:b];
 }
 
 -(void)cons_pause_ui {

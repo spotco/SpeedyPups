@@ -11,7 +11,7 @@
 	
 	[bg_objects addObject:[LabBGObject cons]];
 	[bg_objects addObject:[[BackgroundObject backgroundFromTex:[Resource get_tex:TEX_LAB_BG_LAYER]
-										  scrollspd_x:0.4
+										  scrollspd_x:0.2
 										  scrollspd_y:0.06]
 						  set_clamp_y_min:0
 						  max:-50]];

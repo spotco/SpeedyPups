@@ -1,9 +1,12 @@
 #import "CCSprite.h"
 #import "Common.h"
+@class CapeGameEngineLayer;
 
 @interface CapeGamePlayer : CCSprite {
 	CCAction *_anim_cape, *_anim_stand, *_anim_rocket, *_anim_hit;
 	CCAction *cur_anim;
+	
+	float rocket_sound_ct;
 }
 
 +(CapeGamePlayer*)cons;
@@ -12,6 +15,8 @@
 -(void)do_hit;
 -(void)do_rocket;
 -(BOOL)is_rocket;
+
+-(void)update:(CapeGameEngineLayer*)g;
 
 -(void)set_rotation;
 

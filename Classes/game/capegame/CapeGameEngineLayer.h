@@ -28,7 +28,7 @@ typedef enum {
 	NSMutableArray *particles;
 	NSMutableArray *particles_tba;
 	
-	BOOL touch_down;
+	BOOL touch_down, last_touch_down;
 	BOOL initial_hold;
 	
 	int duration;
@@ -44,6 +44,7 @@ typedef enum {
 @property(readwrite,assign) BOOL is_boss_capegame;
 
 +(NSString*)get_level;
+-(NSMutableArray*)get_gameobjs;
 
 +(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss;
 -(GameEngineLayer*)get_main_game;
@@ -58,6 +59,8 @@ typedef enum {
 
 -(void)add_gameobject:(CapeGameObject*)o;
 -(void)remove_gameobject:(CapeGameObject*)o;
+
+-(void)boss_end;
 
 @end
 

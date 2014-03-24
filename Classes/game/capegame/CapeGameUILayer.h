@@ -33,4 +33,6 @@
 
 -(void)exit;
 
+-(void)itembar_set_visible:(BOOL)b;
+
 @end

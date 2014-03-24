@@ -44,7 +44,11 @@ static NSString *blank = @"";
 #define GAME_DURATION 2100
 #define BOSS_INFINITE_DURATION 9999
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
-#define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.1]
+#define END_TARPOS [Common screen_pctwid:0.2 pcthei:-0.4]
+
+-(NSMutableArray*)get_gameobjs {
+	return game_objects;
+}
 
 -(id)cons_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss {
 	is_boss_capegame = boss;
@@ -138,11 +142,11 @@ static NSString *blank = @"";
 }
 
 -(void)update:(ccTime)dt {
-	
 	[Common set_dt:dt];
+	[player update:self];
 	[main_game incr_time:[Common get_dt_Scale]];
 	[ui update];
-	[ui update_pct:duration/GAME_DURATION];
+	if (![self is_boss_capegame])[ui update_pct:duration/GAME_DURATION];
 	[[ui bones_disp] set_label:strf("%i",[main_game get_num_bones])];
 	[[ui lives_disp] set_label:strf("\u00B7 %s",[main_game get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[main_game get_lives]).UTF8String)];
 	[[ui time_disp] set_label:[UICommon parse_gameengine_time:[main_game get_time]]];
@@ -189,37 +193,43 @@ static NSString *blank = @"";
 			
 			if (count_as_death) {
 				[GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
+			} else if ([self is_boss_capegame]) {
+				[GEventDispatcher push_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
 			}
 		}
 		return;
 	}
 	
-	if ([player is_rocket]) {
-		
-		[self add_particle:[[[RocketParticle cons_x:player.position.x-25 y:player.position.y+5]
-							 set_vel:ccp(float_random(-8, -5),float_random(-1.5, 1.5))]
-							set_scale:float_random(0.3, 0.8)]];
-		
-		if (!behind_catchup) {
-			player.position = ccp(player.position.x+[Common get_dt_Scale] * 2,player.position.y);
-			if (player.position.x > [Common SCREEN].width*1.1) {
-				player.position = ccp(-50,player.position.y);
-				behind_catchup = YES;
-			}
-		} else {
-			if (player.position.x < START_TARPOS.x) {
-				player.position = ccp(player.position.x+[Common get_dt_Scale]*2,player.position.y);
+	
+	if ([self is_boss_capegame]) {
+		if ([player is_rocket]) {
+			[ui itembar_set_visible:YES];
+			float total_dist = ([Common SCREEN].width*1.1-START_TARPOS.x) + 50 + START_TARPOS.x;
+			[ui update_pct:1-(behind_catchup?
+				(([Common SCREEN].width*1.1-START_TARPOS.x) + 50 + player.position.x)/total_dist:
+				(player.position.x-START_TARPOS.x)/total_dist)];
+			
+			if (!behind_catchup) {
+				player.position = ccp(player.position.x+[Common get_dt_Scale] * 4,player.position.y);
+				if (player.position.x > [Common SCREEN].width*1.1) {
+					player.position = ccp(-50,player.position.y);
+					behind_catchup = YES;
+				}
 			} else {
-				player.position = ccp(START_TARPOS.x,player.position.y);
-				behind_catchup = NO;
-				[player do_cape_anim];
-				[AudioManager playsfx:SFX_POWERDOWN];
+				if (player.position.x < START_TARPOS.x) {
+					player.position = ccp(player.position.x+[Common get_dt_Scale]*4,player.position.y);
+				} else {
+					player.position = ccp(START_TARPOS.x,player.position.y);
+					behind_catchup = NO;
+					[player do_cape_anim];
+					[AudioManager playsfx:SFX_POWERDOWN];
+				}
+				
 			}
 			
+		} else {
+			[ui itembar_set_visible:NO];
 		}
-		
-	} else if (player.position.x < START_TARPOS.x) {
-		
 	}
 	
 	
@@ -237,11 +247,14 @@ static NSString *blank = @"";
 	
 	if (touch_down) {
 		player.vy = MIN(player.vy + 1.6, 7);
+		if (!last_touch_down) [AudioManager playsfx:SFX_CAPE_UP];
 	} else if (initial_hold) {
 		player.vy = MAX(player.vy - 0.005,-7);
 	} else {
 		player.vy = MAX(player.vy - 0.35,-7);
 	}
+	last_touch_down = touch_down;
+	
 	CGPoint neupos = CGPointAdd(player.position, ccp(0,player.vy));
 	neupos.y = clampf(neupos.y, [Common SCREEN].height*0.1, [Common SCREEN].height*0.9);
 	player.position = neupos;
@@ -269,6 +282,12 @@ static NSString *blank = @"";
 	[player do_hit];
 	current_mode = CapeGameMode_FALLOUT;
 	[DazedParticle cons_effect:self sprite:player time:40];
+}
+
+-(void)boss_end {
+	[player do_stand];
+	count_as_death = NO;
+	current_mode = CapeGameMode_FALLOUT;
 }
 
 -(void)do_powerup_rocket {

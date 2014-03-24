@@ -12,9 +12,9 @@
 
 @implementation GameMain
 
-#define USE_BG NO
+#define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -23,6 +23,11 @@
 #define DRAW_HITBOX NO
 
 /**
+ sfx:
+ waaaah
+ beep
+ capegame boss boss theme
+ 
  boss3 todo:
 	bug exit capegame wrong music
  

@@ -1,6 +1,9 @@
 #import "CapeGamePlayer.h"
 #import "Player.h"
 #import "Common.h"
+#import "CapeGameEngineLayer.h"
+#import "RocketParticle.h" 
+#import "AudioManager.h"
 
 @implementation CapeGamePlayer
 
@@ -28,6 +31,20 @@
 	[self do_cape_anim];
 	[self setScale:0.6];
 	return self;
+}
+
+-(void)update:(CapeGameEngineLayer*)g {
+	if ([self is_rocket]) {
+		[g add_particle:[[[RocketParticle cons_x:self.position.x-25 y:self.position.y+5]
+							 set_vel:ccp(float_random(-8, -5),float_random(-1.5, 1.5))]
+							set_scale:float_random(0.3, 0.8)]];
+		
+		rocket_sound_ct-=[Common get_dt_Scale];
+		if (rocket_sound_ct <= 0) {
+			[AudioManager playsfx:SFX_ROCKET];
+			rocket_sound_ct = 20;
+		}
+	}
 }
 
 -(void)set_rotation {
