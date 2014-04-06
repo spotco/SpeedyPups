@@ -81,6 +81,7 @@
         ct--;
         if (ct <= 0) {
             curstate = TutorialProf_FLYOUT;
+			[AudioManager playsfx:SFX_POWERDOWN];
         }
         
         [self setPosition:ccp(player.position.x+curpos.x+vibration.x,curpos.y+vibration.y)];
@@ -111,6 +112,7 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_END_TUTORIAL) {
         curstate = TutorialProf_FLYOUT;
+		[AudioManager playsfx:SFX_POWERDOWN];
     }
 }
 

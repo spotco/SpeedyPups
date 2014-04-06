@@ -100,8 +100,8 @@
     dv =[VecLib normalize:dv];
     dv =[VecLib scale:dv by:-1];
     dv =[VecLib scale:dv by:90];
-    ct++;
-    ct%PARTICLE_FREQ==0?[g add_particle:[[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y] set_scale:trail_scale]]:0;
+    ct+=[Common get_dt_Scale];
+    ((int)ct)%PARTICLE_FREQ==0?[g add_particle:[[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y] set_scale:trail_scale]]:0;
     
     
     if (position_.x + REMOVE_BEHIND_BUFFER < player.position.x) {
@@ -228,12 +228,21 @@
 	return self;
 }
 
+static float _beep_ct = 0;
+
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     player_pos = player.position;
     rel_pos.x += v.x * [Common get_dt_Scale];
     [super update:player g:g];
 	
 	if (homing && broken_ct == 0) {
+		
+		_beep_ct+=1;
+		if (_beep_ct > 30) {
+			[AudioManager playsfx:SFX_HOMING_BEEP];
+			_beep_ct = 0;
+		}
+		
 		float spd = [VecLib length:[VecLib cons_x:v.x y:v.y z:0]];
 		Vec3D to_player = [VecLib scale:
 						   [VecLib normalize:

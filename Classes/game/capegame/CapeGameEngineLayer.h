@@ -16,6 +16,9 @@ typedef enum {
 
 @interface CapeGameEngineLayer : CCLayer {
 	CCSprite *top_scroll, *bottom_scroll;
+	BackgroundObject *thunder_bg;
+	float thunder_flash_ct;
+	
 	CapeGamePlayer *player;
 	CapeGameUILayer *ui;
 	
@@ -40,6 +43,8 @@ typedef enum {
 	
 	BOOL count_as_death;
 	BOOL behind_catchup;
+	
+	float gameend_constant_speed;
 }
 @property(readwrite,assign) BOOL is_boss_capegame;
 
@@ -54,6 +59,7 @@ typedef enum {
 
 -(void)collect_bone:(CGPoint)screen_pos;
 -(void)do_get_hit;
+-(void)duration_end;
 -(void)do_powerup_rocket;
 -(void)do_tutorial_anim;
 

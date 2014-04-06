@@ -7,7 +7,8 @@
     CCSprite* trail;
     BOOL kill;
 	BOOL no_vibration;
-    int ct,remlimit,broken_ct;
+    float ct;
+	int remlimit,broken_ct;
     float vibration_ct;
 	
 	float trail_scale;

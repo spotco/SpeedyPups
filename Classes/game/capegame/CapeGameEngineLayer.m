@@ -7,6 +7,7 @@
 #import "GameEngineLayer.h"
 #import "UICommon.h"
 #import "Common.h"
+#import "FireworksParticleA.h"
 
 #import "CapeGameBossCat.h"
 
@@ -23,7 +24,11 @@
 static int lvl_ct = 0;
 static NSString *blank = @"";
 +(NSString*)get_level {
+	
 	NSString *rtv = blank;
+	
+	lvl_ct = 2;
+	
 	if (lvl_ct%3==0) {
 		rtv = @"capegame_easy";
 	} else if (lvl_ct%3==1) {
@@ -60,6 +65,11 @@ static NSString *blank = @"";
 	
 	bgclouds = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BGCLOUDS] scrollspd_x:0.1 scrollspd_y:0];
 	if (!is_boss_capegame) [self addChild:bgclouds];
+	if (is_boss_capegame) {
+		thunder_bg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_CLOUDGAME_BOSS_BG_THUNDER] scrollspd_x:0.1 scrollspd_y:0];
+		[self addChild:thunder_bg];
+		thunder_bg.opacity = 0;
+	};
 	
 	player = [CapeGamePlayer cons];
 	[player setPosition:END_TARPOS];
@@ -112,6 +122,7 @@ static NSString *blank = @"";
 	gameobjects_tbr = [NSMutableArray array];
 	
 	count_as_death = NO;
+	gameend_constant_speed = 0;
 	
 	return self;
 }
@@ -150,6 +161,16 @@ static NSString *blank = @"";
 	[[ui bones_disp] set_label:strf("%i",[main_game get_num_bones])];
 	[[ui lives_disp] set_label:strf("\u00B7 %s",[main_game get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[main_game get_lives]).UTF8String)];
 	[[ui time_disp] set_label:[UICommon parse_gameengine_time:[main_game get_time]]];
+	
+	if (is_boss_capegame) {
+		thunder_flash_ct-=[Common get_dt_Scale];
+		thunder_bg.opacity*=0.9;
+		if (thunder_flash_ct <= 0) {
+			[thunder_bg setOpacity:255];
+			thunder_flash_ct = 800;
+			[AudioManager playsfx:SFX_THUNDER];
+		}
+	}
 	
 	[self push_added_particles];
     NSMutableArray *toremove = [NSMutableArray array];
@@ -233,11 +254,15 @@ static NSString *blank = @"";
 	}
 	
 	
-	float speed = is_boss_capegame ? 7 : (1-duration/GAME_DURATION)*6 + 4;
+	float speed = gameend_constant_speed != 0 ? gameend_constant_speed :
+ 		(is_boss_capegame ? 7 : (1-duration/GAME_DURATION)*6 + 4);
 	
 	bgclouds_scroll_x += speed;
 	[bgclouds update_posx:bgclouds_scroll_x posy:0];
-	if (is_boss_capegame) [bg update_posx:bgclouds_scroll_x posy:0];
+	if (is_boss_capegame) {
+		[thunder_bg update_posx:bgclouds_scroll_x posy:0];
+		[bg update_posx:bgclouds_scroll_x posy:0];
+	}
 	
 	CGRect scroll_rect = top_scroll.textureRect;
 	scroll_rect.origin.x += speed;
@@ -271,6 +296,21 @@ static NSString *blank = @"";
 		[player do_stand];
 		current_mode = CapeGameMode_FALLOUT;
 	}
+}
+
+-(void)duration_end {
+	gameend_constant_speed = (1-duration/GAME_DURATION)*6 + 4;
+	duration = 10;
+	
+	DO_FOR(9,
+		   [self add_particle:[FireworksParticleA cons_x:player.position.x + float_random((i+1)*80-50, (i+1)*80+50)
+													   y:0
+													  vx:0
+													  vy:float_random(6,14)
+													  ct:int_random(4, 25)]];
+	);
+
+	
 }
 
 -(GameEngineLayer*)get_main_game {

@@ -14,7 +14,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define RESET_STATS NO
@@ -23,30 +23,19 @@
 #define DRAW_HITBOX NO
 
 /**
- sfx:
- homing beep
- boss3 lightning
- bg3layerset freepups
- flip->swingvine fix
  fix level selection algo, getting repeating levels (especially in lab1)
  make lab 1 levels easier
  make dogrocket level easier
+ 
  score ui
- 
  add second currency and separate upgrade/unlock for items
- 
- sfx fireworks
- sfx tutorialdog float in/out
- sfx cape game end applause
- 
- some more secrets challenge level, loops jump through and long spike jump through (10 more challenges total)
+ more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
 	freerun progress popup redesign
 	freerun start menu redesign + button
 	speedypups pro button + window
 	bonus currency
- 
 	website
 	video
  **/
@@ -120,8 +109,8 @@ Stretch goals:
 	
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 

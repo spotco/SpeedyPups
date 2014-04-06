@@ -26,6 +26,12 @@
 		7E02222617F951E30083815C /* lab2_water_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222217F951E30083815C /* lab2_water_back.png */; };
 		7E02222717F951E30083815C /* lab2_water_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222317F951E30083815C /* lab2_water_front.png */; };
 		7E02222917F95D9C0083815C /* lab_handrail.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E02222817F95D9C0083815C /* lab_handrail.png */; };
+		7E05976518F12BCF00D9CD74 /* sfx_homing_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E05976418F12BCF00D9CD74 /* sfx_homing_beep.wav */; };
+		7E05976718F1373200D9CD74 /* sfx_thunder.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E05976618F1373200D9CD74 /* sfx_thunder.wav */; };
+		7E05976918F13F9600D9CD74 /* sfx_fireworks.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E05976818F13F9600D9CD74 /* sfx_fireworks.wav */; };
+		7E05976C18F142E100D9CD74 /* sfx_tutorialdog_in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E05976A18F142E100D9CD74 /* sfx_tutorialdog_in.wav */; };
+		7E05976D18F142E100D9CD74 /* sfx_tutorialdog_out.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E05976B18F142E100D9CD74 /* sfx_tutorialdog_out.wav */; };
+		7E05977018F1472B00D9CD74 /* CapeGameEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E05976F18F1472B00D9CD74 /* CapeGameEnd.m */; };
 		7E071F2C180292B90003F8AA /* filler_chickennuggets.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F2B180292B90003F8AA /* filler_chickennuggets.map */; };
 		7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E071F2E180296E10003F8AA /* LabHandRail.m */; };
 		7E071F341802A24F0003F8AA /* loadinganim.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F321802A24F0003F8AA /* loadinganim.png */; };
@@ -805,6 +811,13 @@
 		7E02222217F951E30083815C /* lab2_water_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_back.png; sourceTree = "<group>"; };
 		7E02222317F951E30083815C /* lab2_water_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_front.png; sourceTree = "<group>"; };
 		7E02222817F95D9C0083815C /* lab_handrail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab_handrail.png; sourceTree = "<group>"; };
+		7E05976418F12BCF00D9CD74 /* sfx_homing_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_homing_beep.wav; sourceTree = "<group>"; };
+		7E05976618F1373200D9CD74 /* sfx_thunder.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_thunder.wav; sourceTree = "<group>"; };
+		7E05976818F13F9600D9CD74 /* sfx_fireworks.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_fireworks.wav; sourceTree = "<group>"; };
+		7E05976A18F142E100D9CD74 /* sfx_tutorialdog_in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_tutorialdog_in.wav; sourceTree = "<group>"; };
+		7E05976B18F142E100D9CD74 /* sfx_tutorialdog_out.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_tutorialdog_out.wav; sourceTree = "<group>"; };
+		7E05976E18F1472B00D9CD74 /* CapeGameEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEnd.h; sourceTree = "<group>"; };
+		7E05976F18F1472B00D9CD74 /* CapeGameEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameEnd.m; sourceTree = "<group>"; };
 		7E071F2B180292B90003F8AA /* filler_chickennuggets.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_chickennuggets.map; sourceTree = "<group>"; };
 		7E071F2D180296E10003F8AA /* LabHandRail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabHandRail.h; sourceTree = "<group>"; };
 		7E071F2E180296E10003F8AA /* LabHandRail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabHandRail.m; sourceTree = "<group>"; };
@@ -2051,6 +2064,10 @@
 		7E49B1D517DA766600563243 /* sfx */ = {
 			isa = PBXGroup;
 			children = (
+				7E05976A18F142E100D9CD74 /* sfx_tutorialdog_in.wav */,
+				7E05976B18F142E100D9CD74 /* sfx_tutorialdog_out.wav */,
+				7E05976618F1373200D9CD74 /* sfx_thunder.wav */,
+				7E05976418F12BCF00D9CD74 /* sfx_homing_beep.wav */,
 				7E2023AE18E0260200A5BCAF /* sfx_cat_hit.wav */,
 				7E2023AF18E0260200A5BCAF /* sfx_cat_laugh.wav */,
 				7E2023AC18DFD22F00A5BCAF /* sfx_cape_up.wav */,
@@ -2071,6 +2088,7 @@
 				7EE3C48A17DA7C0C00DCAF76 /* sfx_bop.wav */,
 				7EE3C48B17DA7C0C00DCAF76 /* sfx_buy.wav */,
 				7EE3C48C17DA7C0C00DCAF76 /* sfx_checkpoint.wav */,
+				7E05976818F13F9600D9CD74 /* sfx_fireworks.wav */,
 				7EE3C48D17DA7C0C00DCAF76 /* sfx_copter_flyby.wav */,
 				7EE3C48E17DA7C0C00DCAF76 /* sfx_electric.wav */,
 				7EE3C48F17DA7C0C00DCAF76 /* sfx_explosion.wav */,
@@ -3619,6 +3637,8 @@
 				7E7952A518A8D737002337F9 /* CapeGameBossCat.m */,
 				7E7952A718A8E516002337F9 /* CapeGameBossBomb.h */,
 				7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */,
+				7E05976E18F1472B00D9CD74 /* CapeGameEnd.h */,
+				7E05976F18F1472B00D9CD74 /* CapeGameEnd.m */,
 			);
 			name = capegameobject;
 			sourceTree = "<group>";
@@ -4057,6 +4077,7 @@
 				7EFEAFFE187981AE00456155 /* invincible.aiff in Resources */,
 				7E269C6A16DA00EB005F446C /* Default.png in Resources */,
 				7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */,
+				7E05976718F1373200D9CD74 /* sfx_thunder.wav in Resources */,
 				7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */,
 				7E98648116E874CF00109092 /* nmenu_bg.png in Resources */,
 				7E98648216E874CF00109092 /* nmenu_items.plist in Resources */,
@@ -4100,10 +4121,12 @@
 				7EC460F5170590E000656A48 /* item_ss.png in Resources */,
 				7EB8725F17062A4C00F7C067 /* filler_directdrop.map in Resources */,
 				7EB872611706325B00F7C067 /* classic_smgislands.map in Resources */,
+				7E05976D18F142E100D9CD74 /* sfx_tutorialdog_out.wav in Resources */,
 				7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */,
 				7E0F9FA2170D1AEA00F2D342 /* armored_dog_ss.png in Resources */,
 				7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */,
 				7ECFADF0174222D4009EEBB0 /* classic_nubcave.map in Resources */,
+				7E05976C18F142E100D9CD74 /* sfx_tutorialdog_in.wav in Resources */,
 				7ECFADF2174228D6009EEBB0 /* easy_curvywater.map in Resources */,
 				7ECFADF417422D1F009EEBB0 /* easy_simplespikes.map in Resources */,
 				7EA3B99C1744C61D00139608 /* cloud_ss.plist in Resources */,
@@ -4181,6 +4204,7 @@
 				7EE3C4AD17DA7C0C00DCAF76 /* sfx_buy.wav in Resources */,
 				7EE3C4AE17DA7C0C00DCAF76 /* sfx_checkpoint.wav in Resources */,
 				7EE3C4AF17DA7C0C00DCAF76 /* sfx_copter_flyby.wav in Resources */,
+				7E05976518F12BCF00D9CD74 /* sfx_homing_beep.wav in Resources */,
 				7EE3C4B017DA7C0C00DCAF76 /* sfx_electric.wav in Resources */,
 				7EEE757A18722D50004512E1 /* cannon_cannoncave.map in Resources */,
 				7EBE245B1882948E002FBE1E /* Settings.bundle in Resources */,
@@ -4234,6 +4258,7 @@
 				7EBEA3B817EEC5CE009C9930 /* BG2_frontislands_0.png in Resources */,
 				7EBEA3B917EEC5CE009C9930 /* BG2_frontislands_1.png in Resources */,
 				7EBEA3BC17EED101009C9930 /* BG2_top_fill.png in Resources */,
+				7E05976918F13F9600D9CD74 /* sfx_fireworks.wav in Resources */,
 				7E0DFF7A1813703F006F8039 /* lab2_water_fg.png in Resources */,
 				7E908F8517F01BC6004DB956 /* BG2_island_corner.png in Resources */,
 				7E908F8617F01BC6004DB956 /* BG2_island_top_edge.png in Resources */,
@@ -4424,6 +4449,7 @@
 				7E0C6360184C674A00D3C4B9 /* IntroAnimFrame1.m in Sources */,
 				7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */,
 				7ECADE1B17646AF00032A1E6 /* ALDevice.m in Sources */,
+				7E05977018F1472B00D9CD74 /* CapeGameEnd.m in Sources */,
 				7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
 				7ECADE1D17646AF00032A1E6 /* ALSoundSourcePool.m in Sources */,

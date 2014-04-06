@@ -310,6 +310,11 @@ static NSDictionary* ID_TO_POWERDESC;
     } else if (cur_param_anim_mode == player_anim_mode_HEAD) {
 		[self start_anim:player_anim_mode_HEAD];
 	}
+	
+	if (self.current_swingvine != NULL) {
+		cur_scy = 1;
+	}
+	
     [self setScaleY:cur_scy];
     [self update_params:g];
     refresh_hitrect = YES;

@@ -143,7 +143,7 @@ static NSSet *lab_levels_world3;
 		},
 		L_AUTOSTART: @{
 				//@"shittytest":@1
-			@"autolevel_start": @1
+				@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -426,9 +426,9 @@ static NSSet *lab_levels_world3;
 			cur_set = L_FREERUN_PROGRESS;
 		}
 		//return @"boss1_start";
-		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
+		return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		//return @"boss3_start";
-		return tar;
+		//return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
 		sets_until_next_lab = SETS_BETWEEN_LABS;
@@ -465,6 +465,7 @@ static NSSet *lab_levels_world3;
 	
 	} else if ([cur_set isEqualToString:L_LAB]) {
 		sets_until_next_lab--;
+		
 		if (sets_until_next_lab < 0) {
 			if ([GameWorldMode get_labnum] == LabNum_2) {
 				return [[levelsets[L_BOSS2START] allKeys] random];

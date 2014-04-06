@@ -1,12 +1,11 @@
 {
-    "connect_pts": {"x2": 1516.7, "y2": 403.3, "x1": 83.4, "y1": 390},
-    "start_x": 250,
-    "objects": [
-        {"x": 805, "label": "0", "type": "labentrance", "y": 396.6},
-        {"x": 1101.7, "label": "1", "type": "checkpoint", "y": 398.3},
-        {"x": 1265, "label": "0", "type": "dogcape", "y": 533}
-    ],
-    "start_y": 501.65,
-    "islands": [{"x2": 1516.7, "ground": "open", "ndir": "left", "y1": 390, "hei": 50, "y2": 403.3, "type": "line", "x1": 83.4, "can_fall": true}],
-    "assert_links": 0
+    "objects": [{"x": 985, "x2": 981, "label": "0", "type": "swingvine", "y": 383, "y2": 276}],
+    "assert_links": 0,
+    "start_x": 193,
+    "start_y": 270,
+    "connect_pts": {"x2": 946, "y2": 338, "x1": 91, "y1": 219},
+    "islands": [
+        {"x2": 804, "ground": "open", "ndir": "left", "y1": 219, "hei": 50, "y2": 219, "type": "line", "x1": 91, "can_fall": true},
+        {"x2": 946, "ground": "open", "ndir": "right", "y1": 340, "hei": 50, "y2": 338, "type": "line", "x1": 624, "can_fall": true}
+    ]
 }

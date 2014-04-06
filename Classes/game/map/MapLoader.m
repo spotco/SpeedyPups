@@ -48,6 +48,7 @@
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
 #import "CapeTutorialLauncher.h"
+#import "CapeGameEnd.h"
 
 @implementation GameMap
     @synthesize assert_links;
@@ -479,6 +480,12 @@ float getflt(NSDictionary* j_object,NSString* key) {
 		} else if ([type isEqualToString:@"tutorial"]) {
             float x = getflt(j_object, @"x");
 			[map.game_objects addObject:[CapeTutorialLauncher cons_x:x]];
+			
+		} else if ([type isEqualToString:@"game_end"]) {
+			float x = getflt(j_object, @"x");
+			float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[CapeGameEnd cons_pt:ccp(x,y)]];
+			
 			
 		}
 	}

@@ -603,6 +603,7 @@
 		runout_ct = 100;
 		player.current_island = NULL;
 		do_boss_capegame = NO;
+		//do_boss_capegame = YES;
 		
 	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {
 		if ([player is_armored]) {

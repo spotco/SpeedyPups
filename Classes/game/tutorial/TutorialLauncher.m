@@ -20,6 +20,7 @@
     if (!self.active && player.position.x > position_.x && player.position.x - position_.x < 1000) {
         active = YES;
         [g add_gameobject:[TutorialProf cons_msg:self.anim y:position_.y]];
+		[AudioManager playsfx:SFX_POWERUP];
 		[GEventDispatcher push_event:
 			[[GEvent cons_type:GEventType_TUTORIAL_MESSAGE]
 				add_key:@"msg"

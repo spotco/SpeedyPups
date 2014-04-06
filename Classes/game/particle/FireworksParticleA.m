@@ -52,10 +52,20 @@
     [self setColor:ccc3(251, 245, 52)];
 }
 
+static int _time_since_last_sfx_play = 0;
+
 -(void)update:(GameEngineLayer*)g {
     [self setPosition:ccp(position_.x+vx,position_.y+vy)];
     ct--;
+	if (_time_since_last_sfx_play > 0) {
+		_time_since_last_sfx_play--;
+	}
+	
     if (ct == 0) {
+		if (_time_since_last_sfx_play <= 0) {
+			[AudioManager playsfx:SFX_FIREWORKS];
+			_time_since_last_sfx_play = 10;
+		}
         for (float i = 0; i < M_PI * 2; i+= (M_PI*2)/14) {
             [g add_particle:[SubFireworksParticleA cons_x:position_.x
 														y:position_.y

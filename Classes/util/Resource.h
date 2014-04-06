@@ -154,8 +154,11 @@
 
 #define TEX_CLOUDGAME_BOSS_BG @"cloudgame_boss_bg"
 #define TEX_CLOUDGAME_BOSS_CLOUDFLOOR @"cloudgame_boss_cloudfloor"
+#define TEX_CLOUDGAME_BOSS_BG_THUNDER @"cloudgame_boss_bg_thunder.png" 
 
 #define TEX_CANNONMOVETRACK_BODY @"cannonmovetrack_body"
 #define TEX_CANNONMOVETRACK_EDGE @"cannonmovetrack_edge"
+
+#define TEX_CHECKERBOARD_TEXTURE @"checkerboard_texture"
 
 @end

@@ -171,7 +171,10 @@ static NSMutableDictionary* loaded_textures;
 	 TEX_CLOUDGAME_BOSS_CLOUDFLOOR:@"cloudlevel_boss_cloudfloor.png",
 	 
 	 TEX_CANNONMOVETRACK_BODY:@"cannonmovetrack_body.png",
-	 TEX_CANNONMOVETRACK_EDGE:@"cannonmovetrack_edge.png"
+	 TEX_CANNONMOVETRACK_EDGE:@"cannonmovetrack_edge.png",
+	 
+	 TEX_CLOUDGAME_BOSS_BG_THUNDER:@"cloudlevel_boss_bg_thunder.png",
+	 TEX_CHECKERBOARD_TEXTURE:@"checkerboard_texture.png"
 	};
 	
 	
