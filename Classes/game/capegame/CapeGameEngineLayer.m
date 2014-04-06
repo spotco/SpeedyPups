@@ -27,8 +27,6 @@ static NSString *blank = @"";
 	
 	NSString *rtv = blank;
 	
-	lvl_ct = 2;
-	
 	if (lvl_ct%3==0) {
 		rtv = @"capegame_easy";
 	} else if (lvl_ct%3==1) {

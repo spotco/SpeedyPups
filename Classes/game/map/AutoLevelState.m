@@ -426,9 +426,9 @@ static NSSet *lab_levels_world3;
 			cur_set = L_FREERUN_PROGRESS;
 		}
 		//return @"boss1_start";
-		return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
+		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		//return @"boss3_start";
-		//return tar;
+		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
 		sets_until_next_lab = SETS_BETWEEN_LABS;
