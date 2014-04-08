@@ -2,6 +2,7 @@
 
 @class SubBossBGObject;
 @class FGWater;
+@class NCatBossBody;
 
 typedef enum SubMode {
 	SubMode_Intro,
@@ -14,7 +15,20 @@ typedef enum SubMode {
 	SubMode_ScopeQuickJump
 } SubMode;
 
+typedef enum SubBossCatIntroMode {
+	SubBossCatIntroMode_In,
+	SubBossCatIntroMode_Taunt,
+	SubBossCatIntroMode_Out,
+	SubBossCatIntroMode_None
+} SubBossCatIntroMode;
+
 @interface SubBoss : GameObject {
+	NCatBossBody *cat_body;
+	CGPoint cat_body_rel_pos;
+	float delay_ct;
+	SubBossCatIntroMode cat_mode;
+	BOOL cat_anim_done;
+	
 	CCSprite *body;
 	CCSprite *hatch;
 	

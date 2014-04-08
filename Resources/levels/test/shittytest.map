@@ -1,11 +1,8 @@
 {
-    "objects": [{"x": 985, "x2": 981, "label": "0", "type": "swingvine", "y": 383, "y2": 276}],
-    "assert_links": 0,
+    "connect_pts": {"y1": 219, "x1": 91, "y2": 217, "x2": 1356},
+    "islands": [{"can_fall": true, "x1": 91, "x2": 1356, "ground": "open", "y1": 219, "ndir": "left", "y2": 217, "hei": 50, "type": "line"}],
     "start_x": 193,
     "start_y": 270,
-    "connect_pts": {"x2": 946, "y2": 338, "x1": 91, "y1": 219},
-    "islands": [
-        {"x2": 804, "ground": "open", "ndir": "left", "y1": 219, "hei": 50, "y2": 219, "type": "line", "x1": 91, "can_fall": true},
-        {"x2": 946, "ground": "open", "ndir": "right", "y1": 340, "hei": 50, "y2": 338, "type": "line", "x1": 624, "can_fall": true}
-    ]
+    "objects": [{"x": 752, "y": 217, "label": "0", "type": "labentrance"}],
+    "assert_links": 0
 }

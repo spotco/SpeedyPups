@@ -75,6 +75,7 @@
             v = ccp(player.vx*1.4,player.vy*1.4);
             knockout = YES;
             ct = 0;
+			[AudioManager playsfx:SFX_ROCKBREAK];
             
         } else {
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];

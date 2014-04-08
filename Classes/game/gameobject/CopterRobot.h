@@ -1,6 +1,7 @@
 #import "GameObject.h"
 #import "LauncherRocket.h"
 #import "ExplosionParticle.h"
+@class NCatBossBody;
 
 typedef enum {
     Side_Left,
@@ -8,6 +9,10 @@ typedef enum {
 } Side;
 
 typedef enum {
+	CopterMode_CatIn,
+	CopterMode_CatTaunt,
+	CopterMode_CatOut,
+	
     CopterMode_IntroAnim,
     CopterMode_ToRemove,
     CopterMode_GotHit_FlyOff,
@@ -47,6 +52,10 @@ typedef enum {
     CGPoint flyoffdir;
 	
 	float sfx_ct;
+	
+	NCatBossBody *cat_body;
+	CGPoint cat_body_rel_pos;
+	float delay_ct;
 }
 
 +(CopterRobot*)cons_with_g:(GameEngineLayer*)g;

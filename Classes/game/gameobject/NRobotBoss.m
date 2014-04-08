@@ -20,11 +20,8 @@
 #define RPOS_CAT_TAUNT_POS ccp(400,300)
 #define RPOS_CAT_DEFAULT_POS ccp(1500,500)
 #define RPOS_ROBOT_DEFAULT_POS ccp(725,0)
-
 #define LPOS_ROBOT_DEFAULT_POS ccp(-650,0)
-
 #define CAPE_WAIT_POS ccp(500,300)
-
 #define CENTER_POS ccp(player.position.x,groundlevel)
 #define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
 

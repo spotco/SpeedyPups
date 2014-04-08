@@ -106,11 +106,13 @@
 	return subboss;
 }
 
+/*
 -(void)set_day_night_color:(float)val {
 	float pctm = ((float)val) / 100;
 	[sky setColor:PCT_CCC3(50,50,90,pctm)];
 	[clouds setColor:PCT_CCC3(80, 80, 130, pctm)];
 }
+*/
 
 static float explosion_ct;
 -(void)update:(GameEngineLayer*)g curx:(float)curx cury:(float)cury {

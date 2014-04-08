@@ -23,43 +23,49 @@
 #define DRAW_HITBOX NO
 
 /**
+ 
+ -debug fixes autolevelstate2, gameworldmode1
+ 
+ cat boss in copter & sub
+ 1 world 1 lab, transitions
+ 
+ credits-interactive
+ 
+ integrate new map assets, freerun progress popup redesign (prev, current, next)
+ 
  fix level selection algo, getting repeating levels (especially in lab1)
+ score ui
+ add second currency and separate upgrade/unlock for items
+ second currency tradein from bones daily
+ more challenges (more secrets, cape game, boss rush)
+ new look for upgrade pane
+ facebook integration (like game on facebook, reward)
+ 
+ ads integration, pay for no ads
+ 
  make lab 1 levels easier
  make dogrocket level easier
  
- score ui
- add second currency and separate upgrade/unlock for items
- more challenges (more secrets, cape game, boss rush)
- 
  -art ask for:
-	freerun progress popup redesign
-	freerun start menu redesign + button
-	speedypups pro button + window
-	bonus currency
 	website
 	video
  **/
 
 /**
 Stretch goals:
- new look for upgrade pane
+ 10 more freerun levels
+ 
  bug armor -> rocket -> end -> swingvine, still in rocket form
- 
- second currency - pup tokens (in cape game end and randomly in special itemgen or puptoken section)
- like the game on facebook, reward character etc
  random super reward level
- 
  flip match-2 minigame (collect tokens ingame for tries)
  stats tracking
  implement challenge of the week
- integrate speedypups full
- integrate ads
  goober pet
  levels based around armor (armor break spikes)
- challenges based around capegame
- challenges based around bossrush
  store sales (streamed from online)
  object pool system
+ 
+ art freerun start menu redesign + button
  **/
 
 +(void)main {

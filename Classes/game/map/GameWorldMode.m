@@ -19,7 +19,8 @@ static LabNum cur_labnum;
 	return cur_worldnum;
 }
 +(LabNum)get_labnum {
-	return cur_labnum;
+	return LabNum_2;
+	//return cur_labnum;
 }
 
 +(void)reset {

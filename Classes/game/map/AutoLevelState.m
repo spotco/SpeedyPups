@@ -142,8 +142,8 @@ static NSSet *lab_levels_world3;
 			@"classic_totalmix" : @3
 		},
 		L_AUTOSTART: @{
-				//@"shittytest":@1
-				@"autolevel_start": @1
+				@"shittytest":@1
+				//@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -425,7 +425,7 @@ static NSSet *lab_levels_world3;
 		if (tutorial_ct >= tutorial_levels.count) {
 			cur_set = L_FREERUN_PROGRESS;
 		}
-		//return @"boss1_start";
+		return @"boss2_start";
 		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		//return @"boss3_start";
 		return tar;

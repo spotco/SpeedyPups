@@ -5,7 +5,9 @@
 #import "HitEffect.h"
 #import "DazedParticle.h"
 #import "LauncherRobot.h"
-#import "BrokenMachineParticle.h" 
+#import "BrokenMachineParticle.h"
+
+#import "NRobotBossComponents.h"
 
 #define ARM_DEFAULT_POSITION ccp(-38,-47)
 
@@ -51,24 +53,66 @@ static const int DEFAULT_HP = 5;
     return [[CopterRobot node] cons_with_g:g];
 }
 
+#define RPOS_CAT_TAUNT_POS ccp(300,250)
+#define RPOS_CAT_DEFAULT_POS ccp(1500,500)
+#define CAT_TAUNT_OFFSET ccp(-1000,0)
+#define CENTER_POS ccp(player.position.x,groundlevel)
+#define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
+
 -(CopterRobot*)cons_with_g:(GameEngineLayer*)g {
     [self cons_anims];
     hp = DEFAULT_HP;
     active = YES;
     player_pos = g.player.position;
-    cur_mode = CopterMode_IntroAnim;
-    rel_pos = ccp(800,0);
+	
+    //cur_mode = CopterMode_IntroAnim;
+    cur_mode = CopterMode_CatIn;
+	
+	//rel_pos = ccp(800,0);
+	rel_pos = CAT_TAUNT_OFFSET;
 	[self apply_rel_pos];
 	[self set_bounds_and_ground:g];
     actual_pos.y = groundlevel+360;
     [self setPosition:actual_pos];
-	[AudioManager playsfx:SFX_BOSS_ENTER];
+	
+	cat_body = [NCatBossBody cons];
+	[self addChild:cat_body];
+	cat_body_rel_pos = ccp(2000,800);
+	[cat_body setScale:0.85];
+	[cat_body setVisible:YES];
     
     return self;
 }
 
 -(BOOL)can_hit {
     return (cur_mode != CopterMode_GotHit_FlyOff) && (cur_mode != Coptermode_DeathExplode) && (cur_mode != CopterMode_ToRemove);
+}
+
+-(void)update_cat_body_flyin_to:(CGPoint)tar transition_to:(CopterMode)mode {
+	[cat_body stand_anim];
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, tar, 15.0);
+	
+	if (CGPointDist(cat_body_rel_pos, tar) < 10) {
+		cur_mode = mode;
+		[cat_body laugh_anim];
+		delay_ct = 80;
+	}
+}
+
+-(void)update_taunt_transition_to:(CopterMode)mode {
+	delay_ct-=[Common get_dt_Scale];
+	if (delay_ct <= 0) {
+		cur_mode = mode;
+		[cat_body stand_anim];
+	}
+}
+
+-(void)update_robot_body_in_robotpos:(CGPoint)robot_pos catpos:(CGPoint)cat_pos transition_to:(CopterMode)mode {
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, cat_pos, 15.0);
+	if (CGPointDist(cat_body_rel_pos, cat_pos) < 100) {
+		cur_mode = mode;
+		delay_ct = 20;
+	}
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
@@ -82,7 +126,6 @@ static const int DEFAULT_HP = 5;
         setbroke = YES;
         [body setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_COPTER idname:BODY_BROKEN]];
         [arm setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_COPTER idname:ARM_BROKEN]];
-        //NSLog(@"setbroken");
     }
     
     [self anim_arm];
@@ -121,7 +164,29 @@ static const int DEFAULT_HP = 5;
     if (cur_mode == CopterMode_ToRemove) {
         [g remove_gameobject:self];
         return;
-        
+		
+	} else if (cur_mode == CopterMode_CatIn) {
+		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:94 y:38 z:131]];
+		[cat_body setScaleX:-1];
+		[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:CopterMode_CatTaunt];
+		if (cur_mode != CopterMode_CatIn) {
+			[AudioManager playsfx:SFX_CAT_LAUGH];
+		}
+		[cat_body setPosition:CGPointAdd(ccp(-CAT_TAUNT_OFFSET.x,-CAT_TAUNT_OFFSET.y), cat_body_rel_pos)];
+		
+	} else if (cur_mode == CopterMode_CatTaunt) {
+		[self update_taunt_transition_to:CopterMode_CatOut];
+		[cat_body setPosition:CGPointAdd(ccp(-CAT_TAUNT_OFFSET.x,-CAT_TAUNT_OFFSET.y), cat_body_rel_pos)];
+		
+	} else if (cur_mode == CopterMode_CatOut) {
+		[self update_robot_body_in_robotpos:ccp(1500,0) catpos:RPOS_CAT_DEFAULT_POS transition_to:CopterMode_IntroAnim];
+		if (cur_mode != CopterMode_CatOut) {
+			rel_pos = ccp(900,0);
+			[AudioManager playsfx:SFX_BOSS_ENTER];
+			[cat_body setVisible:NO];
+		}
+		[cat_body setPosition:CGPointAdd(ccp(-CAT_TAUNT_OFFSET.x,-CAT_TAUNT_OFFSET.y), cat_body_rel_pos)];
+		
     } else if (cur_mode == CopterMode_IntroAnim) {
         [self intro_anim:g];
         
@@ -160,7 +225,12 @@ static const int DEFAULT_HP = 5;
         
     }
     
-    [self setPosition:ccp(actual_pos.x+vibration.x+recoil.x,actual_pos.y+vibration.y+recoil.y)];
+	if (cur_mode == CopterMode_CatIn || cur_mode == CopterMode_CatOut || cur_mode == CopterMode_CatTaunt) {
+		[self setPosition:ccp(player.position.x+CAT_TAUNT_OFFSET.x,groundlevel)];
+	} else {
+		[self setPosition:ccp(actual_pos.x+vibration.x+recoil.x,actual_pos.y+vibration.y+recoil.y)];
+	}
+    
 
 	sfx_ct -= [Common get_dt_Scale];
 	if (sfx_ct <= 0) {
@@ -647,6 +717,10 @@ static const int DEFAULT_HP = 5;
 
 -(int)get_render_ord {
     return [GameRenderImplementation GET_RENDER_BTWN_PLAYER_ISLAND];
+}
+
+-(void)check_should_render:(GameEngineLayer *)g {
+	do_render = YES;
 }
 
 -(CCAction*)cons_anim:(NSArray*)a speed:(float)speed {

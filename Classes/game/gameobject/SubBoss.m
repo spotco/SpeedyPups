@@ -11,6 +11,7 @@
 #import "DazedParticle.h"
 #import "ExplosionParticle.h"
 #import "BrokenMachineParticle.h"
+#import "NRobotBossComponents.h"
 
 @interface FGWater : GameObject {
 	CCSprite *body;
@@ -61,6 +62,11 @@
 	return [[SubBoss node] cons:g];
 }
 
+#define RPOS_CAT_TAUNT_POS ccp(300,250)
+#define RPOS_CAT_DEFAULT_POS ccp(1500,500)
+#define CENTER_POS ccp(player.position.x,groundlevel)
+#define LERP_TO(pos1,pos2,div) ccp(pos1.x+(pos2.x-pos1.x)/div,pos1.y+(pos2.y-pos1.y)/div)
+
 -(id)cons:(GameEngineLayer*)g {
 	[self cons_anims];
 	body = [CCSprite node];
@@ -97,7 +103,42 @@
 	hp = 4;
 	//hp = 1;
 	
+	cat_body = [NCatBossBody cons];
+	[self addChild:cat_body];
+	cat_body_rel_pos = ccp(2000,800);
+	[cat_body setScale:0.85];
+	[cat_body setVisible:YES];
+	cat_mode = SubBossCatIntroMode_In;
+	cat_anim_done = NO;
+	
 	return self;
+}
+
+-(void)update_cat_body_flyin_to:(CGPoint)tar transition_to:(SubBossCatIntroMode)mode {
+	[cat_body stand_anim];
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, tar, 15.0);
+	
+	if (CGPointDist(cat_body_rel_pos, tar) < 10) {
+		cat_mode = mode;
+		[cat_body laugh_anim];
+		delay_ct = 80;
+	}
+}
+
+-(void)update_taunt_transition_to:(SubBossCatIntroMode)mode {
+	delay_ct-=[Common get_dt_Scale];
+	if (delay_ct <= 0) {
+		cat_mode = mode;
+		[cat_body stand_anim];
+	}
+}
+
+-(void)update_robot_body_in_robotpos:(CGPoint)robot_pos catpos:(CGPoint)cat_pos transition_to:(SubBossCatIntroMode)mode {
+	cat_body_rel_pos = LERP_TO(cat_body_rel_pos, cat_pos, 15.0);
+	if (CGPointDist(cat_body_rel_pos, cat_pos) < 100) {
+		cat_mode = mode;
+		delay_ct = 20;
+	}
 }
 
 static CGPoint last_pos;
@@ -194,9 +235,30 @@ static CGPoint last_pos;
 		[bgobj setScaleX:1];
 		[g set_target_camera:[Common cons_normalcoord_camera_zoom_x:120 y:110 z:240]];
 		[bgobj setPosition:ccp(bgobj.position.x+2*[Common get_dt_Scale],bgobj.position.y)];
-		if (bgobj.position.x > [Common SCREEN].width+150) {
-			[self pick_next_move];
+		
+		if (cat_mode == SubBossCatIntroMode_In) {
+			[cat_body setScaleX:-1];
+			[self update_cat_body_flyin_to:RPOS_CAT_TAUNT_POS transition_to:SubBossCatIntroMode_Taunt];
+			if (cat_mode != SubBossCatIntroMode_In) {
+				[AudioManager playsfx:SFX_CAT_LAUGH];
+			}
 			
+			
+		} else if (cat_mode == SubBossCatIntroMode_Taunt) {
+			[self update_taunt_transition_to:SubBossCatIntroMode_Out];
+			
+		} else if (cat_mode == SubBossCatIntroMode_Out) {
+			[self update_robot_body_in_robotpos:ccp(1500,0) catpos:RPOS_CAT_DEFAULT_POS transition_to:SubBossCatIntroMode_None];
+			if (cat_mode != SubBossCatIntroMode_Out) {
+				[cat_body setVisible:NO];
+				cat_anim_done = YES;
+			}
+		}
+		[cat_body setPosition:CGPointAdd(cat_body_rel_pos,ccp(player.position.x,groundlevel))];
+		
+		
+		if (bgobj.position.x > [Common SCREEN].width+150 && cat_anim_done) {
+			[self pick_next_move];
 		}
 		DO_FOR(2, [bgobj splash_tick:ccp(float_random(-3.5, -1),float_random(2, 8)) offset:ccp(-35,float_random(-17, -13))]);
 		
