@@ -9,14 +9,20 @@
 #define L_LAB_TUTORIAL @"levelset_lab_tutorial"
 #define L_CAPEGAME_LAUNCHER @"levelset_capegame_launcher"
 
-#define L_CLASSIC @"levelset_classic"
 #define L_FILLER @"levelset_filler"
-#define L_JUMPPAD @"levelset_jumppad"
-#define L_SWINGVINE @"levelset_swingvine"
-#define L_EASY @"levelset_easy"
-#define L_CANNON @"levelset_cannon"
-#define L_HARD @"levelset_hard"
 
+#define L_WORLD1_CLASSIC @"levelset_world1_classic"
+#define L_WORLD1_EASY @"levelset_world1_easy"
+#define L_WORLD1_JUMPPAD @"levelset_world1_jumppad"
+
+#define L_WORLD2_SWINGVINE @"levelset_world2_swingvine"
+#define L_WORLD2_JUMPPAD @"levelset_world2_jumppad"
+#define L_WORLD2_HARD @"levelset_world2_hard"
+
+#define L_WORLD3_CANNON @"levelset_world3_cannon"
+#define L_WORLD3_SWINGVINE @"levelset_world3_swingvine"
+#define L_WORLD3_HARD @"levelset_world3_hard"
+ 
 #define L_FREERUN_PROGRESS @"levelset_freerun_progress"
 
 #define L_BOSS1START @"levelset_boss1start"
@@ -32,19 +38,16 @@
 #define L_LABINTRO @"levelset_labintro"
 #define L_LABEXIT @"levelset_labexit"
 
-#define L_LAB @"levelset_lab"
+#define L_LAB_1 @"levelset_lab_1"
+#define L_LAB_2 @"levelset_lab_2"
+#define L_LAB_3 @"levelset_lab_3"
 
 static NSDictionary *levelsets;
-static NSArray *pickable_sets;
 
 static NSArray *tutorial_levels;
 static NSArray *lab_tutorial_levels;
 static NSArray *world2_tutorial_levels;
 static NSArray *world3_tutorial_levels;
-
-static NSSet *lab_levels_world1;
-static NSSet *lab_levels_world2;
-static NSSet *lab_levels_world3;
 
 +(void)initialize {
 	tutorial_levels = @[
@@ -68,22 +71,8 @@ static NSSet *lab_levels_world3;
 	world2_tutorial_levels = @[@"tutorial_swingvine"];
 	world3_tutorial_levels = @[@"tutorial_cannons"];
 	
-	pickable_sets = @[L_EASY,L_CLASSIC,L_JUMPPAD,L_SWINGVINE,L_CANNON,L_HARD];
-	
 	levelsets = @{
-		L_CLASSIC: @{
-			@"classic_trickytreas" : @3,
-			@"classic_bridgenbwall" : @2,
-			@"classic_cavewbwall" : @2,
-			@"classic_huegcave" : @2,
-			@"classic_tomslvl1" : @2,
-			@"classic_smgislands" : @3,
-			@"classic_nubcave" : @2,
-			@"classic_manyoptredux" : @3,
-			@"classic_twopath" : @5,
-			@"classic_doublehelix" : @2
-		},
-		L_FILLER: @{
+		L_FILLER:@{
 			@"filler_sanicloop" : @1,
 			@"filler_curvedesc" : @1,
 			@"filler_islandjump" : @1,
@@ -96,53 +85,98 @@ static NSSet *lab_levels_world3;
 			@"filler_chickennuggets" : @2,
 			@"filler_skippingstones" : @2,
 			@"filler_godog" : @2,
-			@"filler_kingofswing" : @4,
+			@"filler_kingofswing" : @2,
 			@"filler_goslow" : @2
 		},
-		L_EASY: @{
+
+		L_WORLD1_CLASSIC:@{
+			@"classic_trickytreas" : @3,
+			@"classic_bridgenbwall" : @2,
+			@"classic_cavewbwall" : @2,
+			@"classic_huegcave" : @2,
+			@"classic_tomslvl1" : @2,
+			@"classic_nubcave" : @2,
+			@"classic_doublehelix" : @2
+		},
+		L_WORLD1_EASY:@{
 			@"easy_puddles" : @1,
 			@"easy_world1" : @1,
 			@"easy_gottagofast" : @1,
 			@"easy_curvywater" : @1,
 			@"easy_simplespikes" : @1,
-			@"easy_curvybreak" : @2,
-			@"easy_breakdetail" : @2
+			@"easy_curvybreak" : @1,
+			@"easy_breakdetail" : @1
+		
 		},
-		L_JUMPPAD: @{
+		L_WORLD1_JUMPPAD:@{
 			@"jumppad_bigjump" : @2,
 			@"jumppad_crazyloop" : @2,
 			@"jumppad_hiddenislands" : @1,
-			@"jumppad_jumpgap" : @3,
-			@"jumppad_jumpislands" : @3,
-			@"jumppad_launch" : @2,
-			@"jumppad_lotsobwalls" : @3,
-			@"jumppad_spikeceil" : @3
+			@"jumppad_launch" : @2
 		},
-		L_SWINGVINE: @{
+
+		L_WORLD2_SWINGVINE:@{
 			@"swingvine_swingintro" : @2,
 			@"swingvine_dodgespike" : @3,
 			@"swingvine_swingbreak" : @3,
-			@"swingvine_bounswindodg" : @4,
-			@"swingvine_someswings" : @2,
-			@"swingvine_awesome" : @4,
-			@"swingvine_morecave" : @3,
 			@"swingvine_datbounce" : @2,
-			@"swingvine_totalmix" : @3,
+			@"swingvine_someswings" : @2,
 			@"swingvine_hillvine" : @2
 		},
-		L_CANNON: @{								//TODO -- 7 cannon levels
+		L_WORLD2_JUMPPAD:@{
+			@"jumppad_jumpgap" : @3,
+			@"jumppad_jumpislands" : @3,
+			@"jumppad_lotsobwalls" : @3,
+			@"jumppad_spikeceil" : @3
+		},
+		L_WORLD2_HARD:@{
+			@"classic_smgislands" : @3,
+			@"classic_manyoptredux" : @3,
+			@"classic_twopath" : @5,
+			@"swingvine_bounswindodg" : @4,
+			@"swingvine_morecave" : @3,
+		},
+
+		L_WORLD3_CANNON:@{
 			@"cannon_cannonsandrobots" : @2,
 			@"cannon_cannoncave" : @2,
 			@"cannon_jetpackthorns" : @3,
 		},
-		L_HARD: @{									//TODO -- 6 hard levels
+		L_WORLD3_SWINGVINE:@{
+			@"swingvine_bounswindodg" : @4,
+			@"swingvine_awesome" : @4,
+			@"swingvine_morecave" : @3,
+			@"swingvine_totalmix" : @3,
+		},
+		L_WORLD3_HARD:@{
 			@"classic_twopath" : @2,
 			@"swingvine_awesome" : @4,
 			@"swingvine_bounswindodg" : @4,
 			@"classic_totalmix" : @3
 		},
+		
+		L_LAB_1: @{ //TODO -- 2 easy lab levels, make basicmix & minionwalls easier
+			@"lab_basicmix" : @1,
+			@"lab_minionwalls" : @1,
+			@"lab_towerfall" :@1
+		},
+		L_LAB_2: @{
+			@"lab_ezshiz" : @1,
+			@"lab_ezrocketshz" : @1,
+			@"lab_clusterphobia" : @1,
+			@"lab_swingers" : @1,
+			@"lab_alladat" : @1,
+			@"lab_muhfiller" :@1
+		},
+		L_LAB_3: @{ //TODO -- 1 hard world3 lab levels
+			@"lab_tube" : @1,
+			@"lab_rocketfever" : @1,
+			@"lab_bounceycannon" : @1,
+			@"lab_cage_cannons" : @1,
+			@"lab_minionwallshard" : @1
+		},
+		
 		L_AUTOSTART: @{
-				//@"shittytest":@1
 				@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
@@ -174,57 +208,8 @@ static NSSet *lab_levels_world3;
 		},
 		L_CAPEGAME_LAUNCHER: @{
 			@"capegame_launcher": @1
-		},
-		L_LAB: @{
-			@"lab_basicmix" : @2,
-			@"lab_minionwalls" : @2,
-			@"lab_ezshiz" : @3,
-			@"lab_ezrocketshz" : @3,
-			@"lab_swingers" : @4,
-			@"lab_alladat" : @4,
-			@"lab_tube" : @4,
-			@"lab_muhfiller" : @2,
-			@"lab_rocketfever" : @4,
-			@"lab_towerfall" : @2,
-			@"lab_clusterphobia": @3,
-			@"lab_bounceycannon" : @4,
-			@"lab_minionwallshard" : @4,
-			@"lab_cage_cannons" : @4
 		}
 	};
-	
-	lab_levels_world1 = _NSSET( //TODO -- 3 easy lab levels
-		@"lab_basicmix",
-		@"lab_minionwalls",
-		@"lab_clusterphobia",
-		@"lab_towerfall"
-		
-	);
-	
-	lab_levels_world2 = _NSSET(
-		@"lab_ezshiz",
-		@"lab_ezrocketshz",
-		@"lab_swingers",
-		@"lab_alladat",
-		@"lab_tube",
-		@"lab_muhfiller",
-		@"lab_rocketfever",
-		@"lab_minionwallshard"
-	);
-	lab_levels_world3 = _NSSET(
-		@"lab_basicmix",
-		@"lab_minionwalls",
-		@"lab_ezshiz",
-		@"lab_ezrocketshz",
-		@"lab_swingers",
-		@"lab_alladat",
-		@"lab_tube",
-		@"lab_muhfiller",
-		@"lab_rocketfever",
-		@"lab_minionwallshard",
-		@"lab_bounceycannon",
-		@"lab_cage_cannons"
-	);
 }
 
 +(int)get_level_difficulty:(NSString*)tarlvl {
@@ -254,6 +239,8 @@ static NSSet *lab_levels_world3;
 }
 
 -(id)init {
+	if (tutorial_levels == NULL || lab_tutorial_levels == NULL) [AutoLevelState initialize];
+	
     self = [super init];
 	ct = 0;
 	has_done_lab_tutorial = NO;
@@ -263,61 +250,53 @@ static NSSet *lab_levels_world3;
 	cur_set_completed = 0;
 	nth_filler = 0;
 	
-	setgen = [WeightedSorter cons_vals:levelsets use:pickable_sets];
+	setgen = [WeightedSorter cons_vals:levelsets use:@[
+		L_WORLD1_EASY,
+		L_WORLD1_JUMPPAD,
+		L_WORLD1_CLASSIC,
+		L_WORLD2_SWINGVINE,
+		L_WORLD2_JUMPPAD,
+		L_WORLD2_HARD,
+		L_WORLD3_CANNON,
+		L_WORLD3_SWINGVINE,
+		L_WORLD3_HARD
+	]];
 	fillersetgen = [WeightedSorter cons_vals:levelsets use:@[L_FILLER]];
-	labsetgen = [WeightedSorter cons_vals:levelsets use:@[L_LAB]];
+	labsetgen = [WeightedSorter cons_vals:levelsets use:@[
+		L_LAB_1,
+		L_LAB_2,
+		L_LAB_3
+	]];
 	
 	
 	recently_picked_sets = [NSMutableArray array];
-	if (tutorial_levels == NULL || lab_tutorial_levels == NULL) [AutoLevelState initialize];
+	
 	
     return self;
 }
 
--(void)to_boss2_mode {
-	cur_set = L_BOSS2AREA;
-}
+-(void)to_boss1_mode { cur_set = L_BOSS1AREA;}
+-(void)to_boss2_mode { cur_set = L_BOSS2AREA;}
+-(void)to_boss3_mode { cur_set = L_BOSS3AREA;}
 
--(void)to_boss1_mode {
-	cur_set = L_BOSS1AREA;
-}
+-(void)to_labexit_mode { cur_set = L_LABEXIT;}
+-(void)to_progress_mode { cur_set = L_FREERUN_PROGRESS;}
 
--(void)to_boss3_mode {
-	cur_set = L_BOSS3AREA;
-}
-
--(void)to_labexit_mode {
-	cur_set = L_LABEXIT;
-}
-
--(void)to_progress_mode {
-	cur_set = L_FREERUN_PROGRESS;
-}
-
--(BOOL)is_boss_mode {
-	return streq(cur_set, L_BOSS1AREA) || streq(cur_set, L_BOSS2AREA) || streq(cur_set, L_BOSS3AREA);
-}
+-(BOOL)is_boss_mode { return streq(cur_set, L_BOSS1AREA) || streq(cur_set, L_BOSS2AREA) || streq(cur_set, L_BOSS3AREA);}
 
 -(NSString*)pick_set:(GameEngineLayer*)g {
 	NSArray *available;
 	
-	if (start_with_easy) {
-		start_with_easy = NO;
-		available = @[L_EASY];
-		
-	} else if (g.world_mode.cur_world == WorldNum_1) {
-		available = @[L_EASY,L_CLASSIC,L_JUMPPAD];
+	if (g.world_mode.cur_world == WorldNum_1) {
+		available = @[L_WORLD1_EASY, L_WORLD1_JUMPPAD, L_WORLD1_CLASSIC];
 		
 	} else if (g.world_mode.cur_world == WorldNum_2) {
-		available = @[L_CLASSIC,L_JUMPPAD, L_SWINGVINE, L_HARD];
+		available = @[L_WORLD2_SWINGVINE, L_WORLD2_JUMPPAD, L_WORLD2_HARD];
 		
 	} else if (g.world_mode.cur_world == WorldNum_3) {
-		available = @[L_JUMPPAD, L_SWINGVINE, L_HARD, L_CANNON];
+		available = @[L_WORLD3_CANNON, L_WORLD3_SWINGVINE, L_WORLD3_HARD];
 		
-	} else {
-		available = @[L_FILLER];
-		
-	}
+	} else { NSLog(@"autolevelstate pick_set error"); }
 	
 	NSArray *usem = [available copy_removing:recently_picked_sets];
 	if (usem.count == 0) {
@@ -329,80 +308,8 @@ static NSSet *lab_levels_world3;
 	return tar;
 }
 
--(void)cycle_through:(int)fois g:(GameEngineLayer*)g {
-	cur_set = [self pick_set:g];
-	for (int i = 0; i < fois; i++) {
-		ct++;
-		if (ct%3==0) cur_set = [self pick_set:g];
-		[setgen get_from_bucket:cur_set];
-	}
-}
-
--(void)cycle_through_lab:(int)fois {
-	for (int i = 0; i < fois; i++) {
-		[labsetgen get_from_bucket:L_LAB];
-	}
-}
-
--(void)set_initial_params:(GameEngineLayer*)g {
-	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
-		cur_set = L_TUTORIAL;
-		has_done_lab_tutorial = NO;
-		start_with_easy = YES;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD1) {
-		tutorial_ct = 0;
-		cur_set = L_FREERUN_PROGRESS;
-		has_done_lab_tutorial = NO;
-		start_with_easy = YES;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
-		[self cycle_through:17 g:g];
-		tutorial_ct = 0;
-		has_done_lab_tutorial = true;
-		cur_set = L_LABINTRO;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
-		[self cycle_through:20 g:g];
-		[self cycle_through_lab:3];
-		tutorial_ct = 0;
-		has_done_lab_tutorial = true;
-		cur_set = L_FREERUN_PROGRESS;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB2) {
-		[self cycle_through:35 g:g];
-		[self cycle_through_lab:3];
-		tutorial_ct = 0;
-		has_done_lab_tutorial = true;
-		cur_set = L_LABINTRO;
-		has_done_world2_tutorial = YES;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
-		[self cycle_through:36 g:g];
-		[self cycle_through_lab:6];
-		tutorial_ct = 0;
-		has_done_lab_tutorial = true;
-		cur_set = L_FREERUN_PROGRESS;
-		has_done_world2_tutorial = YES;
-		
-	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
-		[self cycle_through:36 g:g];
-		[self cycle_through_lab:6];
-		tutorial_ct = 0;
-		has_done_lab_tutorial = true;
-		cur_set = L_LABINTRO;
-		has_done_world3_tutorial = YES;
-		
-	} else {
-		NSLog(@"AutoLevelState start at error");
-	}
-}
-
 #define SETS_BETWEEN_LABS 3
-//#define SETS_BETWEEN_LABS 0
 #define LEVELS_IN_LAB_SET 3
-//#define LEVELS_IN_LAB_SET 0
-
 #define LEVELS_IN_SET 3
 #define CAPEGAME_EVERY 3
 

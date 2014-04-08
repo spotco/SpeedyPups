@@ -23,13 +23,11 @@
 #define DRAW_HITBOX NO
 
 /**
- -debug fixes autolevelstate1, autlevelstate levels_in_lab
- 
  -refactor autolevelstate to only 1 world 1 lab (change GameWorldMode & Autolevelstate API)
  -refactor bglayer to only 1 world 1 lab
- -temp item resetting in lab transition
-  fix level selection algo, getting repeating levels (especially in lab1)
+ -fix level selection algo, getting repeating levels (especially in lab1)
  
+ -weightedsorter initial shuffle
  credits-interactive
  
  integrate new map assets, freerun progress popup redesign (prev, current, next)
@@ -43,8 +41,10 @@
  
  ads integration, pay for no ads
  
- make lab 1 levels easier
- make dogrocket level easier
+ remove two spike levels in tutorial, make into regular levels
+ 3 lab levels
+ 3 more cannon levels
+ pick some hard levels in the hard mix
  
  -art ask for:
 	website
@@ -55,6 +55,7 @@
 Stretch goals:
  10 more freerun levels
  
+ equipped item resetting in lab transition
  bug armor -> rocket -> end -> swingvine, still in rocket form
  random super reward level
  flip match-2 minigame (collect tokens ingame for tries)
