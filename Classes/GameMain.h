@@ -19,6 +19,8 @@
 
 +(void)start_from_callback:(GameModeCallback*)c;
 
++(void)run_scene:(CCScene*)s;
+
 +(BOOL)GET_USE_BG;
 +(BOOL)GET_DRAW_HITBOX;
 +(BOOL)GET_DO_CONSTANT_DT;

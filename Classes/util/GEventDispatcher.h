@@ -20,7 +20,7 @@ typedef enum {
 	
     GEventType_SHOW_ENEMYAPPROACH_WARNING,
     GEventType_ENTER_LABAREA,
-    GEventType_EXIT_TO_DEFAULTAREA,
+    //GEventType_EXIT_TO_DEFAULTAREA,
     GEventType_START_INTIAL_ANIM,
 	GEVentType_PICKUP_ITEM,
 	

@@ -56,7 +56,7 @@
     //fix satpoly hitbox for moving position, see spikevine update
     
 	CCSprite *base = (CCSprite*)[self getChildByTag:BASEID];
-	if ([GameWorldMode get_bgmode] == BGMode_LAB) {
+	if (g.world_mode.cur_mode == BGMode_LAB) {
 		[base setTexture:[Resource get_tex:TEX_LABSWINGVINE_BASE]];
 	} else {
 		[base setTexture:[Resource get_tex:TEX_SWINGVINE_BASE]];

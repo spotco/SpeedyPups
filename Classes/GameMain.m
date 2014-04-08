@@ -23,17 +23,17 @@
 #define DRAW_HITBOX NO
 
 /**
+ -debug fixes autolevelstate1, autlevelstate levels_in_lab
  
- -debug fixes autolevelstate2, gameworldmode1
- 
- cat boss in copter & sub
- 1 world 1 lab, transitions
+ -refactor autolevelstate to only 1 world 1 lab (change GameWorldMode & Autolevelstate API)
+ -refactor bglayer to only 1 world 1 lab
+ -temp item resetting in lab transition
+  fix level selection algo, getting repeating levels (especially in lab1)
  
  credits-interactive
  
  integrate new map assets, freerun progress popup redesign (prev, current, next)
  
- fix level selection algo, getting repeating levels (especially in lab1)
  score ui
  add second currency and separate upgrade/unlock for items
  second currency tradein from bones daily

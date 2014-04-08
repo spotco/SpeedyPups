@@ -22,7 +22,7 @@
     map_sections = [[NSMutableArray alloc] init];
     stored = [[NSMutableArray alloc] init];
     queued_sections = [[NSMutableArray alloc] init];
-    [self load_into_queue:[cur_state get_level]];
+    [self load_into_queue:[cur_state get_level:glayer]];
 }
 
 -(void)dispatch_event:(GEvent *)e {
@@ -109,7 +109,7 @@
 -(void)shift_queue_into_current { //move top map in queue to current
     if ([queued_sections count] == 0) {
         [tglayer.get_stats increment:GEStat_SECTIONS];
-        [self load_into_queue:[cur_state get_level]];
+        [self load_into_queue:[cur_state get_level:tglayer]];
     }
     MapSection *m = [queued_sections objectAtIndex:0];
     [queued_sections removeObjectAtIndex:0];

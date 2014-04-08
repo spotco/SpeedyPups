@@ -69,16 +69,16 @@ static NSArray* ABOVE;
     d.position = ccp(posx,posy);
     
     CGRect texrect;
-	if ([GameWorldMode get_worldnum] == WorldNum_3) {
+	if (g.world_mode.cur_world == WorldNum_3) {
 		texrect = [FileCache get_cgrect_from_plist:TEX_BG3_GROUND_DETAIL_SS idname:[self id_to_key:type]];
 	} else {
 		texrect = [FileCache get_cgrect_from_plist:TEX_GROUND_DETAILS idname:[self id_to_key:type]];
 	}
 	
 	CCTexture2D *tex;
-	if ([GameWorldMode get_worldnum] == WorldNum_2) {
+	if (g.world_mode.cur_world == WorldNum_2) {
 		tex = [Resource get_tex:TEX_GROUND_DETAILS_WORLD2];
-	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+	} else if (g.world_mode.cur_world == WorldNum_3) {
 		tex = [Resource get_tex:TEX_BG3_GROUND_DETAIL_SS];
 	} else {
 		tex = [Resource get_tex:TEX_GROUND_DETAILS];

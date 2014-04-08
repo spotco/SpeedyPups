@@ -28,9 +28,9 @@
 @synthesize game_objects,islands;
 @synthesize player;
 @synthesize camera_state,tar_camera_state;
+@synthesize world_mode;
 
 +(CCScene *)scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world {
-	[GameWorldMode set_worldnum:world];
     CCScene *scene = [CCScene node];
     GameEngineLayer *glayer = [GameEngineLayer layer_from_file:map_file_name lives:lives world:world];
 	BGLayer *bglayer = [BGLayer cons_with_gamelayer:glayer];
@@ -45,7 +45,6 @@
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
-	[GameWorldMode set_worldnum:world];
     CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
@@ -67,7 +66,6 @@
 }
 
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world {
-	[GameWorldMode set_worldnum:world];
 	[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
     CCScene* scene = [GameEngineLayer scene_with:info.map_name lives:GAMEENGINE_INF_LIVES world:world];
 	[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
@@ -102,13 +100,13 @@
 }
 
 -(void)play_worldnum_bgm {
-	if ([GameWorldMode get_worldnum] == WorldNum_1) {
+	if (world_mode.cur_world == WorldNum_1) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 		
-	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
+	} else if (world_mode.cur_world == WorldNum_2) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD2];
 		
-	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+	} else if (world_mode.cur_world == WorldNum_3) {
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD3];
 		
 	}
@@ -118,6 +116,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	world_mode = [GameWorldMode cons_worldnum:world];
 	[DogBone reset_play_collect_sound];
 	stats = [GameEngineStats cons];
     default_starting_lives = starting_lives;
@@ -373,9 +372,15 @@
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
 			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self boss:do_boss_capegame]];
-			do_boss_capegame?[AudioManager playbgm_imm:BGM_GROUP_BOSS1]:[AudioManager playbgm_imm:BGM_GROUP_CAPEGAME];
+			if (do_boss_capegame) {
+				[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
+				current_mode = GameEngineLayerMode_GAMEEND; //logic done in BOSS3_DEFEATED event
+			} else {
+				[AudioManager playbgm_imm:BGM_GROUP_CAPEGAME];
+				current_mode = GameEngineLayerMode_CAPEIN;
+			}
 			[Player character_bark];
-			current_mode = GameEngineLayerMode_CAPEIN;
+			
 			player.vy = 0;
 			player.rotation = 0;
 			[self cape_in_lock_on_tutorial_end];
@@ -452,9 +457,22 @@
     } else if (current_mode == GameEngineLayerMode_RUNOUT) {
         runout_ct--;
         if (runout_ct <= 0) {
-            current_mode = GameEngineLayerMode_GAMEOVER;
+            current_mode = GameEngineLayerMode_GAMEEND;
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_CHALLENGE_COMPLETE_MENU]];
         } else {        
+            [GamePhysicsImplementation player_move:player with_islands:islands];
+            [player update:self];
+            [self update_gameobjs];
+            [self update_particles];
+            [self push_added_particles];
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_UIANIM_TICK]];
+        }
+		
+	} else if (current_mode == GameEngineLayerMode_RUNOUT_TO_FREEPUPS) {
+        runout_ct--;
+        if (runout_ct <= 0) {
+            current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+        } else {
             [GamePhysicsImplementation player_move:player with_islands:islands];
             [player update:self];
             [self update_gameobjs];
@@ -468,48 +486,25 @@
 		fadeoutlayer.opacity = fadeoutlayer.opacity + 15 > 255 ? 255 : fadeoutlayer.opacity + 15;
 		
 		if (fadeoutlayer.opacity >= 255) {
-			current_mode = GameEngineLayerMode_FADEIN_FROM_FREEPUPS;
-			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:[GameWorldMode get_labnum]]];
+			current_mode = GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE;
+			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:world_mode.cur_world]];
 			[AudioManager stop_bgm];
 			[GameControlImplementation reset_control_state];
 			[Common unset_dt];
 		}
 		
-	} else if (current_mode == GameEngineLayerMode_FADEIN_FROM_FREEPUPS) {
-		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
-		fadeoutlayer.opacity = fadeoutlayer.opacity - 15 < 0 ? 0 : fadeoutlayer.opacity - 15;
-		if (fadeoutlayer.opacity == 0) {
-			current_mode = GameEngineLayerMode_GAMEPLAY;
-			[AudioManager playbgm_imm:BGM_GROUP_LAB];
-		}
+	} else if (current_mode == GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE) {
+		current_mode = GameEngineLayerMode_GAMEEND;
+		[self exit];
+		[GEventDispatcher remove_all_listeners];
+		[world_mode increment_world];
+		CCScene *neu_scene = [GameEngineLayer scene_with_autolevel_lives:lives world:world_mode.cur_world];
+		
+		GameEngineLayer *g = (GameEngineLayer*)[neu_scene getChildByTag:tGLAYER];
+		[[[g set_bones:collected_bones] set_time:time] copy_stats:[self get_stats]];
+		[GameMain run_scene:neu_scene];
 	}
     [GEventDispatcher dispatch_events];
-}
-
--(void)cape_in_lock_on_tutorial_end {
-	TutorialEnd *target_end = NULL;
-	for (GameObject *o in game_objects) {
-		if ([o class] == [TutorialEnd class]) {
-			if (target_end == NULL) {
-				target_end = (TutorialEnd*)o;
-			} else if (o.position.x > player.position.x && o.position.x < target_end.position.x) {
-				target_end = (TutorialEnd*)o;
-			}
-		}
-	}
-	if (target_end != NULL) {
-		player.position = ccp(target_end.position.x,target_end.position.y+600);
-		CGSize s = [[CCDirector sharedDirector] winSize];
-		CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
-		[self setPosition:ccp(
-							  clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
-							  clampf(halfScreenSize.y-target_end.position.y,follow_clamp_y_min,follow_clamp_y_max)
-							  )];
-		refresh_viewbox_cache = YES;
-		[self update_render];
-		do_runin_anim = YES;
-		
-	}
 }
 
 -(void)collect_bone:(BOOL)do_1up_anim {
@@ -579,18 +574,8 @@
         [player add_effect:[FlashEffect cons_from:[player get_current_params] time:35]];
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
-		[GameWorldMode set_bgmode:BGMode_LAB];
-		
+		world_mode.cur_mode = BGMode_LAB;
 		[AudioManager playbgm_imm:BGM_GROUP_LAB];
-		
-	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		[GameWorldMode increment_world];
-		[GameWorldMode set_bgmode:BGMode_NORMAL];
-		
-		[self play_worldnum_bgm];
-		if ([BGTimeManager get_global_time] == MODE_NIGHT) {
-			[AudioManager transition_mode2];
-		}
 		
 	} else if (e.type == GEventType_BEGIN_CAPE_GAME) {
 		if ([player is_armored]) {
@@ -603,7 +588,6 @@
 		runout_ct = 100;
 		player.current_island = NULL;
 		do_boss_capegame = NO;
-		//do_boss_capegame = YES;
 		
 	} else if (e.type == GEventType_BEGIN_BOSS_CAPE_GAME) {
 		if ([player is_armored]) {
@@ -617,15 +601,14 @@
 		player.current_island = NULL;
 		do_boss_capegame = YES;
 		
-	} else if (e.type == GEventType_BOSS1_DEFEATED) {
-		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+	} else if (e.type == GEventType_BOSS1_DEFEATED || e.type == GEventType_BOSS2_DEFEATED) {
+		current_mode = GameEngineLayerMode_RUNOUT_TO_FREEPUPS;
+		runout_ct = 100;
 		
-	} else if (e.type == GEventType_BOSS2_DEFEATED) {
+	} else if (e.type == GEventType_BOSS3_DEFEATED) {
+		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
+		fadeoutlayer.opacity = 255;
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
-		
-	} else if (e.type == GEventType_BOSS3_DEFEATED_POST_UPDATE) {
-		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
-		[self cape_in_lock_on_tutorial_end];
 	}
 }
 
@@ -656,14 +639,11 @@
 /* event dispatch handlers */
 
 -(void)ask_continue {
-    current_mode = GameEngineLayerMode_GAMEOVER;
+    current_mode = GameEngineLayerMode_GAMEEND;
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_ASK_CONTINUE]];
 }
 -(void)exit {
     [self unscheduleAllSelectors];
-	
-	[GameWorldMode reset];
-    //[self set_records];
     
     [GEventDispatcher remove_all_listeners];
     [[CCDirector sharedDirector] resume];
@@ -876,11 +856,52 @@ static bool _began_hold_clockbutton = NO;
 	return (BGLayer*)[parent_ getChildByTag:tBGLAYER];
 }
 
+-(void)cape_in_lock_on_tutorial_end {
+	TutorialEnd *target_end = NULL;
+	for (GameObject *o in game_objects) {
+		if ([o class] == [TutorialEnd class]) {
+			if (target_end == NULL) {
+				target_end = (TutorialEnd*)o;
+			} else if (o.position.x > player.position.x && o.position.x < target_end.position.x) {
+				target_end = (TutorialEnd*)o;
+			}
+		}
+	}
+	if (target_end != NULL) {
+		player.position = ccp(target_end.position.x,target_end.position.y+600);
+		CGSize s = [[CCDirector sharedDirector] winSize];
+		CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+		[self setPosition:ccp(
+							  clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
+							  clampf(halfScreenSize.y-target_end.position.y,follow_clamp_y_min,follow_clamp_y_max)
+							  )];
+		refresh_viewbox_cache = YES;
+		[self update_render];
+		do_runin_anim = YES;
+		
+	}
+}
+
 -(void)dealloc {
     [self removeAllChildrenWithCleanup:YES];
     [islands removeAllObjects];
     [game_objects removeAllObjects];
     [particles removeAllObjects];
+}
+
+-(GameEngineLayer*)set_bones:(int)b {
+	collected_bones = b;
+	return self;
+}
+
+-(GameEngineLayer*)set_time:(int)t {
+	time = t;
+	return self;
+}
+
+-(GameEngineLayer*)copy_stats:(GameEngineStats*)copy_stats {
+	[stats copy_stats:copy_stats];
+	return self;
 }
 
 

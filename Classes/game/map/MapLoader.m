@@ -255,7 +255,7 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
             float width = getflt(j_object, @"width");
             float hei = getflt(j_object, @"height");
-            [map.game_objects addObject:[IslandFill cons_x:x y:y width:width height:hei]];
+            [map.game_objects addObject:[IslandFill cons_x:x y:y width:width height:hei g:g]];
             
         } else if ([type isEqualToString:@"breakable_wall"]) {
             float x = getflt(j_object, @"x");
@@ -331,10 +331,11 @@ static NSMutableDictionary* cached_json;
             [map.game_objects addObject:[LabEntrance cons_pt:ccp(x,y)]];
             
         } else if ([type isEqualToString:@"labexit"]) {
-            float x = getflt(j_object, @"x");
-            float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[LabExit cons_pt:ccp(x,y)]];
-        
+            //float x = getflt(j_object, @"x");
+            //float y = getflt(j_object, @"y");
+            //[map.game_objects addObject:[LabExit cons_pt:ccp(x,y)]];
+			NSLog(@"ATTEMPTED LABEXIT SOMETHINGS WRONG HERE");
+			
         } else if ([type isEqualToString:@"enemyalert"]) {
             [map.game_objects addObject:[EnemyAlert cons_p1:ccp(getflt(j_object, @"x"),getflt(j_object, @"y"))
                                                        size:ccp(getflt(j_object, @"width"),getflt(j_object, @"height"))]];
@@ -360,7 +361,7 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
             float width = getflt(j_object, @"width");
             float hei = getflt(j_object, @"height");
-            [map.game_objects addObject:[LabFill cons_x:x y:y width:width height:hei]];
+            [map.game_objects addObject:[LabFill cons_x:x y:y width:width height:hei g:g]];
 			
 		} else if ([type isEqualToString:@"itemgen"]) {
 			float x = getflt(j_object, @"x");

@@ -177,7 +177,7 @@ static CGPoint last_pos;
 	
 	if (current_mode == SubMode_ToRemove) {
 		[g remove_gameobject:self];
-		[g remove_gameobject:fgwater];
+		//[g remove_gameobject:fgwater];
 		
 	} else if (current_mode == SubMode_DeadExplode) {
 		[bgobj setVisible:NO];

@@ -18,10 +18,10 @@
 	
     if (ct <= 0) {
 		ccColor3B color;
-		if ([GameWorldMode get_worldnum] == WorldNum_2) {
+		if (g.world_mode.cur_world == WorldNum_2) {
 			color = ccc3(float_random(188, 224), float_random(128, 154), float_random(56, 69));
 			
-		} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		} else if (g.world_mode.cur_world == WorldNum_3) {
 			color = ccc3(255,255,255);
 			
 		} else {
@@ -33,7 +33,7 @@
 										  vx:float_random(-2, -5)
 									  vtheta:float_random(0.01, 0.075)] set_color:color]];
 		
-		if ([GameWorldMode get_worldnum] == WorldNum_3) {
+		if (g.world_mode.cur_world == WorldNum_3) {
 			ct = float_random(5, 15);
 		} else {
 			ct = float_random(15, 40);
@@ -47,8 +47,6 @@
 -(void)dispatch_event:(GEvent *)e {
 	if (e.type == GEventType_ENTER_LABAREA) {
 		stop = YES;
-	} else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		stop = NO;
 	}
 }
 

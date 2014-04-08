@@ -94,7 +94,7 @@
 	[bglayerset_lab3 setVisible:NO];
 	[self bglayer_addChild:bglayerset_lab3];
 	
-	current_set = [self set_for_world:[GameWorldMode get_worldnum]];
+	current_set = [self set_for_world:game_engine_layer.world_mode.cur_world];
 	[current_set setVisible:YES];
 	
 	return self;
@@ -116,14 +116,14 @@
 	}
 }
 
--(BGLayerSet*)set_for_lab:(LabNum)labnum {	
-	if (labnum == LabNum_1) {
+-(BGLayerSet*)set_for_lab:(WorldNum)worldnum {
+	if (worldnum == WorldNum_1) {
 		return bglayerset_lab1;
 		
-	} else if (labnum == LabNum_2) {
+	} else if (worldnum == WorldNum_2) {
 		return bglayerset_lab2;
 		
-	} else if (labnum == LabNum_3) {
+	} else if (worldnum == WorldNum_3) {
 		return bglayerset_lab3;
 	} else {
 		NSLog(@"bglayerset::set_for_lab::error");
@@ -137,12 +137,7 @@
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
 		[current_set fadeout_in:10];
-		current_set = [self set_for_lab:[GameWorldMode get_labnum]];
-		[current_set fadein_in:10];
-        
-    } else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-		[current_set fadeout_in:10];
-		current_set = [self set_for_world:[GameWorldMode get_worldnum]];
+		current_set = [self set_for_lab:game_engine_layer.world_mode.cur_world];
 		[current_set fadein_in:10];
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {

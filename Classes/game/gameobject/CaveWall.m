@@ -4,18 +4,18 @@
 
 @implementation CaveWall
 
-+(CaveWall*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
++(CaveWall*)cons_x:(float)x y:(float)y width:(float)width height:(float)height g:(GameEngineLayer*)g {
     CaveWall* n = [CaveWall node];
-    [n cons_x:x y:y width:width height:height];
+    [n cons_x:x y:y width:width height:height g:g];
     return n;
 }
 
--(void)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
+-(void)cons_x:(float)x y:(float)y width:(float)width height:(float)height g:(GameEngineLayer*)g {
     [self setPosition:ccp(x,y)];
     wid = width;
     hei = height;
     
-    tex = [Common cons_render_obj:[self get_tex] npts:4];
+    tex = [Common cons_render_obj:[self get_tex:g] npts:4];
     active = YES;
     /*10
       32*/
@@ -33,7 +33,7 @@
     }
 }
 
--(CCTexture2D*)get_tex {
+-(CCTexture2D*)get_tex:(GameEngineLayer *)g {
     return [Resource get_tex:TEX_GROUND_TEX_1];
 }
 

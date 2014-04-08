@@ -21,7 +21,7 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-	if ([GameWorldMode get_bgmode] == BGMode_LAB) {
+	if (g.world_mode.cur_mode == BGMode_LAB) {
 		top.texture = [Resource get_tex:TEX_LAB_ROCKWALL_BASE];
 		bottom.texture = [Resource get_tex:TEX_LAB_ROCKWALL_BASE];
 		center.texture = [Resource get_tex:TEX_LAB_ROCKWALL_SECTION];
@@ -43,7 +43,7 @@
         
         float len = [VecLib length:dir_vec];
         for(float i = 0; i < len; i+=float_random(8, 30)) {
-			if ([GameWorldMode get_bgmode] == BGMode_LAB) {
+			if (g.world_mode.cur_mode == BGMode_LAB) {
 				[g add_particle:
 					[BreakableWallRockParticle cons_lab_x:position_.x + (i/len)*dir_vec.x
 													y:position_.y + (i/len)*dir_vec.y

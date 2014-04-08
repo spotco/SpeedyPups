@@ -25,4 +25,6 @@ NSValue* NSV(GEStat t);
 -(void)increment:(GEStat)type;
 -(NSString*)get_disp_str_for_stat:(GEStat)type g:(GameEngineLayer*)g;
 -(NSArray*)get_all_stats;
+
+-(void)copy_stats:(GameEngineStats*)copy;
 @end

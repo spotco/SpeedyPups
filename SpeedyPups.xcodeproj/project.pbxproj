@@ -36,7 +36,7 @@
 		7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E071F2E180296E10003F8AA /* LabHandRail.m */; };
 		7E071F341802A24F0003F8AA /* loadinganim.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E071F321802A24F0003F8AA /* loadinganim.png */; };
 		7E07524C17A5072B001FAE5F /* WeightedSorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07524B17A5072B001FAE5F /* WeightedSorter.m */; };
-		7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524D17A5191A001FAE5F /* labintro_labexit.map */; };
+		7E07524E17A5191A001FAE5F /* old_labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524D17A5191A001FAE5F /* old_labintro_labexit.map */; };
 		7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E07524F17A51AD5001FAE5F /* boss1_start.map */; };
 		7E07525317A527DA001FAE5F /* FreeRunProgressDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */; };
 		7E0A787B16ED57880026C418 /* NMenuPlayPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A787A16ED57880026C418 /* NMenuPlayPage.m */; };
@@ -729,6 +729,7 @@
 		7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAA7FA181768FE00BEE8D2 /* Cannon.m */; };
 		7EEAC33B17D90A2B0032CE7D /* particles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33917D90A2B0032CE7D /* particles.plist */; };
 		7EEAC33C17D90A2B0032CE7D /* particles.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEAC33A17D90A2B0032CE7D /* particles.png */; };
+		7EED9BA618F406380047E627 /* labintro_labexit.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EED9BA518F406380047E627 /* labintro_labexit.map */; };
 		7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEE5B531804CA8D00A4A64F /* LoadingScene.m */; };
 		7EEE5B561804CE3400A4A64F /* load_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B551804CE3400A4A64F /* load_icon.png */; };
 		7EEE5B581804CEF100A4A64F /* loadinganim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EEE5B571804CEF100A4A64F /* loadinganim.plist */; };
@@ -824,7 +825,7 @@
 		7E071F321802A24F0003F8AA /* loadinganim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadinganim.png; sourceTree = "<group>"; };
 		7E07524A17A5072B001FAE5F /* WeightedSorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeightedSorter.h; sourceTree = "<group>"; };
 		7E07524B17A5072B001FAE5F /* WeightedSorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightedSorter.m; sourceTree = "<group>"; };
-		7E07524D17A5191A001FAE5F /* labintro_labexit.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_labexit.map; path = levels/labintro_labexit.map; sourceTree = "<group>"; };
+		7E07524D17A5191A001FAE5F /* old_labintro_labexit.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = old_labintro_labexit.map; path = levels/old_labintro_labexit.map; sourceTree = "<group>"; };
 		7E07524F17A51AD5001FAE5F /* boss1_start.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss1_start.map; sourceTree = "<group>"; };
 		7E07525117A527DA001FAE5F /* FreeRunProgressDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeRunProgressDisplay.h; sourceTree = "<group>"; };
 		7E07525217A527DA001FAE5F /* FreeRunProgressDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeRunProgressDisplay.m; sourceTree = "<group>"; };
@@ -1726,6 +1727,7 @@
 		7EEAA7FA181768FE00BEE8D2 /* Cannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cannon.m; sourceTree = "<group>"; };
 		7EEAC33917D90A2B0032CE7D /* particles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles.plist; sourceTree = "<group>"; };
 		7EEAC33A17D90A2B0032CE7D /* particles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles.png; sourceTree = "<group>"; };
+		7EED9BA518F406380047E627 /* labintro_labexit.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_labexit.map; path = levels/labintro_labexit.map; sourceTree = "<group>"; };
 		7EEE5B521804CA8D00A4A64F /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = loading/LoadingScene.h; sourceTree = "<group>"; };
 		7EEE5B531804CA8D00A4A64F /* LoadingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingScene.m; path = loading/LoadingScene.m; sourceTree = "<group>"; };
 		7EEE5B551804CE3400A4A64F /* load_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_icon.png; sourceTree = "<group>"; };
@@ -2164,7 +2166,8 @@
 				7E73334417D7B31F00E5D6F6 /* labintro_entrance.map */,
 				7EEE95581776F52300474FD3 /* labintro_tutoriallauncher.map */,
 				7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */,
-				7E07524D17A5191A001FAE5F /* labintro_labexit.map */,
+				7E07524D17A5191A001FAE5F /* old_labintro_labexit.map */,
+				7EED9BA518F406380047E627 /* labintro_labexit.map */,
 			);
 			name = labintro;
 			path = ..;
@@ -4169,6 +4172,7 @@
 				7EAE8550177FFF2F005AB868 /* lab_ezshiz.map in Resources */,
 				7EEAA7F71817689700BEE8D2 /* cannon_ss.plist in Resources */,
 				7EAE8552178011FA005AB868 /* lab_ezrocketshz.map in Resources */,
+				7EED9BA618F406380047E627 /* labintro_labexit.map in Resources */,
 				7EC7B8A11782B41E00C26314 /* lab_swingers.map in Resources */,
 				7EC7B8A31782BF7600C26314 /* lab_alladat.map in Resources */,
 				7E2023B018E0260200A5BCAF /* sfx_cat_hit.wav in Resources */,
@@ -4184,7 +4188,7 @@
 				7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */,
 				7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */,
 				7EEAA7F81817689700BEE8D2 /* cannon_ss.png in Resources */,
-				7E07524E17A5191A001FAE5F /* labintro_labexit.map in Resources */,
+				7E07524E17A5191A001FAE5F /* old_labintro_labexit.map in Resources */,
 				7E07525017A51AD5001FAE5F /* boss1_start.map in Resources */,
 				7EFED6A317ABA5710061C919 /* lab_rock_particle.png in Resources */,
 				7E50505D17D074CF00B343E1 /* freerunstart_icons.plist in Resources */,

@@ -17,27 +17,27 @@
 
 @implementation FreePupsAnim
 
-+(CCScene*)scene_with:(LabNum)labnum {
++(CCScene*)scene_with:(WorldNum)worldnum {
 	CCScene *rtv = [CCScene node];
-	[rtv addChild:[[FreePupsAnim node] cons_with:labnum]];
+	[rtv addChild:[[FreePupsAnim node] cons_with:worldnum]];
 	return rtv;
 }
 
 static float GROUNDLEVEL;
 
--(id)cons_with:(LabNum)labnum {
+-(id)cons_with:(WorldNum)labnum {
 	[self cons_anim];
-	if (labnum == LabNum_1) {
+	if (labnum == WorldNum_1) {
 		BGLayerSet *set = [Lab1BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];
 	
-	} else if (labnum == LabNum_2) {
+	} else if (labnum == WorldNum_2) {
 		BGLayerSet *set = [Lab2BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];
 		
-	} else if (labnum == LabNum_3) {
+	} else if (labnum == WorldNum_3) {
 		BGLayerSet *set = [Lab3BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];

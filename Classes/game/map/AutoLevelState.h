@@ -20,7 +20,7 @@
 	WeightedSorter *setgen, *fillersetgen, *labsetgen;
 }
 +(AutoLevelState*)cons;
--(NSString*)get_level;
+-(NSString*)get_level:(GameEngineLayer*)g;
 +(NSArray*)get_all_levels;
 
 -(void)to_boss1_mode;

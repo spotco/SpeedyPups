@@ -25,8 +25,8 @@
 -(void)update:(Player*)player g:(GameEngineLayer *)g{
     [super update:player g:g];
 	
-	[body setVisible:[GameWorldMode get_bgmode] == BGMode_LAB ? NO : YES];
-	[labbody setVisible:[GameWorldMode get_bgmode] == BGMode_LAB ? YES : NO];
+	[body setVisible:g.world_mode.cur_mode == BGMode_LAB ? NO : YES];
+	[labbody setVisible:g.world_mode.cur_mode == BGMode_LAB ? YES : NO];
 	
     if (recharge_ct > 0) {
         recharge_ct--;

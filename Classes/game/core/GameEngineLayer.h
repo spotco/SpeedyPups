@@ -24,18 +24,21 @@
 #define GAMEENGINE_INF_LIVES -99
 
 typedef enum {
+	GameEngineLayerMode_GAMEEND,
+	
     GameEngineLayerMode_SCROLLDOWN,
     GameEngineLayerMode_RUNINANIM,
     GameEngineLayerMode_CAMERAFOLLOWTICK,
     GameEngineLayerMode_GAMEPLAY,
     GameEngineLayerMode_PAUSED,
     GameEngineLayerMode_UIANIM,
-    GameEngineLayerMode_GAMEOVER,
     GameEngineLayerMode_RUNOUT,
 	GameEngineLayerMode_CAPEOUT,
 	GameEngineLayerMode_CAPEIN,
+	
+	GameEngineLayerMode_RUNOUT_TO_FREEPUPS,
 	GameEngineLayerMode_FADEOUT_TO_FREEPUPS,
-	GameEngineLayerMode_FADEIN_FROM_FREEPUPS
+	GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE
 } GameEngineLayerMode;
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
@@ -70,7 +73,7 @@ typedef enum {
 	GameEngineLayerMode stored_mode;
 }
 
-
+@property(readwrite,strong) GameWorldMode *world_mode;
 @property(readwrite,assign) GameEngineLayerMode current_mode;
 @property(readwrite,strong) NSMutableArray *islands, *game_objects;
 @property(readwrite,strong) Player *player;
@@ -119,5 +122,8 @@ typedef enum {
 -(void)setColor:(ccColor3B)color;
 
 -(GameEngineStats*)get_stats;
+
+-(GameEngineLayer*)set_bones:(int)b;
+-(GameEngineLayer*)set_time:(int)t;
 
 @end

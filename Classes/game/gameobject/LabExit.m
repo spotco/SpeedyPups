@@ -2,6 +2,7 @@
 #import "AudioManager.h"
 #import "BGTimeManager.h"
 
+//DEPRECATED SHOULD NOT BE USED
 @implementation LabExit
 
 +(LabExit*)cons_pt:(CGPoint)pt {
@@ -13,7 +14,7 @@
 }
 
 -(void)entrance_event {
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_EXIT_TO_DEFAULTAREA]];
+    //[GEventDispatcher push_event:[GEvent cons_type:GEventType_EXIT_TO_DEFAULTAREA]];
 }
 
 

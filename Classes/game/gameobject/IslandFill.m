@@ -3,10 +3,10 @@
 #import "Island.h"
 
 @implementation IslandFill
-+(IslandFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
++(IslandFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height g:(GameEngineLayer*)g {
     IslandFill* n = [IslandFill node];
     n.active = YES;
-    [n cons_x:x y:y width:width height:height];
+    [n cons_x:x y:y width:width height:height g:g];
     
     return n;
 }
@@ -24,8 +24,8 @@
     has_lazy_setrenderord = YES;
 }
 
--(CCTexture2D*)get_tex {
-	if ([GameWorldMode get_worldnum] == WorldNum_3) {
+-(CCTexture2D*)get_tex:(GameEngineLayer*)g {
+	if (g.world_mode.cur_world == WorldNum_3) {
 		return [Resource get_tex:TEX_BG3_ISLAND_FILL];
 	}
     return [Resource get_tex:TEX_GROUND_TEX_1];
@@ -38,10 +38,10 @@
 
 @implementation LabFill
 
-+(LabFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
++(LabFill*)cons_x:(float)x y:(float)y width:(float)width height:(float)height g:(GameEngineLayer*)g {
     LabFill* n = [LabFill node];
     n.active = YES;
-    [n cons_x:x y:y width:width height:height];
+    [n cons_x:x y:y width:width height:height g:g];
     
     return n;
 }

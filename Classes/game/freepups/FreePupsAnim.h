@@ -21,6 +21,6 @@ typedef enum {
 	FreePupsUIAnimation *uianim;
 }
 
-+(CCScene*)scene_with:(LabNum)labnum;
++(CCScene*)scene_with:(WorldNum)worldnum;
 
 @end

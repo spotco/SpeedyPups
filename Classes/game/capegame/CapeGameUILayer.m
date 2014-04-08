@@ -290,7 +290,7 @@
 }
 
 -(void)exit_to_menu {
-	cape_game.get_main_game.current_mode = GameEngineLayerMode_GAMEOVER;
+	cape_game.get_main_game.current_mode = GameEngineLayerMode_GAMEEND;
 	[AudioManager playsfx:SFX_MENU_DOWN];
 	[[CCDirector sharedDirector] resume];
 	[update_timer invalidate];

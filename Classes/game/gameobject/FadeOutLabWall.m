@@ -24,8 +24,6 @@
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_ENTER_LABAREA) {
         tar_opacity = 0;
-    } else if (e.type == GEventType_EXIT_TO_DEFAULTAREA) {
-        tar_opacity = 255;
     }
 }
 

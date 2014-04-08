@@ -48,6 +48,17 @@ NSValue* NSV(GEStat t) { return [NSValue value:&t withObjCType:@encode(GEStat)];
 	}
 }
 
+-(void)copy_stats:(GameEngineStats*)copy {
+	[stats removeAllObjects];
+	for (NSValue *key in copy.dict) {
+		stats[key] = copy.dict[key];
+	}
+}
+
+-(NSDictionary*)dict {
+	return stats;
+}
+
 -(NSArray*)get_all_stats {
 	return @[
 		NSV(GEStat_TIME),

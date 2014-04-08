@@ -142,8 +142,8 @@ static NSSet *lab_levels_world3;
 			@"classic_totalmix" : @3
 		},
 		L_AUTOSTART: @{
-				@"shittytest":@1
-				//@"autolevel_start": @1
+				//@"shittytest":@1
+				@"autolevel_start": @1
 		},
 		L_FREERUN_PROGRESS: @{
 			@"freerun_progress": @1
@@ -298,20 +298,20 @@ static NSSet *lab_levels_world3;
 	return streq(cur_set, L_BOSS1AREA) || streq(cur_set, L_BOSS2AREA) || streq(cur_set, L_BOSS3AREA);
 }
 
--(NSString*)pick_set {
+-(NSString*)pick_set:(GameEngineLayer*)g {
 	NSArray *available;
 	
 	if (start_with_easy) {
 		start_with_easy = NO;
 		available = @[L_EASY];
 		
-	} else if ([GameWorldMode get_worldnum] == WorldNum_1) {
+	} else if (g.world_mode.cur_world == WorldNum_1) {
 		available = @[L_EASY,L_CLASSIC,L_JUMPPAD];
 		
-	} else if ([GameWorldMode get_worldnum] == WorldNum_2) {
+	} else if (g.world_mode.cur_world == WorldNum_2) {
 		available = @[L_CLASSIC,L_JUMPPAD, L_SWINGVINE, L_HARD];
 		
-	} else if ([GameWorldMode get_worldnum] == WorldNum_3) {
+	} else if (g.world_mode.cur_world == WorldNum_3) {
 		available = @[L_JUMPPAD, L_SWINGVINE, L_HARD, L_CANNON];
 		
 	} else {
@@ -329,11 +329,11 @@ static NSSet *lab_levels_world3;
 	return tar;
 }
 
--(void)cycle_through:(int)fois {
-	cur_set = [self pick_set];
+-(void)cycle_through:(int)fois g:(GameEngineLayer*)g {
+	cur_set = [self pick_set:g];
 	for (int i = 0; i < fois; i++) {
 		ct++;
-		if (ct%3==0) cur_set = [self pick_set];
+		if (ct%3==0) cur_set = [self pick_set:g];
 		[setgen get_from_bucket:cur_set];
 	}
 }
@@ -344,7 +344,7 @@ static NSSet *lab_levels_world3;
 	}
 }
 
--(void)set_initial_params {
+-(void)set_initial_params:(GameEngineLayer*)g {
 	if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_TUTORIAL) {
 		cur_set = L_TUTORIAL;
 		has_done_lab_tutorial = NO;
@@ -357,20 +357,20 @@ static NSSet *lab_levels_world3;
 		start_with_easy = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB1) {
-		[self cycle_through:17];
+		[self cycle_through:17 g:g];
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_LABINTRO;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD2) {
-		[self cycle_through:20];
+		[self cycle_through:20 g:g];
 		[self cycle_through_lab:3];
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
 		cur_set = L_FREERUN_PROGRESS;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB2) {
-		[self cycle_through:35];
+		[self cycle_through:35 g:g];
 		[self cycle_through_lab:3];
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
@@ -378,7 +378,7 @@ static NSSet *lab_levels_world3;
 		has_done_world2_tutorial = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_WORLD3) {
-		[self cycle_through:36];
+		[self cycle_through:36 g:g];
 		[self cycle_through_lab:6];
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
@@ -386,7 +386,7 @@ static NSSet *lab_levels_world3;
 		has_done_world2_tutorial = YES;
 		
 	} else if ([FreeRunStartAtManager get_starting_loc] == FreeRunStartAt_LAB3) {
-		[self cycle_through:36];
+		[self cycle_through:36 g:g];
 		[self cycle_through_lab:6];
 		tutorial_ct = 0;
 		has_done_lab_tutorial = true;
@@ -399,15 +399,18 @@ static NSSet *lab_levels_world3;
 }
 
 #define SETS_BETWEEN_LABS 3
+//#define SETS_BETWEEN_LABS 0
 #define LEVELS_IN_LAB_SET 3
+//#define LEVELS_IN_LAB_SET 0
+
 #define LEVELS_IN_SET 3
 #define CAPEGAME_EVERY 3
 
--(NSString*)get_level {
+-(NSString*)get_level:(GameEngineLayer*)g {
 	ct++;
 	
 	if (ct == 1) {
-		[self set_initial_params];
+		[self set_initial_params:g];
 		return [[levelsets[L_AUTOSTART] allKeys] random];
 		
 	} else if ([cur_set isEqualToString:L_BOSS1AREA]) {
@@ -425,15 +428,14 @@ static NSSet *lab_levels_world3;
 		if (tutorial_ct >= tutorial_levels.count) {
 			cur_set = L_FREERUN_PROGRESS;
 		}
-		return @"boss2_start";
+		//return @"boss1_start";
 		//return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
-		//return @"boss3_start";
 		return tar;
 		
 	} else if ([cur_set isEqualToString:L_FREERUN_PROGRESS]) {
 		sets_until_next_lab = SETS_BETWEEN_LABS;
 		cur_set_completed = 0;
-		cur_set = [self pick_set];
+		cur_set = [self pick_set:g];
 		
 		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		
@@ -450,7 +452,6 @@ static NSSet *lab_levels_world3;
 	} else if ([cur_set isEqualToString:L_LABINTRO]) {
 		if (tutorial_ct == 0) {
 			tutorial_ct++;
-			[GameWorldMode freerun_progress_about_to_enter_lab];
 			return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		} else {
 			cur_set = L_LAB;
@@ -467,9 +468,9 @@ static NSSet *lab_levels_world3;
 		sets_until_next_lab--;
 		
 		if (sets_until_next_lab < 0) {
-			if ([GameWorldMode get_labnum] == LabNum_2) {
+			if (g.world_mode.cur_world == WorldNum_2) {
 				return [[levelsets[L_BOSS2START] allKeys] random];
-			} else if ([GameWorldMode get_labnum] == LabNum_3) {
+			} else if (g.world_mode.cur_world == WorldNum_3) {
 				return [[levelsets[L_BOSS3START] allKeys] random];
 			} else {
 				return [[levelsets[L_BOSS1START] allKeys] random];
@@ -479,11 +480,11 @@ static NSSet *lab_levels_world3;
 		NSString *rtv = [[levelsets[L_LAB] allKeys] random];
 		int nloopct = 15;
 		while (true) {
-			if ([GameWorldMode get_actual_worldnum] == WorldNum_1 && [lab_levels_world1 containsObject:rtv]) {
+			if (g.world_mode.cur_world == WorldNum_1 && [lab_levels_world1 containsObject:rtv]) {
 				break;
-			} else if ([GameWorldMode get_actual_worldnum] == WorldNum_2 && [lab_levels_world2 containsObject:rtv]) {
+			} else if (g.world_mode.cur_world == WorldNum_2 && [lab_levels_world2 containsObject:rtv]) {
 				break;
-			} else if ([GameWorldMode get_actual_worldnum] == WorldNum_3 && [lab_levels_world3 containsObject:rtv]) {
+			} else if (g.world_mode.cur_world == WorldNum_3 && [lab_levels_world3 containsObject:rtv]) {
 				break;
 			}
 			nloopct--;
@@ -503,22 +504,22 @@ static NSSet *lab_levels_world3;
 		if (nth_filler%CAPEGAME_EVERY==0) {
 			cur_set = L_CAPEGAME_LAUNCHER;
 		} else {
-			[self filler_next];
+			[self filler_next:g];
 		}
 		
 		return [fillersetgen get_from_bucket:L_FILLER];
 		
 	} else if ([cur_set isEqualToString:L_CAPEGAME_LAUNCHER]) {
-		[self filler_next];
+		[self filler_next:g];
 		return [[levelsets[L_CAPEGAME_LAUNCHER] allKeys] random];
 		
-	} else if (has_done_world2_tutorial == NO && [GameWorldMode get_bgmode] == BGMode_NORMAL && [GameWorldMode get_worldnum] == WorldNum_2) {
+	} else if (has_done_world2_tutorial == NO && g.world_mode.cur_mode == BGMode_NORMAL && g.world_mode.cur_world == WorldNum_2) {
 		has_done_world2_tutorial = YES;
 		cur_set = L_SWINGVINE;
 		[recently_picked_sets addObject:L_SWINGVINE];
 		return [world2_tutorial_levels random];
 		
-	} else if (has_done_world3_tutorial == NO && [GameWorldMode get_bgmode] == BGMode_NORMAL && [GameWorldMode get_worldnum] == WorldNum_3) {
+	} else if (has_done_world3_tutorial == NO && g.world_mode.cur_mode == BGMode_NORMAL && g.world_mode.cur_world == WorldNum_3) {
 		has_done_world3_tutorial = YES;
 		cur_set = L_CANNON;
 		[recently_picked_sets addObject:L_CANNON];
@@ -537,7 +538,7 @@ static NSSet *lab_levels_world3;
 	}
 }
 
--(void)filler_next {
+-(void)filler_next:(GameEngineLayer*)g {
 	if (sets_until_next_lab == 0) {
 		if (!has_done_lab_tutorial) {
 			cur_set = L_LAB_TUTORIAL;
@@ -548,7 +549,7 @@ static NSSet *lab_levels_world3;
 			tutorial_ct = 0;
 		}
 	} else {
-		cur_set = [self pick_set];
+		cur_set = [self pick_set:g];
 	}
 }
 
