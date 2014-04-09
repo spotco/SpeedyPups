@@ -2,6 +2,7 @@
 #import "MapLoader.h"
 #import "MapSection.h"
 #import "AutoLevelState.h"
+#import "FreeRunStartAtManager.h"
 
 @interface AutoLevel : GameObject <GEventListener> {
     GameEngineLayer* __unsafe_unretained tglayer;
@@ -14,6 +15,6 @@
     BOOL has_pos_initial;
 }
 
-+(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer;
++(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer startat:(WorldStartAt)world;
 
 @end

@@ -44,10 +44,10 @@
 	[scene addChild:[CCLayerColor layerWithColor:ccc4(0,0,0,0)] z:999 tag:tFADEOUTLAYER];
 	return scene;
 }
-+(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldNum)world {
-    CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world];
++(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldStartAt)world {
+    CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world.world_num];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
-    AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer];
+    AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer startat:world];
     [glayer.game_objects addObject:nobj];
     [glayer addChild:nobj];
     
@@ -497,8 +497,7 @@
 		current_mode = GameEngineLayerMode_GAMEEND;
 		[self exit];
 		[GEventDispatcher remove_all_listeners];
-		[world_mode increment_world];
-		CCScene *neu_scene = [GameEngineLayer scene_with_autolevel_lives:lives world:world_mode.cur_world];
+		CCScene *neu_scene = [GameEngineLayer scene_with_autolevel_lives:lives world:[world_mode get_next_world_startat]];
 		
 		GameEngineLayer *g = (GameEngineLayer*)[neu_scene getChildByTag:tGLAYER];
 		[[[g set_bones:collected_bones] set_time:time] copy_stats:[self get_stats]];

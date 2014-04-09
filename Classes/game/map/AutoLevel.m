@@ -8,29 +8,29 @@
 #define REMOVEBUFFER 1000
 #define ADDBUFFER 1300
 
-+(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer {
++(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer startat:(WorldStartAt)world {
     AutoLevel* a = [AutoLevel node];
-    [a cons:glayer];
+    [a cons:glayer startat:world];
     [GEventDispatcher add_listener:a];
     return a;
 }
 
--(void)cons:(GameEngineLayer*)glayer {
-    cur_state = [AutoLevelState cons];
+-(void)cons:(GameEngineLayer*)glayer startat:(WorldStartAt)world {
+    cur_state = [AutoLevelState cons_startat:world];
     tglayer = glayer;
 
     map_sections = [[NSMutableArray alloc] init];
     stored = [[NSMutableArray alloc] init];
     queued_sections = [[NSMutableArray alloc] init];
-    [self load_into_queue:[cur_state get_level:glayer]];
+    [self load_into_queue:[cur_state get_level]];
 }
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_CHECKPOINT) {
         [self cleanup_start:tglayer.player.start_pt player:tglayer.player.position];
         
-    } else if (e.type == GEventType_BOSS1_ACTIVATE) {
-		[cur_state to_boss1_mode];
+    } else if (e.type == GEventType_BOSS1_ACTIVATE || e.type == GEventType_BOSS2_ACTIVATE || e.type == GEventType_BOSS3_ACTIVATE) {
+		[cur_state to_boss_mode];
         [self remove_all_ahead_but_current:e.pt];
         [self shift_queue_into_current];
         
@@ -39,22 +39,12 @@
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
         [tglayer follow_player];
-        
-    } else if (e.type == GEventType_BOSS2_ACTIVATE) {
-		[cur_state to_boss2_mode];
-        [self remove_all_ahead_but_current:e.pt];
-        [self shift_queue_into_current];
 		
 	} else if (e.type == GEventType_BOSS2_DEFEATED) {
 		[cur_state to_labexit_mode];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
         [self remove_all_ahead_but_current:e.pt];
         [tglayer follow_player];
-		
-	} else if (e.type == GEventType_BOSS3_ACTIVATE) {
-		[cur_state to_boss3_mode];
-        [self remove_all_ahead_but_current:e.pt];
-        [self shift_queue_into_current];
 		
 	} else if (e.type == GEventType_BOSS3_DEFEATED) {
 		[cur_state to_labexit_mode];
@@ -109,7 +99,7 @@
 -(void)shift_queue_into_current { //move top map in queue to current
     if ([queued_sections count] == 0) {
         [tglayer.get_stats increment:GEStat_SECTIONS];
-        [self load_into_queue:[cur_state get_level:tglayer]];
+        [self load_into_queue:[cur_state get_level]];
     }
     MapSection *m = [queued_sections objectAtIndex:0];
     [queued_sections removeObjectAtIndex:0];

@@ -1,5 +1,5 @@
 #import "cocos2d.h"
-#import "GameWorldMode.h"
+#import "FreeRunStartAtManager.h"
 
 typedef enum {
 	FreePupsAnimMode_RUNIN,

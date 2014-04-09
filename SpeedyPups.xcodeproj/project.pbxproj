@@ -112,9 +112,11 @@
 		7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A816DE1850007D20F5 /* BG1_stars.png */; };
 		7E37B47117C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */; };
 		7E37B47417C35715001EC2FD /* ShopBuyFlyoffTextParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */; };
+		7E3951C318F52902005C72C9 /* AutoLevelState_World1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3951C218F52902005C72C9 /* AutoLevelState_World1.m */; };
+		7E3951C618F52B00005C72C9 /* AutoLevelState_World2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3951C518F52B00005C72C9 /* AutoLevelState_World2.m */; };
+		7E3951C918F52B4E005C72C9 /* AutoLevelState_World3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3951C818F52B4E005C72C9 /* AutoLevelState_World3.m */; };
 		7E3C765B18738C0500D3175C /* sfx_powerdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E3C765A18738C0500D3175C /* sfx_powerdown.wav */; };
 		7E41B648182C748500CBE9A6 /* Icon-hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E41B647182C748500CBE9A6 /* Icon-hr.png */; };
-		7E41B64B182C92F600CBE9A6 /* GameWorldMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */; };
 		7E445DB41862D7E500771A35 /* intro.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E445DB31862D7E500771A35 /* intro.aiff */; };
 		7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4507C117F3FD4100287716 /* InventoryLayerTab.m */; };
 		7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */; };
@@ -933,10 +935,14 @@
 		7E37B47017C34FFB001EC2FD /* ShopBuyBoneFlyoutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyBoneFlyoutParticle.m; sourceTree = "<group>"; };
 		7E37B47217C35715001EC2FD /* ShopBuyFlyoffTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopBuyFlyoffTextParticle.h; sourceTree = "<group>"; };
 		7E37B47317C35715001EC2FD /* ShopBuyFlyoffTextParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopBuyFlyoffTextParticle.m; sourceTree = "<group>"; };
+		7E3951C118F52902005C72C9 /* AutoLevelState_World1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState_World1.h; sourceTree = "<group>"; };
+		7E3951C218F52902005C72C9 /* AutoLevelState_World1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState_World1.m; sourceTree = "<group>"; };
+		7E3951C418F52B00005C72C9 /* AutoLevelState_World2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState_World2.h; sourceTree = "<group>"; };
+		7E3951C518F52B00005C72C9 /* AutoLevelState_World2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState_World2.m; sourceTree = "<group>"; };
+		7E3951C718F52B4E005C72C9 /* AutoLevelState_World3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLevelState_World3.h; sourceTree = "<group>"; };
+		7E3951C818F52B4E005C72C9 /* AutoLevelState_World3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLevelState_World3.m; sourceTree = "<group>"; };
 		7E3C765A18738C0500D3175C /* sfx_powerdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_powerdown.wav; sourceTree = "<group>"; };
 		7E41B647182C748500CBE9A6 /* Icon-hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-hr.png"; sourceTree = "<group>"; };
-		7E41B649182C92F600CBE9A6 /* GameWorldMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWorldMode.h; sourceTree = "<group>"; };
-		7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWorldMode.m; sourceTree = "<group>"; };
 		7E445DB31862D7E500771A35 /* intro.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = intro.aiff; sourceTree = "<group>"; };
 		7E4507C017F3FD4100287716 /* InventoryLayerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryLayerTab.h; sourceTree = "<group>"; };
 		7E4507C117F3FD4100287716 /* InventoryLayerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryLayerTab.m; sourceTree = "<group>"; };
@@ -2870,8 +2876,12 @@
 				7EB8B41A16D9FC0900F58961 /* MapSection.m */,
 				7EC460E517054D9600656A48 /* AutoLevelState.h */,
 				7EC460E617054D9700656A48 /* AutoLevelState.m */,
-				7E41B649182C92F600CBE9A6 /* GameWorldMode.h */,
-				7E41B64A182C92F600CBE9A6 /* GameWorldMode.m */,
+				7E3951C118F52902005C72C9 /* AutoLevelState_World1.h */,
+				7E3951C218F52902005C72C9 /* AutoLevelState_World1.m */,
+				7E3951C418F52B00005C72C9 /* AutoLevelState_World2.h */,
+				7E3951C518F52B00005C72C9 /* AutoLevelState_World2.m */,
+				7E3951C718F52B4E005C72C9 /* AutoLevelState_World3.h */,
+				7E3951C818F52B4E005C72C9 /* AutoLevelState_World3.m */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -4313,12 +4323,14 @@
 				7EB8B48616D9FC0900F58961 /* CaveWall.m in Sources */,
 				7EB8B48716D9FC0900F58961 /* CheckPoint.m in Sources */,
 				7EB8B48816D9FC0900F58961 /* CopterRobot.m in Sources */,
+				7E3951C918F52B4E005C72C9 /* AutoLevelState_World3.m in Sources */,
 				7EB8B48916D9FC0900F58961 /* CopterRobotLoader.m in Sources */,
 				7EB8B48A16D9FC0900F58961 /* DogBone.m in Sources */,
 				7EB8B48B16D9FC0900F58961 /* DogCape.m in Sources */,
 				7EB8B48C16D9FC0900F58961 /* DogCapeEffect.m in Sources */,
 				7EB8B48E16D9FC0900F58961 /* DogShadow.m in Sources */,
 				7EB8B48F16D9FC0900F58961 /* ElectricWall.m in Sources */,
+				7E3951C318F52902005C72C9 /* AutoLevelState_World1.m in Sources */,
 				7EB8B49016D9FC0900F58961 /* EnemyAlert.m in Sources */,
 				7EB8B49116D9FC0900F58961 /* EnemyBomb.m in Sources */,
 				7EB8B49216D9FC0900F58961 /* FadeOutLabWall.m in Sources */,
@@ -4374,7 +4386,6 @@
 				7EB8B4BE16D9FC0900F58961 /* HitEffect.m in Sources */,
 				7EB8B4BF16D9FC0900F58961 /* PlayerEffectParams.m in Sources */,
 				7EB8B4C016D9FC0900F58961 /* SplashEffect.m in Sources */,
-				7E41B64B182C92F600CBE9A6 /* GameWorldMode.m in Sources */,
 				7E1A169318A60572001FCD86 /* VolleyRobotBossComponents.m in Sources */,
 				7EB8B4C116D9FC0900F58961 /* BoneCollectUIAnimation.m in Sources */,
 				7EB8B4C216D9FC0900F58961 /* GameStartAnim.m in Sources */,
@@ -4387,6 +4398,7 @@
 				7EB8B4D016D9FC0900F58961 /* AudioManager.m in Sources */,
 				7EB8B4D116D9FC0900F58961 /* BatchDraw.m in Sources */,
 				7EF2C12A189F9AD4005559F4 /* Lab3BGLayerSet.m in Sources */,
+				7E3951C618F52B00005C72C9 /* AutoLevelState_World2.m in Sources */,
 				7EB8B4D216D9FC0900F58961 /* Common.m in Sources */,
 				7EB8B4D316D9FC0900F58961 /* DataStore.m in Sources */,
 				7EB8B4D416D9FC0900F58961 /* FileCache.m in Sources */,

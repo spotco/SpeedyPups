@@ -23,17 +23,14 @@
 #define DRAW_HITBOX NO
 
 /**
- -refactor autolevelstate to only 1 world 1 lab (change GameWorldMode & Autolevelstate API)
- -refactor bglayer to only 1 world 1 lab
- -fix level selection algo, getting repeating levels (especially in lab1)
- 
- -weightedsorter initial shuffle
+ refactor bglayer to only 1 world 1 lab
  credits-interactive
  
  integrate new map assets, freerun progress popup redesign (prev, current, next)
  
  score ui
  add second currency and separate upgrade/unlock for items
+ rare appearance levels by @2 or @3 in autolevelstate (fix weightedsorter)
  second currency tradein from bones daily
  more challenges (more secrets, cape game, boss rush)
  new look for upgrade pane
@@ -67,6 +64,7 @@ Stretch goals:
  object pool system
  
  art freerun start menu redesign + button
+ pass cycle fillers (for harder/easier fillers)
  **/
 
 +(void)main {
@@ -97,6 +95,23 @@ Stretch goals:
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
 	
+	/*
+	WorldStartAt startat;
+	startat.world_num = WorldNum_3;
+	startat.tutorial = NO;
+	startat.bg_start = BGMode_LAB;
+	AutoLevelState *state = [AutoLevelState cons_startat:startat];
+	DO_FOR(40,
+		   NSString *rtv = [state get_level];
+		   if (streq(rtv,@"boss3_start")) {
+			   [state to_boss_mode];
+		   
+		   } else if (streq(rtv, @"boss3_area")) {
+			   [state to_labexit_mode];
+		   }
+		   NSLog(@"%d:\'%@\'",i,rtv)
+	);
+	*/
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -126,7 +141,7 @@ Stretch goals:
 }
 
 +(void)start_game_autolevel {
-    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager worldnum_for_startingloc]]];
+    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager get_startingat]]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {

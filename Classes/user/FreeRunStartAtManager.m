@@ -84,21 +84,71 @@
 	}
 }
 
-+(WorldNum)worldnum_for_startingloc {
++(WorldStartAt)get_startingat {
+	WorldStartAt rtv;
 	FreeRunStartAt loc = [self get_starting_loc];
 	if (loc == FreeRunStartAt_TUTORIAL || loc == FreeRunStartAt_WORLD1 || loc == FreeRunStartAt_LAB1) {
-		return WorldNum_1;
+		rtv.world_num = WorldNum_1;
 		
 	} else if (loc == FreeRunStartAt_WORLD2 || loc == FreeRunStartAt_LAB2) {
-		return WorldNum_2;
+		rtv.world_num = WorldNum_2;
 		
 	} else if (loc == FreeRunStartAt_WORLD3 || loc == FreeRunStartAt_LAB3) {
-		return WorldNum_3;
-	
-	} else {
-		NSLog(@"worldnumstartat errval");
-		return WorldNum_1;
+		rtv.world_num = WorldNum_3;
 	}
+	
+	
+	if (loc == FreeRunStartAt_TUTORIAL) {
+		rtv.tutorial = YES;
+	}
+	
+	if (loc == FreeRunStartAt_LAB1 || loc == FreeRunStartAt_LAB2 || loc == FreeRunStartAt_LAB3) {
+		rtv.bg_start = BGMode_LAB;
+		
+	} else {
+		rtv.bg_start = BGMode_NORMAL;
+	}
+	return rtv;
+}
+@end
+
+@implementation GameWorldMode
+@synthesize cur_world;
+@synthesize cur_mode;
+
++(GameWorldMode*)cons_worldnum:(WorldNum)world {
+	GameWorldMode *rtv = [[GameWorldMode alloc] init];
+	rtv.cur_world = world;
+	rtv.cur_mode = BGMode_NORMAL;
+	return rtv;
 }
 
+-(void)set_to_lab {
+	cur_mode = BGMode_LAB;
+}
+
+-(WorldStartAt)get_next_world_startat {
+	WorldStartAt rtv;
+	rtv.tutorial = NO;
+	rtv.bg_start = BGMode_NORMAL;
+	rtv.world_num = cur_world;
+	rtv.world_num++;
+	if (rtv.world_num != WorldNum_1 && rtv.world_num != WorldNum_2 && rtv.world_num != WorldNum_3) {
+		rtv.world_num = WorldNum_1;
+	}
+	return rtv;
+}
+
+-(FreeRunProgress)get_freerun_progress {
+	if (cur_world == WorldNum_1) {
+		return FreeRunProgress_1;
+	} else if (cur_world == WorldNum_2) {
+		return FreeRunProgress_2;
+	} else if (cur_world == WorldNum_3) {
+		return FreeRunProgress_3;
+	} else {
+		NSLog(@"get_freerun_progress erreur");
+		return FreeRunProgress_1;
+	}
+}
 @end
