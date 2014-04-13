@@ -20,5 +20,7 @@
 -(void)check_should_render:(GameEngineLayer *)g;
 -(void)notify_challenge_mode:(ChallengeInfo*)c;
 
+-(void)repool;
+
 -(Island*)get_connecting_island:(NSMutableArray*)islands;
 @end

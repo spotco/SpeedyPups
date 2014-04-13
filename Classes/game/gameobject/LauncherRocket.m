@@ -83,15 +83,15 @@
 	return (broken_ct <= 0);
 }
 
--(GameObject*)get_shadow {
+/*-(GameObject*)get_shadow {
 	return shadow;
-}
+}*/
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if(shadow == NULL) {
+    /*if(shadow == NULL) {
         shadow = [ObjectShadow cons_tar:self];
         [g add_gameobject:shadow];
-    }
+    }*/
     [self update_vibration];
     [super update:player g:g];
     [self update_position];
@@ -112,7 +112,7 @@
     }
     
     if (kill || ![Common hitrect_touch:[self get_hit_rect] b:[g get_world_bounds]]) {
-        [g remove_gameobject:shadow];
+        //[g remove_gameobject:shadow];
         [g remove_gameobject:self];
         return;
         
@@ -166,7 +166,7 @@
     [AudioManager playsfx:SFX_EXPLOSION];
     [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
     //[LauncherRobot explosion:g at:position_];
-    [g remove_gameobject:shadow];
+    //[g remove_gameobject:shadow];
     [g remove_gameobject:self];
 }
 

@@ -9,12 +9,11 @@
 
 @interface ChallengeButtonIcon : CCSprite {
     CCSprite *locked,*unlocked,*status_star,*disp_type_icon;
+	CCLabelTTF *locked_text, *unlocked_text;
 }
 @end
 
 @implementation ChallengeButtonIcon
-
-#define tcbi_sub_text 1
 
 -(id)init {
     self = [super init];
@@ -27,17 +26,19 @@
                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"lock"]
       ] pos:ccp(30,46)]
      ];
-    [locked addChild:[Common cons_label_pos:ccp(55,60)
-                                      color:ccc3(100, 100, 100)
-                                   fontsize:25
-                                        str:@"-1"] z:0 tag:tcbi_sub_text];
+    locked_text = [Common cons_label_pos:ccp(55,60)
+								   color:ccc3(100, 100, 100)
+								fontsize:25
+									 str:@"-1"];
+	[locked addChild:locked_text];
     [self addChild:locked];
     
     unlocked = [CCSprite node];
-    [unlocked addChild:[Common cons_label_pos:ccp(55,60)
-                                      color:ccc3(153, 0, 0)
-                                   fontsize:34
-                                        str:@"-1"] z:0 tag:tcbi_sub_text];
+    unlocked_text = [Common cons_label_pos:ccp(55,60)
+									 color:ccc3(153, 0, 0)
+								  fontsize:34
+									   str:@"-1"];
+	[unlocked addChild:unlocked_text];
     [self addChild:unlocked];
 	
 	disp_type_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
@@ -52,19 +53,19 @@
     
     [locked setVisible:NO];
     [unlocked setVisible:NO];
-    
+	
     return self;
 }
 
 -(void)set_num:(int)i locked:(BOOL)l {
-    [((CCLabelTTF*)[locked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i+1]];
-    [((CCLabelTTF*)[unlocked getChildByTag:tcbi_sub_text]) setString:[NSString stringWithFormat:@"%d",i+1]];
     [locked setVisible:l];
     [unlocked setVisible:!l];
     if (l) {
+		[locked_text setString:[NSString stringWithFormat:@"%d",i+1]];
         [status_star setVisible:NO];
 		[disp_type_icon setVisible:NO];
     } else {
+		[unlocked_text setString:[NSString stringWithFormat:@"%d",i+1]];
         [status_star setVisible:YES];
         [status_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
 															  idname:[ChallengeRecord get_beaten_challenge:i]?@"levelstar_hr":@"levelstar_locked_hr"]];
@@ -73,6 +74,12 @@
 		[disp_type_icon setTexture:tr.tex];
 		[disp_type_icon setTextureRect:tr.rect];
 	}
+}
+
+-(void)dealloc {
+	[locked removeAllChildrenWithCleanup:YES];
+	[unlocked removeAllChildrenWithCleanup:YES];
+	[self removeAllChildrenWithCleanup:YES];
 }
 
 @end
@@ -137,6 +144,7 @@
     
     return self;
 }
+
 
 -(void)cons_selectmenu {
     selectmenu = [CCSprite node];

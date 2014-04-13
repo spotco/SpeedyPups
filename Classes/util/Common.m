@@ -3,6 +3,12 @@
 #import "GameRenderImplementation.h"
 #import "GameMain.h"
 
+@implementation CCSprite_VerboseDealloc
+-(void)dealloc {
+	NSLog(@"dealloq!!");
+}
+@end
+
 @implementation CallBack
 @synthesize selector;
 @synthesize target;

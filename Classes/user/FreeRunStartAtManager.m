@@ -95,11 +95,15 @@
 		
 	} else if (loc == FreeRunStartAt_WORLD3 || loc == FreeRunStartAt_LAB3) {
 		rtv.world_num = WorldNum_3;
+	} else {
+		NSLog(@"get_startingat error");
 	}
 	
 	
 	if (loc == FreeRunStartAt_TUTORIAL) {
 		rtv.tutorial = YES;
+	} else {
+		rtv.tutorial = NO;
 	}
 	
 	if (loc == FreeRunStartAt_LAB1 || loc == FreeRunStartAt_LAB2 || loc == FreeRunStartAt_LAB3) {

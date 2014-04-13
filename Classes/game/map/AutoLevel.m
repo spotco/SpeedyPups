@@ -57,6 +57,10 @@
 	}
 }
 
+-(void)game_quit {
+	for (MapSection *m in map_sections) m.stop_repool = YES;
+}
+
 -(void)remove_all_ahead_but_current:(CGPoint)pos {
     CGPoint min_cur = ccp(cur_x,cur_y);
     for (MapSection *m in queued_sections) {
@@ -140,7 +144,7 @@
     
     for(GameObject* o in m.map.game_objects) {
         if (tglayer.player.current_swingvine == o) tglayer.player.current_swingvine = NULL;
-        [tglayer removeChild:o cleanup:YES];
+        [tglayer removeChild:o cleanup:NO];
     }
     
     [map_sections removeObject:m];

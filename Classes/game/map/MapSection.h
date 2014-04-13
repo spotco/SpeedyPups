@@ -3,7 +3,6 @@
 
 @interface MapSection : NSObject {
     float offset_x,offset_y;
-    
     int debugid;
 }
 
@@ -14,6 +13,9 @@ typedef enum {
 } MapSection_Position;
 
 @property(readwrite,strong) GameMap *map;
+
+@property(readwrite,assign) BOOL stop_repool;
+
 +(MapSection*)cons_from_name:(NSString*)name g:(GameEngineLayer*)g;
 -(MapSection_Position)get_position_status:(CGPoint)p;
 -(CGRange)get_range;

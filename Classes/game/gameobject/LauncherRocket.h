@@ -13,7 +13,7 @@
 	
 	float trail_scale;
     
-    ObjectShadow *shadow;
+    //ObjectShadow *shadow;
 	
 	BOOL already_removed;
 }
@@ -23,7 +23,7 @@
 -(id)set_remlimit:(int)t;
 -(LauncherRocket*)no_vibration;
 -(BOOL)is_active;
--(GameObject*)get_shadow;
+//-(GameObject*)get_shadow;
 
 -(id)set_scale:(float)sc;
 

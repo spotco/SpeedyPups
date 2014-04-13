@@ -5,6 +5,7 @@
 #import "NMenuCharSelectPage.h"
 #import "NMenuTabShopPage.h"
 #import "AudioManager.h"
+#import "ObjectPool.h"
 //#import "NMenuShopPage.h"
 
 #import "MainMenuInventoryLayer.h"
@@ -21,6 +22,10 @@
 -(void)touch_begin:(CGPoint)pt{}
 -(void)touch_move:(CGPoint)pt{}
 -(void)touch_end:(CGPoint)pt{}
+-(void)cleanup{}
+-(void)dealloc {
+	NSLog(@"%@ dealloc",NSStringFromClass([self class]));
+}
 @end
 
 @implementation MainMenuLayer
@@ -72,6 +77,12 @@
 }
 
 -(void)update:(ccTime)dt {
+	
+	if (!first_update) {
+		[ObjectPool print_info];
+		first_update = YES;
+	}
+	
     float dx = [self get_target_bg_pt].x - [bg get_fg_pos].x;
     dx/=3;
     BOOL snapto = NO;
@@ -161,7 +172,7 @@
 -(void)exit {
     [GEventDispatcher remove_all_listeners];
     [self unscheduleAllSelectors];
-    [self removeAllChildrenWithCleanup:YES];
+	[self removeAllChildrenWithCleanup:YES];
     [menu_pages removeAllObjects];
 	[[self parent] removeAllChildrenWithCleanup:YES];
 }

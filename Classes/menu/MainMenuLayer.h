@@ -24,6 +24,7 @@
     int cur_page;
     CGPoint last,dp;
 	
+	BOOL first_update;
 }
 
 @property(readwrite,strong) MainMenuBGLayer* bg;

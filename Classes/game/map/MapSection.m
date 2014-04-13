@@ -6,6 +6,7 @@
 
 @implementation MapSection
 @synthesize map;
+@synthesize stop_repool;
 
 +(MapSection*)cons_from_name:(NSString*)name g:(GameEngineLayer*)g {
     MapSection* m = [[MapSection alloc] init];
@@ -21,6 +22,7 @@
     [MapSection transform_map:map by_x:-map.connect_pts_x1 by_y:-map.connect_pts_y1];
     offset_x = 0;
     offset_y = 0;
+	stop_repool = NO;
     [self alloc_debugid];
 }
 
@@ -72,6 +74,11 @@
 }
 
 -(void)dealloc {
+	if (!stop_repool) {
+		for (GameObject *o in map.game_objects) {
+			[o repool];
+		}
+	}
     [map.game_objects removeAllObjects];
     [map.n_islands removeAllObjects];
 }

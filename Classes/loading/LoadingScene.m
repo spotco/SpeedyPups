@@ -87,6 +87,7 @@
 -(void)async_load {
 	[AudioManager begin_load];
 	[Resource load_all];
+	[FileCache precache_files];
 	for (NSString* i in [AutoLevelState get_all_levels]) {
         [MapLoader precache_map:i];
     }    

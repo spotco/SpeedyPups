@@ -265,7 +265,8 @@
 }
 
 -(void)dealloc {
-	//NSLog(@"settingsdealloc");
+	[touches removeAllObjects];
+	[self removeAllChildrenWithCleanup:YES];
 }
 
 

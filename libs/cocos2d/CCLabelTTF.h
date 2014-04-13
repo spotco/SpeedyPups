@@ -76,4 +76,6 @@
 - (void) setString:(NSString*)str;
 -(CCLabelTTF*)anchor_pt:(CGPoint)pt;
 -(void)set_label:(NSString*)str;
+
+
 @end

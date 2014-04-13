@@ -13,4 +13,6 @@
 -(BOOL)should_remove;
 -(int)get_render_ord;
 
+-(void)repool;
+
 @end

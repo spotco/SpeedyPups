@@ -1,5 +1,6 @@
 #import "GroundDetail.h"
 #import "GameEngineLayer.h"
+#import "ObjectPool.h"
 
 @implementation GroundDetail
 @synthesize imgtype;
@@ -64,9 +65,15 @@ static NSArray* ABOVE;
     return [IDTOKEY objectAtIndex:gid];
 }
 
+-(void)repool {
+	if ([self class] == [GroundDetail class]) [ObjectPool repool:self class:[GroundDetail class]];
+}
+
 +(GroundDetail*)cons_x:(float)posx y:(float)posy type:(int)type islands:(NSMutableArray *)islands g:(GameEngineLayer *)g{
-    GroundDetail *d = [GroundDetail node];
-    d.position = ccp(posx,posy);
+    //GroundDetail *d = [GroundDetail node];
+    GroundDetail *d = [ObjectPool depool:[GroundDetail class]];
+	
+	d.position = ccp(posx,posy);
     
     CGRect texrect;
 	if (g.world_mode.cur_world == WorldNum_3) {
@@ -84,12 +91,21 @@ static NSArray* ABOVE;
 		tex = [Resource get_tex:TEX_GROUND_DETAILS];
 	}
 	
-    d.img = [CCSprite spriteWithTexture:tex rect:texrect];
-    [d.img setPosition:ccp(0,texrect.size.height/2)];
+    //d.img = [CCSprite spriteWithTexture:tex rect:texrect];
+    [d.img setTexture:tex];
+	[d.img setTextureRect:texrect];
+	[d.img setPosition:ccp(0,texrect.size.height/2)];
     d.imgtype = type;
-    [d addChild:d.img];
+    //[d addChild:d.img];
     [d attach_toisland:islands];
     return d;
+}
+
+-(id)init {
+	self = [super init];
+	self.img = [CCSprite node];
+	[self addChild:self.img];
+	return self;
 }
 
 -(int)get_render_ord {

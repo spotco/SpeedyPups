@@ -2,6 +2,9 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
+@interface CCSprite_VerboseDealloc : CCSprite
+@end
+
 @interface NSArray (Random)
 	-(id)random;
 	-(NSArray*)copy_removing:(NSArray*)a;

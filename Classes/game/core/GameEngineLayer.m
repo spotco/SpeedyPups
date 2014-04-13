@@ -12,6 +12,7 @@
 #import "TutorialEnd.h"
 #import "DogBone.h"
 #import "FreePupsAnim.h"
+#import "ObjectPool.h"
 
 @implementation GameEngineLayer
 
@@ -326,6 +327,7 @@
 }
 
 -(void)update:(ccTime)delta {
+	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY && [GameControlImplementation get_clockbutton_hold]) {
 		[CCDirectorDisplayLink set_framemodct:4];
 		[Common set_dt:delta/4];
@@ -643,7 +645,26 @@
 }
 -(void)exit {
     [self unscheduleAllSelectors];
-    
+	
+	for (GameObject *o in game_objects) {
+		if ([o class] == [AutoLevel class]) [(AutoLevel*)o game_quit];
+	}
+	
+	for (int i = game_objects.count -1; i >= 0; i--) {
+		GameObject *o = game_objects[i];
+		[o repool];
+		[self removeChild:o cleanup:YES];
+	}
+	[game_objects removeAllObjects];
+	
+	for (int i = particles.count -1; i >= 0; i--) {
+		Particle *p = particles[i];
+		[p repool];
+		[self removeChild:p cleanup:YES];
+	}
+	[particles removeAllObjects];
+	[self removeChild:player cleanup:YES];
+	
     [GEventDispatcher remove_all_listeners];
     [[CCDirector sharedDirector] resume];
     [BatchDraw clear];

@@ -16,5 +16,5 @@
 }
 
 +(AutoLevel*)cons_with_glayer:(GameEngineLayer*)glayer startat:(WorldStartAt)world;
-
+-(void)game_quit;
 @end

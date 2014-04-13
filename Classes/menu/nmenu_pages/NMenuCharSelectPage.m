@@ -194,4 +194,8 @@ static NSMutableArray* _anim_table;
     [self refresh];
 }
 
+-(void)dealloc {
+	[self removeAllChildrenWithCleanup:YES];
+}
+
 @end

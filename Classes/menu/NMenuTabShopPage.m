@@ -377,7 +377,10 @@
 }
 
 -(void)dealloc {
-	//NSLog(@"shop dealloc");
+	[touches removeAllObjects];
+	[particles removeAllObjects];
+	[scroll_items removeAllObjects];
+	[self removeAllChildrenWithCleanup:YES];
 }
 
 @end

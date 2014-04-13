@@ -23,5 +23,5 @@
 -(void)hit;
 
 @property(readwrite,assign) int bid;
-@property(readwrite,strong)CCSprite* img;
+@property(readwrite,strong) CCSprite* img;
 @end

@@ -62,6 +62,8 @@
     return NULL;
 }
 
+-(void)repool {}
+
 -(void)reset {
     [self set_active:YES];
 }

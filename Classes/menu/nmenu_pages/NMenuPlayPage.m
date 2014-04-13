@@ -116,8 +116,6 @@
 	[challengescompleteddisp addChild:chcodis_body];
 	[chcodis_body setPosition:[Common pct_of_obj:chcodis_body pctx:0.5 pcty:0]];
 	[challengescompleteddisp setPosition:ccp(challengemodebutton.position.x + challengemodebutton.boundingBox.size.width/2.0 - 10,challengemodebutton.position.y)];
-	CCMenuItemImage *challengecompletedisp_wrapper = [CCMenuItemImage itemWithTarget:self selector:@selector(null_selector)];
-	[challengecompletedisp_wrapper addChild:challengescompleteddisp];
 	[challengescompleteddisp addChild:[[Common cons_label_pos:[Common pct_of_obj:chcodis_body pctx:0.9 pcty:0.93-0.5]
 														color:ccc3(200,30,30)
 													 fontsize:9 str:@"Completed:"] anchor_pt:ccp(1,1)]];
@@ -126,6 +124,9 @@
 											  fontsize:20
 												   str:@"00/00"];
 	[challengescompleteddisp addChild:challenges_completed_disp];
+	
+	CCMenuItemImage *challengecompletedisp_wrapper = [CCMenuItemImage itemWithTarget:self selector:@selector(null_selector)];
+	[challengecompletedisp_wrapper addChild:challengescompleteddisp];
 	
     mode_choose_menu = [CCMenu menuWithItems:startworlddisp,challengecompletedisp_wrapper,freerunmodebutton,challengemodebutton,nil];
     [mode_choose_menu setPosition:ccp(0,0)];
@@ -367,5 +368,9 @@
 }
 
 -(void)null_selector{}
+
+-(void)dealloc {
+	[self removeAllChildrenWithCleanup:YES];
+}
 
 @end

@@ -1,21 +1,31 @@
 #import "DogBone.h"
 #import "PlayerEffectParams.h"
 #import "GameEngineLayer.h"
+#import "ObjectPool.h"
 
 @implementation DogBone
 
 @synthesize bid;
 
 +(DogBone*)cons_x:(float)posx y:(float)posy bid:(int)bid {
-    DogBone *new_coin = [DogBone node];
-    new_coin.active = YES;
+    //DogBone *new_coin = [DogBone node];
+	DogBone *new_coin = [ObjectPool depool:[DogBone class]];
+	new_coin.active = YES;
     [new_coin cons:ccp(posx,posy)];
     new_coin.bid = bid;
-    
-    new_coin.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
-    [new_coin addChild:new_coin.img];
-    
     return new_coin;
+}
+
+-(id)init {
+	self = [super init];
+    self.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
+    [self addChild:self.img];
+	return self;
+}
+
+-(void)repool {
+	gameengine = NULL;
+	if ([self class] == [DogBone class]) [ObjectPool repool:self class:[DogBone class]];
 }
 
 -(void)cons:(CGPoint)start {
@@ -24,6 +34,10 @@
     follow = NO;
     refresh_cached_hitbox = YES;
     active = YES;
+	vx = 0;
+	vy = 0;
+	challenge_mode_respawn = NO;
+	anim_toggle = NO;
 }
 
 -(void)setPosition:(CGPoint)position {
@@ -98,6 +112,10 @@ static NSString* snds[] = {SFX_BONE,SFX_BONE_2,SFX_BONE_3,SFX_BONE_4};
 static int current_sound = 0;
 
 +(void)play_collect_sound:(GameEngineLayer*)gameengine {
+	if (gameengine == NULL) {
+		NSLog(@"dogbone play_collect_sound gameengine is null");
+		return;
+	}
 	if ([gameengine get_time] - last_collect_time < 5) {
 		current_sound = current_sound;
 		
@@ -135,10 +153,6 @@ static int current_sound = 0;
     //if (challenge_mode_respawn) {
 	active = YES;
     //}
-}
-
--(void)dealloc {
-    [self removeAllChildrenWithCleanup:YES];
 }
 
 @end

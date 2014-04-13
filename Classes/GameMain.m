@@ -23,11 +23,16 @@
 #define DRAW_HITBOX NO
 
 /**
- refactor bglayer to only 1 world 1 lab
+ pool DogBone, WaveParticle, GroundDetail, StreamParticle, clouds
+ labfiller is fucked
+ launcherrobot sound cooldown (manyrockets lab level)
+ subboss on reset remove fgwater
+ dog better shadow
+ freepups fadein/out
+ 
+ 
  credits-interactive
- 
  integrate new map assets, freerun progress popup redesign (prev, current, next)
- 
  score ui
  add second currency and separate upgrade/unlock for items
  rare appearance levels by @2 or @3 in autolevelstate (fix weightedsorter)
@@ -35,14 +40,7 @@
  more challenges (more secrets, cape game, boss rush)
  new look for upgrade pane
  facebook integration (like game on facebook, reward)
- 
  ads integration, pay for no ads
- 
- remove two spike levels in tutorial, make into regular levels
- 3 lab levels
- 3 more cannon levels
- pick some hard levels in the hard mix
- 
  -art ask for:
 	website
 	video
@@ -50,8 +48,10 @@
 
 /**
 Stretch goals:
+ 3 lab levels
+ 3 more cannon levels
  10 more freerun levels
- 
+ make two spike levels into regular levels
  equipped item resetting in lab transition
  bug armor -> rocket -> end -> swingvine, still in rocket form
  random super reward level
@@ -131,8 +131,8 @@ Stretch goals:
 	
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 

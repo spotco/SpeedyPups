@@ -26,10 +26,8 @@
 		@"tutorial_jump",
 		@"tutorial_water",
 		@"tutorial_doublejump",
-		@"tutorial_swipeget",
 		@"filler_sanicloop",
-		@"tutorial_spikes",
-		@"tutorial_spikevine",
+		@"tutorial_swipeget",
 		@"tutorial_breakrocks",
 		@"tutorial_upsidebounce",
 		@"capegame_launcher"

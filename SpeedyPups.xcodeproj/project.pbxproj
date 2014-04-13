@@ -118,6 +118,7 @@
 		7E3C765B18738C0500D3175C /* sfx_powerdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E3C765A18738C0500D3175C /* sfx_powerdown.wav */; };
 		7E41B648182C748500CBE9A6 /* Icon-hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E41B647182C748500CBE9A6 /* Icon-hr.png */; };
 		7E445DB41862D7E500771A35 /* intro.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E445DB31862D7E500771A35 /* intro.aiff */; };
+		7E44E6E118FA71880024FA80 /* ObjectPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E44E6E018FA71880024FA80 /* ObjectPool.m */; };
 		7E4507C217F3FD4100287716 /* InventoryLayerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4507C117F3FD4100287716 /* InventoryLayerTab.m */; };
 		7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */; };
 		7E4532A917E44192005EE7CB /* cloudlevel_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4532A817E44192005EE7CB /* cloudlevel_cloudfloor.png */; };
@@ -944,6 +945,8 @@
 		7E3C765A18738C0500D3175C /* sfx_powerdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_powerdown.wav; sourceTree = "<group>"; };
 		7E41B647182C748500CBE9A6 /* Icon-hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-hr.png"; sourceTree = "<group>"; };
 		7E445DB31862D7E500771A35 /* intro.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = intro.aiff; sourceTree = "<group>"; };
+		7E44E6DF18FA71880024FA80 /* ObjectPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectPool.h; sourceTree = "<group>"; };
+		7E44E6E018FA71880024FA80 /* ObjectPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectPool.m; sourceTree = "<group>"; };
 		7E4507C017F3FD4100287716 /* InventoryLayerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryLayerTab.h; sourceTree = "<group>"; };
 		7E4507C117F3FD4100287716 /* InventoryLayerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryLayerTab.m; sourceTree = "<group>"; };
 		7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEngineLayer.h; sourceTree = "<group>"; };
@@ -3026,6 +3029,8 @@
 				7E99416A17F1758300B363F3 /* WebRequest.m */,
 				7E0C6364184C7DFF00D3C4B9 /* RepeatFillSprite.h */,
 				7E0C6365184C7DFF00D3C4B9 /* RepeatFillSprite.m */,
+				7E44E6DF18FA71880024FA80 /* ObjectPool.h */,
+				7E44E6E018FA71880024FA80 /* ObjectPool.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -4338,6 +4343,7 @@
 				7EB8B49516D9FC0900F58961 /* GameObject.m in Sources */,
 				7EB8B49616D9FC0900F58961 /* GroundDetail.m in Sources */,
 				7EB8B49716D9FC0900F58961 /* IslandFill.m in Sources */,
+				7E44E6E118FA71880024FA80 /* ObjectPool.m in Sources */,
 				7E01956E18866491000DCF6D /* InventoryTabPane_Upgrades.m in Sources */,
 				7EB8B49816D9FC0900F58961 /* JumpPad.m in Sources */,
 				7EB8B49916D9FC0900F58961 /* LabEntrance.m in Sources */,

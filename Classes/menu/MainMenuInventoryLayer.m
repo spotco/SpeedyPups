@@ -200,6 +200,11 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	for (InventoryTabPane *pane in tabpanes) [pane touch_end:pt];
 }
 
-
+-(void)dealloc {
+	NSLog(@"%@ dealloc",NSStringFromClass([self class]));
+	[tabs removeAllObjects];
+	[tabpanes removeAllObjects];
+	[self removeAllChildrenWithCleanup:YES];
+}
 
 @end

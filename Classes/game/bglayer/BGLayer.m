@@ -70,65 +70,28 @@
 -(id) cons_with:(GameEngineLayer*)ref {
 	game_engine_layer = ref;
 	
-	bglayerset_world1 = [World1BGLayerSet cons]; 
-	[bglayerset_world1 setVisible:NO];
-	[self bglayer_addChild:bglayerset_world1];
+	if (game_engine_layer.world_mode.cur_world == WorldNum_1) {
+		normal_set = [World1BGLayerSet cons];;
+		lab_set = [Lab1BGLayerSet cons];
+		
+	} else if (game_engine_layer.world_mode.cur_world == WorldNum_2) {
+		normal_set = [World2BGLayerSet cons];
+		lab_set = [Lab2BGLayerSet cons];
+		
+	} else if (game_engine_layer.world_mode.cur_world == WorldNum_3) {
+		normal_set = [World3BGLayerSet cons];
+		lab_set = [Lab3BGLayerSet cons];
+		
+	} else {
+		NSLog(@"BGLayer cons world error");
+	}
+	[normal_set setVisible:YES];
+	[lab_set setVisible:NO];
 	
-	bglayerset_lab1 = [Lab1BGLayerSet cons];
-	[bglayerset_lab1 setVisible:NO];
-	[self bglayer_addChild:bglayerset_lab1];
-	
-	bglayerset_world2 = [World2BGLayerSet cons];
-	[bglayerset_world2 setVisible:NO];
-	[self bglayer_addChild:bglayerset_world2];
-	
-	bglayerset_lab2 = [Lab2BGLayerSet cons];
-	[bglayerset_lab2 setVisible:NO];
-	[self bglayer_addChild:bglayerset_lab2];
-	
-	bglayerset_world3 = [World3BGLayerSet cons];
-	[bglayerset_world3 setVisible:NO];
-	[self bglayer_addChild:bglayerset_world3];
-	
-	bglayerset_lab3 = [Lab3BGLayerSet cons];
-	[bglayerset_lab3 setVisible:NO];
-	[self bglayer_addChild:bglayerset_lab3];
-	
-	current_set = [self set_for_world:game_engine_layer.world_mode.cur_world];
-	[current_set setVisible:YES];
+	[self bglayer_addChild:normal_set];
+	[self bglayer_addChild:lab_set];
 	
 	return self;
-}
-
--(BGLayerSet*)set_for_world:(WorldNum)worldnum {
-	if (worldnum == WorldNum_1) {
-		return bglayerset_world1;
-		
-	} else if (worldnum == WorldNum_2) {
-		return bglayerset_world2;
-		
-	} else if (worldnum == WorldNum_3) {
-		return bglayerset_world3;
-		
-	} else {
-		NSLog(@"bglayerset::set_for_world:error");
-		return NULL;
-	}
-}
-
--(BGLayerSet*)set_for_lab:(WorldNum)worldnum {
-	if (worldnum == WorldNum_1) {
-		return bglayerset_lab1;
-		
-	} else if (worldnum == WorldNum_2) {
-		return bglayerset_lab2;
-		
-	} else if (worldnum == WorldNum_3) {
-		return bglayerset_lab3;
-	} else {
-		NSLog(@"bglayerset::set_for_lab::error");
-		return NULL;
-	}
 }
 
 -(void)dispatch_event:(GEvent *)e {
@@ -136,30 +99,41 @@
         [self update];
         
     } else if (e.type == GEventType_ENTER_LABAREA) {
-		[current_set fadeout_in:10];
-		current_set = [self set_for_lab:game_engine_layer.world_mode.cur_world];
-		[current_set fadein_in:10];
+		[normal_set fadeout_in:10];
+		[lab_set fadein_in:10];
+		
         
     } else if (e.type == GEventType_DAY_NIGHT_UPDATE) {
-		[current_set set_day_night_color:e.i1];
+		[normal_set set_day_night_color:e.i1];
+		[lab_set set_day_night_color:e.i1];
 		if ([BGTimeManager get_global_time] == MODE_NIGHT) {
 			[AudioManager transition_mode2];
 		}
         
     } else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
-		[current_set set_scrollup_pct:e.f1];
+		[normal_set set_scrollup_pct:e.f1];
+		[lab_set set_scrollup_pct:e.f1];
         
     } else if (e.type == GEventType_BOSS2_ACTIVATE) {
-		[((Lab2BGLayerSet*)bglayerset_lab2) do_sink_anim];
+		[[self labset_as_lab2set] do_sink_anim];
 		
 	} else if (e.type == GEventType_PLAYER_DIE) {
-		[((Lab2BGLayerSet*)bglayerset_lab2) reset];
+		if ([lab_set class] == [Lab2BGLayerSet class]) [[self labset_as_lab2set] reset];
 		
 	}
 }
 
 -(SubBossBGObject*)get_subboss_bgobject {
-	return [((Lab2BGLayerSet*)bglayerset_lab2) get_subboss_bgobject];
+	return [[self labset_as_lab2set] get_subboss_bgobject];
+}
+
+-(Lab2BGLayerSet*)labset_as_lab2set {
+	if ([lab_set class] == [Lab2BGLayerSet class]) {
+		return (Lab2BGLayerSet*)lab_set;
+	} else {
+		NSLog(@"ERROR ATTEMPTING TO USE %@ AS LAB2 SET",[lab_set class]);
+		return NULL;
+	}
 }
 
 -(void)update {    
@@ -176,10 +150,11 @@
     lastx = posx;
     lasty = posy;
     
-	[current_set update:game_engine_layer curx:curx cury:cury];
-	for (BGLayerSet *b in ALL_SETS) {
-		[b update_fadeout];
-	}
+	[normal_set update:game_engine_layer curx:curx cury:cury];
+	[lab_set update:game_engine_layer curx:curx cury:cury];
+	
+	[normal_set update_fadeout];
+	[lab_set update_fadeout];
 }
 
 -(void)dealloc {

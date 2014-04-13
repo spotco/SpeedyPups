@@ -29,7 +29,8 @@
 @end
 
 
-@interface BGLayer : CCLayer <GEventListener> {	
+@interface BGLayer : CCLayer <GEventListener> {
+/*
 	BGLayerSet *bglayerset_world1;
 	BGLayerSet *bglayerset_lab1;
 	BGLayerSet *bglayerset_world2;
@@ -38,9 +39,12 @@
 	BGLayerSet *bglayerset_lab3;
 	
 #define ALL_SETS @[bglayerset_world1,bglayerset_world2,bglayerset_world3,bglayerset_lab1,bglayerset_lab2,bglayerset_lab3]
-	
 	BGLayerSet *current_set;
-    
+*/
+	
+	BGLayerSet *normal_set;
+	BGLayerSet *lab_set;
+ 
     GameEngineLayer* __unsafe_unretained game_engine_layer;
     
     float lastx,lasty, curx,cury;
