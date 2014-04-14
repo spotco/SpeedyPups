@@ -18,8 +18,10 @@
 
 -(id)init {
 	self = [super init];
-    self.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
-    [self addChild:self.img];
+	if ([self class] == [DogBone class]) {
+		self.img = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
+		[self addChild:self.img];
+	}
 	return self;
 }
 

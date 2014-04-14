@@ -6,7 +6,7 @@
 
 @interface Island : CCSprite {
     float fill_hei;
-    Vec3D *cached_vec;
+    //Vec3D *cached_vec;
 }
 
 
@@ -33,8 +33,7 @@
 
 -(void)cleanup_anims;
 
-
-
+-(void)repool;
 
 
 @end

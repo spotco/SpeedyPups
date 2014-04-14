@@ -39,9 +39,10 @@
 
 - (id) init
 {
-	NSAssert(NO, @"CCLabelTTF: Init not supported. Use initWithString");
-	[self release];
-	return nil;
+	NSString *name = [[NSString stringWithFormat:@"Carton Six"] autorelease];
+	CGFloat size = 9;
+	NSString *str = [[NSString stringWithFormat:@"top kek m8"] autorelease];
+	return [self initWithString:str fontName:name fontSize:size];
 }
 
 + (id) labelWithString:(NSString*)string dimensions:(CGSize)dimensions alignment:(CCTextAlignment)alignment lineBreakMode:(CCLineBreakMode)lineBreakMode fontName:(NSString*)name fontSize:(CGFloat)size;
@@ -73,6 +74,13 @@
 		[self setString:str];
 	}
 	return self;
+}
+
+-(void)set_fontname:(NSString *)fontname size:(CGFloat)size {
+	[fontName_ release];
+	fontName_ = [fontname retain];
+	fontSize_ = size * CC_CONTENT_SCALE_FACTOR();
+	
 }
 
 - (id) initWithString:(NSString*)str dimensions:(CGSize)dimensions alignment:(CCTextAlignment)alignment fontName:(NSString*)name fontSize:(CGFloat)size

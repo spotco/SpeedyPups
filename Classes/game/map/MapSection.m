@@ -78,6 +78,9 @@
 		for (GameObject *o in map.game_objects) {
 			[o repool];
 		}
+		for (Island *i in map.n_islands) {
+			[i repool];
+		}
 	}
     [map.game_objects removeAllObjects];
     [map.n_islands removeAllObjects];

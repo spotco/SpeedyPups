@@ -300,15 +300,17 @@
 }
 
 -(void)exit {
+	[update_timer invalidate];
+	cape_game = NULL;
+}
+
+-(void)dealloc {
 	for (UIIngameAnimation *i in uianims) {
 		[uianim_holder removeChild:i cleanup:YES];
 		[i repool];
 	}
 	[uianims removeAllObjects];
-	
-	[update_timer invalidate];
 	[self removeAllChildrenWithCleanup:YES];
-	cape_game = NULL;
 }
 
 @end

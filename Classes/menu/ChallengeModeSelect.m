@@ -9,7 +9,7 @@
 
 @interface ChallengeButtonIcon : CCSprite {
     CCSprite *locked,*unlocked,*status_star,*disp_type_icon;
-	CCLabelTTF *locked_text, *unlocked_text;
+	CCLabelTTF_Pooled *locked_text, *unlocked_text;
 }
 @end
 
@@ -26,7 +26,7 @@
                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"lock"]
       ] pos:ccp(30,46)]
      ];
-    locked_text = [Common cons_label_pos:ccp(55,60)
+    locked_text = [Common cons_pooled_label_pos:ccp(55,60)
 								   color:ccc3(100, 100, 100)
 								fontsize:25
 									 str:@"-1"];
@@ -34,7 +34,7 @@
     [self addChild:locked];
     
     unlocked = [CCSprite node];
-    unlocked_text = [Common cons_label_pos:ccp(55,60)
+    unlocked_text = [Common cons_pooled_label_pos:ccp(55,60)
 									 color:ccc3(153, 0, 0)
 								  fontsize:34
 									   str:@"-1"];
@@ -77,6 +77,9 @@
 }
 
 -(void)dealloc {
+	[locked_text repool];
+	[unlocked_text repool];
+	
 	[locked removeAllChildrenWithCleanup:YES];
 	[unlocked removeAllChildrenWithCleanup:YES];
 	[self removeAllChildrenWithCleanup:YES];

@@ -130,7 +130,7 @@
      gl rounds texture to nearest 2^n size, use img size constants to properly size
      **/
     
-    bottom = [Common cons_render_obj:tex npts:4];
+    bottom = [Common neu_cons_render_obj:tex npts:4];
     
     bottom.tri_pts[0] = fccp(-normal.x            ,-normal.y);
     bottom.tri_pts[1] = fccp(normal.x             ,normal.y);
@@ -142,7 +142,7 @@
     bottom.tex_pts[2] = fccp(0,s.height/bhei);
     bottom.tex_pts[3] = fccp(s.width/bwid,s.height/bhei);
     
-    top = [Common cons_render_obj:tex npts:4];
+    top = [Common neu_cons_render_obj:tex npts:4];
     top.tri_pts[0] = fccp(-normal.x + dir_vec.x - r_dirv.x              , -normal.y + dir_vec.y - r_dirv.y );
     top.tri_pts[1] = fccp(normal.x  + dir_vec.x - r_dirv.x             , normal.y + dir_vec.y - r_dirv.y);
     top.tri_pts[2] = fccp(-normal.x  + dir_vec.x   ,  -normal.y  + dir_vec.y);
@@ -161,7 +161,7 @@
     normal=[VecLib normalize:normal];
     normal=[VecLib scale:normal by:bwid/2];
     
-    center = [Common cons_render_obj:tex npts:4];
+    center = [Common neu_cons_render_obj:tex npts:4];
     
     center.tri_pts[0] = fccp(-normal.x            ,-normal.y);
     center.tri_pts[1] = fccp(normal.x             ,normal.y);

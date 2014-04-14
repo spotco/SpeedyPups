@@ -10,6 +10,7 @@
 #import "BatchDraw.h"
 #import "AutoLevelState.h"
 #import "GameItemCommon.h"
+#import "ObjectPool.h"
 
 @interface OrigPtCCSpr : CCSprite
 @property(readwrite,assign) CGPoint origpt;
@@ -88,6 +89,7 @@
 	[AudioManager begin_load];
 	[Resource load_all];
 	[FileCache precache_files];
+	[ObjectPool prepool];
 	for (NSString* i in [AutoLevelState get_all_levels]) {
         [MapLoader precache_map:i];
     }    

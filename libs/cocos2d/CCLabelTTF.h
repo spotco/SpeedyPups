@@ -76,6 +76,6 @@
 - (void) setString:(NSString*)str;
 -(CCLabelTTF*)anchor_pt:(CGPoint)pt;
 -(void)set_label:(NSString*)str;
-
+-(void)set_fontname:(NSString*)fontname size:(CGFloat)size;
 
 @end

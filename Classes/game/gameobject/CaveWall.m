@@ -15,7 +15,7 @@
     wid = width;
     hei = height;
     
-    tex = [Common cons_render_obj:[self get_tex:g] npts:4];
+    tex = [Common neu_cons_render_obj:[self get_tex:g] npts:4];
     active = YES;
     /*10
       32*/

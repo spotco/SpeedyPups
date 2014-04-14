@@ -115,6 +115,10 @@ fCGPoint fCGPointMake(float x, float y);
 +(TexRect*)cons_tex:(CCTexture2D*)tex rect:(CGRect)rect;
 @end
 
+@interface CCLabelTTF_Pooled : CCLabelTTF
+-(void)repool;
+@end
+
 @interface Common : NSObject
 
 typedef struct HitRect {
@@ -177,7 +181,8 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx;
 +(void)transform_obj:(GLRenderObject*)o by:(CGPoint)position ;
 +(void)tex_map_to_tri_loc:(GLRenderObject*)o len:(int)len;
-+(GLRenderObject*)cons_render_obj:(CCTexture2D*)tex npts:(int)npts;
++(GLRenderObject*)neu_cons_render_obj:(CCTexture2D*)tex npts:(int)npts;
++(GLRenderObject*)cons_render_obj:(CCTexture2D*)tex npts:(int)npts obj:(GLRenderObject*)obj;
 
 +(CGRect)ssrect_from_dict:(NSDictionary*)dict tar:(NSString*)tar;
 +(id)make_anim_frames:(NSArray*)animFrames speed:(float)speed;
@@ -185,6 +190,7 @@ float CGPointDist(CGPoint a,CGPoint b);
 
 +(CCMenuItem*)make_button_tex:(CCTexture2D*)tex seltex:(CCTexture2D*)seltex zscale:(float)zscale callback:(CallBack*)cb pos:(CGPoint)pos;
 +(CCLabelTTF*)cons_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str;
++(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str;
 
 +(CameraZoom)cons_normalcoord_camera_zoom_x:(float)x y:(float)y z:(float)z;
 

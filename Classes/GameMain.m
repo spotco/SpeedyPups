@@ -28,6 +28,7 @@
  subboss on reset remove fgwater
  dog/tutorialdog better shadow
  freepups fadein/out
+ clock use/unused sfx
  
  
  credits-interactive
@@ -76,7 +77,6 @@ Stretch goals:
     [AudioManager set_play_sfx:PLAY_SFX];
 	 
 	if (RESET_STATS) [DataStore reset_all];
-	
 	
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];

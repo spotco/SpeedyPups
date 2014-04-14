@@ -2,10 +2,17 @@
 #import "Island.h"
 #import "GameRenderImplementation.h"
 #import "GameMain.h"
+#import "ObjectPool.h"
 
 @implementation CCSprite_VerboseDealloc
 -(void)dealloc {
-	NSLog(@"dealloq!!");
+	NSLog(@"%@ verbose_dealloc",[self class]);
+}
+@end
+
+@implementation CCLabelTTF_Pooled
+-(void)repool {
+	if ([self class] == [CCLabelTTF_Pooled class]) [ObjectPool repool:self class:[CCLabelTTF_Pooled class]];
 }
 @end
 
@@ -281,12 +288,20 @@ bool fm_a_gt_b(double a,double b,double delta) {
     }
 }
 
-+(GLRenderObject*)cons_render_obj:(CCTexture2D*)tex npts:(int)npts {
+
++(GLRenderObject*)neu_cons_render_obj:(CCTexture2D*)tex npts:(int)npts {
     GLRenderObject *n = [[GLRenderObject alloc] init];
     n.texture = tex;
     n.isalloc = 1;
     n.pts = npts;
     return n;
+}
+
++(GLRenderObject*)cons_render_obj:(CCTexture2D*)tex npts:(int)npts obj:(GLRenderObject *)obj {
+	obj.texture = tex;
+	obj.isalloc = 1;
+	obj.pts = npts;
+	return obj;
 }
 
 +(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx {    
@@ -346,6 +361,17 @@ bool fm_a_gt_b(double a,double b,double delta) {
 +(CCLabelTTF*)cons_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
     CCLabelTTF *l = [CCLabelTTF labelWithString:str fontName:@"Carton Six" fontSize:fontsize];
     [l setColor:color];
+    [l setPosition:pos];
+    return l;
+}
+
++(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
+    //CCLabelTTF_Pooled *l = [CCLabelTTF_Pooled labelWithString:str fontName:@"Carton Six" fontSize:fontsize];
+    CCLabelTTF_Pooled *l = [ObjectPool depool:[CCLabelTTF_Pooled class]];
+	[l set_fontname:@"Carton Six" size:fontsize];
+	[l setString:str];
+	
+	[l setColor:color];
     [l setPosition:pos];
     return l;
 }

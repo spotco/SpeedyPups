@@ -6,6 +6,7 @@
 #import "CloudGenerator.h"
 #import "StreamParticle.h"
 #import "BoneCollectUIAnimation.h"
+#import "LineIsland.h"
 
 @interface ObjectPoolInfo : NSObject
 +(ObjectPoolInfo*)cons;
@@ -34,7 +35,6 @@ void prepool(Class classname, int count) {
 +(void)initialize {
 	class_pool = [NSMutableDictionary dictionary];
 	info_pool = [NSMutableDictionary dictionary];
-	[self prepool];
 }
 
 +(void)prepool {
@@ -44,6 +44,7 @@ void prepool(Class classname, int count) {
 	prepool([Cloud class], 50);
 	prepool([StreamParticle class], 50);
 	prepool([BoneCollectUIAnimation class], 30);
+	prepool([LineIsland class], 200);
 }
 
 +(id)depool:(Class)c {

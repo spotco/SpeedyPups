@@ -12,7 +12,7 @@ static const float ENTR_HEI = 3000;
     [self setPosition:pt];
     base = tbase;
     [[Resource get_tex:TEX_LAB_ENTRANCE_FORE] setHorizClampTexParameters];
-    front_body = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_FORE] npts:4];
+    front_body = [Common neu_cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_FORE] npts:4];
     //23
     //01
     
@@ -58,7 +58,7 @@ static const float ENTR_HEI = 3000;
     active = YES;
     [self setPosition:pt];
     [[Resource get_tex:TEX_LAB_ENTRANCE_BACK] setHorizClampTexParameters];
-    back_body = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_BACK] npts:4];
+    back_body = [Common neu_cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_BACK] npts:4];
     //23
     //01 then flip horiz
     
@@ -76,7 +76,7 @@ static const float ENTR_HEI = 3000;
     back_body.tex_pts[1] = fccp(1,hei/back_body.texture.pixelsHigh);
 
     [[Resource get_tex:TEX_LAB_ENTRANCE_CEIL] setHorizClampTexParameters];
-    ceil_edge = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL] npts:4];
+    ceil_edge = [Common neu_cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL] npts:4];
     
     float ceil_hei = 50;
     float ceil_leftoffset = -40;
@@ -94,7 +94,7 @@ static const float ENTR_HEI = 3000;
     ceil_edge.tex_pts[1] = fccp(1,1);
     
     [[Resource get_tex:TEX_LAB_ENTRANCE_CEIL_REPEAT] setHorizClampTexParameters];
-    ceil_body = [Common cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL_REPEAT] npts:4];
+    ceil_body = [Common neu_cons_render_obj:[Resource get_tex:TEX_LAB_ENTRANCE_CEIL_REPEAT] npts:4];
     ceil_body.tri_pts[0] =  fccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei);
     ceil_body.tri_pts[1]  = fccp(ceil_leftoffset+ceil_wid,ceil_hei+ceil_edge_hei);
     ceil_body.tri_pts[2] =  fccp(ceil_leftoffset,         ceil_hei+ceil_edge_hei+ENTR_HEI);

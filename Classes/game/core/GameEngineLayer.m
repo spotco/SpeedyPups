@@ -650,6 +650,13 @@
 		if ([o class] == [AutoLevel class]) [(AutoLevel*)o game_quit];
 	}
 	
+	for (int i = islands.count-1; i>= 0; i--) {
+		Island *o = islands[i];
+		[o repool];
+		[self removeChild:o cleanup:YES];
+	}
+	[islands removeAllObjects];
+	
 	for (int i = game_objects.count -1; i >= 0; i--) {
 		GameObject *o = game_objects[i];
 		[o repool];

@@ -1,6 +1,7 @@
 
 #import "LineIsland.h"
 #import "GameEngineLayer.h"
+#import "ObjectPool.h"
 
 @implementation LineIsland
 
@@ -18,7 +19,11 @@
 @synthesize force_draw_leftline,force_draw_rightline;
 
 +(LineIsland*)cons_pt1:(CGPoint)start pt2:(CGPoint)end height:(float)height ndir:(float)ndir can_land:(BOOL)can_land g:(GameEngineLayer *)g {
-	LineIsland *new_island = [LineIsland node];
+	//LineIsland *new_island = [LineIsland node];
+	LineIsland *new_island = [ObjectPool depool:[LineIsland class]];
+	
+	[new_island reset_fields];
+	
 	[new_island set_gameengine:g];
     new_island.fill_hei = height;
     new_island.self.ndir = ndir;
@@ -30,6 +35,38 @@
 	[new_island cons_tex];
 	[new_island cons_top];
 	return new_island;
+}
+
+-(void)reset_fields {
+	has_gen_hitrect = NO;
+	has_transformed_renderpts = NO;
+	force_draw_leftline = NO;
+	force_draw_rightline = NO;
+	self.next = NULL;
+	self.prev = NULL;
+	self.can_land = NO;
+}
+
+-(id)init {
+	self = [super init];
+	main_fill = [[GLRenderObject alloc] init];
+	top_fill = [[GLRenderObject alloc] init];
+	corner_fill = [[GLRenderObject alloc] init];
+	tl_top_corner = [[GLRenderObject alloc] init];
+	tr_top_corner = [[GLRenderObject alloc] init];
+	bottom_line_fill = [[GLRenderObject alloc] init];
+	corner_line_fill = [[GLRenderObject alloc] init];
+	left_line_fill = [[GLRenderObject alloc] init];
+	right_line_fill = [[GLRenderObject alloc] init];
+	toppts_fill = [[GLRenderObject alloc] init];
+	return self;
+}
+
+-(void)repool {
+	if ([self class] == [LineIsland class]) {
+		gameengine = NULL;
+		[ObjectPool repool:self class:[LineIsland class]];
+	}
 }
 
 -(void)set_gameengine:(GameEngineLayer*)g {
@@ -182,7 +219,7 @@
 
 -(void)cons_tex {
     //init islandfill
-    main_fill = [Common cons_render_obj:[self get_tex_fill] npts:4];
+    main_fill = [Common cons_render_obj:[self get_tex_fill] npts:4 obj:main_fill];
 	
 	fCGPoint *tri_pts = main_fill.tri_pts;
     
@@ -239,8 +276,8 @@
 -(void)cons_top {
     //set top green bar
     //also initially sets toppts
-    top_fill = [Common cons_render_obj:[self get_tex_top] npts:4];
-    toppts_fill = [Common cons_render_obj:[self get_corner_fill_color] npts:3];
+    top_fill = [Common cons_render_obj:[self get_tex_top] npts:4 obj:top_fill];
+    toppts_fill = [Common cons_render_obj:[self get_corner_fill_color] npts:3 obj:toppts_fill];
     toppts_fill.isalloc = 0;
     
 	fCGPoint* tri_pts = top_fill.tri_pts;
@@ -288,13 +325,13 @@
     [self cons_bottom_line_fill];
 }
 
--(GLRenderObject*)cons_TRorTL_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
+-(GLRenderObject*)cons_TRorTL_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec o:(GLRenderObject*)o {
     Vec3D mvr = [VecLib cons_x:-vec.x y:-vec.y z:0];
     mvr = [VecLib scale:mvr by:MVR_ROUNDED_CORNER_SCALE];
     
     top = ccp2fccp([VecLib transform_pt:fccp2ccp(top) by:mvr]);
     bot = ccp2fccp([VecLib transform_pt:fccp2ccp(bot) by:mvr]);
-    GLRenderObject* o = [Common cons_render_obj:[self get_tex_corner] npts:4];
+    [Common cons_render_obj:[self get_tex_corner] npts:4 obj:o];
 	
 	fCGPoint* tri_pts = o.tri_pts;
     
@@ -309,7 +346,7 @@
 }
 
 -(void)cons_tl_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
-    tl_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
+    tl_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec o:tl_top_corner];
     fCGPoint* tex_pts = tl_top_corner.tex_pts;
     
     tex_pts[0] = fccp(0,0);
@@ -319,7 +356,7 @@
 }
 
 -(void)cons_tr_top:(fCGPoint)top bot:(fCGPoint)bot vec:(Vec3D)vec {
-    tr_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec];
+    tr_top_corner = [self cons_TRorTL_top:top bot:bot vec:vec o:tr_top_corner];
     fCGPoint* tex_pts = tr_top_corner.tex_pts;
     
     tex_pts[2] = fccp(0,0);
@@ -328,8 +365,8 @@
     tex_pts[0] = fccp(0,1);
 }
 
--(GLRenderObject*)line_from:(fCGPoint)a to:(fCGPoint)b scale:(float)scale {
-    GLRenderObject* n = [Common cons_render_obj:[self get_tex_border] npts:4];
+-(GLRenderObject*)line_from:(fCGPoint)a to:(fCGPoint)b scale:(float)scale n:(GLRenderObject*)n {
+    [Common cons_render_obj:[self get_tex_border] npts:4 obj:n];
     n.isalloc = 1;
     fCGPoint* tri_pts = n.tri_pts;
 	fCGPoint* tex_pts = n.tex_pts;
@@ -361,7 +398,7 @@
 }
 
 -(void)cons_bottom_line_fill {
-    bottom_line_fill = [self line_from:bl to:br scale:1];
+    bottom_line_fill = [self line_from:bl to:br scale:1 n:bottom_line_fill];
 }
 
 -(void)cons_corner_line_fill {
@@ -374,15 +411,15 @@
     }
     
     LineIsland *n = (LineIsland*)self.next;
-    corner_line_fill = [self line_from:br to:fccp(n.bl.x-self.startX+n.self.startX,n.bl.y-self.startY+n.self.startY) scale:1];
+    corner_line_fill = [self line_from:br to:fccp(n.bl.x-self.startX+n.self.startX,n.bl.y-self.startY+n.self.startY) scale:1 n:corner_line_fill];
 }
 
 -(void)cons_left_line_fill {
-    left_line_fill = [self line_from:tl to:bl scale:1];
+    left_line_fill = [self line_from:tl to:bl scale:1 n:left_line_fill];
 }
 
 -(void)cons_right_line_fill {
-    right_line_fill = [self line_from:tr to:br scale:-1];
+    right_line_fill = [self line_from:tr to:br scale:-1 n:right_line_fill];
 }
 
 -(void)link_finish {
@@ -454,7 +491,7 @@
 }
 
 -(void)cons_corner_tex {
-    corner_fill = [Common cons_render_obj:[self get_tex_fill] npts:3];
+    corner_fill = [Common cons_render_obj:[self get_tex_fill] npts:3 obj:corner_fill];
     
     fCGPoint* tri_pts = corner_fill.tri_pts;
     

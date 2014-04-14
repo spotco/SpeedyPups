@@ -16,7 +16,7 @@
 	normal = [VecLib normalize:normal];
 	normal = [VecLib scale:normal by:[tex pixelsHigh]];
 
-	center = [Common cons_render_obj:tex npts:4];
+	center = [Common neu_cons_render_obj:tex npts:4];
 
 	/*
 	      3--2
