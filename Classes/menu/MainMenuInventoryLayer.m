@@ -201,7 +201,6 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 }
 
 -(void)dealloc {
-	NSLog(@"%@ dealloc",NSStringFromClass([self class]));
 	[tabs removeAllObjects];
 	[tabpanes removeAllObjects];
 	[self removeAllChildrenWithCleanup:YES];

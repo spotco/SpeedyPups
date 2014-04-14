@@ -2,15 +2,7 @@
 #import "Resource.h"
 #import "Common.h"
 #import "FileCache.h"
-
-@interface Cloud : CCSprite {
-	float movspd;
-}
-+(Cloud*)cons_pt:(CGPoint)pt sc:(float)sc texkey:(NSString*)texkey scaley:(float)sy;
--(void)update_dv:(CGPoint)dv;
-@property(readwrite,assign) float scaley;
-@property(readwrite,assign) float speedmult;
-@end
+#import "ObjectPool.h"
 
 @implementation Cloud
 @synthesize scaley;
@@ -32,7 +24,10 @@
 	}
 	
 	//TEX_CLOUD_SS
-	Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:texkey] rect:[FileCache get_cgrect_from_plist:texkey idname:tarcld]];
+	//Cloud* b = [Cloud spriteWithTexture:[Resource get_tex:texkey] rect:[FileCache get_cgrect_from_plist:texkey idname:tarcld]];
+	Cloud *b = [ObjectPool depool:[Cloud class]];
+	[b setTexture:[Resource get_tex:texkey]];
+	[b setTextureRect:[FileCache get_cgrect_from_plist:texkey idname:tarcld]];
 	
 	b.scaley = sy;
 	b.speedmult = 1;
@@ -47,6 +42,9 @@
 }
 -(void)update_dv:(CGPoint)dv {
     [self setPosition:CGPointAdd(self.position, ccp(movspd*self.speedmult,-dv.y*scaley))];
+}
+-(void)repool {
+	if ([self class] == [Cloud class]) [ObjectPool repool:self class:[Cloud class]];
 }
 @end
 
@@ -125,9 +123,10 @@
         }
     }
     [clouds removeObjectsInArray:toremove];
-    for (CCSprite* tar in toremove) {
+    for (Cloud* tar in toremove) {
         [self removeChild:tar cleanup:YES];
-    }
+		[tar repool];
+	}
 }
 
 -(void)random_seed_clouds {
@@ -157,8 +156,9 @@
 }
 
 -(void)dealloc {
-    for (CCNode* n in clouds) {
+    for (Cloud* n in clouds) {
         [self removeChild:n cleanup:YES];
+		[n repool];
     }
     [clouds removeAllObjects];
 }

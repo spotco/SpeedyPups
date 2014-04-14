@@ -144,6 +144,7 @@
         if (i.ct <= 0) {
             [ingameuianimholder removeChild:i cleanup:YES];
             [toremove addObject:i];
+			[i repool];
         }
     }
     [ingame_ui_anims removeObjectsInArray:toremove];
@@ -281,6 +282,10 @@
     game_engine_layer = ref;
 }
 -(void)dealloc {
+	for (UIIngameAnimation *i in ingame_ui_anims) {
+		[ingameuianimholder removeChild:i cleanup:YES];
+		[i repool];
+	}
     [ingame_ui_anims removeAllObjects];
     [pauseui removeAllChildrenWithCleanup:YES];
     [ingameui removeAllChildrenWithCleanup:YES];

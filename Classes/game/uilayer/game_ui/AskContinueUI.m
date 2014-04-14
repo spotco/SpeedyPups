@@ -256,6 +256,14 @@
 	}
 }
 
+-(void)dealloc {
+	for (UIIngameAnimation *i in bone_anims) {
+		[self removeChild:i cleanup:YES];
+		[i repool];
+	}
+	[bone_anims removeAllObjects];
+}
+
 -(void)update_transfer_bones {
 	NSMutableArray *toremove = [NSMutableArray array];
 	for (UIIngameAnimation *i in bone_anims) {
@@ -263,6 +271,7 @@
 		if (i.ct <= 0) {
 			[self removeChild:i cleanup:YES];
 			[toremove addObject:i];
+			[i repool];
 		}
 	}
 	[bone_anims removeObjectsInArray:toremove];

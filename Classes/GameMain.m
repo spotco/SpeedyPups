@@ -23,11 +23,10 @@
 #define DRAW_HITBOX NO
 
 /**
- pool DogBone, WaveParticle, GroundDetail, StreamParticle, clouds
  labfiller is fucked
  launcherrobot sound cooldown (manyrockets lab level)
  subboss on reset remove fgwater
- dog better shadow
+ dog/tutorialdog better shadow
  freepups fadein/out
  
  

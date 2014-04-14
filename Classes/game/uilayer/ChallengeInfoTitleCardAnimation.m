@@ -87,7 +87,7 @@
 	return self;
 }
 -(void)on_remove {
-	[[self parent] removeChild:self cleanup:NO];
+	[[self parent] removeChild:self cleanup:YES];
 	[GEventDispatcher remove_listener:self];
 }
 -(void)dispatch_event:(GEvent *)e {
@@ -209,6 +209,6 @@
 }
 
 -(void)on_remove {
-	[[self parent] removeChild:self cleanup:NO];
+	[[self parent] removeChild:self cleanup:YES];
 }
 @end

@@ -7,5 +7,6 @@
 
 @property(readwrite,assign) float ct;
 -(void)update;
+-(void)repool;
 
 @end

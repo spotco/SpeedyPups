@@ -3921,6 +3921,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					DC0C49F0154AB4DD00B4B727 = {
+						DevelopmentTeam = W6R477JQ9S;
+					};
+				};
 			};
 			buildConfigurationList = DC0C49EB154AB4DD00B4B727 /* Build configuration list for PBXProject "SpeedyPups" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4692,7 +4697,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4706,7 +4712,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "1C04A1FE-DFBD-4675-86E8-425F8BAADBDA";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4717,7 +4723,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Pingyang He (W6R477JQ9S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
@@ -4730,7 +4737,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "1C04A1FE-DFBD-4675-86E8-425F8BAADBDA";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

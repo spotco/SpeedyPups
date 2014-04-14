@@ -203,6 +203,7 @@
         if (i.ct <= 0) {
             [uianim_holder removeChild:i cleanup:YES];
             [toremove addObject:i];
+			[i repool];
         }
     }
     [uianims removeObjectsInArray:toremove];
@@ -299,6 +300,12 @@
 }
 
 -(void)exit {
+	for (UIIngameAnimation *i in uianims) {
+		[uianim_holder removeChild:i cleanup:YES];
+		[i repool];
+	}
+	[uianims removeAllObjects];
+	
 	[update_timer invalidate];
 	[self removeAllChildrenWithCleanup:YES];
 	cape_game = NULL;

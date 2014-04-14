@@ -1,14 +1,23 @@
 #import "WaveParticle.h"
 #import "GameRenderImplementation.h"
+#import "ObjectPool.h"
 
 @implementation WaveParticle
 
 
 +(WaveParticle*)cons_x:(float)x y:(float)y vx:(float)vx vtheta:(float)vtheta {
-    WaveParticle *p = [WaveParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
-    [p setPosition:ccp(x,y)];
+    //WaveParticle *p = [WaveParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+    WaveParticle *p = [ObjectPool depool:[WaveParticle class]];
+	[p setTexture:[Resource get_tex:TEX_PARTICLES]];
+	[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	
+	[p setPosition:ccp(x,y)];
     [p cons:vx vtheta:vtheta];
     return p;
+}
+
+-(void)repool {
+	if ([self class] == [WaveParticle class]) [ObjectPool repool:self class:[WaveParticle class]];
 }
 
 -(void)cons:(float)tvx vtheta:(float)tvtheta {

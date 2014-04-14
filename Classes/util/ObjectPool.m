@@ -2,21 +2,15 @@
 
 #import "DogBone.h"
 #import "GroundDetail.h"
+#import "WaveParticle.h"
+#import "CloudGenerator.h"
+#import "StreamParticle.h"
+#import "BoneCollectUIAnimation.h"
 
 @interface ObjectPoolInfo : NSObject
 +(ObjectPoolInfo*)cons;
 -(ObjectPoolInfo*)increment_total:(int)_total used:(int)_used;
 @property(readwrite,assign) int total, used;
-@end
-
-@implementation ObjectPoolInfo
-@synthesize total,used;
-+(ObjectPoolInfo*)cons { return [[ObjectPoolInfo alloc] init]; }
--(ObjectPoolInfo*)increment_total:(int)_total used:(int)_used {
-	total += _total;
-	used += _used;
-	return self;
-}
 @end
 
 @implementation ObjectPool
@@ -46,6 +40,10 @@ void prepool(Class classname, int count) {
 +(void)prepool {
 	prepool([DogBone class], 200);
 	prepool([GroundDetail class], 100);
+	prepool([WaveParticle class], 200);
+	prepool([Cloud class], 50);
+	prepool([StreamParticle class], 50);
+	prepool([BoneCollectUIAnimation class], 30);
 }
 
 +(id)depool:(Class)c {
@@ -102,3 +100,14 @@ void prepool(Class classname, int count) {
 }
 
 @end
+
+@implementation ObjectPoolInfo
+@synthesize total,used;
++(ObjectPoolInfo*)cons { return [[ObjectPoolInfo alloc] init]; }
+-(ObjectPoolInfo*)increment_total:(int)_total used:(int)_used {
+	total += _total;
+	used += _used;
+	return self;
+}
+@end
+

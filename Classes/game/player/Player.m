@@ -767,11 +767,13 @@ HitRect cached_rect;
 }
 
 -(void)dealloc {
-    [self cleanup_anims];
-    [self removeAllChildrenWithCleanup:YES];
-}
--(void)cleanup_anims {
-    [player_img stopAllActions];
+	[player_img stopAllActions];
+	[self stopAllActions];
+	[normal_anims removeAllObjects];
+	[armored_anims removeAllObjects];
+	[sweatanim stopAllActions];
+	[dashlines stopAllActions];
+	game_engine_layer = NULL;
     [self removeAllChildrenWithCleanup:YES];
 }
 

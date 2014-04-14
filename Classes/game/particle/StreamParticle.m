@@ -2,22 +2,35 @@
 #import "FileCache.h"
 #import "Player.h"
 #import "GameEngineLayer.h"
+#import "ObjectPool.h"
 
 @implementation StreamParticle
 @synthesize ct;
 
 +(StreamParticle*)cons_x:(float)x y:(float)y {
-    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
-    [p cons];
+    //StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+    StreamParticle *p = [ObjectPool depool:[StreamParticle class]];
+	[p setTexture:[Resource get_tex:TEX_PARTICLES]];
+	[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	
+	[p cons];
     p.position = ccp(x,y);
     return p;
 }
 
 +(StreamParticle*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
-    p.position = ccp(x,y);
+    //StreamParticle* p = [StreamParticle spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+    StreamParticle *p = [ObjectPool depool:[StreamParticle class]];
+	[p setTexture:[Resource get_tex:TEX_PARTICLES]];
+	[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	
+	p.position = ccp(x,y);
     [p cons_vx:vx vy:vy];
     return p;
+}
+
+-(void)repool {
+	if ([self class] == [StreamParticle class]) [ObjectPool repool:self class:[StreamParticle class]];
 }
 
 -(void)cons_vx:(float)tvx vy:(float)tvy {

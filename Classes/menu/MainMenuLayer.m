@@ -23,9 +23,6 @@
 -(void)touch_move:(CGPoint)pt{}
 -(void)touch_end:(CGPoint)pt{}
 -(void)cleanup{}
--(void)dealloc {
-	NSLog(@"%@ dealloc",NSStringFromClass([self class]));
-}
 @end
 
 @implementation MainMenuLayer

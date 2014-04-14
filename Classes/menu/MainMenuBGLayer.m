@@ -115,9 +115,17 @@
         if ([i should_remove]) {
             [self removeChild:i cleanup:YES];
             [toremove addObject:i];
+			[i repool];
         }
     }
     [particles removeObjectsInArray:toremove];
+}
+-(void)dealloc {
+	for (Particle *i in particles) {
+		[self removeChild:i cleanup:YES];
+		[i repool];
+	}
+	[particles removeAllObjects];
 }
 
 -(void)move_fg:(CGPoint)pt { [fg setPosition:pt]; }

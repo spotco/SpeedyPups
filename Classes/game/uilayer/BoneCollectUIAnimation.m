@@ -1,20 +1,32 @@
 #import "FileCache.h"
 #import "BoneCollectUIAnimation.h"
+#import "ObjectPool.h"
 
 @implementation BoneCollectUIAnimation
 
 +(BoneCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
-    BoneCollectUIAnimation *b = [BoneCollectUIAnimation node];
-    [b cons_start:start end:end];
+    //BoneCollectUIAnimation *b = [BoneCollectUIAnimation node];
+    BoneCollectUIAnimation *b = [ObjectPool depool:[BoneCollectUIAnimation class]];
+	
+	[b cons_start:start end:end];
     return b;
 }
 
 -(void)cons_start:(CGPoint)tstart end:(CGPoint)tend {
-    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]]];
+    //[self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]]];
+	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
+	[self setOpacity:255];
+	[self setScale:1];
+	
     start = tstart;
     end = tend;
     [self setPosition:start];
 	[self set_ctmax:50];
+}
+
+-(void)repool {
+	if ([self class] == [BoneCollectUIAnimation class]) [ObjectPool repool:self class:[BoneCollectUIAnimation class]];
 }
 
 -(id)set_ctmax:(int)ctm {
@@ -39,11 +51,12 @@
     ct-=[Common get_dt_Scale];
 }
 
+/*
 - (void)setOpacity:(GLubyte)opacity {
 	[super setOpacity:opacity];
 	for(CCSprite *sprite in [self children]) {
 		sprite.opacity = opacity;
 	}
-}
+}*/
 
 @end
