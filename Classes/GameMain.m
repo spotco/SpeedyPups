@@ -14,8 +14,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_BGM YES
+#define TESTLEVEL @"lab_rocketfever"
 
 #define RESET_STATS NO
 #define STARTING_LIVES 10
@@ -23,14 +23,6 @@
 #define DRAW_HITBOX NO
 
 /**
- labfiller is fucked
- launcherrobot sound cooldown (manyrockets lab level)
- subboss on reset remove fgwater
- dog/tutorialdog better shadow
- freepups fadein/out
- clock use/unused sfx
- 
- 
  credits-interactive
  integrate new map assets, freerun progress popup redesign (prev, current, next)
  score ui
@@ -51,6 +43,7 @@ Stretch goals:
  3 lab levels
  3 more cannon levels
  10 more freerun levels
+ convert all CCLabelTTF to CCLabelTTF_Pooled
  make two spike levels into regular levels
  equipped item resetting in lab transition
  bug armor -> rocket -> end -> swingvine, still in rocket form
@@ -124,10 +117,9 @@ Stretch goals:
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	
 	//[UserInventory add_bones:100000];
-	 
+	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];

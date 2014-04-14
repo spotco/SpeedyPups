@@ -177,7 +177,10 @@ static CGPoint last_pos;
 	
 	if (current_mode == SubMode_ToRemove) {
 		[g remove_gameobject:self];
-		//[g remove_gameobject:fgwater];
+		[g remove_gameobject:fgwater];
+		
+	} else if (current_mode == SubMode_DeadAfter) {
+		[g remove_gameobject:self];
 		
 	} else if (current_mode == SubMode_DeadExplode) {
 		[bgobj setVisible:NO];
@@ -200,7 +203,7 @@ static CGPoint last_pos;
 		
 		[body setPosition:ccp(player.position.x+body_rel_pos.x,groundlevel+body_rel_pos.y)];
 		if (ct <= 0) {
-			current_mode = SubMode_ToRemove;
+			current_mode = SubMode_DeadAfter;
 			for(float i = 0; i < 5; i++) {
 				[g add_particle:[BrokenCopterMachineParticle cons_sub_x:body.position.x
 																  y:body.position.y

@@ -46,7 +46,7 @@
     return n;
 }
 
--(CCTexture2D*)get_tex {
+-(CCTexture2D*)get_tex:(GameEngineLayer *)g {
     return [Resource get_tex:TEX_LAB_GROUND_1];
 }
 

@@ -4,7 +4,8 @@
 typedef enum {
 	FreePupsAnimMode_RUNIN,
 	FreePupsAnimMode_ROLL,
-	FreePupsAnimMode_BREAKANDFALL
+	FreePupsAnimMode_BREAKANDFALL,
+	FreePupsAnimMode_FADEOUT
 } FreePupsAnimMode;
 
 @class CCSprite_WithVel;

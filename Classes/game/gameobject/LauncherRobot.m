@@ -82,6 +82,7 @@
         [g add_gameobject:[ObjectShadow cons_tar:self]];
         has_shadow = YES;
     }
+	if (sfx_rocket_launch_cooldown > 0) sfx_rocket_launch_cooldown--;
     
     if (busted) {
         if (current_island == NULL) {
@@ -142,7 +143,7 @@
         recoilanim_timer = RECOIL_TIME;
 		
 		if (CGPointDist(position_, player.position) < 1200) {
-			[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+			[self play_rocketlaunch_sound];
 		}
 		
     }
@@ -221,5 +222,16 @@
 
 -(void)set_active:(BOOL)t_active {active = t_active;}
 -(HitRect)get_hit_rect {return [Common hitrect_cons_x1:position_.x-50 y1:position_.y-20 wid:100 hei:40];}
+
+
+static int sfx_rocket_launch_cooldown = 0;
+
+-(void)play_rocketlaunch_sound {
+	if (sfx_rocket_launch_cooldown <= 0) {
+		[AudioManager playsfx:SFX_ROCKET_LAUNCH];
+		sfx_rocket_launch_cooldown = 10;
+	}
+}
+
 @end
 

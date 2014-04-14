@@ -39,9 +39,9 @@
 
 - (id) init
 {
-	NSString *name = [[NSString stringWithFormat:@"Carton Six"] autorelease];
+	NSString *name = [NSString stringWithFormat:@"Carton Six"];
 	CGFloat size = 9;
-	NSString *str = [[NSString stringWithFormat:@"top kek m8"] autorelease];
+	NSString *str = [NSString stringWithFormat:@"top kek m8"];
 	return [self initWithString:str fontName:name fontSize:size];
 }
 

@@ -7,6 +7,8 @@
 #import "StreamParticle.h"
 #import "BoneCollectUIAnimation.h"
 #import "LineIsland.h"
+#import "Common.h"
+#import "JumpParticle.h"
 
 @interface ObjectPoolInfo : NSObject
 +(ObjectPoolInfo*)cons;
@@ -17,7 +19,6 @@
 @implementation ObjectPool
 
 #define DO_DEBUG_INFO YES
-
 
 static NSMutableDictionary *class_pool;
 static NSMutableDictionary *info_pool;
@@ -45,6 +46,8 @@ void prepool(Class classname, int count) {
 	prepool([StreamParticle class], 50);
 	prepool([BoneCollectUIAnimation class], 30);
 	prepool([LineIsland class], 200);
+	prepool([CCLabelTTF_Pooled class], 35);
+	prepool([JumpParticle class], 5);
 }
 
 +(id)depool:(Class)c {

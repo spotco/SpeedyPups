@@ -2,19 +2,27 @@
 #import "FileCache.h"
 #import "GameRenderImplementation.h"
 #import "GameEngineLayer.h"
+#import "ObjectPool.h"
 
 @implementation JumpParticle
 
-static const float TIME = 15.0;
-static const float MINSCALE = 3;
-static const float MAXSCALE = 5;
+static const float TIME = 10.0;
+static const float MINSCALE = 1;
+static const float MAXSCALE = 2;
 
 +(JumpParticle*)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up {
 	return [JumpParticle cons_pt:pt vel:vel up:up tex:[Resource get_tex:TEX_DASHJUMPPARTICLES_SS] rect:[FileCache get_cgrect_from_plist:TEX_DASHJUMPPARTICLES_SS idname:@"jumpparticle"] relpos:NO];
 }
 
 +(JumpParticle*)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up tex:(CCTexture2D *)tex rect:(CGRect)rect relpos:(BOOL)relpos {
-	return [[JumpParticle node] cons_pt:pt vel:vel up:up tex:tex rect:rect relpos:relpos];
+	//return [[JumpParticle node] cons_pt:pt vel:vel up:up tex:tex rect:rect relpos:relpos];
+	JumpParticle *rtv = [ObjectPool depool:[JumpParticle class]];
+	[rtv cons_pt:pt vel:vel up:up tex:tex rect:rect relpos:relpos];
+	return rtv;
+}
+
+-(void)repool {
+	if ([self class] == [JumpParticle class]) [ObjectPool repool:self class:[JumpParticle class]];
 }
 
 -(id)cons_pt:(CGPoint)pt vel:(CGPoint)vel up:(CGPoint)up tex:(CCTexture2D*)tex rect:(CGRect)rect relpos:(BOOL)_relpos {
@@ -22,7 +30,8 @@ static const float MAXSCALE = 5;
 	[self setTextureRect:rect];
 	
     [self setPosition:pt];
-	[self setScale:3];
+	[self setScale:MINSCALE];
+	[self setOpacity:200];
 	
 	Vec3D velvec = [VecLib cons_x:vel.x y:vel.y z:0];;
 	velvec = [VecLib negate:velvec];
@@ -74,7 +83,7 @@ static const float MAXSCALE = 5;
 	float tar_sc = ((1-ct/TIME)*(MAXSCALE-MINSCALE)+MINSCALE)*scale;
 	[self setScaleX:tar_sc*scx];
 	[self setScaleY:tar_sc];
-    [self setOpacity:(int)(200*(ct/TIME))+55];
+    [self setOpacity:(int)(200*(ct/TIME))];
 }
 
 -(BOOL)should_remove {

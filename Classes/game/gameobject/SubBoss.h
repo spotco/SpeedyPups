@@ -9,6 +9,7 @@ typedef enum SubMode {
 	SubMode_Flyoff,
 	SubMode_ToRemove,
 	SubMode_DeadExplode,
+	SubMode_DeadAfter,
 	SubMode_BGFireBombs,
 	SubMode_BGFireMissiles,
 	SubMode_FrontJumpAttack,

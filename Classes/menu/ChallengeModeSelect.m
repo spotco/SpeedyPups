@@ -206,13 +206,13 @@
 	
 	float offset = 0.06;
 	
-	chosen_name = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775 + offset]
+	chosen_name = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775 + offset]
 								   color:ccc3(200,30,30)
 								fontsize:17
 									 str:@""];
 	[chosen_window addChild:chosen_name];
 	
-	chosen_mapname = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69 + offset]
+	chosen_mapname = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69 + offset]
 									  color:ccc3(200,30,30)
 								   fontsize:9 str:@""];
 	[chosen_window addChild:chosen_mapname];
@@ -237,7 +237,7 @@
 											 color:ccc3(200,0,0)
 										  fontsize:11 str:@"Reward:"]];
 	
-	reward_amount = [Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.84 pcty:0.2 + offset]
+	reward_amount = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.84 pcty:0.2 + offset]
 									 color:ccc3(0,0,0)
 								  fontsize:19
 									   str:@"000000"];
@@ -386,6 +386,14 @@
 -(void)click6 {[self clicked:6];}
 -(void)click7 {[self clicked:7];}
 
-
+-(void)dealloc {
+	[chosen_name repool];
+	[chosen_mapname repool];
+	[reward_amount repool];
+	
+	[selectmenu removeAllChildrenWithCleanup:YES];
+	[chosenmenu removeAllChildrenWithCleanup:YES];
+	[self removeAllChildrenWithCleanup:YES];
+}
 
 @end

@@ -19,6 +19,11 @@ static bool itembutton_hold = NO;
 	return itembutton_hold;
 }
 +(void)set_clockbutton_hold:(BOOL)hold {
+	if (hold) {
+		[AudioManager playsfx:SFX_POWERUP];
+	} else {
+		[AudioManager playsfx:SFX_POWERDOWN];
+	}
 	itembutton_hold = hold;
 }
 

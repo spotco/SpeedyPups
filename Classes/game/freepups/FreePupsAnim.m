@@ -17,9 +17,15 @@
 
 @implementation FreePupsAnim
 
+#define tFADEOUTLAYER 51
+
 +(CCScene*)scene_with:(WorldNum)worldnum {
 	CCScene *rtv = [CCScene node];
 	[rtv addChild:[[FreePupsAnim node] cons_with:worldnum]];
+	
+	CCLayerColor *fadeout_layer = [CCLayerColor layerWithColor:ccc4(0,0,0,0)];
+	[fadeout_layer setOpacity:0];
+	[rtv addChild:fadeout_layer z:0 tag:tFADEOUTLAYER];
 	return rtv;
 }
 
@@ -139,7 +145,7 @@ static float GROUNDLEVEL;
 			}
 		} else {
 			if (dog.position.x > [Common SCREEN].width+100) {
-				[self exit];
+				mode = FreePupsAnimMode_FADEOUT;
 			}
 		}
 		
@@ -184,6 +190,13 @@ static float GROUNDLEVEL;
 			}
 		}
 		
+	} else if (mode == FreePupsAnimMode_FADEOUT) {
+		CCLayerColor *fadeout = (CCLayerColor*)[[self parent] getChildByTag:tFADEOUTLAYER];
+		if (fadeout.opacity < 255) {
+			[fadeout setOpacity:fadeout.opacity + 5];
+		} else {
+			[self exit];
+		}
 	}
 }
 
