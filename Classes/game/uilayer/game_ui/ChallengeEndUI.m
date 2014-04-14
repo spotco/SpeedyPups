@@ -284,9 +284,18 @@ static int delayfwct;
         if ([i should_remove]) {
             [particleholder removeChild:i cleanup:YES];
             [toremove addObject:i];
+			[i repool];
         }
     }
     [particles removeObjectsInArray:toremove];
+}
+
+-(void)dealloc {
+	for (Particle *p in particles) {
+		[particleholder removeChild:p cleanup:YES];
+		[p repool];
+	}
+	[particles removeAllObjects];
 }
 
 @end

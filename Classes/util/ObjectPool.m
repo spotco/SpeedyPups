@@ -9,6 +9,7 @@
 #import "LineIsland.h"
 #import "Common.h"
 #import "JumpParticle.h"
+#import "FireworksParticleA.h"
 
 @interface ObjectPoolInfo : NSObject
 +(ObjectPoolInfo*)cons;
@@ -48,6 +49,8 @@ void prepool(Class classname, int count) {
 	prepool([LineIsland class], 200);
 	prepool([CCLabelTTF_Pooled class], 35);
 	prepool([JumpParticle class], 5);
+	prepool([FireworksParticleA class], 15);
+	prepool([SubFireworksParticleA class], 300);
 }
 
 +(id)depool:(Class)c {

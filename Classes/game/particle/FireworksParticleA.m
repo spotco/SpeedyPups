@@ -1,19 +1,20 @@
 #import "FireworksParticleA.h"
 #import "GameEngineLayer.h"
-
-@interface SubFireworksParticleA : Particle {
-    int ct;
-}
-+(SubFireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy;
-@end
+#import "ObjectPool.h"
 
 @implementation SubFireworksParticleA
 #define SUBCT 25.0
 +(SubFireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy {
-    SubFireworksParticleA* p = [SubFireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
-    p.position = ccp(x,y);
+    //SubFireworksParticleA* p = [SubFireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+    SubFireworksParticleA *p = [ObjectPool depool:[SubFireworksParticleA class]];
+	[p setTexture:[Resource get_tex:TEX_PARTICLES]];
+	[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	p.position = ccp(x,y);
     [p cons_vx:vx vy:vy];
     return p;
+}
+-(void)repool {
+	if ([self class] == [SubFireworksParticleA class]) [ObjectPool repool:self class:[SubFireworksParticleA class]];
 }
 -(void)cons_vx:(float)tvx vy:(float)tvy {
     vx = tvx;
@@ -21,6 +22,7 @@
     ct = SUBCT;
     [self setColor:ccc3(251, 232, 52)];
     [self setScale:float_random(0.2, 0.7)];
+	[self setOpacity:255];
 }
 //ccc3(251,232,52)->ccc3(255,156,0)
 -(void)update:(GameEngineLayer *)g {
@@ -39,10 +41,17 @@
 @implementation FireworksParticleA
 
 +(FireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy ct:(int)ct {
-    FireworksParticleA* p = [FireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
-    p.position = ccp(x,y);
+    //FireworksParticleA* p = [FireworksParticleA spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	FireworksParticleA *p = [ObjectPool depool:[FireworksParticleA class]];
+	[p setTexture:[Resource get_tex:TEX_PARTICLES]];
+	[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+	p.position = ccp(x,y);
     [p cons_vx:vx vy:vy ct:ct];
     return p;
+}
+
+-(void)repool {
+	if ([self class] == [FireworksParticleA class]) [ObjectPool repool:self class:[FireworksParticleA class]];
 }
 
 -(void)cons_vx:(float)tvx vy:(float)tvy ct:(int)tct{
@@ -50,6 +59,7 @@
     vy = tvy;
     ct = tct;
     [self setColor:ccc3(251, 245, 52)];
+	[self setOpacity:255];
 }
 
 static int _time_since_last_sfx_play = 0;

@@ -177,6 +177,7 @@ static NSString *blank = @"";
         if ([i should_remove]) {
             [particleholder removeChild:i cleanup:YES];
             [toremove addObject:i];
+			[i repool];
         }
     }
     [particles removeObjectsInArray:toremove];
@@ -372,6 +373,10 @@ static NSString *blank = @"";
 
 -(void)exit {
 	[self removeAllChildrenWithCleanup:YES];
+	for (Particle *p in particles) {
+		[particleholder removeChild:p cleanup:YES];
+		[p repool];
+	}
 	[particles removeAllObjects];
 	[ui exit];
 	[[CCDirector sharedDirector] popScene];

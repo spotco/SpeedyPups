@@ -1,5 +1,11 @@
 #import "PlayerEffectParams.h"
 
+@interface SubFireworksParticleA : Particle {
+    int ct;
+}
++(SubFireworksParticleA*)cons_x:(float)x y:(float)y vx:(float)vx vy:(float)vy;
+@end
+
 @interface FireworksParticleA : Particle {
     int ct;
 }
