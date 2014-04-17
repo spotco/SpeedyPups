@@ -7,6 +7,11 @@
 #import "LabHandRail.h"
 #import "AudioManager.h"
 #import "FreeRunStartAtUnlockUIAnimation.h"
+#import "MenuCommon.h"
+#import "UICommon.h"
+
+#import "GameEngineLayer.h"
+#import "UILayer.h"
 
 @interface CCSprite_WithVel : CCSprite
 @property(readwrite,assign) float vx,vy,vr;
@@ -19,9 +24,9 @@
 
 #define tFADEOUTLAYER 51
 
-+(CCScene*)scene_with:(WorldNum)worldnum {
++(CCScene*)scene_with:(WorldNum)worldnum g:(GameEngineLayer *)g {
 	CCScene *rtv = [CCScene node];
-	[rtv addChild:[[FreePupsAnim node] cons_with:worldnum]];
+	[rtv addChild:[[FreePupsAnim node] cons_with:worldnum g:g]];
 	
 	CCLayerColor *fadeout_layer = [CCLayerColor layerWithColor:ccc4(0,0,0,0)];
 	[fadeout_layer setOpacity:0];
@@ -31,17 +36,25 @@
 
 static float GROUNDLEVEL;
 
--(id)cons_with:(WorldNum)labnum {
+-(id)cons_with:(WorldNum)labnum g:(GameEngineLayer *)g {
 	[self cons_anim];
 	if (labnum == WorldNum_1) {
 		BGLayerSet *set = [Lab1BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];
+		if (![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_WORLD2]) {
+			[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+			worldunlock_anim = [FreeRunStartAtUnlockUIAnimation cons_for_unlocking:FreeRunStartAt_WORLD2];
+		}
 	
 	} else if (labnum == WorldNum_2) {
 		BGLayerSet *set = [Lab2BGLayerSet cons];
 		[set update:NULL curx:0 cury:0];
 		[self addChild:set];
+		if (![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_WORLD3]) {
+			[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+			worldunlock_anim = [FreeRunStartAtUnlockUIAnimation cons_for_unlocking:FreeRunStartAt_WORLD3];
+		}
 		
 	} else if (labnum == WorldNum_3) {
 		BGLayerSet *set = [Lab3BGLayerSet cons];
@@ -103,7 +116,131 @@ static float GROUNDLEVEL;
 	[self addChild:uianim z:4];
 	
 	[self schedule:@selector(update:)];
+	
+	[self cons_menu_ui:g worldnum:labnum];
 	return self;
+}
+
+-(void)cons_menu_ui:(GameEngineLayer*)g worldnum:(WorldNum)worldnum {
+	
+	menu_ui = [CCSprite node];
+	[self addChild:menu_ui z:50];
+	[menu_ui setVisible:NO];
+	[menu_ui addChild:[CCLayerColor layerWithColor:ccc4(50,50,50,200)]];
+	
+	left_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	right_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_left"]];
+	bg_curtain = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
+	[right_curtain setScaleX:-1];
+	[bg_curtain setAnchorPoint:ccp(0.5,0)];
+	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	[menu_ui addChild:left_curtain];
+	[menu_ui addChild:right_curtain];
+	[menu_ui addChild:bg_curtain];
+	[self set_curtain_animstart_positions];
+	
+    [ menu_ui addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.8]
+                                        color:ccc3(255, 255, 255)
+                                     fontsize:45
+                                          str:[NSString stringWithFormat:@"World %d Complete!",(worldnum == WorldNum_3 ? 3 : (worldnum == WorldNum_2 ? 2 : 1))]]];
+	
+
+	CCSprite *disp_root = [CCSprite node];
+	[disp_root setPosition:[Common screen_pctwid:0.5 pcthei:0.575]];
+	[disp_root setScale:0.85];
+	[menu_ui addChild:disp_root];
+	
+    CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+    [disp_root addChild:timebg];
+    
+    CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
+    [bonesbg setPosition:ccp(timebg.position.x, timebg.position.y - timebg.boundingBoxInPixels.size.height - 5)];
+    [disp_root addChild:bonesbg];
+    
+    CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
+    [livesbg setPosition:ccp(bonesbg.position.x,bonesbg.position.y - bonesbg.boundingBoxInPixels.size.height - 5)];
+    [disp_root addChild:livesbg];
+	
+	CCSprite *pointsbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+	[pointsbg setPosition:ccp(bonesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 15)];
+	[pointsbg setScale:1.3];
+	[disp_root addChild:pointsbg];
+	
+	for (CCSprite *c in @[timebg,bonesbg,livesbg,pointsbg]) {
+		[c setOpacity:200];
+	}
+	
+    CCLabelTTF *pause_time_disp = [Common cons_label_pos:[Common pct_of_obj:timebg pctx:0.5 pcty:0.5]
+                                       color:ccc3(255, 255, 255)
+                                    fontsize:20
+                                         str:[NSString stringWithFormat:@"Time: %@",[UICommon parse_gameengine_time:[g get_time]]]];
+    [timebg addChild:pause_time_disp];
+    
+    CCLabelTTF *pause_bones_disp= [Common cons_label_pos:[Common pct_of_obj:bonesbg pctx:0.5 pcty:0.5]
+                                       color:ccc3(255, 255, 255)
+                                    fontsize:30
+                                         str:[NSString stringWithFormat:@"%d",[g get_num_bones]]];
+    [bonesbg addChild:pause_bones_disp];
+    
+    CCLabelTTF *pause_lives_disp= [Common cons_label_pos:[Common pct_of_obj:livesbg pctx:0.5 pcty:0.5]
+                                       color:ccc3(255, 255, 255)
+                                    fontsize:30
+                                         str:[NSString stringWithFormat:@"%d",[g get_lives]]];
+    [livesbg addChild:pause_lives_disp];
+	
+	CCLabelTTF *pause_points_disp = [Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:0.5 pcty:0.5]
+										 color:ccc3(255,255,255)
+									  fontsize:20
+										   str:[NSString stringWithFormat:@"Points: %d",[g get_points]]];
+	pause_points_disp.position = ccp(pause_points_disp.position.x/pointsbg.scale,pause_points_disp.position.y/pointsbg.scale);
+	[pointsbg addChild:pause_points_disp];
+	
+	
+    
+    CCMenuItem *nextbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"nextbutton" tar:self sel:@selector(next)
+                                                pos:[Common screen_pctwid:0.7 pcthei:0.45]];
+    
+    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
+                                               pos:[Common screen_pctwid:0.3 pcthei:0.45]];
+    
+    CCMenu *pausebuttons = [CCMenu menuWithItems:nextbutton,backbutton, nil];
+    [pausebuttons setPosition:ccp(0,0)];
+    [menu_ui addChild:pausebuttons];
+	
+	[UICommon button:nextbutton add_desctext:@"Continue" color:ccc3(255,255,255) fntsz:12];
+	[UICommon button:backbutton add_desctext:@"To Menu" color:ccc3(255,255,255) fntsz:12];
+	
+	if (worldunlock_anim != NULL) {
+		[menu_ui addChild:worldunlock_anim];
+	}
+}
+
+-(void)next {
+	[self exit];
+}
+
+-(void)exit_to_menu {
+	[self exit];
+	[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_QUIT]];
+}
+
+-(void)set_curtain_animstart_positions {
+	[left_curtain setPosition:ccp(-left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+    [right_curtain setPosition:ccp([Common SCREEN].width + left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,[Common SCREEN].height)];
+	
+	left_curtain_tpos = ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	right_curtain_tpos = ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
+}
+
+-(void)open_menu {
+	[AudioManager playbgm_imm:BGM_GROUP_JINGLE];
+	mode = FreePupsAnimMode_MENU;
 }
 
 -(void)update:(ccTime)dt {
@@ -143,10 +280,6 @@ static float GROUNDLEVEL;
 				[dog stopAllActions];
 				[dog runAction:run_anim];
 			}
-		} else {
-			if (dog.position.x > [Common SCREEN].width+100) {
-				mode = FreePupsAnimMode_FADEOUT;
-			}
 		}
 		
 		if (!cage_on_ground) {
@@ -171,7 +304,7 @@ static float GROUNDLEVEL;
 					[cage_base addChild:pup];
 				}
 				[AudioManager playsfx:SFX_BARK_HIGH];
-				[AudioManager playsfx:SFX_FANFARE_WIN];
+				[AudioManager playsfx:SFX_FANFARE_WIN after_do:[Common cons_callback:self sel:@selector(open_menu)]];
 				
 				[cage_base addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_INTRO_ANIM_SS]
 														   rect:[FileCache get_cgrect_from_plist:TEX_INTRO_ANIM_SS idname:@"pupcage_empty_bars"]]];
@@ -190,13 +323,25 @@ static float GROUNDLEVEL;
 			}
 		}
 		
-	} else if (mode == FreePupsAnimMode_FADEOUT) {
-		CCLayerColor *fadeout = (CCLayerColor*)[[self parent] getChildByTag:tFADEOUTLAYER];
-		if (fadeout.opacity < 255) {
-			[fadeout setOpacity:fadeout.opacity + 5];
-		} else {
-			[self exit];
+	} else if (mode == FreePupsAnimMode_MENU) {
+		[menu_ui setVisible:YES];
+		[left_curtain setPosition:ccp(
+			left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
+			left_curtain.position.y + (left_curtain_tpos.y - left_curtain.position.y)/4.0
+		)];
+		[right_curtain setPosition:ccp(
+			right_curtain.position.x + (right_curtain_tpos.x - right_curtain.position.x)/4.0,
+			right_curtain.position.y + (right_curtain_tpos.y - right_curtain.position.y)/4.0
+		)];
+		[bg_curtain setPosition:ccp(
+			bg_curtain.position.x + (bg_curtain_tpos.x - bg_curtain.position.x)/4.0,
+			bg_curtain.position.y + (bg_curtain_tpos.y - bg_curtain.position.y)/4.0
+		)];
+		
+		if (worldunlock_anim != NULL) {
+			[worldunlock_anim update];
 		}
+		
 	}
 }
 

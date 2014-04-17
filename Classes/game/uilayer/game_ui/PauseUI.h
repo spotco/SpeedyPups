@@ -1,7 +1,7 @@
 #import "cocos2d.h"
 
 @interface PauseUI : CCSprite {
-    CCLabelTTF *pause_lives_disp, *pause_bones_disp, *pause_time_disp;
+    CCLabelTTF *pause_lives_disp, *pause_bones_disp, *pause_time_disp, *pause_points_disp;
     CCLabelTTF *challenge_disp;
 	
 	CCSprite *left_curtain,*right_curtain,*bg_curtain;

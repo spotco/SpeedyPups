@@ -374,6 +374,9 @@
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
 			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self boss:do_boss_capegame]];
+			//[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer credits_scene_g:self]];
+			//do_boss_capegame = NO;
+			
 			if (do_boss_capegame) {
 				[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
 				current_mode = GameEngineLayerMode_GAMEEND; //logic done in BOSS3_DEFEATED event
@@ -489,7 +492,7 @@
 		
 		if (fadeoutlayer.opacity >= 255) {
 			current_mode = GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE;
-			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:world_mode.cur_world]];
+			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:world_mode.cur_world g:self]];
 			[AudioManager stop_bgm];
 			[GameControlImplementation reset_control_state];
 			[Common unset_dt];
@@ -609,7 +612,14 @@
 	} else if (e.type == GEventType_BOSS3_DEFEATED) {
 		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
 		fadeoutlayer.opacity = 255;
+		
+		[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer credits_scene_g:self]];
+		[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
+		[Player character_bark];
+		
+	} else if (e.type == GEventType_BOSS3_CREDITS_END) {
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		
 	}
 }
 
@@ -759,6 +769,7 @@
 -(int)get_time { return time; }
 -(int)get_num_bones { return collected_bones; }
 -(int)get_num_secrets { return collected_secrets; }
+-(int)get_points { return 0; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
 -(void)incr_current_continue_cost {current_continue_cost*=2;}

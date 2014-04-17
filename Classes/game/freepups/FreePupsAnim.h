@@ -1,11 +1,15 @@
 #import "cocos2d.h"
 #import "FreeRunStartAtManager.h"
 
+@class GameEngineLayer;
+@class FreeRunStartAtUnlockUIAnimation;
+
 typedef enum {
 	FreePupsAnimMode_RUNIN,
 	FreePupsAnimMode_ROLL,
 	FreePupsAnimMode_BREAKANDFALL,
-	FreePupsAnimMode_FADEOUT
+	FreePupsAnimMode_MENU
+	//FreePupsAnimMode_FADEOUT
 } FreePupsAnimMode;
 
 @class CCSprite_WithVel;
@@ -20,8 +24,14 @@ typedef enum {
 	NSMutableArray *pups;
 	
 	FreePupsUIAnimation *uianim;
+	
+	
+	FreeRunStartAtUnlockUIAnimation *worldunlock_anim;
+	CCSprite *menu_ui;
+	CCSprite *left_curtain,*right_curtain,*bg_curtain;
+	CGPoint left_curtain_tpos,right_curtain_tpos,bg_curtain_tpos;
 }
 
-+(CCScene*)scene_with:(WorldNum)worldnum;
++(CCScene*)scene_with:(WorldNum)worldnum g:(GameEngineLayer*)g;
 
 @end

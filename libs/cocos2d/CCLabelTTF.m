@@ -71,6 +71,7 @@
 		fontSize_ = size * CC_CONTENT_SCALE_FACTOR();
 		lineBreakMode_ = lineBreakMode;
 		
+		
 		[self setString:str];
 	}
 	return self;
@@ -172,5 +173,13 @@
 	if (![[self string] isEqualToString:str]) {
 		[self setString:str];
 	}
+}
+-(CCLabelTTF*)set_dimensions:(CGSize)dim {
+	dimensions_ = dim;
+	return self;
+}
+-(CCLabelTTF*)set_textalign:(CCTextAlignment)align {
+	alignment_ = align;
+	return self;
 }
 @end

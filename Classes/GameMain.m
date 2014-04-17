@@ -7,6 +7,7 @@
 #import "FreeRunStartAtManager.h"
 #import "LoadingScene.h"
 #import "IntroAnim.h"
+#import "CapeGameEngineLayer.h"
 
 #import "WebRequest.h"
 
@@ -23,7 +24,7 @@
 #define DRAW_HITBOX NO
 
 /**
- credits-interactive
+ 
  integrate new map assets, freerun progress popup redesign (prev, current, next)
  score ui
  add second currency and separate upgrade/unlock for items
@@ -31,6 +32,7 @@
  second currency tradein from bones daily
  more challenges (more secrets, cape game, boss rush)
  new look for upgrade pane
+ freerunstartat unlock is probably fucked
  facebook integration (like game on facebook, reward)
  ads integration, pay for no ads
  -art ask for:
@@ -54,7 +56,7 @@ Stretch goals:
  goober pet
  levels based around armor (armor break spikes)
  store sales (streamed from online)
- object pool system
+ capegame end cheer
  
  art freerun start menu redesign + button
  pass cycle fillers (for harder/easier fillers)
@@ -88,21 +90,28 @@ Stretch goals:
 	}
 	
 	/*
-	WorldStartAt startat;
-	startat.world_num = WorldNum_3;
-	startat.tutorial = NO;
-	startat.bg_start = BGMode_LAB;
-	AutoLevelState *state = [AutoLevelState cons_startat:startat];
-	DO_FOR(40,
-		   NSString *rtv = [state get_level];
-		   if (streq(rtv,@"boss3_start")) {
-			   [state to_boss_mode];
-		   
-		   } else if (streq(rtv, @"boss3_area")) {
-			   [state to_labexit_mode];
-		   }
-		   NSLog(@"%d:\'%@\'",i,rtv)
-	);
+	for (int ii = 0; ii < 50; ii++) {
+		WorldStartAt startat;
+		startat.world_num = WorldNum_3;
+		startat.tutorial = NO;
+		startat.bg_start = BGMode_NORMAL;
+		AutoLevelState *state = [AutoLevelState cons_startat:startat];
+		DO_FOR(40,
+			   NSString *rtv = [state get_level];
+			   if (streq(rtv,@"boss3_start")) {
+				   [state to_boss_mode];
+			   
+			   } else if (streq(rtv, @"boss3_area")) {
+				   [state to_labexit_mode];
+			   }
+			   
+
+			   if ([[NSBundle mainBundle] pathForResource:rtv ofType:@"map"] == NULL) {
+				   NSLog(@"%@ ERROR MISSING FILE",rtv);
+			   }
+			   //NSLog(@"%d:\'%@\'",i,rtv)
+		);
+	}
 	*/
 	
 	/*

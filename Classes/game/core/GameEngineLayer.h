@@ -110,6 +110,7 @@ typedef enum {
 -(int)get_num_particles;
 -(int)get_num_bones;
 -(int)get_num_secrets;
+-(int)get_points;
 
 -(void)incr_lives;
 -(void)incr_time:(float)t;

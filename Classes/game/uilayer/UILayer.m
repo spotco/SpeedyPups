@@ -201,7 +201,7 @@
 
 -(void)pause {
     [GEventDispatcher immediate_event:[GEvent cons_type:GEventType_PAUSE]];
-    [pauseui update_labels_lives:ingameui.lives_disp.string bones:ingameui.bones_disp.string time:ingameui.time_disp.string];
+    [pauseui update_labels_lives:ingameui.lives_disp.string bones:ingameui.bones_disp.string time:[NSString stringWithFormat:@"Time: %@",ingameui.time_disp.string]];
     [self set_this_visible:pauseui];
     [[CCDirector sharedDirector] pause];
 }

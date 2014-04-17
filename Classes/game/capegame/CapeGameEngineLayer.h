@@ -5,13 +5,15 @@
 @class CapeGameUILayer;
 @class GameEngineLayer;
 @class Particle;
+@class CreditsFlybyObject;
 
 @class CapeGameObject;
 
 typedef enum {
 	CapeGameMode_FALLIN,
 	CapeGameMode_GAMEPLAY,
-	CapeGameMode_FALLOUT
+	CapeGameMode_FALLOUT,
+	CapeGameMode_BOSS3_DEFEATED_FLYOUT
 } CapeGameMode;
 
 @interface CapeGameEngineLayer : CCLayer {
@@ -44,6 +46,13 @@ typedef enum {
 	BOOL count_as_death;
 	BOOL behind_catchup;
 	
+	BOOL is_credits_scene;
+	CreditsFlybyObject *credits_logo;
+	CreditsFlybyObject *credits_text;
+	float credits_ct;
+	int credits_mode;
+	float credits_bone_spawn;
+	
 	float gameend_constant_speed;
 }
 @property(readwrite,assign) BOOL is_boss_capegame;
@@ -52,6 +61,8 @@ typedef enum {
 -(NSMutableArray*)get_gameobjs;
 
 +(CCScene*)scene_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss;
++(CCScene*)credits_scene_g:(GameEngineLayer*)g;
+
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;
 
@@ -67,7 +78,7 @@ typedef enum {
 -(void)remove_gameobject:(CapeGameObject*)o;
 
 -(void)boss_end;
-
+-(void)credits_end;
 @end
 
 @interface CapeGameObject : CCSprite

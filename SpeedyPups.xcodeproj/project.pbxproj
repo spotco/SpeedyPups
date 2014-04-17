@@ -177,6 +177,8 @@
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
 		7E98648216E874CF00109092 /* nmenu_items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647F16E874CF00109092 /* nmenu_items.plist */; };
 		7E98648316E874CF00109092 /* nmenu_items.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98648016E874CF00109092 /* nmenu_items.png */; };
+		7E99161C18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E99161B18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.m */; };
+		7E99162018FFB44B009B59FC /* CreditsFlybyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E99161F18FFB44B009B59FC /* CreditsFlybyObject.m */; };
 		7E99416517F1671A00B363F3 /* cloud_world2_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E99416317F1671A00B363F3 /* cloud_world2_ss.plist */; };
 		7E99416617F1671A00B363F3 /* cloud_world2_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E99416417F1671A00B363F3 /* cloud_world2_ss.png */; };
 		7E99416817F16E4F00B363F3 /* grounddetail_world2_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E99416717F16E4F00B363F3 /* grounddetail_world2_ss.png */; };
@@ -1023,6 +1025,10 @@
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
 		7E98647F16E874CF00109092 /* nmenu_items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_items.plist; sourceTree = "<group>"; };
 		7E98648016E874CF00109092 /* nmenu_items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_items.png; sourceTree = "<group>"; };
+		7E99161A18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameEngineLayer_CreditsScene.h; sourceTree = "<group>"; };
+		7E99161B18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameEngineLayer_CreditsScene.m; sourceTree = "<group>"; };
+		7E99161E18FFB44B009B59FC /* CreditsFlybyObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsFlybyObject.h; sourceTree = "<group>"; };
+		7E99161F18FFB44B009B59FC /* CreditsFlybyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsFlybyObject.m; sourceTree = "<group>"; };
 		7E99416317F1671A00B363F3 /* cloud_world2_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cloud_world2_ss.plist; sourceTree = "<group>"; };
 		7E99416417F1671A00B363F3 /* cloud_world2_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud_world2_ss.png; sourceTree = "<group>"; };
 		7E99416717F16E4F00B363F3 /* grounddetail_world2_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grounddetail_world2_ss.png; sourceTree = "<group>"; };
@@ -2021,6 +2027,7 @@
 		7E4532A317E438E5005EE7CB /* capegame */ = {
 			isa = PBXGroup;
 			children = (
+				7E99161D18FFB404009B59FC /* credits_scene */,
 				7EE2456517E66048007D4B4D /* capegameobject */,
 				7E4532A417E4391D005EE7CB /* CapeGameEngineLayer.h */,
 				7E4532A517E4391D005EE7CB /* CapeGameEngineLayer.m */,
@@ -2028,6 +2035,8 @@
 				7E4532AB17E4495B005EE7CB /* CapeGamePlayer.m */,
 				7EE2455C17E63AE9007D4B4D /* CapeGameUILayer.h */,
 				7EE2455D17E63AE9007D4B4D /* CapeGameUILayer.m */,
+				7E99161A18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.h */,
+				7E99161B18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.m */,
 			);
 			path = capegame;
 			sourceTree = "<group>";
@@ -2215,6 +2224,15 @@
 				7E98648016E874CF00109092 /* nmenu_items.png */,
 			);
 			path = nmenu;
+			sourceTree = "<group>";
+		};
+		7E99161D18FFB404009B59FC /* credits_scene */ = {
+			isa = PBXGroup;
+			children = (
+				7E99161E18FFB44B009B59FC /* CreditsFlybyObject.h */,
+				7E99161F18FFB44B009B59FC /* CreditsFlybyObject.m */,
+			);
+			name = credits_scene;
 			sourceTree = "<group>";
 		};
 		7E9A784616FC4D980014B7E0 /* classic */ = {
@@ -4340,6 +4358,7 @@
 				7EB8B48C16D9FC0900F58961 /* DogCapeEffect.m in Sources */,
 				7EB8B48E16D9FC0900F58961 /* DogShadow.m in Sources */,
 				7EB8B48F16D9FC0900F58961 /* ElectricWall.m in Sources */,
+				7E99162018FFB44B009B59FC /* CreditsFlybyObject.m in Sources */,
 				7E3951C318F52902005C72C9 /* AutoLevelState_World1.m in Sources */,
 				7EB8B49016D9FC0900F58961 /* EnemyAlert.m in Sources */,
 				7EB8B49116D9FC0900F58961 /* EnemyBomb.m in Sources */,
@@ -4362,6 +4381,7 @@
 				7EB8B4A116D9FC0900F58961 /* SpikeVine.m in Sources */,
 				7EEAA7FB181768FE00BEE8D2 /* Cannon.m in Sources */,
 				7E17301518BC617000AD0D59 /* NRobotBossComponents.m in Sources */,
+				7E99161C18FFAE9E009B59FC /* CapeGameEngineLayer_CreditsScene.m in Sources */,
 				7E10128C1864F06400671101 /* FreePupsAnim.m in Sources */,
 				7EB8B4A216D9FC0900F58961 /* SwingVine.m in Sources */,
 				7EB8B4A316D9FC0900F58961 /* Water.m in Sources */,

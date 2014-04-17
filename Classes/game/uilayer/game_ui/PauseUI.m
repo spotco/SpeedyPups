@@ -42,39 +42,55 @@
                                      fontsize:45
                                           str:@"paused"]];
     
+	CCSprite *disp_root = [CCSprite node];
+	[disp_root setPosition:[Common screen_pctwid:0.5 pcthei:0.65]];
+	[disp_root setScale:0.85];
+	[pause_ui addChild:disp_root];
+	
     CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
-    [timebg setPosition:[Common screen_pctwid:0.6 pcthei:0.6]];
-    [pause_ui addChild:timebg];
+    [disp_root addChild:timebg];
     
     CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
-    [bonesbg setPosition:[Common screen_pctwid:0.6 pcthei:0.45]];
-    [pause_ui addChild:bonesbg];
+    [bonesbg setPosition:ccp(timebg.position.x, timebg.position.y - timebg.boundingBoxInPixels.size.height - 5)];
+    [disp_root addChild:bonesbg];
     
     CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
-    [livesbg setPosition:[Common screen_pctwid:0.6 pcthei:0.3]];
-    [pause_ui addChild:livesbg];
+    [livesbg setPosition:ccp(bonesbg.position.x,bonesbg.position.y - bonesbg.boundingBoxInPixels.size.height - 5)];
+    [disp_root addChild:livesbg];
 	
-	for (CCSprite *c in @[timebg,bonesbg,livesbg]) {
+	CCSprite *pointsbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+	[pointsbg setPosition:ccp(bonesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
+	[disp_root addChild:pointsbg];
+	
+	for (CCSprite *c in @[timebg,bonesbg,livesbg,pointsbg]) {
 		[c setOpacity:200];
 	}
     
-    pause_time_disp = [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.6]
+    pause_time_disp = [Common cons_label_pos:[Common pct_of_obj:timebg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
-                                    fontsize:30
-                                         str:@"0:00"];
-    [pause_ui addChild:pause_time_disp];
+                                    fontsize:20
+                                         str:@"Time: 0:00"];
+    [timebg addChild:pause_time_disp];
     
-    pause_bones_disp= [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.45]
+    pause_bones_disp= [Common cons_label_pos:[Common pct_of_obj:bonesbg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
                                     fontsize:30
                                          str:@"0"];
-    [pause_ui addChild:pause_bones_disp];
+    [bonesbg addChild:pause_bones_disp];
     
-    pause_lives_disp= [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.3]
+    pause_lives_disp= [Common cons_label_pos:[Common pct_of_obj:livesbg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
                                     fontsize:30
                                          str:@"0"];
-    [pause_ui addChild:pause_lives_disp];
+    [livesbg addChild:pause_lives_disp];
+	
+	pause_points_disp = [Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:0.5 pcty:0.5]
+										 color:ccc3(255,255,255)
+									  fontsize:20
+										   str:@"Points: 00000000"];
+	[pointsbg addChild:pause_points_disp];
+	
+	
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
                                                 pos:[Common screen_pctwid:0.3 pcthei:0.32]];

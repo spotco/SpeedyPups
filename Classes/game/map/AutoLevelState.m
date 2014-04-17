@@ -121,10 +121,10 @@
 			@"swingvine_totalmix" : @1,
 		},
 		L_WORLD3_HARD:@{
-			@"classic_twopath" : @1,
+			@"classic_twopath" : @1, //TODO -- MAKE THESE NOT SO DUPLICATE!!
 			@"swingvine_awesome" : @1,
 			@"swingvine_bounswindodg" : @1,
-			@"classic_totalmix" : @1
+			@"swingvine_totalmix" : @1
 		},
 		
 		L_LAB_1: @{ //TODO -- 2 easy lab levels, make basicmix & minionwalls easier

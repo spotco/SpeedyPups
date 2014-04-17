@@ -368,6 +368,10 @@ bool fm_a_gt_b(double a,double b,double delta) {
 +(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
     //CCLabelTTF_Pooled *l = [CCLabelTTF_Pooled labelWithString:str fontName:@"Carton Six" fontSize:fontsize];
     CCLabelTTF_Pooled *l = [ObjectPool depool:[CCLabelTTF_Pooled class]];
+	
+	[l set_dimensions:CGSizeZero];
+	[l setAnchorPoint:ccp(0.5,0.5)];
+	[l set_textalign:CCTextAlignmentLeft];
 	[l set_fontname:@"Carton Six" size:fontsize];
 	[l setString:str];
 	

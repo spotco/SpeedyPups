@@ -68,6 +68,7 @@
 		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
 		
 	} else if (mode == AutoLevelStateMode_LABINTRO) {
+		//mode = AutoLevelStateMode_BOSS1_ENTER;
 		mode = AutoLevelStateMode_LAB;
 		cur_set_completed_levels = 0;
 		return [[levelsets[L_LABINTRO] allKeys] random];

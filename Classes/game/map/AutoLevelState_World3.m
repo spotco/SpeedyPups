@@ -53,6 +53,7 @@
 		
 	} else if (mode == AutoLevelStateMode_LABINTRO) {
 		mode = AutoLevelStateMode_LAB;
+		//mode = AutoLevelStateMode_BOSS3_ENTER;
 		cur_set_completed_levels = 0;
 		return [[levelsets[L_LABINTRO] allKeys] random];
 		

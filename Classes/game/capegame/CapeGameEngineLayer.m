@@ -8,6 +8,7 @@
 #import "UICommon.h"
 #import "Common.h"
 #import "FireworksParticleA.h"
+#import "CapeGameEngineLayer_CreditsScene.h"
 
 #import "CapeGameBossCat.h"
 
@@ -44,6 +45,12 @@ static NSString *blank = @"";
 	return scene;
 }
 
++(CCScene*)credits_scene_g:(GameEngineLayer*)g {
+	CCScene *scene = [CCScene node];
+	[scene addChild:[[CapeGameEngineLayer node] cons_credits_scene:g]];
+	return scene;
+}
+
 #define GAME_DURATION 2100.0
 #define BOSS_INFINITE_DURATION 9999
 #define START_TARPOS [Common screen_pctwid:0.2 pcthei:0.5]
@@ -56,6 +63,7 @@ static NSString *blank = @"";
 -(id)cons_with_level:(NSString*)file g:(GameEngineLayer*)g boss:(BOOL)boss {
 	is_boss_capegame = boss;
 	main_game = g;
+	is_credits_scene = NO;
 	
 	bg = [BackgroundObject backgroundFromTex:[Resource get_tex:is_boss_capegame?TEX_CLOUDGAME_BOSS_BG:TEX_CLOUDGAME_BG] scrollspd_x:0.1 scrollspd_y:0];
 	[bg setScaleX:[Common scale_from_default].x];
@@ -161,13 +169,18 @@ static NSString *blank = @"";
 	[[ui time_disp] set_label:[UICommon parse_gameengine_time:[main_game get_time]]];
 	
 	if (is_boss_capegame) {
-		thunder_flash_ct-=[Common get_dt_Scale];
-		thunder_bg.opacity*=0.9;
-		if (thunder_flash_ct <= 0) {
-			[thunder_bg setOpacity:255];
-			thunder_flash_ct = 800;
-			[AudioManager playsfx:SFX_THUNDER];
+		if (thunder_bg != NULL) {
+			thunder_flash_ct-=[Common get_dt_Scale];
+			thunder_bg.opacity*=0.9;
+			if (thunder_flash_ct <= 0) {
+				[thunder_bg setOpacity:255];
+				thunder_flash_ct = 800;
+				[AudioManager playsfx:SFX_THUNDER];
+			}
 		}
+		
+	} else if (is_credits_scene) {
+		[self credits_update];
 	}
 	
 	[self push_added_particles];
@@ -213,9 +226,18 @@ static NSString *blank = @"";
 			
 			if (count_as_death) {
 				[GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
-			} else if ([self is_boss_capegame]) {
-				[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
+			} else if (is_credits_scene) {
+				[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_CREDITS_END]];
 			}
+		}
+		return;
+		
+	} else if (current_mode == CapeGameMode_BOSS3_DEFEATED_FLYOUT) {
+		[player setPosition:CGPointAdd(player.position, ccp(7*[Common get_dt_Scale],0))];
+		[player setRotation:player.rotation*0.95];
+		if (player.position.x > [Common SCREEN].width) {
+			[self exit];
+			[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
 		}
 		return;
 	}
@@ -250,11 +272,12 @@ static NSString *blank = @"";
 		} else {
 			[ui itembar_set_visible:NO];
 		}
+		
 	}
 	
 	
 	float speed = gameend_constant_speed != 0 ? gameend_constant_speed :
- 		(is_boss_capegame ? 7 : (1-duration/GAME_DURATION)*6 + 4);
+ 		(is_boss_capegame || is_credits_scene ? 7 : (1-duration/GAME_DURATION)*6 + 4);
 	
 	bgclouds_scroll_x += speed;
 	[bgclouds update_posx:bgclouds_scroll_x posy:0];
@@ -324,6 +347,11 @@ static NSString *blank = @"";
 }
 
 -(void)boss_end {
+	count_as_death = NO;
+	current_mode = CapeGameMode_BOSS3_DEFEATED_FLYOUT;
+}
+
+-(void)credits_end {
 	[player do_stand];
 	count_as_death = NO;
 	current_mode = CapeGameMode_FALLOUT;
