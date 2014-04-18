@@ -18,15 +18,16 @@
 #define PLAY_BGM YES
 #define TESTLEVEL @"lab_rocketfever"
 
+#define IMMEDIATELY_BOSS NO
+#define BOSS_1_HEALTH NO
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
+
 /**
- 
- integrate new map assets, freerun progress popup redesign (prev, current, next)
- score ui
+ score ui   
  add second currency and separate upgrade/unlock for items
  rare appearance levels by @2 or @3 in autolevelstate (fix weightedsorter)
  second currency tradein from bones daily
@@ -38,6 +39,7 @@
  -art ask for:
 	website
 	video
+	map button, upgrade bar
  **/
 
 /**
@@ -178,4 +180,6 @@ Stretch goals:
 +(BOOL)GET_USE_BG {return USE_BG;}
 +(BOOL)GET_DRAW_HITBOX {return DRAW_HITBOX;}
 +(BOOL)GET_DO_CONSTANT_DT { return SET_CONSTANT_DT; }
++(BOOL)GET_IMMEDIATE_BOSS { return IMMEDIATELY_BOSS; }
++(BOOL)GET_BOSS_1_HEALTH { return BOSS_1_HEALTH; }
 @end

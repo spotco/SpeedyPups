@@ -123,13 +123,10 @@
 	}
 }
 
--(void)check_freerunprogress_unlock:(FreeRunProgress)progress {
-	FreeRunStartAt start_at = [FreeRunStartAtManager get_for_progress:progress];
-	if (start_at == FreeRunStartAt_ERRVAL) return;
-	
-	if (![FreeRunStartAtManager get_can_start_at:start_at]) {
-		[FreeRunStartAtManager set_can_start_at:start_at];
-		UIIngameAnimation *ua = [FreeRunStartAtUnlockUIAnimation cons_for_unlocking:start_at];
+-(void)check_freerunprogress_unlock:(FreeRunStartAt)progress {	
+	if (![FreeRunStartAtManager get_can_start_at:progress]) {
+		[FreeRunStartAtManager set_can_start_at:progress];
+		UIIngameAnimation *ua = [FreeRunStartAtUnlockUIAnimation cons_for_unlocking:progress];
 		[ingameuianimholder addChild:ua];
 		[ingame_ui_anims addObject:ua];
 	}
@@ -273,7 +270,7 @@
 	[ingameuianimholder addChild:ua];
 	[ingame_ui_anims addObject:ua];
 }
--(void)start_freerunprogress_anim:(FreeRunProgress)p {
+-(void)start_freerunprogress_anim:(FreeRunStartAt)p {
 	UIIngameAnimation *ua = [FreeRunProgressAnimation cons_at:p];
 	[ingameuianimholder addChild:ua];
 	[ingame_ui_anims addObject:ua];

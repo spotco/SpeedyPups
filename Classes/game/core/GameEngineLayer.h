@@ -37,8 +37,7 @@ typedef enum {
 	GameEngineLayerMode_CAPEIN,
 	
 	GameEngineLayerMode_RUNOUT_TO_FREEPUPS,
-	GameEngineLayerMode_FADEOUT_TO_FREEPUPS,
-	GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE
+	GameEngineLayerMode_FADEOUT_TO_FREEPUPS
 } GameEngineLayerMode;
 
 @interface GameEngineLayer : CCLayer <GEventListener> {
@@ -126,5 +125,7 @@ typedef enum {
 
 -(GameEngineLayer*)set_bones:(int)b;
 -(GameEngineLayer*)set_time:(int)t;
+
+-(void)exit_to_next_world;
 
 @end

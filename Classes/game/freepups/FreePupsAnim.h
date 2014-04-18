@@ -30,6 +30,8 @@ typedef enum {
 	CCSprite *menu_ui;
 	CCSprite *left_curtain,*right_curtain,*bg_curtain;
 	CGPoint left_curtain_tpos,right_curtain_tpos,bg_curtain_tpos;
+	
+	GameEngineLayer __unsafe_unretained *g;
 }
 
 +(CCScene*)scene_with:(WorldNum)worldnum g:(GameEngineLayer*)g;

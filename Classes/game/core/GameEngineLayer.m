@@ -374,8 +374,6 @@
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
 			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self boss:do_boss_capegame]];
-			//[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer credits_scene_g:self]];
-			//do_boss_capegame = NO;
 			
 			if (do_boss_capegame) {
 				[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
@@ -491,22 +489,13 @@
 		fadeoutlayer.opacity = fadeoutlayer.opacity + 15 > 255 ? 255 : fadeoutlayer.opacity + 15;
 		
 		if (fadeoutlayer.opacity >= 255) {
-			current_mode = GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE;
+			current_mode = GameEngineLayerMode_GAMEEND;
 			[[CCDirector sharedDirector] pushScene:[FreePupsAnim scene_with:world_mode.cur_world g:self]];
 			[AudioManager stop_bgm];
 			[GameControlImplementation reset_control_state];
 			[Common unset_dt];
 		}
 		
-	} else if (current_mode == GameEngineLayerMode_POST_FREEPUPS_TRANSITION_SCENE) {
-		current_mode = GameEngineLayerMode_GAMEEND;
-		[self exit];
-		[GEventDispatcher remove_all_listeners];
-		CCScene *neu_scene = [GameEngineLayer scene_with_autolevel_lives:lives world:[world_mode get_next_world_startat]];
-		
-		GameEngineLayer *g = (GameEngineLayer*)[neu_scene getChildByTag:tGLAYER];
-		[[[g set_bones:collected_bones] set_time:time] copy_stats:[self get_stats]];
-		[GameMain run_scene:neu_scene];
 	}
     [GEventDispatcher dispatch_events];
 }
@@ -612,7 +601,6 @@
 	} else if (e.type == GEventType_BOSS3_DEFEATED) {
 		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
 		fadeoutlayer.opacity = 255;
-		
 		[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer credits_scene_g:self]];
 		[AudioManager playbgm_imm:BGM_GROUP_WORLD1];
 		[Player character_bark];
@@ -621,6 +609,21 @@
 		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
 		
 	}
+}
+
+-(void)exit_to_next_world {
+	current_mode = GameEngineLayerMode_GAMEEND;
+	WorldStartAt world = [world_mode get_next_world_startat];
+	int _collected_bones = collected_bones;
+	int _time = time;
+	GameEngineStats *_stats = [self get_stats];
+	
+	[self exit];
+	
+	CCScene *neu_scene = [GameEngineLayer scene_with_autolevel_lives:lives world:world];
+	GameEngineLayer *g = (GameEngineLayer*)[neu_scene getChildByTag:tGLAYER];
+	[[[g set_bones:_collected_bones] set_time:_time] copy_stats:_stats];
+	[GameMain run_scene:neu_scene];
 }
 
 -(void)update_gameobjs {

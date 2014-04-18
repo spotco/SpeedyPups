@@ -1,4 +1,5 @@
 #import "AutoLevelState_World1.h"
+#import "GameMain.h"
 
 @implementation AutoLevelState (AutoLevelState_World1)
 
@@ -30,7 +31,7 @@
 		[recently_picked_sets addObject:L_WORLD1_EASY];
 		cur_set_completed_levels = 0;
 		sets_completed = 0;
-		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
+		return [[levelsets[L_FREERUN_PROGRESS_WORLD] allKeys] random];
 		
 	} else if (mode == AutoLevelStateMode_SET) {
 		cur_set_completed_levels++;
@@ -65,11 +66,14 @@
 		
 	} else if (mode == AutoLevelStateMode_FREERUN_PROGRESS_TO_LAB) {
 		mode = AutoLevelStateMode_LABINTRO;
-		return [[levelsets[L_FREERUN_PROGRESS] allKeys] random];
+		return [[levelsets[L_FREERUN_PROGRESS_TO_LAB] allKeys] random];
 		
 	} else if (mode == AutoLevelStateMode_LABINTRO) {
-		//mode = AutoLevelStateMode_BOSS1_ENTER;
-		mode = AutoLevelStateMode_LAB;
+		if ([GameMain GET_IMMEDIATE_BOSS]) {
+			mode = AutoLevelStateMode_BOSS1_ENTER;
+		} else {
+			mode = AutoLevelStateMode_LAB;
+		}
 		cur_set_completed_levels = 0;
 		return [[levelsets[L_LABINTRO] allKeys] random];
 		

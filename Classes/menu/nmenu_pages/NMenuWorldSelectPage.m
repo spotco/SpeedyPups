@@ -91,15 +91,14 @@
 	touches = [NSMutableArray array];
     
     [GEventDispatcher add_listener:self];
-    [self addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.85] color:ccc3(0,0,0) fontsize:25 str:@"FreeRun Start"]];
-	[self addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.78] color:ccc3(0,0,0) fontsize:14 str:@"Play to unlock!"]];
+    [self addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.85] color:ccc3(0,0,0) fontsize:18 str:@"World Start"]];
 
 	ClippingNode *clipper = [ClippingNode node];
 	[clipper setClippingRegion:CGRectMake(
 		[Common SCREEN].width*0.2,
-		[Common SCREEN].height*0.44,
+		[Common SCREEN].height*0.4,
 		[Common SCREEN].width * 0.6,
-		[Common SCREEN].height * 0.3
+		[Common SCREEN].height * 0.45
 	)];
 	[self addChild:clipper];
 	
@@ -108,22 +107,27 @@
 	[zero_anchor addChild:clipper_anchor];
 	[clipper addChild:zero_anchor];
 	
+	[clipper_anchor addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+													rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"world_select_map"]]
+							  anchor_pt:ccp(0,0)] pos:ccp(0,-12.5)]];
+	
 	FreeRunStartAt loc[] = {FreeRunStartAt_TUTORIAL,FreeRunStartAt_WORLD1,FreeRunStartAt_LAB1,FreeRunStartAt_WORLD2,FreeRunStartAt_LAB2,FreeRunStartAt_WORLD3,FreeRunStartAt_LAB3};
+	CGPoint locpos[] = {ccp(77,47), ccp(175,85), ccp(275,49), ccp(377,28), ccp(487,40), ccp(597,75), ccp(702,67)};
 	CGPoint selector_icon_position = ccp(50,70);
 	for(int i = 0; i < 7; i++) {
 		MapIconTouchButton *b = [MapIconTouchButton cons_loc:loc[i]
-														 pos:ccp(50+i*90,40)
+														 pos:locpos[i]
 														clip:clipper.clippingRegion
 														  cb:[Common cons_callback:self sel:@selector(mapicontouch:)]];
 		[clipper_anchor addChild:b];
 		[touches addObject:b];
-		[clipper_anchor addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-														 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"location_spacer"]]
-								  pos:ccp(50+i*90+45,40)]];
-		clippedholder_x_min = -(50+i*90) + [Common SCREEN].width * 0.6 - 55;
+		clippedholder_x_min = -locpos[i].x + [Common SCREEN].width * 0.475;
 		
 		if (loc[i] == [FreeRunStartAtManager get_starting_loc]) {
-			selector_icon_position.x = b.position.x;
+			selector_icon_position = CGPointAdd(b.position, ccp(0,20));
+			[b setOpacity:255];
+		} else {
+			[b setOpacity:150];
 		}
 	}
 	
@@ -165,7 +169,10 @@
 -(void)mapicontouch:(MapIconTouchButton*)button {
 	if ([FreeRunStartAtManager get_can_start_at:button.starting_loc]) {
 		[FreeRunStartAtManager set_starting_loc:button.starting_loc];
-		selector_icon_target_pos = button.position;
+		selector_icon_target_pos = CGPointAdd(button.position, ccp(0,20));
+		
+		for (TouchButton *b in touches) if ([b class] == [MapIconTouchButton class]) [b setOpacity:150];
+		[button setOpacity:255];
 		
 		[Player character_bark];
 		[AudioManager playsfx:SFX_MENU_UP];
@@ -211,7 +218,10 @@
 	[scroll_right_arrow setVisible:neupos.x > clippedholder_x_min];
 	[scroll_left_arrow setVisible:neupos.x < clippedholder_x_max];
 	
-	selector_icon.position = ccp((selector_icon_target_pos.x-selector_icon.position.x)/5.0+selector_icon.position.x,selector_icon.position.y);
+	selector_icon.position = ccp(
+		(selector_icon_target_pos.x-selector_icon.position.x)/5.0+selector_icon.position.x,
+		(selector_icon_target_pos.y-selector_icon.position.y)/5.0+selector_icon.position.y
+	);
 	
 	for (MapIconTouchButton *btn in touches) {
 		if ([btn respondsToSelector:@selector(update)]) {

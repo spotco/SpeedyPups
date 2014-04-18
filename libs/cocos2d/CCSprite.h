@@ -331,6 +331,7 @@ typedef enum {
 
 -(CCSprite*)pos:(CGPoint)pt;
 -(CCSprite*)scale:(float)sc;
+-(CCSprite*)anchor_pt:(CGPoint)pt;
 
 @end
 

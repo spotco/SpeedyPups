@@ -83,8 +83,6 @@ typedef enum {
 -(void)remove_temp_params:(GameEngineLayer*)g;
 -(void)update:(GameEngineLayer*)g;
 
--(void)cleanup_anims;
-
 -(HitRect) get_hit_rect;
 -(HitRect) get_hit_rect_ignore_noclip;
 -(HitRect) get_jump_rect;

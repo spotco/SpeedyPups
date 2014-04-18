@@ -149,10 +149,14 @@
 		},
 		
 		L_AUTOSTART: @{
-				@"autolevel_start": @1
+			//@"shittytest":@1
+			@"autolevel_start": @1
 		},
-		L_FREERUN_PROGRESS: @{
+		L_FREERUN_PROGRESS_WORLD: @{
 			@"freerun_progress": @1
+		},
+		L_FREERUN_PROGRESS_TO_LAB: @{
+			@"freerun_progress_to_lab": @1
 		},
 		L_BOSS1START: @{
 			@"boss1_start": @1

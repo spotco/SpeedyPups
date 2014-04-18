@@ -34,11 +34,23 @@
 	if (loc == FreeRunStartAt_TUTORIAL) {
 		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_tutorial"]];
 		
-	} else if (loc == FreeRunStartAt_LAB1 || loc == FreeRunStartAt_LAB2 || loc == FreeRunStartAt_LAB3) {
-		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_lab"]];
-		
-	} else if (loc == FreeRunStartAt_WORLD1 || loc == FreeRunStartAt_WORLD2 || loc == FreeRunStartAt_WORLD3) {
+	} else if (loc == FreeRunStartAt_WORLD1) {
 		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_world1"]];
+		
+	} else if (loc == FreeRunStartAt_LAB1) {
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_lab1"]];
+		
+	} else if (loc == FreeRunStartAt_WORLD2) {
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_world2"]];
+		
+	} else if (loc == FreeRunStartAt_LAB2) {
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_lab2"]];
+		
+	} else if (loc == FreeRunStartAt_WORLD3) {
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_world3"]];
+		
+	} else if (loc == FreeRunStartAt_LAB3) {
+		return [TexRect cons_tex:[Resource get_tex:TEX_FREERUNSTARTICONS] rect:[FileCache get_cgrect_from_plist:TEX_FREERUNSTARTICONS idname:@"icon_lab3"]];
 		
 	} else {
 		NSLog(@"FreeRunStartAtManager get_icon_for_loc is null");
@@ -63,24 +75,6 @@
 		return @"Lab 3";
 	} else {
 		return @"ERROR";
-	}
-}
-
-+(FreeRunStartAt)get_for_progress:(FreeRunProgress)prog {
-	if (prog == FreeRunProgress_PRE_1) {
-		return FreeRunStartAt_WORLD1;
-	} else if (prog == FreeRunProgress_1) {
-		return FreeRunStartAt_LAB1;
-	} else if (prog == FreeRunProgress_PRE_2) {
-		return FreeRunStartAt_WORLD2;
-	} else if (prog == FreeRunProgress_2) {
-		return FreeRunStartAt_LAB2;
-	} else if (prog == FreeRunProgress_PRE_3) {
-		return FreeRunStartAt_WORLD3;
-	} else if (prog == FreeRunProgress_3) {
-		return FreeRunStartAt_LAB3;
-	} else {
-		return FreeRunStartAt_ERRVAL;
 	}
 }
 
@@ -127,10 +121,6 @@
 	return rtv;
 }
 
--(void)set_to_lab {
-	cur_mode = BGMode_LAB;
-}
-
 -(WorldStartAt)get_next_world_startat {
 	WorldStartAt rtv;
 	rtv.tutorial = NO;
@@ -143,16 +133,30 @@
 	return rtv;
 }
 
--(FreeRunProgress)get_freerun_progress {
-	if (cur_world == WorldNum_1) {
-		return FreeRunProgress_1;
-	} else if (cur_world == WorldNum_2) {
-		return FreeRunProgress_2;
-	} else if (cur_world == WorldNum_3) {
-		return FreeRunProgress_3;
+-(FreeRunStartAt)get_freerun_progress {
+	if (cur_mode == BGMode_NORMAL) {
+		if (cur_world == WorldNum_1) {
+			return FreeRunStartAt_WORLD1;
+			
+		} else if (cur_world == WorldNum_2) {
+			return FreeRunStartAt_WORLD2;
+			
+		} else if (cur_world == WorldNum_3) {
+			return FreeRunStartAt_WORLD3;
+			
+		} else { return 0; }
+		
 	} else {
-		NSLog(@"get_freerun_progress erreur");
-		return FreeRunProgress_1;
+		if (cur_world == WorldNum_1) {
+			return FreeRunStartAt_LAB1;
+			
+		} else if (cur_world == WorldNum_2) {
+			return FreeRunStartAt_LAB2;
+			
+		} else if (cur_world == WorldNum_3) {
+			return FreeRunStartAt_LAB3;
+			
+		} else { return 0; }
 	}
 }
 @end

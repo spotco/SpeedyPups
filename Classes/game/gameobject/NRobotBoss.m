@@ -9,6 +9,7 @@
 #import "HitEffect.h"
 #import "DazedParticle.h"
 #import "BrokenMachineParticle.h"
+#import "GameMain.h"
 //#import "FireworksParticleA.h"
 
 @implementation NRobotBoss
@@ -48,8 +49,11 @@
 	
 	cur_mode = NRobotBossMode_CAT_IN_RIGHT1;
 	
-	//hp = 1;
-	hp = 3;
+	if ([GameMain GET_BOSS_1_HEALTH]) {
+		hp = 1;
+	} else {
+		hp = 3;
+	}
 	
 	cape_item_body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	[cape_item_body setScale:1.75];

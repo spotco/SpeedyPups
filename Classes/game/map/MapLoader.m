@@ -354,7 +354,9 @@ static NSMutableDictionary* cached_json;
 		} else if ([type isEqualToString:@"progressdisp"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[FreeRunProgressDisplay cons_pt:ccp(x,y)]];
+			BOOL is_lab = streq([j_object objectForKey:@"label"],@"lab");
+			NSLog(@"%d",is_lab);
+            [map.game_objects addObject:[FreeRunProgressDisplay cons_pt:ccp(x,y) lab:is_lab]];
 			
 		} else if ([type isEqualToString:@"labfill"]) {
             float x = getflt(j_object, @"x");

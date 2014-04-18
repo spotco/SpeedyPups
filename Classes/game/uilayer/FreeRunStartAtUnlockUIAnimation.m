@@ -22,7 +22,7 @@
 	[base setPosition:[Common screen_pctwid:XPOS pcthei:self.YPOS_START]];
 	[self addChild:base];
 	
-	CCLabelTTF *text_disp = [[Common cons_label_pos:[Common pct_of_obj:base pctx:0.2 pcty:0.5]
+	CCLabelTTF *text_disp = [[Common cons_label_pos:[Common pct_of_obj:base pctx:0.15 pcty:0.5]
 											 color:ccc3(0,0,0)
 										  fontsize:16
 											   str:[NSString stringWithFormat:@"Unlocked: %@!",[FreeRunStartAtManager name_for_loc:startat]]]
@@ -30,7 +30,7 @@
 	[base addChild:text_disp];
 	TexRect *tr = [FreeRunStartAtManager get_icon_for_loc:startat];
 	CGPoint iconpt = text_disp.position;
-	iconpt.x += text_disp.boundingBox.size.width + tr.rect.size.width * 0.8;
+	iconpt.x += text_disp.boundingBox.size.width + tr.rect.size.width * 0.5;
 	
 	
 	[base addChild:[[CCSprite spriteWithTexture:tr.tex rect:tr.rect] pos:iconpt]];

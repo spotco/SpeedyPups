@@ -108,7 +108,7 @@
 		}
 	}
 	
-	if (credits_mode < 6) {
+	if (credits_mode < 6 && credits_mode > 1) {
 		credits_bone_spawn-=[Common get_dt_Scale];
 		if (credits_bone_spawn <= 0) {
 			credits_bone_spawn = 40;

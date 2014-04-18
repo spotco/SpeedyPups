@@ -32,18 +32,7 @@ typedef struct _WorldStartAt {
 	BGMode bg_start;
 	BOOL tutorial;
 } WorldStartAt;
-
-//message to freerunprogressanim
-typedef enum {
-	FreeRunProgress_PRE_1 = 0, //world1
-	FreeRunProgress_1 = 1,	   //before lab1
-	FreeRunProgress_PRE_2 = 2, //world2
-	FreeRunProgress_2 = 3,     //before lab2
-	FreeRunProgress_PRE_3 = 4, //world3
-	FreeRunProgress_3 = 5,	   //before lab3
-	FreeRunProgress_POST_3 = 6 //after lab3
-} FreeRunProgress;
-
+ 
 @interface FreeRunStartAtManager : NSObject
 +(BOOL)get_can_start_at:(FreeRunStartAt)loc;
 +(void)set_can_start_at:(FreeRunStartAt)loc;
@@ -51,7 +40,6 @@ typedef enum {
 +(NSString*)name_for_loc:(FreeRunStartAt)loc;
 +(FreeRunStartAt)get_starting_loc;
 +(void)set_starting_loc:(FreeRunStartAt)loc;
-+(FreeRunStartAt)get_for_progress:(FreeRunProgress)prog;
 +(WorldStartAt)get_startingat;
 @end
 
@@ -60,7 +48,6 @@ typedef enum {
 @property(readwrite,assign) WorldNum cur_world;
 @property(readwrite,assign) BGMode cur_mode;
 +(GameWorldMode*)cons_worldnum:(WorldNum)world;
--(void)set_to_lab;
 -(WorldStartAt)get_next_world_startat;
--(FreeRunProgress)get_freerun_progress;
+-(FreeRunStartAt)get_freerun_progress;
 @end

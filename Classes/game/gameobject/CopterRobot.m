@@ -6,6 +6,7 @@
 #import "DazedParticle.h"
 #import "LauncherRobot.h"
 #import "BrokenMachineParticle.h"
+#import "GameMain.h"
 
 #import "NRobotBossComponents.h"
 
@@ -38,8 +39,7 @@ static const int TRACKINGFIRE_ROCKETSPEED = 8;
 static const float RECOIL_DIST = 25;
 static const float RECOIL_CT = 10;
 
-static const int DEFAULT_HP = 5;
-//static const int DEFAULT_HP = 1;
+static int DEFAULT_HP;
 
 
 #define DEFAULT_SCALE 1.2
@@ -61,7 +61,14 @@ static const int DEFAULT_HP = 5;
 
 -(CopterRobot*)cons_with_g:(GameEngineLayer*)g {
     [self cons_anims];
-    hp = DEFAULT_HP;
+	
+	if ([GameMain GET_BOSS_1_HEALTH]) {
+		DEFAULT_HP = 1;
+	} else {
+		DEFAULT_HP = 5;
+	}
+	hp = DEFAULT_HP;
+	
     active = YES;
     player_pos = g.player.position;
 	

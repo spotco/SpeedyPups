@@ -90,6 +90,11 @@ static SEL selSortMethod = NULL;
 	return self;
 }
 
+-(CCSprite*)anchor_pt:(CGPoint)pt {
+    [self setAnchorPoint:pt];
+    return self;
+}
+
 +(id)spriteWithTexture:(CCTexture2D*)texture
 {
 	return [[[self alloc] initWithTexture:texture] autorelease];

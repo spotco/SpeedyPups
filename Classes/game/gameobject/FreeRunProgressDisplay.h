@@ -1,5 +1,7 @@
 #import "GameObject.h"
 
-@interface FreeRunProgressDisplay : GameObject
-+(FreeRunProgressDisplay*)cons_pt:(CGPoint)pt;
+@interface FreeRunProgressDisplay : GameObject {
+	BOOL lab;
+}
++(FreeRunProgressDisplay*)cons_pt:(CGPoint)pt lab:(BOOL)lab;
 @end

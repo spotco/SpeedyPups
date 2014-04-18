@@ -46,6 +46,7 @@ typedef enum {
 	GEventType_BOSS3_ACTIVATE,
 	GEventType_BOSS3_DEFEATED,
 	GEventType_BOSS3_CREDITS_END,
+	
 	//GEventType_BOSS3_DEFEATED_POST_UPDATE,
 	
     GEventType_MENU_TICK,

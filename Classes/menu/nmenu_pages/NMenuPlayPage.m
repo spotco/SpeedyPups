@@ -94,7 +94,7 @@
 	[startworlddisp.normalImage addChild:TOPLEFTLABEL(@"starting at:")];
 	[startworlddisp.selectedImage addChild:TOPLEFTLABEL(@"starting at")];
 	
-	#define TOPRIGHTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.5 pcty:0.78] color:ccc3(0,0,0) fontsize:14 str:x] anchor_pt:ccp(0.5,1)]
+	#define TOPRIGHTLABEL(x) [[Common cons_label_pos:[Common pct_of_obj:startworlddisp pctx:0.5 pcty:0.78] color:ccc3(0,0,0) fontsize:12 str:x] anchor_pt:ccp(0.5,1)]
 	CCLabelTTF *startworlddisp_a = TOPRIGHTLABEL(@"");
 	CCLabelTTF *startworlddisp_b = TOPRIGHTLABEL(@"");
 	[startworlddisp.normalImage addChild:startworlddisp_a];
@@ -105,6 +105,8 @@
 	#define SPRITEICON(x) [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"icon_tutorial"]] pos:[Common pct_of_obj:startworlddisp pctx:0.5 pcty:0.33]]
 	CCSprite *swdispicon_a = SPRITEICON(@"icon_tutorial");
 	CCSprite *swdispicon_b = SPRITEICON(@"icon_tutorial");
+	[swdispicon_a setScale:0.7];
+	[swdispicon_b setScale:0.7];
 	startworld_disp_icon = [[[[SpriteGroup alloc] init] add_sprite:swdispicon_a] add_sprite:swdispicon_b];
 	[startworlddisp.normalImage addChild:swdispicon_a];
 	[startworlddisp.selectedImage addChild:swdispicon_b];

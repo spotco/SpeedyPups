@@ -12,6 +12,7 @@
 #import "ExplosionParticle.h"
 #import "BrokenMachineParticle.h"
 #import "NRobotBossComponents.h"
+#import "GameMain.h"
 
 @interface FGWater : GameObject {
 	CCSprite *body;
@@ -100,8 +101,12 @@
 	[g add_gameobject:fgwater];
 	
 	[AudioManager playsfx:SFX_BOSS_ENTER];
-	hp = 4;
-	//hp = 1;
+	
+	if ([GameMain GET_BOSS_1_HEALTH]) {
+		hp = 1;
+	} else {
+		hp = 4;
+	}
 	
 	cat_body = [NCatBossBody cons];
 	[self addChild:cat_body];

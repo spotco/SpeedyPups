@@ -94,6 +94,7 @@ static NSDictionary* texrects;
     } else if (it == Item_Clock) {
 		[g.player set_clockeffect:[self get_uselength_for:Item_Clock g:g]];
 		[GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:1 f2:0] add_i1:Item_Clock i2:0]];
+		[GameControlImplementation set_clockbutton_hold:YES];
 		
 	}
 	

@@ -36,7 +36,8 @@
 
 static float GROUNDLEVEL;
 
--(id)cons_with:(WorldNum)labnum g:(GameEngineLayer *)g {
+-(id)cons_with:(WorldNum)labnum g:(GameEngineLayer *)_g {
+	g = _g;
 	[self cons_anim];
 	if (labnum == WorldNum_1) {
 		BGLayerSet *set = [Lab1BGLayerSet cons];
@@ -117,11 +118,11 @@ static float GROUNDLEVEL;
 	
 	[self schedule:@selector(update:)];
 	
-	[self cons_menu_ui:g worldnum:labnum];
+	[self cons_menu_ui_worldnum:labnum];
 	return self;
 }
 
--(void)cons_menu_ui:(GameEngineLayer*)g worldnum:(WorldNum)worldnum {
+-(void)cons_menu_ui_worldnum:(WorldNum)worldnum {
 	
 	menu_ui = [CCSprite node];
 	[self addChild:menu_ui z:50];
@@ -221,6 +222,7 @@ static float GROUNDLEVEL;
 
 -(void)next {
 	[self exit];
+	[g exit_to_next_world];
 }
 
 -(void)exit_to_menu {

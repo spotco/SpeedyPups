@@ -1,8 +1,8 @@
 {
-    "connect_pts": {"y1": 219, "x1": 91, "y2": 217, "x2": 1356},
-    "islands": [{"can_fall": true, "x1": 91, "x2": 1356, "ground": "open", "y1": 219, "ndir": "left", "y2": 217, "hei": 50, "type": "line"}],
-    "start_x": 193,
-    "start_y": 270,
-    "objects": [{"x": 752, "y": 217, "label": "0", "type": "labentrance"}],
+    "start_y": 154,
+    "objects": [],
+    "islands": [{"x1": 69, "can_fall": true, "type": "line", "x2": 927, "ndir": "left", "ground": "open", "y1": 97, "hei": 50, "y2": 97}],
+    "start_x": 175,
+    "connect_pts": {"x1": 69, "y1": 97, "x2": 927, "y2": 97},
     "assert_links": 0
 }

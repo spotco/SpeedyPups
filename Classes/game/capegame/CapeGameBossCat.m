@@ -7,6 +7,7 @@
 #import "CapeGamePlayer.h"
 #import "ExplosionParticle.h"
 #import "RocketParticle.h"
+#import "GameMain.h"
 
 @interface CapeGameBossRobotHead : CapeGameObject {
 	int particle_ct;
@@ -135,8 +136,12 @@
 			delay_ct = 60;
 			[cat_body laugh_anim];
 			[AudioManager playsfx:SFX_CAT_LAUGH];
-			next_mode = CapeGameBossCatMode_PATTERN_1;
-			//next_mode = CapeGameBossCatMode_PATTERN_3;
+			
+			if ([GameMain GET_BOSS_1_HEALTH]) {
+				next_mode = CapeGameBossCatMode_PATTERN_3;
+			} else {
+				next_mode = CapeGameBossCatMode_PATTERN_1;
+			}
 		}
 		
 	} else if (mode == CapeGameBossCatMode_TAUNT) {

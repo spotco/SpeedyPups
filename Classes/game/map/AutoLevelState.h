@@ -20,7 +20,9 @@
 #define L_WORLD3_SWINGVINE @"levelset_world3_swingvine"
 #define L_WORLD3_HARD @"levelset_world3_hard"
 
-#define L_FREERUN_PROGRESS @"levelset_freerun_progress"
+//#define L_FREERUN_PROGRESS @"levelset_freerun_progress"
+#define L_FREERUN_PROGRESS_WORLD @"levelset_freerun_progress_world"
+#define L_FREERUN_PROGRESS_TO_LAB @"levelset_freerunprogress_to_lab"
 
 #define L_BOSS1START @"levelset_boss1start"
 #define L_BOSS1AREA @"levelset_boss1area"

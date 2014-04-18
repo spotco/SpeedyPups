@@ -672,6 +672,7 @@
 		7ED28FB017124E110037B916 /* GameOverUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FAF17124E110037B916 /* GameOverUI.m */; };
 		7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */; };
 		7ED28FB61712547E0037B916 /* UICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB51712547D0037B916 /* UICommon.m */; };
+		7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */ = {isa = PBXBuildFile; fileRef = 7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */; };
 		7ED3CE0E17017DA700ED9873 /* doghouse_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */; };
 		7ED3CE101701883B00ED9873 /* loadingicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3CE0F1701883B00ED9873 /* loadingicon.png */; };
 		7ED5B21C1700D2BF00B22CC4 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED5B21B1700D2BF00B22CC4 /* TouchTrackingLayer.m */; };
@@ -1671,6 +1672,7 @@
 		7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChallengeEndUI.m; path = game_ui/ChallengeEndUI.m; sourceTree = "<group>"; };
 		7ED28FB41712547D0037B916 /* UICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommon.h; sourceTree = "<group>"; };
 		7ED28FB51712547D0037B916 /* UICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommon.m; sourceTree = "<group>"; };
+		7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = freerun_progress_to_lab.map; sourceTree = "<group>"; };
 		7ED3CE0D17017DA700ED9873 /* doghouse_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doghouse_mask.png; sourceTree = "<group>"; };
 		7ED3CE0F1701883B00ED9873 /* loadingicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingicon.png; sourceTree = "<group>"; };
 		7ED5B21A1700D2BF00B22CC4 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchTrackingLayer.h; path = ../../util/TouchTrackingLayer.h; sourceTree = "<group>"; };
@@ -2552,6 +2554,7 @@
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
 				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
+				7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
 				7E115AB8182EF71700C18CFD /* cannon */,
 				7EE2455F17E65CAF007D4B4D /* capegame */,
@@ -4098,6 +4101,7 @@
 				7EB8B37016D9F8E700F58961 /* spikes.png in Resources */,
 				7EB8B37116D9F8E700F58961 /* spike_vine_bottom.png in Resources */,
 				7EB8B37216D9F8E700F58961 /* spike_vine_section.png in Resources */,
+				7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */,
 				7EB8B37316D9F8E700F58961 /* spike_vine_top.png in Resources */,
 				7EB8B37416D9F8E700F58961 /* swingvine_base.png in Resources */,
 				7EB8B37516D9F8E700F58961 /* swingvine_tex_loose.png in Resources */,

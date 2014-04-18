@@ -223,7 +223,7 @@ static NSString *blank = @"";
 		[player setPosition:CGPointAdd(player.position, ccp(player.vx,player.vy))];
 		if (player.position.y < tar.y) {
 			[self exit];
-			
+			[AudioManager playsfx:SFX_FAIL];
 			if (count_as_death) {
 				[GEventDispatcher push_unique_event:[GEvent cons_type:GEventType_PLAYER_DIE]];
 			} else if (is_credits_scene) {
@@ -232,10 +232,11 @@ static NSString *blank = @"";
 		}
 		return;
 		
-	} else if (current_mode == CapeGameMode_BOSS3_DEFEATED_FLYOUT) {
+	} else if (current_mode == CapeGameMode_BOSS3_DEFEATED_FLYOUT) { //credits scene
 		[player setPosition:CGPointAdd(player.position, ccp(7*[Common get_dt_Scale],0))];
-		[player setRotation:player.rotation*0.95];
-		if (player.position.x > [Common SCREEN].width) {
+		[player setRotation:0];
+		if (player.position.x > [Common SCREEN].width * 1.2) {
+			[AudioManager playsfx:SFX_POWERUP];
 			[self exit];
 			[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED]];
 		}
@@ -408,7 +409,6 @@ static NSString *blank = @"";
 	[particles removeAllObjects];
 	[ui exit];
 	[[CCDirector sharedDirector] popScene];
-	[AudioManager playsfx:SFX_FAIL];
 }
 
 @end

@@ -2,9 +2,6 @@
 #import "ChallengeInfoTitleCardAnimation.h"
 #import "FreeRunStartAtManager.h"
 
-@interface FreeRunProgressAnimation : ChallengeInfoTitleCardAnimation {
-	CCSprite *panelmarker;
-	int flashct;
-}
-+(FreeRunProgressAnimation*)cons_at:(FreeRunProgress)pos;
+@interface FreeRunProgressAnimation : ChallengeInfoTitleCardAnimation
++(FreeRunProgressAnimation*)cons_at:(FreeRunStartAt)pos;
 @end
