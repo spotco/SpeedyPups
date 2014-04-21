@@ -1,5 +1,6 @@
 #import "ScoreManager.h"
 #import "DataStore.h"
+#import "GEventDispatcher.h"
 
 #define WORLD_HIGHSCORE(x) [NSString stringWithFormat:@"world_%d_highscore",x]
 
@@ -33,6 +34,10 @@
 }
 
 -(void)increment_multiplier:(float)amt {
+	if (floor(multiplier) < floor(multiplier + amt)) {
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_COMBO_DISP_ANIM] add_f1:multiplier+amt f2:0]];
+	}
+	
 	multiplier += amt;
 }
 

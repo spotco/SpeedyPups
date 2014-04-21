@@ -24,7 +24,9 @@
 	if (!active) return;
 	if (g.player.position.x > self.position.x) {
 		active = NO;
-
+		
+		[AudioManager playsfx:SFX_CHEER];
+		
 		[g.get_main_game.score increment_multiplier:0.1];
 		[g.get_main_game.score increment_score:100];
 		

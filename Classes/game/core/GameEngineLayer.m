@@ -123,12 +123,21 @@
 	world_mode = [GameWorldMode cons_worldnum:world];
 	[DogBone reset_play_collect_sound];
 	stats = [GameEngineStats cons];
-    default_starting_lives = starting_lives;
-	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES] && default_starting_lives != GAMEENGINE_INF_LIVES) {
-		default_starting_lives *= 2;
-	}
-	lives = default_starting_lives;
 	
+	if (starting_lives != GAMEENGINE_INF_LIVES) {
+		if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
+			default_starting_lives = [GameMain GET_DEFAULT_STARTING_LIVES] * 2;
+		} else {
+			default_starting_lives = [GameMain GET_DEFAULT_STARTING_LIVES];
+		}
+		lives = starting_lives;
+		
+	} else {
+		default_starting_lives = GAMEENGINE_INF_LIVES;
+		lives = GAMEENGINE_INF_LIVES;
+	}
+	
+	 
 	if ([BGTimeManager get_global_time] == MODE_NIGHT || [BGTimeManager get_global_time] == MODE_DAY_TO_NIGHT) {
 		[AudioManager transition_mode2];
 	}
@@ -895,9 +904,17 @@ static bool _began_hold_clockbutton = NO;
 
 -(void)incr_lives {
 	lives = lives == GAMEENGINE_INF_LIVES ? lives : lives+1;
+	
 	if (lives != GAMEENGINE_INF_LIVES) {
 		[AudioManager playsfx:SFX_1UP];
 		[Player character_bark];
+		
+		if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
+			lives = lives + 2;
+		} else {
+			lives = lives + 1;
+		}
+		
 	}
 }
 

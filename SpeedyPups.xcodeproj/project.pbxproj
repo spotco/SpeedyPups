@@ -175,6 +175,8 @@
 		7E908F8517F01BC6004DB956 /* BG2_island_corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8317F01BC6004DB956 /* BG2_island_corner.png */; };
 		7E908F8617F01BC6004DB956 /* BG2_island_top_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8417F01BC6004DB956 /* BG2_island_top_edge.png */; };
 		7E908F8817F01FE5004DB956 /* gameloop2.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E908F8717F01FE4004DB956 /* gameloop2.aiff */; };
+		7E94CB011905151700B85545 /* ScoreComboAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CB001905151700B85545 /* ScoreComboAnimation.m */; };
+		7E94CB0319051D3B00B85545 /* sfx_cheer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E94CB0219051D3B00B85545 /* sfx_cheer.wav */; };
 		7E98648116E874CF00109092 /* nmenu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647E16E874CF00109092 /* nmenu_bg.png */; };
 		7E98648216E874CF00109092 /* nmenu_items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E98647F16E874CF00109092 /* nmenu_items.plist */; };
 		7E98648316E874CF00109092 /* nmenu_items.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E98648016E874CF00109092 /* nmenu_items.png */; };
@@ -1026,6 +1028,9 @@
 		7E908F8317F01BC6004DB956 /* BG2_island_corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_island_corner.png; sourceTree = "<group>"; };
 		7E908F8417F01BC6004DB956 /* BG2_island_top_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2_island_top_edge.png; sourceTree = "<group>"; };
 		7E908F8717F01FE4004DB956 /* gameloop2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2.aiff; sourceTree = "<group>"; };
+		7E94CAFF1905151700B85545 /* ScoreComboAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreComboAnimation.h; sourceTree = "<group>"; };
+		7E94CB001905151700B85545 /* ScoreComboAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreComboAnimation.m; sourceTree = "<group>"; };
+		7E94CB0219051D3B00B85545 /* sfx_cheer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_cheer.wav; sourceTree = "<group>"; };
 		7E98647E16E874CF00109092 /* nmenu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_bg.png; sourceTree = "<group>"; };
 		7E98647F16E874CF00109092 /* nmenu_items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = nmenu_items.plist; sourceTree = "<group>"; };
 		7E98648016E874CF00109092 /* nmenu_items.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nmenu_items.png; sourceTree = "<group>"; };
@@ -2089,6 +2094,7 @@
 		7E49B1D517DA766600563243 /* sfx */ = {
 			isa = PBXGroup;
 			children = (
+				7E94CB0219051D3B00B85545 /* sfx_cheer.wav */,
 				7E05976A18F142E100D9CD74 /* sfx_tutorialdog_in.wav */,
 				7E05976B18F142E100D9CD74 /* sfx_tutorialdog_out.wav */,
 				7E05976618F1373200D9CD74 /* sfx_thunder.wav */,
@@ -2179,6 +2185,8 @@
 				7E72818D17CDEF8200628A81 /* FreeRunStartAtUnlockUIAnimation.m */,
 				7E2C8AE217D865A200DC08AE /* ItemUseUIAnimation.h */,
 				7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */,
+				7E94CAFF1905151700B85545 /* ScoreComboAnimation.h */,
+				7E94CB001905151700B85545 /* ScoreComboAnimation.m */,
 			);
 			name = ingame_anim;
 			sourceTree = "<group>";
@@ -4187,6 +4195,7 @@
 				7E05976C18F142E100D9CD74 /* sfx_tutorialdog_in.wav in Resources */,
 				7ECFADF2174228D6009EEBB0 /* easy_curvywater.map in Resources */,
 				7ECFADF417422D1F009EEBB0 /* easy_simplespikes.map in Resources */,
+				7E94CB0319051D3B00B85545 /* sfx_cheer.wav in Resources */,
 				7EA3B99C1744C61D00139608 /* cloud_ss.plist in Resources */,
 				7EA3B99D1744C61D00139608 /* cloud_ss.png in Resources */,
 				7EA3B99F1744D18400139608 /* lab_bg_layer.png in Resources */,
@@ -4374,6 +4383,7 @@
 				7EB8B48B16D9FC0900F58961 /* DogCape.m in Sources */,
 				7EB8B48C16D9FC0900F58961 /* DogCapeEffect.m in Sources */,
 				7EB8B48E16D9FC0900F58961 /* DogShadow.m in Sources */,
+				7E94CB011905151700B85545 /* ScoreComboAnimation.m in Sources */,
 				7EB8B48F16D9FC0900F58961 /* ElectricWall.m in Sources */,
 				7E99162018FFB44B009B59FC /* CreditsFlybyObject.m in Sources */,
 				7E3951C318F52902005C72C9 /* AutoLevelState_World1.m in Sources */,

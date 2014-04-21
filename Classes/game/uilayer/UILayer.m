@@ -15,7 +15,8 @@
 #import "FreeRunStartAtManager.h"
 #import "FreeRunStartAtUnlockUIAnimation.h"
 #import "ItemUseUIAnimation.h"
-#import "ScoreManager.h" 
+#import "ScoreManager.h"
+#import "ScoreComboAnimation.h"
 
 @implementation UILayer
 
@@ -94,7 +95,10 @@
         
     } else if (e.type == GEventType_COLLECT_BONE) {
         [self start_bone_collect_anim];
-        
+		
+	} else if (e.type == GEventType_COMBO_DISP_ANIM) {
+		[self start_combo_anim:e.f1];
+		
     } else if (e.type == GEventType_GET_COIN) {
         [self start_coin_collect_anim];
         
@@ -154,6 +158,12 @@
     BoneCollectUIAnimation* b = [BoneCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
     [ingameuianimholder addChild:b];
     [ingame_ui_anims addObject:b];
+}
+
+-(void)start_combo_anim:(float)combo {
+	ScoreComboAnimation *c = [ScoreComboAnimation cons_combo:combo];
+	[ingameuianimholder addChild:c];
+	[ingame_ui_anims addObject:c];
 }
 
 -(void)start_coin_collect_anim {

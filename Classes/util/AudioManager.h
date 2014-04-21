@@ -93,6 +93,8 @@ typedef enum {
 #define SFX_THUNDER @"sfx_thunder.wav" 
 #define SFX_FIREWORKS @"sfx_fireworks.wav"
 
+#define SFX_CHEER @"sfx_cheer.wav" 
+
 @class CallBack;
 
 @interface AudioManager : NSObject

@@ -15,11 +15,11 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"classic_trickytreas"
 
-#define IMMEDIATELY_BOSS YES
-#define BOSS_1_HEALTH YES
+#define IMMEDIATELY_BOSS NO
+#define BOSS_1_HEALTH NO
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
@@ -27,7 +27,10 @@
 
 
 /**
- score ui   
+ ART combo x 1,2,3,4,5,6,7,8,9,10 art
+ ART new secret find object art (find the big bone)
+ ART new clock
+ 
  add second currency and separate upgrade/unlock for items and continue
  rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
  
@@ -146,7 +149,8 @@ Stretch goals:
 }
 
 +(void)start_game_autolevel {
-    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:STARTING_LIVES world:[FreeRunStartAtManager get_startingat]]];
+    [GameMain run_scene:[GameEngineLayer scene_with_autolevel_lives:[Player current_character_has_power:CharacterPower_DOUBLELIVES]?STARTING_LIVES*2:STARTING_LIVES
+															  world:[FreeRunStartAtManager get_startingat]]];
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {
@@ -185,4 +189,5 @@ Stretch goals:
 +(BOOL)GET_DO_CONSTANT_DT { return SET_CONSTANT_DT; }
 +(BOOL)GET_IMMEDIATE_BOSS { return IMMEDIATELY_BOSS; }
 +(BOOL)GET_BOSS_1_HEALTH { return BOSS_1_HEALTH; }
++(int)GET_DEFAULT_STARTING_LIVES { return STARTING_LIVES; }
 @end

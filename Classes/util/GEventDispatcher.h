@@ -65,7 +65,9 @@ typedef enum {
     GEventType_CHANGE_CURRENT_DOG,
 	
 	GEventType_BEGIN_CAPE_GAME,
-	GEventType_BEGIN_BOSS_CAPE_GAME
+	GEventType_BEGIN_BOSS_CAPE_GAME,
+	
+	GEventType_COMBO_DISP_ANIM
 } GEventType;
 
 @interface GEvent : NSObject

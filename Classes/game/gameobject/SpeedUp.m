@@ -1,6 +1,5 @@
 #import "SpeedUp.h"
 #import "GameEngineLayer.h"
-#import "ScoreManager.h"
 
 @implementation SpeedUp
 
@@ -29,7 +28,6 @@
     }
     
     if (recharge_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
-		[g.score increment_score:1];
         [self particle_effect:g];
         player.vx += normal_vec.x*2;
         player.vy += normal_vec.y*2;

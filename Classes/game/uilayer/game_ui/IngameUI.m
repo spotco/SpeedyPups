@@ -162,12 +162,12 @@
 	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.375]
 								 color:ccc3(0,0,0)
 							  fontsize:16
-								   str:@"Pts \u00B7 9999999"] anchor_pt:ccp(0,0.5)];
+								   str:@""] anchor_pt:ccp(0,0.5)];
 	[scoredispbg addChild:scoredisp];
 	multdisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.75]
 								color:ccc3(200,30,30)
 							 fontsize:12
-								  str:@"Mult \u00B7 1"] anchor_pt:ccp(0,0.5)];
+								  str:@""] anchor_pt:ccp(0,0.5)];
 	[scoredispbg addChild:multdisp];
 	[self addChild:scoredispbg];
 	
@@ -329,8 +329,8 @@ static int ct  = 0;
 		}
 		
 	}
-	[scoredisp set_label:strf("Pts \u00B7 %d",(int)current_disp_score)];
-	[multdisp set_label:strf("Mult \u00B7 %.2f",[g.score get_multiplier])];
+	[scoredisp set_label:strf("Score \u00B7 %d",(int)current_disp_score)];
+	[multdisp set_label:strf("Combo \u2715%.2f",[g.score get_multiplier])];
 }
 
 -(void)set_label:(CCLabelTTF*)l to:(NSString*)s {
