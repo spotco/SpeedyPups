@@ -43,23 +43,24 @@
                                           str:@"paused"]];
     
 	CCSprite *disp_root = [CCSprite node];
-	[disp_root setPosition:[Common screen_pctwid:0.5 pcthei:0.65]];
+	[disp_root setPosition:[Common screen_pctwid:0.575 pcthei:0.65]];
 	[disp_root setScale:0.85];
 	[pause_ui addChild:disp_root];
-	
-    CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
-    [disp_root addChild:timebg];
     
     CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
-    [bonesbg setPosition:ccp(timebg.position.x, timebg.position.y - timebg.boundingBoxInPixels.size.height - 5)];
     [disp_root addChild:bonesbg];
     
     CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
-    [livesbg setPosition:ccp(bonesbg.position.x,bonesbg.position.y - bonesbg.boundingBoxInPixels.size.height - 5)];
+    [livesbg setPosition:ccp(livesbg.position.x, livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
     [disp_root addChild:livesbg];
 	
+	CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+    [timebg setPosition:ccp(livesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
+	[disp_root addChild:timebg];
+	
 	CCSprite *pointsbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
-	[pointsbg setPosition:ccp(bonesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
+	[pointsbg setPosition:ccp(timebg.position.x,timebg.position.y - timebg.boundingBoxInPixels.size.height - 10)];
+	[pointsbg setScale:1.25];
 	[disp_root addChild:pointsbg];
 	
 	for (CCSprite *c in @[timebg,bonesbg,livesbg,pointsbg]) {
@@ -87,27 +88,33 @@
 	pause_points_disp = [Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:0.5 pcty:0.5]
 										 color:ccc3(255,255,255)
 									  fontsize:20
-										   str:@"Points: 00000000"];
+										   str:@""];
 	[pointsbg addChild:pause_points_disp];
+	
+	new_high_score_disp = [[Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:1 pcty:1]
+											color:ccc3(255,200,20)
+										 fontsize:10
+											  str:@"New Highscore!"] anchor_pt:ccp(1,1)];
+	[pointsbg addChild:new_high_score_disp];
 	
 	
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
-                                                pos:[Common screen_pctwid:0.3 pcthei:0.32]];
+                                                pos:[Common screen_pctwid:0.35 pcthei:0.32]];
     
     CCMenuItem *playbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"playbutton" tar:self sel:@selector(unpause)
                                                pos:[Common screen_pctwid:0.94 pcthei:0.9]];
     
     CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
-                                               pos:[Common screen_pctwid:0.3 pcthei:0.6]];
+                                               pos:[Common screen_pctwid:0.35 pcthei:0.6]];
     
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
     [pausebuttons setPosition:ccp(0,0)];
     [pause_ui addChild:pausebuttons];
     
-    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.13]
+    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.12]
                                                    color:ccc3(255,255,255)
-                                                fontsize:20
+                                                fontsize:18
                                                      str:@""];
     [pause_ui addChild:challenge_disp];
 	
@@ -129,15 +136,15 @@
 	[left_curtain setPosition:ccp(
 	  left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
 	  left_curtain.position.y + (left_curtain_tpos.y - left_curtain.position.y)/4.0
-	  )];
+	)];
 	[right_curtain setPosition:ccp(
 	   right_curtain.position.x + (right_curtain_tpos.x - right_curtain.position.x)/4.0,
 	   right_curtain.position.y + (right_curtain_tpos.y - right_curtain.position.y)/4.0
-	   )];
+	)];
 	[bg_curtain setPosition:ccp(
 		bg_curtain.position.x + (bg_curtain_tpos.x - bg_curtain.position.x)/4.0,
 		bg_curtain.position.y + (bg_curtain_tpos.y - bg_curtain.position.y)/4.0
-		)];
+	)];
 }
 
 -(void)setVisible:(BOOL)visible {
@@ -159,10 +166,12 @@
     [challenge_disp setString:msg];
 }
 
--(void)update_labels_lives:(NSString *)lives bones:(NSString *)bones time:(NSString *)time {
+-(void)update_labels_lives:(NSString *)lives bones:(NSString *)bones time:(NSString *)time score:(NSString*)score highscore:(BOOL)highscore {
     [pause_lives_disp setString:lives];
     [pause_bones_disp setString:bones];
     [pause_time_disp setString:time];
+	[pause_points_disp setString:score];
+	[new_high_score_disp setVisible:highscore];
 }
 
 -(void)retry {

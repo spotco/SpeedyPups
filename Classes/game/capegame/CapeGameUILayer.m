@@ -10,6 +10,8 @@
 #import "UILayer.h"
 #import "BoneCollectUIAnimation.h"
 #import "ChallengeInfoTitleCardAnimation.h"
+#import "GameEngineLayer.h"
+#import "ScoreManager.h"
 
 @implementation CapeGameUILayer
 
@@ -104,6 +106,25 @@
 	[ingame_ui addChild:uianim_holder];
 	uianims = [NSMutableArray array];
 	
+	scoredispbg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																		  idname:@"challengedescbg"]]
+					pos:[Common screen_pctwid:0.01 pcthei:0.07]] anchor_pt:ccp(0,0.5)];
+	[scoredispbg setOpacity:140];
+	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.375]
+								  color:ccc3(0,0,0)
+							   fontsize:16
+									str:@"Pts \u00B7 9999999"] anchor_pt:ccp(0,0.5)];
+	[scoredispbg addChild:scoredisp];
+	multdisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.75]
+								 color:ccc3(200,30,30)
+							  fontsize:12
+								   str:@"Mult \u00B7 1"] anchor_pt:ccp(0,0.5)];
+	[scoredispbg addChild:multdisp];
+	[ingame_ui addChild:scoredispbg];
+	current_disp_score = [cape_game.get_main_game.score get_score];
+	current_disp_mult = [cape_game.get_main_game.score get_multiplier];
+	
 	return self;
 }
 
@@ -137,40 +158,61 @@
                                         color:ccc3(255, 255, 255)
                                      fontsize:45
                                           str:@"paused"]];
-    
-    CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
-    [timebg setPosition:[Common screen_pctwid:0.6 pcthei:0.6]];
-    [pause_ui addChild:timebg];
+	
+	CCSprite *disp_root = [CCSprite node];
+	[disp_root setPosition:[Common screen_pctwid:0.575 pcthei:0.65]];
+	[disp_root setScale:0.85];
+	[pause_ui addChild:disp_root];
     
     CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
-    [bonesbg setPosition:[Common screen_pctwid:0.6 pcthei:0.45]];
-    [pause_ui addChild:bonesbg];
+    [disp_root addChild:bonesbg];
     
     CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
-    [livesbg setPosition:[Common screen_pctwid:0.6 pcthei:0.3]];
-    [pause_ui addChild:livesbg];
+    [livesbg setPosition:ccp(livesbg.position.x, livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
+    [disp_root addChild:livesbg];
 	
-	for (CCSprite *c in @[timebg,bonesbg,livesbg]) {
+	CCSprite *timebg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+    [timebg setPosition:ccp(livesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 5)];
+	[disp_root addChild:timebg];
+	
+	CCSprite *pointsbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
+	[pointsbg setPosition:ccp(timebg.position.x,timebg.position.y - timebg.boundingBoxInPixels.size.height - 10)];
+	[pointsbg setScale:1.25];
+	[disp_root addChild:pointsbg];
+	
+	for (CCSprite *c in @[timebg,bonesbg,livesbg,pointsbg]) {
 		[c setOpacity:200];
 	}
     
-    pause_time_disp = [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.6]
+    pause_time_disp = [Common cons_label_pos:[Common pct_of_obj:timebg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
-                                    fontsize:30
-                                         str:@"0:00"];
-    [pause_ui addChild:pause_time_disp];
+                                    fontsize:20
+                                         str:@"Time: 0:00"];
+    [timebg addChild:pause_time_disp];
     
-    pause_bones_disp= [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.45]
+    pause_bones_disp= [Common cons_label_pos:[Common pct_of_obj:bonesbg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
                                     fontsize:30
                                          str:@"0"];
-    [pause_ui addChild:pause_bones_disp];
+    [bonesbg addChild:pause_bones_disp];
     
-    pause_lives_disp= [Common cons_label_pos:[Common screen_pctwid:0.6 pcthei:0.3]
+    pause_lives_disp= [Common cons_label_pos:[Common pct_of_obj:livesbg pctx:0.5 pcty:0.5]
                                        color:ccc3(255, 255, 255)
                                     fontsize:30
                                          str:@"0"];
-    [pause_ui addChild:pause_lives_disp];
+    [livesbg addChild:pause_lives_disp];
+	
+	pause_points_disp = [Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:0.5 pcty:0.5]
+										 color:ccc3(255,255,255)
+									  fontsize:20
+										   str:@""];
+	[pointsbg addChild:pause_points_disp];
+	
+	pause_new_high_score_disp = [[Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:1 pcty:1]
+											color:ccc3(255,200,20)
+										 fontsize:10
+											  str:@"New Highscore!"] anchor_pt:ccp(1,1)];
+	[pointsbg addChild:pause_new_high_score_disp];
     
     CCMenuItem *retrybutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"retrybutton" tar:self sel:@selector(retry)
                                                 pos:[Common screen_pctwid:0.3 pcthei:0.32]];
@@ -208,6 +250,22 @@
     }
     [uianims removeObjectsInArray:toremove];
     [toremove removeAllObjects];
+	
+	[self update_scoredisp:[cape_game get_main_game]];
+}
+
+-(void)update_scoredisp:(GameEngineLayer*)g {
+	if (current_disp_score != [g.score get_score]) {
+		if (ABS([g.score get_score] - current_disp_score) > 1) {
+			current_disp_score = current_disp_score + ([g.score get_score] - current_disp_score)/4;
+			
+		} else {
+			current_disp_score = [g.score get_score];
+		}
+		
+	}
+	[scoredisp set_label:strf("Pts \u00B7 %d",(int)current_disp_score)];
+	[multdisp set_label:strf("Mult \u00B7 %.2f",[g.score get_multiplier])];
 }
 
 -(void)update_pause_menu {
@@ -261,9 +319,12 @@
 	[self set_curtain_animstart_positions];
 	[ingame_ui setVisible:NO];
 	[pause_ui setVisible:YES];
+	
 	[pause_bones_disp setString:[bones_disp string]];
 	[pause_lives_disp setString:[lives_disp string]];
 	[pause_time_disp setString:[time_disp string]];
+	[pause_points_disp setString:strf("Score \u00B7 %d",[cape_game.get_main_game.score get_score])];
+	[pause_new_high_score_disp setVisible:[ScoreManager get_world_highscore:cape_game.get_main_game.world_mode.cur_world] < [cape_game.get_main_game.score get_score]];
 }
 
 -(void)retry {

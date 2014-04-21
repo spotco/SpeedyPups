@@ -1,5 +1,6 @@
 #import "CheckPoint.h"
 #import "GameEngineLayer.h"
+#import "ScoreManager.h"
 
 @implementation CheckPoint
 
@@ -60,6 +61,10 @@
 	
     [super update:player g:g];
     if (!activated && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+		
+		[g.score increment_multiplier:0.1];
+		[g.score increment_score:100];
+		
         activated = YES;
         inactive_img.visible = NO;
         active_img.visible = YES;

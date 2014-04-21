@@ -21,6 +21,12 @@
 	CCSprite *challengedescbg,*challengedescincon;
 	CCLabelTTF *challengedesc;
 	
+	CCSprite *scoredispbg;
+	CCLabelTTF *scoredisp,*multdisp;
+	
+	float current_disp_score;
+	float current_disp_mult;
+	
 	NSString *last_time;
 }
 

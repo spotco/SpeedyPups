@@ -5,6 +5,8 @@
 #import "AudioManager.h"
 #import "FileCache.h"
 #import "DogBone.h"
+#import "GameEngineLayer.h" 
+#import "ScoreManager.h"
 
 @implementation CapeGameBone
 
@@ -26,7 +28,10 @@
 	if ([Common hitrect_touch:[[g player] get_hitrect] b:[self get_hitrect]]) {
 		[self setVisible:NO];
 		[g collect_bone:[self convertToWorldSpace:ccp(0,0)]];
-		//[AudioManager playsfx:SFX_BONE];
+		
+		[g.get_main_game.score increment_multiplier:0.005];
+		[g.get_main_game.score increment_score:10];
+		
 		[DogBone play_collect_sound:g.get_main_game];
 		active = NO;
 	}

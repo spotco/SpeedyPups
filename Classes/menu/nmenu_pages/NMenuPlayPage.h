@@ -38,6 +38,8 @@ typedef enum {
 	CCLabelTTF *challenges_completed_disp;
 	
 	CCSprite *first_time_popup;
+	
+	CCSprite *highscore_sign_base;
 }
 
 +(NMenuPlayPage*)cons;

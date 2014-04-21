@@ -81,7 +81,7 @@ static NSDictionary* ID_TO_POWERDESC;
 		TEX_DOG_RUN_3: @"Penny the Poodle",
 		TEX_DOG_RUN_4: @"Spot the Dalmation",
 		TEX_DOG_RUN_5: @"Chubs the Pug",
-		TEX_DOG_RUN_6: @"Henry the Husky",
+		TEX_DOG_RUN_6: @"Dubs the Husky",
 		TEX_DOG_RUN_7: @"Brock the Lab"
 	};
 	

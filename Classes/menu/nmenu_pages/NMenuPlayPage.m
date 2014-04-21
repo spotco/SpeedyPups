@@ -3,6 +3,7 @@
 #import "Flowers.h"
 #import "GameMain.h"
 #import "FreeRunStartAtManager.h"
+#import "ScoreManager.h"
 
 @implementation NMenuPlayPage
 
@@ -17,6 +18,8 @@
     self = [super init];
     [GEventDispatcher add_listener:self];
     cur_mode = PlayPageMode_WAIT;
+	
+	[self cons_highscore_sign];
     
 	logo_base = [CCSprite node];
 	[logo_base setPosition:[Common screen_pctwid:0.5 pcthei:0.75]];
@@ -60,6 +63,8 @@
     [self addChild:m];
     
     rundog = [CCSprite node];
+	
+	
     
     CCMenuItem *freerunmodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
 													 rect:@"infinitemode"
@@ -151,8 +156,54 @@
 												  str:@"Click me!"]];
 	[freerunmodebutton addChild:first_time_popup];
 	[first_time_popup setPosition:[Common pct_of_obj:freerunmodebutton pctx:0.25 pcty:0.9]];
-    
+	
     return self;
+}
+
+-(void)cons_highscore_sign {
+	
+	highscore_sign_base = [CCSprite node];
+	[highscore_sign_base setContentSize:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"playpage_highscore_sign"].size];
+	//CGRect rect =
+	[highscore_sign_base setPosition:[Common screen_pctwid:0.87 pcthei:0.51]];
+	
+	[highscore_sign_base setScale:0.9];
+	[self addChild:highscore_sign_base];
+	[highscore_sign_base addChild:[Common cons_label_pos:[Common pct_of_obj:highscore_sign_base pctx:0.5 pcty:0.825]
+												   color:ccc3(20,20,20)
+												fontsize:16
+													 str:@"High Scores"]];
+	
+    CCLabelTTF *highscore_world1_label = [[Common cons_label_pos:[Common pct_of_obj:highscore_sign_base pctx:0.0525 pcty:0.6]
+														   color:ccc3(20,20,20)
+														fontsize:12
+															 str:@"World 1:"] anchor_pt:ccp(0,0.5)];
+	[highscore_sign_base addChild:highscore_world1_label];
+	[highscore_sign_base addChild:[[Common cons_label_pos:CGPointAdd(highscore_world1_label.position, ccp(highscore_world1_label.boundingBox.size.width + 5,0))
+													color:ccc3(255,30,30)
+												 fontsize:12
+													  str:strf("%d",[ScoreManager get_world_highscore:WorldNum_1])] anchor_pt:ccp(0,0.5)]];
+	
+	
+    CCLabelTTF *highscore_world2_label = [[Common cons_label_pos:[Common pct_of_obj:highscore_sign_base pctx:0.0525 pcty:0.45]
+														   color:ccc3(20,20,20)
+														fontsize:12
+															 str:@"World 2:"] anchor_pt:ccp(0,0.5)];
+	[highscore_sign_base addChild:highscore_world2_label];
+	[highscore_sign_base addChild:[[Common cons_label_pos:CGPointAdd(highscore_world2_label.position, ccp(highscore_world2_label.boundingBox.size.width + 5,0))
+													color:ccc3(255,30,30)
+												 fontsize:12
+													  str:strf("%d",[ScoreManager get_world_highscore:WorldNum_2])] anchor_pt:ccp(0,0.5)]];
+	
+    CCLabelTTF *highscore_world3_label = [[Common cons_label_pos:[Common pct_of_obj:highscore_sign_base pctx:0.0525 pcty:0.3]
+														   color:ccc3(20,20,20)
+														fontsize:12
+															 str:@"World 3:"] anchor_pt:ccp(0,0.5)];
+	[highscore_sign_base addChild:highscore_world3_label];
+	[highscore_sign_base addChild:[[Common cons_label_pos:CGPointAdd(highscore_world3_label.position, ccp(highscore_world3_label.boundingBox.size.width + 5,0))
+													color:ccc3(255,30,30)
+												 fontsize:12
+													  str:strf("%d",[ScoreManager get_world_highscore:WorldNum_3])] anchor_pt:ccp(0,0.5)]];
 }
 
 -(void)startworlddispbutton_pressed {
@@ -203,6 +254,9 @@
     } else if (e.type == GEventType_SELECTED_CHALLENGELEVEL) {
 		play_mode_type = [[GEvent cons_type:GEventType_MENU_PLAY_CHALLENGELEVEL_MODE] add_i1:e.i1 i2:0];
 		[self prep_runout_anim];
+		
+	} else if (e.type == GEventType_MENU_SCROLLBGUP_PCT) {
+		 [highscore_sign_base setPosition:ccp(highscore_sign_base.position.x,-500*e.f1)];
 		
 	}
 }

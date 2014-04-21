@@ -15,6 +15,7 @@
 #import "FreeRunStartAtManager.h"
 #import "FreeRunStartAtUnlockUIAnimation.h"
 #import "ItemUseUIAnimation.h"
+#import "ScoreManager.h" 
 
 @implementation UILayer
 
@@ -198,7 +199,11 @@
 
 -(void)pause {
     [GEventDispatcher immediate_event:[GEvent cons_type:GEventType_PAUSE]];
-    [pauseui update_labels_lives:ingameui.lives_disp.string bones:ingameui.bones_disp.string time:[NSString stringWithFormat:@"Time: %@",ingameui.time_disp.string]];
+    [pauseui update_labels_lives:ingameui.lives_disp.string
+						   bones:ingameui.bones_disp.string
+							time:[NSString stringWithFormat:@"Time: %@",ingameui.time_disp.string]
+						   score:strf("Score \u00B7 %d",[game_engine_layer.score get_score])
+					   highscore:[ScoreManager get_world_highscore:game_engine_layer.world_mode.cur_world] < [game_engine_layer.score get_score]];
     [self set_this_visible:pauseui];
     [[CCDirector sharedDirector] pause];
 }

@@ -15,11 +15,11 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"lab_rocketfever"
+#define PLAY_BGM NO
+#define TESTLEVEL @"classic_trickytreas"
 
-#define IMMEDIATELY_BOSS NO
-#define BOSS_1_HEALTH NO
+#define IMMEDIATELY_BOSS YES
+#define BOSS_1_HEALTH YES
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
@@ -28,22 +28,25 @@
 
 /**
  score ui   
- add second currency and separate upgrade/unlock for items
- rare appearance levels by @2 or @3 in autolevelstate (fix weightedsorter)
- second currency tradein from bones daily
- more challenges (more secrets, cape game, boss rush)
+ add second currency and separate upgrade/unlock for items and continue
+ rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
+ 
  new look for upgrade pane
- freerunstartat unlock is probably fucked
- facebook integration (like game on facebook, reward)
  ads integration, pay for no ads
+ 
+ more challenges (more secrets, cape game, boss rush)
+ 
  -art ask for:
 	website
-	video
 	map button, upgrade bar
+	buy ad-free button
+	video
  **/
 
 /**
 Stretch goals:
+ billboard move down
+ facebook integration (like game on facebook, reward)
  3 lab levels
  3 more cannon levels
  10 more freerun levels

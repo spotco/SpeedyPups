@@ -5,6 +5,7 @@
 #import "DogRocketEffect.h"
 #import "UserInventory.h"
 #import "AudioManager.h"
+#import "ScoreManager.h"
 
 @implementation GameItemCommon
 
@@ -77,6 +78,9 @@ static NSDictionary* texrects;
 +(void)use_item:(GameItem)it on:(GameEngineLayer*)g clearitem:(BOOL)clearitem {
 	if (g.player.dead) return;
 	[AudioManager playsfx:SFX_POWERUP];
+	
+	[g.score increment_multiplier:0.1];
+	[g.score increment_score:50];
 	
     if (it == Item_Rocket) {
         [g.player add_effect:[DogRocketEffect cons_from:[g.player get_current_params] time:[self get_uselength_for:it g:g]]];

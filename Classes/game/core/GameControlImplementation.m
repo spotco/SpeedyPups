@@ -6,6 +6,7 @@
 #import "DogRocketEffect.h"
 #import "Cannon.h"
 #import "LauncherRobot.h"
+#import "ScoreManager.h"
 
 #define JUMP_HOLD_TIME 15
 #define JUMP_POWER 8.5
@@ -108,6 +109,10 @@ float nodash_time = 0;
 	}
 	
 	if (player.current_cannon != NULL && (queue_jump)) {
+		
+		[g.score increment_multiplier:0.001];
+		[g.score increment_score:5];
+		
 		[AudioManager playsfx:SFX_ROCKET_LAUNCH];
 		Vec3D dir = [VecLib cons_x:player.current_cannon.dir.x y:player.current_cannon.dir.y z:0];
 		dir = [VecLib scale:dir by:25];

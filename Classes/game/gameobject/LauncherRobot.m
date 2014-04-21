@@ -2,7 +2,8 @@
 #import "GameEngineLayer.h"
 #import "CannonFireParticle.h"
 #import "BrokenMachineParticle.h"
-#import "MinionRobot.h" 
+#import "MinionRobot.h"
+#import "ScoreManager.h"
 
 @implementation LauncherRobot
 
@@ -149,6 +150,10 @@
     }
     
     if (!player.dead && player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]) {
+		
+		[g.score increment_multiplier:0.01];
+		[g.score increment_score:20];
+		
         busted = YES;
         [self set_anim:ANIM_DEAD];
         int ptcnt = arc4random_uniform(4)+4;
@@ -161,6 +166,10 @@
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         if (player.dashing || [player is_armored]) {
+			
+			[g.score increment_multiplier:0.01];
+			[g.score increment_score:20];
+			
             busted = YES;
             [self set_anim:ANIM_DEAD];
             int ptcnt = arc4random_uniform(4)+4;

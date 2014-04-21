@@ -2,6 +2,8 @@
 #import "Resource.h"
 #import "Common.h"
 #import "CapeGamePlayer.h"
+#import "GameEngineLayer.h"
+#import "ScoreManager.h"
 
 @implementation CapeGameEnd
 
@@ -22,6 +24,10 @@
 	if (!active) return;
 	if (g.player.position.x > self.position.x) {
 		active = NO;
+
+		[g.get_main_game.score increment_multiplier:0.1];
+		[g.get_main_game.score increment_score:100];
+		
 		[g duration_end];
 	}
 }

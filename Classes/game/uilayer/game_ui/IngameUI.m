@@ -9,6 +9,7 @@
 #import "LauncherRocket.h"
 #import "UIEnemyAlert.h"
 #import "UIWaterAlert.h"
+#import "ScoreManager.h"
 
 @implementation MRectCCMenuItemImage
 -(CGRect)rect {
@@ -150,12 +151,25 @@
 									pos:[Common pct_of_obj:challengedescbg pctx:0.05 pcty:0.5]];
 	[challengedescincon setAnchorPoint:ccp(0,0.5)];
 	[challengedescbg addChild:challengedescincon];
-	
 	[challengedescbg setVisible:NO];
-	
 	item_slot_notify_anim_sc = 1;
 	
-	
+	scoredispbg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																		 idname:@"challengedescbg"]]
+				   pos:[Common screen_pctwid:0.01 pcthei:0.07]] anchor_pt:ccp(0,0.5)];
+	[scoredispbg setOpacity:140];
+	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.375]
+								 color:ccc3(0,0,0)
+							  fontsize:16
+								   str:@"Pts \u00B7 9999999"] anchor_pt:ccp(0,0.5)];
+	[scoredispbg addChild:scoredisp];
+	multdisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.75]
+								color:ccc3(200,30,30)
+							 fontsize:12
+								  str:@"Mult \u00B7 1"] anchor_pt:ccp(0,0.5)];
+	[scoredispbg addChild:multdisp];
+	[self addChild:scoredispbg];
 	
     return self;
 }
@@ -169,14 +183,10 @@
 -(void)itemslot_use {
     UILayer *p = (UILayer*)[self parent];
     [p itemslot_use];
-	
-	//set itemlenbaricon in [ingameui set_item_duration_pct] instead
-	/*TexRect *curitem = [GameItemCommon texrect_from:[UserInventory get_current_gameitem]];
-	itemlenbaricon.texture = curitem.tex;
-	itemlenbaricon.textureRect = curitem.rect;*/
 }
 
 -(void)enable_challengedesc_type:(ChallengeType)type {
+	[scoredispbg setVisible:NO];
 	[challengedescbg setVisible:YES];
 	TexRect *challengetr = [ChallengeRecord get_for:type];
 	challengedescincon.texture = challengetr.tex;
@@ -304,8 +314,23 @@ static int ct  = 0;
 		if (![tar_str isEqualToString:challengedesc.string]) {
 			[challengedesc setString:tar_str];
 		}
+	} else {
+		[self update_scoredisp:g];
 	}
-	
+}
+
+-(void)update_scoredisp:(GameEngineLayer*)g {
+	if (current_disp_score != [g.score get_score]) {
+		if (ABS([g.score get_score] - current_disp_score) > 1) {
+			current_disp_score = current_disp_score + ([g.score get_score] - current_disp_score)/4;
+			
+		} else {
+			current_disp_score = [g.score get_score];
+		}
+		
+	}
+	[scoredisp set_label:strf("Pts \u00B7 %d",(int)current_disp_score)];
+	[multdisp set_label:strf("Mult \u00B7 %.2f",[g.score get_multiplier])];
 }
 
 -(void)set_label:(CCLabelTTF*)l to:(NSString*)s {

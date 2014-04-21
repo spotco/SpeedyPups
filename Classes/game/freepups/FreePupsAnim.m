@@ -9,6 +9,7 @@
 #import "FreeRunStartAtUnlockUIAnimation.h"
 #import "MenuCommon.h"
 #import "UICommon.h"
+#import "ScoreManager.h"
 
 #import "GameEngineLayer.h"
 #import "UILayer.h"
@@ -196,10 +197,16 @@ static float GROUNDLEVEL;
 	CCLabelTTF *pause_points_disp = [Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:0.5 pcty:0.5]
 										 color:ccc3(255,255,255)
 									  fontsize:20
-										   str:[NSString stringWithFormat:@"Points: %d",[g get_points]]];
-	pause_points_disp.position = ccp(pause_points_disp.position.x/pointsbg.scale,pause_points_disp.position.y/pointsbg.scale);
+										   str:[NSString stringWithFormat:@"Points: %d",[g.score get_score]]];
 	[pointsbg addChild:pause_points_disp];
 	
+	CCLabelTTF *new_high_score_disp = [[Common cons_label_pos:[Common pct_of_obj:pointsbg pctx:1 pcty:1]
+											color:ccc3(255,200,20)
+										 fontsize:10
+											  str:@"New Highscore!"] anchor_pt:ccp(1,1)];
+	[pointsbg addChild:new_high_score_disp];
+	[new_high_score_disp setVisible:[ScoreManager get_world_highscore:g.world_mode.cur_world] < [g.score get_score]];
+	[ScoreManager set_world:worldnum highscore:[g.score get_score]];
 	
     
     CCMenuItem *nextbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"nextbutton" tar:self sel:@selector(next)

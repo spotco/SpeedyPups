@@ -2,6 +2,7 @@
 #import "PlayerEffectParams.h"
 #import "GameEngineLayer.h"
 #import "ObjectPool.h"
+#import "ScoreManager.h"
 
 @implementation DogBone
 
@@ -137,7 +138,8 @@ static int current_sound = 0;
 
 -(void)hit {
 	[DogBone play_collect_sound:gameengine];
-    
+	[gameengine.score increment_multiplier:0.005];
+    [gameengine.score increment_score:10];
 	[GEventDispatcher push_event:[GEvent cons_type:GEventType_COLLECT_BONE]];
     active=NO;
 }

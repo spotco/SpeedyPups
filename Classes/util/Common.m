@@ -417,8 +417,8 @@ bool fm_a_gt_b(double a,double b,double delta) {
 }
 
 +(CGPoint)pct_of_obj:(CCNode *)obj pctx:(float)pctx pcty:(float)pcty {
-	CGRect rct = [obj boundingBoxInPixels];
-	return ccp(rct.size.width*pctx,rct.size.height*pcty);
+	CGRect rct = [obj boundingBox];
+	return ccp(rct.size.width*pctx*1/ABS(obj.scaleX),rct.size.height*pcty*1/ABS(obj.scaleY));
 }
 
 +(ccColor3B)color_from:(ccColor3B)a to:(ccColor3B)b pct:(float)pct {

@@ -1,6 +1,7 @@
 #import "JumpPad.h"
 #import "Player.h"
 #import "GameEngineLayer.h"
+#import "ScoreManager.h"
 
 #define JUMP_POWER 20
 #define RECHARGE_TIME 15
@@ -40,6 +41,8 @@
     }
     
     if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
+		[g.score increment_score:1];
+		
         activated = YES;
         recharge_ct = RECHARGE_TIME;
         [self boostjump:player g:g];

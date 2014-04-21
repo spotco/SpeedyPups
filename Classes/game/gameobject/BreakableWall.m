@@ -1,5 +1,6 @@
 #import "BreakableWall.h"
 #import "GameEngineLayer.h"
+#import "ScoreManager.h"
 
 @implementation BreakableWall
 
@@ -38,6 +39,8 @@
 
 -(void)hit:(Player *)player g:(GameEngineLayer *)g {
     if (player.dashing || [player is_armored]) {
+		[g.score increment_multiplier:0.01];
+		[g.score increment_score:20];
         activated = YES;
         broken = YES;
         

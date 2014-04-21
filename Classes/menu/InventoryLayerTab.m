@@ -11,7 +11,7 @@
 		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_tabpane_tab"]
 				cb:tcb];
 	[self setAnchorPoint:ccp(0,0)];
-	[self addChild:[Common cons_label_pos:[Common pct_of_obj:self pctx:0.5 pcty:0.5]
+	[self addChild:[Common cons_label_pos:[Common pct_of_obj:self pctx:0.5 pcty:0.25]
 									color:ccc3(0,0,0)
 								 fontsize:14
 									  str:text]];

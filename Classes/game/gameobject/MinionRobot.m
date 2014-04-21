@@ -1,5 +1,6 @@
 #import "MinionRobot.h"
 #import "GameEngineLayer.h"
+#import "ScoreManager.h" 
 
 @implementation MinionRobot
 
@@ -76,6 +77,10 @@
     }
     
     if (player.current_island == NULL && player.vy <= 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_jump_rect]]  && !player.dead) {
+		
+		[g.score increment_multiplier:0.01];
+		[g.score increment_score:20];
+		
         busted = YES;
         vy = -ABS(vy);
         [self animmode_dead];
@@ -96,6 +101,9 @@
         busted = YES;
         vy = -ABS(vy);
         [self animmode_dead];
+		
+		[g.score increment_multiplier:0.01];
+		[g.score increment_score:20];
         
         int ptcnt = arc4random_uniform(4)+4;
         for(float i = 0; i < ptcnt; i++) {

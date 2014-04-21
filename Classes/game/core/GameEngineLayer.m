@@ -13,6 +13,7 @@
 #import "DogBone.h"
 #import "FreePupsAnim.h"
 #import "ObjectPool.h"
+#import "ScoreManager.h" 
 
 @implementation GameEngineLayer
 
@@ -30,6 +31,7 @@
 @synthesize player;
 @synthesize camera_state,tar_camera_state;
 @synthesize world_mode;
+@synthesize score;
 
 +(CCScene *)scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world {
     CCScene *scene = [CCScene node];
@@ -117,6 +119,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	score = [ScoreManager cons];
 	world_mode = [GameWorldMode cons_worldnum:world];
 	[DogBone reset_play_collect_sound];
 	stats = [GameEngineStats cons];
@@ -254,11 +257,15 @@
 }
 
 -(void)player_reset {
+	[score reset_multiplier];
     if (challenge != NULL) {
         collected_bones = 0;
         time = 0;
         collected_secrets = 0;
-    }
+		
+		[score reset_multiplier];
+		[score reset_score];
+	}
     for (int i = 0; i < game_objects.count; i++) {
         GameObject *o = [game_objects objectAtIndex:i];
         [o reset];
@@ -658,6 +665,7 @@
 }
 -(void)exit {
     [self unscheduleAllSelectors];
+	[ScoreManager set_world:world_mode.cur_world highscore:[score get_score]];
 	
 	for (GameObject *o in game_objects) {
 		if ([o class] == [AutoLevel class]) [(AutoLevel*)o game_quit];
@@ -772,7 +780,6 @@
 -(int)get_time { return time; }
 -(int)get_num_bones { return collected_bones; }
 -(int)get_num_secrets { return collected_secrets; }
--(int)get_points { return 0; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
 -(void)incr_current_continue_cost {current_continue_cost*=2;}

@@ -166,6 +166,7 @@
 		7E80D7C1181276AE007E48C5 /* classic_twopath.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C0181276AE007E48C5 /* classic_twopath.map */; };
 		7E80D7C818127B53007E48C5 /* gameloop2_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */; };
 		7E80D7C918127B53007E48C5 /* gameloop3.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C718127B53007E48C5 /* gameloop3.aiff */; };
+		7E8947F91904B23D00EFB54C /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8947F81904B23D00EFB54C /* ScoreManager.m */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
 		7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8F478217994067004CA582 /* tutorial_upsidebounce.map */; };
 		7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E908F7B17EFEC3C004DB956 /* World1BGLayerSet.m */; };
@@ -1012,6 +1013,8 @@
 		7E80D7C0181276AE007E48C5 /* classic_twopath.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_twopath.map; sourceTree = "<group>"; };
 		7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2_night.aiff; sourceTree = "<group>"; };
 		7E80D7C718127B53007E48C5 /* gameloop3.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3.aiff; sourceTree = "<group>"; };
+		7E8947F71904B23D00EFB54C /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
+		7E8947F81904B23D00EFB54C /* ScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManager.m; sourceTree = "<group>"; };
 		7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutorialbop.map; path = Resources/levels/labintro_tutorialbop.map; sourceTree = SOURCE_ROOT; };
 		7E8F478217994067004CA582 /* tutorial_upsidebounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_upsidebounce.map; sourceTree = "<group>"; };
 		7E908F7A17EFEC3C004DB956 /* World1BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World1BGLayerSet.h; sourceTree = "<group>"; };
@@ -2180,6 +2183,15 @@
 			name = ingame_anim;
 			sourceTree = "<group>";
 		};
+		7E8947F61904B20900EFB54C /* score */ = {
+			isa = PBXGroup;
+			children = (
+				7E8947F71904B23D00EFB54C /* ScoreManager.h */,
+				7E8947F81904B23D00EFB54C /* ScoreManager.m */,
+			);
+			name = score;
+			sourceTree = "<group>";
+		};
 		7E8A53331773F8F7006F6114 /* labintro */ = {
 			isa = PBXGroup;
 			children = (
@@ -2841,6 +2853,7 @@
 		7EB8B3B716D9FC0900F58961 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				7E8947F61904B20900EFB54C /* score */,
 				7EB8B3B816D9FC0900F58961 /* GameControlImplementation.h */,
 				7EB8B3B916D9FC0900F58961 /* GameControlImplementation.m */,
 				7EB8B3BA16D9FC0900F58961 /* GameEngineLayer.h */,
@@ -4505,6 +4518,7 @@
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
 				7ECADE1D17646AF00032A1E6 /* ALSoundSourcePool.m in Sources */,
 				7ECADE1E17646AF00032A1E6 /* ALSource.m in Sources */,
+				7E8947F91904B23D00EFB54C /* ScoreManager.m in Sources */,
 				7ECADE1F17646AF00032A1E6 /* ALWrapper.m in Sources */,
 				7ECADE2017646AF00032A1E6 /* OpenALManager.m in Sources */,
 				7ECADE2117646AF00032A1E6 /* OALAudioSession.m in Sources */,
