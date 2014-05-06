@@ -231,8 +231,8 @@
     
     
     CCMenuItem *settingsbutton = [MenuCommon item_from:TEX_NMENU_ITEMS
-                                                  rect:@"nmenu_settingsbutton"
-                                                   tar:self sel:@selector(goto_settings)
+                                                  rect:@"nmenu_mapbutton"
+                                                   tar:self sel:@selector(goto_map)
                                                    pos:[Common screen_pctwid:0.95 pcthei:0.09]];
     
     CCMenuItem *homebutton = [MenuCommon item_from:TEX_NMENU_ITEMS
@@ -302,9 +302,9 @@
 	[AudioManager playsfx:SFX_MENU_UP];
 }
 
-+(void)goto_settings {
++(void)goto_map {
 	[self close_inventory];
-    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_SETTINGS_PAGE_ID i2:0]];
+    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_GOTO_PAGE] add_i1:MENU_MAP_PAGE_ID i2:0]];
 	[AudioManager playsfx:SFX_MENU_UP];
 }
 

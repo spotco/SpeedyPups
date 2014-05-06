@@ -48,7 +48,7 @@
     
     status_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                           rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
-                   pos:[Common pct_of_obj:self pctx:0.53 pcty:0.27]];
+                   pos:[Common pct_of_obj:self pctx:0.51 pcty:0.27]];
     [self addChild:status_star];
     
     [locked setVisible:NO];

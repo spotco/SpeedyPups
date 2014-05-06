@@ -108,7 +108,7 @@
     CCMenuItem *playbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"playbutton" tar:self sel:@selector(unpause)
                                                pos:[Common screen_pctwid:0.94 pcthei:0.9]];
     
-    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"homebutton" tar:self sel:@selector(exit_to_menu)
+    CCMenuItem *backbutton = [MenuCommon item_from:TEX_UI_INGAMEUI_SS rect:@"prevbutton" tar:self sel:@selector(exit_to_menu)
                                                pos:[Common screen_pctwid:0.35 pcthei:0.6]];
     
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];

@@ -1,6 +1,7 @@
 #import "GameEngineStats.h"
 #import "GameEngineLayer.h" 
-#import "UICommon.h" 
+#import "UICommon.h"
+#import "ScoreManager.h"
 
 @implementation GameEngineStats
 
@@ -29,7 +30,10 @@ NSValue* NSV(GEStat t) { return [NSValue value:&t withObjCType:@encode(GEStat)];
 -(NSString*)get_disp_str_for_stat:(GEStat)type g:(GameEngineLayer *)g {
     if (type == GEStat_TIME) {
         return [UICommon parse_gameengine_time:g.get_time];
-        
+		
+	} else if (type == GEStat_POINTS) {
+		return strf("%d",[g.score get_score]);
+		
     } else if (type == GEStat_BONES_COLLECTED) {
         return [NSString stringWithFormat:@"%d",g.get_num_bones];
         
@@ -61,6 +65,7 @@ NSValue* NSV(GEStat t) { return [NSValue value:&t withObjCType:@encode(GEStat)];
 
 -(NSArray*)get_all_stats {
 	return @[
+		NSV(GEStat_POINTS),
 		NSV(GEStat_TIME),
 		NSV(GEStat_BONES_COLLECTED),
 		NSV(GEStat_DEATHS),

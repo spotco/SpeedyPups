@@ -97,7 +97,11 @@
 								desc:[NSString stringWithFormat:@"%@\nUse: %@",use_desc,[GameItemCommon description_from:item]]
 							   price:price
 								 val:shop_val];
-	i.short_name = uggval == 0?item_name:[NSString stringWithFormat:@"%@ %d",item_name,uggval+1];
+	if (uggval == 0) {
+		i.short_name = item_name;
+	} else {
+		i.short_name = @"Upgrade";
+	}
 	[a addObject:i];
 }
 
@@ -149,7 +153,7 @@
 		else if (i == Item_Magnet) return @"upgrade_magnet";
 		else if (i == Item_Rocket) return @"upgrade_rocket";
 		else if (i == Item_Shield) return @"upgrade_shield";
-		else if (i == Item_Clock) return @"item_clock";
+		else if (i == Item_Clock) return @"upgrade_clock";
 		else return @"";
 
 	}

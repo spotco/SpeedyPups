@@ -90,17 +90,18 @@
 	[clipper addChild:clippedholder];
 	
 	stat_labels = @{
-		NSV(GEStat_TIME):[self cons_label_name:@"time" posmlt:0 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_BONES_COLLECTED):[self cons_label_name:@"bones collected" posmlt:1 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_DEATHS):[self cons_label_name:@"deaths" posmlt:2 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_DISTANCE):[self cons_label_name:@"distance traveled" posmlt:3 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_SECTIONS):[self cons_label_name:@"sections passed" posmlt:4 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_JUMPED):[self cons_label_name:@"times jumped" posmlt:5 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_DASHED):[self cons_label_name:@"times dashed" posmlt:6 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_DROWNED):[self cons_label_name:@"deaths by drowning" posmlt:7 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_SPIKES):[self cons_label_name:@"deaths by spikes" posmlt:8 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_FALLING):[self cons_label_name:@"deaths by falling" posmlt:9 parent:clippedholder topleft:topleft size:tarsize],
-		NSV(GEStat_ROBOT):[self cons_label_name:@"deaths by robot" posmlt:10 parent:clippedholder topleft:topleft size:tarsize]
+		NSV(GEStat_POINTS):[self cons_label_name:@"points" posmlt:0 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_TIME):[self cons_label_name:@"time" posmlt:1 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_BONES_COLLECTED):[self cons_label_name:@"bones collected" posmlt:2 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_DEATHS):[self cons_label_name:@"deaths" posmlt:3 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_DISTANCE):[self cons_label_name:@"distance traveled" posmlt:4 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_SECTIONS):[self cons_label_name:@"sections passed" posmlt:5 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_JUMPED):[self cons_label_name:@"times jumped" posmlt:6 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_DASHED):[self cons_label_name:@"times dashed" posmlt:7 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_DROWNED):[self cons_label_name:@"deaths by drowning" posmlt:8 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_SPIKES):[self cons_label_name:@"deaths by spikes" posmlt:9 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_FALLING):[self cons_label_name:@"deaths by falling" posmlt:10 parent:clippedholder topleft:topleft size:tarsize],
+		NSV(GEStat_ROBOT):[self cons_label_name:@"deaths by robot" posmlt:11 parent:clippedholder topleft:topleft size:tarsize]
 	};
 	
 	is_info_disp_pane_scroll = NO;
@@ -167,7 +168,7 @@
 	last_info_disp_pane_scroll_pt = pt;
 	
 	float sign = [Common sig:ydelta.y];
-	float av = 15.0*MIN(ABS(ydelta.y),30)/30.0;
+	float av = 10.0*MIN(ABS(ydelta.y),30)/30.0;
 	av /= MAX(1,8.0-disp_pane_scroll_move_ct);
 	vy += sign * av;
 	disp_pane_scroll_move_ct++;
@@ -186,10 +187,6 @@
 	[can_scroll_up setVisible:neupos.y != clippedholder_y_min];
 	[can_scroll_down setVisible:neupos.y != clippedholder_y_max];
 	
-}
-
--(void)set_bones:(NSString*)bones time:(NSString*)time {
-	NSLog(@"todo implement, instead poll gameengine");
 }
 
 -(void)retry {

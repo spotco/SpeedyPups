@@ -249,7 +249,7 @@
 	last_scroll_pt = pt;
 	
 	float sign = [Common sig:ydelta.x];
-	float av = 15.0*MIN(ABS(ydelta.x),30)/30.0;
+	float av = 10.0*MIN(ABS(ydelta.x),30)/30.0;
 	av /= MAX(1,8.0-scroll_move_ct);
 	vx += sign * av;
 	scroll_move_ct++;

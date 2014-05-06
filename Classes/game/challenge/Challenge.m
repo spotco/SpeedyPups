@@ -29,7 +29,7 @@
         return [NSString stringWithFormat:@"Complete this level in %@ or less.",[UICommon parse_gameengine_time:cc.ct]];
         
     } else if (cc.type == ChallengeType_FIND_SECRET) {
-        return [NSString stringWithFormat:@"Find %d coin(s).",cc.ct];
+        return @"Find the treat.";
         
     } else {
         return @"ERROR";

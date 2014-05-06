@@ -15,7 +15,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"lab_minionwalls"
 
 #define IMMEDIATELY_BOSS NO
@@ -27,21 +27,18 @@
 
 
 /**
- gameover screen fix
- import assets
+ treat ingame pickup
+ upgrade pane
+ wheel mechanics
  
  add second currency and separate upgrade/unlock for items and continue
  rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
  
  new look for upgrade pane
-
- 
  more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
-	website
-	buy ad-free button
-	video
+	challenge artwork
  **/
 
 /**
@@ -139,9 +136,9 @@ Stretch goals:
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	//to load the TESTLEVEL
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 

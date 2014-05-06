@@ -2,6 +2,7 @@
 @class GameEngineLayer;
 
 typedef enum {
+	GEStat_POINTS,
 	GEStat_TIME,
 	GEStat_BONES_COLLECTED,
 	GEStat_DEATHS,

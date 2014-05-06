@@ -75,8 +75,8 @@
 	
 	NSString *bones = @"Bones";
 	if (!added_items_contains(bones)) {
-		bones_button = [list add_tab:[Resource get_tex:TEX_NMENU_ITEMS]
-				 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"boneicon"]
+		bones_button = [list add_tab:[Resource get_tex:TEX_ITEM_SS]
+				 rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]
 			main_text:bones
 			 sub_text:@""
 			 callback:[Common cons_callback:self sel:@selector(select_bones)]];
@@ -86,8 +86,8 @@
 	
 	NSString *coins = @"Coins";
 	if (!added_items_contains(coins)) {
-		coins_button = [list add_tab:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-				 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"challengeicon_coin"]
+		coins_button = [list add_tab:[Resource get_tex:TEX_ITEM_SS]
+				 rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]
 			main_text:coins
 			 sub_text:@""
 			 callback:[Common cons_callback:self sel:@selector(select_coins)]];

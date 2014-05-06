@@ -10,7 +10,7 @@
 
 #define MENU_STARTING_PAGE_ID 2
 #define MENU_DOG_MODE_PAGE_ID 1
-#define MENU_SETTINGS_PAGE_ID 3
+#define MENU_MAP_PAGE_ID 3
 #define MENU_SHOP_PAGE 0
 
 @interface NMenuPage : CCSprite
