@@ -15,8 +15,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"jumppad_bigjump"
+#define PLAY_BGM NO
+#define TESTLEVEL @"lab_minionwalls"
 
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
