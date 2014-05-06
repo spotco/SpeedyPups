@@ -25,8 +25,9 @@
 -(void)hit {
 	[_g.score increment_multiplier:0.1];
 	[_g.score increment_score:50];
-	[_g incr_lives_force_amt:1];
+	[_g incr_lives];
 	[_g add_particle:[OneUpParticle cons_pt:[_g.player get_center]]];
+	[AudioManager playsfx:SFX_1UP];
 	active = NO;
 }
 

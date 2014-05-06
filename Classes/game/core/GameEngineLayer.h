@@ -68,6 +68,8 @@ typedef enum {
 	float follow_clamp_y_min,follow_clamp_y_max;
 	float actual_follow_clamp_y_min,actual_follow_clamp_y_max;
 	
+	float shake_ct, shake_intensity;
+	
 	GameEngineStats *stats;
 	
 	GameEngineLayerMode stored_mode;
@@ -101,6 +103,8 @@ typedef enum {
 
 -(void)set_camera:(CameraZoom)tar;
 -(void)set_target_camera:(CameraZoom)tar;
+-(void)shake_for:(float)ct intensity:(float)intensity;
+-(void)freeze_frame:(int)ct;
 
 -(void)follow_player;
 
@@ -113,7 +117,6 @@ typedef enum {
 -(int)get_num_secrets;
 
 -(void)incr_lives;
--(void)incr_lives_force_amt:(int)amt;
 -(void)incr_time:(float)t;
 
 -(int)get_current_continue_cost;

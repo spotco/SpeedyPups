@@ -37,11 +37,18 @@
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			out_ct = 25;
 			out_vel = ccp(float_random(3, 5),g.player.vy*0.4);
+			
+			[g shake_for:10 intensity:4];
+			[g freeze_frame:6];
+			
 		} else {
 			[g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
 			[g remove_gameobject:self];
 			[AudioManager playsfx:SFX_EXPLOSION];
 			[g do_get_hit];
+			
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
 		}
 		
 	} else if (self.position.x < -100) {

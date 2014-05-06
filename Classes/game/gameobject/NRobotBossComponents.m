@@ -99,7 +99,7 @@
 	headless_anim_ct = 0;
 }
 
--(void)update:(CGPoint)body_rel_pos {
+-(void)update:(CGPoint)body_rel_pos g:(GameEngineLayer *)g{
 	
 	if (headless_anim_ct > 0) {
 		[self play_anim:_robot_body_headless];
@@ -125,6 +125,10 @@
 
 	frontarm_anchor.position = ccp(frontarm_anchor.position.x*0.5,frontarm_anchor.position.y*0.5);
 	body_anchor.position = ccp(body_anchor.position.x*0.8,body_anchor.position.y*0.8);
+	
+	if (hopanchor.position.y > 0 && hopanchor.position.y + hop_vy*[Common get_dt_Scale] <= 0) {
+		[g shake_for:15 intensity:4];
+	}
 	
 	hopanchor.position = ccp(0,MAX(hopanchor.position.y+hop_vy*[Common get_dt_Scale], 0));
 	hop_vy-=1*[Common get_dt_Scale];

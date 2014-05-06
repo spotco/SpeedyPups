@@ -252,9 +252,29 @@ static float GROUNDLEVEL;
 	mode = FreePupsAnimMode_MENU;
 }
 
+-(void)shake_for:(float)ct intensity:(float)intensity { //thx vlambeer
+	shake_ct = ct;
+	shake_intensity = intensity;
+}
+
+-(CGPoint)get_shake_offset {
+	if (shake_ct <= 0) return CGPointZero;
+	float t = float_random(-3.14, 3.14);
+	Vec3D v = [VecLib scale:[VecLib cons_x:cosf(t) y:sinf(t) z:0] by:float_random(0,shake_intensity)];
+	return ccp(v.x,v.y);
+}
+
 -(void)update:(ccTime)dt {
 	[Common set_dt:dt];
 	[uianim update];
+	
+	if (shake_ct > 0) {
+		shake_ct -= [Common get_dt_Scale];
+		CGPoint shake = [self get_shake_offset];
+		[self.parent setPosition:shake];
+	} else {
+		[self.parent setPosition:CGPointZero];
+	}
 	
 	if (mode == FreePupsAnimMode_RUNIN) {
 		[dog setPosition:CGPointAdd(dog.position, ccp(3*[Common get_dt_Scale],0))];
@@ -276,6 +296,7 @@ static float GROUNDLEVEL;
 			dog.vx = -4.5;
 			dog.vy = 7;
 			[AudioManager playsfx:SFX_ROCKBREAK];
+			[self shake_for:20 intensity:4];
 		}
 		
 	} else if (mode == FreePupsAnimMode_BREAKANDFALL) {
@@ -296,6 +317,7 @@ static float GROUNDLEVEL;
 			float cage_groundlevel = GROUNDLEVEL + cage_bottom.boundingBoxInPixels.size.height * 0.5 * 0.7 - 10;
 			if (cage_base.position.y <= cage_groundlevel) {
 				cage_on_ground = YES;
+				[self shake_for:20 intensity:4];
 				[cage_base setPosition:ccp(cage_base.position.x,cage_groundlevel)];
 				cage_top.vx = 3;
 				cage_top.vy = 6;

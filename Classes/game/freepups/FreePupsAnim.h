@@ -32,6 +32,9 @@ typedef enum {
 	CGPoint left_curtain_tpos,right_curtain_tpos,bg_curtain_tpos;
 	
 	GameEngineLayer __unsafe_unretained *g;
+	
+	float shake_ct;
+	float shake_intensity;
 }
 
 +(CCScene*)scene_with:(WorldNum)worldnum g:(GameEngineLayer*)g;

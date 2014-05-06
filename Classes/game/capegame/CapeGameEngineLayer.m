@@ -158,8 +158,33 @@ static NSString *blank = @"";
 	[gameobjects_tbr addObject:o];
 }
 
+-(void)shake_for:(float)ct intensity:(float)intensity { //thx vlambeer
+	shake_ct = ct;
+	shake_intensity = intensity;
+}
+
+-(CGPoint)get_shake_offset {
+	if (shake_ct <= 0) return CGPointZero;
+	float t = float_random(-3.14, 3.14);
+	Vec3D v = [VecLib scale:[VecLib cons_x:cosf(t) y:sinf(t) z:0] by:float_random(0,shake_intensity)];
+	return ccp(v.x,v.y);
+}
+
+-(void)freeze_frame:(int)ct {
+	[[self get_main_game] freeze_frame:ct];
+}
+
 -(void)update:(ccTime)dt {
 	[Common set_dt:dt];
+	
+	if (shake_ct > 0) {
+		shake_ct -= [Common get_dt_Scale];
+		CGPoint shake = [self get_shake_offset];
+		[self.parent setPosition:shake];
+	} else {
+		[self.parent setPosition:CGPointZero];
+	}
+	
 	[player update:self];
 	[main_game incr_time:[Common get_dt_Scale]];
 	[ui update];

@@ -15,11 +15,11 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"classic_trickytreas"
+#define PLAY_BGM YES
+#define TESTLEVEL @"jumppad_bigjump"
 
-#define IMMEDIATELY_BOSS YES
-#define BOSS_1_HEALTH YES
+#define IMMEDIATELY_BOSS NO
+#define BOSS_1_HEALTH NO
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
@@ -27,13 +27,14 @@
 
 
 /**
- inventorywindowtab thicken
+ gameover screen fix
+ import assets
  
  add second currency and separate upgrade/unlock for items and continue
  rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
  
  new look for upgrade pane
- ads integration, pay for no ads
+
  
  more challenges (more secrets, cape game, boss rush)
  
@@ -45,6 +46,9 @@
 
 /**
 Stretch goals:
+ score ingameui position
+ capegame combo notifications
+ ads integration, pay for no ads
  billboard move down
  facebook integration (like game on facebook, reward)
  3 lab levels
@@ -135,10 +139,10 @@ Stretch goals:
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	//to load the TESTLEVEL
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

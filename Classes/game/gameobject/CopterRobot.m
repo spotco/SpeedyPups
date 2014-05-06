@@ -158,6 +158,8 @@ static int DEFAULT_HP;
                 [AudioManager playsfx:SFX_ROCKET_SPIN];
                 
             }
+			[g shake_for:10 intensity:4];
+			[g freeze_frame:6];
             
         } else if (!player.dead) {
             cur_mode = CopterMode_Killed_Player;
@@ -165,6 +167,8 @@ static int DEFAULT_HP;
             [DazedParticle cons_effect:g tar:player time:40];
             [AudioManager playsfx:SFX_HIT];
             [g.get_stats increment:GEStat_ROBOT];
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
             
         }
     }
@@ -398,6 +402,7 @@ static int DEFAULT_HP;
                                                                 y:position_.y+float_random(-60, 60)
                                                            player:g.player.position]];
         [AudioManager playsfx:SFX_EXPLOSION];
+		[g shake_for:15 intensity:6];
     }
     
     ct%5==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x 
@@ -419,6 +424,8 @@ static int DEFAULT_HP;
 		[AudioManager playsfx:SFX_BIG_EXPLOSION];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_DEFEATED] add_pt:g.player.position]];
 		[g.score increment_score:1000];
+		
+		[g shake_for:40 intensity:10];
 		
     }
 }

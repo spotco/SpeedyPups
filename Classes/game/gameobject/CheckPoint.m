@@ -62,7 +62,7 @@
     [super update:player g:g];
     if (!activated && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
 		
-		[g.score increment_multiplier:0.1];
+		[g.score increment_multiplier:0.05];
 		[g.score increment_score:100];
 		
         activated = YES;

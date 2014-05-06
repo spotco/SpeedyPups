@@ -177,6 +177,10 @@
 	
     scrollup_pct = 1;
     current_mode = GameEngineLayerMode_SCROLLDOWN;
+	
+	shake_ct = 0;
+	shake_intensity = 0;
+	
     float tmp;
     [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
     current_continue_cost = DEFAULT_CONTINUE_COST;
@@ -342,6 +346,22 @@
 	time += t;
 }
 
+-(void)shake_for:(float)ct intensity:(float)intensity { //thx vlambeer
+	shake_ct = ct;
+	shake_intensity = intensity;
+}
+
+-(CGPoint)get_shake_offset {
+	if (shake_ct <= 0) return CGPointZero;
+	float t = float_random(-3.14, 3.14);
+	Vec3D v = [VecLib scale:[VecLib cons_x:cosf(t) y:sinf(t) z:0] by:float_random(0,shake_intensity)];
+	return ccp(v.x,v.y);
+}
+
+-(void)freeze_frame:(int)ct {
+	[CCDirectorDisplayLink freeze_frame:ct];
+}
+
 -(void)update:(ccTime)delta {
 	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY && [GameControlImplementation get_clockbutton_hold]) {
@@ -351,6 +371,15 @@
 		[CCDirectorDisplayLink set_framemodct:1];
 		[Common set_dt:delta];
 	}
+	
+	if (shake_ct > 0) {
+		shake_ct -= [Common get_dt_Scale];
+		CGPoint shake = [self get_shake_offset];
+		[self.parent setPosition:shake];
+	} else {
+		[self.parent setPosition:CGPointZero];
+	}
+	
 	[self reset_follow_clamp_y];
 	
     [GEventDispatcher dispatch_events];
@@ -518,7 +547,9 @@
 
 -(void)collect_bone:(BOOL)do_1up_anim {
 	collected_bones++;
-	if (challenge == NULL && collected_bones%100==0) {
+	if (challenge == NULL && (collected_bones%100==0 ||
+			([Player current_character_has_power:CharacterPower_DOUBLELIVES] && collected_bones%50==0))) {
+		[AudioManager playsfx:SFX_1UP];
 		if (do_1up_anim) [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
 		[self incr_lives];
 	}
@@ -643,7 +674,7 @@
 }
 
 -(void)update_gameobjs {
-    for(int i = [game_objects count]-1; i>=0 ; i--) {
+    for(int i = (int)[game_objects count]-1; i>=0 ; i--) {
         GameObject *o = [game_objects objectAtIndex:i];
         [o update:player g:self];
     }
@@ -666,8 +697,6 @@
 	[gameobjects_tbr removeAllObjects];
 }
 
-/* event dispatch handlers */
-
 -(void)ask_continue {
     current_mode = GameEngineLayerMode_GAMEEND;
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_ASK_CONTINUE]];
@@ -680,21 +709,21 @@
 		if ([o class] == [AutoLevel class]) [(AutoLevel*)o game_quit];
 	}
 	
-	for (int i = islands.count-1; i>= 0; i--) {
+	for (int i = (int)islands.count-1; i>= 0; i--) {
 		Island *o = islands[i];
 		[o repool];
 		[self removeChild:o cleanup:YES];
 	}
 	[islands removeAllObjects];
 	
-	for (int i = game_objects.count -1; i >= 0; i--) {
+	for (int i = (int)game_objects.count -1; i >= 0; i--) {
 		GameObject *o = game_objects[i];
 		[o repool];
 		[self removeChild:o cleanup:YES];
 	}
 	[game_objects removeAllObjects];
 	
-	for (int i = particles.count -1; i >= 0; i--) {
+	for (int i = (int)particles.count -1; i >= 0; i--) {
 		Particle *p = particles[i];
 		[p repool];
 		[self removeChild:p cleanup:YES];
@@ -709,7 +738,6 @@
 	[parent_ removeAllChildrenWithCleanup:YES];
 }
 
-/* camera interface */
 
 -(void)reset_camera {
     [GameRenderImplementation reset_camera:&camera_state];
@@ -723,12 +751,10 @@
     camera_state = tar;
 }
 
-/* bone system */
 -(void)set_checkpoint_to:(CGPoint)pt {
     player.start_pt = pt;
 }
 
-/* helpers */
 -(void)addChild:(CCNode *)node z:(NSInteger)z {
     refresh_worldbounds_cache = YES;
     [super addChild:node z:z];
@@ -742,8 +768,6 @@
     }
     [player setColor:color];
 }
-
-/* getters */
 
 -(HitRect) get_world_bounds {
     if (refresh_worldbounds_cache) {
@@ -794,12 +818,11 @@
 -(void)incr_current_continue_cost {current_continue_cost*=2;}
 
 
-/* particle system */
 -(void)add_particle:(Particle*)p {
     [particles_tba addObject:p];
 }
 -(int)get_num_particles {
-    return [particles count];
+    return (int)[particles count];
 }
 -(void)push_added_particles {
     for (Particle *p in particles_tba) {
@@ -903,18 +926,9 @@ static bool _began_hold_clockbutton = NO;
  }
 
 -(void)incr_lives {
-	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
-		[self incr_lives_force_amt:2];
-	} else {
-		[self incr_lives_force_amt:1];
-	}
-}
-
--(void)incr_lives_force_amt:(int)amt {
 	if (lives != GAMEENGINE_INF_LIVES) {
-		[AudioManager playsfx:SFX_1UP];
 		[Player character_bark];
-		lives = lives + amt;
+		lives = lives + 1;
 	}
 }
 

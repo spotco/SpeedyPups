@@ -76,6 +76,9 @@
             knockout = YES;
             ct = 0;
 			[AudioManager playsfx:SFX_ROCKBREAK];
+			
+			[g shake_for:7 intensity:2];
+			[g freeze_frame:6];
             
         } else {
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
@@ -84,12 +87,18 @@
             [AudioManager playsfx:SFX_EXPLOSION];
             [g remove_gameobject:self];
             [g.get_stats increment:GEStat_ROBOT];
+			
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
         }
         
     } else if ([self has_hit_ground:g]) {
         [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
         [AudioManager playsfx:SFX_EXPLOSION];
         [g remove_gameobject:self];
+		
+		[g shake_for:5 intensity:2];
+		
         
     } else {
         [self move:g];

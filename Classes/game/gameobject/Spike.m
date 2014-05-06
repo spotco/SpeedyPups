@@ -51,6 +51,10 @@
 			}
 			[AudioManager playsfx:SFX_SPIKEBREAK];
 			
+			[g freeze_frame:6];
+			[g shake_for:10 intensity:4];
+			
+			
 		} else if (!player.dead && ![player is_armored]) {
 			[player reset_params];
 			player.current_swingvine = NULL;
@@ -60,6 +64,9 @@
 			[AudioManager playsfx:SFX_HIT];
 			[g.get_stats increment:GEStat_SPIKES];
 			[self setScale:2];
+			
+			[g freeze_frame:6];
+			[g shake_for:15 intensity:6];
 			
 		}
 		

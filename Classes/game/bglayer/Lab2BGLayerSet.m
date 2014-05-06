@@ -143,6 +143,7 @@ static float explosion_ct;
 			[self add_tankersfront_particle:p];
 			[AudioManager playsfx:SFX_EXPLOSION];
 			explosion_ct = 13;
+			[g shake_for:13 intensity:4];
 		}
 		
 		for (BackgroundObject *o in bg_objects) {

@@ -44,8 +44,8 @@
 	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
 	
 	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
-	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:lives_disp_icon pctx:0.5 pcty:0.412] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
-	time_disp = [[Common cons_label_pos:[Common pct_of_obj:time_disp_icon pctx:0.5 pcty:0.44] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
+	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:lives_disp_icon pctx:0.5 pcty:0.395] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
+	time_disp = [[Common cons_label_pos:[Common pct_of_obj:time_disp_icon pctx:0.5 pcty:0.455] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
 	
 	[bone_disp_icon addChild:bones_disp];
 	[lives_disp_icon addChild:lives_disp];
@@ -116,11 +116,6 @@
 							   fontsize:16
 									str:@""] anchor_pt:ccp(0,0.5)];
 	[scoredispbg addChild:scoredisp];
-	/*
-	multdisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.75]
-								 color:ccc3(200,30,30)
-							  fontsize:12
-								   str:@""] anchor_pt:ccp(0,0.5)];*/
 	multdisp = [[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 										 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"combo_1_small"]]
 				  pos:[Common pct_of_obj:scoredispbg pctx:0.31 pcty:0.75]] anchor_pt:ccp(0.5,0.5)] scale:0.7];

@@ -85,7 +85,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 
 -(void)cons_tabs {
 	tabs = [NSMutableArray array];
-	CGPoint lefttab_pos = [Common pct_of_obj:inventory_window pctx:0 pcty:0.98];
+	CGPoint lefttab_pos = [Common pct_of_obj:inventory_window pctx:0 pcty:0.985];
 	tab_inventory = [InventoryLayerTab cons_pt:ccp(lefttab_pos.x+1,lefttab_pos.y)
 										  text:@"Inventory"
 											cb:[Common cons_callback:self sel:@selector(tab_inventory)]];

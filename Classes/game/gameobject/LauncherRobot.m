@@ -4,6 +4,7 @@
 #import "BrokenMachineParticle.h"
 #import "MinionRobot.h"
 #import "ScoreManager.h"
+#import "JumpParticle.h"
 
 @implementation LauncherRobot
 
@@ -163,6 +164,9 @@
         [AudioManager playsfx:SFX_BOP];
         
         [MinionRobot player_do_bop:player g:g];
+		[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
+		[g shake_for:7 intensity:2];
+		[g freeze_frame:6];
         
     } else if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
         if (player.dashing || [player is_armored]) {
@@ -179,6 +183,9 @@
             [AudioManager playsfx:SFX_ROCKBREAK];
             
             [MinionRobot player_do_bop:player g:g];
+			
+			[g shake_for:7 intensity:2];
+			[g freeze_frame:6];
             
         }/* else if (!player.dead) {
             [player add_effect:[HitEffect init_from:[player get_default_params] time:40]];

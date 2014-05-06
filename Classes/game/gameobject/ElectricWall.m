@@ -1,5 +1,6 @@
 #import "ElectricWall.h"
-#import "AudioManager.h" 
+#import "AudioManager.h"
+#import "GameEngineLayer.h"
 
 @implementation ElectricWall
 
@@ -30,6 +31,8 @@
         activated = YES;
         [player add_effect:[FlashHitEffect cons_from:[player get_default_params] time:40]];
         [AudioManager playsfx:SFX_ELECTRIC];
+		[g shake_for:15 intensity:6];
+		[g freeze_frame:6];
     }
 }
 

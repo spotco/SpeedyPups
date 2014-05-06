@@ -48,7 +48,7 @@ typedef enum  NRBCSwingState {
 @property(readwrite,strong) CCSprite *body;
 @property(readwrite,strong) CCSprite *frontarm;
 @property(readwrite,strong) CCSprite *backarm;
--(void)update:(CGPoint)body_rel_pos;
+-(void)update:(CGPoint)body_rel_pos g:(GameEngineLayer*)g;
 
 -(void)set_passive_rotation_theta_speed:(float)t;
 -(void)do_fire;

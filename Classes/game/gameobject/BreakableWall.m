@@ -63,6 +63,7 @@
 			}
         }
         [AudioManager playsfx:SFX_ROCKBREAK];
+		[g shake_for:7 intensity:2];
         
     } else {
         [player reset_params];
@@ -71,7 +72,10 @@
         [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
         [DazedParticle cons_effect:g tar:player time:40];
         [AudioManager playsfx:SFX_HIT];
+		[g shake_for:15 intensity:6];
     }
+	
+	[g freeze_frame:6];
 }
 
 -(void)reset {

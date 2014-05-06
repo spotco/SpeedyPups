@@ -6,6 +6,7 @@
 #import "DazedParticle.h"
 #import "ExplosionParticle.h"
 #import "MinionRobot.h" 
+#import "JumpParticle.h"
 
 @implementation LauncherRocket
 
@@ -131,17 +132,25 @@
         [AudioManager playsfx:SFX_BOP];
         
         [MinionRobot player_do_bop:player g:g];
+		[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
+		[g shake_for:10 intensity:4];
+		[g freeze_frame:6];
         
     } else if (broken_ct == 0 && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         if (player.dashing || [player is_armored]) {
             [self flyoff:ccp(player.vx,player.vy) norm:7];
             [AudioManager playsfx:SFX_ROCKBREAK];
+			[g shake_for:7 intensity:2];
+			[g freeze_frame:6];
             
         } else if (!player.dead) {
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
             [DazedParticle cons_effect:g tar:player time:40];
             [self remove_from:g];
             [g.get_stats increment:GEStat_ROBOT];
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
+			
             return;
         }
         

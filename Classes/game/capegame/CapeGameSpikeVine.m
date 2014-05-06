@@ -38,7 +38,9 @@
 		active = NO;
 		[AudioManager playsfx:SFX_HIT];
 		[g do_get_hit];
-	} 
+		[g shake_for:15 intensity:6];
+		[g freeze_frame:6];
+	}
 }
 
 -(SATPoly)get_hitpoly {

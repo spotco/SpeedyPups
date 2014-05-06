@@ -1,6 +1,7 @@
 #import "MinionRobot.h"
 #import "GameEngineLayer.h"
 #import "ScoreManager.h" 
+#import "JumpParticle.h"
 
 @implementation MinionRobot
 
@@ -96,6 +97,9 @@
         [AudioManager playsfx:SFX_BOP];
         
         [MinionRobot player_do_bop:player g:g];
+		[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
+		[g shake_for:7 intensity:2];
+		[g freeze_frame:6];
     
     } else if ((player.dashing || [player is_armored]) && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         busted = YES;
@@ -113,14 +117,19 @@
                                                            vy:float_random(-3, 10)]];
         }
         [AudioManager playsfx:SFX_ROCKBREAK];
-        
         [MinionRobot player_do_bop:player g:g];
+		
+		[g shake_for:7 intensity:2];
+		[g freeze_frame:6];
         
     } else if (!player.dead && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]  && !player.dead) {
         [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
         [DazedParticle cons_effect:g tar:player time:40];
         [AudioManager playsfx:SFX_HIT];
         [g.get_stats increment:GEStat_ROBOT];
+		
+		[g shake_for:15 intensity:6];
+		[g freeze_frame:6];
 
     }
 	

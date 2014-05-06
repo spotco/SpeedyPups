@@ -77,9 +77,14 @@
 			out_vel = ccp(float_random(3, 5),g.player.vy*0.4);
 			flyoff = YES;
 			
+			[g shake_for:10 intensity:4];
+			[g freeze_frame:6];
+			
 		} else {
 			[AudioManager playsfx:SFX_HIT];
 			[g do_get_hit];
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
 		}
 	}
 	
@@ -200,6 +205,7 @@
 			if (((int)delay_ct)%10==0) {
 				[g add_particle:[[ExplosionParticle cons_x:cat_body.position.x+float_random(-20, 20) y:cat_body.position.y + float_random(-30, 30)] set_scale:0.7]];
 				[AudioManager playsfx:SFX_EXPLOSION];
+				[g shake_for:15 intensity:4];
 			}
 			
 		} else if (ABS(cat_body.rotation) > 10) {
@@ -208,6 +214,7 @@
 			if (((int)delay_ct)%20==0) {
 				[g add_particle:[[ExplosionParticle cons_x:cat_body.position.x+float_random(-20, 20) y:cat_body.position.y + float_random(-30, 30)] set_scale:0.7]];
 				[AudioManager playsfx:SFX_EXPLOSION];
+				[g shake_for:15 intensity:4];
 			}
 			
 		} else if (cat_body.position.y > -[Common SCREEN].height * 0.3) {
@@ -217,6 +224,7 @@
 			if (((int)delay_ct)%30==0) {
 				[g add_particle:[[ExplosionParticle cons_x:cat_body.position.x+float_random(-20, 20) y:cat_body.position.y + float_random(-30, 30)] set_scale:0.7]];
 				[AudioManager playsfx:SFX_EXPLOSION];
+				[g shake_for:15 intensity:4];
 			}
 			
 		} else {
@@ -237,6 +245,10 @@
 		[g add_particle:[ExplosionParticle cons_x:cat_body.position.x y:cat_body.position.y]];
 		[AudioManager playsfx:SFX_EXPLOSION];
 		[AudioManager playsfx:SFX_CAT_HIT];
+		
+		[g shake_for:15 intensity:6];
+		[g freeze_frame:6];
+		
 		delay_ct = 130;
 		pos_theta = 0;
 		bomb_count = 0;

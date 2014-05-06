@@ -85,12 +85,18 @@
 			[self mode_line];
 			[AudioManager playsfx:SFX_ROCKBREAK];
 			
+			[g shake_for:10 intensity:4];
+			[g freeze_frame:6];
+			
 		} else if ([Common hitrect_touch:[self get_small_hit_rect] b:[player get_hit_rect]]) {
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
 			[self explosion_effect:g];
             [AudioManager playsfx:SFX_EXPLOSION];
             [g remove_gameobject:self];
             [g.get_stats increment:GEStat_ROBOT];
+			
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
 		}
 		
 	}

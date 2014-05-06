@@ -68,7 +68,7 @@
 	[self set_bounds_and_ground:g];
 	
 	[robot_body setPosition:CGPointAdd(CENTER_POS, robot_body_rel_pos)];
-	[robot_body update:robot_body_rel_pos];
+	[robot_body update:robot_body_rel_pos g:g];
 	
 	[cat_body setPosition:CGPointAdd(CENTER_POS, cat_body_rel_pos)];
 	[cat_body update];
@@ -246,6 +246,8 @@
 					delay_ct = 0;
 					cur_mode = NRobotBossMode_EXPLODE_OUT;
 				}
+				[g shake_for:10 intensity:4];
+				[g freeze_frame:6];
 				
 			} else if (!player.dead) {
 				[DazedParticle cons_effect:g tar:player time:40];
@@ -253,6 +255,8 @@
 				[AudioManager playsfx:SFX_HIT];
 				[g.get_stats increment:GEStat_ROBOT];
 				cur_mode = NRobotBossMode_WAIT;
+				[g shake_for:15 intensity:6];
+				[g freeze_frame:6];
 			}
 		}
 		
@@ -388,6 +392,8 @@
 					delay_ct = 0;
 					cur_mode = NRobotBossMode_EXPLODE_OUT;
 				}
+				[g shake_for:10 intensity:4];
+				[g freeze_frame:6];
 				
 			} else if (!player.dead) {
 				[DazedParticle cons_effect:g tar:player time:40];
@@ -395,6 +401,9 @@
 				[AudioManager playsfx:SFX_HIT];
 				[g.get_stats increment:GEStat_ROBOT];
 				cur_mode = NRobotBossMode_WAIT;
+				
+				[g shake_for:15 intensity:6];
+				[g freeze_frame:6];
 			}
 		}
 		
@@ -496,6 +505,9 @@
 						pattern_ct = 5;
 						cur_mode = NRobotBossMode_ATTACK_CHARGE_LEFT;
 						[AudioManager playsfx:SFX_BOSS_ENTER];
+						
+						[g freeze_frame:6];
+						[g shake_for:15 intensity:4];
 					}
 				}
 				
@@ -530,12 +542,14 @@
 			cape_item_rel_pos = ccp(1200,800);
 			[robot_body setVisible:NO];
 			pattern_ct = 0;
+			[g shake_for:40 intensity:10];
 
 		} else if (((int) delay_ct) % 10 == 0) {
 			[g add_particle:[RelativePositionExplosionParticle cons_x:robot_body.position.x + float_random(-130, 130)
 																	y:robot_body.position.y + float_random(0, 350)
 															   player:player.position]];
 			[AudioManager playsfx:SFX_EXPLOSION];
+			[g shake_for:15 intensity:4];
 		}
 		
 	} else if (cur_mode == NRobotBossMode_CAPE_OUT) {

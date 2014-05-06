@@ -723,9 +723,14 @@ CGFloat	__ccContentScaleFactor = 1;
 	[displayLink setFrameInterval:frameInterval];
 	[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
-
+static int freeze_ct = 0;
 static int mainloopct;
 static int modct = 1;
+
++(void)freeze_frame:(int)ct {
+	freeze_ct = ct;
+}
+
 +(void)set_framemodct:(int)i {
 	modct = i;
 }
@@ -734,8 +739,11 @@ static int modct = 1;
 	return modct != 1;
 }
 
--(void) mainLoop:(id)sender
-{
+-(void) mainLoop:(id)sender {
+	if (freeze_ct > 0) {
+		freeze_ct--;
+		return;
+	}
 	mainloopct++;
 	if (mainloopct%modct==0) {
 		[self drawScene];

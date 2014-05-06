@@ -54,6 +54,9 @@ typedef enum {
 	float credits_bone_spawn;
 	
 	float gameend_constant_speed;
+	
+	float shake_ct;
+	float shake_intensity;
 }
 @property(readwrite,assign) BOOL is_boss_capegame;
 
@@ -79,6 +82,10 @@ typedef enum {
 
 -(void)boss_end;
 -(void)credits_end;
+
+-(void)shake_for:(float)ct intensity:(float)intensity;
+-(CGPoint)get_shake_offset;
+-(void)freeze_frame:(int)ct;
 @end
 
 @interface CapeGameObject : CCSprite

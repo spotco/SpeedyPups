@@ -1,6 +1,7 @@
 #import "JumpPad.h"
 #import "Player.h"
 #import "GameEngineLayer.h"
+#import "JumpParticle.h"
 
 #define JUMP_POWER 20
 #define RECHARGE_TIME 15
@@ -57,6 +58,9 @@
         }
         [AudioManager playsfx:SFX_JUMPPAD];
 		[GameControlImplementation set_nodash_time:10];
+		
+		[g shake_for:7 intensity:2];
+		[g freeze_frame:4];
     }
 }
 

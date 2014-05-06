@@ -171,13 +171,16 @@ static CGPoint last_pos;
 				current_mode = SubMode_DeadExplode;
 				ct = 130;
 			}
+			[g shake_for:10 intensity:4];
+			[g freeze_frame:6];
 			
 		} else {
 			[player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
             [DazedParticle cons_effect:g tar:player time:40];
             [AudioManager playsfx:SFX_HIT];
             [g.get_stats increment:GEStat_ROBOT];
-			
+			[g shake_for:15 intensity:6];
+			[g freeze_frame:6];
 		}
 	}
 	
@@ -200,6 +203,7 @@ static CGPoint last_pos;
 																	y:body.position.y+float_random(-60, 60)
 															   player:g.player.position]];
 			[AudioManager playsfx:SFX_EXPLOSION];
+			[g shake_for:15 intensity:6];
 		}
 		
 		sub_submode%5==0?[g add_particle:[RocketLaunchParticle cons_x:body.position.x
@@ -220,6 +224,7 @@ static CGPoint last_pos;
 			[AudioManager playsfx:SFX_BIG_EXPLOSION];
 			[GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS2_DEFEATED] add_pt:g.player.position]];
 			[g.score increment_score:1000];
+			[g shake_for:40 intensity:10];
 		}
 		
 	} else if (current_mode == SubMode_Flyoff) {
@@ -379,6 +384,7 @@ static CGPoint last_pos;
 				[self splash:g at:CGPointAdd(body.position,ccp(60,-15))];
 				[AudioManager playsfx:SFX_BOSS_ENTER];
 				[AudioManager playsfx:SFX_SPLASH];
+				[g shake_for:10 intensity:4];
 			}
 			
 		} else if (sub_submode == 1) {
@@ -394,6 +400,7 @@ static CGPoint last_pos;
 				[self splash:g at:CGPointAdd(body.position,ccp(0,50))];
 				[self pick_next_move];
 				[AudioManager playsfx:SFX_SPLASH];
+				[g shake_for:10 intensity:4];
 			}
 		}
 		
@@ -441,6 +448,7 @@ static CGPoint last_pos;
 				[AudioManager playsfx:SFX_BOSS_ENTER];
 				[self run_body_anim:_anim_body_bite];
 				sub_submode = 5;
+				[g shake_for:10 intensity:4];
 			}
 			
 		} else if (sub_submode == 5) {

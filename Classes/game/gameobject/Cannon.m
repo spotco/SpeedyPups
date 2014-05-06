@@ -114,7 +114,6 @@
 		[[player get_current_params] add_airjump_count];
 		player.dashing = NO;
 		
-		
 	}
 	
 	if (player_loaded) {

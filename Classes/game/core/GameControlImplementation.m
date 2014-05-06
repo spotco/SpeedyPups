@@ -128,6 +128,7 @@ float nodash_time = 0;
 		queue_jump = NO;
 		queue_swipe = NO;
 		[GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
+		
 		return;
 	}
 	if (player.current_cannon != NULL) return;
