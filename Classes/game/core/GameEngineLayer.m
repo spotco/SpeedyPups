@@ -42,8 +42,8 @@
     [scene addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 255)]];
     [scene addChild:bglayer z:0 tag:tBGLAYER];
     [scene addChild:glayer z:0 tag:tGLAYER];
+	[scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     [scene addChild:uilayer z:0 tag:tUILAYER];
-    [scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
 	[scene addChild:[CCLayerColor layerWithColor:ccc4(0,0,0,0)] z:999 tag:tFADEOUTLAYER];
 	return scene;
 }
@@ -903,18 +903,18 @@ static bool _began_hold_clockbutton = NO;
  }
 
 -(void)incr_lives {
-	lives = lives == GAMEENGINE_INF_LIVES ? lives : lives+1;
-	
+	if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
+		[self incr_lives_force_amt:2];
+	} else {
+		[self incr_lives_force_amt:1];
+	}
+}
+
+-(void)incr_lives_force_amt:(int)amt {
 	if (lives != GAMEENGINE_INF_LIVES) {
 		[AudioManager playsfx:SFX_1UP];
 		[Player character_bark];
-		
-		if ([Player current_character_has_power:CharacterPower_DOUBLELIVES]) {
-			lives = lives + 2;
-		} else {
-			lives = lives + 1;
-		}
-		
+		lives = lives + amt;
 	}
 }
 

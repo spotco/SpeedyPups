@@ -31,6 +31,7 @@
     [self addChild:sky z:ORD_SKY];
     
     starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
+	[starsbg setScaleX:[Common scale_from_default].x];
     [self addChild:starsbg z:ORD_STARS];
     [starsbg setOpacity:0];
     

@@ -8,6 +8,7 @@
 #import "ExplosionParticle.h"
 #import "RocketParticle.h"
 #import "GameMain.h"
+#import "ScoreManager.h"
 
 @interface CapeGameBossRobotHead : CapeGameObject {
 	int particle_ct;
@@ -219,6 +220,7 @@
 			}
 			
 		} else {
+			[[g get_main_game].score increment_score:1000];
 			[g boss_end];
 			mode = CapeGameBossCatMode_TO_REMOVE;
 			

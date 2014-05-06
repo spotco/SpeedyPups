@@ -37,7 +37,10 @@
 	[pause_ui addChild:right_curtain];
 	[self set_curtain_animstart_positions];
     
-    [pause_ui addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.8]
+	ui_stuff = [CCSprite node];
+	[pause_ui addChild:ui_stuff];
+	
+    [ui_stuff addChild:[Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.8]
                                         color:ccc3(255, 255, 255)
                                      fontsize:45
                                           str:@"paused"]];
@@ -45,7 +48,7 @@
 	CCSprite *disp_root = [CCSprite node];
 	[disp_root setPosition:[Common screen_pctwid:0.575 pcthei:0.65]];
 	[disp_root setScale:0.85];
-	[pause_ui addChild:disp_root];
+	[ui_stuff addChild:disp_root];
     
     CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
     [disp_root addChild:bonesbg];
@@ -110,24 +113,25 @@
     
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
     [pausebuttons setPosition:ccp(0,0)];
-    [pause_ui addChild:pausebuttons];
+    [ui_stuff addChild:pausebuttons];
     
     challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.12]
                                                    color:ccc3(255,255,255)
                                                 fontsize:18
                                                      str:@""];
-    [pause_ui addChild:challenge_disp];
+    [ui_stuff addChild:challenge_disp];
 	
     
 	[UICommon button:playbutton add_desctext:@"unpause" color:ccc3(255,255,255) fntsz:12];
 	[UICommon button:retrybutton add_desctext:@"retry" color:ccc3(255,255,255) fntsz:12];
-	[UICommon button:backbutton add_desctext:@"to menu" color:ccc3(255,255,255) fntsz:12];
+	[UICommon button:backbutton add_desctext:@"quit" color:ccc3(255,255,255) fntsz:12];
 	
     [self addChild:pause_ui z:1];
 	update_timer = [NSTimer scheduledTimerWithTimeInterval: 1/30.0
 												  target: self
 												selector:@selector(update)
 												userInfo: nil repeats:YES];
+	exit_to_gameover_menu = NO;
     
     return self;
 }
@@ -145,6 +149,15 @@
 		bg_curtain.position.x + (bg_curtain_tpos.x - bg_curtain.position.x)/4.0,
 		bg_curtain.position.y + (bg_curtain_tpos.y - bg_curtain.position.y)/4.0
 	)];
+	if (exit_to_gameover_menu) {
+		[ui_stuff setVisible:NO];
+		if ([Common fuzzyeq_a:bg_curtain.position.y b:bg_curtain_tpos.y delta:1]) {
+			[update_timer invalidate];
+			[[CCDirector sharedDirector] resume];
+			[(UILayer*)[self parent] to_gameover_menu];
+			[AudioManager play_jingle];
+		}
+	}
 }
 
 -(void)setVisible:(BOOL)visible {
@@ -186,9 +199,14 @@
 }
 
 -(void)exit_to_menu {
-	[update_timer invalidate];
-    [(UILayer*)[self parent] exit_to_menu];
 	[AudioManager playsfx:SFX_MENU_DOWN];
+	exit_to_gameover_menu = YES;
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,0);
+}
+
+-(void)removeAllChildrenWithCleanup:(BOOL)cleanup {
+	[update_timer invalidate];
+	[super removeAllChildrenWithCleanup:cleanup];
 }
 
 @end

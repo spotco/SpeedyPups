@@ -15,11 +15,11 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"classic_trickytreas"
 
-#define IMMEDIATELY_BOSS NO
-#define BOSS_1_HEALTH NO
+#define IMMEDIATELY_BOSS YES
+#define BOSS_1_HEALTH YES
 #define RESET_STATS NO
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT NO
@@ -27,9 +27,7 @@
 
 
 /**
- ART combo x 1,2,3,4,5,6,7,8,9,10 art
- ART new secret find object art (find the big bone)
- ART new clock
+ inventorywindowtab thicken
  
  add second currency and separate upgrade/unlock for items and continue
  rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
@@ -41,7 +39,6 @@
  
  -art ask for:
 	website
-	map button, upgrade bar
 	buy ad-free button
 	video
  **/
@@ -140,8 +137,8 @@ Stretch goals:
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

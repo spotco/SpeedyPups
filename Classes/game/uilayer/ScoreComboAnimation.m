@@ -10,10 +10,8 @@
 }
 
 -(id)cons_combo:(float)combo {
-	[self addChild:[Common cons_label_pos:CGPointZero
-									color:ccc3(30,30,30)
-								 fontsize:24
-									  str:strf("Combo \u2715%d!",(int)combo)]];
+	[self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:strf("combo_%d",(int)combo)]]];
 	
 	[self setScale:4];
 	[self setOpacity:0];

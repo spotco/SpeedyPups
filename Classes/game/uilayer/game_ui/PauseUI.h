@@ -10,6 +10,9 @@
 	CGPoint left_curtain_tpos,right_curtain_tpos,bg_curtain_tpos;
 	
 	NSTimer *update_timer;
+	
+	BOOL exit_to_gameover_menu;
+	CCSprite *ui_stuff;
 }
 
 +(PauseUI*)cons;

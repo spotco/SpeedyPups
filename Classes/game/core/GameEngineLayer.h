@@ -113,6 +113,7 @@ typedef enum {
 -(int)get_num_secrets;
 
 -(void)incr_lives;
+-(void)incr_lives_force_amt:(int)amt;
 -(void)incr_time:(float)t;
 
 -(int)get_current_continue_cost;

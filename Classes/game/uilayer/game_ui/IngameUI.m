@@ -164,10 +164,9 @@
 							  fontsize:16
 								   str:@""] anchor_pt:ccp(0,0.5)];
 	[scoredispbg addChild:scoredisp];
-	multdisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.75]
-								color:ccc3(200,30,30)
-							 fontsize:12
-								  str:@""] anchor_pt:ccp(0,0.5)];
+	multdisp = [[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+									   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"combo_1_small"]]
+				pos:[Common pct_of_obj:scoredispbg pctx:0.31 pcty:0.75]] anchor_pt:ccp(0.5,0.5)] scale:0.7];
 	[scoredispbg addChild:multdisp];
 	[self addChild:scoredispbg];
 	
@@ -319,6 +318,7 @@ static int ct  = 0;
 	}
 }
 
+
 -(void)update_scoredisp:(GameEngineLayer*)g {
 	if (current_disp_score != [g.score get_score]) {
 		if (ABS([g.score get_score] - current_disp_score) > 1) {
@@ -329,8 +329,22 @@ static int ct  = 0;
 		}
 		
 	}
+	
+	int imult = [g.score get_multiplier];
 	[scoredisp set_label:strf("Score \u00B7 %d",(int)current_disp_score)];
-	[multdisp set_label:strf("Combo \u2715%.2f",[g.score get_multiplier])];
+	[multdisp setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+													   idname:strf("combo_%d_small",imult)]];
+	
+	if (imult == 1) {
+		multdisp_anim_t = 0;
+		[multdisp setScale:0.7];
+		
+	} else {
+		multdisp_anim_t += 0.01 * imult * [Common get_dt_Scale];
+		float range = 0.1 / 5 * imult;
+		[multdisp setScale:range*(cosf(multdisp_anim_t)+1)/2+(0.7)];
+	}
+
 }
 
 -(void)set_label:(CCLabelTTF*)l to:(NSString*)s {

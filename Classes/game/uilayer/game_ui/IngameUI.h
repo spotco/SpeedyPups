@@ -22,10 +22,11 @@
 	CCLabelTTF *challengedesc;
 	
 	CCSprite *scoredispbg;
-	CCLabelTTF *scoredisp,*multdisp;
+	CCLabelTTF *scoredisp;
+	CCSprite *multdisp;
+	float multdisp_anim_t;
 	
 	float current_disp_score;
-	float current_disp_mult;
 	
 	NSString *last_time;
 }

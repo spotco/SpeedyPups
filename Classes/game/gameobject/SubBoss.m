@@ -13,6 +13,7 @@
 #import "BrokenMachineParticle.h"
 #import "NRobotBossComponents.h"
 #import "GameMain.h"
+#import "ScoreManager.h"
 
 @interface FGWater : GameObject {
 	CCSprite *body;
@@ -218,6 +219,7 @@ static CGPoint last_pos;
 			}
 			[AudioManager playsfx:SFX_BIG_EXPLOSION];
 			[GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS2_DEFEATED] add_pt:g.player.position]];
+			[g.score increment_score:1000];
 		}
 		
 	} else if (current_mode == SubMode_Flyoff) {

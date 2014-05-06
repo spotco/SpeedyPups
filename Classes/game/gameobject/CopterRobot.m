@@ -7,6 +7,7 @@
 #import "LauncherRobot.h"
 #import "BrokenMachineParticle.h"
 #import "GameMain.h"
+#import "ScoreManager.h"
 
 #import "NRobotBossComponents.h"
 
@@ -417,6 +418,8 @@ static int DEFAULT_HP;
         }
 		[AudioManager playsfx:SFX_BIG_EXPLOSION];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_DEFEATED] add_pt:g.player.position]];
+		[g.score increment_score:1000];
+		
     }
 }
 

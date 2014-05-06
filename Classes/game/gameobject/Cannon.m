@@ -98,7 +98,7 @@
 		[self setOpacity:255];
 	}
 	
-	if (!player_loaded && player.current_cannon == NULL && [Common hitrect_touch:[player get_hit_rect] b:[self get_hit_rect]]) {
+	if (!player_loaded && player.current_cannon == NULL && !player.dead && [Common hitrect_touch:[player get_hit_rect] b:[self get_hit_rect]]) {
 		[AudioManager playsfx:SFX_POWERUP];
 		player.current_cannon = self;
 		player.current_island = NULL;

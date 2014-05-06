@@ -71,7 +71,7 @@ static NSDictionary* ID_TO_POWERDESC;
 		TEX_DOG_RUN_3: @"Penny",
 		TEX_DOG_RUN_4: @"Spot",
 		TEX_DOG_RUN_5: @"Chubs",
-		TEX_DOG_RUN_6: @"Henry",
+		TEX_DOG_RUN_6: @"Dubs",
 		TEX_DOG_RUN_7: @"Brock"
 	};
 	

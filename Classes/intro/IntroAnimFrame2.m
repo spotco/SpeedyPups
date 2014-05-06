@@ -21,7 +21,9 @@ static int GROUND_TEX_WID;
 	[sky setScaleX:[Common scale_from_default].x];
 	[sky setScaleY:[Common scale_from_default].y];
 	BackgroundObject *starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
-    BackgroundObject *moon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_MOON]];
+    [starsbg setScaleX:[Common scale_from_default].x];
+	
+	BackgroundObject *moon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_MOON]];
 	//BackgroundObject *backhills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_3] scrollspd_x:0.025 scrollspd_y:0.005];
 	//BackgroundObject *fronthills = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_LAYER_1] scrollspd_x:0.1 scrollspd_y:0.03];
     
@@ -31,7 +33,6 @@ static int GROUND_TEX_WID;
     [sky setColor:ccc3(pb(20,pctm),pb(20,pctm),pb(60,pctm))];
     //[backhills setColor:ccc3(pb(50,pctm),pb(50,pctm),pb(90,pctm))];
     //[fronthills setColor:ccc3(pb(140,pctm),pb(140,pctm),pb(180,pctm))];
-    
     [self addChild:sky];
     [self addChild:starsbg];
     [self addChild:moon];

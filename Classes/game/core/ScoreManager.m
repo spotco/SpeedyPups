@@ -34,11 +34,13 @@
 }
 
 -(void)increment_multiplier:(float)amt {
+	amt *= 2;
 	if (floor(multiplier) < floor(multiplier + amt)) {
 		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_COMBO_DISP_ANIM] add_f1:multiplier+amt f2:0]];
 	}
 	
 	multiplier += amt;
+	multiplier = MIN(5,multiplier);
 }
 
 -(void)reset_multiplier {
