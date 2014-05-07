@@ -198,7 +198,7 @@
 	}
 	
 	[bones_button set_sub_text:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
-	[coins_button set_sub_text:[NSString stringWithFormat:@"%d",0]];
+	[coins_button set_sub_text:[NSString stringWithFormat:@"%d",[UserInventory get_current_coins]]];
 	
 }
 

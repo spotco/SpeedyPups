@@ -3,6 +3,8 @@
 #import "GameRenderImplementation.h"
 #import "GameMain.h"
 #import "ObjectPool.h"
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation CCSprite_VerboseDealloc
 -(void)dealloc {
@@ -437,6 +439,38 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	NSMutableArray *animFrames = [NSMutableArray array];
     for (NSString* k in a) [animFrames addObject:[CCSpriteFrame frameWithTexture:texture rect:[FileCache get_cgrect_from_plist:key idname:k]]];
 	return [CCAnimate actionWithAnimation:[CCAnimation animationWithFrames:animFrames delay:speed] restoreOriginalFrame:NO];
+}
+
++(BOOL)force_compress_textures {
+	NSString *platform = [self platform];
+	NSLog(@"device -- %@",platform);
+	if ([platform isEqualToString:@"iPhone1,1"]) return YES;
+	if ([platform isEqualToString:@"iPhone1,2"]) return YES;
+	if ([platform isEqualToString:@"iPhone2,1"]) return YES;
+	if ([platform isEqualToString:@"iPhone3,1"]) return YES;
+	if ([platform isEqualToString:@"iPhone3,3"]) return YES;
+	if ([platform isEqualToString:@"iPhone4,1"]) return NO;
+	if ([platform isEqualToString:@"iPod1,1"]) return YES;
+	if ([platform isEqualToString:@"iPod2,1"]) return YES;
+	if ([platform isEqualToString:@"iPod3,1"]) return YES;
+	if ([platform isEqualToString:@"iPod4,1"]) return YES;
+	if ([platform isEqualToString:@"iPad1,1"]) return NO;
+	if ([platform isEqualToString:@"iPad2,1"]) return NO;
+	if ([platform isEqualToString:@"iPad2,2"]) return NO;
+	if ([platform isEqualToString:@"iPad2,3"]) return NO;
+	if ([platform isEqualToString:@"i386"]) return NO;
+	if ([platform isEqualToString:@"x86_64"]) return NO;
+	return NO;
+}
+
++(NSString *) platform{
+	size_t size;
+	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+	char *machine = malloc(size);
+	sysctlbyname("hw.machine", machine, &size, NULL, 0);
+	NSString *platform = [NSString stringWithUTF8String:machine];
+	free(machine);
+	return platform;
 }
 
 @end

@@ -203,4 +203,6 @@ float CGPointDist(CGPoint a,CGPoint b);
 
 +(CCAction*)cons_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key;
 +(CCAction*)cons_nonrepeating_anim:(NSArray*)a speed:(float)speed tex_key:(NSString*)key;
+
++(BOOL)force_compress_textures;
 @end

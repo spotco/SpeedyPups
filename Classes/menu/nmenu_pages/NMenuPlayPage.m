@@ -207,7 +207,7 @@
 }
 
 -(void)startworlddispbutton_pressed {
-	[MenuCommon goto_settings];
+	[MenuCommon goto_map];
 }
 
 -(void)startbonusdispbutton_pressed {

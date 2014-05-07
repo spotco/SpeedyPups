@@ -18,12 +18,14 @@
 	InventoryLayerTab *tab_inventory;
 	InventoryLayerTab *tab_upgrades;
 	InventoryLayerTab *tab_settings;
+	InventoryLayerTab *tab_prizes;
 	InventoryLayerTab *tab_extras;
 	
 	NSMutableArray *tabpanes;
 	InventoryTabPane *tabpane_inventory;
 	InventoryTabPane *tabpane_upgrades;
 	InventoryTabPane *tabpane_settings;
+	InventoryTabPane *tabpane_prizes;
 	InventoryTabPane *tabpane_extras;
 }
 

@@ -116,7 +116,7 @@
         {"bid": 34, "x": 8888, "label": "BID:34", "y": 2822, "type": "dogbone"},
         {"bid": 35, "x": 8808, "label": "BID:35", "y": 2930, "type": "dogbone"},
         {"x": 9020, "y": 1756, "type": "island_fill", "height": 870, "width": 180, "label": "107"},
-        {"x": 10184, "label": "109", "y": 2064, "type": "coin"},
+        {"x": 10184, "label": "109", "y": 2064, "type": "treat"},
         {"x": 9986, "y": 1448, "type": "water", "height": 332, "width": 390, "label": "111"},
         {"x": 9450, "y2": 3086, "y": 3302, "x2": 9446, "label": "113", "type": "swingvine"},
         {"x": 9704, "img": 39, "label": "(115)gd_img:39", "y": 1838, "type": "ground_detail"},

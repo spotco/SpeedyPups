@@ -5,15 +5,12 @@
 @implementation BoneCollectUIAnimation
 
 +(BoneCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
-    //BoneCollectUIAnimation *b = [BoneCollectUIAnimation node];
     BoneCollectUIAnimation *b = [ObjectPool depool:[BoneCollectUIAnimation class]];
-	
 	[b cons_start:start end:end];
     return b;
 }
 
 -(void)cons_start:(CGPoint)tstart end:(CGPoint)tend {
-    //[self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]]];
 	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
 	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
 	[self setOpacity:255];
@@ -40,7 +37,6 @@
     CGPoint tar = ccp((end.x - start.x)*pct + start.x, (end.y-start.y)*pct + start.y);
     [self setPosition:tar];
     [self setOpacity:((int)((1-pct)*255))];
-    
     float tarscale = 2;
     if (ct > 35) {
         tarscale = ((15-(ct-35))/15.0)+1;
@@ -50,13 +46,24 @@
     [self setScale:tarscale];    
     ct-=[Common get_dt_Scale];
 }
+@end
 
-/*
-- (void)setOpacity:(GLubyte)opacity {
-	[super setOpacity:opacity];
-	for(CCSprite *sprite in [self children]) {
-		sprite.opacity = opacity;
-	}
-}*/
+@implementation TreatCollectUIAnimation
+
+#define CTMAX 50
+
++(TreatCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
+    return [[TreatCollectUIAnimation node] init_start:start end:end];
+}
+
+-(id)init_start:(CGPoint)tstart end:(CGPoint)tend {
+    start = tstart;
+    end = tend;
+    ct = CTMAX;
+    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"treat"]]];
+	[self set_ctmax:CTMAX];
+    
+    return self;
+}
 
 @end

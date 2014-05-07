@@ -61,6 +61,9 @@
 		7E0D74ED182CE6CD002F5B9A /* BG3_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0D74E8182CE6CD002F5B9A /* BG3_sky.png */; };
 		7E0D74F0182CE7D0002F5B9A /* World3BGLayerSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0D74EF182CE7D0002F5B9A /* World3BGLayerSet.m */; };
 		7E0DFF7A1813703F006F8039 /* lab2_water_fg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0DFF791813703F006F8039 /* lab2_water_fg.png */; };
+		7E0E85711919D36A001AFC04 /* TreatPickup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E85701919D36A001AFC04 /* TreatPickup.m */; };
+		7E0E85741919D981001AFC04 /* RotateFadeOutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E85731919D981001AFC04 /* RotateFadeOutParticle.m */; };
+		7E0E85771919EE0A001AFC04 /* InventoryTabPane_Prizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E85761919EE0A001AFC04 /* InventoryTabPane_Prizes.m */; };
 		7E0E92441860199900197F7B /* lab_clusterphobia.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E0E92431860199900197F7B /* lab_clusterphobia.map */; };
 		7E0E92461860259900197F7B /* lab_towerfall.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E0E92451860259900197F7B /* lab_towerfall.map */; };
 		7E0F9FA1170D1AEA00F2D342 /* armored_dog_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */; };
@@ -876,6 +879,12 @@
 		7E0D74EE182CE7D0002F5B9A /* World3BGLayerSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World3BGLayerSet.h; sourceTree = "<group>"; };
 		7E0D74EF182CE7D0002F5B9A /* World3BGLayerSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World3BGLayerSet.m; sourceTree = "<group>"; };
 		7E0DFF791813703F006F8039 /* lab2_water_fg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab2_water_fg.png; sourceTree = "<group>"; };
+		7E0E856F1919D36A001AFC04 /* TreatPickup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreatPickup.h; sourceTree = "<group>"; };
+		7E0E85701919D36A001AFC04 /* TreatPickup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreatPickup.m; sourceTree = "<group>"; };
+		7E0E85721919D981001AFC04 /* RotateFadeOutParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateFadeOutParticle.h; sourceTree = "<group>"; };
+		7E0E85731919D981001AFC04 /* RotateFadeOutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateFadeOutParticle.m; sourceTree = "<group>"; };
+		7E0E85751919EE0A001AFC04 /* InventoryTabPane_Prizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InventoryTabPane_Prizes.h; path = inventory_tab_panes/InventoryTabPane_Prizes.h; sourceTree = "<group>"; };
+		7E0E85761919EE0A001AFC04 /* InventoryTabPane_Prizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InventoryTabPane_Prizes.m; path = inventory_tab_panes/InventoryTabPane_Prizes.m; sourceTree = "<group>"; };
 		7E0E92431860199900197F7B /* lab_clusterphobia.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_clusterphobia.map; sourceTree = "<group>"; };
 		7E0E92451860259900197F7B /* lab_towerfall.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_towerfall.map; sourceTree = "<group>"; };
 		7E0F9F9F170D1AEA00F2D342 /* armored_dog_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = armored_dog_ss.plist; sourceTree = "<group>"; };
@@ -1859,6 +1868,8 @@
 				7E0195731886654B000DCF6D /* InventoryTabPane_Extras.m */,
 				7E01957918868546000DCF6D /* InventoryLayerTabScrollList.h */,
 				7E01957A18868546000DCF6D /* InventoryLayerTabScrollList.m */,
+				7E0E85751919EE0A001AFC04 /* InventoryTabPane_Prizes.h */,
+				7E0E85761919EE0A001AFC04 /* InventoryTabPane_Prizes.m */,
 			);
 			name = inventorytabpanes;
 			sourceTree = "<group>";
@@ -2966,6 +2977,8 @@
 				7EF8CA5B1797EB0900BD4476 /* JumpParticle.m */,
 				7E270D2F181F8F7900613E95 /* BGSubBossRocketParticle.h */,
 				7E270D30181F8F7900613E95 /* BGSubBossRocketParticle.m */,
+				7E0E85721919D981001AFC04 /* RotateFadeOutParticle.h */,
+				7E0E85731919D981001AFC04 /* RotateFadeOutParticle.m */,
 			);
 			path = particle;
 			sourceTree = "<group>";
@@ -3151,6 +3164,8 @@
 				7E47433B17AD02AF00A664CE /* ItemGen.m */,
 				7EDEFB1717AE2B2700F07C76 /* OneUpObject.h */,
 				7EDEFB1817AE2B2700F07C76 /* OneUpObject.m */,
+				7E0E856F1919D36A001AFC04 /* TreatPickup.h */,
+				7E0E85701919D36A001AFC04 /* TreatPickup.m */,
 			);
 			name = powerup;
 			sourceTree = "<group>";
@@ -4359,6 +4374,7 @@
 				7EB8B3AA16D9FBFE00F58961 /* GOstrichAppDelegate.m in Sources */,
 				7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */,
 				7EB8B3AB16D9FBFE00F58961 /* RootViewController.m in Sources */,
+				7E0E85711919D36A001AFC04 /* TreatPickup.m in Sources */,
 				7EB8B47916D9FC0900F58961 /* BackgroundObject.m in Sources */,
 				7EB8B47A16D9FC0900F58961 /* BGLayer.m in Sources */,
 				7EB8B47B16D9FC0900F58961 /* CloudGenerator.m in Sources */,
@@ -4564,12 +4580,14 @@
 				7E4532A617E4391D005EE7CB /* CapeGameEngineLayer.m in Sources */,
 				7E4532AC17E4495B005EE7CB /* CapeGamePlayer.m in Sources */,
 				7EE2455E17E63AE9007D4B4D /* CapeGameUILayer.m in Sources */,
+				7E0E85741919D981001AFC04 /* RotateFadeOutParticle.m in Sources */,
 				7EE2456817E6606B007D4B4D /* CapeGameBone.m in Sources */,
 				7EE30D1E17E6D05E00DC2A21 /* CapeGameSpikeVine.m in Sources */,
 				7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */,
 				7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */,
 				7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */,
 				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
+				7E0E85771919EE0A001AFC04 /* InventoryTabPane_Prizes.m in Sources */,
 				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
 				7E01956A188663D7000DCF6D /* InventoryTabPane_Inventory.m in Sources */,
 				7E99416B17F1758300B363F3 /* WebRequest.m in Sources */,

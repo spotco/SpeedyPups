@@ -16,7 +16,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM YES
-#define TESTLEVEL @"lab_minionwalls"
+#define TESTLEVEL @"shittytest"
 
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
@@ -27,14 +27,17 @@
 
 
 /**
- treat ingame pickup
- upgrade pane
- wheel mechanics
- 
- add second currency and separate upgrade/unlock for items and continue
- rare appearance (second currency) levels by @2 or @3 in autolevelstate (fix weightedsorter)
- 
- new look for upgrade pane
+ wheel mechanics implement with art, daily reset
+ BUGFIX: score ingameui position
+ continue with coins
+ item shop coin prices
+ rare appearance (second currency) levels by @2 or @3 in autolevelstate
+ prizes daily login, first time login
+ extras 8pcs art, music, sfx
+ figure out in app purchases
+ figure out ads
+ figure out tracking
+ go through and fix challenges
  more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
@@ -43,29 +46,21 @@
 
 /**
 Stretch goals:
- score ingameui position
- capegame combo notifications
- ads integration, pay for no ads
- billboard move down
+ BUGFIX: settings add watch intro anim again button
+ BUGFIX: capegame combo notifications
+ BUGFIX: billboard move down
  facebook integration (like game on facebook, reward)
  3 lab levels
  3 more cannon levels
  10 more freerun levels
- convert all CCLabelTTF to CCLabelTTF_Pooled
- make two spike levels into regular levels
- equipped item resetting in lab transition
- bug armor -> rocket -> end -> swingvine, still in rocket form
  random super reward level
  flip match-2 minigame (collect tokens ingame for tries)
- stats tracking
- implement challenge of the week
+ implement challenge of the week, downloadable levels
  goober pet
  levels based around armor (armor break spikes)
- store sales (streamed from online)
- capegame end cheer
- 
- art freerun start menu redesign + button
- pass cycle fillers (for harder/easier fillers)
+ weekly store sales
+ OPTIMIZATION: convert all CCLabelTTF to CCLabelTTF_Pooled
+ ??BUG: armor -> rocket -> end -> swingvine, still in rocket form
  **/
 
 +(void)main {
@@ -89,7 +84,7 @@ Stretch goals:
 	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL compress_textures = [defaults boolForKey:@"Compress Textures?"];
-	if (compress_textures) {
+	if (compress_textures || [Common force_compress_textures]) {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA4444];
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];

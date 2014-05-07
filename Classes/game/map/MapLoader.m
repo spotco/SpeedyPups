@@ -44,6 +44,7 @@
 #import "SubBossLoader.h"
 #import "Cannon.h"
 #import "RobotBossLoader.h" 
+#import "TreatPickup.h"
 
 #import "CapeGameBone.h"
 #import "CapeGameSpikeVine.h"
@@ -410,10 +411,15 @@ static NSMutableDictionary* cached_json;
             float y = getflt(j_object, @"y");
 			[map.game_objects addObject:[RobotBossLoader cons_pt:ccp(x,y)]];
 			
+		} else if (streq(type, @"coin")) {
+			float x = getflt(j_object, @"x");
+			float y = getflt(j_object, @"y");
+			[map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
+			
 		}
 		
 		if (cur_mode == MapLoaderMode_AUTO) {
-			if ([type isEqualToString:@"coin"]) {
+			if ([type isEqualToString:@"treat"]) {
 				float x = getflt(j_object, @"x");
 				float y = getflt(j_object, @"y");
 				[map.game_objects addObject:[OneUpObject cons_pt:ccp(x,y)]];
@@ -435,10 +441,10 @@ static NSMutableDictionary* cached_json;
 				float y = getflt(j_object, @"y");
 				[map.game_objects addObject:[ChallengeEnd cons_pt:ccp(x,y)]];
 				
-			} else if ([type isEqualToString:@"coin"]) {
+			} else if ([type isEqualToString:@"treat"]) {
 				float x = getflt(j_object, @"x");
 				float y = getflt(j_object, @"y");
-				[map.game_objects addObject:[Coin cons_pt:ccp(x,y)]];
+				[map.game_objects addObject:[TreatPickup cons_pt:ccp(x,y)]];
 				
 			}
 		}

@@ -12,6 +12,7 @@
 #import "InventoryTabPane_Inventory.h"
 #import "InventoryTabPane_Upgrades.h" 
 #import "InventoryTabPane_Settings.h"
+#import "InventoryTabPane_Prizes.h"
 #import "InventoryTabPane_Extras.h"
 
 #import "AudioManager.h"
@@ -67,16 +68,19 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	tabpane_inventory = [InventoryTabPane_Inventory cons:inventory_window];
 	tabpane_upgrades = [InventoryTabPane_Upgrades cons:inventory_window];
 	tabpane_settings = [InventoryTabPane_Settings cons:inventory_window];
+	tabpane_prizes = [InventoryTabPane_Prizes cons:inventory_window];
 	tabpane_extras = [InventoryTabPane_Extras cons:inventory_window];
 	
 	[inventory_window addChild:tabpane_inventory];
 	[inventory_window addChild:tabpane_upgrades];
 	[inventory_window addChild:tabpane_settings];
+	[inventory_window addChild:tabpane_prizes];
 	[inventory_window addChild:tabpane_extras];
 	
 	[tabpanes addObject:tabpane_inventory];
 	[tabpanes addObject:tabpane_upgrades];
 	[tabpanes addObject:tabpane_settings];
+	[tabpanes addObject:tabpane_prizes];
 	[tabpanes addObject:tabpane_extras];
 	
 	for (InventoryTabPane *pane in tabpanes) [pane set_pane_open:NO];
@@ -98,18 +102,24 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 										 text:@"Settings"
 										   cb:[Common cons_callback:self sel:@selector(tab_settings)]];
 	
-	tab_extras = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width*3,tab_inventory.position.y)
+	tab_prizes = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width*3,tab_inventory.position.y)
+									   text:@"Prizes "
+										 cb:[Common cons_callback:self sel:@selector(tab_prizes)]];
+	
+	tab_extras = [InventoryLayerTab cons_pt:ccp(tab_inventory.position.x + tab_inventory.boundingBox.size.width*4,tab_inventory.position.y)
 									   text:@"Extras"
 										 cb:[Common cons_callback:self sel:@selector(tab_extras)]];
 	
 	[inventory_window addChild:tab_inventory];
 	[inventory_window addChild:tab_upgrades];
 	[inventory_window addChild:tab_settings];
+	[inventory_window addChild:tab_prizes];
 	[inventory_window addChild:tab_extras];
 	
 	[tabs addObject:tab_inventory];
 	[tabs addObject:tab_upgrades];
 	[tabs addObject:tab_settings];
+	[tabs addObject:tab_prizes];
 	[tabs addObject:tab_extras];
 	
 	for (InventoryLayerTab *tab in tabs) [tab set_selected:NO];
@@ -146,6 +156,13 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	[self unselect_all];
 	[tab_extras set_selected:YES];
 	[tabpane_extras set_pane_open:YES];
+	[AudioManager playsfx:SFX_MENU_UP];
+}
+
+-(void)tab_prizes {
+	[self unselect_all];
+	[tab_prizes set_selected:YES];
+	[tabpane_prizes set_pane_open:YES];
 	[AudioManager playsfx:SFX_MENU_UP];
 }
 

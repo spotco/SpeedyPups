@@ -6,6 +6,9 @@
 +(int)get_current_bones;
 +(void)add_bones:(int)ct;
 
++(int)get_current_coins;
++(void)add_coins:(int)ct;
+
 +(GameItem)get_current_gameitem;
 +(void)set_current_gameitem:(GameItem)g;
 +(int)get_upgrade_level:(GameItem)gi;

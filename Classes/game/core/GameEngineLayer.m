@@ -580,8 +580,11 @@
         
     } else if (e.type == GEventType_COLLECT_BONE) {
 		[self collect_bone:YES];
-        
-    } else if (e.type == GEventType_GET_COIN) {
+		
+	} else if (e.type == GEventType_GET_COIN) {
+		[UserInventory add_coins:1];
+    
+    } else if (e.type == GEventType_GET_TREAT) {
         collected_secrets++;
     
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {

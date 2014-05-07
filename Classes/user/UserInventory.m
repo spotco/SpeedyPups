@@ -5,8 +5,8 @@
 @implementation UserInventory
 
 #define STO_CURRENT_BONES @"current_bones"
+#define STO_CURRENT_COINS @"current_coins"
 #define STO_MAIN_SLOT @"main_slot"
-
 #define STO_EQUIPPED @"equipped_item"
 
 +(void)initialize {
@@ -25,14 +25,20 @@
     [DataStore set_key:STO_CURRENT_BONES int_value:[self get_current_bones]+ct];
 }
 
++(int)get_current_coins {
+	return [DataStore get_int_for_key:STO_CURRENT_COINS];
+}
+
++(void)add_coins:(int)ct {
+	[DataStore set_key:STO_CURRENT_COINS flt_value:[self get_current_coins]+ct];
+}
+
 static GameItem current_item = Item_NOITEM;
 +(GameItem)get_current_gameitem {
-	//return (GameItem)[DataStore get_int_for_key:STO_MAIN_SLOT];
 	return current_item;
 }
 
 +(void)set_current_gameitem:(GameItem)g {
-	//[DataStore set_key:STO_MAIN_SLOT int_value:(int)g];
 	current_item = g;
 }
 
@@ -48,7 +54,6 @@ static GameItem current_item = Item_NOITEM;
 	[self set_current_gameitem:[DataStore get_int_for_key:STO_EQUIPPED]];
 }
 
-//upgrade system
 +(NSString*)gameitem_to_upgrade_level_string:(GameItem)gi {
     return [NSString stringWithFormat:@"upgrade_%d",gi];
 }

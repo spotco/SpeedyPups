@@ -58,7 +58,7 @@
 +(void)goto_shop;
 +(void)goto_charsel;
 +(void)goto_home;
-+(void)goto_settings;
++(void)goto_map;
 +(void)close_inventory;
 
 @end

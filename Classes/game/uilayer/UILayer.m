@@ -101,7 +101,10 @@
 		
     } else if (e.type == GEventType_GET_COIN) {
         [self start_coin_collect_anim];
-        
+		
+	} else if (e.type == GEventType_GET_TREAT) {
+		[self start_treat_collect_anim];
+		
     } else if (e.type == GEventType_ASK_CONTINUE) {
         [self ask_continue];
         
@@ -168,6 +171,12 @@
 
 -(void)start_coin_collect_anim {
     CoinCollectUIAnimation* c = [CoinCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,0)];
+    [ingameuianimholder addChild:c];
+    [ingame_ui_anims addObject:c];
+}
+
+-(void)start_treat_collect_anim {
+    TreatCollectUIAnimation* c = [TreatCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,0)];
     [ingameuianimholder addChild:c];
     [ingame_ui_anims addObject:c];
 }

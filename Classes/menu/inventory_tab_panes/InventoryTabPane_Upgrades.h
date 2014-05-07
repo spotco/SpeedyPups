@@ -7,7 +7,11 @@
 	
 	CCLabelTTF *name_disp;
 	CCLabelTTF *desc_disp;
-	CCLabelTTF *upgrade_disp;
+	
+	CCSprite *upgrade_disp_bg;
+	NSMutableArray *upgrade_stars;
+	
+	//CCLabelTTF *upgrade_disp;
 	GameItem selected_item;
 }
 

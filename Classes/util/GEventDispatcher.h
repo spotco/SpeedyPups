@@ -26,6 +26,7 @@ typedef enum {
 	
     GEventType_ITEM_DURATION_PCT,
     GEventType_CONTINUE_GAME,
+	GEventType_GET_TREAT,
     GEventType_GET_COIN,
 	GEventType_FGITEM_SHOW,
 	GEventType_TUTORIAL_MESSAGE, //24

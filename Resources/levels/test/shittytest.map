@@ -1,8 +1,8 @@
 {
-    "start_y": 154,
-    "objects": [],
-    "islands": [{"x1": 69, "can_fall": true, "type": "line", "x2": 927, "ndir": "left", "ground": "open", "y1": 97, "hei": 50, "y2": 97}],
-    "start_x": 175,
-    "connect_pts": {"x1": 69, "y1": 97, "x2": 927, "y2": 97},
-    "assert_links": 0
+    "objects": [{"x": 621, "label": "2", "type": "coin", "y": 365}],
+    "connect_pts": {"x2": 874, "x1": 69, "y2": 232, "y1": 195},
+    "start_x": 185,
+    "assert_links": 0,
+    "start_y": 256,
+    "islands": [{"ndir": "left", "can_fall": true, "x1": 69, "hei": 50, "y1": 195, "ground": "open", "x2": 874, "type": "line", "y2": 232}]
 }

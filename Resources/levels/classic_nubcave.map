@@ -268,7 +268,7 @@
         {"type": "dogbone", "x": 10138, "bid": 72, "y": 3892, "label": "BID:72"},
         {"type": "dogbone", "x": 9752, "bid": 74, "y": 3938, "label": "BID:74"},
         {"type": "dogbone", "x": 9632, "bid": 75, "y": 4018, "label": "BID:75"},
-        {"type": "coin", "x": 10098, "y": 3704, "label": "171"},
+        {"type": "treat", "x": 10098, "y": 3704, "label": "171"},
         {"type": "speedup", "x": 10232, "dir": {"x": 0.05, "y": 1}, "y": 3692, "label": "172"},
         {"type": "speedup", "x": 9976, "dir": {"x": -1, "y": 0.08}, "y": 3894, "label": "173"},
         {"type": "dogbone", "x": 10330, "bid": 78, "y": 5202, "label": "BID:78"},

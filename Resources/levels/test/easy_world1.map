@@ -145,7 +145,7 @@
         {"type": "dogbone", "x": 12062, "bid": 88, "y": 1878, "label": "BID:88"},
         {"type": "dogbone", "x": 6838.9, "bid": 89, "y": 2197.5, "label": "BID:89"},
         {"type": "dogbone", "x": 6938.9, "bid": 90, "y": 2198.8, "label": "BID:90"},
-        {"type": "coin", "x": 10349, "y": 2198, "label": "6"},
+        {"type": "treat", "x": 10349, "y": 2198, "label": "6"},
         {"type": "dogbone", "x": 10551, "bid": 91, "y": 2196, "label": "BID:91"},
         {"type": "game_end", "x": 16648, "y": 2049, "label": "9"},
         {"type": "itemgen", "x": 9100, "y": 1149, "label": "1"},
