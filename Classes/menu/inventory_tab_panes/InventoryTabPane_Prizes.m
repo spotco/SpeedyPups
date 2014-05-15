@@ -1,6 +1,7 @@
 #import "InventoryTabPane_Prizes.h"
 #import "Common.h"
 #import "MenuCommon.h"
+#import "SpinButton.h"
 
 @implementation InventoryTabPane_Prizes {
 	NSMutableArray *touches;
@@ -17,14 +18,26 @@
 -(id)cons:(CCSprite*)parent {
 	touches = [NSMutableArray array];
 	
-	[self addChild:[Common cons_label_pos:[Common pct_of_obj:parent pctx:0.2 pcty:0.85]
-									color:ccc3(200,30,30)
-								 fontsize:25
-									  str:@"Wheel of Prizes!"]];
+	CCSprite *wheel_label = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"wheelofprizes"]]
+							 pos:[Common pct_of_obj:parent pctx:0.5 pcty:0.79]];
+	[wheel_label setScaleX:0.82];
+	[wheel_label setScaleY:0.66];
+	[self addChild:wheel_label];
+	
+	CCSprite *bones_disp_bg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"currency_bones_disp"]]
+							   pos:[Common pct_of_obj:parent pctx:0.02 pcty:0.25]] anchor_pt:ccp(0,0.5)];
+	[self addChild:bones_disp_bg];
+	
+	CCSprite *coins_disp_bg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"currency_coins_disp"]]
+								pos:[Common pct_of_obj:parent pctx:0.02 pcty:0.1]] anchor_pt:ccp(0,0.5)];
+	[self addChild:coins_disp_bg];
 	
 	CCSprite *wheel_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 												 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_wheel_back"]]
-						  pos:[Common pct_of_obj:parent pctx:0.65 pcty:0.5]];
+						  pos:[Common pct_of_obj:parent pctx:0.5 pcty:0.425]];
 	[self addChild:wheel_bg];
 	
 	wheel_pointer = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
@@ -45,19 +58,13 @@
 		[wheel_bg addChild:light];
 		[lights addObject:light];
 	}
-	[wheel_bg setScale:0.9];
+	[wheel_bg setScale:0.8];
 	[wheel_bg addChild:wheel_pointer];
 	
 	
+	spinbutton = [SpinButton cons_pt:[Common pct_of_obj:parent pctx:0.84 pcty:0.25]
+								  cb:[Common cons_callback:self sel:@selector(spin)]];
 	
-	spinbutton = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.16 pcty:0.25]
-													  tex:[Resource get_tex:TEX_NMENU_ITEMS]
-												  texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
-													   cb:[Common cons_callback:self sel:@selector(spin)]];
-	[spinbutton addChild:[Common cons_label_pos:[Common pct_of_obj:spinbutton pctx:0.5 pcty:0.5]
-										 color:ccc3(0,0,0)
-									  fontsize:13
-										   str:@"Spin!"]];
 	[self addChild:spinbutton];
 	[touches addObject:spinbutton];
 	
@@ -69,7 +76,6 @@
 
 -(void)spin {
 	wheel_pointer_vr = float_random(35, 45);
-	[spinbutton setVisible:NO];
 }
 
 -(void)update {
@@ -80,7 +86,6 @@
 	[wheel_pointer setRotation:wheel_pointer.rotation + wheel_pointer_vr * [Common get_dt_Scale]];
 	if (wheel_pointer_vr > 0.1 && wheel_pointer_vr * 0.95 < 0.1) {
 		wheel_pointer_vr = 0;
-		[spinbutton setVisible:YES];
 		NSLog(@"TODO --stopped");
 	}
 	
@@ -104,6 +109,11 @@
 -(void)touch_begin:(CGPoint)pt {
 	if (!self.visible) return;
 	for (TouchButton *b in touches) if (b.visible) [b touch_begin:pt];
+}
+
+-(void)touch_move:(CGPoint)pt {
+	if (!self.visible) return;
+	for (TouchButton *b in touches) if (b.visible) [b touch_move:pt];
 }
 
 -(void)touch_end:(CGPoint)pt {

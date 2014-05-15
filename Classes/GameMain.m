@@ -15,7 +15,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"shittytest"
 
 #define IMMEDIATELY_BOSS NO
@@ -27,8 +27,10 @@
 
 
 /**
+ capegame ui fix
+ capegame pause -> unpause (state for paused)
+ 
  wheel mechanics implement with art, daily reset
- BUGFIX: score ingameui position
  continue with coins
  item shop coin prices
  rare appearance (second currency) levels by @2 or @3 in autolevelstate
@@ -133,8 +135,8 @@ Stretch goals:
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

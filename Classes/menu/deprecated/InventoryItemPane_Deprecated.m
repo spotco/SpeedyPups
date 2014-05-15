@@ -113,9 +113,9 @@
 -(void)set_locked:(BOOL)t {
     [self setIsEnabled:!t];
 	for (CCSprite* c in @[w1,w2]) {
-		[(CCSprite*)[c getChildByTag:k_OBJ] setOpacity:t?150:255];
+		[(CCSprite*)[c getChildByTag:k_OBJ] setOpacity:t?150:200];
 	}
-    [self setOpacity:t?150:255];
+    [self setOpacity:t?150:200];
 }
 +(float)objscale {
     return 1;
@@ -130,7 +130,7 @@
         TexRect *tr = [GameItemCommon texrect_from:item];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTexture:tr.tex];
         [(CCSprite*)[s getChildByTag:k_OBJ] setTextureRect:tr.rect];
-        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:255];
+        [(CCSprite*)[s getChildByTag:k_OBJ] setOpacity:200];
     }
 }
 @end

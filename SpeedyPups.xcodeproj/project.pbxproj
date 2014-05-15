@@ -420,6 +420,7 @@
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
 		7EBC124C1755DD1600645077 /* swingvine_morecave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124B1755DD1600645077 /* swingvine_morecave.map */; };
 		7EBC124E1755EAA900645077 /* swingvine_datbounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124D1755EAA900645077 /* swingvine_datbounce.map */; };
+		7EBC88CB1924A7DE00189559 /* SpinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC88CA1924A7DE00189559 /* SpinButton.m */; };
 		7EBD7609171A430700EBEB3C /* ChallengeEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD7608171A430700EBEB3C /* ChallengeEnd.m */; };
 		7EBD760B171A454400EBEB3C /* checkerboard_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBD760A171A454400EBEB3C /* checkerboard_texture.png */; };
 		7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBD760F171A7FE500EBEB3C /* GameItemCommon.m */; };
@@ -1379,6 +1380,8 @@
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
 		7EBC124B1755DD1600645077 /* swingvine_morecave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_morecave.map; sourceTree = "<group>"; };
 		7EBC124D1755EAA900645077 /* swingvine_datbounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_datbounce.map; sourceTree = "<group>"; };
+		7EBC88C91924A7DE00189559 /* SpinButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinButton.h; sourceTree = "<group>"; };
+		7EBC88CA1924A7DE00189559 /* SpinButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinButton.m; sourceTree = "<group>"; };
 		7EBD7607171A430700EBEB3C /* ChallengeEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeEnd.h; sourceTree = "<group>"; };
 		7EBD7608171A430700EBEB3C /* ChallengeEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeEnd.m; sourceTree = "<group>"; };
 		7EBD760A171A454400EBEB3C /* checkerboard_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerboard_texture.png; sourceTree = "<group>"; };
@@ -1870,6 +1873,8 @@
 				7E01957A18868546000DCF6D /* InventoryLayerTabScrollList.m */,
 				7E0E85751919EE0A001AFC04 /* InventoryTabPane_Prizes.h */,
 				7E0E85761919EE0A001AFC04 /* InventoryTabPane_Prizes.m */,
+				7EBC88C91924A7DE00189559 /* SpinButton.h */,
+				7EBC88CA1924A7DE00189559 /* SpinButton.m */,
 			);
 			name = inventorytabpanes;
 			sourceTree = "<group>";
@@ -4542,6 +4547,7 @@
 				7E05977018F1472B00D9CD74 /* CapeGameEnd.m in Sources */,
 				7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
+				7EBC88CB1924A7DE00189559 /* SpinButton.m in Sources */,
 				7ECADE1D17646AF00032A1E6 /* ALSoundSourcePool.m in Sources */,
 				7ECADE1E17646AF00032A1E6 /* ALSource.m in Sources */,
 				7E8947F91904B23D00EFB54C /* ScoreManager.m in Sources */,

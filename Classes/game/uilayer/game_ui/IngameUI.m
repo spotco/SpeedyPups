@@ -49,22 +49,6 @@
 		[Common SCREEN].height-pauseicon.boundingBoxInPixels.size.height+10
 	)];
 	
-	CCSprite *bone_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_bone_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.96]];
-	CCSprite *lives_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_lives_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.88]];
-	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
-	
-	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
-	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:lives_disp_icon pctx:0.5 pcty:0.395] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
-	time_disp = [[Common cons_label_pos:[Common pct_of_obj:time_disp_icon pctx:0.5 pcty:0.455] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
-	
-	[bone_disp_icon addChild:bones_disp];
-	[lives_disp_icon addChild:lives_disp];
-	[time_disp_icon addChild:time_disp];
-	
-	[self addChild:bone_disp_icon];
-	[self addChild:lives_disp_icon];
-	[self addChild:time_disp_icon];
-	
 	enemy_alert_ui = [UIEnemyAlert cons];
 	[enemy_alert_ui setVisible:NO];
 	[self addChild:enemy_alert_ui];
@@ -136,41 +120,97 @@
 	challengedescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					  idname:@"challengedescbg"]]
-								 pos:[Common screen_pctwid:0.01 pcthei:0.07]];
-	[challengedescbg setAnchorPoint:ccp(0,0.5)];
-	[challengedescbg setOpacity:180];
+								 pos:[Common screen_pctwid:0.01 pcthei:0.98]];
+	[challengedescbg setAnchorPoint:ccp(0,1)];
+	[challengedescbg setScaleX:0.8];
+	[challengedescbg setScaleY:0.75];
+	[challengedescbg setOpacity:80];
 	[self addChild:challengedescbg];
 	
 	challengedesc = [Common cons_label_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:25 str:@""];
-	[challengedesc setPosition:[Common pct_of_obj:challengedescbg pctx:0.32 pcty:0.5]];
+	[challengedesc setPosition:[Common pct_of_obj:challengedescbg pctx:0.325 pcty:0.5]];
 	[challengedesc setAnchorPoint:ccp(0,0.5)];
 	[challengedescbg addChild:challengedesc];
 	
 	TexRect *challengetr = [ChallengeRecord get_for:ChallengeType_COLLECT_BONES];
 	challengedescincon = [[CCSprite spriteWithTexture:challengetr.tex rect:challengetr.rect]
-									pos:[Common pct_of_obj:challengedescbg pctx:0.05 pcty:0.5]];
-	[challengedescincon setAnchorPoint:ccp(0,0.5)];
+									pos:[Common pct_of_obj:challengedescbg pctx:0.125 pcty:0.5]];
+	[challengedescincon setAnchorPoint:ccp(0.5,0.5)];
+	[challengedescincon setScale:1.25];
+	
 	[challengedescbg addChild:challengedescincon];
 	[challengedescbg setVisible:NO];
 	item_slot_notify_anim_sc = 1;
 	
-	scoredispbg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-										  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
-																		 idname:@"challengedescbg"]]
-				   pos:[Common screen_pctwid:0.01 pcthei:0.07]] anchor_pt:ccp(0,0.5)];
-	[scoredispbg setOpacity:140];
-	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.375]
-								 color:ccc3(0,0,0)
-							  fontsize:16
-								   str:@""] anchor_pt:ccp(0,0.5)];
+	
+	//score disp
+	scoredispbg = [[CCSprite node] pos:[Common screen_pctwid:0.01 pcthei:0.98]];
+	
+	CCSprite *score_disp_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"challengedescbg"]];
+	[score_disp_back setAnchorPoint:ccp(0,1)];
+	[score_disp_back setScaleX:0.8];
+	[score_disp_back setScaleY:0.75];
+	[scoredispbg addChild:score_disp_back];
+	[score_disp_back setOpacity:80];
+	
+	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
+								  color:ccc3(200,30,30)
+							   fontsize:24
+									str:@""] anchor_pt:ccp(0,1)];
 	[scoredispbg addChild:scoredisp];
+	
+	//combo disp
+	CCSprite *combo_disp_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"challengedescbg"]];
+	[combo_disp_back setPosition:[Common pct_of_obj:score_disp_back pctx:1.05*0.8 pcty:0]];
+	[combo_disp_back setScaleX:0.65];
+	[combo_disp_back setScaleY:0.55];
+	[combo_disp_back setAnchorPoint:ccp(0,1)];
+	[scoredispbg addChild:combo_disp_back];
+	[combo_disp_back setOpacity:80];
+	
 	multdisp = [[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 									   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"combo_1_small"]]
-				pos:[Common pct_of_obj:scoredispbg pctx:0.31 pcty:0.75]] anchor_pt:ccp(0.5,0.5)] scale:0.7];
+				pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.3 pcty:0.7-1]] anchor_pt:ccp(0.5,0.5)] scale:0.7];
 	[scoredispbg addChild:multdisp];
 	[self addChild:scoredispbg];
 	
+
+	CGPoint disp_icon_pos = ccp(scoredispbg.position.x,scoredispbg.position.y-score_disp_back.boundingBox.size.height - 5);
+	bones_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_bone_icon"];
+	disp_icon_pos.y -= 24;
+	lives_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_lives_icon"];
+	disp_icon_pos.y -= 24;
+	time_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_time_icon"];
+	 
     return self;
+}
+
+-(CCLabelTTF*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
+	CCSprite *bone_disp_section = [[CCSprite node] pos:section_pos];
+	CCSprite *bone_disp_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengedescbg"]]
+							  anchor_pt:ccp(0,1)];
+	[bone_disp_bg setScaleX:0.5];
+	[bone_disp_bg setScaleY:0.5];
+	[bone_disp_bg setOpacity:80];
+	[bone_disp_section addChild:bone_disp_bg];
+	[self addChild:bone_disp_section];
+	
+	CCSprite *bone_disp_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:icon]];
+	[bone_disp_icon setPosition:[Common pct_of_obj:bone_disp_bg pctx:0.15*0.5 pcty:-0.5*0.5]];
+	[bone_disp_section addChild:bone_disp_icon];
+	
+	CCLabelTTF *bones_text_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
+								   color:ccc3(200,30,30)
+								fontsize:13
+									 str:@""]
+				  anchor_pt:ccp(0,0.5)];
+	[bone_disp_section addChild:bones_text_disp];
+	return bones_text_disp;
 }
 
 -(void)pause {
@@ -271,7 +311,7 @@ static int ct  = 0;
 			if ([g get_num_bones] >= cinfo.ct) {
 				[challengedesc setColor:ccc3(0,255,0)];
 			} else {
-				[challengedesc setColor:ccc3(0,0,0)];
+				[challengedesc setColor:ccc3(200,30,30)];
 			}
 			tar_str = strf("%i/%i",[g get_num_bones],cinfo.ct);
 			
@@ -279,7 +319,7 @@ static int ct  = 0;
 			if ([g get_num_secrets] >= cinfo.ct) {
 				[challengedesc setColor:ccc3(0,255,0)];
 			} else {
-				[challengedesc setColor:ccc3(0,0,0)];
+				[challengedesc setColor:ccc3(200,30,30)];
 			}
 			tar_str = strf("%i/%i",[g get_num_secrets],cinfo.ct);
 			
@@ -305,7 +345,7 @@ static int ct  = 0;
 				}
 			} else {
 				tar_str = cur_time;
-				[challengedesc setColor:ccc3(0,0,0)];
+				[challengedesc setColor:ccc3(200,30,30)];
 			}
 			
 			last_time = cur_time;
@@ -331,7 +371,7 @@ static int ct  = 0;
 	}
 	
 	int imult = [g.score get_multiplier];
-	[scoredisp set_label:strf("Score \u00B7 %d",(int)current_disp_score)];
+	[scoredisp set_label:strf("%d",(int)current_disp_score)];
 	[multdisp setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 													   idname:strf("combo_%d_small",imult)]];
 	
