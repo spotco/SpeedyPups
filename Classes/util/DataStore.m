@@ -28,7 +28,7 @@ static NSUserDefaults* store;
 }
 
 +(int)get_int_for_key:(NSString*)key {
-    return [store integerForKey:key];
+    return (int)[store integerForKey:key];
 }
 
 +(void)set_key:(NSString*)key flt_value:(float)val {
@@ -51,6 +51,15 @@ static NSUserDefaults* store;
 
 +(void)force_write {
     [store synchronize];
+}
+
++(void)set_long_for_key:(NSString *)key long_value:(long)val {
+	[store setInteger:val forKey:key];
+	[self force_write];
+}
+
++(long)get_long_for_key:(NSString *)key {
+	return [store integerForKey:key];
 }
 
 

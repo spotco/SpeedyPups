@@ -556,6 +556,10 @@
 	[UserInventory add_bones:1];
 }
 
+-(GameEngineLayerMode)get_mode {
+	return current_mode;
+}
+
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_QUIT) {
         [self exit];
@@ -603,6 +607,7 @@
         [stats increment:GEStat_DEATHS];
 		
         lives = lives == GAMEENGINE_INF_LIVES ? lives : lives-1;
+		[score decrement_score:1000];
 		
         if (lives != GAMEENGINE_INF_LIVES && lives < 1) {
             [self ask_continue];

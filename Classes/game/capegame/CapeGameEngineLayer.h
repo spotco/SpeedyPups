@@ -86,6 +86,8 @@ typedef enum {
 -(void)shake_for:(float)ct intensity:(float)intensity;
 -(CGPoint)get_shake_offset;
 -(void)freeze_frame:(int)ct;
+
+-(void)pause:(BOOL)do_pause;
 @end
 
 @interface CapeGameObject : CCSprite

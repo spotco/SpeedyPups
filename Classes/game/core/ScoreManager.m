@@ -35,7 +35,8 @@
 
 -(void)increment_multiplier:(float)amt {
 	amt *= 3;
-	if (floor(multiplier) < floor(multiplier + amt)) {
+	
+	if (floor(multiplier) < floor(multiplier + amt) && multiplier < 5) {
 		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_COMBO_DISP_ANIM] add_f1:multiplier+amt f2:0]];
 	}
 	
@@ -57,5 +58,10 @@
 
 -(float)get_multiplier {
 	return multiplier;
+}
+
+-(void)decrement_score:(int)amt {
+	score -= amt / multiplier;
+	if (score < 0) score = 0;
 }
 @end

@@ -15,8 +15,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_BGM YES
+#define TESTLEVEL @"capegame_launcher"
 
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
@@ -27,23 +27,30 @@
 
 
 /**
- capegame ui fix
- capegame pause -> unpause (state for paused)
+ wheel prize get animations, sfx
+ wheel resets daily
+ settings page click back to intro anim
+ prizes daily login, first time login
  
- wheel mechanics implement with art, daily reset
  continue with coins
  item shop coin prices
  rare appearance (second currency) levels by @2 or @3 in autolevelstate
- prizes daily login, first time login
+ 
  extras 8pcs art, music, sfx
+ 
+ go through and fix challenges
+ challenges reward with coins
+ more challenges (more secrets, cape game, boss rush)
+ 
  figure out in app purchases
  figure out ads
  figure out tracking
- go through and fix challenges
- more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
+	wheel of prizes logo redesign
 	challenge artwork
+	daily popup
+	concept art
  **/
 
 /**
@@ -128,15 +135,15 @@ Stretch goals:
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	
-	//[UserInventory add_bones:100000];
+	//[UserInventory add_bones:1000];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

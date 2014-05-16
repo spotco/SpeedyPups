@@ -82,6 +82,8 @@ typedef enum {
 @property(readwrite,assign) CameraZoom camera_state,tar_camera_state;
 @property(readwrite,strong) ScoreManager *score;
 
+-(GameEngineLayerMode)get_mode;
+
 +(CCScene*)scene_with:(NSString *)map_file_name lives:(int)lives world:(WorldNum)world;
 +(CCScene*)scene_with_autolevel_lives:(int)lives world:(WorldStartAt)world;
 +(CCScene*)scene_with_challenge:(ChallengeInfo*)info world:(WorldNum)world;

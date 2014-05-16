@@ -97,7 +97,7 @@
         [self start_bone_collect_anim];
 		
 	} else if (e.type == GEventType_COMBO_DISP_ANIM) {
-		if ([game_engine_layer get_challenge] == NULL) {
+		if ([game_engine_layer get_challenge] == NULL && [game_engine_layer get_mode] != GameEngineLayerMode_CAPEIN) {
 			[self start_combo_anim:e.f1];
 		}
 		

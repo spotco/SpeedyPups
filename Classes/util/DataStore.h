@@ -13,4 +13,7 @@
 +(NSString*)get_str_for_key:(NSString*)key;
 +(void)reset_all;
 
++(void)set_long_for_key:(NSString*)key long_value:(long)val;
++(long)get_long_for_key:(NSString*)key;
+
 @end

@@ -12,8 +12,11 @@
 #import "ChallengeInfoTitleCardAnimation.h"
 #import "GameEngineLayer.h"
 #import "ScoreManager.h"
+#import "ScoreComboAnimation.h"
 
-@implementation CapeGameUILayer
+@implementation CapeGameUILayer {
+	float last_mult;
+}
 
 +(CapeGameUILayer*)cons_g:(CapeGameEngineLayer*)g {
 	CapeGameUILayer *l = [[CapeGameUILayer node] cons:g];
@@ -22,7 +25,7 @@
 
 -(id)cons:(CapeGameEngineLayer*)g {
 	cape_game = g;
-	
+	last_mult = [[g get_main_game].score get_multiplier];
 	ingame_ui = [CCNode node];
 	
 	CCSprite *pauseicon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseicon"]];
@@ -39,22 +42,6 @@
 		 [Common SCREEN].height-pauseicon.boundingBoxInPixels.size.height+10
 	 )];
 	
-	CCSprite *bone_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_bone_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.96]];
-	CCSprite *lives_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_lives_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.88]];
-	CCSprite *time_disp_icon = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"ingame_ui_time_icon"]] pos:[Common screen_pctwid:0.06 pcthei:0.8]];
-	
-	bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_icon pctx:0.5 pcty:0.42] color:ccc3(200,30,30) fontsize:13 str:@""] anchor_pt:ccp(0,0.5)];
-	lives_disp = [[Common cons_label_pos:[Common pct_of_obj:lives_disp_icon pctx:0.5 pcty:0.395] color:ccc3(200,30,30) fontsize:15 str:@""] anchor_pt:ccp(0,0.5)];
-	time_disp = [[Common cons_label_pos:[Common pct_of_obj:time_disp_icon pctx:0.5 pcty:0.455] color:ccc3(200,30,30) fontsize:12 str:@""] anchor_pt:ccp(0,0.5)];
-	
-	[bone_disp_icon addChild:bones_disp];
-	[lives_disp_icon addChild:lives_disp];
-	[time_disp_icon addChild:time_disp];
-	
-	[ingame_ui addChild:bone_disp_icon];
-	[ingame_ui addChild:lives_disp_icon];
-	[ingame_ui addChild:time_disp_icon];
-    
     CCMenu *ingame_ui_m = [CCMenu menuWithItems:ingamepause,nil];
     
     ingame_ui_m.anchorPoint = ccp(0,0);
@@ -106,24 +93,87 @@
 	[ingame_ui addChild:uianim_holder];
 	uianims = [NSMutableArray array];
 	
-	scoredispbg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-										   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
-																		  idname:@"challengedescbg"]]
-					pos:[Common screen_pctwid:0.01 pcthei:0.07]] anchor_pt:ccp(0,0.5)];
-	[scoredispbg setOpacity:140];
-	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:scoredispbg pctx:0.1 pcty:0.375]
-								  color:ccc3(0,0,0)
-							   fontsize:16
-									str:@""] anchor_pt:ccp(0,0.5)];
+	
+	//score disp
+	scoredispbg = [[CCSprite node] pos:[Common screen_pctwid:0.01 pcthei:0.98]];
+	
+	CCSprite *score_disp_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"challengedescbg"]];
+	[score_disp_back setAnchorPoint:ccp(0,1)];
+	[score_disp_back setScaleX:0.8];
+	[score_disp_back setScaleY:0.75];
+	[scoredispbg addChild:score_disp_back];
+	[score_disp_back setOpacity:80];
+	
+	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
+								  color:ccc3(200,30,30)
+							   fontsize:24
+									str:@""] anchor_pt:ccp(0,1)];
 	[scoredispbg addChild:scoredisp];
-	multdisp = [[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-										 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"combo_1_small"]]
-				  pos:[Common pct_of_obj:scoredispbg pctx:0.31 pcty:0.75]] anchor_pt:ccp(0.5,0.5)] scale:0.7];
+	
+	//combo disp
+	CCSprite *combo_disp_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																					  idname:@"challengedescbg"]];
+	[combo_disp_back setPosition:[Common pct_of_obj:score_disp_back pctx:1.05*0.8 pcty:0]];
+	[combo_disp_back setScaleX:0.3];
+	[combo_disp_back setScaleY:0.75];
+	[combo_disp_back setAnchorPoint:ccp(0,1)];
+	[scoredispbg addChild:combo_disp_back];
+	[combo_disp_back setOpacity:80];
+	
+	[scoredispbg addChild:[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.09 pcty:0.7-1-0.06]
+										   color:ccc3(200,30,30)
+										fontsize:10
+											 str:@"x"]];
+	
+	multdisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
+								 color:ccc3(200,30,30)
+							  fontsize:24
+								   str:@""] anchor_pt:ccp(0,1)];
 	[scoredispbg addChild:multdisp];
-	[ingame_ui addChild:scoredispbg];
+	[self addChild:scoredispbg];
+	
+	
+	CGPoint disp_icon_pos = ccp(scoredispbg.position.x,scoredispbg.position.y-score_disp_back.boundingBox.size.height - 5);
+	bones_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_bone_icon"];
+	disp_icon_pos.y -= 24;
+	lives_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_lives_icon"];
+	disp_icon_pos.y -= 24;
+	time_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_time_icon"];
+	
+	
 	current_disp_score = [cape_game.get_main_game.score get_score];
 	
+	
+	
+	
 	return self;
+}
+
+-(CCLabelTTF*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
+	CCSprite *bone_disp_section = [[CCSprite node] pos:section_pos];
+	CCSprite *bone_disp_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengedescbg"]]
+							  anchor_pt:ccp(0,1)];
+	[bone_disp_bg setScaleX:0.5];
+	[bone_disp_bg setScaleY:0.5];
+	[bone_disp_bg setOpacity:80];
+	[bone_disp_section addChild:bone_disp_bg];
+	[self addChild:bone_disp_section];
+	
+	CCSprite *bone_disp_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:icon]];
+	[bone_disp_icon setPosition:[Common pct_of_obj:bone_disp_bg pctx:0.15*0.5 pcty:-0.5*0.5]];
+	[bone_disp_section addChild:bone_disp_icon];
+	
+	CCLabelTTF *bones_text_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
+													color:ccc3(200,30,30)
+												 fontsize:13
+													  str:@""]
+								   anchor_pt:ccp(0,0.5)];
+	[bone_disp_section addChild:bones_text_disp];
+	return bones_text_disp;
 }
 
 -(void)itembar_set_visible:(BOOL)b {
@@ -250,7 +300,21 @@
     [toremove removeAllObjects];
 	
 	[self update_scoredisp:[cape_game get_main_game]];
+	
+	
+	if (floor(last_mult) < floor([[cape_game get_main_game].score get_multiplier])) {
+		[self start_combo_anim:cape_game.get_main_game.score.get_multiplier];
+	}
+	last_mult = [[cape_game get_main_game].score get_multiplier];
+	
 }
+
+-(void)start_combo_anim:(float)combo {
+	ScoreComboAnimation *c = [ScoreComboAnimation cons_combo:combo];
+	[uianim_holder addChild:c];
+	[uianims addObject:c];
+}
+
 
 -(void)update_scoredisp:(GameEngineLayer*)g {
 	if (current_disp_score != [g.score get_score]) {
@@ -262,21 +326,9 @@
 		}
 		
 	}
-	[scoredisp set_label:strf("Score \u00B7 %d",(int)current_disp_score)];
 	int imult = [g.score get_multiplier];
-	[scoredisp set_label:strf("Score \u00B7 %d",(int)current_disp_score)];
-	[multdisp setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
-													   idname:strf("combo_%d_small",imult)]];
-	
-	if (imult == 1) {
-		multdisp_anim_t = 0;
-		[multdisp setScale:0.7];
-		
-	} else {
-		multdisp_anim_t += 0.01 * imult * [Common get_dt_Scale];
-		float range = 0.1 / 5 * imult;
-		[multdisp setScale:range*(cosf(multdisp_anim_t)+1)/2+(0.7)];
-	}
+	[scoredisp set_label:strf("%d",(int)current_disp_score)];
+	[multdisp set_label:strf("%d",imult)];
 }
 
 -(void)update_pause_menu {
@@ -336,6 +388,8 @@
 	[pause_time_disp setString:[time_disp string]];
 	[pause_points_disp setString:strf("Score \u00B7 %d",[cape_game.get_main_game.score get_score])];
 	[pause_new_high_score_disp setVisible:[ScoreManager get_world_highscore:cape_game.get_main_game.world_mode.cur_world] < [cape_game.get_main_game.score get_score]];
+
+	[cape_game pause:YES];
 }
 
 -(void)retry {
@@ -360,6 +414,7 @@
 	[[CCDirector sharedDirector] resume];
 	[ingame_ui setVisible:YES];
 	[pause_ui setVisible:NO];
+	[cape_game pause:NO];
 }
 
 -(void)exit_to_menu {

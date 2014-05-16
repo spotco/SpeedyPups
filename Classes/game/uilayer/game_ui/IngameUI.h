@@ -23,8 +23,7 @@
 	
 	CCSprite *scoredispbg;
 	CCLabelTTF *scoredisp;
-	CCSprite *multdisp;
-	float multdisp_anim_t;
+	CCLabelTTF *multdisp;
 	
 	float current_disp_score;
 	

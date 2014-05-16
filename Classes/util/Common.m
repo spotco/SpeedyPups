@@ -5,6 +5,19 @@
 #import "ObjectPool.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import "CoreFoundation/CoreFoundation.h"
+
+long sys_time() {
+	return CFAbsoluteTimeGetCurrent();
+}
+
+float drp(float a, float b, float div) {
+	return a + (b - a) / div;
+}
+
+float lerp(float a, float b, float t) {
+	return a + (b - a) * t;
+}
 
 @implementation CCSprite_VerboseDealloc
 -(void)dealloc {

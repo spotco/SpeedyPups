@@ -202,6 +202,11 @@
 	
 }
 
+-(void)setVisible:(BOOL)visible {
+	if (visible) [self update_labels_and_buttons];
+	[super setVisible:visible];
+}
+
 -(void)update {
 	if (!self.visible) return;
 	[list update];

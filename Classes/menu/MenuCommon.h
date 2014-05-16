@@ -61,4 +61,6 @@
 +(void)goto_map;
 +(void)close_inventory;
 
++(NSString*)secs_to_prettystr:(long)secs;
+
 @end

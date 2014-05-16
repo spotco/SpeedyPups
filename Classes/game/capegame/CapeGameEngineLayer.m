@@ -19,7 +19,9 @@
 -(void)update:(CapeGameEngineLayer*)g{}
 @end
 
-@implementation CapeGameEngineLayer
+@implementation CapeGameEngineLayer {
+	BOOL pause;
+}
 @synthesize is_boss_capegame;
 
 static int lvl_ct = 0;
@@ -64,6 +66,7 @@ static NSString *blank = @"";
 	is_boss_capegame = boss;
 	main_game = g;
 	is_credits_scene = NO;
+	pause = NO;
 	
 	bg = [BackgroundObject backgroundFromTex:[Resource get_tex:is_boss_capegame?TEX_CLOUDGAME_BOSS_BG:TEX_CLOUDGAME_BG] scrollspd_x:0.1 scrollspd_y:0];
 	[bg setScaleX:[Common scale_from_default].x];
@@ -176,7 +179,7 @@ static NSString *blank = @"";
 
 -(void)update:(ccTime)dt {
 	[Common set_dt:dt];
-	
+	if (pause) return;
 	if (shake_ct > 0) {
 		shake_ct -= [Common get_dt_Scale];
 		CGPoint shake = [self get_shake_offset];
@@ -423,6 +426,10 @@ static NSString *blank = @"";
         touch = [t locationInView:[t view]];
     }
 	touch_down = NO;
+}
+
+-(void)pause:(BOOL)do_pause {
+	pause = do_pause;
 }
 
 -(void)exit {

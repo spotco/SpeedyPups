@@ -166,15 +166,22 @@
 													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
 																					  idname:@"challengedescbg"]];
 	[combo_disp_back setPosition:[Common pct_of_obj:score_disp_back pctx:1.05*0.8 pcty:0]];
-	[combo_disp_back setScaleX:0.65];
-	[combo_disp_back setScaleY:0.55];
+	[combo_disp_back setScaleX:0.3];
+	[combo_disp_back setScaleY:0.75];
 	[combo_disp_back setAnchorPoint:ccp(0,1)];
 	[scoredispbg addChild:combo_disp_back];
 	[combo_disp_back setOpacity:80];
 	
-	multdisp = [[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-									   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"combo_1_small"]]
-				pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.3 pcty:0.7-1]] anchor_pt:ccp(0.5,0.5)] scale:0.7];
+
+	[scoredispbg addChild:[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.09 pcty:0.7-1-0.06]
+										   color:ccc3(200,30,30)
+										fontsize:10
+											 str:@"x"]];
+	
+	multdisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
+								 color:ccc3(200,30,30)
+							  fontsize:24
+								   str:@""] anchor_pt:ccp(0,1)];
 	[scoredispbg addChild:multdisp];
 	[self addChild:scoredispbg];
 	
@@ -372,19 +379,7 @@ static int ct  = 0;
 	
 	int imult = [g.score get_multiplier];
 	[scoredisp set_label:strf("%d",(int)current_disp_score)];
-	[multdisp setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
-													   idname:strf("combo_%d_small",imult)]];
-	
-	if (imult == 1) {
-		multdisp_anim_t = 0;
-		[multdisp setScale:0.7];
-		
-	} else {
-		multdisp_anim_t += 0.01 * imult * [Common get_dt_Scale];
-		float range = 0.1 / 5 * imult;
-		[multdisp setScale:range*(cosf(multdisp_anim_t)+1)/2+(0.7)];
-	}
-
+	[multdisp set_label:strf("%d",imult)];
 }
 
 -(void)set_label:(CCLabelTTF*)l to:(NSString*)s {

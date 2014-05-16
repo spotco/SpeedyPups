@@ -312,4 +312,8 @@
     [GEventDispatcher push_event:[GEvent cons_type:GEVentType_MENU_CLOSE_INVENTORY]];
 }
 
++(NSString*)secs_to_prettystr:(long)secs {
+	return strf("%.2d:%.2d:%.2d",(secs/3600)%100,(secs/600)%60, (secs)%100);
+}
+
 @end

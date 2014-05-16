@@ -2,6 +2,11 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
+long sys_time();
+float drp(float a, float b, float div);
+float lerp(float a, float b, float t);
+#define NSVEnum(val,type) [NSValue value:&val withObjCType:@encode(type)]
+
 @interface CCSprite_VerboseDealloc : CCSprite
 @end
 
@@ -13,7 +18,7 @@
 @end
 @implementation NSArray (Random)
 	-(id)random {
-		uint32_t rnd = arc4random_uniform([self count]);
+		uint32_t rnd = (uint32_t)arc4random_uniform([self count]);
 		return [self objectAtIndex:rnd];
 	}
 	-(BOOL)contains_str:(NSString *)tar {
@@ -31,7 +36,7 @@
 	}
 	-(id)get:(int)i {
 		if (i >= [self count]) {
-			NSLog(@"error getting nsarray[%d] (size %d)",i,self.count);
+			//NSLog(@"error getting nsarray[%d] (size %d)",i,self.count);
 			return NULL;
 		} else {
 			return [self objectAtIndex:i];
@@ -46,7 +51,7 @@
 @implementation NSMutableArray (Shuffle)
 	-(void)shuffle {
 		for (NSUInteger i = [self count] - 1; i >= 1; i--){
-			u_int32_t j = arc4random_uniform(i + 1);
+			u_int32_t j = (uint32_t)arc4random_uniform(i + 1);
 			[self exchangeObjectAtIndex:j withObjectAtIndex:i];
 		}
 	}
@@ -58,7 +63,7 @@
 #define DO_FOR(cts,a) for(int i = 0; i < cts; i++) { a; }
 
 #define _NSSET(...)  [NSMutableSet setWithArray:@[__VA_ARGS__]]
-#define _NSMARRAY(...)  [NSMutableArray arrayWithArray@[__VA_ARGS__]]
+#define _NSMARRAY(...)  [NSMutableArray arrayWithArray:@[__VA_ARGS__]]
 
 //inclusive s, not l
 #define int_random(s,l) arc4random()%l+s

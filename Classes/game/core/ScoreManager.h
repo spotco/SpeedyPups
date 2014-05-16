@@ -16,4 +16,5 @@
 -(int)get_score;
 -(float)get_multiplier;
 -(void)reset_score;
+-(void)decrement_score:(int)amt;
 @end
