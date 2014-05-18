@@ -6,6 +6,9 @@
 #import "InventoryLayerTab.h"
 #import "DataStore.h"
 #import "Player.h"
+#import "DailyLoginPrizeManager.h"
+#import "GameMain.h"
+#import "BasePopup.h"
 
 @implementation InventoryTabPane_Settings
 
@@ -42,7 +45,7 @@
 												fontsize:16
 													 str:@"play sfx"] anchor_pt:ccp(0,0.5)]];
 	
-	TouchButton *cleardata = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.16 pcty:0.25]
+	TouchButton *cleardata = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.4 pcty:0.25]
 													  tex:[Resource get_tex:TEX_NMENU_ITEMS]
 												  texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
 													   cb:[Common cons_callback:self sel:@selector(clear_data)]];
@@ -52,6 +55,31 @@
 										   str:@"Reset Data"]];
 	[self addChild:cleardata];
 	[touches addObject:cleardata];
+	
+	TouchButton *replay_intro = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.16 pcty:0.25]
+													  tex:[Resource get_tex:TEX_NMENU_ITEMS]
+												  texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
+													   cb:[Common cons_callback:self sel:@selector(replay_intro)]];
+	[replay_intro addChild:[Common cons_label_pos:[Common pct_of_obj:replay_intro pctx:0.5 pcty:0.5]
+										 color:ccc3(0,0,0)
+									  fontsize:13
+										   str:@"Replay Intro"]];
+	[self addChild:replay_intro];
+	[touches addObject:replay_intro];
+	 
+	NSString *maxstr = @"0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n";
+    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
+													  constrainedToSize:CGSizeMake(1000, 1000)
+														  lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
+	version = [CCLabelTTF labelWithString:@""
+									 dimensions:actualSize
+									  alignment:UITextAlignmentCenter
+									   fontName:@"Carton Six"
+									   fontSize:15];
+	[version setColor:ccc3(20,20,20)];
+	[version setPosition:[Common pct_of_obj:parent pctx:0.7 pcty:0.725]];
+	[self addChild:version];
+	
 	return self;
 }
 
@@ -83,8 +111,12 @@
 	if (buttonIndex == 0) {
 		[DataStore reset_all];
 		[Player set_character:TEX_DOG_RUN_1];
-		[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_QUIT]];
+		[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:0 i2:0]];
 	}
+}
+
+-(void)replay_intro {
+	[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:1 i2:0]];
 }
 
 -(void)update {
@@ -94,6 +126,12 @@
 			[obj update];
 		}
 	}
+	
+	[version set_label:[NSString stringWithFormat:
+		@"%@\n\nNew Day in:\n%@",
+		[GameMain GET_VERSION_STRING],
+		[MenuCommon secs_to_prettystr:[DailyLoginPrizeManager get_time_until_new_day]
+	]]];
 }
 
 -(void)touch_begin:(CGPoint)pt {

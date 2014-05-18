@@ -40,6 +40,8 @@ typedef enum {
 	CCSprite *first_time_popup;
 	
 	CCSprite *highscore_sign_base;
+	
+	CCMenuItemSprite *wheel_ad_button;
 }
 
 +(NMenuPlayPage*)cons;

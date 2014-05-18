@@ -3,6 +3,8 @@
 #import "Resource.h"
 #import "FileCache.h"
 
+@class BasePopup;
+
 @interface TouchButton : CCSprite
 
 +(TouchButton*)cons_pt:(CGPoint)pt tex:(CCTexture2D*)tex texrect:(CGRect)texrect cb:(CallBack*)tcb;
@@ -62,5 +64,6 @@
 +(void)close_inventory;
 
 +(NSString*)secs_to_prettystr:(long)secs;
-
++(CCSprite*)wheel_of_prizes_button_sprite;
++(void)popup:(BasePopup*)p;
 @end

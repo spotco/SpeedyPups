@@ -2,7 +2,7 @@
 #import "GEventDispatcher.h"
 #import "MainMenuLayer.h"
 #import "CharSelAnim.h"
-
+#import "MainMenuInventoryLayer.h"
 
 @implementation TouchButton
 @synthesize cb;
@@ -281,7 +281,7 @@
 
 +(void)inventory {
 	[self close_inventory];
-    [GEventDispatcher push_event:[GEvent cons_type:GEventType_MENU_INVENTORY]];
+    [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_INVENTORY] add_i1:InventoryLayerTab_Index_Inventory i2:0]];
 }
 
 +(void)goto_shop {
@@ -313,7 +313,17 @@
 }
 
 +(NSString*)secs_to_prettystr:(long)secs {
-	return strf("%.2d:%.2d:%.2d",(secs/3600)%100,(secs/600)%60, (secs)%100);
+	return strf("%.2d:%.2d:%.2d",(secs/3600)%60,(secs/60)%60, (secs)%60);
+}
+
++(CCSprite*)wheel_of_prizes_button_sprite {
+	CCSprite *rtv = [CCSprite node];
+	[rtv runAction:[Common cons_anim:@[@"spinbutton_0",@"spinbutton_1",@"spinbutton_2"] speed:0.5 tex_key:TEX_UI_INGAMEUI_SS]];
+	return rtv;
+}
+
++(void)popup:(BasePopup*)p {
+	[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_MENU_POPUP] add_key:@"popup" value:p]];
 }
 
 @end

@@ -68,7 +68,9 @@ typedef enum {
 	GEventType_BEGIN_CAPE_GAME,
 	GEventType_BEGIN_BOSS_CAPE_GAME,
 	
-	GEventType_COMBO_DISP_ANIM
+	GEventType_COMBO_DISP_ANIM,
+	
+	GEventType_MENU_POPUP
 } GEventType;
 
 @interface GEvent : NSObject

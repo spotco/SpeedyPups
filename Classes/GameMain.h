@@ -16,8 +16,8 @@
 +(void)start_menu;
 +(void)start_testlevel;
 +(void)start_game_challengelevel:(ChallengeInfo*)info;
-
 +(void)start_from_callback:(GameModeCallback*)c;
++(void)start_introanim;
 
 +(void)run_scene:(CCScene*)s;
 
@@ -27,4 +27,5 @@
 +(BOOL)GET_IMMEDIATE_BOSS;
 +(BOOL)GET_BOSS_1_HEALTH;
 +(int)GET_DEFAULT_STARTING_LIVES;
++(NSString*)GET_VERSION_STRING;
 @end

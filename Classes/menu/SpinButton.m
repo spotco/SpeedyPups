@@ -59,6 +59,12 @@ typedef enum SpinButtonMode {
 	[self update_image];
 }
 
+-(void)lock_time_string:(NSString*)msg {
+	mode = SpinButtonMode_LOCKED_TIME;
+	[time_disp set_label:msg];
+	[self update_image];
+}
+
 -(void)lock_bones:(int)cost {
 	mode = SpinButtonMode_LOCKED_BONES;
 	[time_disp set_label:strf("%d",cost)];

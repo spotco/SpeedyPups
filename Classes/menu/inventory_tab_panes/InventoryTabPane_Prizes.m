@@ -4,11 +4,16 @@
 #import "SpinButton.h"
 #import "DataStore.h"
 #import "UserInventory.h"
+#import "Particle.h"
+#import "ShopBuyBoneFlyoutParticle.h" 
+#import "ShopBuyFlyoffTextParticle.h"
+#import "BoneCollectUIAnimation.h"
+#import "AudioManager.h"
+#import "BasePopup.h"
 
 typedef enum PrizesPaneMode {
 	PrizesPaneMode_REST,
-	PrizesPaneMode_SPINNING,
-	PrizesPaneMode_GIVE_PRIZE
+	PrizesPaneMode_SPINNING
 } PrizesPaneMode;
 
 typedef enum Prize {
@@ -31,15 +36,22 @@ typedef enum Prize {
 	NSMutableArray *touches;
 	NSMutableArray *lights;
 	NSMutableArray *prizes;
+	
+	NSMutableArray *particles;
+	CCSprite *particle_holder;
+	
 	CCSprite *wheel_pointer;
 	float wheel_pointer_vr;
 	SpinButton *spinbutton;
 	
 	CCLabelTTF *cur_bones_disp;
 	CCLabelTTF *cur_coins_disp;
+	CCLabelTTF *reset_in_disp;
 	
 	PrizesPaneMode mode;
 	float disp_bones;
+	
+	int last_light;
 }
 
 +(InventoryTabPane_Prizes*)cons:(CCSprite *)parent {
@@ -49,14 +61,31 @@ typedef enum Prize {
 -(id)cons:(CCSprite*)parent {
 	touches = [NSMutableArray array];
 	prizes = [NSMutableArray array];
+	
+	particles = [NSMutableArray array];
+	particle_holder = [CCSprite node];
+	[self addChild:particle_holder z:5];
+	
 	mode = PrizesPaneMode_REST;
 	disp_bones = [UserInventory get_current_bones];
 	CCSprite *wheel_label = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"wheelofprizes"]]
-							 pos:[Common pct_of_obj:parent pctx:0.5 pcty:0.79]];
-	[wheel_label setScaleX:0.82];
-	[wheel_label setScaleY:0.66];
+							 pos:[Common pct_of_obj:parent pctx:0.15 pcty:0.725]];
+	[wheel_label setScale:0.5];
 	[self addChild:wheel_label];
+	
+	
+    CGSize actualSize = [@"00000000000000\n00000000000000" sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
+                           constrainedToSize:CGSizeMake(1000, 1000)
+							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
+	reset_in_disp = [CCLabelTTF labelWithString:@"Wheel resets in\n00:00:00"
+								 dimensions:actualSize
+								  alignment:UITextAlignmentCenter
+								   fontName:@"Carton Six"
+								   fontSize:15];
+	[reset_in_disp setColor:ccc3(200,30,30)];
+	[reset_in_disp setPosition:[Common pct_of_obj:parent pctx:0.84 pcty:0.75]];
+	[self addChild:reset_in_disp];
 	
 	CCSprite *bones_disp_bg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 													 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"currency_bones_disp"]]
@@ -83,7 +112,7 @@ typedef enum Prize {
 	
 	CCSprite *wheel_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 												 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_wheel_back"]]
-						  pos:[Common pct_of_obj:parent pctx:0.5 pcty:0.425]];
+						  pos:[Common pct_of_obj:parent pctx:0.5 pcty:0.5]];
 	[self addChild:wheel_bg];
 	
 	wheel_pointer = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
@@ -115,7 +144,7 @@ typedef enum Prize {
 		[prizes addObject:prize_icon];
 		[wheel_bg addChild:prize_icon];
 	}
-	[wheel_bg setScale:0.8];
+	[wheel_bg setScale:0.9];
 	[wheel_bg addChild:wheel_pointer];
 	
 	
@@ -128,26 +157,63 @@ typedef enum Prize {
 	wheel_pointer_vr = 0;
 	wheel_pointer.rotation = float_random(-180, 180);
 	
-	[self reload_prizes];
+	[self conditional_refresh_prizes];
 	
 	return self;
 }
 
+#define KEY_LAST_RESET @"key_last_reset"
+#define KEY_PRIZEWHEEL(x) strf("key_prizewheel_%d",x)
+#define RESET_TIME 12 * 60 * 60
+//#define RESET_TIME 30
+#define SPIN_COST 500
+
++(int)get_spin_cost { return SPIN_COST; }
+
+-(BOOL)conditional_refresh_prizes {
+	if (sys_time() - [DataStore get_long_for_key:KEY_LAST_RESET] > RESET_TIME) {
+		[self reload_prizes];
+		[DataStore set_long_for_key:KEY_LAST_RESET long_value:sys_time()];
+		return YES;
+		
+	} else {
+		for (int i = 0; i < prizes.count; i++) {
+			PrizeIcon *itr = prizes[i];
+			Prize tar_type = [DataStore get_int_for_key:KEY_PRIZEWHEEL(i)];
+			
+			if (itr.prize_type != tar_type) {
+				itr.prize_type = tar_type;
+				itr.textureRect = [FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:[self texkey_for_prize_type:tar_type]];
+			}
+		}
+		return NO;
+		
+	}
+	
+}
+
 
 -(void)reload_prizes {
-	
 	Prize manycoin = Prize_ManyCoin;
 	Prize manybone = Prize_ManyBone;
 	Prize coin = Prize_Coin;
 	Prize bone = Prize_Bone;
+	Prize mystery = Prize_Mystery;
 	
 	NSMutableArray *in_prizes = _NSMARRAY(
+		NSVEnum(mystery, Prize),
+		NSVEnum(manycoin, Prize),
 		NSVEnum(manycoin, Prize),
 		NSVEnum(manybone, Prize),
 		NSVEnum(coin, Prize),
 		NSVEnum(coin, Prize),
+		NSVEnum(coin, Prize),
+		NSVEnum(coin, Prize),
+		NSVEnum(coin, Prize),
+		NSVEnum(bone, Prize),
 		NSVEnum(bone, Prize),
 		NSVEnum(bone, Prize)
+										  
 	);
 	[in_prizes shuffle];
 	
@@ -169,38 +235,36 @@ typedef enum Prize {
 		[in_prizes removeLastObject];
 		
 		tar.prize_type = tar_type;
-		
-		NSString *texkey = @"";
-		if (tar.prize_type == Prize_ManyCoin) {
-			texkey = @"menu_prize_manycoin";
-		} else if (tar.prize_type == Prize_ManyBone) {
-			texkey = @"menu_prize_manybone";
-		} else if (tar.prize_type == Prize_Coin) {
-			texkey = @"menu_prize_fewcoin";
-		} else if (tar.prize_type == Prize_Bone) {
-			texkey = @"menu_prize_fewbone";
-		} else if (tar.prize_type == Prize_Mystery) {
-			texkey = @"menu_prize_mystery";
-		}
-		[tar setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:texkey]];
+		[tar setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:[self texkey_for_prize_type:tar_type]]];
 	}
 	
-	
+	for (int i = 0; i < prizes.count; i++) {
+		PrizeIcon *itr = prizes[i];
+		[DataStore set_key:KEY_PRIZEWHEEL(i) int_value:itr.prize_type];
+	}
 }
 
-#define KEY_LAST_TIME_SPIN @"key_last_time_spinned"
-#define SPIN_COST 500
-#define RESPIN_TIME 10
+-(NSString*)texkey_for_prize_type:(Prize)tar {
+	NSString *texkey = @"";
+	if (tar == Prize_ManyCoin) {
+		texkey = @"menu_prize_manycoin";
+	} else if (tar == Prize_ManyBone) {
+		texkey = @"menu_prize_manybone";
+	} else if (tar == Prize_Coin) {
+		texkey = @"menu_prize_fewcoin";
+	} else if (tar == Prize_Bone) {
+		texkey = @"menu_prize_fewbone";
+	} else if (tar == Prize_Mystery) {
+		texkey = @"menu_prize_mystery";
+	}
+	return texkey;
+}
 
 -(void)refresh_page {
 	BOOL time_ok = NO;
-	long last_time_spinned = [DataStore get_long_for_key:KEY_LAST_TIME_SPIN];
-	if (last_time_spinned == 0) {
+	
+	if (mode == PrizesPaneMode_REST) {
 		time_ok = YES;
-	} else if (sys_time() - last_time_spinned > RESPIN_TIME) {
-		time_ok = YES;
-	} else {
-		time_ok = NO;
 	}
 	
 	BOOL bones_ok = NO;
@@ -208,9 +272,8 @@ typedef enum Prize {
 		bones_ok = YES;
 	}
 	
-	
 	if (!time_ok) {
-		[spinbutton lock_time:RESPIN_TIME - (sys_time() - last_time_spinned)];
+		[spinbutton lock_time_string:@"Wait!"];
 		
 	} else if (!bones_ok) {
 		[spinbutton lock_bones:SPIN_COST];
@@ -227,32 +290,89 @@ typedef enum Prize {
 	if (ABS(disp_bones - [UserInventory get_current_bones]) < 2) disp_bones = [UserInventory get_current_bones];
 }
 
--(void)give_prize:(Prize)t {
-	if (t == Prize_ManyCoin) {
-		[UserInventory add_coins:3];
+-(void)give_prize:(Prize)t start:(CGPoint)start {
+	if (t == Prize_None) {
+		[AudioManager mute_music_for:20];
+		[AudioManager playsfx:SFX_FANFARE_LOSE];
+		[AudioManager playsfx:SFX_FAIL];
 		
-	} else if (t == Prize_ManyBone) {
-		[UserInventory add_bones:1000];
+	} else {
+		[AudioManager mute_music_for:20];
+		[AudioManager playsfx:SFX_FANFARE_WIN];
+		[AudioManager playsfx:SFX_CHECKPOINT];
 		
-	} else if (t == Prize_Coin) {
-		[UserInventory add_coins:1];
+		[self add_particle:[[BoneCollectUIAnimation_Particle cons_start:start
+																	end:ccp(0,0)]
+							set_texture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+							rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:[self texkey_for_prize_type:t]]]];
 		
-	} else if (t == Prize_Bone) {
-		[UserInventory add_bones:300];
-		
+		if (t == Prize_ManyCoin) {
+			[UserInventory add_coins:3];
+			
+		} else if (t == Prize_ManyBone) {
+			[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:CGPointAdd(cur_bones_disp.position, ccp(25,60))
+															 text:strf("+%d",1500) color:ccc3(30,200,30)]];
+			[UserInventory add_bones:1500];
+			
+		} else if (t == Prize_Coin) {
+			[UserInventory add_coins:1];
+			
+		} else if (t == Prize_Bone) {
+			[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:CGPointAdd(cur_bones_disp.position, ccp(25,60))
+															 text:strf("+%d",500) color:ccc3(30,200,30)]];
+			[UserInventory add_bones:500];
+			
+		} else if (t == Prize_Mystery) {
+			BasePopup *p = [BasePopup cons];
+			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.8]
+										 color:ccc3(20,20,20)
+									  fontsize:35
+										   str:@"Congratulations!"]];
+			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.65]
+										 color:ccc3(20,20,20)
+									  fontsize:15
+										   str:@"You won the mystery prize!"]];
+			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.55]
+										 color:ccc3(20,20,20)
+									  fontsize:15
+										   str:@"(Still gotta implement this...)"]];
+			[MenuCommon popup:p];
+			NSLog(@"todo -- mysteryprize");
+			
+		}
 	}
 }
 
 -(void)spin {
+	if (mode != PrizesPaneMode_REST) return;
 	if ([UserInventory get_current_bones] < SPIN_COST) return;
+	
+	for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/4) {
+		CGPoint vel = ccp(sinf(i),cosf(i));
+		float scale = float_random(5, 7);
+		[self add_particle:[ShopBuyBoneFlyoutParticle cons_pt:spinbutton.position vel:ccp(vel.x*scale,vel.y*scale)]];
+	}
+	[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:CGPointAdd(cur_bones_disp.position, ccp(25,60))
+													 text:strf("-%d",SPIN_COST)]];
+	[AudioManager playsfx:SFX_CHECKPOINT];
+	
 	[UserInventory add_bones:-SPIN_COST];
 	mode = PrizesPaneMode_SPINNING;
 	wheel_pointer_vr = float_random(35, 45);
-	[DataStore set_long_for_key:KEY_LAST_TIME_SPIN long_value:sys_time()];
 }
 
 -(void)update {
-	if (!self.visible) return;
+	if (!self.visible || !self.parent.visible) return;
+	
+	NSMutableArray *toremove = [NSMutableArray array];
+    for (Particle *i in particles) {
+        [i update:(id)self];
+        if ([i should_remove]) {
+            [particle_holder removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+	[particles removeObjectsInArray:toremove];
 	
 	for (CCSprite *spr in lights) [spr setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_wheel_light_off"]];
 	for (id b in touches) if ([b respondsToSelector:@selector(update)]) [b update];
@@ -269,20 +389,36 @@ typedef enum Prize {
 	CCSprite *light = lights[i_tar];
 	[light setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_wheel_light_on"]];
 	
+	[reset_in_disp set_label:
+	 [NSString stringWithFormat:@"Wheel resets in\n%@",
+	  [MenuCommon secs_to_prettystr:RESET_TIME- (sys_time() - [DataStore get_long_for_key:KEY_LAST_RESET])]
+	  ]
+	 ];
+	
 	if (mode == PrizesPaneMode_SPINNING) {
 		[wheel_pointer setRotation:wheel_pointer.rotation + wheel_pointer_vr * [Common get_dt_Scale]];
 		if (wheel_pointer_vr > 0.1 && wheel_pointer_vr * 0.95 < 0.1) {
 			wheel_pointer_vr = 0;
-			[self give_prize:((PrizeIcon*)prizes[i_tar]).prize_type];
-			mode = PrizesPaneMode_GIVE_PRIZE;
+			
+			PrizeIcon *tar_obj = prizes[i_tar];
+			[self give_prize:tar_obj.prize_type start:CGPointAdd([tar_obj convertToWorldSpace:CGPointZero],ccp(-50,-50))];
+			[DataStore set_key:KEY_PRIZEWHEEL(i_tar) int_value:Prize_None];
+			mode = PrizesPaneMode_REST;
 		}
 		wheel_pointer_vr *= 0.975;
-	
-	} else if (mode == PrizesPaneMode_GIVE_PRIZE) {
-		mode = PrizesPaneMode_REST;
+		
+		if (i_tar != last_light) [AudioManager playsfx:SFX_BONE];
+		last_light = i_tar;
+		
+	} else if (mode == PrizesPaneMode_REST) {
+		[self conditional_refresh_prizes];
 		
 	}
+}
 
+-(void)add_particle:(Particle*)p {
+	[particle_holder addChild:p];
+	[particles addObject:p];
 }
 
 -(void)setVisible:(BOOL)visible {

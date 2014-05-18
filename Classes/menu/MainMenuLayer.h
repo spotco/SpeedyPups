@@ -6,7 +6,7 @@
 #import "MainMenuBGLayer.h"
 
 @class MainMenuInventoryLayer;
-
+@class BasePopup;
 
 #define MENU_STARTING_PAGE_ID 2
 #define MENU_DOG_MODE_PAGE_ID 1
@@ -24,7 +24,8 @@
     int cur_page;
     CGPoint last,dp;
 	
-	BOOL first_update;
+	BasePopup *current_popup;
+	int popup_prev_visible;
 }
 
 @property(readwrite,strong) MainMenuBGLayer* bg;

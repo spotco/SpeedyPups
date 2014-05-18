@@ -4,15 +4,19 @@
 @implementation ShopBuyFlyoffTextParticle
 
 +(ShopBuyFlyoffTextParticle*)cons_pt:(CGPoint)pt text:(NSString *)text {
-	return [[ShopBuyFlyoffTextParticle node] cons_pt:pt text:text];
+	return [[ShopBuyFlyoffTextParticle node] cons_pt:pt text:text color:ccc3(200,30,30)];
+}
+
++(ShopBuyFlyoffTextParticle*)cons_pt:(CGPoint)pt text:(NSString *)text color:(ccColor3B)_color {
+	return [[ShopBuyFlyoffTextParticle node] cons_pt:pt text:text color:_color];
 }
 
 #define MAX_CT 20.0
 
--(id)cons_pt:(CGPoint)pt text:(NSString *)text {
+-(id)cons_pt:(CGPoint)pt text:(NSString *)text color:(ccColor3B)_color {
 	ct = MAX_CT;
 	[self addChild:[Common cons_label_pos:CGPointZero
-									color:ccc3(200, 30, 30) fontsize:22 str:text]];
+									color:_color fontsize:22 str:text]];
 	[self setPosition:pt];
 	vel = ccp(0,3);
 	return self;

@@ -486,4 +486,12 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return platform;
 }
 
++(BOOL)is_visible:(CCNode*)tar {
+	while (tar != NULL) {
+		if (!tar.visible) return NO;
+		tar = tar.parent;
+	}
+	return YES;
+}
+
 @end

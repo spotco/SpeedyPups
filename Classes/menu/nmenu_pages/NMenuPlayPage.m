@@ -4,6 +4,8 @@
 #import "GameMain.h"
 #import "FreeRunStartAtManager.h"
 #import "ScoreManager.h"
+#import "UserInventory.h"
+#import "InventoryTabPane_Prizes.h"
 
 @implementation NMenuPlayPage
 
@@ -60,6 +62,7 @@
     
     CCMenu *m = [CCMenu menuWithItems:playbutton, nil];
     [m setPosition:ccp(0,0)];
+	[self cons_wheel_button:m];
     [self addChild:m];
     
     rundog = [CCSprite node];
@@ -160,11 +163,42 @@
     return self;
 }
 
+-(void)cons_wheel_button:(CCMenu*)menu {
+	CCSprite *normal = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+											  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																			 idname:@"spinbutton_0"]];
+	[normal addChild:[[MenuCommon wheel_of_prizes_button_sprite] anchor_pt:ccp(0,0)]];
+	CCSprite *selected = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+												rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																			   idname:@"spinbutton_0"]];
+	[selected addChild:[[MenuCommon wheel_of_prizes_button_sprite] anchor_pt:ccp(0,0)]];
+	[Common set_zoom_pos_align:normal zoomed:selected scale:1.2];
+	
+	wheel_ad_button = [CCMenuItemSprite itemFromNormalSprite:normal
+																selectedSprite:selected
+																		target:self selector:@selector(open_wheel)];
+	[wheel_ad_button setScale:0.6];
+	[wheel_ad_button setAnchorPoint:ccp(1,1)];
+	[wheel_ad_button setPosition:CGPointAdd([Common screen_pctwid:1 pcthei:1],ccp(-5,-5))];
+	[menu addChild:wheel_ad_button];
+}
+
+-(void)wheel_ad_button_conditional_setVisible:(BOOL)tar {
+	if ([UserInventory get_current_bones] >= [InventoryTabPane_Prizes get_spin_cost]) {
+		[wheel_ad_button setVisible:tar];
+	} else {
+		[wheel_ad_button setVisible:NO];
+	}
+}
+
+-(void)open_wheel {
+	[GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_INVENTORY] add_i1:InventoryLayerTab_Index_Prizes i2:0]];
+}
+
 -(void)cons_highscore_sign {
 	
 	highscore_sign_base = [CCSprite node];
 	[highscore_sign_base setContentSize:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"playpage_highscore_sign"].size];
-	//CGRect rect =
 	[highscore_sign_base setPosition:[Common screen_pctwid:0.87 pcthei:0.51]];
 	
 	[highscore_sign_base setScale:0.9];
@@ -272,6 +306,7 @@
         [nav_menu setVisible:YES];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:NO];
+		[self wheel_ad_button_conditional_setVisible:NO];
         
     } else if (cur_mode == PlayPageMode_WAIT) {
         [logo_base setVisible:YES];
@@ -279,6 +314,7 @@
         [nav_menu setVisible:YES];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:NO];
+		[self wheel_ad_button_conditional_setVisible:YES];
     
     } else if (cur_mode == PlayPageMode_DOGRUN) {
         [logo_base setVisible:NO];
@@ -286,6 +322,7 @@
         [nav_menu setVisible:NO];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:NO];
+		[self wheel_ad_button_conditional_setVisible:NO];
         
         if (rundog.position.x > 200 && ![birds get_activated]) {
             [birds activate_birds];
@@ -316,6 +353,7 @@
         [mode_choose_menu setVisible:NO];
         [birds setVisible:NO];
         [challengeselect setVisible:NO];
+		[self wheel_ad_button_conditional_setVisible:NO];
         
         scrollup_pct+=0.04;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
@@ -331,6 +369,7 @@
         [logo_base setVisible:YES];
         [mode_choose_menu setVisible:YES];
         [challengeselect setVisible:NO];
+		[self wheel_ad_button_conditional_setVisible:YES];
         
     } else if (cur_mode == PlayPageMode_CHALLENGE_SELECT) {
         [playbutton setVisible:NO];
@@ -338,6 +377,7 @@
         [logo_base setVisible:NO];
         [mode_choose_menu setVisible:NO];
         [challengeselect setVisible:YES];
+		[self wheel_ad_button_conditional_setVisible:NO];
         
     } else if (cur_mode == PlayPageMode_CHALLENGE_VIEW) {
         

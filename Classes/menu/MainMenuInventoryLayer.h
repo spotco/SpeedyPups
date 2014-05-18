@@ -11,6 +11,14 @@
 -(void)touch_end:(CGPoint)pt;
 @end
 
+typedef enum InventoryLayerTab_Index {
+	InventoryLayerTab_Index_Inventory,
+	InventoryLayerTab_Index_Upgrades,
+	InventoryLayerTab_Index_Settings,
+	InventoryLayerTab_Index_Prizes,
+	InventoryLayerTab_Index_Extras
+} InventoryLayerTab_Index;
+
 @interface MainMenuInventoryLayer : CCLayer <GEventListener> {
     CCSprite *inventory_window;
 	 

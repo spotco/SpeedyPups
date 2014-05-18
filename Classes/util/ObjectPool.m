@@ -19,7 +19,7 @@
 
 @implementation ObjectPool
 
-#define DO_DEBUG_INFO NO
+#define DO_DEBUG_INFO YES
 
 static NSMutableDictionary *class_pool;
 static NSMutableDictionary *info_pool;

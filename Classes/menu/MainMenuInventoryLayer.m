@@ -27,9 +27,6 @@
 
 @implementation MainMenuInventoryLayer
 
-static NSString* default_text = @"Equip to use powerups on your next run. Unlock upgrades at the store!";
-static NSString* locked_text = @"Buy at the store to unlock and equip on your next run!";
-
 +(MainMenuInventoryLayer*)cons {
     return [MainMenuInventoryLayer node];
 }
@@ -171,9 +168,20 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 	for (InventoryTabPane *pane in tabpanes) [pane update];
 }
 
--(void)open {
+-(void)open:(InventoryLayerTab_Index)page {
     [inventory_window setVisible:YES];
 	[AudioManager playsfx:SFX_MENU_UP];
+	if (page == InventoryLayerTab_Index_Inventory) {
+		[self tab_inventory];
+	} else if (page == InventoryLayerTab_Index_Upgrades) {
+		[self tab_upgrades];
+	} else if (page == InventoryLayerTab_Index_Settings) {
+		[self tab_settings];
+	} else if (page == InventoryLayerTab_Index_Prizes) {
+		[self tab_prizes];
+	} else if (page == InventoryLayerTab_Index_Extras) {
+		[self tab_extras];
+	}
 }
 
 -(void)close {
@@ -183,7 +191,7 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_MENU_INVENTORY) {
-        [self open];
+        [self open:e.i1];
 		
     } else if (e.type == GeventType_MENU_UPDATE_INVENTORY) {
 		[(InventoryTabPane_Inventory*)tabpane_inventory update_available_items];
@@ -203,18 +211,18 @@ static NSString* locked_text = @"Buy at the store to unlock and equip on your ne
 
 -(void)touch_begin:(CGPoint)pt {
 	if (![self window_open]) return;
-	for (InventoryLayerTab *tab in tabs) [tab touch_begin:pt];
-	for (InventoryTabPane *pane in tabpanes) [pane touch_begin:pt];
+	for (InventoryLayerTab *tab in tabs) if ([Common is_visible:tab]) [tab touch_begin:pt];
+	for (InventoryTabPane *pane in tabpanes) if ([Common is_visible:pane]) [pane touch_begin:pt];
 }
 -(void)touch_move:(CGPoint)pt{
 	if (![self window_open]) return;
-	for (InventoryLayerTab *tab in tabs) [tab touch_move:pt];
-	for (InventoryTabPane *pane in tabpanes) [pane touch_move:pt];
+	for (InventoryLayerTab *tab in tabs) if ([Common is_visible:tab])  [tab touch_move:pt];
+	for (InventoryTabPane *pane in tabpanes) if ([Common is_visible:pane])  [pane touch_move:pt];
 }
 -(void)touch_end:(CGPoint)pt{
 	if (![self window_open]) return;
-	for (InventoryLayerTab *tab in tabs) [tab touch_end:pt];
-	for (InventoryTabPane *pane in tabpanes) [pane touch_end:pt];
+	for (InventoryLayerTab *tab in tabs) if ([Common is_visible:tab])  [tab touch_end:pt];
+	for (InventoryTabPane *pane in tabpanes) if ([Common is_visible:pane])  [pane touch_end:pt];
 }
 
 -(void)dealloc {

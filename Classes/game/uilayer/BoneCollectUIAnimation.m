@@ -49,9 +49,7 @@
 @end
 
 @implementation TreatCollectUIAnimation
-
 #define CTMAX 50
-
 +(TreatCollectUIAnimation*)cons_start:(CGPoint)start end:(CGPoint)end {
     return [[TreatCollectUIAnimation node] init_start:start end:end];
 }
@@ -60,10 +58,39 @@
     start = tstart;
     end = tend;
     ct = CTMAX;
-    [self addChild:[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS] rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"treat"]]];
+    [self setTexture:[Resource get_tex:TEX_ITEM_SS]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"treat"]];
 	[self set_ctmax:CTMAX];
     
     return self;
 }
+@end
 
+@implementation BoneCollectUIAnimation_Particle {
+	BoneCollectUIAnimation *inner;
+}
+
++(BoneCollectUIAnimation_Particle*)cons_start:(CGPoint)start end:(CGPoint)end {
+	return [[BoneCollectUIAnimation_Particle node] pcons_start:start end:end];
+}
+
+-(BoneCollectUIAnimation_Particle*)set_texture:(CCTexture2D*)tex rect:(CGRect)rect {
+	[inner setTexture:tex];
+	[inner setTextureRect:rect];
+	return self;
+}
+
+-(id)pcons_start:(CGPoint)start end:(CGPoint)end {
+	inner = [TreatCollectUIAnimation cons_start:start end:end];
+	[self addChild:inner];
+	return self;
+}
+
+-(void)update:(GameEngineLayer *)g {
+	[inner update];
+}
+
+-(BOOL)should_remove {
+	return inner.ct <= 0;
+}
 @end

@@ -149,6 +149,8 @@
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
 		7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLoader.m */; };
 		7E60A69E1812910000CC7C07 /* SubBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69D1812910000CC7C07 /* SubBoss.m */; };
+		7E6433B81928BDB500A427EB /* DailyLoginPrizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6433B71928BDB500A427EB /* DailyLoginPrizeManager.m */; };
+		7E6433BC1928C67600A427EB /* BasePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6433BB1928C67600A427EB /* BasePopup.m */; };
 		7E6D0E491829214200BD1602 /* boss2_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D0E481829214200BD1602 /* boss2_start.map */; };
 		7E6E61F4182CA0DA008EFA6F /* test_quick.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E61F3182CA0DA008EFA6F /* test_quick.map */; };
 		7E709F1F17E77E0B0005D8F6 /* sfx_fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */; };
@@ -1000,6 +1002,10 @@
 		7E60A69A1812906B00CC7C07 /* SubBossLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBossLoader.m; sourceTree = "<group>"; };
 		7E60A69C1812910000CC7C07 /* SubBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBoss.h; sourceTree = "<group>"; };
 		7E60A69D1812910000CC7C07 /* SubBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBoss.m; sourceTree = "<group>"; };
+		7E6433B61928BDB500A427EB /* DailyLoginPrizeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DailyLoginPrizeManager.h; path = user/DailyLoginPrizeManager.h; sourceTree = "<group>"; };
+		7E6433B71928BDB500A427EB /* DailyLoginPrizeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DailyLoginPrizeManager.m; path = user/DailyLoginPrizeManager.m; sourceTree = "<group>"; };
+		7E6433BA1928C67600A427EB /* BasePopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePopup.h; sourceTree = "<group>"; };
+		7E6433BB1928C67600A427EB /* BasePopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePopup.m; sourceTree = "<group>"; };
 		7E6D0E481829214200BD1602 /* boss2_start.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss2_start.map; sourceTree = "<group>"; };
 		7E6E61F3182CA0DA008EFA6F /* test_quick.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_quick.map; sourceTree = "<group>"; };
 		7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_fail.wav; sourceTree = "<group>"; };
@@ -2207,6 +2213,15 @@
 			name = ingame_anim;
 			sourceTree = "<group>";
 		};
+		7E6433B91928C65E00A427EB /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				7E6433BA1928C67600A427EB /* BasePopup.h */,
+				7E6433BB1928C67600A427EB /* BasePopup.m */,
+			);
+			name = popup;
+			sourceTree = "<group>";
+		};
 		7E8947F61904B20900EFB54C /* score */ = {
 			isa = PBXGroup;
 			children = (
@@ -3043,6 +3058,7 @@
 		7EB8B45316D9FC0900F58961 /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				7E6433B91928C65E00A427EB /* popup */,
 				7E019575188665C4000DCF6D /* deprecated */,
 				7E01956B188663DB000DCF6D /* inventorytabpanes */,
 				7E45DA67172DE6E9009C43DD /* shop */,
@@ -3652,6 +3668,8 @@
 				7ECFA6A11706A23A00496002 /* UserInventory.m */,
 				7EFC757917C9F0F500D4EEF7 /* FreeRunStartAtManager.h */,
 				7EFC757A17C9F0F500D4EEF7 /* FreeRunStartAtManager.m */,
+				7E6433B61928BDB500A427EB /* DailyLoginPrizeManager.h */,
+				7E6433B71928BDB500A427EB /* DailyLoginPrizeManager.m */,
 			);
 			name = user;
 			sourceTree = "<group>";
@@ -4544,6 +4562,7 @@
 				7E0C6360184C674A00D3C4B9 /* IntroAnimFrame1.m in Sources */,
 				7EEE5B541804CA8D00A4A64F /* LoadingScene.m in Sources */,
 				7ECADE1B17646AF00032A1E6 /* ALDevice.m in Sources */,
+				7E6433BC1928C67600A427EB /* BasePopup.m in Sources */,
 				7E05977018F1472B00D9CD74 /* CapeGameEnd.m in Sources */,
 				7E01957118866506000DCF6D /* InventoryTabPane_Settings.m in Sources */,
 				7ECADE1C17646AF00032A1E6 /* ALListener.m in Sources */,
@@ -4563,6 +4582,7 @@
 				7ECADE2717646AF00032A1E6 /* OALAudioFile.m in Sources */,
 				7ECADE2817646AF00032A1E6 /* OALTools.m in Sources */,
 				7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */,
+				7E6433B81928BDB500A427EB /* DailyLoginPrizeManager.m in Sources */,
 				7EF8CA5C1797EB0900BD4476 /* JumpParticle.m in Sources */,
 				7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */,
 				7E50B27317A2608E00E0C408 /* FreeRunProgressAnimation.m in Sources */,

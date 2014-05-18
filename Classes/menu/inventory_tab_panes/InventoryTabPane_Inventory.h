@@ -21,6 +21,7 @@
 	
 	GenericListTouchButton *bones_button;
 	GenericListTouchButton *coins_button;
+	CCMenuItemImage *wheel_ad_button;
 }
 
 +(InventoryTabPane_Inventory*)cons:(CCSprite*)parent;

@@ -25,12 +25,12 @@
 	
 	name_disp = [Common cons_label_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
 								 color:ccc3(205, 51, 51)
-							  fontsize:20
+							  fontsize:24
 								   str:@"Inventory"];
 	[name_disp setAnchorPoint:ccp(0,1)];
 	[self addChild:name_disp];
 	
-	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
@@ -65,6 +65,8 @@
 	[equipped_label setVisible:NO];
 	
 	selected_item = Item_NOITEM;
+	
+	[self cons_wheel_button:parent];
 	
 	return self;
 }
@@ -150,14 +152,16 @@
 	selected_item = Item_NOITEM;
 	[self update_labels_and_buttons];
 	[name_disp setString:@"Bones"];
-	[desc_disp setString:@"Common currency you'll find find in the game. Buy things at the store with this!"];
+	[desc_disp setString:@"You'll find these in game everywhere. Spend 'em on the Wheel of Prizes for a chance at something great!"];
+	[wheel_ad_button setVisible:YES];
 }
 
 -(void)select_coins {
 	selected_item = Item_NOITEM;
 	[self update_labels_and_buttons];
 	[name_disp setString:@"Coins"];
-	[desc_disp setString:@"A rare currency you'll occasionally find in the game. Use this to unlock characters!"];
+	[desc_disp setString:@"Use these to continue after a game over, or to buy goodies from the store. Find 'em in game or win 'em from the Wheel of Prizes!"];
+	[wheel_ad_button setVisible:YES];
 }
 
 -(void)select_magnet {
@@ -182,6 +186,7 @@
 
 -(void)update_labels_and_buttons {
 	if (selected_item != Item_NOITEM) {
+		[wheel_ad_button setVisible:NO];
 		if (selected_item == [UserInventory get_equipped_gameitem]) {
 			[equip_button setVisible:NO];
 			[equipped_label setVisible:YES];
@@ -190,7 +195,7 @@
 			[equipped_label setVisible:NO];
 		}
 		[name_disp setString:[GameItemCommon name_from:selected_item]];
-		[desc_disp setString:[GameItemCommon description_from:selected_item]];
+		[desc_disp setString:[NSString stringWithFormat:@"Equip to use at start. Power: %@",[GameItemCommon description_from:selected_item]]];
 		
 	} else {
 		[equip_button setVisible:NO];
@@ -236,6 +241,33 @@
 
 -(void)set_pane_open:(BOOL)t {
 	[self setVisible:t];
+}
+
+-(void)cons_wheel_button:(CCSprite*)parent {
+	CCSprite *normal = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+											  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																			 idname:@"spinbutton_0"]];
+	[normal addChild:[[MenuCommon wheel_of_prizes_button_sprite] anchor_pt:ccp(0,0)]];
+	CCSprite *selected = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+												rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																			   idname:@"spinbutton_0"]];
+	[selected addChild:[[MenuCommon wheel_of_prizes_button_sprite] anchor_pt:ccp(0,0)]];
+	[Common set_zoom_pos_align:normal zoomed:selected scale:1.2];
+	
+	wheel_ad_button = [CCMenuItemSprite itemFromNormalSprite:normal
+											  selectedSprite:selected
+													  target:self selector:@selector(open_wheel)];
+	[wheel_ad_button setScale:0.6];
+	[wheel_ad_button setAnchorPoint:ccp(0.5,0.5)];
+	[wheel_ad_button setPosition:[Common pct_of_obj:parent pctx:0.825 pcty:0.2]];
+	CCMenu *menu = [CCMenu menuWithItems:wheel_ad_button, nil];
+	[menu setPosition:CGPointZero];
+	[self addChild:menu];
+	[wheel_ad_button setVisible:NO];
+}
+
+-(void)open_wheel {
+	[GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_INVENTORY] add_i1:InventoryLayerTab_Index_Prizes i2:0]];
 }
 
 @end

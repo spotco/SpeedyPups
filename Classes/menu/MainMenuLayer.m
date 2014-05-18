@@ -6,6 +6,8 @@
 #import "NMenuTabShopPage.h"
 #import "AudioManager.h"
 #import "ObjectPool.h"
+#import "BasePopup.h"
+#import "MenuCommon.h"
 //#import "NMenuShopPage.h"
 
 #import "MainMenuInventoryLayer.h"
@@ -25,7 +27,9 @@
 -(void)cleanup{}
 @end
 
-@implementation MainMenuLayer
+@implementation MainMenuLayer {
+	BOOL first_update;
+}
 @synthesize bg;
 
 +(CCScene*)scene {
@@ -59,10 +63,25 @@
         [self addChild:c];
     }
     
-    
-    
     self.isTouchEnabled = YES;
     [self schedule:@selector(update:) interval:1.0/60];
+	
+	BasePopup *p = [BasePopup cons];
+	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.8]
+								 color:ccc3(20,20,20)
+							  fontsize:35
+								   str:@"Welcome!"]];
+	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.65]
+								 color:ccc3(20,20,20)
+							  fontsize:15
+								   str:@"To celebrate your first day, here's 3 coins!"]];
+	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.55]
+								 color:ccc3(20,20,20)
+							  fontsize:10
+								   str:@"(Use these to continue when you run out of lives)"]];
+	[MenuCommon popup:p];
+	//TODO -- move to DailyLoginPrizeManager
+	
     return self;
 }
 
@@ -74,7 +93,6 @@
 }
 
 -(void)update:(ccTime)dt {
-	
 	if (!first_update) {
 		[ObjectPool print_info];
 		first_update = YES;
@@ -92,6 +110,9 @@
     
     
     [bg update];
+	
+	if (current_popup != NULL) return;
+	
     for(int i = 0; i < [menu_pages count]; i++) {
         CCSprite* c = [menu_pages objectAtIndex:i];
         if (snapto) {
@@ -105,6 +126,8 @@
             }
         }
     }
+	
+	
     
     [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_TICK] add_f1:dt f2:dt]];
 	[GEventDispatcher dispatch_events]; //breaks if you do immediate_event in menu->freerun, dunno why
@@ -128,8 +151,30 @@
 		
 	} else if (e.type == GEventType_QUIT) {
 		[self exit];
-		[GameMain start_menu];
+		if (e.i1 == 1) {
+			[GameMain start_introanim];
+		} else {
+			[GameMain start_menu];
+		}
+		
+	} else if (e.type == GEventType_MENU_POPUP) {
+		for (int i = 0; i < menu_pages.count; i++) {
+			if ([menu_pages[i] visible]) popup_prev_visible = i;
+			[menu_pages[i] setVisible:NO];
+		}
+		[self.inventory_layer setVisible:NO];
+		current_popup = [e get_value:@"popup"];
+		[current_popup add_close_button:[Common cons_callback:self sel:@selector(popup_close)]];
+		[self addChild:current_popup];
 	}
+}
+
+-(void)popup_close {
+	[self removeChild:current_popup cleanup:YES];
+	current_popup = NULL;
+	[menu_pages[popup_prev_visible] setVisible:YES];
+	[self.inventory_layer setVisible:YES];
+	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(CGPoint)grab_gl_coord_touch:(NSSet*)touches {
@@ -141,7 +186,7 @@
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
 	if (![self.inventory_layer window_open]) {
-		for (NMenuPage *p in menu_pages) p.visible?[p touch_begin:touch]:0;
+		for (NMenuPage *p in menu_pages) [Common is_visible:p] ? [p touch_begin:touch]:0;
 	} else {
 		[self.inventory_layer touch_begin:touch];
 	}
@@ -150,7 +195,7 @@
 -(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
 	if (![self.inventory_layer window_open]) {
-		for (NMenuPage *p in menu_pages) p.visible?[p touch_move:touch]:0;
+		for (NMenuPage *p in menu_pages) [Common is_visible:p] ? [p touch_move:touch]:0;
 	} else {
 		[self.inventory_layer touch_move:touch];
 	}
@@ -159,7 +204,7 @@
 -(void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	CGPoint touch = [self grab_gl_coord_touch:touches];
 	if (![self.inventory_layer window_open]) {
-		for (NMenuPage *p in menu_pages) p.visible?[p touch_end:touch]:0;
+		for (NMenuPage *p in menu_pages) [Common is_visible:p] ? [p touch_end:touch]:0;
 	} else {
 		[self.inventory_layer touch_end:touch];
 	}
