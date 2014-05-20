@@ -67,24 +67,29 @@
     [ask_continue_ui addChild:yesnomenu];
     
     countdown_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.575]
-                                      color:ccc3(220, 10, 10) fontsize:50 str:@""];
+                                      color:ccc3(200, 30, 30) fontsize:50 str:@""];
     [ask_continue_ui addChild:countdown_disp];
 	
 	//continue price pane, below yes button
 	continue_price_pane = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 														   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue_price_bg"]]
 									 pos:[Common screen_pctwid:0.3 pcthei:0.25]];
-	[continue_price_pane addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-														 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"tinybone"]
-								   ] pos:[Common pct_of_obj:continue_price_pane pctx:0.15 pcty:0.25]]];
-	[continue_price_pane addChild:[Common cons_label_pos:[Common pct_of_obj:continue_price_pane pctx:0.2 pcty:0.625]
+	[continue_price_pane addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+														 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_prize_fewcoin"]
+								   ] pos:[Common pct_of_obj:continue_price_pane pctx:0.35 pcty:0.25]]
+								   scale:0.5]];
+	[continue_price_pane addChild:[Common cons_label_pos:[Common pct_of_obj:continue_price_pane pctx:0.5 pcty:0.625]
 												   color:ccc3(0,0,0)
 												fontsize:10
 													 str:@"price"]];
-	continue_price = [Common cons_label_pos:[Common pct_of_obj:continue_price_pane pctx:0.62 pcty:0.275]
-									  color:ccc3(255,0,0)
+	[continue_price_pane addChild:[Common cons_label_pos:[Common pct_of_obj:continue_price_pane pctx:0.525 pcty:0.275]
+												   color:ccc3(200,30,30)
+												fontsize:8
+													 str:@"x"]];
+	continue_price = [[Common cons_label_pos:[Common pct_of_obj:continue_price_pane pctx:0.6 pcty:0.275]
+									  color:ccc3(200,30,30)
 								   fontsize:18
-										str:@"000000"];
+										str:@""] anchor_pt:ccp(0,0.5)];
 	[continue_price_pane addChild:continue_price];
 	[ask_continue_ui addChild:continue_price_pane];
 	
@@ -92,17 +97,18 @@
 	CCSprite *total_bones_pane = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 														 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue_total_bg"]]
 								  pos:[Common screen_pctwid:0.89 pcthei:0.075]];
-	[total_bones_pane addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"tinybone"]
-								 ] pos:[Common pct_of_obj:total_bones_pane pctx:0.15 pcty:0.3]]];
+	[total_bones_pane addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_prize_fewcoin"]
+								  ] pos:[Common pct_of_obj:total_bones_pane pctx:0.15 pcty:0.3]]
+								scale:0.5]];
 	[total_bones_pane addChild:[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.325 pcty:0.75]
 												color:ccc3(0,0,0)
 											 fontsize:10
-												  str:@"Total Bones"]];
-	total_disp = [Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.525 pcty:0.325]
-								  color:ccc3(255,0,0)
+												  str:@"Total Coins"]];
+	total_disp = [[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.3 pcty:0.325]
+								  color:ccc3(200,30,30)
 							   fontsize:20
-									str:@"000000"];
+									str:@""] anchor_pt:ccp(0,0.5)];
 	[total_bones_pane addChild:total_disp];
 	[ask_continue_ui addChild:total_bones_pane];
 	 
@@ -146,7 +152,7 @@
     [self schedule:@selector(update:) interval:1/30.0];
     [countdown_disp setString:[NSString stringWithFormat:@"%d",countdown_ct]];
     [continue_price setString:[NSString stringWithFormat:@"%d",cost]];
-    [total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+    [total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_coins]]];
 }
 
 
@@ -169,14 +175,18 @@
 	
 	if (curmode == AskContinueUI_COUNTDOWN) {
 		[self update_countdown];
+		[continue_price_pane setVisible:YES];
 		
 	} else if (curmode == AskContinueUI_YES_TRANSFER_MONEY) {
 		[self update_transfer_bones];
+		[continue_price_pane setVisible:NO];
 		
 	} else if (curmode == AskContinueUI_YES_RUNOUT) {
 		[self update_runout];
+		[continue_price_pane setVisible:NO];
 	
 	} else if (curmode == AskContinueUI_TRANSITION_TO_GAMEOVER) {
+		[continue_price_pane setVisible:NO];
 		if ([Common fuzzyeq_a:bg_curtain.position.y b:bg_curtain_tpos.y delta:1]) {
 			[self to_gameover_screen];
 		}
@@ -200,18 +210,20 @@
 }
 
 -(void)continue_yes {
-    if ([UserInventory get_current_bones] >= continue_cost) {
+    if ([UserInventory get_current_coins] >= continue_cost) {
 		[AudioManager todos_remove_all];
 		[countdown_disp setVisible:NO];
-		[UserInventory add_bones:-continue_cost];
+		[UserInventory add_coins:-continue_cost];
 		countdown_ct = 1; //works as transfer rate now
 		[yesnomenu setVisible:NO];
-		actual_next_continue_price = continue_cost*2;
+		
+		actual_next_continue_price = continue_cost;
+		
 		[continue_price_pane setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue_price_bg_nopoke"]];
 		curmode = AskContinueUI_YES_TRANSFER_MONEY;
 		
     } else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not enough bones for a continue!"
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not enough coins for a continue!"
 														message:@""
 													   delegate:self
 											  cancelButtonTitle:@"Ok :("
@@ -223,7 +235,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSLog(@"clique sur bouton:%d",buttonIndex);
+	//NSLog(@"clique sur bouton:%d",buttonIndex);
 	curmode = AskContinueUI_COUNTDOWN;
 }
 
@@ -289,30 +301,33 @@
 	}
 	
 	if (continue_cost > 0) {
-		int neutotal = total_disp.string.integerValue-countdown_ct;
-		int neuprix = continue_price.string.integerValue+countdown_ct;
-		continue_cost-=countdown_ct;
-		if (mod_ct%10==0) countdown_ct *= 2;
+		int neutotal = (int)total_disp.string.integerValue-countdown_ct;
+		int neuprix = (int)continue_price.string.integerValue+countdown_ct;
+		continue_cost-=1;
+		
+		//if (mod_ct%10==0) countdown_ct *= 2;
+		
 		[continue_price setString:[NSString stringWithFormat:@"%d",neuprix]];
 		[total_disp setString:[NSString stringWithFormat:@"%d",neutotal]];
 		
-		if (mod_ct%2==0) {
-			BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
-																			 end:CGPointAdd(playericon.position,ccp(-30,15))];
-			[bone_anims addObject:neuanim];
-			[self addChild:neuanim];
-			[AudioManager playsfx:SFX_BONE];
+		BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
+																		 end:CGPointAdd(playericon.position,ccp(-30,15))];
+		[neuanim setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"heart"]];
+		
+		[bone_anims addObject:neuanim];
+		[self addChild:neuanim];
+		[AudioManager playsfx:SFX_BONE];
 			
-		}
+		
 		
 	} else if (bone_anims.count != 0) {
 		[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
-		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_coins]]];
 		
 	} else {
 		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"hit_3"]];
 		[continue_price setString:[NSString stringWithFormat:@"%d",actual_next_continue_price]];
-		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_bones]]];
+		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_coins]]];
 		continue_cost = 10; //used as pause ct now
 		[playericon setTextureRect:[FileCache get_cgrect_from_plist:[Player get_character] idname:@"run_0"]];
 		[Player character_bark];

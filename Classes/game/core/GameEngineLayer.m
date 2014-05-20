@@ -24,7 +24,7 @@
 #define tTTRACKLAYER 6
 #define tFADEOUTLAYER 7
 
-#define DEFAULT_CONTINUE_COST 100
+#define DEFAULT_CONTINUE_COST 1
 
 @synthesize current_mode;
 @synthesize game_objects,islands;
@@ -545,12 +545,14 @@
     [GEventDispatcher dispatch_events];
 }
 
+#define ONEUP_EVERY 100
 -(void)collect_bone:(BOOL)do_1up_anim {
 	collected_bones++;
-	if (challenge == NULL && (collected_bones%100==0 ||
-			([Player current_character_has_power:CharacterPower_DOUBLELIVES] && collected_bones%50==0))) {
+	if (challenge == NULL && (collected_bones%ONEUP_EVERY==0 ||
+			([Player current_character_has_power:CharacterPower_DOUBLELIVES] && collected_bones%(ONEUP_EVERY/2)==0))) {
 		[AudioManager playsfx:SFX_1UP];
-		if (do_1up_anim) [self add_particle:[OneUpParticle cons_pt:[player get_center]]];
+		if (do_1up_anim) [[self get_ui_layer] start_oneup_anim];
+		
 		[self incr_lives];
 	}
 	[UserInventory add_bones:1];
@@ -823,7 +825,7 @@
 -(int)get_num_secrets { return collected_secrets; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
--(void)incr_current_continue_cost {current_continue_cost*=2;}
+-(void)incr_current_continue_cost { /*current_continue_cost*=2;*/ }
 
 
 -(void)add_particle:(Particle*)p {

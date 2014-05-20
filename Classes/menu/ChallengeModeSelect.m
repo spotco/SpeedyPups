@@ -34,21 +34,22 @@
     [self addChild:locked];
     
     unlocked = [CCSprite node];
-    unlocked_text = [Common cons_pooled_label_pos:ccp(55,60)
+    unlocked_text = (CCLabelTTF_Pooled*)[[Common cons_pooled_label_pos:[Common pct_of_obj:self pctx:0.7 pcty:0.27]
 									 color:ccc3(153, 0, 0)
-								  fontsize:34
-									   str:@"-1"];
+								  fontsize:21
+									   str:@"-1"] anchor_pt:ccp(0.5,0.5)];
 	[unlocked addChild:unlocked_text];
     [self addChild:unlocked];
 	
 	disp_type_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
-											rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"challengeicon_coin"]];
-	[disp_type_icon setPosition:ccp(30,60)];
+											rect:CGRectZero];
+	[disp_type_icon setPosition:[Common pct_of_obj:self pctx:0.5 pcty:0.7]];
 	[self addChild:disp_type_icon];
     
     status_star = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
                                           rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"levelstar_hr"]]
-                   pos:[Common pct_of_obj:self pctx:0.51 pcty:0.27]];
+                   pos:[Common pct_of_obj:self pctx:0.355 pcty:0.27]];
+	[status_star setScale:0.8];
     [self addChild:status_star];
     
     [locked setVisible:NO];
@@ -70,7 +71,8 @@
         [status_star setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ
 															  idname:[ChallengeRecord get_beaten_challenge:i]?@"levelstar_hr":@"levelstar_locked_hr"]];
 		[disp_type_icon setVisible:YES];
-		TexRect *tr = [ChallengeRecord get_for:[ChallengeRecord get_challenge_number:i].type];
+		
+		TexRect *tr = [ChallengeRecord get_small_preview_for:[ChallengeRecord get_challenge_number:i].type];
 		[disp_type_icon setTexture:tr.tex];
 		[disp_type_icon setTextureRect:tr.rect];
 	}
@@ -329,16 +331,8 @@
 	[chosen_mapname setString:cc.map_name];
     [chosen_goal setString:[cc to_string]];
 	[reward_amount setString:[NSString stringWithFormat:@"%d",cc.reward]];
-	
-	NSString *cle = @"";
-	if (cc.type == ChallengeType_COLLECT_BONES) {
-		cle = @"preview_collect_bones";
-	} else if (cc.type == ChallengeType_FIND_SECRET) {
-		cle = @"preview_find_secrets";
-	} else if (cc.type == ChallengeType_TIMED) {
-		cle = @"preview_timed";
-	}
-	[chosen_preview setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];
+
+	[chosen_preview setTextureRect:[ChallengeRecord get_preview_for:cc.type].rect];
 	
 	if ([ChallengeRecord get_beaten_challenge:chosen_level]) {
 		[show_reward setVisible:NO];

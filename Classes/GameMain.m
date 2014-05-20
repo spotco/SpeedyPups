@@ -16,44 +16,46 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"capegame_launcher"
+#define TESTLEVEL @"coin_freecoin"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
+#define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
 #define RESET_STATS NO
+
 #define STARTING_LIVES 10
+//#define STARTING_LIVES 1
+
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
 
 /**
- prizes daily login, first time login
- 
- continue with coins
  item shop coin prices
- rare appearance (second currency) levels by @2 or @3 in autolevelstate
- 
  extras 8pcs art, music, sfx
  mystery prize implement
- 
- go through and fix challenges
- challenges reward with coins
- more challenges (more secrets, cape game, boss rush)
  
  figure out in app purchases
  figure out ads
  figure out tracking
  
+ go through and fix challenges
+ challenges reward with coins
+ more challenges (more secrets, cape game, boss rush)
+ 
  -art ask for:
-	music logo, sfx logo, art logo
-	challenge artwork
-	daily popup button
 	concept art
  **/
 
 /**
 Stretch goals:
+ daily login check ONLINE server
+ daily login count how many days
+ 
+ capegame coin at end
+ capegame bone magnets
+ 
  BUGFIX: settings add watch intro anim again button
  BUGFIX: capegame combo notifications
  BUGFIX: billboard move down
@@ -99,15 +101,15 @@ Stretch goals:
 	}
 	
 	/*
-	for (int ii = 0; ii < 50; ii++) {
+	for (int ii = 0; ii < 3; ii++) {
 		WorldStartAt startat;
-		startat.world_num = WorldNum_3;
-		startat.tutorial = NO;
+		startat.world_num = WorldNum_1;
+		startat.tutorial = YES;
 		startat.bg_start = BGMode_NORMAL;
 		AutoLevelState *state = [AutoLevelState cons_startat:startat];
 		DO_FOR(40,
 			   NSString *rtv = [state get_level];
-			   if (streq(rtv,@"boss3_start")) {
+			   if (streq(rtv,@"boss1_start")) {
 				   [state to_boss_mode];
 			   
 			   } else if (streq(rtv, @"boss3_area")) {
@@ -118,11 +120,10 @@ Stretch goals:
 			   if ([[NSBundle mainBundle] pathForResource:rtv ofType:@"map"] == NULL) {
 				   NSLog(@"%@ ERROR MISSING FILE",rtv);
 			   }
-			   //NSLog(@"%d:\'%@\'",i,rtv)
+			   NSLog(@"%d:\'%@\'",i,rtv)
 		);
 	}
 	*/
-	
 	
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
@@ -130,15 +131,15 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
+	//[ChallengeRecord set_beaten_challenge:19 to:YES];
 	
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
-	
 	//[UserInventory add_bones:5000];
+	//[UserInventory add_coins:10];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	//to load the TESTLEVEL
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
@@ -192,4 +193,5 @@ Stretch goals:
 +(BOOL)GET_BOSS_1_HEALTH { return BOSS_1_HEALTH; }
 +(int)GET_DEFAULT_STARTING_LIVES { return STARTING_LIVES; }
 +(NSString*)GET_VERSION_STRING { return VERSION_STRING; }
++(BOOL)GET_DEBUG_UI { return DEBUG_UI; }
 @end

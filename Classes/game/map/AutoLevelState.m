@@ -7,8 +7,11 @@
 #import "GameMain.h" 
 #import "FreeRunStartAtManager.h"
 #import "GameEngineLayer.h"
+#import "DailyLoginPrizeManager.h"
 
-@implementation AutoLevelState
+@implementation AutoLevelState {
+	AutoLevelStateMode _coin_goto_mode;
+}
 
 -(void)to_boss_mode {
 	if (startat.world_num == WorldNum_1) {
@@ -147,6 +150,9 @@
 			@"lab_cage_cannons" : @1,
 			@"lab_minionwallshard" : @1
 		},
+		L_COIN: @{
+			@"coin_freecoin" : @1
+		},
 		
 		L_AUTOSTART: @{
 			//@"shittytest":@1
@@ -262,7 +268,12 @@
 }
 
 -(NSString*)get_level {
-	if (startat.world_num == WorldNum_1) {
+	if (mode == AutoLevelState_COIN) {
+		mode = _coin_goto_mode;
+		[DailyLoginPrizeManager increment_coins_spawned_today];
+		return [[levelsets[L_COIN] allKeys] random];
+		
+	} else if (startat.world_num == WorldNum_1) {
 		return [self get_level_world1];
 		
 	} else if (startat.world_num == WorldNum_2) {
@@ -274,6 +285,15 @@
 	} else {
 		NSLog(@"pick set world error");
 		return [[levelsets[L_AUTOSTART] allKeys] random];
+	}
+}
+
+-(void)conditional_go_to_coin_level_or_mode:(AutoLevelStateMode)_mode {
+	if ([DailyLoginPrizeManager conditional_do_coin_level]) {
+		_coin_goto_mode = _mode;
+		mode = AutoLevelState_COIN;
+	} else {
+		mode = _mode;
 	}
 }
 

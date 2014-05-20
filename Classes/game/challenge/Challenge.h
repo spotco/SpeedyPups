@@ -22,6 +22,9 @@ typedef enum {
 @interface ChallengeRecord : NSObject
 
 +(TexRect*)get_for:(ChallengeType)type;
++(TexRect*)get_preview_for:(ChallengeType)type;
++(TexRect*)get_small_preview_for:(ChallengeType)type;
+
 +(int)get_num_challenges;
 +(ChallengeInfo*)get_challenge_number:(int)i;
 +(int)get_number_for_challenge:(ChallengeInfo*)c;

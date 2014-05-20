@@ -9,10 +9,9 @@
 #import "BasePopup.h"
 #import "MenuCommon.h"
 //#import "NMenuShopPage.h"
-
 #import "MainMenuInventoryLayer.h"
-
 #import "GameMain.h"
+#import "DailyLoginPrizeManager.h"
 
 @implementation NMenuPage
 -(void)setOpacity:(GLubyte)opacity {
@@ -66,21 +65,7 @@
     self.isTouchEnabled = YES;
     [self schedule:@selector(update:) interval:1.0/60];
 	
-	BasePopup *p = [BasePopup cons];
-	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.8]
-								 color:ccc3(20,20,20)
-							  fontsize:35
-								   str:@"Welcome!"]];
-	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.65]
-								 color:ccc3(20,20,20)
-							  fontsize:15
-								   str:@"To celebrate your first day, here's 3 coins!"]];
-	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.55]
-								 color:ccc3(20,20,20)
-							  fontsize:10
-								   str:@"(Use these to continue when you run out of lives)"]];
-	[MenuCommon popup:p];
-	//TODO -- move to DailyLoginPrizeManager
+	[DailyLoginPrizeManager menu_popup_check];
 	
     return self;
 }

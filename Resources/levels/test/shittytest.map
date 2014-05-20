@@ -1,8 +1,13 @@
 {
-    "objects": [{"x": 621, "label": "2", "type": "coin", "y": 365}],
-    "connect_pts": {"x2": 874, "x1": 69, "y2": 232, "y1": 195},
     "start_x": 185,
-    "assert_links": 0,
+    "connect_pts": {"y2": 198.8, "x1": 69, "x2": 1202.5, "y1": 195},
     "start_y": 256,
-    "islands": [{"ndir": "left", "can_fall": true, "x1": 69, "hei": 50, "y1": 195, "ground": "open", "x2": 874, "type": "line", "y2": 232}]
+    "objects": [
+        {"label": "2", "x": 1048.8, "type": "spike", "y": 197.5},
+        {"label": "0", "x": 348.8, "type": "checkpoint", "y": 193.8},
+        {"label": "1", "x": 950, "type": "spike", "y": 196.3},
+        {"label": "2", "x": 1148.8, "type": "spike", "y": 197.5}
+    ],
+    "assert_links": 0,
+    "islands": [{"y2": 198.8, "x1": 69, "ndir": "left", "y1": 195, "ground": "open", "can_fall": true, "x2": 1202.5, "type": "line", "hei": 50}]
 }

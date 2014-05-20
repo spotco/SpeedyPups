@@ -10,6 +10,7 @@
 #import "BoneCollectUIAnimation.h"
 #import "AudioManager.h"
 #import "BasePopup.h"
+#import "DailyLoginPrizeManager.h"
 
 typedef enum PrizesPaneMode {
 	PrizesPaneMode_REST,
@@ -162,18 +163,15 @@ typedef enum Prize {
 	return self;
 }
 
-#define KEY_LAST_RESET @"key_last_reset"
 #define KEY_PRIZEWHEEL(x) strf("key_prizewheel_%d",x)
-#define RESET_TIME 12 * 60 * 60
-//#define RESET_TIME 30
 #define SPIN_COST 500
 
 +(int)get_spin_cost { return SPIN_COST; }
 
 -(BOOL)conditional_refresh_prizes {
-	if (sys_time() - [DataStore get_long_for_key:KEY_LAST_RESET] > RESET_TIME) {
+	if ([DailyLoginPrizeManager daily_wheel_reset_open]) {
 		[self reload_prizes];
-		[DataStore set_long_for_key:KEY_LAST_RESET long_value:sys_time()];
+		[DailyLoginPrizeManager take_daily_wheel_reset];
 		return YES;
 		
 	} else {
@@ -391,7 +389,7 @@ typedef enum Prize {
 	
 	[reset_in_disp set_label:
 	 [NSString stringWithFormat:@"Wheel resets in\n%@",
-	  [MenuCommon secs_to_prettystr:RESET_TIME- (sys_time() - [DataStore get_long_for_key:KEY_LAST_RESET])]
+	  [MenuCommon secs_to_prettystr:[DailyLoginPrizeManager get_time_until_new_day]]
 	  ]
 	 ];
 	

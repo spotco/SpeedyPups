@@ -17,6 +17,7 @@
 #import "ItemUseUIAnimation.h"
 #import "ScoreManager.h"
 #import "ScoreComboAnimation.h"
+#import "OneUpParticle.h"
 
 @implementation UILayer
 
@@ -181,6 +182,13 @@
     TreatCollectUIAnimation* c = [TreatCollectUIAnimation cons_start:[UICommon player_approx_position:game_engine_layer] end:ccp(0,[[UIScreen mainScreen] bounds].size.width)];
     [ingameuianimholder addChild:c];
     [ingame_ui_anims addObject:c];
+}
+
+-(void)start_oneup_anim {
+	OneUpUIAnimation *o = [OneUpUIAnimation cons_pt:[UICommon player_approx_position:game_engine_layer]];
+	[ingameuianimholder addChild:o];
+	[ingame_ui_anims addObject:o];
+	
 }
 
 -(void)start_challengeinfocard_anim {

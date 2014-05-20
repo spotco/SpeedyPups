@@ -9,6 +9,8 @@
 #import "DailyLoginPrizeManager.h"
 #import "GameMain.h"
 #import "BasePopup.h"
+#import "GameMain.h"
+#import "DailyLoginPrizeManager.h"
 
 @implementation InventoryTabPane_Settings
 
@@ -66,6 +68,22 @@
 										   str:@"Replay Intro"]];
 	[self addChild:replay_intro];
 	[touches addObject:replay_intro];
+	
+
+	if ([GameMain GET_DEBUG_UI]) {
+		TouchButton *next_day = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.64 pcty:0.25]
+															 tex:[Resource get_tex:TEX_NMENU_ITEMS]
+														 texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
+															  cb:[Common cons_callback:self sel:@selector(debug_next_day)]];
+		[next_day addChild:[Common cons_label_pos:[Common pct_of_obj:next_day pctx:0.5 pcty:0.5]
+												color:ccc3(0,0,0)
+											 fontsize:13
+												  str:@"(DBG) Next Day"]];
+		[self addChild:next_day];
+		[touches addObject:next_day];
+	}
+	
+	
 	 
 	NSString *maxstr = @"0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
@@ -113,6 +131,12 @@
 		[Player set_character:TEX_DOG_RUN_1];
 		[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:0 i2:0]];
 	}
+}
+
+-(void)debug_next_day {
+	[DailyLoginPrizeManager new_day];
+	[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:0 i2:0]];
+	
 }
 
 -(void)replay_intro {

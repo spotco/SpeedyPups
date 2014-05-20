@@ -69,6 +69,7 @@ static NSArray* _CHALLENGES;
 
 +(TexRect*)get_for:(ChallengeType)type {
 	NSString *tar = @"";
+	
 	if (type == ChallengeType_COLLECT_BONES) {
 		tar = @"challengeicon_bone";
 	} else if (type == ChallengeType_FIND_SECRET) {
@@ -81,12 +82,38 @@ static NSArray* _CHALLENGES;
 						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:tar]];
 }
 
++(TexRect*)get_preview_for:(ChallengeType)type {
+	NSString *cle = @"";
+	if (type == ChallengeType_COLLECT_BONES) {
+		cle = @"preview_collect_bones";
+	} else if (type == ChallengeType_FIND_SECRET) {
+		cle = @"preview_find_secrets";
+	} else if (type == ChallengeType_TIMED) {
+		cle = @"preview_timed";
+	}
+	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];
+}
+
++(TexRect*)get_small_preview_for:(ChallengeType)type {
+	NSString *cle = @"";
+	if (type == ChallengeType_COLLECT_BONES) {
+		cle = @"preview_collect_bones_small";
+	} else if (type == ChallengeType_FIND_SECRET) {
+		cle = @"preview_find_secrets_small";
+	} else if (type == ChallengeType_TIMED) {
+		cle = @"preview_timed_small";
+	}
+	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
+						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];
+}
+
 +(int)get_number_for_challenge:(ChallengeInfo *)c {
-    return [_CHALLENGES indexOfObject:c];
+    return (int)[_CHALLENGES indexOfObject:c];
 }
 
 +(int)get_num_challenges {
-    return [_CHALLENGES count];
+    return (int)[_CHALLENGES count];
 }
 
 +(ChallengeInfo*)get_challenge_number:(int)i {

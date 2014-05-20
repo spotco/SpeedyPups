@@ -1,7 +1,9 @@
 #import "OneUpObject.h"
 #import "OneUpParticle.h"
 #import "GameEngineLayer.h"
-#import "ScoreManager.h" 
+#import "ScoreManager.h"
+
+#import "UILayer.h"
 
 @implementation OneUpObject
 +(OneUpObject*)cons_pt:(CGPoint)pt {
@@ -26,7 +28,8 @@
 	[_g.score increment_multiplier:0.1];
 	[_g.score increment_score:50];
 	[_g incr_lives];
-	[_g add_particle:[OneUpParticle cons_pt:[_g.player get_center]]];
+	//[_g add_particle:[OneUpParticle cons_pt:[_g.player get_center]]];
+	[[_g get_ui_layer] start_oneup_anim];
 	[AudioManager playsfx:SFX_1UP];
 	active = NO;
 }

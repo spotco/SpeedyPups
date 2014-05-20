@@ -181,6 +181,7 @@
 	[wheel_ad_button setAnchorPoint:ccp(1,1)];
 	[wheel_ad_button setPosition:CGPointAdd([Common screen_pctwid:1 pcthei:1],ccp(-5,-5))];
 	[menu addChild:wheel_ad_button];
+	[wheel_ad_button setVisible:NO];
 }
 
 -(void)wheel_ad_button_conditional_setVisible:(BOOL)tar {

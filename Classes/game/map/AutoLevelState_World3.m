@@ -35,11 +35,13 @@
 		
 	} else if (mode == AutoLevelStateMode_FILLER) {
 		if (sets_completed < SETS_BETWEEN_LABS) {
-			mode = AutoLevelStateMode_SET;
+			[self conditional_go_to_coin_level_or_mode:AutoLevelStateMode_SET];
+			//mode = AutoLevelStateMode_SET;
 			cur_set = [self pick_set:startat.world_num];
 			cur_set_completed_levels = 0;
 		} else {
-			mode = AutoLevelStateMode_SET_OVER_CAPEGAME;
+			[self conditional_go_to_coin_level_or_mode:AutoLevelStateMode_SET_OVER_CAPEGAME];
+			//mode = AutoLevelStateMode_SET_OVER_CAPEGAME;
 			tutorial_ct = 0;
 		}
 		return [fillersetgen get_from_bucket:L_FILLER];

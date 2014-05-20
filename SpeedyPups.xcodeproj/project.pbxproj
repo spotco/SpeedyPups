@@ -109,6 +109,8 @@
 		7E29D83618338B0800A92C2A /* grounddetail_world3_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E29D83418338B0800A92C2A /* grounddetail_world3_ss.png */; };
 		7E2C8AE117D853B100DC08AE /* lab_alladat_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */; };
 		7E2C8AE417D865A200DC08AE /* ItemUseUIAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */; };
+		7E2CEB23192B5B9D00191A1C /* DailyLoginPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2CEB22192B5B9D00191A1C /* DailyLoginPopup.m */; };
+		7E2CEB25192C02A400191A1C /* coin_freecoin.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2CEB24192C02A400191A1C /* coin_freecoin.map */; };
 		7E2E1BAD1803DF47002EFCF0 /* filler_skippingstones.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E2E1BAC1803DF47002EFCF0 /* filler_skippingstones.map */; };
 		7E3444A616DE01CF007D20F5 /* BGTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3444A516DE01CF007D20F5 /* BGTimeManager.m */; };
 		7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3444A716DE1850007D20F5 /* BG1_moon.png */; };
@@ -945,6 +947,9 @@
 		7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_alladat_challenge.map; sourceTree = "<group>"; };
 		7E2C8AE217D865A200DC08AE /* ItemUseUIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseUIAnimation.h; sourceTree = "<group>"; };
 		7E2C8AE317D865A200DC08AE /* ItemUseUIAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemUseUIAnimation.m; sourceTree = "<group>"; };
+		7E2CEB21192B5B9D00191A1C /* DailyLoginPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyLoginPopup.h; sourceTree = "<group>"; };
+		7E2CEB22192B5B9D00191A1C /* DailyLoginPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyLoginPopup.m; sourceTree = "<group>"; };
+		7E2CEB24192C02A400191A1C /* coin_freecoin.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coin_freecoin.map; sourceTree = "<group>"; };
 		7E2E1BAC1803DF47002EFCF0 /* filler_skippingstones.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filler_skippingstones.map; sourceTree = "<group>"; };
 		7E3444A416DE01CF007D20F5 /* BGTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTimeManager.h; sourceTree = "<group>"; };
 		7E3444A516DE01CF007D20F5 /* BGTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTimeManager.m; sourceTree = "<group>"; };
@@ -2218,6 +2223,8 @@
 			children = (
 				7E6433BA1928C67600A427EB /* BasePopup.h */,
 				7E6433BB1928C67600A427EB /* BasePopup.m */,
+				7E2CEB21192B5B9D00191A1C /* DailyLoginPopup.h */,
+				7E2CEB22192B5B9D00191A1C /* DailyLoginPopup.m */,
 			);
 			name = popup;
 			sourceTree = "<group>";
@@ -2607,6 +2614,7 @@
 				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
 				7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
+				7E2CEB24192C02A400191A1C /* coin_freecoin.map */,
 				7E115AB8182EF71700C18CFD /* cannon */,
 				7EE2455F17E65CAF007D4B4D /* capegame */,
 				7E2C8ADF17D8538200DC08AE /* challenge_only */,
@@ -4074,6 +4082,7 @@
 				7EB8B30216D9F8E700F58961 /* dog3ss.png in Resources */,
 				7E60A69818128FD900CC7C07 /* subboss.png in Resources */,
 				7EB8B30316D9F8E700F58961 /* dog4ss.plist in Resources */,
+				7E2CEB25192C02A400191A1C /* coin_freecoin.map in Resources */,
 				7EB8B30416D9F8E700F58961 /* dog4ss.png in Resources */,
 				7EB8B30516D9F8E700F58961 /* dog5ss.plist in Resources */,
 				7EB8B30616D9F8E700F58961 /* dog5ss.png in Resources */,
@@ -4397,6 +4406,7 @@
 				7EB8B3AA16D9FBFE00F58961 /* GOstrichAppDelegate.m in Sources */,
 				7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */,
 				7EB8B3AB16D9FBFE00F58961 /* RootViewController.m in Sources */,
+				7E2CEB23192B5B9D00191A1C /* DailyLoginPopup.m in Sources */,
 				7E0E85711919D36A001AFC04 /* TreatPickup.m in Sources */,
 				7EB8B47916D9FC0900F58961 /* BackgroundObject.m in Sources */,
 				7EB8B47A16D9FC0900F58961 /* BGLayer.m in Sources */,

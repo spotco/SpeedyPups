@@ -41,6 +41,8 @@
 #define L_LAB_2 @"levelset_lab_2"
 #define L_LAB_3 @"levelset_lab_3"
 
+#define L_COIN @"levelset_coin" 
+
 #define SETS_BETWEEN_LABS 3
 #define LEVELS_IN_LAB_SET 3
 #define LEVELS_IN_SET 3
@@ -64,7 +66,9 @@ typedef enum AutoLevelStateMode {
 	AutoLevelStateMode_BOSS3_ENTER,
 	AutoLevelStateMode_BOSS1,
 	AutoLevelStateMode_BOSS2,
-	AutoLevelStateMode_BOSS3
+	AutoLevelStateMode_BOSS3,
+	
+	AutoLevelState_COIN
 } AutoLevelStateMode;
 
 @interface AutoLevelState : NSObject {
@@ -94,5 +98,7 @@ typedef enum AutoLevelStateMode {
 
 -(void)to_boss_mode;
 -(void)to_labexit_mode;
+
+-(void)conditional_go_to_coin_level_or_mode:(AutoLevelStateMode)_mode;
 
 @end
