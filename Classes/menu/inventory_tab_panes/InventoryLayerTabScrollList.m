@@ -77,6 +77,15 @@
 	return tmp;
 }
 
+-(void)clear_tabs {
+	for (GenericListTouchButton *i in touches) {
+		[clipperholder removeChild:i cleanup:YES];
+	}
+	[touches removeAllObjects];
+	mult = 0;
+	clippedholder_y_max = 0;
+}
+
 -(void)sellist:(id)obj {
 	GenericListTouchButton *btn = (GenericListTouchButton *)obj;
 	for (TouchButton *i in touches) {

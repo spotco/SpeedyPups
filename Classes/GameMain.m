@@ -16,10 +16,10 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"coin_freecoin"
+#define TESTLEVEL @"tutorial2_jumpwater"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
-#define DEBUG_UI NO
+#define DEBUG_UI YES
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
 #define RESET_STATS NO
@@ -32,7 +32,11 @@
 
 
 /**
- item shop coin prices
+ double jump/hold tutorial bouncepad
+ swipe in direction to roll tutorial, 
+ rockbreak tutorial
+ armored run faster + sparkles
+ 
  extras 8pcs art, music, sfx
  mystery prize implement
  
@@ -84,14 +88,6 @@ Stretch goals:
 	 
 	if (RESET_STATS) [DataStore reset_all];
 	
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
-	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	
-	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL compress_textures = [defaults boolForKey:@"Compress Textures?"];
 	if (compress_textures || [Common force_compress_textures]) {
@@ -125,18 +121,28 @@ Stretch goals:
 	}
 	*/
 	
+	/*
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
+	 */
+	
+	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
 	[UserInventory unlock_character:TEX_DOG_RUN_4];
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
-	//[ChallengeRecord set_beaten_challenge:19 to:YES];
-	
+	[ChallengeRecord set_beaten_challenge:19 to:YES];
+	*/
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
-	//[UserInventory add_coins:10];
+	//[UserInventory add_coins:100];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];

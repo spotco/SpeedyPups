@@ -13,6 +13,11 @@ typedef enum {
 #define SHOP_ITEM_ROCKET @"shop_item_rocket"
 #define SHOP_ITEM_CLOCK @"shop_item_clock"
 
+#define SHOP_UPGRADE_MAGNET @"shop_upgrade_magnet"
+#define SHOP_UPGRADE_ARMOR @"shop_upgrade_armor"
+#define SHOP_UPGRADE_ROCKET @"shop_upgrade_rocket"
+#define SHOP_UPGRADE_CLOCK @"shop_upgrade_clock"
+
 #define SHOP_DOG_DOG2 @"shop_dog_dog2"
 #define SHOP_DOG_DOG3 @"shop_dog_dog3"
 #define SHOP_DOG_DOG4 @"shop_dog_dog4"
@@ -20,7 +25,8 @@ typedef enum {
 #define SHOP_DOG_DOG6 @"shop_dog_dog6"
 #define SHOP_DOG_DOG7 @"shop_dog_dog7"
 
-#define SHOP_UNLOCK_FREERUN @"shop_unlock_freerun"
+#define SHOP_UNLOCK_WORLD2 @"shop_unlock_world2" 
+#define SHOP_UNLOCK_WORLD3 @"shop_unlock_world3"
 
 @interface ItemInfo : NSObject
 @property(readwrite,unsafe_unretained) CCTexture2D* tex;

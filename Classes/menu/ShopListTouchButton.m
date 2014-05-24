@@ -126,4 +126,9 @@
 	[sub_text setString:s];
 }
 
+-(void)dealloc {
+	self.cb.target = NULL;
+	self.cb = NULL;
+}
+
 @end

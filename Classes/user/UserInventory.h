@@ -11,6 +11,10 @@
 
 +(GameItem)get_current_gameitem;
 +(void)set_current_gameitem:(GameItem)g;
+
++(BOOL)get_item_owned:(GameItem)g;
++(void)set_item:(GameItem)g owned:(BOOL)owned;
+
 +(int)get_upgrade_level:(GameItem)gi;
 +(void)upgrade:(GameItem)gi;
 +(BOOL)can_upgrade:(GameItem)g;

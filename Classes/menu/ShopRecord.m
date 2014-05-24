@@ -64,51 +64,76 @@
 	[self add_item:Item_Shield into:a];
 	[self add_item:Item_Magnet into:a];
 	[self add_item:Item_Clock into:a];
+	
+	[self add_upgrade:Item_Rocket into:a];
+	[self add_upgrade:Item_Shield into:a];
+	[self add_upgrade:Item_Magnet into:a];
+	[self add_upgrade:Item_Clock into:a];
 }
 
-+(void)add_item:(GameItem)item into:(NSMutableArray*)a {
++(void)add_upgrade:(GameItem)item into:(NSMutableArray*)a {
 	if (![UserInventory can_upgrade:item]) return;
-	int uggval = [UserInventory get_upgrade_level:item];
-	NSString* shop_val = item == Item_Clock ? SHOP_ITEM_CLOCK :
-		(item == Item_Magnet ? SHOP_ITEM_MAGNET :
-		 (item == Item_Rocket ? SHOP_ITEM_ROCKET :
-		  (item == Item_Shield ? SHOP_ITEM_ARMOR : @"top lel")));
+	NSString* shop_val = item == Item_Clock ? SHOP_UPGRADE_CLOCK :
+	(item == Item_Magnet ? SHOP_UPGRADE_MAGNET :
+	 (item == Item_Rocket ? SHOP_UPGRADE_ROCKET :
+	  (item == Item_Shield ? SHOP_UPGRADE_ARMOR : @"top lel")));
 	int price = 1;
+	int ugv = [UserInventory get_upgrade_level:item];
 	if (item == Item_Clock) {
-		int vals[] = {4000,8000,12000};
-		price = vals[uggval];
+		int vals[] = {5,10,20};
+		price = vals[ugv];
 	} else if (item == Item_Magnet) {
-		int vals[] = {3000,6000,9000};
-		price = vals[uggval];
+		int vals[] = {5,10,20};
+		price = vals[ugv];
 	} else if (item == Item_Rocket) {
-		int vals[] = {1000,2000,4000};
-		price = vals[uggval];
+		int vals[] = {5,10,20};
+		price = vals[ugv];
 	} else if (item == Item_Shield) {
-		int vals[] = {2000,4000,6000};
-		price = vals[uggval];
+		int vals[] = {5,10,20};
+		price = vals[ugv];
 	}
-	
-	NSString *item_name = [GameItemCommon name_from:item];
-	NSString *use_desc = uggval == 0?@"Unlock to equip in inventory.":@"Upgrade to last longer.";
+	NSString *item_name = [NSString stringWithFormat:@"Upgrade %@",[GameItemCommon name_from:item]];
+	NSString *use_desc = @"Upgrade to work better.";
 	
 	ItemInfo *i = [ItemInfo cons_tex:TEX_ITEM_SS
-							  rectid:[ShopRecord gameitem_to_texid:item]
-								name:uggval==0?item_name:[NSString stringWithFormat:@"Upgrade %@",item_name]
+							  rectid:[ShopRecord gameitem_to_texid:item upgrade:YES]
+								name:item_name
 								desc:[NSString stringWithFormat:@"%@\nUse: %@",use_desc,[GameItemCommon description_from:item]]
 							   price:price
 								 val:shop_val];
-	if (uggval == 0) {
-		i.short_name = item_name;
-	} else {
-		i.short_name = @"Upgrade";
-	}
+	i.short_name = @"Upgrade";
+	[a addObject:i];
+}
+
++(void)add_item:(GameItem)item into:(NSMutableArray*)a {
+	if ([UserInventory get_item_owned:item]) return;
+	
+	NSString* shop_val = item == Item_Clock ? SHOP_ITEM_CLOCK :
+	(item == Item_Magnet ? SHOP_ITEM_MAGNET :
+	 (item == Item_Rocket ? SHOP_ITEM_ROCKET :
+	  (item == Item_Shield ? SHOP_ITEM_ARMOR : @"top lel")));
+	int price = item == Item_Clock ? 10 :
+	(item == Item_Magnet ? 10 :
+	 (item == Item_Rocket ? 10 :
+	  (item == Item_Shield ? 10 : 1)));
+	
+	NSString *item_name = [GameItemCommon name_from:item];
+	NSString *use_desc = @"Unlock to equip in inventory.";
+	
+	ItemInfo *i = [ItemInfo cons_tex:TEX_ITEM_SS
+							  rectid:[ShopRecord gameitem_to_texid:item upgrade:NO]
+								name:item_name
+								desc:[NSString stringWithFormat:@"%@\nUse: %@",use_desc,[GameItemCommon description_from:item]]
+							   price:price
+								 val:shop_val];
+	i.short_name = item_name;
 	[a addObject:i];
 }
 
 +(void)fill_characters_tab:(NSMutableArray*)a {
 	NSString *dogs[] = {	TEX_DOG_RUN_2,	TEX_DOG_RUN_3,	TEX_DOG_RUN_4,	TEX_DOG_RUN_5,	TEX_DOG_RUN_6,	TEX_DOG_RUN_7};
 	NSString *actions[] = {	SHOP_DOG_DOG2,	SHOP_DOG_DOG3,	SHOP_DOG_DOG4,	SHOP_DOG_DOG5,	SHOP_DOG_DOG6,	SHOP_DOG_DOG7};
-	float prices[] = {		5000,			7500,			10000,			15000,			25000,			35000};
+	float prices[] = {		10,				15,				25,				35,				45,				60};
 	for(int i = 0; i < sizeof(dogs)/sizeof(NSString*); i++) {
 		NSString *dog = dogs[i];
 		if (![UserInventory get_character_unlocked:dog]) {
@@ -125,22 +150,31 @@
 }
 
 +(void)fill_unlock_tab:(NSMutableArray*)a {
-	if (![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_LAB3]) {
-		TexRect *freerunstarticon = [FreeRunStartAtManager get_icon_for_loc:FreeRunStartAt_WORLD1];
+	if (![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_WORLD2]) {
+		TexRect *freerunstarticon = [FreeRunStartAtManager get_icon_for_loc:FreeRunStartAt_WORLD2];
 		[a addObject:[ItemInfo cons_tex:freerunstarticon.tex
 								   rect:freerunstarticon.rect
-								   name:@"Free Run"
-								   desc:@"Unlock all freerun start points!"
-								  price:25000
-									val:SHOP_UNLOCK_FREERUN]];
+								   name:@"World 2"
+								   desc:@"Unlock world 2."
+								  price:15
+									val:SHOP_UNLOCK_WORLD2]];
+	}
+	if ([FreeRunStartAtManager get_can_start_at:FreeRunStartAt_WORLD2] && ![FreeRunStartAtManager get_can_start_at:FreeRunStartAt_WORLD3]) {
+		TexRect *freerunstarticon = [FreeRunStartAtManager get_icon_for_loc:FreeRunStartAt_WORLD3];
+		[a addObject:[ItemInfo cons_tex:freerunstarticon.tex
+								   rect:freerunstarticon.rect
+								   name:@"World 3"
+								   desc:@"Unlock world 3."
+								  price:25
+									val:SHOP_UNLOCK_WORLD3]];
 	}
 }
 
 +(void)fill_realmoney_tab:(NSMutableArray*)a {
 }
 
-+(NSString*)gameitem_to_texid:(GameItem)i {
-	if ([UserInventory get_upgrade_level:i] == 0) {
++(NSString*)gameitem_to_texid:(GameItem)i upgrade:(BOOL)upgrade {
+	if (!upgrade) {
 		if (i == Item_Heart) return @"item_heart";
 		else if (i == Item_Magnet) return @"item_magnet";
 		else if (i == Item_Rocket) return @"item_rocket";
@@ -160,27 +194,51 @@
 }
 
 +(BOOL)buy_shop_item:(NSString *)val price:(int)price {
-	if (price > [UserInventory get_current_bones]) return NO;
+	if (price > [UserInventory get_current_coins]) return NO;
 	
 	if (streq(val, SHOP_ITEM_MAGNET)) {
+		if ([UserInventory get_item_owned:Item_Magnet]) return NO;
+		[UserInventory set_item:Item_Magnet owned:YES];
+		[UserInventory set_current_gameitem:Item_Magnet];
+		[UserInventory set_equipped_gameitem:Item_Magnet];
+		
+	} else if (streq(val, SHOP_ITEM_ARMOR)) {
+		if ([UserInventory get_item_owned:Item_Shield]) return NO;
+		[UserInventory set_item:Item_Shield owned:YES];
+		[UserInventory set_current_gameitem:Item_Shield];
+		[UserInventory set_equipped_gameitem:Item_Shield];
+		
+	} else if (streq(val, SHOP_ITEM_ROCKET)) {
+		if ([UserInventory get_item_owned:Item_Rocket]) return NO;
+		[UserInventory set_item:Item_Rocket owned:YES];
+		[UserInventory set_current_gameitem:Item_Rocket];
+		[UserInventory set_equipped_gameitem:Item_Rocket];
+		
+	} else if (streq(val, SHOP_ITEM_CLOCK)) {
+		if ([UserInventory get_item_owned:Item_Clock]) return NO;
+		[UserInventory set_item:Item_Clock owned:YES];
+		[UserInventory set_current_gameitem:Item_Clock];
+		[UserInventory set_equipped_gameitem:Item_Clock];
+		
+	} else if (streq(val, SHOP_UPGRADE_MAGNET)) {
 		if (![UserInventory can_upgrade:Item_Magnet]) return NO;
 		[UserInventory upgrade:Item_Magnet];
 		[UserInventory set_current_gameitem:Item_Magnet];
 		[UserInventory set_equipped_gameitem:Item_Magnet];
 		
-	} else if (streq(val, SHOP_ITEM_ARMOR)) {
+	} else if (streq(val, SHOP_UPGRADE_ARMOR)) {
 		if (![UserInventory can_upgrade:Item_Shield]) return NO;
 		[UserInventory upgrade:Item_Shield];
 		[UserInventory set_current_gameitem:Item_Shield];
 		[UserInventory set_equipped_gameitem:Item_Shield];
 		
-	} else if (streq(val, SHOP_ITEM_ROCKET)) {
+	} else if (streq(val, SHOP_UPGRADE_ROCKET)) {
 		if (![UserInventory can_upgrade:Item_Rocket]) return NO;
 		[UserInventory upgrade:Item_Rocket];
 		[UserInventory set_current_gameitem:Item_Rocket];
 		[UserInventory set_equipped_gameitem:Item_Rocket];
 		
-	} else if (streq(val, SHOP_ITEM_CLOCK)) {
+	} else if (streq(val, SHOP_UPGRADE_CLOCK)) {
 		if (![UserInventory can_upgrade:Item_Clock]) return NO;
 		[UserInventory upgrade:Item_Clock];
 		[UserInventory set_current_gameitem:Item_Clock];
@@ -210,7 +268,13 @@
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_7]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_7];
 		
-	} else if (streq(val, SHOP_UNLOCK_FREERUN)) {
+	} else if (streq(val, SHOP_UNLOCK_WORLD2)) {
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+		
+	} else if (streq(val, SHOP_UNLOCK_WORLD3)) {
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
@@ -218,8 +282,12 @@
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
 		
+	} else {
+		NSLog(@"error unknown shop value %@",val);
+		return NO;
 	}
-	[UserInventory add_bones:-price];
+	
+	[UserInventory add_coins:-price];
 	return YES;
 }
 

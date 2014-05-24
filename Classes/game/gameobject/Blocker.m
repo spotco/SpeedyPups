@@ -1,4 +1,5 @@
 #import "Blocker.h"
+#import "AudioManager.h"
 
 @implementation Blocker
 
@@ -26,6 +27,7 @@
         [player add_effect:[BlockerEffect cons_from:[player get_default_params]]];
         player.vy = ABS(player.vy)*-1;
         active = NO;
+		[AudioManager playsfx:SFX_HIT];
     }
     
     return;

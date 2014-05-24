@@ -9,6 +9,8 @@
 
 @interface GameControlImplementation:NSObject
 
++(CGPoint)get_post_swipe_drag;
+
 +(void)control_update_player:(GameEngineLayer*)g;
 +(void)reset_control_state;
 

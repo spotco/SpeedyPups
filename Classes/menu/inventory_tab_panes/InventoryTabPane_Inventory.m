@@ -97,7 +97,7 @@
 	}
 	
 	//TODO -- the conditions should be changed
-	if (!added_items_contains([GameItemCommon name_from:Item_Magnet]) && [UserInventory get_upgrade_level:Item_Magnet] > 0) {
+	if (!added_items_contains([GameItemCommon name_from:Item_Magnet]) && [UserInventory get_item_owned:Item_Magnet]) {
 		[list add_tab:[GameItemCommon texrect_from:Item_Magnet].tex
 				 rect:[GameItemCommon texrect_from:Item_Magnet].rect
 			main_text:[GameItemCommon name_from:Item_Magnet]
@@ -107,7 +107,7 @@
 		added_items_add([GameItemCommon name_from:Item_Magnet]);
 	}
 	
-	if (!added_items_contains([GameItemCommon name_from:Item_Rocket]) && [UserInventory get_upgrade_level:Item_Rocket] > 0) {
+	if (!added_items_contains([GameItemCommon name_from:Item_Rocket]) && [UserInventory get_item_owned:Item_Rocket]) {
 		[list add_tab:[GameItemCommon texrect_from:Item_Rocket].tex
 				 rect:[GameItemCommon texrect_from:Item_Rocket].rect
 			main_text:[GameItemCommon name_from:Item_Rocket]
@@ -117,7 +117,7 @@
 		added_items_add([GameItemCommon name_from:Item_Rocket]);
 	}
 	
-	if (!added_items_contains([GameItemCommon name_from:Item_Clock]) && [UserInventory get_upgrade_level:Item_Clock] > 0) {
+	if (!added_items_contains([GameItemCommon name_from:Item_Clock]) && [UserInventory get_item_owned:Item_Clock]) {
 		[list add_tab:[GameItemCommon texrect_from:Item_Clock].tex
 				 rect:[GameItemCommon texrect_from:Item_Clock].rect
 			main_text:[GameItemCommon name_from:Item_Clock]
@@ -127,7 +127,7 @@
 		added_items_add([GameItemCommon name_from:Item_Clock]);
 	}
 	
-	if (!added_items_contains([GameItemCommon name_from:Item_Shield]) && [UserInventory get_upgrade_level:Item_Shield] > 0) {
+	if (!added_items_contains([GameItemCommon name_from:Item_Shield]) && [UserInventory get_item_owned:Item_Shield]) {
 		[list add_tab:[GameItemCommon texrect_from:Item_Shield].tex
 				 rect:[GameItemCommon texrect_from:Item_Shield].rect
 			main_text:[GameItemCommon name_from:Item_Shield]

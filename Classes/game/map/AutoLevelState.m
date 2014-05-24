@@ -26,8 +26,9 @@
 
 -(void)cons_level_defs{
 	tutorial_levels = @[
-		@"tutorial_jump",
-		@"tutorial_water",
+		//@"tutorial_jump",
+		//@"tutorial_water",
+		@"tutorial2_jumpwater",
 		@"tutorial_doublejump",
 		@"filler_sanicloop",
 		@"tutorial_swipeget",
@@ -156,7 +157,7 @@
 		
 		L_AUTOSTART: @{
 			//@"shittytest":@1
-			@"autolevel_start": @1
+			@"autolevel_start2": @1
 		},
 		L_FREERUN_PROGRESS_WORLD: @{
 			@"freerun_progress": @1

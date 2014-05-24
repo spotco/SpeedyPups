@@ -114,7 +114,7 @@
 -(void)update_labels_and_buttons {
 	if (selected_item != Item_NOITEM) {
 		[name_disp setString:[GameItemCommon name_from:selected_item]];
-		[desc_disp setString:@"Upgrade to last longer!"];
+		[desc_disp setString:@"Upgrade to work better!"];
 		[upgrade_disp_bg setVisible:YES];
 		int level = [UserInventory get_upgrade_level:selected_item];
 		for (int i = 0; i < upgrade_stars.count; i++) {

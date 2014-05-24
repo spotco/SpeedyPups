@@ -58,6 +58,18 @@ static GameItem current_item = Item_NOITEM;
     return [NSString stringWithFormat:@"upgrade_%d",gi];
 }
 
++(NSString*)key_gameitem_owned:(GameItem)g {
+	return [NSString stringWithFormat:@"owned_item_%d",g];
+}
+
++(BOOL)get_item_owned:(GameItem)g {
+	return [DataStore get_int_for_key:[self key_gameitem_owned:g]];
+}
+
++(void)set_item:(GameItem)g owned:(BOOL)owned {
+	[DataStore set_key:[self key_gameitem_owned:g] int_value:owned];
+}
+
 +(int)get_upgrade_level:(GameItem)gi {
     return [DataStore get_int_for_key:[self gameitem_to_upgrade_level_string:gi]];
 }

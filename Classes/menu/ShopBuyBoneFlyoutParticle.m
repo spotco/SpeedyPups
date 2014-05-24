@@ -10,7 +10,7 @@
 
 -(void)set_body {
 	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
-	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
+	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]];
 }
 
 #define MAX_CT 23.0
@@ -21,7 +21,7 @@
 	[self setPosition:pt];
 	vel = tvel;
 	[self setRotation:float_random(0, 360)];
-	vr = float_random(8, 20) * [Common sig:float_random(-100, 100)];
+	vr = float_random(25, 35) * [Common sig:float_random(-100, 100)];
 	init_scale = float_random(0.3, 0.9);
 	[self setScale:init_scale];
 	

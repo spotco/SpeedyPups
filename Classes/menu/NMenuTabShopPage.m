@@ -85,14 +85,18 @@
 										  color:ccc3(200,30,30)
 									   fontsize:16
 											str:@"Price"] anchor_pt:ccp(0,0.5)]];
-	itemprice = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.5 pcty:0.425]
+	itemprice = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.555 pcty:0.385]
 								 color:ccc3(0,0,0)
-							  fontsize:19
+							  fontsize:30
 								   str:@"99999"] anchor_pt:ccp(0,0.5)];
 	[price_disp addChild:itemprice];
+	[price_disp addChild:[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.535 pcty:0.385]
+										  color:ccc3(0,0,0)
+									   fontsize:12
+											str:@"x"]];
 	[price_disp addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tinybone"]]
-						  pos:[Common pct_of_obj:tabbedpane pctx:0.46 pcty:0.425]]];
+												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"coin"]]
+						  pos:[Common pct_of_obj:tabbedpane pctx:0.47 pcty:0.385]]];
 	[tabbedpane addChild:price_disp];
 	buybutton = [TouchButton cons_pt:[Common pct_of_obj:tabbedpane pctx:0.975 pcty:0.025]
 								 tex:[Resource get_tex:TEX_NMENU_ITEMS]
@@ -105,7 +109,7 @@
 	notenoughdisp = [Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.69 pcty:0.15]
 									 color:ccc3(200,30,30)
 								  fontsize:23
-									   str:@"Not enough bones!"];
+									   str:@"Not enough coins!"];
 	[tabbedpane addChild:notenoughdisp];
 	
 	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa";
@@ -126,18 +130,22 @@
 	CCSprite *total_bones_pane = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
 														 rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"continue_total_bg"]]
 								  pos:[Common screen_pctwid:0.13 pcthei:0.3]];
-	[total_bones_pane addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
-													   rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"tinybone"]
-								 ] pos:[Common pct_of_obj:total_bones_pane pctx:0.15 pcty:0.3]]];
-	[total_bones_pane addChild:[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.325 pcty:0.75]
+	[total_bones_pane addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
+													   rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"coin"]
+								 ] pos:[Common pct_of_obj:total_bones_pane pctx:0.15 pcty:0.3]] scale:0.6]];
+	[total_bones_pane addChild:[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.365 pcty:0.75]
 												color:ccc3(0,0,0)
 											 fontsize:10
-												  str:@"Total Bones"]];
-	total_disp = [Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.57 pcty:0.325]
-								  color:ccc3(255,0,0)
+												  str:@"Total Coins"]];
+	[total_bones_pane addChild:[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.32 pcty:0.325]
+												color:ccc3(200,30,30)
+											 fontsize:10
+												  str:@"x"]];
+	total_disp = [[Common cons_label_pos:[Common pct_of_obj:total_bones_pane pctx:0.38 pcty:0.325]
+								  color:ccc3(200,30,30)
 							   fontsize:20
-									str:@"000000"];
-	[total_disp setString:strf("%d",[UserInventory get_current_bones])];
+									str:@"000000"] anchor_pt:ccp(0,0.5)];
+	[total_disp setString:strf("%d",[UserInventory get_current_coins])];
 	[total_bones_pane addChild:total_disp];
 	[self addChild:total_bones_pane z:0 tag:t_TOTALBONESPANE];
 	
@@ -228,7 +236,7 @@
 	sto_val = tar.sto_info.val;
 	sto_price = tar.sto_info.price;
 	
-	if (sto_price > [UserInventory get_current_bones]) {
+	if (sto_price > [UserInventory get_current_coins]) {
 		[buybutton setVisible:NO];
 		[notenoughdisp setVisible:YES];
 	} else {
@@ -306,7 +314,7 @@
 	[particles removeObjectsInArray:toremove];
 	
 	int curdispval = total_disp.string.integerValue;
-	int tardispval = [UserInventory get_current_bones];
+	int tardispval = [UserInventory get_current_coins];
 	if (curdispval != tardispval) {
 		if (ABS(curdispval-tardispval) > 200) {
 			curdispval = curdispval + (tardispval-curdispval)/10.0f;

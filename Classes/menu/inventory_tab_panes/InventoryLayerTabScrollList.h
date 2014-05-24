@@ -22,6 +22,8 @@
 +(InventoryLayerTabScrollList*)cons_parent:(CCSprite*)parent add_to:(CCSprite*)add_to;
 -(GenericListTouchButton*)add_tab:(CCTexture2D*)tex rect:(CGRect)rect main_text:(NSString*)main_text sub_text:(NSString*)sub_text callback:(CallBack*)cb;
 
+-(void)clear_tabs;
+
 -(void)update;
 -(void)touch_begin:(CGPoint)pt;
 -(void)touch_move:(CGPoint)pt;

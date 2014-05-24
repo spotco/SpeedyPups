@@ -208,6 +208,8 @@
 		7EA5680B16FF8E530003F2A5 /* TutorialProf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680A16FF8E530003F2A5 /* TutorialProf.m */; };
 		7EA5680E16FF9DE90003F2A5 /* TutorialAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */; };
 		7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5681016FFCE780003F2A5 /* TutorialEnd.m */; };
+		7EAC99C21930A4CA006C3ED2 /* autolevel_start2.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */; };
+		7EAC99C41930A6F9006C3ED2 /* tutorial2_jumpwater.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */; };
 		7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */; };
 		7EAE854C177FEFE4005AB868 /* labbreakablewall_body.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE854A177FEFE4005AB868 /* labbreakablewall_body.png */; };
 		7EAE854E177FF647005AB868 /* lab_minionwalls.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE854D177FF647005AB868 /* lab_minionwalls.map */; };
@@ -1083,6 +1085,8 @@
 		7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialAnim.m; path = tutorial/TutorialAnim.m; sourceTree = "<group>"; };
 		7EA5680F16FFCE780003F2A5 /* TutorialEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialEnd.h; path = tutorial/TutorialEnd.h; sourceTree = "<group>"; };
 		7EA5681016FFCE780003F2A5 /* TutorialEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialEnd.m; path = tutorial/TutorialEnd.m; sourceTree = "<group>"; };
+		7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = autolevel_start2.map; sourceTree = "<group>"; };
+		7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_jumpwater.map; sourceTree = "<group>"; };
 		7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labbreakablewall_base.png; sourceTree = "<group>"; };
 		7EAE854A177FEFE4005AB868 /* labbreakablewall_body.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labbreakablewall_body.png; sourceTree = "<group>"; };
 		7EAE854D177FF647005AB868 /* lab_minionwalls.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_minionwalls.map; sourceTree = "<group>"; };
@@ -2392,6 +2396,7 @@
 				7E4A2F6117044908001BD38C /* tutorial_spikevine.map */,
 				7E8F478217994067004CA582 /* tutorial_upsidebounce.map */,
 				7E4942621837478500E63573 /* tutorial_cannons.map */,
+				7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -2627,6 +2632,7 @@
 				7E9A784716FC4DA10014B7E0 /* filler */,
 				7E9A784616FC4D980014B7E0 /* classic */,
 				7EB8B25516D9F8E700F58961 /* TEST */,
+				7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */,
 			);
 			path = levels;
 			sourceTree = "<group>";
@@ -4049,7 +4055,9 @@
 				7EB8B2E116D9F8E700F58961 /* BG1_island_top_edge.png in Resources */,
 				7EB8B2E216D9F8E700F58961 /* BG1_layer_1.png in Resources */,
 				7EB8B2E416D9F8E700F58961 /* BG1_layer_3.png in Resources */,
+				7EAC99C41930A6F9006C3ED2 /* tutorial2_jumpwater.map in Resources */,
 				7EB8B2E516D9F8E700F58961 /* BG1_sky.png in Resources */,
+				7EAC99C21930A4CA006C3ED2 /* autolevel_start2.map in Resources */,
 				7EB8B2E616D9F8E700F58961 /* BG1_sun.png in Resources */,
 				7E27D77218641802000FDA3E /* sfx_intro_snore.wav in Resources */,
 				7E7952A318A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png in Resources */,
@@ -4799,8 +4807,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4814,7 +4822,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B340DC0F-5207-45C1-AAC5-0DF5F2219D83";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -4825,8 +4833,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";
@@ -4839,7 +4847,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B340DC0F-5207-45C1-AAC5-0DF5F2219D83";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

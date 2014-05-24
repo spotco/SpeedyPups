@@ -47,10 +47,19 @@ static CGPoint prev;
     prev = pt;
     
     queue_jump = YES;
+	
+	post_swipe_drag = CGPointZero;
 }
 
 static float avg_x;
 static float avg_y;
+
+static CGPoint post_swipe_drag;
+static int last_jump;
+
++(CGPoint)get_post_swipe_drag {
+	return post_swipe_drag;
+}
 
 +(void)touch_move:(CGPoint)pt {
     touch_move_counter++;
@@ -58,30 +67,34 @@ static float avg_y;
     
     avg_x += pt.x-prev.x;
     avg_y -= pt.y-prev.y;
+	post_swipe_drag.x += pt.x-prev.x;
+	post_swipe_drag.y -= pt.y-prev.y;
     
     if(touch_move_counter == 3) {
         float avg = touch_dist_sum/touch_move_counter;
-        if (avg > 3) {
-            Vec3D v = [VecLib cons_x:avg_x/touch_move_counter y:avg_y/touch_move_counter z:0];
+        if (avg > 6) {
+            Vec3D v = [VecLib cons_x:avg_x y:avg_y z:0];
             v = [VecLib normalize:v];
             
             if (ABS([VecLib get_angle_in_rad:v]) < M_PI*(3.0/4.0)) {
                 queue_swipe = YES;
                 swipe_dir = ccp(ABS(v.x),v.y);
+				post_swipe_drag = CGPointZero;
             }
         }
+		
         touch_move_counter = 0;
         touch_dist_sum = 0;
         avg_x = 0;
-        avg_y=0;
-    }
-    
+        avg_y = 0;
+	}
     prev = pt;
 }
 
 +(void)touch_end:(CGPoint)pt {
     is_touch_down = NO;
     touch_timer = 0;
+	post_swipe_drag = CGPointZero;
 }
 
 float nodash_time = 0;
@@ -155,7 +168,20 @@ float nodash_time = 0;
     if (queue_swipe == YES &&
 		player.current_island == NULL &&
 		[player get_current_params].cur_dash_count > 0 &&
-		(/*[[player get_current_params] isKindOfClass:[DogRocketEffect class]] ||*/ player.dashing == NO) && nodash_time <= 0) {
+		player.dashing == NO &&
+		nodash_time <= 0) {
+		
+		if (last_jump < 10) {
+			[[player get_current_params] decr_airjump_count];
+			if ([player get_current_params] != NULL && [player get_current_params] != [player get_default_params]) {
+				PlayerEffectParams *p = [player get_current_params];
+				p.cur_airjump_count++;
+				
+			} else if ([player get_default_params] != NULL) {
+				PlayerEffectParams *p = [player get_default_params];
+				p.cur_airjump_count++;
+			}
+		}
 		
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
@@ -183,6 +209,8 @@ float nodash_time = 0;
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
             [g.get_stats increment:GEStat_JUMPED];
 			
+			last_jump = 0;
+			
         } else if ([player get_current_params].cur_airjump_count > 0) {
             [GameControlImplementation player_double_jump:player];
             
@@ -192,9 +220,13 @@ float nodash_time = 0;
             [GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
 			[g add_particle:[JumpParticle cons_pt:player.position vel:ccp(player.vx,player.vy) up:ccp(player.up_vec.x,player.up_vec.y)]];
 			[g.get_stats increment:GEStat_JUMPED];
+			
+			last_jump = 0;
             
         }
     }
+	last_jump++;
+	
     queue_jump = NO;
     
     
@@ -214,7 +246,7 @@ float nodash_time = 0;
         touch_timer++;
     }
         
-    if (is_touch_down && touch_timer > (25/[Common get_dt_Scale]) && player.current_island == NULL) { //hold to float
+    if (is_touch_down && touch_timer > (23/[Common get_dt_Scale]) && player.current_island == NULL) { //hold to float
         player.floating = YES;
     } else {
         player.floating = NO;

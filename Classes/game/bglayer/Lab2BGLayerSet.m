@@ -44,10 +44,6 @@
 	behindwater_particleholder = [CCSprite node];
 	[tankersfront addChild:tankersfront_particleholder];
 	
-	BGTimeManager *time = [BGTimeManager cons];
-	[time setVisible:NO];
-	[bg_objects addObject:time];
-	
 	
 	for (BackgroundObject *o in bg_objects) {
 		if (o == backwater) {
