@@ -39,7 +39,7 @@
         {"y2": 2855, "x1": 9426.8, "ndir": "right", "y1": 2443.4, "ground": "open", "can_fall": true, "x2": 9430.1, "type": "line", "hei": 500}
     ],
     "connect_pts": {"y2": 1846.7, "x1": 100, "x2": 10300.2, "y1": 1548.3},
-    "start_y": 1746.6833333333334,
+    "start_y": 1746.7,
     "objects": [
         {"label": "(0)gd_img:6", "x": 450, "img": 6, "type": "ground_detail", "y": 1551.7},
         {"label": "1", "x": 701.7, "type": "checkpoint", "y": 1548.3},
@@ -179,7 +179,9 @@
             "type": "camera_area",
             "height": 363.28333333333353,
             "camera": {"x": 120, "z": 160, "y": 110}
-        }
+        },
+        {"label": "0", "x": 4750, "type": "1upobject", "y": 1800},
+        {"label": "1", "x": 8005, "type": "1upobject", "y": 3052}
     ],
     "assert_links": 29
 }

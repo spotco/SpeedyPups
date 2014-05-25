@@ -15,8 +15,8 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"shittytest"
+#define PLAY_BGM YES
+#define TESTLEVEL @"classic_nubcave"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
 #define DEBUG_UI YES
@@ -32,9 +32,6 @@
 
 
 /**
- double jump/hold tutorial bouncepad
- swipe in direction to roll tutorial, 
- rockbreak tutorial
  armored run faster + sparkles
  
  extras 8pcs art, music, sfx
@@ -121,14 +118,14 @@ Stretch goals:
 	}
 	*/
 	
-	/*
+	
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	 */
+	 
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -146,9 +143,9 @@ Stretch goals:
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 

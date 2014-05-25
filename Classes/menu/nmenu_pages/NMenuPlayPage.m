@@ -155,7 +155,7 @@
 												  str:@"First time?"]];
 	[first_time_popup addChild:[Common cons_label_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.5]
 												color:ccc3(10,10,10)
-											 fontsize:15
+											 fontsize:16
 												  str:@"Click me!"]];
 	[freerunmodebutton addChild:first_time_popup];
 	[first_time_popup setPosition:[Common pct_of_obj:freerunmodebutton pctx:0.25 pcty:0.9]];

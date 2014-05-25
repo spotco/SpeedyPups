@@ -2,7 +2,9 @@
 #import "GameEngineLayer.h"
 #import "JumpPadParticle.h"
 
-@implementation DashEffect
+@implementation DashEffect {
+	BOOL no_post_track;
+}
 
 @synthesize vx,vy;
 
@@ -28,6 +30,11 @@
 	return rtv;
 }
 
+-(id)set_no_post_track {
+	no_post_track = YES;
+	return self;
+}
+
 -(void)update:(Player*)p g:(GameEngineLayer *)g{
 	self.player = p;
     if (p.current_island != NULL) {
@@ -36,13 +43,15 @@
         self.vy = t.y;
     } else {
 		
-		if ([GameControlImplementation get_post_swipe_drag].x  != 0 && [GameControlImplementation get_post_swipe_drag].y != 0) {
-			Vec3D post_dir = [VecLib normalize:[VecLib cons_x:MAX(0,[GameControlImplementation get_post_swipe_drag].x) y:[GameControlImplementation get_post_swipe_drag].y z:0]];
-			Vec3D cur_dir = [VecLib cons_x:self.vx y:self.vy z:0];
-			
-			Vec3D final_dir = [VecLib normalized_x:cur_dir.x+post_dir.x*0.2 y:cur_dir.y+post_dir.y*0.2 z:0];
-			self.vx = final_dir.x;
-			self.vy = final_dir.y;
+		if (no_post_track == NO) {
+			if ([GameControlImplementation get_post_swipe_drag].x  != 0 && [GameControlImplementation get_post_swipe_drag].y != 0) {
+				Vec3D post_dir = [VecLib normalize:[VecLib cons_x:MAX(0,[GameControlImplementation get_post_swipe_drag].x) y:[GameControlImplementation get_post_swipe_drag].y z:0]];
+				Vec3D cur_dir = [VecLib cons_x:self.vx y:self.vy z:0];
+				
+				Vec3D final_dir = [VecLib normalized_x:cur_dir.x+post_dir.x*0.2 y:cur_dir.y+post_dir.y*0.2 z:0];
+				self.vx = final_dir.x;
+				self.vy = final_dir.y;
+			}
 		}
         p.vx = self.vx*12;
         p.vy = self.vy*12;

@@ -1,28 +1,28 @@
 {
+    "assert_links": 5,
+    "start_x": 351,
     "islands": [
-        {"can_fall": true, "x2": 2047.5, "ground": "open", "ndir": "left", "type": "line", "y1": 902.5, "hei": 500, "y2": 898.8, "x1": 1622.5},
-        {"can_fall": true, "x2": 4300.1, "ground": "open", "ndir": "left", "type": "line", "y1": 898.3, "hei": 500, "y2": 895, "x1": 3051.7},
-        {"can_fall": true, "x2": 1200, "ground": "open", "ndir": "left", "type": "line", "y1": 701.3, "hei": 500, "y2": 696.3, "x1": 51.3},
-        {"can_fall": true, "x2": 1297.5, "ground": "open", "ndir": "left", "type": "line", "y1": 696.3, "hei": 500, "y2": 706.3, "x1": 1200},
-        {"can_fall": true, "x2": 1622.5, "ground": "open", "ndir": "left", "type": "line", "y1": 873.8, "hei": 500, "y2": 902.5, "x1": 1506.3},
-        {"can_fall": true, "x2": 1410, "ground": "open", "ndir": "left", "type": "line", "y1": 706.3, "hei": 500, "y2": 773.8, "x1": 1297.5},
-        {"can_fall": true, "x2": 1506.3, "ground": "open", "ndir": "left", "type": "line", "y1": 773.8, "hei": 500, "y2": 873.8, "x1": 1410}
+        {"y2": 898.8, "x1": 1772.5, "ndir": "left", "y1": 902.5, "ground": "open", "can_fall": true, "x2": 2197.5, "type": "line", "hei": 500},
+        {"y2": 895, "x1": 3201.7, "ndir": "left", "y1": 898.3, "ground": "open", "can_fall": true, "x2": 4450.1, "type": "line", "hei": 500},
+        {"y2": 696.3, "x1": 46, "ndir": "left", "y1": 700, "ground": "open", "can_fall": true, "x2": 1350, "type": "line", "hei": 500},
+        {"y2": 706.3, "x1": 1350, "ndir": "left", "y1": 696.3, "ground": "open", "can_fall": true, "x2": 1447.5, "type": "line", "hei": 500},
+        {"y2": 902.5, "x1": 1656.3, "ndir": "left", "y1": 873.8, "ground": "open", "can_fall": true, "x2": 1772.5, "type": "line", "hei": 500},
+        {"y2": 773.8, "x1": 1447.5, "ndir": "left", "y1": 706.3, "ground": "open", "can_fall": true, "x2": 1560, "type": "line", "hei": 500},
+        {"y2": 873.8, "x1": 1560, "ndir": "left", "y1": 773.8, "ground": "open", "can_fall": true, "x2": 1656.3, "type": "line", "hei": 500}
     ],
+    "start_y": 798,
     "objects": [
-        {"x": 2001.7, "width": 1101.7, "y": 301.6, "type": "water", "height": 545.1333333333336, "label": "0"},
-        {"x": 3058.4, "width": 135, "y": 735, "type": "blocker", "height": 143.33333333333348, "label": "2"},
-        {"type": "dogcape", "x": 1280, "y": 897.5, "label": "7"},
-        {"type": "tutorialend", "x": 3115.1, "y": 998.8, "label": "8"},
-        {"type": "ground_detail", "x": 3168.4, "img": 6, "y": 900, "label": "(9)gd_img:6"},
-        {"type": "ground_detail", "x": 3428.4, "img": 6, "y": 896.6, "label": "(10)gd_img:6"},
-        {"type": "ground_detail", "x": 3701.8, "img": 2, "y": 896.6, "label": "(11)gd_img:2"},
-        {"type": "checkpoint", "x": 303.8, "y": 698.8, "label": "0"},
-        {"type": "ground_detail", "x": 647.5, "img": 6, "y": 700, "label": "(1)gd_img:6"},
-        {"type": "ground_detail", "x": 1001.3, "img": 6, "y": 698.8, "label": "(2)gd_img:6"},
-        {"type": "ground_detail", "x": 1851.3, "img": 5, "y": 898.8, "label": "(4)gd_img:5"}
+        {"label": "0", "x": 2151.7, "y": 301.6, "width": 1101.7, "type": "water", "height": 545.1333333333336},
+        {"label": "2", "x": 3208.4, "y": 735, "width": 135, "type": "blocker", "height": 143.33333333333348},
+        {"label": "7", "x": 1430, "type": "dogcape", "y": 897.5},
+        {"label": "8", "x": 3265.1, "type": "tutorialend", "y": 998.8},
+        {"label": "(9)gd_img:6", "x": 3318.4, "img": 6, "type": "ground_detail", "y": 900},
+        {"label": "(10)gd_img:6", "x": 3578.4, "img": 6, "type": "ground_detail", "y": 896.6},
+        {"label": "(11)gd_img:2", "x": 3851.8, "img": 2, "type": "ground_detail", "y": 896.6},
+        {"label": "0", "x": 453.8, "type": "checkpoint", "y": 698.8},
+        {"label": "(1)gd_img:6", "x": 797.5, "img": 6, "type": "ground_detail", "y": 700},
+        {"label": "(2)gd_img:6", "x": 1151.3, "img": 6, "type": "ground_detail", "y": 698.8},
+        {"label": "(4)gd_img:5", "x": 2001.3, "img": 5, "type": "ground_detail", "y": 898.8}
     ],
-    "start_y": 800,
-    "connect_pts": {"y1": 701.3, "x2": 4300.1, "y2": 895, "x1": 51.3},
-    "start_x": 201.7,
-    "assert_links": 5
+    "connect_pts": {"y2": 895, "x1": 46, "x2": 4450.1, "y1": 700}
 }

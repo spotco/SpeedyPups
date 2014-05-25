@@ -9,7 +9,7 @@
 #import "ScoreManager.h"
 
 #define JUMP_HOLD_TIME 15
-#define JUMP_POWER 8.5
+#define JUMP_POWER 9
 #define HIGHER_JUMP_POWER 10.5
 #define JUMP_FLOAT_SCALE 1
 
@@ -137,7 +137,7 @@ float nodash_time = 0;
 		player.current_cannon = NULL;
 		player.up_vec  = [VecLib cons_x:0 y:1 z:0];
 		[player remove_temp_params:g];
-		[player add_effect:[DashEffect cons_from:[player get_default_params] vx:dir.x/12.0 vy:dir.y/12.0]];
+		[player add_effect:[[DashEffect cons_from:[player get_default_params] vx:dir.x/12.0 vy:dir.y/12.0] set_no_post_track]];
 		queue_jump = NO;
 		queue_swipe = NO;
 		[GEventDispatcher push_event:[GEvent cons_type:GEventType_JUMP]];
