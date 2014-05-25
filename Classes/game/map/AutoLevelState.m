@@ -29,9 +29,11 @@
 		//@"tutorial_jump",
 		//@"tutorial_water",
 		@"tutorial2_jumpwater",
-		@"tutorial_doublejump",
+		//@"tutorial_doublejump",
+		@"tutorial2_doublejumphover",
 		@"filler_sanicloop",
-		@"tutorial_swipeget",
+		//@"tutorial_swipeget",
+		@"tutorial2_swipeget",
 		@"tutorial_breakrocks",
 		@"tutorial_upsidebounce",
 		@"capegame_launcher"

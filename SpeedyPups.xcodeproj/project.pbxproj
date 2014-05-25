@@ -195,6 +195,9 @@
 		7E99416B17F1758300B363F3 /* WebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E99416A17F1758300B363F3 /* WebRequest.m */; };
 		7E9A784D16FC6D890014B7E0 /* easy_puddles.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A784C16FC6D890014B7E0 /* easy_puddles.map */; };
 		7E9A784F16FC72D50014B7E0 /* easy_gottagofast.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */; };
+		7E9B820719317DBE00F15423 /* prettyss.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B820619317DBE00F15423 /* prettyss.map */; };
+		7E9B820919318EA500F15423 /* tutorial2_doublejumphover.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B820819318EA500F15423 /* tutorial2_doublejumphover.map */; };
+		7E9B820B19319A5100F15423 /* tutorial2_swipeget.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B820A19319A5100F15423 /* tutorial2_swipeget.map */; };
 		7EA3B99C1744C61D00139608 /* cloud_ss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA3B99A1744C61D00139608 /* cloud_ss.plist */; };
 		7EA3B99D1744C61D00139608 /* cloud_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA3B99B1744C61D00139608 /* cloud_ss.png */; };
 		7EA3B99F1744D18400139608 /* lab_bg_layer.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA3B99E1744D18400139608 /* lab_bg_layer.png */; };
@@ -1068,6 +1071,9 @@
 		7E99416A17F1758300B363F3 /* WebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequest.m; sourceTree = "<group>"; };
 		7E9A784C16FC6D890014B7E0 /* easy_puddles.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_puddles.map; sourceTree = "<group>"; };
 		7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_gottagofast.map; sourceTree = "<group>"; };
+		7E9B820619317DBE00F15423 /* prettyss.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prettyss.map; sourceTree = "<group>"; };
+		7E9B820819318EA500F15423 /* tutorial2_doublejumphover.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_doublejumphover.map; sourceTree = "<group>"; };
+		7E9B820A19319A5100F15423 /* tutorial2_swipeget.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_swipeget.map; sourceTree = "<group>"; };
 		7EA3B99A1744C61D00139608 /* cloud_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cloud_ss.plist; sourceTree = "<group>"; };
 		7EA3B99B1744C61D00139608 /* cloud_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud_ss.png; sourceTree = "<group>"; };
 		7EA3B99E1744D18400139608 /* lab_bg_layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab_bg_layer.png; sourceTree = "<group>"; };
@@ -2397,6 +2403,8 @@
 				7E8F478217994067004CA582 /* tutorial_upsidebounce.map */,
 				7E4942621837478500E63573 /* tutorial_cannons.map */,
 				7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */,
+				7E9B820819318EA500F15423 /* tutorial2_doublejumphover.map */,
+				7E9B820A19319A5100F15423 /* tutorial2_swipeget.map */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -2633,6 +2641,7 @@
 				7E9A784616FC4D980014B7E0 /* classic */,
 				7EB8B25516D9F8E700F58961 /* TEST */,
 				7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */,
+				7E9B820619317DBE00F15423 /* prettyss.map */,
 			);
 			path = levels;
 			sourceTree = "<group>";
@@ -4176,6 +4185,7 @@
 				7EB8B36F16D9F8E700F58961 /* electric_post.png in Resources */,
 				7EB8B37016D9F8E700F58961 /* spikes.png in Resources */,
 				7EB8B37116D9F8E700F58961 /* spike_vine_bottom.png in Resources */,
+				7E9B820719317DBE00F15423 /* prettyss.map in Resources */,
 				7EB8B37216D9F8E700F58961 /* spike_vine_section.png in Resources */,
 				7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */,
 				7EB8B37316D9F8E700F58961 /* spike_vine_top.png in Resources */,
@@ -4206,6 +4216,7 @@
 				7E9A784D16FC6D890014B7E0 /* easy_puddles.map in Resources */,
 				7EEE757C187239EA004512E1 /* lab_bounceycannon.map in Resources */,
 				7E9A784F16FC72D50014B7E0 /* easy_gottagofast.map in Resources */,
+				7E9B820B19319A5100F15423 /* tutorial2_swipeget.map in Resources */,
 				7EA567FF16FF8B200003F2A5 /* tut_anim_1.plist in Resources */,
 				7EA5680016FF8B200003F2A5 /* tut_anim_1.png in Resources */,
 				7EA5680116FF8B200003F2A5 /* tut_anim_2.plist in Resources */,
@@ -4228,6 +4239,7 @@
 				7EDD63761703AF6300825887 /* tutorial_water.map in Resources */,
 				7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */,
 				7EDD637B1703B1B500825887 /* grounddetail_ss.png in Resources */,
+				7E9B820919318EA500F15423 /* tutorial2_doublejumphover.map in Resources */,
 				7EDBE79B1703BE7C001D3C93 /* tutorial_spikes.map in Resources */,
 				7EDBE79D1703C4D9001D3C93 /* tutorial_breakrocks.map in Resources */,
 				7EDBE79F1703D4F4001D3C93 /* tutorial_doublejump.map in Resources */,

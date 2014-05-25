@@ -16,7 +16,7 @@
 #define USE_BG YES
 #define PLAY_SFX YES
 #define PLAY_BGM NO
-#define TESTLEVEL @"tutorial2_jumpwater"
+#define TESTLEVEL @"shittytest"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
 #define DEBUG_UI YES
@@ -146,10 +146,10 @@ Stretch goals:
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

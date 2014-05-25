@@ -146,8 +146,8 @@ static NSDictionary *_tutorial_msglist;
 
 	_tutorial_msglist = @{
 		@"doublejump" :		@"tap twice to double jump",
-		@"minionhit" :		@"watch out for these guys!",
-		@"minionjump" :		@"you can jump on their heads!",
+		@"minionhit" :		@"watch out for these guys",
+		@"minionjump" :		@"jump off their heads",
 		@"rockbreak" :		@"swipe to break rocks",
 		@"rockethit" :		@"don't get hit by rockets",
 		@"rocketjump" :		@"jump on the rockets",
@@ -160,8 +160,8 @@ static NSDictionary *_tutorial_msglist;
 		@"swingvine" :		@"swing on vines, tap to jump",
 		@"swipe_down" :		@"swipe down to roll downwards",
 		@"swipe_straight" : @"swipe straight to roll straight",
-		@"collectcoin" :	@"swipe to grab bones",
-    @"shot" : @"tap to launch!"
+		@"collectcoin" :	@"swipe to roll and grab bones",
+		@"shot" :			@"tap to launch!"
    };
 }
 +(NSString*)msg_for_tutorial:(NSString*)tut {
