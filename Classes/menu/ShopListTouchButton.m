@@ -1,42 +1,69 @@
 #import "ShopListTouchButton.h"
 #import "ShopRecord.h"
 #import "AudioManager.h"
+#import "ObjectPool.h"
 
-@implementation ShopListTouchButton
+@implementation ShopListTouchButton {
+	CCLabelTTF *name_disp, *price_disp;
+	CCSprite *disp_sprite;
+}
 @synthesize sto_info;
 
 +(ShopListTouchButton*)cons_pt:(CGPoint)pt info:(ItemInfo*)info cb:(CallBack *)tcb {
-	return [[ShopListTouchButton node] cons_pt:pt info:info cb:tcb];
+	return [[ObjectPool depool:[ShopListTouchButton class]] cons_pt:pt info:info cb:tcb];
+}
+
+-(void)repool {
+	if ([self class] == [ShopListTouchButton class]) {
+		[self set_selected:NO];
+		sto_info = NULL;
+		self.cb = NULL;
+		[ObjectPool repool:self class:[ShopListTouchButton class]];
+	}
+}
+
+-(id)init {
+	self = [super init];
+	if ([self class] == [ShopListTouchButton class]) {
+		[super cons_pt:CGPointZero
+				   tex:[Resource get_tex:TEX_NMENU_ITEMS]
+			   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
+					cb:NULL];
+		
+		[self setAnchorPoint:ccp(0.5,0.5)];
+		[self setScale:0.95];
+		
+		name_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
+												  color:ccc3(0,0,0)
+											   fontsize:16
+													str:@""] anchor_pt:ccp(1,1)];
+		[self addChild:name_disp];
+		
+		price_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
+												   color:ccc3(200,30,30)
+												fontsize:13
+													 str:@""] anchor_pt:ccp(1,1)];
+		[self addChild:price_disp];
+		disp_sprite = [[CCSprite node] pos:[Common pct_of_obj:self pctx:0.25 pcty:0.5]];
+		
+		[self addChild:disp_sprite];
+	}
+	
+	return self;
 }
 
 -(id)cons_pt:(CGPoint)pt info:(ItemInfo*)info cb:(CallBack *)tcb  {
-	[super cons_pt:pt
-			   tex:[Resource get_tex:TEX_NMENU_ITEMS]
-		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
-				cb:tcb];
-	
-	[self setPosition:ccp(pt.x+self.boundingBox.size.width/2.0,pt.y-self.boundingBox.size.height/2.0)];
-	
-	[self setAnchorPoint:ccp(0.5,0.5)];
-	
-	CCLabelTTF *name_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
-											 color:ccc3(0,0,0)
-										  fontsize:16
-											   str:info.short_name] anchor_pt:ccp(1,1)];
-	[self addChild:name_disp];
-	
-	CCLabelTTF *price_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
-											   color:ccc3(200,30,30)
-											fontsize:13
-												 str:[NSString stringWithFormat:@"%d",info.price]] anchor_pt:ccp(1,1)];
-	[self addChild:price_disp];
-	CCSprite *disp_sprite = [[CCSprite spriteWithTexture:info.tex rect:info.rect]
-							 pos:[Common pct_of_obj:self pctx:0.25 pcty:0.5]];
-	[self addChild:disp_sprite];
+	CGRect bbox = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"];
+	[self setPosition:ccp(pt.x+bbox.size.width/2.0,pt.y-bbox.size.height/2.0)];
 	sto_info = info;
-	
-	[self setScale:0.95];
+	self.cb = tcb;
 	[self set_selected:NO];
+	
+	[name_disp set_label:info.short_name];
+	[price_disp set_label:strf("%d",info.price)];
+	[disp_sprite setTexture:info.tex];
+	[disp_sprite setTextureRect:info.rect];
+	
 	return self;
 }
 

@@ -39,6 +39,8 @@
 	CCSprite *disp_sprite;
 }
 @property(readwrite,strong) CallBack *val;
++(GenericListTouchButton*)cons_pt:(CGPoint)pt texrect:(TexRect*)texrect val:(CallBack*)val cb:(CallBack*)tcb;
+-(void)repool;
 -(void)set_main_text:(NSString*)s;
 -(void)set_sub_text:(NSString*)s;
 @end

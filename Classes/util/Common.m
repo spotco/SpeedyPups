@@ -380,6 +380,14 @@ bool fm_a_gt_b(double a,double b,double delta) {
     return l;
 }
 
++(CCLabelBMFont*)cons_bmlabel_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
+	CCLabelBMFont *rtv = [CCLabelBMFont labelWithString:str fntFile:@"carton_six.fnt"];
+	[rtv setScale:fontsize/30.0];
+	[rtv setColor:color];
+	[rtv setPosition:pos];
+	return rtv;
+}
+
 +(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
     //CCLabelTTF_Pooled *l = [CCLabelTTF_Pooled labelWithString:str fontName:@"Carton Six" fontSize:fontsize];
     CCLabelTTF_Pooled *l = [ObjectPool depool:[CCLabelTTF_Pooled class]];

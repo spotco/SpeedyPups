@@ -7,11 +7,6 @@
 #import "GameItemCommon.h"
 #import "ObjectPool.h"
 
-@interface GenericListTouchButton (cons)
-+(GenericListTouchButton*)cons_pt:(CGPoint)pt texrect:(TexRect*)texrect val:(CallBack*)val cb:(CallBack*)tcb;
--(void)repool;
-@end
-
 @implementation InventoryLayerTabScrollList
 
 +(InventoryLayerTabScrollList*)cons_parent:(CCSprite *)parent add_to:(CCSprite *)add_to {
@@ -175,29 +170,30 @@
 
 -(id)init {
 	self = [super init];
-	
-	[super cons_pt:CGPointZero
-			   tex:[Resource get_tex:TEX_NMENU_ITEMS]
-		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
-				cb:NULL];
-	[self setAnchorPoint:ccp(0.5,0.5)];
-	main_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
-								  color:ccc3(0,0,0)
-							   fontsize:16
-									str:@""] anchor_pt:ccp(1,1)];
-	[self addChild:main_text];
-	
-	sub_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
-								 color:ccc3(200,30,30)
-							  fontsize:13
-								   str:@""] anchor_pt:ccp(1,1)];
-	[self addChild:sub_text];
-	
-	disp_sprite = [[CCSprite node] pos:[Common pct_of_obj:self pctx:0.25 pcty:0.5]];
-	[self addChild:disp_sprite];
-	
-	[self setScale:0.95];
-	[self set_selected:NO];
+	if ([self class] == [GenericListTouchButton class]) {
+		[super cons_pt:CGPointZero
+				   tex:[Resource get_tex:TEX_NMENU_ITEMS]
+			   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
+					cb:NULL];
+		[self setAnchorPoint:ccp(0.5,0.5)];
+		main_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
+									  color:ccc3(0,0,0)
+								   fontsize:16
+										str:@""] anchor_pt:ccp(1,1)];
+		[self addChild:main_text];
+		
+		sub_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
+									 color:ccc3(200,30,30)
+								  fontsize:13
+									   str:@""] anchor_pt:ccp(1,1)];
+		[self addChild:sub_text];
+		
+		disp_sprite = [[CCSprite node] pos:[Common pct_of_obj:self pctx:0.25 pcty:0.5]];
+		[self addChild:disp_sprite];
+		
+		[self setScale:0.95];
+		[self set_selected:NO];
+	}
 	
 	return self;
 }

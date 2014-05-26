@@ -15,7 +15,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
+#define PLAY_BGM NO
 #define TESTLEVEL @"classic_nubcave"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
@@ -135,6 +135,7 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
 	[ChallengeRecord set_beaten_challenge:19 to:YES];
 	*/
+	
 	
 	[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];

@@ -2,12 +2,13 @@
 #import "Shopkeeper.h"
 #import "MenuCommon.h"
 #import "ShopTabTouchButton.h"
-#import "ShopListTouchButton.h"
+#import "InventoryLayerTab.h"
 #import "UserInventory.h"
 #import "Particle.h"
 #import "ShopBuyBoneFlyoutParticle.h"
 #import "ShopBuyFlyoffTextParticle.h"
 #import "AudioManager.h"
+#import "ShopListTouchButton.h" 
 
 @implementation NMenuTabShopPage
 
@@ -157,14 +158,19 @@
 	return self;
 }
 
--(void)make_scroll_items {
+-(void)remove_all_scroll_items {
 	for (int i = 0; i < scroll_items.count; i++) {
+		[(ShopListTouchButton*)scroll_items[i] repool];
 		[((CCSprite*)scroll_items[i]).parent removeChild:scroll_items[i] cleanup:YES];
 		[touches removeObject:scroll_items[i]];
 	}
 	[scroll_items removeAllObjects];
 	clippedholder_y_min = 0;
 	clippedholder_y_max = 0;
+}
+
+-(void)make_scroll_items {
+	[self remove_all_scroll_items];
 	
 	NSArray *items = [ShopRecord get_items_for_tab:current_tab];
 	for (int i = 0; i < items.count; i++) {
@@ -246,6 +252,7 @@
 }
 
 -(void)seltab:(int)t tab:(ShopTabTouchButton*)tab{
+	if (current_tab == t) return;
 	if (cur_selected_tab != NULL) {
 		[cur_selected_tab set_selected:NO];
 	}
@@ -385,6 +392,7 @@
 }
 
 -(void)dealloc {
+	[self remove_all_scroll_items];
 	[touches removeAllObjects];
 	[particles removeAllObjects];
 	[scroll_items removeAllObjects];

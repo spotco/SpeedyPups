@@ -170,6 +170,8 @@
 		7E7952A318A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7952A018A8C4B7002337F9 /* cloudlevel_boss_cloudfloor.png */; };
 		7E7952A618A8D737002337F9 /* CapeGameBossCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7952A518A8D737002337F9 /* CapeGameBossCat.m */; };
 		7E7952A918A8E516002337F9 /* CapeGameBossBomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */; };
+		7E7C4FDD193365BB00A72CBA /* carton_six_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7C4FDB193365BB00A72CBA /* carton_six_0.png */; };
+		7E7C4FDE193365BB00A72CBA /* carton_six.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 7E7C4FDC193365BB00A72CBA /* carton_six.fnt */; };
 		7E80D7C1181276AE007E48C5 /* classic_twopath.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C0181276AE007E48C5 /* classic_twopath.map */; };
 		7E80D7C818127B53007E48C5 /* gameloop2_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */; };
 		7E80D7C918127B53007E48C5 /* gameloop3.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C718127B53007E48C5 /* gameloop3.aiff */; };
@@ -1038,6 +1040,8 @@
 		7E7952A518A8D737002337F9 /* CapeGameBossCat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameBossCat.m; sourceTree = "<group>"; };
 		7E7952A718A8E516002337F9 /* CapeGameBossBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CapeGameBossBomb.h; sourceTree = "<group>"; };
 		7E7952A818A8E516002337F9 /* CapeGameBossBomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapeGameBossBomb.m; sourceTree = "<group>"; };
+		7E7C4FDB193365BB00A72CBA /* carton_six_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = carton_six_0.png; path = "cocos2d-2.x-ARC-iOS/Resources/carton_six_0.png"; sourceTree = "<group>"; };
+		7E7C4FDC193365BB00A72CBA /* carton_six.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = carton_six.fnt; path = "cocos2d-2.x-ARC-iOS/Resources/carton_six.fnt"; sourceTree = "<group>"; };
 		7E80D7C0181276AE007E48C5 /* classic_twopath.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_twopath.map; sourceTree = "<group>"; };
 		7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2_night.aiff; sourceTree = "<group>"; };
 		7E80D7C718127B53007E48C5 /* gameloop3.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3.aiff; sourceTree = "<group>"; };
@@ -2044,6 +2048,8 @@
 		7E269C6416DA00CD005F446C /* internal */ = {
 			isa = PBXGroup;
 			children = (
+				7E7C4FDB193365BB00A72CBA /* carton_six_0.png */,
+				7E7C4FDC193365BB00A72CBA /* carton_six.fnt */,
 				7E269C6516DA00DE005F446C /* Carton_Six.ttf */,
 				7E269C6616DA00DE005F446C /* Default.png */,
 				7E269C6716DA00DE005F446C /* fps_images.png */,
@@ -4185,6 +4191,7 @@
 				7EB8B36F16D9F8E700F58961 /* electric_post.png in Resources */,
 				7EB8B37016D9F8E700F58961 /* spikes.png in Resources */,
 				7EB8B37116D9F8E700F58961 /* spike_vine_bottom.png in Resources */,
+				7E7C4FDD193365BB00A72CBA /* carton_six_0.png in Resources */,
 				7E9B820719317DBE00F15423 /* prettyss.map in Resources */,
 				7EB8B37216D9F8E700F58961 /* spike_vine_section.png in Resources */,
 				7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */,
@@ -4209,6 +4216,7 @@
 				7E269C6A16DA00EB005F446C /* Default.png in Resources */,
 				7E3444A916DE1850007D20F5 /* BG1_moon.png in Resources */,
 				7E05976718F1373200D9CD74 /* sfx_thunder.wav in Resources */,
+				7E7C4FDE193365BB00A72CBA /* carton_six.fnt in Resources */,
 				7E3444AA16DE1850007D20F5 /* BG1_stars.png in Resources */,
 				7E98648116E874CF00109092 /* nmenu_bg.png in Resources */,
 				7E98648216E874CF00109092 /* nmenu_items.plist in Resources */,
