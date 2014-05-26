@@ -158,4 +158,8 @@
 	[self setVisible:t];
 }
 
+-(void)dealloc {
+	[list clear_tabs];
+}
+
 @end

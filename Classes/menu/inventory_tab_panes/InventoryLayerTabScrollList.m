@@ -5,6 +5,12 @@
 #import "ShopListTouchButton.h"
 #import "ShopRecord.h"
 #import "GameItemCommon.h"
+#import "ObjectPool.h"
+
+@interface GenericListTouchButton (cons)
++(GenericListTouchButton*)cons_pt:(CGPoint)pt texrect:(TexRect*)texrect val:(CallBack*)val cb:(CallBack*)tcb;
+-(void)repool;
+@end
 
 @implementation InventoryLayerTabScrollList
 
@@ -77,9 +83,14 @@
 	return tmp;
 }
 
+-(int)get_num_tabs {
+	return (int)[touches count];
+}
+
 -(void)clear_tabs {
 	for (GenericListTouchButton *i in touches) {
 		[clipperholder removeChild:i cleanup:YES];
+		[i repool];
 	}
 	[touches removeAllObjects];
 	mult = 0;
@@ -114,7 +125,7 @@
 }
 
 -(void)touch_begin:(CGPoint)pt {
-	for (int i = touches.count-1; i>=0; i--) {
+	for (int i = (int)touches.count-1; i>=0; i--) {
 		TouchButton *b = touches[i];
 		[b touch_begin:pt];
 	}
@@ -138,6 +149,80 @@
 
 -(void)touch_end:(CGPoint)pt {
 	is_scroll = NO;
+}
+
+-(void)dealloc {
+	[self clear_tabs];
+}
+
+@end
+
+
+@implementation GenericListTouchButton
+@synthesize val;
++(GenericListTouchButton*)cons_pt:(CGPoint)pt texrect:(TexRect *)texrect val:(CallBack*)val cb:(CallBack *)tcb {
+	return [[ObjectPool depool:[GenericListTouchButton class]] cons_pt:pt texrect:texrect val:val cb:tcb];
+}
+
+-(void)repool {
+	if ([self class] == [GenericListTouchButton class]) {
+		[self set_selected:NO];
+		val = NULL;
+		self.cb = NULL;
+		[ObjectPool repool:self class:[GenericListTouchButton class]];
+	}
+}
+
+-(id)init {
+	self = [super init];
+	
+	[super cons_pt:CGPointZero
+			   tex:[Resource get_tex:TEX_NMENU_ITEMS]
+		   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
+				cb:NULL];
+	[self setAnchorPoint:ccp(0.5,0.5)];
+	main_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
+								  color:ccc3(0,0,0)
+							   fontsize:16
+									str:@""] anchor_pt:ccp(1,1)];
+	[self addChild:main_text];
+	
+	sub_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
+								 color:ccc3(200,30,30)
+							  fontsize:13
+								   str:@""] anchor_pt:ccp(1,1)];
+	[self addChild:sub_text];
+	
+	disp_sprite = [[CCSprite node] pos:[Common pct_of_obj:self pctx:0.25 pcty:0.5]];
+	[self addChild:disp_sprite];
+	
+	[self setScale:0.95];
+	[self set_selected:NO];
+	
+	return self;
+}
+
+-(id)cons_pt:(CGPoint)pt texrect:(TexRect *)texrect val:(CallBack*)_val cb:(CallBack *)tcb {
+	CGRect bbox = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"];
+	[self setPosition:ccp(pt.x+bbox.size.width/2.0,pt.y-bbox.size.height/2.0)];
+	
+	self.val = _val;
+	self.cb = tcb;
+	
+	[self setScale:0.95];
+	
+	[disp_sprite setTexture:texrect.tex];
+	[disp_sprite setTextureRect:texrect.rect];
+	[self set_selected:NO];
+	return self;
+}
+
+-(void)set_main_text:(NSString *)s {
+	[main_text setString:s];
+}
+
+-(void)set_sub_text:(NSString *)s {
+	[sub_text setString:s];
 }
 
 @end

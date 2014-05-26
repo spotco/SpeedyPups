@@ -1,4 +1,6 @@
 #import "CCSprite.h"
+#import "ShopListTouchButton.h"
+
 @class CallBack;
 @class GenericListTouchButton;
 
@@ -23,10 +25,20 @@
 -(GenericListTouchButton*)add_tab:(CCTexture2D*)tex rect:(CGRect)rect main_text:(NSString*)main_text sub_text:(NSString*)sub_text callback:(CallBack*)cb;
 
 -(void)clear_tabs;
+-(int)get_num_tabs;
 
 -(void)update;
 -(void)touch_begin:(CGPoint)pt;
 -(void)touch_move:(CGPoint)pt;
 -(void)touch_end:(CGPoint)pt;
 
+@end
+
+@interface GenericListTouchButton : ShopListTouchButton {
+	CCLabelTTF *main_text, *sub_text;
+	CCSprite *disp_sprite;
+}
+@property(readwrite,strong) CallBack *val;
+-(void)set_main_text:(NSString*)s;
+-(void)set_sub_text:(NSString*)s;
 @end

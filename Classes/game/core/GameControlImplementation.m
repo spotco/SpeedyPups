@@ -49,6 +49,8 @@ static CGPoint prev;
     queue_jump = YES;
 	
 	post_swipe_drag = CGPointZero;
+	
+	this_swipe_dashed = NO;
 }
 
 static float avg_x;
@@ -56,6 +58,7 @@ static float avg_y;
 
 static CGPoint post_swipe_drag;
 static int last_jump;
+static BOOL this_swipe_dashed = NO;
 
 +(CGPoint)get_post_swipe_drag {
 	return post_swipe_drag;
@@ -76,7 +79,7 @@ static int last_jump;
             Vec3D v = [VecLib cons_x:avg_x y:avg_y z:0];
             v = [VecLib normalize:v];
             
-            if (ABS([VecLib get_angle_in_rad:v]) < M_PI*(3.0/4.0)) {
+            if (ABS([VecLib get_angle_in_rad:v]) < M_PI*(3.0/4.0) && this_swipe_dashed == NO) {
                 queue_swipe = YES;
                 swipe_dir = ccp(ABS(v.x),v.y);
 				post_swipe_drag = CGPointZero;
@@ -186,6 +189,7 @@ float nodash_time = 0;
         [GameControlImplementation player_dash:player];
         [GEventDispatcher push_event:[GEvent cons_type:GEventType_DASH]];
         [g.get_stats increment:GEStat_DASHED];
+		this_swipe_dashed = YES;
     }
     queue_swipe = NO;
     

@@ -202,7 +202,6 @@ static float bgm_2_gain_tar;
 	
 	curgroup = tar;
 	bgm_1_gain_tar = 1;
-	
 	bgm_2_gain_tar = 0;
 	
 	if (_play_invincible <= 0) {
@@ -213,6 +212,17 @@ static float bgm_2_gain_tar;
 	NSArray *val = bgm_groups[enumkey(tar)];
 	if (val.count >= 1) [bgm_1 playFile:val[0] loops:-1];
 	if (val.count >= 2) [bgm_2 playFile:val[1] loops:-1];
+}
+
++(void)playbgm_file:(NSString *)file {
+	[self todos_remove_all];
+	if (playbgm == NO) return;
+	[bgm_1 stop];
+	[bgm_2 stop];
+	bgm_1_gain_tar = 1;
+	bgm_2_gain_tar = 0;
+	_play_invincible = 0;
+	[bgm_1 playFile:file loops:-1];
 }
 
 +(void)bgm_stop {

@@ -32,8 +32,6 @@
 
 
 /**
- armored run faster + sparkles
- 
  extras 8pcs art, music, sfx
  mystery prize implement
  
@@ -46,6 +44,7 @@
  more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
+	video revamp
 	concept art
  **/
 
@@ -137,7 +136,7 @@ Stretch goals:
 	[ChallengeRecord set_beaten_challenge:19 to:YES];
 	*/
 	
-	//[UserInventory set_equipped_gameitem:Item_Shield];
+	[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
 	//[UserInventory add_coins:100];
 	
@@ -145,8 +144,8 @@ Stretch goals:
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

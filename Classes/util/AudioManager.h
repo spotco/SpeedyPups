@@ -104,6 +104,7 @@ typedef enum {
 
 //+(void)playbgm:(BGM_GROUP)tar;
 +(void)playbgm_imm:(BGM_GROUP)tar;
++(void)playbgm_file:(NSString*)file;
 +(void)playsfx:(NSString*)tar;
 +(void)playsfx:(NSString*)tar after_do:(CallBack*)cb;
 

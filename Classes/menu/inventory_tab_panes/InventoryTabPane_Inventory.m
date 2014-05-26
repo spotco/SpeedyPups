@@ -270,4 +270,10 @@
 	[GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_INVENTORY] add_i1:InventoryLayerTab_Index_Prizes i2:0]];
 }
 
+-(void)dealloc {
+	coins_button = NULL;
+	bones_button = NULL;
+	[list clear_tabs];
+}
+
 @end

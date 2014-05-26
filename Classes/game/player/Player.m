@@ -9,6 +9,7 @@
 #import "DataStore.h"
 #import "Cannon.h"
 #import "DogRocketEffect.h"
+#import "RotateFadeOutParticle.h"
 
 
 #define IMGWID 64
@@ -46,7 +47,9 @@
 @end
 
 
-@implementation Player
+@implementation Player {
+	int armor_sparkle_ct;
+}
 @synthesize vx,vy;
 @synthesize player_img;
 @synthesize current_island;
@@ -236,7 +239,7 @@ static NSDictionary* ID_TO_POWERDESC;
 -(void)update:(GameEngineLayer*)g {
     game_engine_layer = g;
     
-    [self update_ieffects];
+    [self update_ieffects:g];
     
     if (current_island == NULL && current_swingvine == NULL && [[self get_current_params] class] != [DogRocketEffect class]) {
         [self mov_center_rotation];
@@ -321,7 +324,7 @@ static NSDictionary* ID_TO_POWERDESC;
 }
 
 //internal effects system (for effects that should persist)
--(void)update_ieffects {
+-(void)update_ieffects:(GameEngineLayer*)g {
     if (new_spd_ct)new_spd_ct--;
     if (new_magnetrad_ct) {
         new_magnetrad_ct--;
@@ -342,6 +345,19 @@ static NSDictionary* ID_TO_POWERDESC;
     }
     if (armored_ct) {
 		[AudioManager play_invincible_for:2];
+		
+		armor_sparkle_ct+=[Common get_dt_Scale];
+		if (armor_sparkle_ct >= 2) {
+				[g add_particle:(Particle*)[[[[RotateFadeOutParticle
+											   cons_tex:[Resource get_tex:TEX_PARTICLES]
+											   rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"star"]]
+											  set_vr:float_random(-15, 15)]
+											 set_ctmax:30]
+											pos:ccp(self.position.x + float_random(-60, 60),self.position.y + float_random(-60, 60))]];
+			
+			armor_sparkle_ct = 0;
+		}
+		
         armored_ct--;
         [GEventDispatcher push_event:[[[GEvent cons_type:GEventType_ITEM_DURATION_PCT] add_f1:((float)armored_ct)/[GameItemCommon get_uselength_for:Item_Shield g:game_engine_layer] f2:0] add_i1:Item_Shield i2:0]];
         if (armored_ct == 0) {
