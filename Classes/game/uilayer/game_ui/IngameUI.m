@@ -112,7 +112,7 @@
 	[readynotif setVisible:NO];
 	
 #define tag_readynotif_label 234
-	CCLabelTTF *readynotif_label = [Common cons_label_pos:CGPointZero color:ccc3(0,0,0) fontsize:15 str:@"Tap!"];
+	CCLabelBMFont *readynotif_label = [Common cons_bmlabel_pos:CGPointZero color:ccc3(0,0,0) fontsize:15 str:@"Tap!"];
 	[readynotif_label setPosition:[Common pct_of_obj:readynotif pctx:0.5 pcty:0.61]];
 	[readynotif_label setOpacity:150];
 	[readynotif addChild:readynotif_label z:0 tag:tag_readynotif_label];
@@ -270,7 +270,7 @@ static int ct  = 0;
 		itemlenbar_target_pos = ITEM_LENBAR_DEFAULT_POSITION;
 		
 		if (g.player.is_clockeffect && ![GameControlImplementation get_clockbutton_hold]) {
-			[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Slow!"];
+			[(CCLabelBMFont*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Slow!"];
 			[readynotif setVisible:YES];
 			[itemlenbaricon setScale:1];
 			
@@ -281,7 +281,7 @@ static int ct  = 0;
 				[itemlenbaricon setScale:1];
 			}
 			if (g.player.is_clockeffect) {
-				[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Fast!"];
+				[(CCLabelBMFont*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Fast!"];
 				[readynotif setVisible:YES];
 			} else {
 				[readynotif setVisible:NO];
@@ -301,7 +301,7 @@ static int ct  = 0;
 			if (last_item != [UserInventory get_current_gameitem]) [self update_item_slot];
 			
 			[readynotif setVisible:(ct/25)%2==0];
-			[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Tap!"];
+			[(CCLabelBMFont*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Tap!"];
 			
 		} else {
 			[ingame_ui_item_slot set_locked:YES];

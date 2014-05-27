@@ -18,9 +18,9 @@
 -(id)cons:(CCSprite*)parent {
 	list = [InventoryLayerTabScrollList cons_parent:parent add_to:self];
 	
-	name_disp = [Common cons_label_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
+	name_disp = [Common cons_bmlabel_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
 								 color:ccc3(205, 51, 51)
-							  fontsize:20
+							  fontsize:24
 								   str:@"Upgrades"];
 	[name_disp setAnchorPoint:ccp(0,1)];
 	[self addChild:name_disp];
@@ -29,11 +29,10 @@
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	desc_disp = [CCLabelTTF labelWithString:@"Keep track of your upgrades to powerups here!"
-								 dimensions:actualSize
-								  alignment:UITextAlignmentLeft
-								   fontName:@"Carton Six"
-								   fontSize:15];
+	desc_disp = [Common cons_bm_multiline_label_str:@"Keep track of your upgrades to powerups here!"
+											  width:actualSize.width
+										  alignment:UITextAlignmentLeft
+										   fontsize:13];
 	[desc_disp setPosition:[Common pct_of_obj:parent pctx:0.4 pcty:0.7]];
 	[desc_disp setAnchorPoint:ccp(0,1)];
 	[desc_disp setColor:ccc3(0, 0, 0)];

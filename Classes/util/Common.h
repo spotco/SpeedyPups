@@ -196,6 +196,7 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(CCMenuItem*)make_button_tex:(CCTexture2D*)tex seltex:(CCTexture2D*)seltex zscale:(float)zscale callback:(CallBack*)cb pos:(CGPoint)pos;
 +(CCLabelTTF*)cons_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str;
 +(CCLabelBMFont*)cons_bmlabel_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str;
++(CCLabelBMFont*)cons_bm_multiline_label_str:(NSString*)str width:(float)width alignment:(UITextAlignment)alignment fontsize:(int)fontsize;
 +(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str;
 
 +(CameraZoom)cons_normalcoord_camera_zoom_x:(float)x y:(float)y z:(float)z;

@@ -95,11 +95,11 @@ static NSMutableArray* _anim_table;
                                            fontsize:13
                                                 str:@"Ability:"] anchor_pt:ccp(0,0.5)]];
     
-    name_disp = [[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.225 pcty:0.55]
+    name_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:charselmenu pctx:0.225 pcty:0.55]
                                  color:ccc3(0,0,0)
                               fontsize:20
                                     str:@"nom"] anchor_pt:ccp(0,0.5)];
-    power_disp = [[Common cons_label_pos:[Common pct_of_obj:charselmenu pctx:0.275 pcty:0.3]
+    power_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:charselmenu pctx:0.275 pcty:0.3]
                                    color:ccc3(0,0,0)
                                 fontsize:20
                                      str:@"power"] anchor_pt:ccp(0,0.5)];

@@ -17,14 +17,14 @@ typedef enum ExtrasPaneMode {
 	InventoryLayerTabScrollList *list;
 	ExtrasPaneMode cur_mode;
 	ExtrasPaneMode selected_mode;
-	CCLabelTTF *name_disp;
-	CCLabelTTF *desc_disp;
+	CCLabelBMFont *name_disp;
+	CCLabelBMFont *desc_disp;
 	
 	TouchButton *categ_sel;
 	TouchButton *categ_sel_back;
 	
 	TouchButton *action_button;
-	CCLabelTTF *action_button_label;
+	CCLabelBMFont *action_button_label;
 	
 	NSString *action_select_id;
 	
@@ -40,9 +40,9 @@ typedef enum ExtrasPaneMode {
 	cur_mode = ExtrasPaneMode_NONE;
 	selected_mode = ExtrasPaneMode_NONE;
 	
-	name_disp = [Common cons_label_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
+	name_disp = [Common cons_bmlabel_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
 								 color:ccc3(205, 51, 51)
-							  fontsize:20
+							  fontsize:24
 								   str:@""];
 	[name_disp setAnchorPoint:ccp(0,1)];
 	[self addChild:name_disp];
@@ -51,11 +51,10 @@ typedef enum ExtrasPaneMode {
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	desc_disp = [CCLabelTTF labelWithString:@""
-								 dimensions:actualSize
-								  alignment:UITextAlignmentLeft
-								   fontName:@"Carton Six"
-								   fontSize:15];
+	desc_disp = [Common cons_bm_multiline_label_str:@""
+											  width:actualSize.width
+										  alignment:UITextAlignmentLeft
+										   fontsize:13];
 	[desc_disp setPosition:[Common pct_of_obj:parent pctx:0.4 pcty:0.7]];
 	[desc_disp setAnchorPoint:ccp(0,1)];
 	[desc_disp setColor:ccc3(0, 0, 0)];
@@ -88,7 +87,7 @@ typedef enum ExtrasPaneMode {
 											 tex:[Resource get_tex:TEX_NMENU_ITEMS]
 										 texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_shoptab"]
 											  cb:[Common cons_callback:self sel:@selector(action_button_press)]];
-	action_button_label = [Common cons_label_pos:[Common pct_of_obj:action_button pctx:0.5 pcty:0.5]
+	action_button_label = [Common cons_bmlabel_pos:[Common pct_of_obj:action_button pctx:0.5 pcty:0.5]
 										   color:ccc3(0,0,0)
 										fontsize:16
 											 str:@""];

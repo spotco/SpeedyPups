@@ -106,7 +106,7 @@
 	[scoredispbg addChild:score_disp_back];
 	[score_disp_back setOpacity:80];
 	
-	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
+	scoredisp = [[Common cons_bmlabel_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
 								  color:ccc3(200,30,30)
 							   fontsize:24
 									str:@""] anchor_pt:ccp(0,1)];
@@ -128,7 +128,7 @@
 										fontsize:10
 											 str:@"x"]];
 	
-	multdisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
+	multdisp = [[Common cons_bmlabel_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
 								 color:ccc3(200,30,30)
 							  fontsize:24
 								   str:@""] anchor_pt:ccp(0,1)];
@@ -152,7 +152,7 @@
 	return self;
 }
 
--(CCLabelTTF*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
+-(CCLabelBMFont*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
 	CCSprite *bone_disp_section = [[CCSprite node] pos:section_pos];
 	CCSprite *bone_disp_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengedescbg"]]
 							  anchor_pt:ccp(0,1)];
@@ -167,7 +167,7 @@
 	[bone_disp_icon setPosition:[Common pct_of_obj:bone_disp_bg pctx:0.15*0.5 pcty:-0.5*0.5]];
 	[bone_disp_section addChild:bone_disp_icon];
 	
-	CCLabelTTF *bones_text_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
+	CCLabelBMFont *bones_text_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
 													color:ccc3(200,30,30)
 												 fontsize:13
 													  str:@""]

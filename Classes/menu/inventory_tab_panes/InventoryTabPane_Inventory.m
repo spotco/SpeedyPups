@@ -23,7 +23,7 @@
 	added_items = [NSMutableDictionary dictionary];
 	[self update_available_items];
 	
-	name_disp = [Common cons_label_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
+	name_disp = [Common cons_bmlabel_pos:[Common pct_of_obj:parent pctx:0.4 pcty:0.88]
 								 color:ccc3(205, 51, 51)
 							  fontsize:24
 								   str:@"Inventory"];
@@ -34,15 +34,16 @@
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	desc_disp = [CCLabelTTF labelWithString:@"You'll find items you collect here.\nCheck out the store to buy stuff!"
-								 dimensions:actualSize
-								  alignment:UITextAlignmentLeft
-								   fontName:@"Carton Six"
-								   fontSize:15];
+	desc_disp = [Common cons_bm_multiline_label_str:@"You'll find items you collect here.\nCheck out the store to buy stuff!"
+											  width:actualSize.width
+										  alignment:UITextAlignmentLeft
+										   fontsize:13];
+	
 	[desc_disp setPosition:[Common pct_of_obj:parent pctx:0.4 pcty:0.7]];
 	[desc_disp setAnchorPoint:ccp(0,1)];
 	[desc_disp setColor:ccc3(0, 0, 0)];
 	[self addChild:desc_disp];
+	
 	
 	equip_button = [AnimatedTouchButton cons_pt:[Common pct_of_obj:parent pctx:0.875 pcty:0.125]
 													  tex:[Resource get_tex:TEX_NMENU_ITEMS]

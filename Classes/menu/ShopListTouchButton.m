@@ -4,7 +4,7 @@
 #import "ObjectPool.h"
 
 @implementation ShopListTouchButton {
-	CCLabelTTF *name_disp, *price_disp;
+	CCLabelBMFont *name_disp, *price_disp;
 	CCSprite *disp_sprite;
 }
 @synthesize sto_info;
@@ -33,13 +33,13 @@
 		[self setAnchorPoint:ccp(0.5,0.5)];
 		[self setScale:0.95];
 		
-		name_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
+		name_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
 												  color:ccc3(0,0,0)
 											   fontsize:16
 													str:@""] anchor_pt:ccp(1,1)];
 		[self addChild:name_disp];
 		
-		price_disp = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
+		price_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
 												   color:ccc3(200,30,30)
 												fontsize:13
 													 str:@""] anchor_pt:ccp(1,1)];

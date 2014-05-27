@@ -149,11 +149,11 @@
 	
 	first_time_popup = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"first_time_popup"]];
 	[first_time_popup setAnchorPoint:ccp(1,0)];
-	[first_time_popup addChild:[Common cons_bmlabel_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.8]
+	[first_time_popup addChild:[Common cons_label_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.8]
 												color:ccc3(10,10,10)
 											 fontsize:11
 												  str:@"First time?"]];
-	[first_time_popup addChild:[Common cons_bmlabel_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.5]
+	[first_time_popup addChild:[Common cons_label_pos:[Common pct_of_obj:first_time_popup pctx:0.5 pcty:0.5]
 												color:ccc3(10,10,10)
 											 fontsize:16
 												  str:@"Click me!"]];

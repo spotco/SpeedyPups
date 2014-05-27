@@ -12,8 +12,8 @@
 	TouchButton *equip_button;
 	CCLabelTTF *equipped_label;
 	
-	CCLabelTTF *name_disp;
-	CCLabelTTF *desc_disp;
+	CCLabelBMFont *name_disp;
+	CCLabelBMFont *desc_disp;
 	
 	GameItem selected_item;
 	

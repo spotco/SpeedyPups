@@ -394,6 +394,12 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return rtv;
 }
 
++(CCLabelBMFont*)cons_bm_multiline_label_str:(NSString*)str width:(float)width alignment:(UITextAlignment)alignment fontsize:(int)fontsize {
+	CCLabelBMFont *rtv = [CCLabelBMFont labelWithString:str fntFile:@"carton_six_13.fnt" width:width alignment:alignment];
+	[rtv setScale:fontsize/13.0];
+	return rtv;
+}
+
 +(CCLabelTTF_Pooled*)cons_pooled_label_pos:(CGPoint)pos color:(ccColor3B)color fontsize:(int)fontsize str:(NSString*)str {
     //CCLabelTTF_Pooled *l = [CCLabelTTF_Pooled labelWithString:str fontName:@"Carton Six" fontSize:fontsize];
     CCLabelTTF_Pooled *l = [ObjectPool depool:[CCLabelTTF_Pooled class]];

@@ -3,17 +3,17 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,7 +35,6 @@
  */
 
 #import "ccConfig.h"
-#import "ccMacros.h"
 #import "CCLabelBMFont.h"
 #import "CCSprite.h"
 #import "CCDrawingPrimitives.h"
@@ -73,7 +72,7 @@ void FNTConfigRemoveCache( void )
 
 // Equal function for targetSet.
 typedef struct _KerningHashElement
-{	
+{
 	int				key;		// key for the hash. 16-bit for 1st element, 16-bit for 2nd element
 	int				amount;
 	UT_hash_handle	hh;
@@ -85,18 +84,14 @@ typedef struct _KerningHashElement
 
 @interface CCBMFontConfiguration (Private)
 -(void) parseConfigFile:(NSString*)controlFile;
--(void) parseCharacterDefinition:(NSString*)line;
+-(void) parseCharacterDefinition:(NSString*)line charDef:(ccBMFontDef*)characterDefinition;
 -(void) parseInfoArguments:(NSString*)line;
 -(void) parseCommonArguments:(NSString*)line;
 -(void) parseImageFileName:(NSString*)line fntFile:(NSString*)fntFile;
 -(void) parseKerningCapacity:(NSString*)line;
 -(void) parseKerningEntry:(NSString*)line;
 -(void) purgeKerningDictionary;
--(void) purgeBMFontHash;
 @end
-
-#pragma mark -
-#pragma mark CCBMFontConfiguration
 
 @implementation CCBMFontConfiguration
 
@@ -108,7 +103,7 @@ typedef struct _KerningHashElement
 -(id) initWithFNTfile:(NSString*)fntFile
 {
 	if((self=[super init])) {
-		BMFontHash_ = NULL;
+		
 		kerningDictionary_ = NULL;
         
 		[self parseConfigFile:fntFile];
@@ -120,7 +115,6 @@ typedef struct _KerningHashElement
 {
 	CCLOGINFO( @"cocos2d: deallocing %@", self);
 	[self purgeKerningDictionary];
-    [self purgeBMFontHash];
 	[atlasName_ release];
 	[super dealloc];
 }
@@ -138,25 +132,14 @@ typedef struct _KerningHashElement
 	tKerningHashElement *current;
 	
 	while(kerningDictionary_) {
-		current = kerningDictionary_; 
+		current = kerningDictionary_;
 		HASH_DEL(kerningDictionary_,current);
 		free(current);
 	}
 }
 
--(void) purgeBMFontHash
-{
-	ccBMFontDef *current;
-	
-	while(BMFontHash_) {
-		current = BMFontHash_; 
-		HASH_DEL(BMFontHash_,current);
-		free(current);
-	}
-}
-
 - (void)parseConfigFile:(NSString*)fntFile
-{	
+{
 	NSString *fullpath = [CCFileUtils fullPathFromRelativePath:fntFile];
 	NSError *error;
 	NSString *contents = [NSString stringWithContentsOfFile:fullpath encoding:NSUTF8StringEncoding error:&error];
@@ -192,7 +175,12 @@ typedef struct _KerningHashElement
 			// Ignore this line
 		}
 		else if([line hasPrefix:@"char"]) {
-			[self parseCharacterDefinition:line];
+			// Parse the current line and create a new CharDef
+			ccBMFontDef characterDefinition;
+			[self parseCharacterDefinition:line charDef:&characterDefinition];
+            
+			// Add the CharDef returned to the charArray
+			BMFontArray_[ characterDefinition.charID ] = characterDefinition;
 		}
 		else if([line hasPrefix:@"kernings count"]) {
 			[self parseKerningCapacity:line];
@@ -222,7 +210,7 @@ typedef struct _KerningHashElement
 	propertyValue = [nse nextObject];
 	NSAssert( [propertyValue intValue] == 0, @"XXX: LabelBMFont only supports 1 page");
 	
-	// file 
+	// file
 	propertyValue = [nse nextObject];
 	NSArray *array = [propertyValue componentsSeparatedByString:@"\""];
 	propertyValue = [array objectAtIndex:1];
@@ -243,7 +231,7 @@ typedef struct _KerningHashElement
 	// info face="Cracked" size=36 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
 	//
 	NSArray *values = [line componentsSeparatedByString:@"="];
-	NSEnumerator *nse = [values objectEnumerator];	
+	NSEnumerator *nse = [values objectEnumerator];
 	NSString *propertyValue = nil;
 	
 	// We need to move past the first entry in the array before we start assigning values
@@ -302,7 +290,7 @@ typedef struct _KerningHashElement
 	}
     
 	// spacing (ignore)
-	[nse nextObject];	
+	[nse nextObject];
 }
 
 -(void) parseCommonArguments:(NSString*)line
@@ -312,7 +300,7 @@ typedef struct _KerningHashElement
 	// common lineHeight=104 base=26 scaleW=1024 scaleH=512 pages=1 packed=0
 	//
 	NSArray *values = [line componentsSeparatedByString:@"="];
-	NSEnumerator *nse = [values objectEnumerator];	
+	NSEnumerator *nse = [values objectEnumerator];
 	NSString *propertyValue = nil;
 	
 	// We need to move past the first entry in the array before we start assigning values
@@ -327,7 +315,7 @@ typedef struct _KerningHashElement
 	
 	
 	// scaleW. sanity check
-	propertyValue = [nse nextObject];	
+	propertyValue = [nse nextObject];
 	NSAssert( [propertyValue intValue] <= [[CCConfiguration sharedConfiguration] maxTextureSize], @"CCLabelBMFont: page can't be larger than supported");
 	
 	// scaleH. sanity check
@@ -340,14 +328,11 @@ typedef struct _KerningHashElement
 	
 	// packed (ignore) What does this mean ??
 }
-- (void)parseCharacterDefinition:(NSString*)line
+- (void)parseCharacterDefinition:(NSString*)line charDef:(ccBMFontDef*)characterDefinition
 {
-    ccBMFontDef *characterDefinition = NULL;
-	characterDefinition = calloc(sizeof(ccBMFontDef),1);
-	
 	// Break the values for this line up using =
 	NSArray *values = [line componentsSeparatedByString:@"="];
-	NSEnumerator *nse = [values objectEnumerator];	
+	NSEnumerator *nse = [values objectEnumerator];
 	NSString *propertyValue;
 	
 	// We need to move past the first entry in the array before we start assigning values
@@ -357,6 +342,8 @@ typedef struct _KerningHashElement
 	propertyValue = [nse nextObject];
 	propertyValue = [propertyValue substringToIndex: [propertyValue rangeOfString: @" "].location];
 	characterDefinition->charID = [propertyValue intValue];
+	NSString *str = [NSString stringWithFormat:@"BitmpaFontAtlas: CharID bigger than supported %d",characterDefinition->charID];
+	NSAssert(characterDefinition->charID < kCCBMFontMaxChars,str);
     
 	// Character x
 	propertyValue = [nse nextObject];
@@ -379,9 +366,6 @@ typedef struct _KerningHashElement
 	// Character xadvance
 	propertyValue = [nse nextObject];
 	characterDefinition->xAdvance = [propertyValue intValue];
-
-	// Add the CharDef returned to the charHash
-	HASH_ADD_INT(BMFontHash_, charID, characterDefinition);
 }
 
 -(void) parseKerningCapacity:(NSString*) line
@@ -389,19 +373,19 @@ typedef struct _KerningHashElement
 	// When using uthash there is not need to parse the capacity.
     
     //	NSAssert(!kerningDictionary, @"dictionary already initialized");
-    //	
+    //
     //	// Break the values for this line up using =
     //	NSArray *values = [line componentsSeparatedByString:@"="];
-    //	NSEnumerator *nse = [values objectEnumerator];	
+    //	NSEnumerator *nse = [values objectEnumerator];
     //	NSString *propertyValue;
-    //	
+    //
     //	// We need to move past the first entry in the array before we start assigning values
     //	[nse nextObject];
-    //	
+    //
     //	// count
     //	propertyValue = [nse nextObject];
     //	int capacity = [propertyValue intValue];
-    //	
+    //
     //	if( capacity != -1 )
     //		kerningDictionary = ccHashSetNew(capacity, targetSetEql);
 }
@@ -409,7 +393,7 @@ typedef struct _KerningHashElement
 -(void) parseKerningEntry:(NSString*) line
 {
 	NSArray *values = [line componentsSeparatedByString:@"="];
-	NSEnumerator *nse = [values objectEnumerator];	
+	NSEnumerator *nse = [values objectEnumerator];
 	NSString *propertyValue;
 	
 	// We need to move past the first entry in the array before we start assigning values
@@ -448,9 +432,6 @@ typedef struct _KerningHashElement
 
 @end
 
-#pragma mark -
-#pragma mark CCLabelBMFont
-
 @implementation CCLabelBMFont
 
 @synthesize initialString = initialString_, width = width_, alignment = alignment_;
@@ -481,7 +462,7 @@ typedef struct _KerningHashElement
 }
 
 -(id) initWithString:(NSString*)theString fntFile:(NSString*)fntFile width:(float)width alignment:(CCTextAlignment)alignment
-{	
+{
 	
 	[configuration_ release]; // allow re-init
     
@@ -676,7 +657,7 @@ typedef struct _KerningHashElement
 	
 	if( configuration_->kerningDictionary_ ) {
 		tKerningHashElement *element = NULL;
-		HASH_FIND_INT(configuration_->kerningDictionary_, &key, element);		
+		HASH_FIND_INT(configuration_->kerningDictionary_, &key, element);
 		if(element)
 			ret = element->amount;
 	}
@@ -713,8 +694,9 @@ typedef struct _KerningHashElement
 	totalHeight = configuration_->commonHeight_ * quantityOfLines;
 	nextFontPositionY = -(configuration_->commonHeight_ - configuration_->commonHeight_*quantityOfLines);
 	
-	for(NSUInteger i = 0; i<stringLen; i++) {
+	for(NSUInteger i=0; i<stringLen; i++) {
 		unichar c = [string_ characterAtIndex:i];
+		NSAssert( c < kCCBMFontMaxChars, @"LabelBMFont: character outside bounds");
 		
 		if (c == '\n') {
 			nextFontPositionX = 0;
@@ -724,56 +706,53 @@ typedef struct _KerningHashElement
         
 		kerningAmount = [self kerningAmountForFirst:prev second:c];
 		
-        ccBMFontDef *fontDef = NULL;
-        unsigned int charKey = c;
-        HASH_FIND_INT(configuration_->BMFontHash_,&charKey,fontDef);
-
-        if(fontDef) {			
-            CGRect rect = fontDef->rect;
-            
-            CCSprite *fontChar;
-            
-            fontChar = (CCSprite*) [self getChildByTag:i];
-            if( ! fontChar ) {
-                fontChar = [[CCSprite alloc] initWithBatchNode:self rectInPixels:rect];
-                [self addChild:fontChar z:0 tag:i];
-                [fontChar release];
-            }
-            else {
-                // reusing fonts
-                [fontChar setTextureRectInPixels:rect rotated:NO untrimmedSize:rect.size];
-                
-                // restore to default in case they were modified
-                fontChar.visible = YES;
-                fontChar.opacity = 255;
-            }
-            
-            float yOffset = configuration_->commonHeight_ - fontDef->yOffset;
-            fontChar.positionInPixels = ccp( (float)nextFontPositionX + fontDef->xOffset + fontDef->rect.size.width*0.5f + kerningAmount, (float)nextFontPositionY + yOffset - rect.size.height*0.5f );
-            
-            // update kerning
-            nextFontPositionX += fontDef->xAdvance + kerningAmount;
-            prev = c;
-            
-            // Apply label properties
-            [fontChar setOpacityModifyRGB:opacityModifyRGB_];
-            // Color MUST be set before opacity, since opacity might change color if OpacityModifyRGB is on
-            [fontChar setColor:color_];
-            
-            // only apply opacity if it is different than 255 )
-            // to prevent modifying the color too (issue #610)
-            if( opacity_ != 255 )
-                [fontChar setOpacity: opacity_];
-            
-            if (longestLine < nextFontPositionX)
-                longestLine = nextFontPositionX;
-            
-            tmpSize.width = longestLine;
-            tmpSize.height = totalHeight;
-            
-            [self setContentSizeInPixels:tmpSize];
-        }
-    }
+		ccBMFontDef fontDef = configuration_->BMFontArray_[c];
+		
+		CGRect rect = fontDef.rect;
+		
+		CCSprite *fontChar;
+		
+		fontChar = (CCSprite*) [self getChildByTag:i];
+		if( ! fontChar ) {
+			fontChar = [[CCSprite alloc] initWithBatchNode:self rectInPixels:rect];
+			[self addChild:fontChar z:0 tag:i];
+			[fontChar release];
+		}
+		else {
+			// reusing fonts
+			[fontChar setTextureRectInPixels:rect rotated:NO untrimmedSize:rect.size];
+			
+			// restore to default in case they were modified
+			fontChar.visible = YES;
+			fontChar.opacity = 255;
+		}
+		
+		float yOffset = configuration_->commonHeight_ - fontDef.yOffset;
+		fontChar.positionInPixels = ccp( (float)nextFontPositionX + fontDef.xOffset + fontDef.rect.size.width*0.5f + kerningAmount,
+                                        (float)nextFontPositionY + yOffset - rect.size.height*0.5f );
+        
+		// update kerning
+		nextFontPositionX += configuration_->BMFontArray_[c].xAdvance + kerningAmount;
+		prev = c;
+        
+		// Apply label properties
+		[fontChar setOpacityModifyRGB:opacityModifyRGB_];
+		// Color MUST be set before opacity, since opacity might change color if OpacityModifyRGB is on
+		[fontChar setColor:color_];
+        
+		// only apply opacity if it is different than 255 )
+		// to prevent modifying the color too (issue #610)
+		if( opacity_ != 255 )
+			[fontChar setOpacity: opacity_];
+        
+		if (longestLine < nextFontPositionX)
+			longestLine = nextFontPositionX;
+	}
+    
+	tmpSize.width = longestLine;
+	tmpSize.height = totalHeight;
+    
+	[self setContentSizeInPixels:tmpSize];
 }
 
 #pragma mark LabelBMFont - CCLabelProtocol protocol
@@ -783,7 +762,7 @@ typedef struct _KerningHashElement
 }
 
 - (void) setString:(NSString*) newString fromUpdate:(bool)fromUpdate
-{	
+{
     if (fromUpdate) {
         [string_ release];
         string_ = [newString copy];
@@ -794,7 +773,7 @@ typedef struct _KerningHashElement
     
     CCSprite *child;
     CCARRAY_FOREACH(children_, child)
-	child.visible = NO;
+    child.visible = NO;
     
 	[self createFontChars];
     
@@ -879,6 +858,7 @@ typedef struct _KerningHashElement
 	ccDrawPoly(vertices, 4, YES);
 }
 #endif // CC_LABELBMFONT_DEBUG_DRAW
+
 
 -(CCLabelBMFont*)anchor_pt:(CGPoint)pt {
     [self setAnchorPoint:pt];

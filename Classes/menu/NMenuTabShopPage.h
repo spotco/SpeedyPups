@@ -7,9 +7,9 @@
 @interface NMenuTabShopPage : NMenuPage <GEventListener> {
 	CCSprite *tabbedpane;
 	
-	CCLabelTTF *itemname;
-	CCLabelTTF *itemdesc;
-	CCLabelTTF *itemprice;
+	CCLabelBMFont *itemname;
+	CCLabelBMFont *itemdesc;
+	CCLabelBMFont *itemprice;
 	CCSprite *price_disp;
 	TouchButton *buybutton;
 	CCLabelTTF *notenoughdisp;

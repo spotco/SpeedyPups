@@ -51,6 +51,18 @@ static NSMutableDictionary* files;
 +(void)cache_file:(NSString*)file {
 	[files setValue:[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:file ofType:PLIST]] forKey:file];
 	if ([files objectForKey:file] == NULL) NSLog(@"FileCache::FILE NOT FOUND:%@",file);
+	
+	/*
+	NSDictionary *dict = [files objectForKey:file];
+	NSMutableData *data = [[NSMutableData alloc] init];
+	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+	[archiver encodeObject:dict forKey:@"dictKey"];
+	[archiver finishEncoding];
+	
+	NSInteger bytes=[data length];
+	float kbytes=bytes/1024.0;
+	NSLog(@"file (%@) size:%f",file,kbytes);
+	 */
 }
 
 +(CGRect)get_cgrect_from_plist:(NSString*)file idname:(NSString*)idname {

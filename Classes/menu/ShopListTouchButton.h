@@ -18,16 +18,3 @@
 -(void)set_selected:(BOOL)t;
 -(void)update;
 @end
-
-
-/*
-@interface GenericListTouchButton : ShopListTouchButton {
-	CCLabelTTF *main_text, *sub_text;
-	CCSprite *disp_sprite;
-}
-@property(readwrite,strong) CallBack *val;
-+(GenericListTouchButton*)cons_pt:(CGPoint)pt texrect:(TexRect*)texrect val:(CallBack*)val cb:(CallBack*)tcb;
--(void)set_main_text:(NSString*)s;
--(void)set_sub_text:(NSString*)s;
--(void)repool;
-@end*/

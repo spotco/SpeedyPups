@@ -98,15 +98,11 @@
 	
 	
 	 
-	NSString *maxstr = @"0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n";
-    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
+	NSString *maxstr = @"0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n0000000000000000000000000000\n";
+    CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:13]
 													  constrainedToSize:CGSizeMake(1000, 1000)
 														  lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	version = [CCLabelTTF labelWithString:@""
-									 dimensions:actualSize
-									  alignment:UITextAlignmentCenter
-									   fontName:@"Carton Six"
-									   fontSize:15];
+	version = [Common cons_bm_multiline_label_str:@"" width:actualSize.width alignment:UITextAlignmentCenter fontsize:13];
 	[version setColor:ccc3(20,20,20)];
 	[version setPosition:[Common pct_of_obj:parent pctx:0.7 pcty:0.725]];
 	[self addChild:version];
@@ -186,8 +182,8 @@
 		}
 	}
 	
-	[version set_label:[NSString stringWithFormat:
-		@"%@\n%@\n\nNew Day in:\n%@",
+	[version setString:[NSString stringWithFormat:
+		@"%@\n%@\n\nNew Day in:\n%@ ",
 		[GameMain GET_VERSION_STRING],
 		@"Online at (speedypups.com)",
 		[MenuCommon secs_to_prettystr:[DailyLoginPrizeManager get_time_until_new_day]

@@ -11,8 +11,8 @@ typedef enum SpinButtonMode {
 	SpinButtonMode mode;
 	BOOL pressed;
 	
-	CCLabelTTF *time_disp;
-	CCLabelTTF *cost_disp;
+	CCLabelBMFont *time_disp;
+	CCLabelBMFont *cost_disp;
 	CCSprite *locked_icon;
 }
 
@@ -33,13 +33,13 @@ typedef enum SpinButtonMode {
 	[self addChild:locked_icon];
 	
 	
-	time_disp = [Common cons_label_pos:[Common pct_of_obj:self pctx:0.6 pcty:0.575]
+	time_disp = [Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.6 pcty:0.575]
 								 color:ccc3(200,30,30)
 							  fontsize:17
 								   str:@""];
 	[self addChild:time_disp];
 	
-	cost_disp = [Common cons_label_pos:CGPointZero
+	cost_disp = [Common cons_bmlabel_pos:CGPointZero
 								 color:ccc3(200,30,30)
 							  fontsize:20
 								   str:@""];

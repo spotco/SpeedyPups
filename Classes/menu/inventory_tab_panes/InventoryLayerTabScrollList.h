@@ -35,7 +35,7 @@
 @end
 
 @interface GenericListTouchButton : ShopListTouchButton {
-	CCLabelTTF *main_text, *sub_text;
+	CCLabelBMFont *main_text, *sub_text;
 	CCSprite *disp_sprite;
 }
 @property(readwrite,strong) CallBack *val;

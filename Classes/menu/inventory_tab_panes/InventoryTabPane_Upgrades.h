@@ -5,8 +5,8 @@
 @interface InventoryTabPane_Upgrades : InventoryTabPane {
 	InventoryLayerTabScrollList *list;
 	
-	CCLabelTTF *name_disp;
-	CCLabelTTF *desc_disp;
+	CCLabelBMFont *name_disp;
+	CCLabelBMFont *desc_disp;
 	
 	CCSprite *upgrade_disp_bg;
 	NSMutableArray *upgrade_stars;

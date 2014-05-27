@@ -3,17 +3,17 @@
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2011 Zynga Inc.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,7 @@
  * Portions of this code are based and inspired on:
  *   http://www.71squared.co.uk/2009/04/iphone-game-programming-tutorial-4-bitmap-font-class
  *   by Michael Daley
- * 
+ *
  * Use any of these editors to generate BMFonts:
  *   http://glyphdesigner.71squared.com/ (Commercial, Mac OS X)
  *   http://www.n4te.com/hiero/hiero.jnlp (Free, Java)
@@ -52,8 +52,6 @@ typedef struct _BMFontDef {
 	int yOffset;
 	//! The amount to move the current position after drawing the character (in pixels)
 	int xAdvance;
-    // Enable Hash Table
-    UT_hash_handle hh;
 } ccBMFontDef;
 
 /** @struct ccBMFontPadding
@@ -71,6 +69,11 @@ typedef struct _BMFontPadding {
 	int bottom;
 } ccBMFontPadding;
 
+enum {
+	// how many characters are supported
+	kCCBMFontMaxChars = 16384, //256,
+};
+
 /** CCBMFontConfiguration has parsed configuration of the the .fnt file
  @since v0.8
  */
@@ -79,7 +82,7 @@ typedef struct _BMFontPadding {
     // XXX: Creating a public interface so that the bitmapFontArray[] is accesible
 @public
 	// The characters building up the font
-	ccBMFontDef *BMFontHash_;
+	ccBMFontDef	BMFontArray_[kCCBMFontMaxChars];
 	
 	// FNTConfig: Common Height
 	NSUInteger		commonHeight_;
@@ -181,7 +184,6 @@ typedef struct _BMFontPadding {
 
 - (void)setWidth:(float)width;
 - (void)setAlignment:(CCTextAlignment)alignment;
-
 -(CCLabelBMFont*)anchor_pt:(CGPoint)pt;
 -(void)set_label:(NSString *)str;
 @end
@@ -192,5 +194,4 @@ CCBMFontConfiguration * FNTConfigLoadFile( NSString *file );
 /** Purges the FNT config cache
  */
 void FNTConfigRemoveCache( void );
-
 

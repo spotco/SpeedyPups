@@ -11,7 +11,7 @@
 	
 	NSMutableArray *uianims;
 	
-	CCLabelTTF *bones_disp, *lives_disp, *time_disp;
+	CCLabelBMFont *bones_disp, *lives_disp, *time_disp;
 	CCSprite *itemlenbarroot, *itemlenbarfill, *itemlenbaricon;
 	
 	CCLabelTTF *pause_lives_disp, *pause_bones_disp, *pause_time_disp, *pause_points_disp;
@@ -21,9 +21,8 @@
 	NSTimer *update_timer;
 	
 	CCSprite *scoredispbg;
-	CCLabelTTF *scoredisp;
-	
-	CCLabelTTF *multdisp;
+	CCLabelBMFont *scoredisp;
+	CCLabelBMFont *multdisp;
 	float multdisp_anim_t;
 	
 	float current_disp_score;

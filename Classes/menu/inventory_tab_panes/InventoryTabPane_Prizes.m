@@ -45,9 +45,9 @@ typedef enum Prize {
 	float wheel_pointer_vr;
 	SpinButton *spinbutton;
 	
-	CCLabelTTF *cur_bones_disp;
-	CCLabelTTF *cur_coins_disp;
-	CCLabelTTF *reset_in_disp;
+	CCLabelBMFont *cur_bones_disp;
+	CCLabelBMFont *cur_coins_disp;
+	CCLabelBMFont *reset_in_disp;
 	
 	PrizesPaneMode mode;
 	float disp_bones;
@@ -79,11 +79,10 @@ typedef enum Prize {
     CGSize actualSize = [@"00000000000000\n00000000000000" sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
 							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	reset_in_disp = [CCLabelTTF labelWithString:@"Wheel resets in\n00:00:00"
-								 dimensions:actualSize
-								  alignment:UITextAlignmentCenter
-								   fontName:@"Carton Six"
-								   fontSize:15];
+	reset_in_disp = [Common cons_bm_multiline_label_str:@""
+												  width:actualSize.width
+											  alignment:UITextAlignmentCenter
+											   fontsize:13];
 	[reset_in_disp setColor:ccc3(200,30,30)];
 	[reset_in_disp setPosition:[Common pct_of_obj:parent pctx:0.84 pcty:0.75]];
 	[self addChild:reset_in_disp];
@@ -93,7 +92,7 @@ typedef enum Prize {
 							   pos:[Common pct_of_obj:parent pctx:0.02 pcty:0.25]] anchor_pt:ccp(0,0.5)];
 	[self addChild:bones_disp_bg];
 	
-	cur_bones_disp = [[Common cons_label_pos:[Common pct_of_obj:bones_disp_bg pctx:0.2 pcty:0.5]
+	cur_bones_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:bones_disp_bg pctx:0.2 pcty:0.5]
 									  color:ccc3(200,30,30)
 								   fontsize:20
 										str:@""] anchor_pt:ccp(0,0.5)];
@@ -105,7 +104,7 @@ typedef enum Prize {
 								pos:[Common pct_of_obj:parent pctx:0.02 pcty:0.1]] anchor_pt:ccp(0,0.5)];
 	[self addChild:coins_disp_bg];
 	
-	cur_coins_disp = [[Common cons_label_pos:[Common pct_of_obj:coins_disp_bg pctx:0.2 pcty:0.5]
+	cur_coins_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:coins_disp_bg pctx:0.2 pcty:0.5]
 									   color:ccc3(200,30,30)
 									fontsize:20
 										 str:@""] anchor_pt:ccp(0,0.5)];

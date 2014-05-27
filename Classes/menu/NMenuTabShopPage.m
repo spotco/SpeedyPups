@@ -75,7 +75,7 @@
 	[tabbedpane addChild:can_scroll_up];
 	
 	
-	itemname = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.43 pcty:0.935]
+	itemname = [[Common cons_bmlabel_pos:[Common pct_of_obj:tabbedpane pctx:0.43 pcty:0.935]
 								color:ccc3(200,30,30)
 							 fontsize:24
 								  str:@"Item Name"] anchor_pt:ccp(0,1)];
@@ -86,7 +86,7 @@
 										  color:ccc3(200,30,30)
 									   fontsize:16
 											str:@"Price"] anchor_pt:ccp(0,0.5)]];
-	itemprice = [[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.555 pcty:0.385]
+	itemprice = [[Common cons_bmlabel_pos:[Common pct_of_obj:tabbedpane pctx:0.555 pcty:0.385]
 								 color:ccc3(0,0,0)
 							  fontsize:30
 								   str:@"99999"] anchor_pt:ccp(0,0.5)];
@@ -116,12 +116,8 @@
 	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
-    itemdesc = [CCLabelTTF labelWithString:@"Item description goes here"
-                                dimensions:actualSize
-                                 alignment:UITextAlignmentLeft
-                                  fontName:@"Carton Six"
-                                  fontSize:13];
+                               lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
+	itemdesc = [Common cons_bm_multiline_label_str:@"" width:actualSize.width alignment:UITextAlignmentLeft fontsize:13];
 	[itemdesc setAnchorPoint:ccp(0,1)];
 	[itemdesc setColor:ccc3(0,0,0)];
 	[itemdesc setPosition:[Common pct_of_obj:tabbedpane pctx:0.44 pcty:0.79]];
@@ -188,7 +184,7 @@
 		[itemdesc setVisible:YES];
 		[price_disp setVisible:YES];
 		[buybutton setVisible:YES];
-		current_scroll_index = current_scroll_index < scroll_items.count ? current_scroll_index : scroll_items.count - 1;
+		current_scroll_index = current_scroll_index < scroll_items.count ? current_scroll_index : (int)scroll_items.count - 1;
 		[self sellist:scroll_items[current_scroll_index]];
 		
 	} else {

@@ -2,7 +2,7 @@
 
 @interface InventoryTabPane_Settings : InventoryTabPane {
 	NSMutableArray *touches;
-	CCLabelTTF *version;
+	CCLabelBMFont *version;
 }
 
 +(InventoryTabPane_Settings*)cons:(CCSprite*)parent;

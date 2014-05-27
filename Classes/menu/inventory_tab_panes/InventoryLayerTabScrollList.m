@@ -176,13 +176,13 @@
 			   texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"]
 					cb:NULL];
 		[self setAnchorPoint:ccp(0.5,0.5)];
-		main_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
+		main_text = [[Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.9]
 									  color:ccc3(0,0,0)
 								   fontsize:16
 										str:@""] anchor_pt:ccp(1,1)];
 		[self addChild:main_text];
 		
-		sub_text = [[Common cons_label_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
+		sub_text = [[Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.9 pcty:0.5]
 									 color:ccc3(200,30,30)
 								  fontsize:13
 									   str:@""] anchor_pt:ccp(1,1)];
@@ -214,11 +214,11 @@
 }
 
 -(void)set_main_text:(NSString *)s {
-	[main_text setString:s];
+	[main_text set_label:s];
 }
 
 -(void)set_sub_text:(NSString *)s {
-	[sub_text setString:s];
+	[sub_text set_label:s];
 }
 
 @end

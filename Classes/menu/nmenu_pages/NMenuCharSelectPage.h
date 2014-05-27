@@ -8,8 +8,8 @@
     
     //CCLabelTTF *infodesc;
     CCSprite *available_disp;
-    CCLabelTTF *name_disp;
-    CCLabelTTF *power_disp;
+    CCLabelBMFont *name_disp;
+    CCLabelBMFont *power_disp;
     
     CCSprite *locked_disp;
     
