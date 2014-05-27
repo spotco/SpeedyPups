@@ -127,7 +127,7 @@
 	[challengedescbg setOpacity:80];
 	[self addChild:challengedescbg];
 	
-	challengedesc = [Common cons_label_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:25 str:@""];
+	challengedesc = [Common cons_bmlabel_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:25 str:@""];
 	[challengedesc setPosition:[Common pct_of_obj:challengedescbg pctx:0.325 pcty:0.5]];
 	[challengedesc setAnchorPoint:ccp(0,0.5)];
 	[challengedescbg addChild:challengedesc];
@@ -155,7 +155,7 @@
 	[scoredispbg addChild:score_disp_back];
 	[score_disp_back setOpacity:80];
 	
-	scoredisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
+	scoredisp = [[Common cons_bmlabel_pos:[Common pct_of_obj:score_disp_back pctx:0.075 pcty:0.95-1]
 								  color:ccc3(200,30,30)
 							   fontsize:24
 									str:@""] anchor_pt:ccp(0,1)];
@@ -178,7 +178,7 @@
 										fontsize:10
 											 str:@"x"]];
 	
-	multdisp = [[Common cons_label_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
+	multdisp = [[Common cons_bmlabel_pos:[Common pct_of_obj:score_disp_back pctx:1.05*0.8+0.15 pcty:0.95-1]
 								 color:ccc3(200,30,30)
 							  fontsize:24
 								   str:@""] anchor_pt:ccp(0,1)];
@@ -196,7 +196,7 @@
     return self;
 }
 
--(CCLabelTTF*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
+-(CCLabelBMFont*)cons_icon_section_pos:(CGPoint)section_pos icon:(NSString*)icon {
 	CCSprite *bone_disp_section = [[CCSprite node] pos:section_pos];
 	CCSprite *bone_disp_bg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"challengedescbg"]]
 							  anchor_pt:ccp(0,1)];
@@ -211,7 +211,7 @@
 	[bone_disp_icon setPosition:[Common pct_of_obj:bone_disp_bg pctx:0.15*0.5 pcty:-0.5*0.5]];
 	[bone_disp_section addChild:bone_disp_icon];
 	
-	CCLabelTTF *bones_text_disp = [[Common cons_label_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
+	CCLabelBMFont *bones_text_disp = [[Common cons_bmlabel_pos:[Common pct_of_obj:bone_disp_bg pctx:0.4*0.5 pcty:-0.5*0.5]
 								   color:ccc3(200,30,30)
 								fontsize:13
 									 str:@""]
@@ -254,9 +254,9 @@ static int ct  = 0;
 	[enemy_alert_ui update:g];
 	[water_alert_ui update:g];
     
-    [self set_label:bones_disp to:strf("%i",[g get_num_bones])];
-    [self set_label:lives_disp to:strf("\u00B7 %s",[g get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[g get_lives]).UTF8String)];
-    [self set_label:time_disp to:[UICommon parse_gameengine_time:[g get_time]]];
+	[bones_disp set_label:strf("%i",[g get_num_bones])];
+	[lives_disp set_label:strf("\u00B7 %s",[g get_lives] == GAMEENGINE_INF_LIVES ? "\u221E":strf("%i",[g get_lives]).UTF8String)];
+    [time_disp set_label:[UICommon parse_gameengine_time:[g get_time]]];
 	
 	[itemlenbarroot setPosition:ccp(
 		itemlenbarroot.position.x + (itemlenbar_target_pos.x - itemlenbarroot.position.x)/4.0,
@@ -270,7 +270,7 @@ static int ct  = 0;
 		itemlenbar_target_pos = ITEM_LENBAR_DEFAULT_POSITION;
 		
 		if (g.player.is_clockeffect && ![GameControlImplementation get_clockbutton_hold]) {
-			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Slow!"];
+			[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Slow!"];
 			[readynotif setVisible:YES];
 			[itemlenbaricon setScale:1];
 			
@@ -281,7 +281,7 @@ static int ct  = 0;
 				[itemlenbaricon setScale:1];
 			}
 			if (g.player.is_clockeffect) {
-				[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Fast!"];
+				[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Fast!"];
 				[readynotif setVisible:YES];
 			} else {
 				[readynotif setVisible:NO];
@@ -301,7 +301,7 @@ static int ct  = 0;
 			if (last_item != [UserInventory get_current_gameitem]) [self update_item_slot];
 			
 			[readynotif setVisible:(ct/25)%2==0];
-			[self set_label:(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] to:@"Tap!"];
+			[(CCLabelTTF*)[readynotif getChildByTag:tag_readynotif_label] set_label:@"Tap!"];
 			
 		} else {
 			[ingame_ui_item_slot set_locked:YES];
@@ -380,12 +380,6 @@ static int ct  = 0;
 	int imult = [g.score get_multiplier];
 	[scoredisp set_label:strf("%d",(int)current_disp_score)];
 	[multdisp set_label:strf("%d",imult)];
-}
-
--(void)set_label:(CCLabelTTF*)l to:(NSString*)s {
-    if (![[l string] isEqualToString:s]) {
-        [l setString:s];
-    }
 }
 
 -(void)set_enemy_alert_ui_ct:(int)i {

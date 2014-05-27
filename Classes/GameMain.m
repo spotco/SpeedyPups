@@ -35,12 +35,13 @@
  extras 8pcs art, music, sfx
  mystery prize implement
  
+ go through and fix challenges
+ challenges reward with coins
+ 
  figure out in app purchases
  figure out ads
  figure out tracking
  
- go through and fix challenges
- challenges reward with coins
  more challenges (more secrets, cape game, boss rush)
  
  -art ask for:
@@ -117,14 +118,14 @@ Stretch goals:
 	}
 	*/
 	
-	
+	/*
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	 
+	*/
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
@@ -137,7 +138,7 @@ Stretch goals:
 	*/
 	
 	
-	[UserInventory set_equipped_gameitem:Item_Shield];
+	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
 	//[UserInventory add_coins:100];
 	

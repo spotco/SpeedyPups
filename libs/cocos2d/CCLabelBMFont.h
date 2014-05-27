@@ -181,6 +181,9 @@ typedef struct _BMFontPadding {
 
 - (void)setWidth:(float)width;
 - (void)setAlignment:(CCTextAlignment)alignment;
+
+-(CCLabelBMFont*)anchor_pt:(CGPoint)pt;
+-(void)set_label:(NSString *)str;
 @end
 
 /** Free function that parses a FNT file a place it on the cache

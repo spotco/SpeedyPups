@@ -879,4 +879,15 @@ typedef struct _KerningHashElement
 	ccDrawPoly(vertices, 4, YES);
 }
 #endif // CC_LABELBMFONT_DEBUG_DRAW
+
+-(CCLabelBMFont*)anchor_pt:(CGPoint)pt {
+    [self setAnchorPoint:pt];
+    return self;
+}
+-(void)set_label:(NSString *)str {
+	if (![[self string] isEqualToString:str]) {
+		[self setString:str];
+	}
+}
+
 @end

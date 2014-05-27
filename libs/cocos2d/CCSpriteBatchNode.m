@@ -35,7 +35,7 @@
 #import "CCTextureCache.h"
 #import "Support/CGPointExtension.h"
 
-const NSUInteger defaultCapacity = 29;
+const NSUInteger defaultCapacity = 50;
 
 #pragma mark -
 #pragma mark CCSpriteBatchNode
@@ -415,10 +415,11 @@ static SEL selSortMethod =NULL;
 	// this is likely computationally expensive
 	NSUInteger quantity = (textureAtlas_.capacity + 1) * 4 / 3;
 	
+	/*
 	CCLOG(@"cocos2d: CCSpriteBatchNode: resizing TextureAtlas capacity from [%lu] to [%lu].",
 		  (long)textureAtlas_.capacity,
 		  (long)quantity);
-	
+	*/
 	
 	if( ! [textureAtlas_ resizeCapacity:quantity] ) {
 		// serious problems

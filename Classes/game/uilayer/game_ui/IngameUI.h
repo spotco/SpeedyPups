@@ -19,18 +19,18 @@
 	CCSprite *itemlenbarfill, *readynotif, *itemlenbarroot,*itemlenbaricon;
 
 	CCSprite *challengedescbg,*challengedescincon;
-	CCLabelTTF *challengedesc;
+	CCLabelBMFont *challengedesc;
 	
 	CCSprite *scoredispbg;
-	CCLabelTTF *scoredisp;
-	CCLabelTTF *multdisp;
+	CCLabelBMFont *scoredisp;
+	CCLabelBMFont *multdisp;
 	
 	float current_disp_score;
 	
 	NSString *last_time;
 }
 
-@property(readwrite,strong) CCLabelTTF *lives_disp, *bones_disp, *time_disp;
+@property(readwrite,strong) CCLabelBMFont *lives_disp, *bones_disp, *time_disp;
 
 +(IngameUI*)cons;
 
