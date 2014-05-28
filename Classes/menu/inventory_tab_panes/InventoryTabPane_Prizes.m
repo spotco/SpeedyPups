@@ -11,6 +11,8 @@
 #import "AudioManager.h"
 #import "BasePopup.h"
 #import "DailyLoginPrizeManager.h"
+#import "ExtrasManager.h"
+#import "ExtrasUnlockPopup.h"
 
 typedef enum PrizesPaneMode {
 	PrizesPaneMode_REST,
@@ -320,21 +322,12 @@ typedef enum Prize {
 			[UserInventory add_bones:500];
 			
 		} else if (t == Prize_Mystery) {
-			BasePopup *p = [BasePopup cons];
-			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.8]
-										 color:ccc3(20,20,20)
-									  fontsize:35
-										   str:@"Congratulations!"]];
-			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.65]
-										 color:ccc3(20,20,20)
-									  fontsize:15
-										   str:@"You won the mystery prize!"]];
-			[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.55]
-										 color:ccc3(20,20,20)
-									  fontsize:15
-										   str:@"(Still gotta implement this...)"]];
-			[MenuCommon popup:p];
-			NSLog(@"todo -- mysteryprize");
+			//TODO -- add dogs and fallback
+			NSString *val = [ExtrasManager random_unowned_extra];
+			if (val != NULL) {
+				[ExtrasManager set_own_extra_for_key:val];
+				[MenuCommon popup:[ExtrasUnlockPopup cons_unlocking:val]];
+			}
 			
 		}
 	}

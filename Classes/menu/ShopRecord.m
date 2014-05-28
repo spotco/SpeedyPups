@@ -5,6 +5,9 @@
 #import "UserInventory.h"
 #import "Player.h"
 #import "FreeRunStartAtManager.h"
+#import "ExtrasManager.h"
+#import "MenuCommon.h" 
+#import "ExtrasUnlockPopup.h"
 
 @implementation ItemInfo
 @synthesize tex;
@@ -168,6 +171,15 @@
 								  price:25
 									val:SHOP_UNLOCK_WORLD3]];
 	}
+	NSString *random_extra = [ExtrasManager random_unowned_extra];
+	if (random_extra != NULL) {
+		[a addObject:[ItemInfo cons_tex:[Resource get_tex:TEX_NMENU_ITEMS]
+								   rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"extrasicon_art"]
+								   name:@"Extra"
+								   desc:@"Unlock a random extra."
+								  price:5
+									val:random_extra]];
+	}
 }
 
 +(void)fill_realmoney_tab:(NSMutableArray*)a {
@@ -281,6 +293,10 @@
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
+		
+	} else if ([[ExtrasManager all_extras] containsObject:val]) {
+		[ExtrasManager set_own_extra_for_key:val];
+		[MenuCommon popup:[ExtrasUnlockPopup cons_unlocking:val]];
 		
 	} else {
 		NSLog(@"error unknown shop value %@",val);

@@ -5,6 +5,8 @@
 #import "InventoryLayerTabScrollList.h"
 #import "MenuCommon.h"
 #import "AudioManager.h"
+#import "ExtrasArtPopup.h"
+#import "ExtrasManager.h"
 
 typedef enum ExtrasPaneMode {
 	ExtrasPaneMode_NONE,
@@ -99,15 +101,20 @@ typedef enum ExtrasPaneMode {
 	return self;
 }
 
-#define ADD_TAB(text,texid,selname) \
-	[list add_tab:[Resource get_tex:TEX_NMENU_ITEMS] \
-			 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:texid] \
-		main_text:text sub_text:@"" \
-		 callback:[Common cons_callback:self sel:@selector(selname)]]
 
 #define ICON_MUSIC @"extrasicon_music"
 #define ICON_ART @"extrasicon_art"
 #define ICON_SFX @"extrasicon_sfx"
+
+-(void)add_tab:(NSString*)text tid:(NSString*)texid sln:(SEL)selname {
+	[list add_tab:[Resource get_tex:TEX_NMENU_ITEMS]
+			 rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:texid]
+		main_text:text sub_text:@""
+		 callback:[Common cons_callback:self sel:selname]];
+}
+
+#define ADD_TAB(text,texid,selname) [self add_tab:text tid:texid sln:@selector(selname)]
+#define OWNEXTRA(key) [ExtrasManager own_extra_for_key:key]
 
 -(void)update_list {
 	[list clear_tabs];
@@ -120,38 +127,38 @@ typedef enum ExtrasPaneMode {
 		[desc_disp set_label:@"Unlock concept art, music and sfx from the game and view them here!"];
 		
 	} else if (cur_mode == ExtrasPaneMode_ART) {
-		ADD_TAB(@"Goober", ICON_ART, null_sel);
-		ADD_TAB(@"Window", ICON_ART, null_sel);
-		ADD_TAB(@"Pengmaku", ICON_ART, null_sel);
-		ADD_TAB(@"MoeMoe", ICON_ART, null_sel);
+		if (OWNEXTRA(EXTRAS_ART_GOOBER)) ADD_TAB(@"Goober", ICON_ART, select_art_goober);
+		if (OWNEXTRA(EXTRAS_ART_WINDOWCLEANER)) ADD_TAB(@"Window", ICON_ART, select_art_window_cleaner);
+		if (OWNEXTRA(EXTRAS_ART_PENGMAKU)) ADD_TAB(@"Pengmaku", ICON_ART, select_art_pengmaku);
+		if (OWNEXTRA(EXTRAS_ART_MOEMOERUSH)) ADD_TAB(@"MoeMoe", ICON_ART, select_art_moemoerush);
 		
 	} else if (cur_mode == ExtrasPaneMode_MUSIC) {
-		ADD_TAB(@"Menu", ICON_MUSIC, select_music_menu);
-		ADD_TAB(@"Intro", ICON_MUSIC, select_music_intro);
-		ADD_TAB(@"World1-1", ICON_MUSIC, select_music_world11);
-		ADD_TAB(@"World1-2", ICON_MUSIC, select_music_world12);
-		ADD_TAB(@"Lab", ICON_MUSIC, select_music_lab);
-		ADD_TAB(@"Boss", ICON_MUSIC, select_music_boss);
-		ADD_TAB(@"Sky World", ICON_MUSIC, select_music_skyworld);
-		ADD_TAB(@"Jingle", ICON_MUSIC, selecT_music_jingle);
-		ADD_TAB(@"World2-1", ICON_MUSIC, select_music_world21);
-		ADD_TAB(@"World2-2", ICON_MUSIC, select_music_world22);
-		ADD_TAB(@"World3-1", ICON_MUSIC, select_music_world31);
-		ADD_TAB(@"World3-2", ICON_MUSIC, select_music_world32);
-		ADD_TAB(@"Invincible", ICON_MUSIC, select_music_invincible);
+		if (OWNEXTRA(BGMUSIC_MENU1)) ADD_TAB(@"Menu", ICON_MUSIC, select_music_menu);
+		if (OWNEXTRA(BGMUSIC_INTRO)) ADD_TAB(@"Intro", ICON_MUSIC, select_music_intro);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP1)) ADD_TAB(@"World1-1", ICON_MUSIC, select_music_world11);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP1_NIGHT)) ADD_TAB(@"World1-2", ICON_MUSIC, select_music_world12);
+		if (OWNEXTRA(BGMUSIC_LAB1)) ADD_TAB(@"Lab", ICON_MUSIC, select_music_lab);
+		if (OWNEXTRA(BGMUSIC_BOSS1)) ADD_TAB(@"Boss", ICON_MUSIC, select_music_boss);
+		if (OWNEXTRA(BGMUSIC_CAPEGAMELOOP)) ADD_TAB(@"Sky World", ICON_MUSIC, select_music_skyworld);
+		if (OWNEXTRA(BGMUSIC_JINGLE)) ADD_TAB(@"Jingle", ICON_MUSIC, selecT_music_jingle);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP2)) ADD_TAB(@"World2-1", ICON_MUSIC, select_music_world21);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP2_NIGHT)) ADD_TAB(@"World2-2", ICON_MUSIC, select_music_world22);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP3)) ADD_TAB(@"World3-1", ICON_MUSIC, select_music_world31);
+		if (OWNEXTRA(BGMUSIC_GAMELOOP3_NIGHT)) ADD_TAB(@"World3-2", ICON_MUSIC, select_music_world32);
+		if (OWNEXTRA(BGMUSIC_INVINCIBLE)) ADD_TAB(@"Invincible", ICON_MUSIC, select_music_invincible);
 		
 	} else if (cur_mode == ExtrasPaneMode_SFX) {
-		ADD_TAB(@"Happy", ICON_SFX, select_sfx_happy);
-		ADD_TAB(@"Sad", ICON_SFX, select_sfx_lose);
-		ADD_TAB(@"Checkpt", ICON_SFX, select_sfx_checkpt);
-		ADD_TAB(@"Whimper", ICON_SFX, select_sfx_whimper);
-		ADD_TAB(@"Bark1", ICON_SFX, select_sfx_bark1);
-		ADD_TAB(@"Bark2", ICON_SFX, select_sfx_bark2);
-		ADD_TAB(@"Bark3", ICON_SFX, select_sfx_bark3);
-		ADD_TAB(@"Boss", ICON_SFX, select_sfx_boss);
-		ADD_TAB(@"CatLaugh", ICON_SFX, select_sfx_catlaugh);
-		ADD_TAB(@"CatHit", ICON_SFX, select_sfx_cathit);
-		ADD_TAB(@"Cheer", ICON_SFX, select_sfx_cheer);
+		if (OWNEXTRA(SFX_FANFARE_WIN)) ADD_TAB(@"Happy", ICON_SFX, select_sfx_happy);
+		if (OWNEXTRA(SFX_FANFARE_LOSE)) ADD_TAB(@"Sad", ICON_SFX, select_sfx_lose);
+		if (OWNEXTRA(SFX_CHECKPOINT)) ADD_TAB(@"Checkpt", ICON_SFX, select_sfx_checkpt);
+		if (OWNEXTRA(SFX_WHIMPER)) ADD_TAB(@"Whimper", ICON_SFX, select_sfx_whimper);
+		if (OWNEXTRA(SFX_BARK_HIGH)) ADD_TAB(@"Bark1", ICON_SFX, select_sfx_bark1);
+		if (OWNEXTRA(SFX_BARK_MID)) ADD_TAB(@"Bark2", ICON_SFX, select_sfx_bark2);
+		if (OWNEXTRA(SFX_BARK_LOW)) ADD_TAB(@"Bark3", ICON_SFX, select_sfx_bark3);
+		if (OWNEXTRA(SFX_BOSS_ENTER)) ADD_TAB(@"Boss", ICON_SFX, select_sfx_boss);
+		if (OWNEXTRA(SFX_CAT_LAUGH)) ADD_TAB(@"CatLaugh", ICON_SFX, select_sfx_catlaugh);
+		if (OWNEXTRA(SFX_CAT_HIT)) ADD_TAB(@"CatHit", ICON_SFX, select_sfx_cathit);
+		if (OWNEXTRA(SFX_CHEER)) ADD_TAB(@"Cheer", ICON_SFX, select_sfx_cheer);
 	}
 	
 	if ([list get_num_tabs] == 0) [desc_disp set_label:@"Unlock more extras from the store and wheel of prizes!"];
@@ -161,6 +168,7 @@ typedef enum ExtrasPaneMode {
 	if (action_select_id != NULL) {
 		if (cur_mode == ExtrasPaneMode_MUSIC) {
 			[AudioManager playbgm_file:action_select_id];
+			
 		} else if (cur_mode == ExtrasPaneMode_SFX) {
 			if (streq(action_select_id, SFX_FANFARE_WIN) || streq(action_select_id, SFX_FANFARE_LOSE)) {
 				[AudioManager mute_music_for:10];
@@ -168,11 +176,20 @@ typedef enum ExtrasPaneMode {
 				[AudioManager mute_music_for:4];
 			}
 			[AudioManager playsfx:action_select_id];
+			
+		} else if (cur_mode == ExtrasPaneMode_ART) {
+			[MenuCommon popup:[ExtrasArtPopup cons_key:action_select_id]];
+			
 		}
 	}
 }
 
 -(void)null_sel{}
+
+-(void)select_art_goober{ [self select_art:EXTRAS_ART_GOOBER]; }
+-(void)select_art_moemoerush{ [self select_art:EXTRAS_ART_MOEMOERUSH]; }
+-(void)select_art_pengmaku{ [self select_art:EXTRAS_ART_PENGMAKU]; }
+-(void)select_art_window_cleaner{ [self select_art:EXTRAS_ART_WINDOWCLEANER]; }
 
 -(void)select_sfx_happy{ [self select_sfx:SFX_FANFARE_WIN]; }
 -(void)select_sfx_lose{ [self select_sfx:SFX_FANFARE_LOSE]; }
@@ -200,6 +217,11 @@ typedef enum ExtrasPaneMode {
 -(void)select_music_world32{ [self select_music:BGMUSIC_GAMELOOP3_NIGHT]; }
 -(void)select_music_invincible{ [self select_music:BGMUSIC_INVINCIBLE]; }
 
+-(void)select_art:(NSString*)art_id {
+	action_select_id = art_id;
+	[self update_buttons];
+}
+
 -(void)select_music:(NSString*)music_id {
 	action_select_id =  music_id;
 	[self update_buttons];
@@ -220,6 +242,7 @@ typedef enum ExtrasPaneMode {
 	[categ_sel setVisible:cur_mode == ExtrasPaneMode_NONE && (selected_mode == ExtrasPaneMode_ART || selected_mode == ExtrasPaneMode_MUSIC || selected_mode == ExtrasPaneMode_SFX)];
 	[categ_sel_back setVisible:(cur_mode == ExtrasPaneMode_ART || cur_mode == ExtrasPaneMode_MUSIC || cur_mode == ExtrasPaneMode_SFX)];
 	[action_button setVisible:action_select_id != NULL];
+	
 	if ([action_button visible]) {
 		if (cur_mode == ExtrasPaneMode_ART) {
 			[action_button_label set_label:@"View!"];
@@ -228,10 +251,15 @@ typedef enum ExtrasPaneMode {
 		} else if (cur_mode == ExtrasPaneMode_SFX) {
 			[action_button_label set_label:@"Play!"];
 		}
+		if (action_select_id != NULL) {
+			[name_disp setString:[ExtrasManager name_for_key:action_select_id]];
+			[desc_disp setString:[ExtrasManager desc_for_key:action_select_id]];
+		}
 	}
 }
 
 -(void)back_category_select {
+	[AudioManager playsfx:SFX_MENU_DOWN];
 	if (cur_mode == ExtrasPaneMode_ART || cur_mode == ExtrasPaneMode_MUSIC || cur_mode == ExtrasPaneMode_SFX) {
 		cur_mode = ExtrasPaneMode_NONE;
 		selected_mode = ExtrasPaneMode_NONE;
@@ -242,6 +270,7 @@ typedef enum ExtrasPaneMode {
 }
 
 -(void)enter_category_select {
+	[AudioManager playsfx:SFX_MENU_UP];
 	if (selected_mode == ExtrasPaneMode_ART || selected_mode == ExtrasPaneMode_MUSIC || selected_mode == ExtrasPaneMode_SFX) {
 		cur_mode = selected_mode;
 		selected_mode = ExtrasPaneMode_NONE;

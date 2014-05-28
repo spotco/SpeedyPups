@@ -15,7 +15,7 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM NO
+#define PLAY_BGM YES
 #define TESTLEVEL @"classic_nubcave"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
@@ -32,8 +32,8 @@
 
 
 /**
- extras 8pcs art, music, sfx
- mystery prize implement
+ mystery prize implement with dogpopup and fallback
+ daily tip
  
  go through and fix challenges
  challenges reward with coins
@@ -118,14 +118,14 @@ Stretch goals:
 	}
 	*/
 	
-	
+	/*
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	
+	*/
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
@@ -139,14 +139,14 @@ Stretch goals:
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
-	//[UserInventory add_coins:100];
+	//[UserInventory add_coins:25];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

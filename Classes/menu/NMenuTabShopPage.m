@@ -248,7 +248,6 @@
 }
 
 -(void)seltab:(int)t tab:(ShopTabTouchButton*)tab{
-	if (current_tab == t) return;
 	if (cur_selected_tab != NULL) {
 		[cur_selected_tab set_selected:NO];
 	}
