@@ -164,6 +164,7 @@
 		[self set_selected:NO];
 		val = NULL;
 		self.cb = NULL;
+		[self setTexture:[Resource get_tex:TEX_BLANK]];
 		[ObjectPool repool:self class:[GenericListTouchButton class]];
 	}
 }
@@ -200,6 +201,7 @@
 
 -(id)cons_pt:(CGPoint)pt texrect:(TexRect *)texrect val:(CallBack*)_val cb:(CallBack *)tcb {
 	CGRect bbox = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"];
+	[self setTexture:[Resource get_tex:TEX_NMENU_ITEMS]];
 	[self setPosition:ccp(pt.x+bbox.size.width/2.0,pt.y-bbox.size.height/2.0)];
 	
 	self.val = _val;

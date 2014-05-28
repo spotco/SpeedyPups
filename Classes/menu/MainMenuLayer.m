@@ -42,7 +42,7 @@
     [sc addChild:mb];
     [sc addChild:mm];
     [sc addChild:mm.inventory_layer];
-    
+	
     return sc;
 }
 
@@ -80,6 +80,7 @@
 -(void)update:(ccTime)dt {
 	if (!first_update) {
 		[ObjectPool print_info];
+		[Resource unload_textures];
 		first_update = YES;
 	}
 	

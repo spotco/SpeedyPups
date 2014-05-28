@@ -18,7 +18,7 @@
 }
 
 +(CCSprite*)cons_window {
-    CCSprite *window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"]];
+    CCSprite *window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"nmenu_inventoryitem"]];
 	CCSprite *obj = [CCSprite node];
     [obj setPosition:[Common pct_of_obj:window pctx:0.5 pcty:0.5]];
     [window addChild:obj z:0 tag:k_OBJ];
@@ -30,7 +30,7 @@
 -(void)set_w1:(CCSprite*)tw1 w2:(CCSprite*)tw2 {w1=tw1; w2=tw2;}
 
 +(CGRect)invpane_size {
-    return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"nmenu_inventoryitem"];
+    return [FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"nmenu_inventoryitem"];
 }
 
 -(void)set_item:(GameItem)item{
@@ -61,7 +61,7 @@
 }
 
 +(CGRect)invpane_size {
-    return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"subinventory_empty"];
+    return [FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"subinventory_empty"];
 }
 
 +(float)objscale {
@@ -75,13 +75,13 @@
 -(void)set_locked:(BOOL)t {
     [self setIsEnabled:!t];
     for (CCSprite* w in @[w1,w2]) {
-        [w setTextureRect:t?[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"subinventory_locked"]:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"subinventory_empty"]];
+        [w setTextureRect:t?[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"subinventory_locked"]:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"subinventory_empty"]];
     }
 }
 
 +(CCSprite*)cons_window {
     float wid = [self invpane_size].size.width, hei = [self invpane_size].size.height;
-    CCSprite *window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS] rect:[self invpane_size]];
+    CCSprite *window = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[self invpane_size]];
     CCSprite *obj = [CCSprite node];
     [obj setScale:[self objscale]];
     [obj setPosition:ccp(wid*0.5,hei*0.5)];
@@ -121,7 +121,7 @@
     return 1;
 }
 +(CGRect)invpane_size {
-    return [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"itemslot_small"];
+    return [FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"itemslot_small"];
 }
 -(void)set_item:(GameItem)item {
 	//if (item == cur_item) return;

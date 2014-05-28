@@ -97,7 +97,7 @@ static NSMutableDictionary* cached_json;
     NSDictionary *j_map_data = [MapLoader get_jsondict:map_file_name];
     
     NSArray *islandArray = [j_map_data objectForKey:(@"islands")];
-	int islandsCount = [islandArray count];
+	int islandsCount = (int)[islandArray count];
 	
     GameMap *map = [[GameMap alloc] init];
     map.n_islands = [[NSMutableArray alloc] init];
@@ -158,7 +158,7 @@ static NSMutableDictionary* cached_json;
     NSArray *coins_array = [j_map_data objectForKey:@"objects"];
     
     for(int i = 0; i < [coins_array count]; i++){
-		int cur_size = [map.game_objects count];
+		int cur_size = (int)[map.game_objects count];
         NSDictionary *j_object = (NSDictionary *)[coins_array objectAtIndex:i];
         NSString *type = (NSString *)[j_object objectForKey:@"type"];
         

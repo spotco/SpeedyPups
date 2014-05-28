@@ -28,4 +28,8 @@
     return [Common make_anim_frames:animFrames speed:speed];
 }
 
+-(void)dealloc {
+	[self stopAllActions];
+}
+
 @end

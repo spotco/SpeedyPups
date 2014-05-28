@@ -66,7 +66,10 @@ static NSArray* ABOVE;
 }
 
 -(void)repool {
-	if ([self class] == [GroundDetail class]) [ObjectPool repool:self class:[GroundDetail class]];
+	if ([self class] == [GroundDetail class]) {
+		[self setTexture:[Resource get_tex:TEX_BLANK]];
+		[ObjectPool repool:self class:[GroundDetail class]];
+	}
 }
 
 +(GroundDetail*)cons_x:(float)posx y:(float)posy type:(int)type islands:(NSMutableArray *)islands g:(GameEngineLayer *)g{

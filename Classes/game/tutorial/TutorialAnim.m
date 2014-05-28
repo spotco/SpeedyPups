@@ -56,7 +56,8 @@
         [body setPosition:ccp(-20,-10)];
         defaulthandpos = ccp(0,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
-        
+    
+	/*
     } else if ([msg isEqualToString:@"rockethit"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"rockethit0",@"rockethit1",@"rockethit2",@"rockethit3",@"rockethit4",@"rockethit5",@"rockethit6",@"rockethit7",@"rockethit7",@"rockethit7",@"rockethit7",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,nil];
@@ -76,7 +77,8 @@
         [body setPosition:ccp(-20,-10)];
         defaulthandpos = ccp(100,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
-        
+	*/
+	 
     } else if ([msg isEqualToString:@"rockhit"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"rockhit0",@"rockhit1",@"rockhit2",@"rockhit3",@"rockhit4",@"rockhit5",@"rockhit6",@"rockhit7",@"rockhit7",@"rockhit7",@"rockhit7",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,nil];
@@ -104,6 +106,7 @@
         [body setPosition:ccp(-20,-10)];
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
     
+	/*
     } else if ([msg isEqualToString:@"splash"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @"splash8"     ,@"splash8"     ,@"splash8"     ,@"splash0",@"splash1",@"splash2",@"splash3",@"splash4",@"splash5",@"splash6",@"splash7",@"splash8",@"splash8",@"splash8",@"splash8",@"splash8",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@"",@"",@""          ,@""          ,@""          ,nil];
@@ -112,7 +115,8 @@
         
         [body setPosition:ccp(-20,-10)];
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
-        
+	*/
+	 
     } else if ([msg isEqualToString:@"hover"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"hover0",@"hover1",@"hover2" ,@"hover3" ,@"hover4",@"hover5",@"hover6",@"hover7",@"hover8",@"hover9",@"hover10",@"hover11",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""        ,@"",@"jump"     ,@"hold"     ,@"hold"        ,@"hold"        ,@"hold"    ,@"hold"    ,@"hold"        ,@"hold"        ,@"hold",@""         ,nil];
@@ -145,7 +149,8 @@
         [effect setPosition:ccp(50,-50)];
         defaulthandpos = ccp(100,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-        
+    
+	/*
     } else if ([msg isEqualToString:@"swipe_down"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_down0",@"swipe_down1",@"swipe_down2"     ,@"swipe_down3"     ,@"swipe_down4"         ,@"swipe_down5"             ,@"swipe_down6",@"swipe_down7",@"swipe_down8",@"swipe_down9",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipedown"  ,@"swipedown"  ,@"swipedown"      ,@"swipedown"          ,@""         ,@"",@"",@""           ,nil];
@@ -156,7 +161,8 @@
         [body setPosition:ccp(-20,5)];
         defaulthandpos = ccp(0,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-        
+	*/
+	 
     } else if ([msg isEqualToString:@"swipe_straight"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_straight0",@"swipe_straight1",@"swipe_straight2"     ,@"swipe_straight3"     ,@"swipe_straight4"         ,@"swipe_straight5"             ,@"swipe_straight6",@"swipe_straight7",@"swipe_straight8",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipestraight"  ,@"swipestraight"  ,@"swipestraight"      ,@"swipestraight"          ,@""         ,@"",@""         ,nil];
@@ -167,7 +173,8 @@
         [body setPosition:ccp(-20,15)];
         defaulthandpos = ccp(0,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-        
+	
+	/*
     } else if ([msg isEqualToString:@"swipe_up"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"swipe_up0",@"swipe_up1",@"swipe_up2"     ,@"swipe_up3"     ,@"swipe_up4"         ,@"swipe_up5"             ,@"swipe_up6",@"swipe_up7",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipeup"  ,@"swipeup"  ,@"swipeup"      ,@"swipeup"          ,@""         ,@""       ,nil];
@@ -178,7 +185,8 @@
         [body setPosition:ccp(-20,15)];
         defaulthandpos = ccp(0,-100);
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-        
+    */
+	 
     } else if ([msg isEqualToString:@"collectcoin"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"collectcoin0",@"collectcoin1",@"collectcoin2"     ,@"collectcoin3"     ,@"collectcoin4"         ,@"collectcoin5"             ,@"collectcoin6",@"collectcoin7",@"collectcoin8",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@"swipestraight"  ,@"swipestraight"  ,@"swipestraight"      ,@"swipestraight"          ,@""         ,@"",@""         ,nil];
@@ -188,8 +196,9 @@
         [effect setPosition:ccp(50,-55)];
         [body setPosition:ccp(-20,15)];
         defaulthandpos = ccp(0,-100);
-        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-        
+        [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
+    
+	/*
     } else if ([msg isEqualToString:@"upsidedown"]) {
         NSArray* tbodyframes = [NSArray arrayWithObjects:  @""     ,@""     ,@""     ,@"upsidedown0",@"upsidedown1",@"upsidedown2",@"upsidedown3",@"upsidedown4",@"upsidedown5",@"upsidedown6",@"upsidedown7",nil];
         NSArray* teffectframes = [NSArray arrayWithObjects:@""     ,@""     ,@""     ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""          ,@""                    ,nil];
@@ -198,7 +207,8 @@
         
         [body setPosition:ccp(-20,-10)];
         [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
-      
+    */
+	 
     } else if ([msg isEqualToString:@"shot"]) {
       NSArray* tbodyframes = [NSArray arrayWithObjects:  @"shot7"     ,@"shot7"     ,@"shot7"     ,@"shot0"  ,@"shot1",@"shot2" ,@"shot3"  ,@"shot4"  ,@"shot5"   ,@"shot6",@"shot7"  ,@"shot7"   ,@"shot7",nil];
       NSArray* teffectframes = [NSArray arrayWithObjects:@""          ,@""          ,@""          ,@""       ,@""     ,@""      ,@""       ,@"jump"   ,@"jump"	  ,@""     ,@""       ,@""        ,@""     ,nil];
@@ -208,7 +218,7 @@
       [body setPosition:ccp(0,15)];
       [effect setPosition:ccp(50,-50)];
       defaulthandpos = ccp(100,-100);
-      [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_2];
+      [self make_anim_body:tbodyframes effect:teffectframes hand:handframes nosign:nosignfr src:TEX_TUTORIAL_ANIM_1];
       
     } else {
         NSLog(@"ERROR TUTORIAL NOT FOUND:%@",msg);

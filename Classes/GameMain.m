@@ -118,14 +118,13 @@ Stretch goals:
 	}
 	*/
 	
-	/*
+	
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	*/
 	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];

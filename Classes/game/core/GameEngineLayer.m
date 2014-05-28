@@ -15,7 +15,9 @@
 #import "ObjectPool.h"
 #import "ScoreManager.h" 
 
-@implementation GameEngineLayer
+@implementation GameEngineLayer {
+	BOOL first_update;
+}
 
 #define tBGLAYER 2
 #define tGLAYER 3
@@ -45,6 +47,7 @@
 	[scene addChild:[TouchTrackingLayer node] z:0 tag:tTTRACKLAYER];
     [scene addChild:uilayer z:0 tag:tUILAYER];
 	[scene addChild:[CCLayerColor layerWithColor:ccc4(0,0,0,0)] z:999 tag:tFADEOUTLAYER];
+	
 	return scene;
 }
 +(CCScene*) scene_with_autolevel_lives:(int)lives world:(WorldStartAt)world {
@@ -119,6 +122,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	first_update = NO;
 	score = [ScoreManager cons];
 	world_mode = [GameWorldMode cons_worldnum:world];
 	[DogBone reset_play_collect_sound];
@@ -363,6 +367,10 @@
 }
 
 -(void)update:(ccTime)delta {
+	if (!first_update) {
+		first_update = YES;
+		[Resource unload_textures];
+	}
 	
 	if (player.is_clockeffect && current_mode == GameEngineLayerMode_GAMEPLAY && [GameControlImplementation get_clockbutton_hold]) {
 		[CCDirectorDisplayLink set_framemodct:4];

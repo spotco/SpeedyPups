@@ -99,6 +99,8 @@
  * @since v0.8
  */
 -(void) removeUnusedTextures;
+-(BOOL) isTextureUnused:(CCTexture2D*)t;
+-(int)texture_retaincount:(CCTexture2D*)tex;
 
 /** Deletes a texture from the cache given a texture
  */

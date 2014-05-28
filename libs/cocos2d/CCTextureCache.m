@@ -387,6 +387,30 @@ static CCTextureCache *sharedTextureCache;
 	}
 }
 
+-(BOOL)isTextureUnused:(CCTexture2D *)t {
+	NSArray *keys = [textures_ allKeys];
+	for( id key in keys ) {
+		CCTexture2D *value = [textures_ objectForKey:key];
+		if( value == t ){
+			if ([value retainCount] <= 3) {
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
+-(int)texture_retaincount:(CCTexture2D*)tex {
+	NSArray *keys = [textures_ allKeys];
+	for( id key in keys ) {
+		CCTexture2D *value = [textures_ objectForKey:key];
+		if( value == tex ){
+			return (int)[value retainCount];
+		}
+	}
+	return -1;
+}
+
 -(void) removeTexture: (CCTexture2D*) tex
 {
 	if( ! tex )

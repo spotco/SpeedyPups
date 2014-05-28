@@ -44,7 +44,10 @@
     [self setPosition:CGPointAdd(self.position, ccp(movspd*self.speedmult,-dv.y*scaley))];
 }
 -(void)repool {
-	if ([self class] == [Cloud class]) [ObjectPool repool:self class:[Cloud class]];
+	if ([self class] == [Cloud class]) {
+		[self setTexture:[Resource get_tex:TEX_BLANK]];
+		[ObjectPool repool:self class:[Cloud class]];
+	}
 }
 @end
 

@@ -18,6 +18,7 @@
 		[self set_selected:NO];
 		sto_info = NULL;
 		self.cb = NULL;
+		[self setTexture:[Resource get_tex:TEX_BLANK]];
 		[ObjectPool repool:self class:[ShopListTouchButton class]];
 	}
 }
@@ -53,6 +54,7 @@
 }
 
 -(id)cons_pt:(CGPoint)pt info:(ItemInfo*)info cb:(CallBack *)tcb  {
+	[self setTexture:[Resource get_tex:TEX_NMENU_ITEMS]];
 	CGRect bbox = [FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"tshop_vscrolltab"];
 	[self setPosition:ccp(pt.x+bbox.size.width/2.0,pt.y-bbox.size.height/2.0)];
 	sto_info = info;

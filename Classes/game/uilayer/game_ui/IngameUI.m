@@ -224,6 +224,7 @@
     UILayer *p = (UILayer*)[self parent];
     [p pause];
 	[AudioManager playsfx:SFX_MENU_UP];
+	[Resource unload_textures];
 }
 
 -(void)itemslot_use {
