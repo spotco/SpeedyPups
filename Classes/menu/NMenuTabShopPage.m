@@ -315,7 +315,7 @@
     }
 	[particles removeObjectsInArray:toremove];
 	
-	int curdispval = total_disp.string.integerValue;
+	int curdispval = (int)total_disp.string.integerValue;
 	int tardispval = [UserInventory get_current_coins];
 	if (curdispval != tardispval) {
 		if (ABS(curdispval-tardispval) > 200) {
@@ -358,7 +358,7 @@
 }
 
 -(void)touch_begin:(CGPoint)pt {
-	for (int i = touches.count-1; i>=0; i--) {
+	for (int i = (int)touches.count-1; i>=0; i--) {
 		TouchButton *b = touches[i];
 		[b touch_begin:pt];
 	}

@@ -469,7 +469,7 @@
 				
 			}
 		} else {
-			for (int i = fist_projectiles.count-1; i >= 0; i--) {
+			for (int i = (int)fist_projectiles.count-1; i >= 0; i--) {
 				VolleyRobotBossFistProjectile *p = fist_projectiles[i];
 				
 				if ([robot_body get_swing_state] == NRBCSwingState_PEAK) [robot_body swing_peak_throw];

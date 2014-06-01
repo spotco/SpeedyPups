@@ -31,7 +31,7 @@
     NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:18]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
     
     CCLabelTTF *infodesc = [CCLabelTTF labelWithString:msg
 											dimensions:actualSize
@@ -70,7 +70,7 @@
     NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:18]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
     
     CCLabelTTF *infodesc = [CCLabelTTF labelWithString:msg
                                 dimensions:actualSize

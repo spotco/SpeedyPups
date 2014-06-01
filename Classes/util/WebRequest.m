@@ -6,7 +6,7 @@ static NSOperationQueue *request_queue;
 
 +(void)initialize {
 	request_queue = [[NSOperationQueue alloc] init];
-	[request_queue setMaxConcurrentOperationCount:@5];
+	[request_queue setMaxConcurrentOperationCount:5];
 }
 
 /*
@@ -26,7 +26,7 @@ static NSOperationQueue *request_queue;
 	
 	[NSURLConnection sendAsynchronousRequest:urlRequest
 									  queue:request_queue
-						   completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+						  completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
 							   if (!error) {
 								   NSString *body = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
 								   callback(body,WebRequestStatus_OK);

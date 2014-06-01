@@ -72,7 +72,7 @@
         }
     }
     [queued_sections removeAllObjects];
-    for (int i = map_sections.count-1; i >= 0; i--) {
+    for (int i = (int)map_sections.count-1; i >= 0; i--) {
         if (map_sections.count-1 < i) continue;
         MapSection *m = [map_sections objectAtIndex:i];
         MapSection_Position p = [m get_position_status:pos];
@@ -154,7 +154,7 @@
 }
 
 -(void)cleanup_start:(CGPoint)player_startpt player:(CGPoint)cur {
-    for(int j = map_sections.count-1; j >= 0; j--) {
+    for(int j = (int)map_sections.count-1; j >= 0; j--) {
         MapSection *i = [map_sections objectAtIndex:j];
         MapSection_Position ip = [i get_position_status:player_startpt];
         if (ip == MapSection_Position_PAST) {
@@ -206,14 +206,14 @@
 }
 
 -(void)reset { //move all in stored to current (TODO: some in queue)
-    for (int i = map_sections.count-1; i>=0; i--) {
+    for (int i = (int)map_sections.count-1; i>=0; i--) {
         MapSection *t = [map_sections objectAtIndex:i];
         [self reset_map:t];
         [queued_sections insertObject:t atIndex:0];
         [self remove_map_section_from_current:t];
         
     }
-    for (int i = stored.count-1; i>=0; i--) {
+    for (int i = (int)stored.count-1; i>=0; i--) {
         MapSection *t = [stored objectAtIndex:i];
         [self reset_map:t];
         [queued_sections insertObject:t atIndex:0];

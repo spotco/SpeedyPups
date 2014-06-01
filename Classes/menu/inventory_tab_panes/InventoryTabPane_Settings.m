@@ -117,12 +117,14 @@
 -(void)toggle_play_bgm {
 	[AudioManager set_play_bgm:![AudioManager get_play_bgm]];
 	[AudioManager playbgm_imm:BGM_GROUP_MENU];
+	[UserInventory set_bgm_muted:![AudioManager get_play_bgm]];
 	
 }
 
 -(void)toggle_play_sfx {
 	[AudioManager set_play_sfx:![AudioManager get_play_sfx]];
 	[AudioManager playsfx:SFX_MENU_UP];
+	[UserInventory set_sfx_muted:![AudioManager get_play_sfx]];
 }
 
 -(void)clear_data {

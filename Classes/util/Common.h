@@ -18,7 +18,7 @@ float lerp(float a, float b, float t);
 @end
 @implementation NSArray (Random)
 	-(id)random {
-		uint32_t rnd = (uint32_t)arc4random_uniform([self count]);
+		uint32_t rnd = (uint32_t)arc4random_uniform((u_int32_t)[self count]);
 		return [self objectAtIndex:rnd];
 	}
 	-(BOOL)contains_str:(NSString *)tar {
@@ -51,7 +51,7 @@ float lerp(float a, float b, float t);
 @implementation NSMutableArray (Shuffle)
 	-(void)shuffle {
 		for (NSUInteger i = [self count] - 1; i >= 1; i--){
-			u_int32_t j = (uint32_t)arc4random_uniform(i + 1);
+			u_int32_t j = (uint32_t)arc4random_uniform((u_int32_t)i + 1);
 			[self exchangeObjectAtIndex:j withObjectAtIndex:i];
 		}
 	}

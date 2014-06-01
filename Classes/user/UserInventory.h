@@ -26,4 +26,10 @@
 +(void)set_equipped_gameitem:(GameItem)gi;
 +(void)reset_to_equipped_gameitem;
 
+
++(BOOL)get_sfx_muted;
++(BOOL)get_bgm_muted;
++(void)set_sfx_muted:(BOOL)t;
++(void)set_bgm_muted:(BOOL)t;
+
 @end

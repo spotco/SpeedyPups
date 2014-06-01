@@ -353,9 +353,9 @@
 	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
 }
 
--(CCLabelTTF*)bones_disp { return bones_disp; }
--(CCLabelTTF*)lives_disp { return lives_disp; }
--(CCLabelTTF*)time_disp { return time_disp; }
+-(CCLabelBMFont*)bones_disp { return bones_disp; }
+-(CCLabelBMFont*)lives_disp { return lives_disp; }
+-(CCLabelBMFont*)time_disp { return time_disp; }
 
 -(void)update_pct:(float)pct {
 	[itemlenbarfill setScaleX:pct];

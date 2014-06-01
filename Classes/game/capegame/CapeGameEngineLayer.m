@@ -336,7 +336,7 @@ static NSString *blank = @"";
 	player.position = neupos;
 	[player set_rotation];
 	
-	for (int i = game_objects.count-1; i >= 0; i--) {
+	for (int i = (int)game_objects.count-1; i >= 0; i--) {
 		CapeGameObject *o = game_objects[i];
 		[o setPosition:CGPointAdd(ccp(-speed,0), o.position)];
 		[o update:self];

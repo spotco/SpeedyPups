@@ -300,7 +300,12 @@ static NSDictionary* ID_TO_POWERDESC;
         [self start_anim:player_anim_mode_ROCKET];
         [g add_particle:[RocketParticle cons_x:position_.x-40 y:position_.y+20]];
         
-    } else if (cur_param_anim_mode == player_anim_mode_HIT) { 
+    } else if (cur_param_anim_mode == player_anim_mode_HIT) {
+		if (current_island != NULL && current_island.ndir < 0) {
+			cur_scy = -1;
+		} else {
+			cur_scy = 1;
+		}
         [self start_anim:player_anim_mode_HIT];
         
     } else if (cur_param_anim_mode == player_anim_mode_FLASH) {

@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 @class TexRect;
+#import "FreeRunStartAtManager.h"
 
 typedef enum {
 	ChallengeType_NONE = 0,
@@ -10,10 +11,12 @@ typedef enum {
 
 @interface ChallengeInfo : NSObject
 
++(ChallengeInfo*)cons_name:(NSString*)map_name type:(ChallengeType)type ct:(int)ct reward:(int)rw world:(WorldNum)w;
 +(ChallengeInfo*)cons_name:(NSString*)map_name type:(ChallengeType)type ct:(int)ct reward:(int)rw;
 @property(readwrite,strong) NSString* map_name;
 @property(readwrite,assign) ChallengeType type;
 @property(readwrite,assign) int ct,reward;
+@property(readwrite,assign) WorldNum world;
 
 -(NSString*)to_string;
 

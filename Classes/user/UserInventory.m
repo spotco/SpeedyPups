@@ -104,4 +104,22 @@ static NSArray *valid_characters;
 	[DataStore set_key:character int_value:1];
 }
 
+#define KEY_SFX_MUTED @"KEY_SFX_MUTED"
+#define KEY_BGM_MUTED @"KEY_BGM_MUTED"
++(BOOL)get_sfx_muted {
+	return [DataStore get_int_for_key:KEY_SFX_MUTED];
+}
+
++(BOOL)get_bgm_muted {
+	return [DataStore get_int_for_key:KEY_BGM_MUTED];
+}
+
++(void)set_sfx_muted:(BOOL)t {
+	[DataStore set_key:KEY_SFX_MUTED int_value:t];
+}
+
++(void)set_bgm_muted:(BOOL)t {
+	[DataStore set_key:KEY_BGM_MUTED int_value:t];
+}
+
 @end

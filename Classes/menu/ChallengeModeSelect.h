@@ -10,8 +10,9 @@
     CCSprite *selectmenu, *chosenmenu;
     
 	CCLabelTTF *chosen_goal;
-    CCLabelTTF_Pooled *chosen_name, *chosen_mapname;
-    CCLabelTTF_Pooled *reward_amount;
+    CCLabelBMFont *chosen_name, *chosen_mapname;
+    CCLabelBMFont *reward_amount;
+	
 	CCSprite *chosen_preview;
     CCSprite *show_reward;
 	CCSprite *show_already_beaten;

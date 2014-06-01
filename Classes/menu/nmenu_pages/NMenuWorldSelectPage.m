@@ -262,7 +262,7 @@
 -(void)touch_end:(CGPoint)pt {
 	if (!visible_) return;
 	if (scroll_move_ct < 5) {
-		for (int i = touches.count-1; i>=0; i--) {
+		for (int i = (int)touches.count-1; i>=0; i--) {
 			TouchButton *b = touches[i];
 			[b touch_begin:pt];
 		}

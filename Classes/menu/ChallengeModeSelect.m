@@ -5,11 +5,12 @@
 #import "GEventDispatcher.h"
 #import "MainMenuLayer.h"
 #import "Challenge.h"
-#import "GameMain.h" 
+#import "GameMain.h"
+#import "GameItemCommon.h"
 
 @interface ChallengeButtonIcon : CCSprite {
     CCSprite *locked,*unlocked,*status_star,*disp_type_icon;
-	CCLabelTTF_Pooled *locked_text, *unlocked_text;
+	CCLabelBMFont *locked_text, *unlocked_text;
 }
 @end
 
@@ -26,17 +27,17 @@
                             rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:@"lock"]
       ] pos:ccp(30,46)]
      ];
-    locked_text = [Common cons_pooled_label_pos:ccp(55,60)
+    locked_text = [Common cons_bmlabel_pos:ccp(55,60)
 								   color:ccc3(100, 100, 100)
-								fontsize:25
+								fontsize:24
 									 str:@"-1"];
 	[locked addChild:locked_text];
     [self addChild:locked];
     
     unlocked = [CCSprite node];
-    unlocked_text = (CCLabelTTF_Pooled*)[[Common cons_pooled_label_pos:[Common pct_of_obj:self pctx:0.7 pcty:0.27]
+    unlocked_text = [[Common cons_bmlabel_pos:[Common pct_of_obj:self pctx:0.7 pcty:0.27]
 									 color:ccc3(153, 0, 0)
-								  fontsize:21
+								  fontsize:24
 									   str:@"-1"] anchor_pt:ccp(0.5,0.5)];
 	[unlocked addChild:unlocked_text];
     [self addChild:unlocked];
@@ -79,9 +80,6 @@
 }
 
 -(void)dealloc {
-	[locked_text repool];
-	[unlocked_text repool];
-	
 	[locked removeAllChildrenWithCleanup:YES];
 	[unlocked removeAllChildrenWithCleanup:YES];
 	[self removeAllChildrenWithCleanup:YES];
@@ -208,13 +206,13 @@
 	
 	float offset = 0.06;
 	
-	chosen_name = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775 + offset]
+	chosen_name = [Common cons_bmlabel_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.775 + offset]
 								   color:ccc3(200,30,30)
 								fontsize:17
 									 str:@""];
 	[chosen_window addChild:chosen_name];
 	
-	chosen_mapname = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69 + offset]
+	chosen_mapname = [Common cons_bmlabel_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.69 + offset]
 									  color:ccc3(200,30,30)
 								   fontsize:9 str:@""];
 	[chosen_window addChild:chosen_mapname];
@@ -222,14 +220,14 @@
     NSString *maxstr = @"aaaaaaaaaaaaaa\naaaaaaaaaaaaaa\naaaaaaaaaaaaaa\naaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:12]
                     constrainedToSize:CGSizeMake(500, 700)
-                        lineBreakMode:UILineBreakModeWordWrap];
+                        lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
     chosen_goal = [CCLabelTTF labelWithString:maxstr
                                    dimensions:actualSize
                                     alignment:UITextAlignmentLeft
                                      fontName:@"Carton Six"
                                      fontSize:12];
     [chosen_goal setColor:ccc3(0, 0, 0)];
-    [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.47 + offset]];
+    [chosen_goal setPosition:[Common pct_of_obj:chosen_window pctx:0.815 pcty:0.47 + offset]];
     [chosen_window addChild:chosen_goal];
 	
 	show_reward = [CCSprite node];
@@ -239,14 +237,17 @@
 											 color:ccc3(200,0,0)
 										  fontsize:11 str:@"Reward:"]];
 	
-	reward_amount = [Common cons_pooled_label_pos:[Common pct_of_obj:chosen_window pctx:0.84 pcty:0.2 + offset]
+	reward_amount = [[Common cons_bmlabel_pos:[Common pct_of_obj:chosen_window pctx:0.79 pcty:0.17 + offset]
 									 color:ccc3(0,0,0)
 								  fontsize:19
-									   str:@"000000"];
+									   str:@"000000"]
+					 anchor_pt:ccp(0,0.5)];
 	[show_reward addChild:reward_amount];
 	
-	TexRect *bones = [ChallengeRecord get_for:ChallengeType_COLLECT_BONES];
-	[show_reward addChild:[[CCSprite spriteWithTexture:bones.tex rect:bones.rect] pos:[Common pct_of_obj:chosen_window pctx:0.7275 pcty:0.17 + offset]]];
+	[show_reward addChild:[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS]
+												  rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]]
+						   pos:[Common pct_of_obj:chosen_window pctx:0.7275 pcty:0.17 + offset]]
+						   scale:0.6]];
     
 	show_already_beaten = [CCSprite node];
 	[show_already_beaten addChild:[Common cons_label_pos:[Common pct_of_obj:chosen_window pctx:0.8 pcty:0.27 + offset]
@@ -381,10 +382,6 @@
 -(void)click7 {[self clicked:7];}
 
 -(void)dealloc {
-	[chosen_name repool];
-	[chosen_mapname repool];
-	[reward_amount repool];
-	
 	[selectmenu removeAllChildrenWithCleanup:YES];
 	[chosenmenu removeAllChildrenWithCleanup:YES];
 	[self removeAllChildrenWithCleanup:YES];

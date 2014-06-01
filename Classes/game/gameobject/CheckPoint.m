@@ -39,26 +39,11 @@
     texhei = [tex1 contentSizeInPixels].height;
 }
 
--(void)notify_challenge_mode:(ChallengeInfo *)c {
-    challenge_disable = YES;
-}
-
 -(HitRect)get_hit_rect {
     return [Common hitrect_cons_x1:position_.x-texwid/2 y1:position_.y wid:texwid hei:texhei+500];
 }
 
--(void)check_should_render:(GameEngineLayer *)g {
-    if (challenge_disable) {
-        [self setVisible:NO];
-        do_render = NO;
-    } else {
-        [super check_should_render:g];
-    }
-}
-
--(void)update:(Player*)player g:(GameEngineLayer *)g{
-    if (challenge_disable) return;
-	
+-(void)update:(Player*)player g:(GameEngineLayer *)g{	
     [super update:player g:g];
     if (!activated && [Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]]) {
 		

@@ -14,34 +14,19 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define PLAY_SFX YES
-#define PLAY_BGM NO
-#define TESTLEVEL @"capegame_launcher"
-#define VERSION_STRING @"SpeedyPups BETA - May 2014"
-
+#define TESTLEVEL @"filler_goslow"
+#define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
-#define RESET_STATS NO
-
 #define STARTING_LIVES 10
-//#define STARTING_LIVES 1
-
 #define SET_CONSTANT_DT NO
 #define DRAW_HITBOX NO
 
 
 /**
- go through and fix challenges
- challenges reward with coins
- 
- daily login confirmation with online server
- figure out tracking
- 
- figure out in app purchases
- figure out ads
- 
- more challenges (more secrets, cape game, boss rush)
+ daily login confirmation with online server, figure out tracking
+ apportable
  
  -art ask for:
 	video revamp
@@ -50,24 +35,20 @@
 
 /**
 Stretch goals:
+ figure out in app purchases
+ figure out ads
+ facebook integration (like game on facebook, reward)
+ 
  capegame coin at end
  capegame bone magnets
- 
- BUGFIX: settings add watch intro anim again button
- BUGFIX: capegame combo notifications
- BUGFIX: billboard move down
- facebook integration (like game on facebook, reward)
  3 lab levels
  3 more cannon levels
  10 more freerun levels
- random super reward level
- flip match-2 minigame (collect tokens ingame for tries)
- implement challenge of the week, downloadable levels
  goober pet
  levels based around armor (armor break spikes)
- weekly store sales
- OPTIMIZATION: convert all CCLabelTTF to CCLabelTTF_Pooled
- ??BUG: armor -> rocket -> end -> swingvine, still in rocket form
+ 
+ BUG: armor -> rocket -> end -> swingvine, still in rocket form
+ implement challenge of the week, downloadable levels
  **/
 
 +(void)main {
@@ -76,10 +57,9 @@ Stretch goals:
 	[GEventDispatcher lazy_alloc];
     [DataStore cons];
     [BatchDraw cons];
-	[AudioManager set_play_bgm:PLAY_BGM];
-    [AudioManager set_play_sfx:PLAY_SFX];
-	 
-	if (RESET_STATS) [DataStore reset_all];
+	
+	if ([UserInventory get_bgm_muted]) [AudioManager set_play_bgm:NO];
+	if ([UserInventory get_sfx_muted]) [AudioManager set_play_sfx:NO];
 	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	BOOL compress_textures = [defaults boolForKey:@"Compress Textures?"];
@@ -129,9 +109,9 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
-	[ChallengeRecord set_beaten_challenge:19 to:YES];
 	*/
 	
+	//[ChallengeRecord set_beaten_challenge:19 to:YES];
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
@@ -155,7 +135,7 @@ Stretch goals:
 }
 
 +(void)start_game_challengelevel:(ChallengeInfo *)info {
-	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info world:WorldNum_1]];
+	[GameMain run_scene:[GameEngineLayer scene_with_challenge:info world:info.world]];
 	
 }
 

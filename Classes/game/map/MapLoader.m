@@ -446,6 +446,14 @@ static NSMutableDictionary* cached_json;
 				float y = getflt(j_object, @"y");
 				[map.game_objects addObject:[TreatPickup cons_pt:ccp(x,y)]];
 				
+			} else if ([type isEqualToString:@"checkpoint"]) {
+				if (streq(@"force",(NSString*)[j_object objectForKey:@"label"])) {
+					float x = getflt(j_object, @"x");
+					float y = getflt(j_object, @"y");
+					[map.game_objects addObject:[CheckPoint cons_x:x y:y]];
+				} else {
+					NSLog((NSString*)[j_object objectForKey:@"label"]);
+				}
 			}
 		}
 		

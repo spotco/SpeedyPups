@@ -208,6 +208,7 @@
 		// Easy case: 0 duration.
 		for(OALAction* action in actions_)
 		{
+			if (0) [action class];
 			[pDurations_ addObject:[NSNumber numberWithFloat:0]];
 		}
 	}

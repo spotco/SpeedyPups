@@ -179,7 +179,7 @@ static NSMutableArray* _anim_table;
 -(void)arrow_left {
     cur_dog--;
     if (cur_dog <= 0) {
-        cur_dog = [_anim_table count]-1;
+        cur_dog = (int)[_anim_table count]-1;
     }
 	[AudioManager playsfx:SFX_MENU_UP];
     [self refresh];

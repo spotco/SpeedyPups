@@ -35,9 +35,9 @@
 -(void)do_tutorial_anim;
 
 -(void)update_pct:(float)pct;
--(CCLabelTTF*)bones_disp;
--(CCLabelTTF*)lives_disp;
--(CCLabelTTF*)time_disp;
+-(CCLabelBMFont*)bones_disp;
+-(CCLabelBMFont*)lives_disp;
+-(CCLabelBMFont*)time_disp;
 
 -(void)exit;
 

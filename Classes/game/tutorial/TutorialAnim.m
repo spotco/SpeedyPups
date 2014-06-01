@@ -295,7 +295,7 @@
 
 -(void)cons_body_anim_tar:(NSString*)tar frames:(NSArray*)a speed:(int)speed {
     frames = malloc(sizeof(CGRect)*[a count]);
-    animlen = [a count];
+    animlen = (int)[a count];
     curframe = 0;
     animspeed = speed;
     

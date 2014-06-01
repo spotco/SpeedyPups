@@ -80,7 +80,7 @@
     NSString* maxstr = @"aaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
     
     infodesc = [CCLabelTTF labelWithString:@"Some challenge eh"
                                 dimensions:actualSize
@@ -95,7 +95,7 @@
     maxstr = @"aaaaaaaa\naaaaaaaa\naaaaaaaa";
     actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:25]
                            constrainedToSize:CGSizeMake(1000, 1000)
-                               lineBreakMode:UILineBreakModeWordWrap];
+                               lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
     
     reward_disp = [CCLabelTTF labelWithString:@""
                                 dimensions:actualSize
@@ -176,8 +176,8 @@
     curchallenge = [ChallengeRecord get_number_for_challenge:ci];
     if (p == YES && ![ChallengeRecord get_beaten_challenge:curchallenge]) {
         [ChallengeRecord set_beaten_challenge:curchallenge to:YES];
-        [UserInventory add_bones:ci.reward];
-        [reward_disp setString:[NSString stringWithFormat:@"Earned %d bones!",ci.reward]];
+        [UserInventory add_coins:ci.reward];
+        [reward_disp setString:[NSString stringWithFormat:@"Earned %d coin%@!",ci.reward,ci.reward == 1 ?@"":@"s"]];
     }
 	
 	if ([ChallengeRecord get_beaten_challenge:curchallenge] &&
@@ -241,7 +241,7 @@ static int delayfwct;
     [particles_tba addObject:p];
 }
 -(int)get_num_particles {
-    return [particles count];
+    return (int)[particles count];
 }
 -(void)push_added_particles {
     for (Particle *p in particles_tba) {

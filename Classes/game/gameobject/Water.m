@@ -94,8 +94,8 @@
     [[Resource get_tex:TEX_WATER] setClampTexParameters];
     GLRenderObject* o = [Common neu_cons_render_obj:[Resource get_tex:TEX_WATER] npts:4];
     
-    int twid = o.texture.pixelsWide;
-    int thei = o.texture.pixelsHigh;
+    int twid = (int)o.texture.pixelsWide;
+    int thei = (int)o.texture.pixelsHigh;
     
     o.tri_pts[0] = fccp(0,bheight - thei + OFFSET_V);
     o.tri_pts[1] = fccp(width,bheight -thei + OFFSET_V);
