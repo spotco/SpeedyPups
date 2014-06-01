@@ -61,7 +61,7 @@
     [self setTexture:[Resource get_tex:TEX_ITEM_SS]];
 	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"treat"]];
 	[self set_ctmax:CTMAX];
-    
+    [self setPosition:tstart];
     return self;
 }
 @end

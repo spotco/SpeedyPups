@@ -8,6 +8,7 @@
 #import "ExtrasManager.h"
 #import "MenuCommon.h" 
 #import "ExtrasUnlockPopup.h"
+#import "DailyLoginPopup.h"
 
 @implementation ItemInfo
 @synthesize tex;
@@ -259,26 +260,32 @@
 	} else if (streq(val, SHOP_DOG_DOG2)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_2]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_2];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_2]];
 		
 	} else if (streq(val, SHOP_DOG_DOG3)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_3]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_3];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_3]];
 		
 	} else if (streq(val, SHOP_DOG_DOG4)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_4]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_4];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_4]];
 		
 	} else if (streq(val, SHOP_DOG_DOG5)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_5]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_5];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_5]];
 		
 	} else if (streq(val, SHOP_DOG_DOG6)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_6]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_6];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_6]];
 		
 	} else if (streq(val, SHOP_DOG_DOG7)) {
 		if ([UserInventory get_character_unlocked:TEX_DOG_RUN_7]) return NO;
 		[UserInventory unlock_character:TEX_DOG_RUN_7];
+		[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_7]];
 		
 	} else if (streq(val, SHOP_UNLOCK_WORLD2)) {
 		[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];

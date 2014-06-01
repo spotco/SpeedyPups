@@ -12,6 +12,7 @@
 #import "MainMenuInventoryLayer.h"
 #import "GameMain.h"
 #import "DailyLoginPrizeManager.h"
+#import "DailyLoginPopup.h"
 
 @implementation NMenuPage
 -(void)setOpacity:(GLubyte)opacity {

@@ -13,6 +13,8 @@
 #import "DailyLoginPrizeManager.h"
 #import "ExtrasManager.h"
 #import "ExtrasUnlockPopup.h"
+#import "DailyLoginPopup.h"
+#import "Player.h"
 
 typedef enum PrizesPaneMode {
 	PrizesPaneMode_REST,
@@ -322,11 +324,49 @@ typedef enum Prize {
 			[UserInventory add_bones:500];
 			
 		} else if (t == Prize_Mystery) {
-			//TODO -- add dogs and fallback
-			NSString *val = [ExtrasManager random_unowned_extra];
-			if (val != NULL) {
-				[ExtrasManager set_own_extra_for_key:val];
-				[MenuCommon popup:[ExtrasUnlockPopup cons_unlocking:val]];
+			
+			if (![UserInventory get_character_unlocked:TEX_DOG_RUN_2]) {
+				[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_2]];
+				[UserInventory unlock_character:TEX_DOG_RUN_2];
+				
+			} else if (![UserInventory get_character_unlocked:TEX_DOG_RUN_5] && float_random(0, 5) < 1) {
+				[MenuCommon popup:[DailyLoginPopup character_unlock_popup:TEX_DOG_RUN_5]];
+				[UserInventory unlock_character:TEX_DOG_RUN_5];
+				
+			} else {
+				NSString *val = [ExtrasManager random_unowned_extra];
+				if (val != NULL) {
+					[ExtrasManager set_own_extra_for_key:val];
+					[MenuCommon popup:[ExtrasUnlockPopup cons_unlocking:val]];
+				} else {
+					BasePopup *p = [DailyLoginPopup cons];
+					[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.875]
+												 color:ccc3(20,20,20)
+											  fontsize:35
+												   str:@"Mystery Prize Get!"]];
+					[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.75]
+												 color:ccc3(20,20,20)
+											  fontsize:15
+												   str:@"You got 5 coins!"]];
+					[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.675]
+												 color:ccc3(20,20,20)
+											  fontsize:12
+												   str:@"(Looks like you've got all the prizes...for now!)"]];
+					[p addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS]
+														rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]]
+								 pos:[Common pct_of_obj:p pctx:0.425 pcty:0.5]]];
+					[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5325 pcty:0.5]
+												 color:ccc3(200,30,30)
+											  fontsize:12
+												   str:@"x"]];
+					[p addChild:[[Common cons_label_pos:[Common pct_of_obj:p pctx:0.575 pcty:0.5]
+												  color:ccc3(200,30,30)
+											   fontsize:25
+													str:strf("%d",5)] anchor_pt:ccp(0,0.5)]];
+					[UserInventory add_coins:5];
+					[MenuCommon popup:p];
+					
+				}
 			}
 			
 		}

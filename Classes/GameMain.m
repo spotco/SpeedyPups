@@ -15,11 +15,11 @@
 
 #define USE_BG YES
 #define PLAY_SFX YES
-#define PLAY_BGM YES
-#define TESTLEVEL @"classic_nubcave"
+#define PLAY_BGM NO
+#define TESTLEVEL @"capegame_launcher"
 #define VERSION_STRING @"SpeedyPups BETA - May 2014"
 
-#define DEBUG_UI YES
+#define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
 #define RESET_STATS NO
@@ -32,15 +32,14 @@
 
 
 /**
- mystery prize implement with dogpopup and fallback
- daily tip
- 
  go through and fix challenges
  challenges reward with coins
  
+ daily login confirmation with online server
+ figure out tracking
+ 
  figure out in app purchases
  figure out ads
- figure out tracking
  
  more challenges (more secrets, cape game, boss rush)
  
@@ -51,9 +50,6 @@
 
 /**
 Stretch goals:
- daily login check ONLINE server
- daily login count how many days
- 
  capegame coin at end
  capegame bone magnets
  
@@ -145,8 +141,8 @@ Stretch goals:
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

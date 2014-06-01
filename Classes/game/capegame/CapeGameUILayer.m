@@ -83,11 +83,7 @@
 	[itemlenbaricon setOpacity:200];
 	[itemlenbarroot addChild:itemlenbaricon];
 	
-	[self cons_pause_ui];
-	
 	[self addChild:ingame_ui];
-	[self addChild:pause_ui];
-	[pause_ui setVisible:NO];
 	
 	uianim_holder = [CCNode node];
 	[ingame_ui addChild:uianim_holder];
@@ -146,8 +142,9 @@
 	
 	current_disp_score = [cape_game.get_main_game.score get_score];
 	
-	
-	
+	[self cons_pause_ui];
+	[self addChild:pause_ui];
+	[pause_ui setVisible:NO];
 	
 	return self;
 }

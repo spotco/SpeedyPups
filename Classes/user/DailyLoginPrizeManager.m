@@ -55,7 +55,7 @@
 		[self basepopup:p
 				 add_h1:@"Welcome!"
 					 h2:@"To celebrate your first day, here's 3 coins!"
-					 h3:@"(Play every day for some great prizes)"
+					 h3:[DailyLoginPrizeManager get_daily_tip]
 					amt:3];
 		[UserInventory add_coins:3];
 		[MenuCommon popup:p];
@@ -66,12 +66,27 @@
 		[self basepopup:p
 				 add_h1:@"Welcome back!"
 					 h2:@"For playing today, here's a coin!"
-					 h3: int_random(0, 2) == 0 ? @"(Use these to continue after a game over)" : @"(Save up and buy something nice at the store)"
+					 h3:[DailyLoginPrizeManager get_daily_tip]
 					amt:1];
 		[UserInventory add_coins:1];
 		[MenuCommon popup:p];
 		
 	}
+}
+
+#define KEY_DAILY_TIP @"key_daily_tip"
++(NSString*)get_daily_tip {
+	int tip = [DataStore get_int_for_key:KEY_DAILY_TIP];
+	NSArray *tips = @[
+		@"Play every day for some great prizes!",
+		@"You'll find more coins on your first few runs of the day!",
+		@"Use coins to continue after a game over, or to buy stuff from the store!",
+		@"Need more coins? Try doing some challenges!",
+		@"Need more coins? Spend your bones on the Wheel of Prizes!"
+	];
+	[DataStore set_key:KEY_DAILY_TIP int_value:(tip+1)%tips.count];
+	NSString *rtv = [tips get:tip];
+	return [NSString stringWithFormat:@"Tip: %@",rtv==NULL?@"???":rtv];
 }
 
 +(void)basepopup:(BasePopup*)p add_h1:(NSString*)h1 h2:(NSString*)h2 h3:(NSString*)h3 amt:(int)amt {
@@ -83,9 +98,9 @@
 								 color:ccc3(20,20,20)
 							  fontsize:15
 								   str:h2]];
-	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.675]
-								 color:ccc3(20,20,20)
-							  fontsize:12
+	[p addChild:[Common cons_bmlabel_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.675]
+								 color:ccc3(200,30,30)
+							  fontsize:10
 								   str:h3]];
 	[p addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_ITEM_SS]
 										rect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"star_coin"]]
