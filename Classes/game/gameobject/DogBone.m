@@ -68,7 +68,7 @@
         return;
     }
     
-    float dist = [Common distanceBetween:position_ and:player.position];
+    float dist = [Common distanceBetween:[self position] and:player.position];
     if (dist > 500) {
         return;
     }
@@ -88,14 +88,14 @@
     [self setRotation:rot];
     
     float maxdist = [player get_magnet_rad];
-    [super setPosition:ccp(position_.x + vx * [Common get_dt_Scale], position_.y + vy * [Common get_dt_Scale])];
+    [super setPosition:ccp([self position].x + vx * [Common get_dt_Scale], [self position].y + vy * [Common get_dt_Scale])];
     if (!follow && dist < maxdist) {
         follow = YES;
     }
     
     if (follow) {
         refresh_cached_hitbox = YES;
-        Vec3D vel = [VecLib cons_x:player.position.x-position_.x y:player.position.y-position_.y z:0];
+        Vec3D vel = [VecLib cons_x:player.position.x-[self position].x y:player.position.y-[self position].y z:0];
         vel = [VecLib normalize:vel];
         vel = [VecLib scale:vel by:MAX(12,sqrtf(powf(player.vx, 2) + powf(player.vy, 2))*1.2)];
         vx = vel.x;

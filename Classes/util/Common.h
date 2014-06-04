@@ -148,7 +148,7 @@ typedef struct CGRange {
 NSString* strf (char* format, ... );
 int SIG(float n);
 int pb(int base,float pctm);
-ccColor3B PCT_CCC3(int _R,int _G,int _B,float _PCTM);
+ccColor3B PCT_CCC3(int R,int G,int B,float PCTM);
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
 
@@ -214,4 +214,8 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(BOOL)force_compress_textures;
 
 +(BOOL)is_visible:(CCNode*)tar;
+
++(void)scale_to_screen_expected:(CCNode*)spr;
++(void)scale_to_fit_screen_x:(CCNode*)spr;
++(void)scale_to_fit_screen_y:(CCNode*)spr;
 @end

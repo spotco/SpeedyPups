@@ -246,7 +246,7 @@ static int DEFAULT_HP;
 
 	sfx_ct -= [Common get_dt_Scale];
 	if (sfx_ct <= 0) {
-		if (CGPointDist(player.position, position_) < 250) {
+		if (CGPointDist(player.position, [self position]) < 250) {
 			[AudioManager playsfx:SFX_COPTER_FLYBY];
 			sfx_ct = 150;
 		}
@@ -369,7 +369,7 @@ static int DEFAULT_HP;
             
         }
         int firespeed = 40+50*(ct/500.0);
-        [self setRotation:rotation_+vr];
+        [self setRotation:[self rotation]+vr];
         if (ct2 > firespeed) {
             CGPoint noz = [self get_nozzle];
             [g add_gameobject:[EnemyBomb cons_pt:noz v:ccp(float_random(7,18),float_random(2,9))]];
@@ -380,7 +380,7 @@ static int DEFAULT_HP;
         }
         
     } else {
-        [self setRotation:rotation_*0.9];
+        [self setRotation:[self rotation]*0.9];
         rel_pos.x+=DASHSPEED * [Common get_dt_Scale];
         if (rel_pos.x > 500) {
             [self get_random_action:Side_Right];
@@ -393,20 +393,20 @@ static int DEFAULT_HP;
 -(void)death_explode:(GameEngineLayer*)g {
     [g set_target_camera:[Common cons_normalcoord_camera_zoom_x:140 y:80 z:131]];
     [self setOpacity:160];
-    [self setRotation:rotation_+20];
+    [self setRotation:[self rotation]+20];
     
     actual_pos = ccp(rel_pos.x+player_pos.x,actual_pos.y);
     
     if (ct%15==0&&ct>20) {
-        [g add_particle:[RelativePositionExplosionParticle cons_x:position_.x+float_random(-60, 60)
-                                                                y:position_.y+float_random(-60, 60)
+        [g add_particle:[RelativePositionExplosionParticle cons_x:[self position].x+float_random(-60, 60)
+                                                                y:[self position].y+float_random(-60, 60)
                                                            player:g.player.position]];
         [AudioManager playsfx:SFX_EXPLOSION];
 		[g shake_for:15 intensity:6];
     }
     
-    ct%5==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x 
-                                                      y:position_.y 
+    ct%5==0?[g add_particle:[RocketLaunchParticle cons_x:[self position].x 
+                                                      y:[self position].y 
                                                      vx:float_random(-7, 7) 
                                                      vy:float_random(-7, 7)]]:0;
     
@@ -414,12 +414,12 @@ static int DEFAULT_HP;
     if (ct <= 0) {
         cur_mode = CopterMode_ToRemove;
         for(float i = 0; i < 5; i++) {
-			[g add_particle:[BrokenCopterMachineParticle cons_x:position_.x
-															  y:position_.y
+			[g add_particle:[BrokenCopterMachineParticle cons_x:[self position].x
+															  y:[self position].y
 															 vx:float_random(-5, 10)
 															 vy:float_random(-10, 10)
 														   pimg:i]];
-            //[g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 10) vy:float_random(-10, 10)]];
+            //[g add_particle:[BrokenMachineParticle cons_x:[self position].x y:[self position].y vx:float_random(-5, 10) vy:float_random(-10, 10)]];
         }
 		[AudioManager playsfx:SFX_BIG_EXPLOSION];
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS1_DEFEATED] add_pt:g.player.position]];
@@ -583,14 +583,14 @@ static int DEFAULT_HP;
 }
 
 -(void)got_hit_flyoff:(GameEngineLayer*)g {
-    [self setRotation:rotation_+25*[Common get_dt_Scale]];
+    [self setRotation:[self rotation]+25*[Common get_dt_Scale]];
     [self setOpacity:160];
     rel_pos.x += flyoffdir.x * [Common get_dt_Scale];
     rel_pos.y += flyoffdir.y * [Common get_dt_Scale];
     [self apply_rel_pos];
     ct++;
-    ct%6==0?[g add_particle:[RocketLaunchParticle cons_x:position_.x
-                                                       y:position_.y 
+    ct%6==0?[g add_particle:[RocketLaunchParticle cons_x:[self position].x
+                                                       y:[self position].y 
                                                       vx:-flyoffdir.x + float_random(-4, 4)
                                                       vy:-flyoffdir.y + float_random(-4, 4)
                                                    scale:float_random(1, 3)]]:0;
@@ -616,23 +616,23 @@ static int DEFAULT_HP;
 -(CGPoint)get_nozzle {
     Vec3D dirvec = [VecLib cons_x:1 y:0 z:0];
     dirvec = [VecLib scale:dirvec by:100];
-    if (scaleX_ < 0) {
+    if ([self scaleX] < 0) {
         dirvec.y += 40;
     } else {
         dirvec.y -=40;
     }
     
-    dirvec = [VecLib scale:dirvec by:scaleX_];
-    Vec3D rdirvec = [VecLib rotate:dirvec by_rad:-[Common deg_to_rad:rotation_]];
+    dirvec = [VecLib scale:dirvec by:[self scaleX]];
+    Vec3D rdirvec = [VecLib rotate:dirvec by_rad:-[Common deg_to_rad:[self rotation]]];
     
-    CGPoint n = [VecLib transform_pt:position_ by:rdirvec];
+    CGPoint n = [VecLib transform_pt:[self position] by:rdirvec];
     
     return n;
 }
 
 -(void)apply_recoil {
     CGPoint noz = [self get_nozzle];
-    Vec3D recoil_dir = [VecLib cons_x:noz.x-position_.x y:noz.y-position_.y z:0];
+    Vec3D recoil_dir = [VecLib cons_x:noz.x-[self position].x y:noz.y-[self position].y z:0];
     recoil_dir = [VecLib normalize:recoil_dir];
     recoil_dir = [VecLib scale:recoil_dir by:-RECOIL_DIST];
     recoil_tar = ccp(recoil_dir.x,recoil_dir.y);

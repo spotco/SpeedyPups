@@ -146,7 +146,7 @@
 
 -(void)param_check:(GameEngineLayer*)g {
 	for (GameObject *o in g.game_objects) {
-		if ([o class] == [CannonMoveTrack class] && CGPointDist(position_, o.position) < 60) {
+		if ([o class] == [CannonMoveTrack class] && CGPointDist([self position], o.position) < 60) {
 			CannonMoveTrack *tar_track = (CannonMoveTrack*)o;
 			has_move = YES;
 			move_pt1 = [tar_track get_pt1];
@@ -158,21 +158,21 @@
 	
 	CannonRotationPoint *first_r_pt = NULL;
 	for (GameObject *o in g.game_objects) {
-		if ([o class] == [CannonRotationPoint class] && CGPointDist(position_, o.position) < 60) {
+		if ([o class] == [CannonRotationPoint class] && CGPointDist([self position], o.position) < 60) {
 			first_r_pt = (CannonRotationPoint*)o;
 			has_rotation_all = YES;
 			CGPoint tpt = [first_r_pt get_pt2];
-			rotation_angle1 = [self ptdir_to_actual_angle:ccp(tpt.x-position_.x,tpt.y-position_.y)];
+			rotation_angle1 = [self ptdir_to_actual_angle:ccp(tpt.x-[self position].x,tpt.y-[self position].y)];
 			break;
 		}
 	}
 	
 	for (GameObject *o in g.game_objects) {
-		if ([o class] == [CannonRotationPoint class]  && CGPointDist(position_, o.position) < 60 && o != first_r_pt) {
+		if ([o class] == [CannonRotationPoint class]  && CGPointDist([self position], o.position) < 60 && o != first_r_pt) {
 			has_rotation_all = NO;
 			has_rotation_twopt = YES;
 			CGPoint tpt = [(CannonRotationPoint*)o get_pt2];
-			rotation_angle2 = [self ptdir_to_actual_angle:ccp(tpt.x-position_.x,tpt.y-position_.y)];
+			rotation_angle2 = [self ptdir_to_actual_angle:ccp(tpt.x-[self position].x,tpt.y-[self position].y)];
 			
 			break;
 		}
@@ -236,7 +236,7 @@
 
 	nozzel.x += down.x;
 	nozzel.y += down.y;
-	return CGPointAdd(position_, ccp(nozzel.x,nozzel.y));
+	return CGPointAdd([self position], ccp(nozzel.x,nozzel.y));
 }
 
 -(void)reset {
@@ -244,7 +244,7 @@
 }
 
 -(HitRect)get_hit_rect {
-	return [Common hitrect_cons_x1:position_.x-60 y1:position_.y-60 wid:120 hei:120];
+	return [Common hitrect_cons_x1:[self position].x-60 y1:[self position].y-60 wid:120 hei:120];
 }
 
 -(float)ptdir_to_actual_angle:(CGPoint)_dir {

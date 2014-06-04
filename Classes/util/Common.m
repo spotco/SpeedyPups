@@ -84,7 +84,7 @@ inline CGPoint CGPointAdd(CGPoint a,CGPoint b) {
 }
 
 int pb(int base,float pctm) {return base+(255-base)*pctm;}
-ccColor3B PCT_CCC3(int _R,int _G,int _B,float _PCTM) { return ccc3(pb(_R,_PCTM),pb(_G,_PCTM),pb(_B,_PCTM)); }
+ccColor3B PCT_CCC3(int R,int G,int B,float PCTM) { return ccc3(pb(R,PCTM),pb(G,PCTM),pb(B,PCTM)); }
 
 inline float CGPointDist(CGPoint a,CGPoint b) {
     return sqrtf(powf(a.x-b.x, 2)+powf(a.y-b.y, 2));
@@ -319,9 +319,10 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	return obj;
 }
 
-+(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx {    
++(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx {
+	
     glBindTexture(GL_TEXTURE_2D, obj.texture.name);
-	glVertexPointer(2, GL_FLOAT, 0, obj.tri_pts); 
+	glVertexPointer(2, GL_FLOAT, 0, obj.tri_pts);
 	glTexCoordPointer(2, GL_FLOAT, 0, obj.tex_pts);
     
     
@@ -330,6 +331,20 @@ bool fm_a_gt_b(double a,double b,double delta) {
     } else {
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
+	
+	/*
+	CCGLProgram *prog = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTexture];
+	[prog use];
+	[prog setUniformsForBuiltins];
+	
+	ccGLBindTexture2D( obj.texture.name );
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords);
+	glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, sizeof(fCGPoint), obj.tri_pts);
+	glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, sizeof(fCGPoint), obj.tex_pts);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+	if (n_vtx == 4) glDrawArrays(GL_TRIANGLES, 1, 3);*/
 }
 
 +(void)tex_map_to_tri_loc:(GLRenderObject*)o len:(int)len {
@@ -448,7 +463,7 @@ bool fm_a_gt_b(double a,double b,double delta) {
 }
 
 +(CGPoint)scale_from_default {
-	return CGPointMake([Common SCREEN].width/480.0, [Common SCREEN].height/320.0);
+	return CGPointMake([Common SCREEN].width/480.0 * CC_CONTENT_SCALE_FACTOR(), [Common SCREEN].height/320.0 * CC_CONTENT_SCALE_FACTOR());
 }
 
 +(CGPoint)pct_of_obj:(CCNode *)obj pctx:(float)pctx pcty:(float)pcty {
@@ -512,6 +527,17 @@ bool fm_a_gt_b(double a,double b,double delta) {
 		tar = tar.parent;
 	}
 	return YES;
+}
+
++(void)scale_to_screen_expected:(CCNode*)spr {
+	[spr setScaleX:[Common scale_from_default].x];
+	[spr setScaleY:[Common scale_from_default].y];
+}
++(void)scale_to_fit_screen_x:(CCNode *)spr {
+	[spr setScaleX:[Common SCREEN].width/[spr boundingBox].size.width];
+}
++(void)scale_to_fit_screen_y:(CCNode *)spr {
+	[spr setScaleY:[Common SCREEN].height/[spr boundingBox].size.height];
 }
 
 @end

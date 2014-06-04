@@ -38,7 +38,7 @@
 }
 
 -(HitRect)get_hitrect {
-	return [Common hitrect_cons_x1:position_.x-10 y1:position_.y-10 wid:20 hei:20];
+	return [Common hitrect_cons_x1:[self position].x-10 y1:[self position].y-10 wid:20 hei:20];
 }
 
 @end

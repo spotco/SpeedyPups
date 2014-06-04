@@ -15,7 +15,7 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if (!self.active && player.position.x > position_.x) {
+    if (!self.active && player.position.x > [self position].x) {
         active = YES;
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_BOSS2_ACTIVATE] add_pt:player.position]];
 		[g add_gameobject:[SubBoss cons_with:g]];

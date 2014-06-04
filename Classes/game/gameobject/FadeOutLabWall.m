@@ -11,10 +11,15 @@
 
 -(void)cons_x:(float)x y:(float)y width:(float)width height:(float)height {
     tar_opacity = 255;
-    [self setTexture:[self get_tex]];
-    [self setTextureRect:CGRectMake(0, 0, width, height)];
-    [self setPosition:ccp(x,y)];
-    [self setAnchorPoint:ccp(0,0)];
+	
+	
+	CCSprite *body = [CCSprite spriteWithTexture:[Resource get_tex:TEX_LAB_WALL] rect:CGRectMake(0, 0, width, height)];
+	[self setPosition:ccp(x,y)];
+	[body setAnchorPoint:ccp(0,0)];
+	[self addChild:body];
+	
+	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
+    [body.texture setTexParameters:&par];
 }
 
 -(void)check_should_render:(GameEngineLayer *)g {
@@ -41,10 +46,6 @@
 -(void)reset {
     [super reset];
     tar_opacity = 255;
-}
-
--(CCTexture2D*)get_tex {
-    return [Resource get_tex:TEX_LAB_WALL];
 }
 
 -(int)get_render_ord {

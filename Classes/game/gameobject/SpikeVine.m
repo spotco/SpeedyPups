@@ -35,8 +35,8 @@
 			float len = [VecLib length:dir_vec];
 			for(float i = 0; i < len; i+=float_random(8, 30)) {
 				[g add_particle:
-				 [BreakableWallRockParticle cons_spike_x:position_.x + (i/len)*dir_vec.x
-												 y:position_.y + (i/len)*dir_vec.y
+				 [BreakableWallRockParticle cons_spike_x:[self position].x + (i/len)*dir_vec.x
+												 y:[self position].y + (i/len)*dir_vec.y
 												vx:float_random(-5, 5)
 												vy:float_random(-5, 5)]
 				 ];
@@ -61,15 +61,15 @@
         
         SATPoly r_playerhit = [PolyLib hitrect_to_poly:player_small_rect];
         for(int i = 0; i < r_hitbox.length; i++) {
-            r_hitbox.pts[i].x += position_.x;
-            r_hitbox.pts[i].y += position_.y;
+            r_hitbox.pts[i].x += [self position].x;
+            r_hitbox.pts[i].y += [self position].y;
         }
         if ([PolyLib poly_intersect_SAT:r_hitbox b:r_playerhit]) {
             [self hit:player g:g];
         }
         for(int i = 0; i < r_hitbox.length; i++) {
-            r_hitbox.pts[i].x -= position_.x;
-            r_hitbox.pts[i].y -= position_.y;
+            r_hitbox.pts[i].x -= [self position].x;
+            r_hitbox.pts[i].y -= [self position].y;
         }
     }
     
@@ -227,7 +227,7 @@
         y_max = MAX(y_max,l[i].y);
     }
     
-    return [Common hitrect_cons_x1:x_min+position_.x y1:y_min+position_.y x2:x_max+position_.x y2:y_max+position_.y];
+    return [Common hitrect_cons_x1:x_min+[self position].x y1:y_min+[self position].y x2:x_max+[self position].x y2:y_max+[self position].y];
 }
 
 

@@ -128,7 +128,7 @@ static NSArray* ABOVE;
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x y1:position_.y wid:1 hei:1];
+    return [Common hitrect_cons_x1:[self position].x y1:[self position].y wid:1 hei:1];
 }
 
 -(void)attach_toisland:(NSMutableArray*)islands {
@@ -145,10 +145,10 @@ static NSArray* ABOVE;
         
         if ([self is_above]) {
             normal_vec = [VecLib scale:normal_vec by:-10];
-            [self setPosition:[VecLib transform_pt:position_ by:normal_vec]];
+            [self setPosition:[VecLib transform_pt:[self position] by:normal_vec]];
         } else {
 			normal_vec = [VecLib scale:normal_vec by:-5];
-            [self setPosition:[VecLib transform_pt:position_ by:normal_vec]];
+            [self setPosition:[VecLib transform_pt:[self position] by:normal_vec]];
 		}
     }
 }

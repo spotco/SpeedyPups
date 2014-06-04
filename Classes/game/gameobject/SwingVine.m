@@ -85,8 +85,8 @@
         if (ins.x != [Island NO_VALUE] && ins.y != [Island NO_VALUE]) {
             ins_offset = ccp(ins.x-player.position.x,ins.y-player.position.y);
             
-            ins.x -= position_.x;
-            ins.y -= position_.y;
+            ins.x -= [self position].x;
+            ins.y -= [self position].y;
             
             cur_dist = sqrtf(powf(ins.x, 2)+powf(ins.y, 2));
             player.current_swingvine = self;
@@ -118,7 +118,7 @@
         offset_v = [VecLib normalize:offset_v];
         offset_v = [VecLib scale:offset_v by:15];
         
-        [player setPosition:ccp(position_.x+dirvec.x+offset_v.x-ins_offset.x,position_.y+dirvec.y+offset_v.y-ins_offset.y)];
+        [player setPosition:ccp([self position].x+dirvec.x+offset_v.x-ins_offset.x,[self position].y+dirvec.y+offset_v.y-ins_offset.y)];
         ins_offset.x *= 0.5;
         ins_offset.y *= 0.5;
         
@@ -133,7 +133,7 @@
         if ([player cur_anim_mode] == player_anim_mode_SWING) {
             [player setRotation:tar_deg];
             [headcov setVisible:YES];
-            [headcov setPosition:ccp(player.position.x-position_.x,player.position.y-position_.y)];
+            [headcov setPosition:ccp(player.position.x-[self position].x,player.position.y-[self position].y)];
             [headcov setRotation:player.rotation];
             if ([player is_armored]) {
                 [headcov setTexture:[Resource get_tex:TEX_DOG_ARMORED]];
@@ -185,7 +185,7 @@
 
 -(line_seg)get_hit_line_seg {
     CGPoint tip_rel = [self get_tip_relative_pos];
-    return [Common cons_line_seg_a:ccp(position_.x,position_.y) b:ccp(position_.x+tip_rel.x,position_.y+tip_rel.y)];
+    return [Common cons_line_seg_a:ccp([self position].x,[self position].y) b:ccp([self position].x+tip_rel.x,[self position].y+tip_rel.y)];
 }
 
 -(int)get_render_ord {
@@ -194,7 +194,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-length y1:position_.y-length wid:length*2 hei:length*2];
+    return [Common hitrect_cons_x1:[self position].x-length y1:[self position].y-length wid:length*2 hei:length*2];
 }
 
 -(void)reset {

@@ -22,7 +22,7 @@
 }
 
 -(CGPoint)get_center {
-    HitRect r = [Common hitrect_cons_x1:position_.x-texwid/2 y1:position_.y wid:texwid hei:texhei];
+    HitRect r = [Common hitrect_cons_x1:[self position].x-texwid/2 y1:[self position].y wid:texwid hei:texhei];
     return ccp((r.x2-r.x1)/2+r.x1,(r.y2-r.y1)/2+r.y1);
 }
 
@@ -40,7 +40,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-texwid/2 y1:position_.y wid:texwid hei:texhei+500];
+    return [Common hitrect_cons_x1:[self position].x-texwid/2 y1:[self position].y wid:texwid hei:texhei+500];
 }
 
 -(void)update:(Player*)player g:(GameEngineLayer *)g{	

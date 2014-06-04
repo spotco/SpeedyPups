@@ -23,7 +23,7 @@
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
     surfg = (player.current_island && !player.current_island.can_land);
-    [parent_ reorderChild:self z:[self get_render_ord]];
+    [[self parent] reorderChild:self z:[self get_render_ord]];
     
     if (player.current_island != NULL) {
         if (player.last_ndir < 0) {
@@ -38,7 +38,7 @@
 			
 			if ([player is_armored] || streq([Player get_character],TEX_DOG_RUN_6)) {
 				[self setScale:[self scale]*1.5];
-				[self setPosition:CGPointAdd(position_, ccp(tv.x*13,tv.y*13))];
+				[self setPosition:CGPointAdd([self position], ccp(tv.x*13,tv.y*13))];
 			}
        }
     } else {
@@ -54,7 +54,7 @@
 		
 		if ([player is_armored] || streq([Player get_character],TEX_DOG_RUN_6)) {
 			[self setScale:[self scale]*1.5];
-			[self setPosition:CGPointAdd(position_, ccp(cosf([Common deg_to_rad:v.rotation])*13,sinf([Common deg_to_rad:v.rotation])*13))];
+			[self setPosition:CGPointAdd([self position], ccp(cosf([Common deg_to_rad:v.rotation])*13,sinf([Common deg_to_rad:v.rotation])*13))];
 		}
     }
 }

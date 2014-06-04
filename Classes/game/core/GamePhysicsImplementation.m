@@ -12,7 +12,6 @@
 
 @implementation GamePhysicsImplementation
 
-
 +(void)player_move:(id<PhysicsObject>)player with_islands:(NSMutableArray*)islands {
     if (player.current_swingvine != NULL || player.current_cannon != NULL) {
         return;
@@ -24,7 +23,6 @@
         player.position = [GamePhysicsImplementation player_move_along_island:player islands:islands];
     }
 }
-
 
 +(CGPoint)player_move_along_island:(id<PhysicsObject>)player islands:(NSMutableArray*)islands {
     float MIN_SPEED = [player get_speed];
@@ -47,6 +45,7 @@
         MIN_SPEED += (ABS_MAX_SPEED - MIN_SPEED)*(pct);
     }
     
+
     float mov_speed = sqrtf(powf(player.vx, 2) + powf(player.vy, 2)) * [Common get_dt_Scale];
     
     if (mov_speed > ABS_MAX_SPEED * [Common get_dt_Scale]) {
@@ -61,7 +60,6 @@
         player.vx += acc;
         player.vy += acc;
     }
-    
     player.up_vec = [VecLib cross:[VecLib Z_VEC] with:tangent_vec];
     player.up_vec = [VecLib normalize:player.up_vec];
     player.up_vec = [VecLib scale:player.up_vec by:i.ndir];
@@ -74,6 +72,7 @@
     CGPoint position_final;
     
     if (player.movedir > 0) {
+		
         float t = [i get_t_given_position:player.position];
         float t_final = t+mov_speed;
         position_final = [i get_position_given_t:t_final];

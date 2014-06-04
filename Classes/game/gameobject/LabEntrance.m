@@ -126,7 +126,7 @@ static const float ENTR_HEI = 3000;
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x y1:position_.y wid:50 hei:ENTR_HEI];
+    return [Common hitrect_cons_x1:[self position].x y1:[self position].y wid:50 hei:ENTR_HEI];
 }
 
 -(BOOL)get_do_render {
@@ -134,7 +134,7 @@ static const float ENTR_HEI = 3000;
 }
 
 -(void)add_afg_area:(GameEngineLayer*)g {
-    afg_area = [LabEntranceFG cons_pt:ccp(position_.x+50,position_.y-1000) base:self];
+    afg_area = [LabEntranceFG cons_pt:ccp([self position].x+50,[self position].y-1000) base:self];
     [g add_gameobject:afg_area];
 }
 

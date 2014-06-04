@@ -27,7 +27,7 @@
 		[self setRotation:self.rotation+10*[Common get_dt_Scale]];
 		
 		if (out_ct <= 0) {
-			[g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
+			[g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
 			[g remove_gameobject:self];
 			[AudioManager playsfx:SFX_EXPLOSION];
 		}
@@ -42,7 +42,7 @@
 			[g freeze_frame:6];
 			
 		} else {
-			[g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
+			[g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
 			[g remove_gameobject:self];
 			[AudioManager playsfx:SFX_EXPLOSION];
 			[g do_get_hit];
@@ -62,13 +62,13 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-20 y1:position_.y-20 wid:40 hei:40];
+    return [Common hitrect_cons_x1:[self position].x-20 y1:[self position].y-20 wid:40 hei:40];
 }
 
 #define TIPSCALE 30
 -(CGPoint)get_tip {
     float arad = -[Common deg_to_rad:[self rotation]]+45;
-    return ccp(position_.x+cosf(arad)*TIPSCALE*0.65,position_.y+sinf(arad)*TIPSCALE);
+    return ccp([self position].x+cosf(arad)*TIPSCALE*0.65,[self position].y+sinf(arad)*TIPSCALE);
 }
 
 -(void)setPosition:(CGPoint)position{}
@@ -101,7 +101,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-30 y1:position_.y-30 wid:60 hei:60];
+    return [Common hitrect_cons_x1:[self position].x-30 y1:[self position].y-30 wid:60 hei:60];
 }
 
 -(void)setPosition:(CGPoint)position{}

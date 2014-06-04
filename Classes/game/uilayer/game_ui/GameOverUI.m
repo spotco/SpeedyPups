@@ -34,10 +34,10 @@
 												  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
 	[right_curtain setScaleX:-1];
 	[bg_curtain setAnchorPoint:ccp(0.5,0)];
-	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
-	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
-	[left_curtain setPosition:ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0)];
-	[right_curtain setPosition:ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0)];
+	[bg_curtain setScaleX:[Common SCREEN].width/[bg_curtain boundingBox].size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/[bg_curtain boundingBox].size.height];
+	[left_curtain setPosition:ccp([left_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0)];
+	[right_curtain setPosition:ccp([Common SCREEN].width-[right_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0)];
 	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,0)];
 	[gameover_ui addChild:bg_curtain];
 	[gameover_ui addChild:left_curtain];
@@ -74,11 +74,11 @@
 	//[clipper setClippingRegion:CGRectMake(0, 0, 568, 320)];
 	
 	CGPoint tarpt = [Common screen_pctwid:0.5 pcthei:0.43];
-	tarpt.x -= [info_disp_pane boundingBoxInPixels].size.width/2;
-	tarpt.y -= [info_disp_pane boundingBoxInPixels].size.height/2;
+	tarpt.x -= [info_disp_pane boundingBox].size.width/2;
+	tarpt.y -= [info_disp_pane boundingBox].size.height/2;
 	tarpt.x += 10;
 	tarpt.y += 10;
-	CGPoint tarsize = ccp([info_disp_pane boundingBoxInPixels].size.width-20,[info_disp_pane boundingBoxInPixels].size.height*0.69);
+	CGPoint tarsize = ccp([info_disp_pane boundingBox].size.width-20,[info_disp_pane boundingBox].size.height*0.69);
 	[clipper setClippingRegion:CGRectMake(tarpt.x, tarpt.y, tarsize.x, tarsize.y)];
 	
 	
@@ -125,9 +125,9 @@
 -(CCLabelTTF*)cons_label_name:(NSString*)name posmlt:(int)posmlt parent:(CCNode*)parent topleft:(CGPoint)topleft size:(CGPoint)size {
 	CCLabelTTF *namelabel = [Common cons_label_pos:CGPointZero color:ccc3(0, 0, 0) fontsize:16 str:name];
 	[namelabel setAnchorPoint:ccp(0,1)];
-	[namelabel setPosition:ccp(topleft.x,topleft.y - posmlt * namelabel.boundingBoxInPixels.size.height)];
+	[namelabel setPosition:ccp(topleft.x,topleft.y - posmlt * [namelabel boundingBox].size.height)];
 	[parent addChild:namelabel];
-	clippedholder_y_max = MAX(clippedholder_y_max,namelabel.position.y + namelabel.boundingBoxInPixels.size.height + 20);
+	clippedholder_y_max = MAX(clippedholder_y_max,namelabel.position.y + [namelabel boundingBox].size.height + 20);
 	
 	CCLabelTTF *valuelabel = [Common cons_label_pos:CGPointZero color:ccc3(210,30,30) fontsize:16 str:@"top lel"];
 	[valuelabel setPosition:ccp(topleft.x+size.x-10,namelabel.position.y)];
@@ -147,7 +147,7 @@
 }
 
 -(void)touch_begin:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	CGRect bbox;
 	bbox.origin = ccp(info_disp_pane.position.x-info_disp_pane.boundingBox.size.width/2.0,info_disp_pane.position.y);
 	bbox.size = info_disp_pane.boundingBox.size;
@@ -162,7 +162,7 @@
 }
 
 -(void)touch_move:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	if (!is_info_disp_pane_scroll) return;
 	CGPoint ydelta = ccp(0,last_info_disp_pane_scroll_pt.y-pt.y);
 	last_info_disp_pane_scroll_pt = pt;
@@ -175,7 +175,7 @@
 }
 
 -(void)touch_end:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	is_info_disp_pane_scroll = NO;
 }
 

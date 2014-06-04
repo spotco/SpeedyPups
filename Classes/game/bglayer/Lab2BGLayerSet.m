@@ -272,7 +272,7 @@ static float explosion_ct;
 }
 
 -(CGPoint)get_nozzle {
-	return CGPointAdd(position_, ccp(-10,62.5));
+	return CGPointAdd([self position], ccp(-10,62.5));
 }
 
 -(void)set_recoil_delta:(CGPoint)delta {
@@ -345,19 +345,19 @@ static float explosion_ct;
 
 -(void)explosion_at:(CGPoint)pt {
 	if ([[self parent] class] == [Lab2BGLayerSet class]) {
-		[((Lab2BGLayerSet*)parent_) explosion_at:pt];
+		[((Lab2BGLayerSet*)[self parent]) explosion_at:pt];
 	}
 }
 
 -(void)launch_rocket {
 	if ([[self parent] class] == [Lab2BGLayerSet class]) {
-		[((Lab2BGLayerSet*)parent_) launch_rocket];
+		[((Lab2BGLayerSet*)[self parent]) launch_rocket];
 	}
 }
 
 -(void)splash_tick:(CGPoint)dir offset:(CGPoint)offset {
 	if ([[self parent] class] == [Lab2BGLayerSet class]) {
-		[((Lab2BGLayerSet*)parent_) splash_tick:dir offset:offset];
+		[((Lab2BGLayerSet*)[self parent]) splash_tick:dir offset:offset];
 	}
 }
 @end

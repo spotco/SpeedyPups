@@ -45,8 +45,8 @@
                                                                   target:self
                                                                 selector:@selector(pause)];
     [ingamepause setPosition:ccp(
-		[Common SCREEN].width-pauseicon.boundingBoxInPixels.size.width+10,
-		[Common SCREEN].height-pauseicon.boundingBoxInPixels.size.height+10
+		[Common SCREEN].width-[pauseicon boundingBox].size.width+10,
+		[Common SCREEN].height-[pauseicon boundingBox].size.height+10
 	)];
 	
 	enemy_alert_ui = [UIEnemyAlert cons];

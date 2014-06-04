@@ -48,15 +48,15 @@
         for(float i = 0; i < len; i+=float_random(8, 30)) {
 			if (g.world_mode.cur_mode == BGMode_LAB) {
 				[g add_particle:
-					[BreakableWallRockParticle cons_lab_x:position_.x + (i/len)*dir_vec.x
-													y:position_.y + (i/len)*dir_vec.y
+					[BreakableWallRockParticle cons_lab_x:[self position].x + (i/len)*dir_vec.x
+													y:[self position].y + (i/len)*dir_vec.y
 												   vx:float_random(-5, 5) 
 												   vy:float_random(-5, 5)]
 				];
 			} else {
 				[g add_particle:
-					[BreakableWallRockParticle cons_x:position_.x + (i/len)*dir_vec.x
-													y:position_.y + (i/len)*dir_vec.y
+					[BreakableWallRockParticle cons_x:[self position].x + (i/len)*dir_vec.x
+													y:[self position].y + (i/len)*dir_vec.y
 												   vx:float_random(-5, 5) 
 												   vy:float_random(-5, 5)]
 				];

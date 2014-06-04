@@ -38,7 +38,7 @@
     } else if (p.x > max) {
         return MapSection_Position_PAST;
     } else {
-        NSLog(@"mapsection code error");
+        NSLog(@"mapsection code error sur (%@)",NSStringFromCGPoint(p));
         return MapSection_Position_CURRENT;
     }
 }

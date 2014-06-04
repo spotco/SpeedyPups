@@ -66,7 +66,7 @@ static const float MAXSCALE = 0.5;
 }
 
 -(void)update:(GameEngineLayer*)g{
-    [self setPosition:ccp(rel_pos.x+g.player.position.x,position_.y)];
+    [self setPosition:ccp(rel_pos.x+g.player.position.x,[self position].y)];
     [super update:g];
 }
 

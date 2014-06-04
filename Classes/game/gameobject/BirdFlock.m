@@ -26,12 +26,12 @@
     _FLYANIM = flyanim;
     current_anim = _STANDANIM;
     [self runAction:_STANDANIM];
-    initial_pos = position_;
+    initial_pos = [self position];
 }
 -(void)update {
     [self anim_update];
     if (flying) {
-        [self setPosition:ccp(position_.x + vx, position_.y + vy)];
+        [self setPosition:ccp([self position].x + vx, [self position].y + vy)];
         fly_ct--;
         if (fly_ct <= 0) {
             [self reset];

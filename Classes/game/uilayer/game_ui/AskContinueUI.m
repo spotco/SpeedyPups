@@ -35,8 +35,8 @@
 										rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
 	[right_curtain setScaleX:-1];
 	[bg_curtain setAnchorPoint:ccp(0.5,0)];
-	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
-	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	[bg_curtain setScaleX:[Common SCREEN].width/[bg_curtain boundingBox].size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/[bg_curtain boundingBox].size.height];
 	[self set_curtain_animstart_positions];
 	
 	[ask_continue_ui addChild:bg_curtain];
@@ -119,13 +119,13 @@
 }
 
 -(void)set_curtain_animstart_positions {
-	[left_curtain setPosition:ccp(-left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
-    [right_curtain setPosition:ccp([Common SCREEN].width + left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+	[left_curtain setPosition:ccp(-[left_curtain boundingBox].size.width,[Common SCREEN].height/2.0)];
+    [right_curtain setPosition:ccp([Common SCREEN].width + [left_curtain boundingBox].size.width,[Common SCREEN].height/2.0)];
 	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,[Common SCREEN].height)];
 	
-	left_curtain_tpos = ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
-	right_curtain_tpos = ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
-	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
+	left_curtain_tpos = ccp([left_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
+	right_curtain_tpos = ccp([Common SCREEN].width-[right_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-[bg_curtain boundingBox].size.height*0.15);
 }
 
 -(void)start_countdown:(int)cost {

@@ -20,7 +20,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x y1:position_.y wid:size.x hei:size.y];
+    return [Common hitrect_cons_x1:[self position].x y1:[self position].y wid:size.x hei:size.y];
 }
 
 -(void)reset {

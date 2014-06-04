@@ -3,6 +3,44 @@
 #import "Common.h"
 #import "BGTimeManager.h"
 
+#ifdef ANDROID
+@implementation AudioManager : NSObject
+
++(void)begin_load{}
++(void)schedule_update{}
++(void)playbgm_imm:(BGM_GROUP)tar{}
++(void)playbgm_file:(NSString*)file{}
++(void)playsfx:(NSString*)tar{}
++(void)playsfx:(NSString*)tar after_do:(CallBack*)cb{}
+
++(void)bgm_stop{}
+
++(BGM_GROUP) get_cur_group{ return BGM_GROUP_WORLD1;}
+
++(void)set_play_bgm:(BOOL)t{}
++(void)set_play_sfx:(BOOL)t{}
+
++(void)stop_bgm{}
+
++(BOOL)get_play_bgm{return 0;}
++(BOOL)get_play_sfx{return 0;}
+
++(void)transition_mode1{}
++(void)transition_mode2{}
+
++(void)mute_music_for:(int)ct{}
+
++(void)play_jingle{}
++(void)todos_remove_all{}
++(void)sto_prev_group{}
++(void)play_prev_group{}
+
++(void)play_invincible_for:(int)t{}
+
+@end
+
+#else
+
 @implementation AudioManager
 
 static ALChannelSource* channel;
@@ -64,6 +102,7 @@ static BOOL playbgm = YES;
 			BGMUSIC_INTRO
 		]
 	};
+	
 	
 	#define BUFFERMAPGEN(x) x: [[OpenALManager sharedInstance] bufferFromFile:x]
 	sfx_buffers = [[NSMutableDictionary alloc] init];
@@ -361,3 +400,5 @@ static BGM_GROUP prev_group;
 }
 
 @end
+
+#endif

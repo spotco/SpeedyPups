@@ -87,7 +87,7 @@ static NSMutableDictionary* files;
     }
 	NSDictionary *sto_dict = [files objectForKey:file];
 	CGRect rtv = [(NSValue*)[sto_dict objectForKey:idname] CGRectValue];
-	return rtv;
+	return CC_RECT_PIXELS_TO_POINTS(rtv);
 }
 
 @end

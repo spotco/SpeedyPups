@@ -40,10 +40,10 @@
         return;
     }
     
-    [self setPosition:ccp(position_.x+vx,position_.y+vy)];
+    [self setPosition:ccp([self position].x+vx,[self position].y+vy)];
     vy-=FISH_GRAVITY;
     
-    if(position_.y < hei) {
+    if([self position].y < hei) {
         [self setPosition:ccp(0,0)];
         [self setVisible:NO];
         wait = SPAWN_WAIT_BASE;
@@ -52,7 +52,7 @@
     Vec3D dv = [VecLib cons_x:vx y:vy z:0];
     dv=[VecLib normalize:dv];
     float rot = -[Common rad_to_deg:[VecLib get_angle_in_rad:dv]];
-    rotation_ = rot;
+    [self setRotation:rot];
 }
 -(void)dealloc {
     [self stopAllActions];

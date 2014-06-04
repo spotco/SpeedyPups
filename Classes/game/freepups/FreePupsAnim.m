@@ -138,8 +138,8 @@ static float GROUNDLEVEL;
 										rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"curtain_bg"]];
 	[right_curtain setScaleX:-1];
 	[bg_curtain setAnchorPoint:ccp(0.5,0)];
-	[bg_curtain setScaleX:[Common SCREEN].width/bg_curtain.boundingBoxInPixels.size.width];
-	[bg_curtain setScaleY:[Common SCREEN].height/bg_curtain.boundingBoxInPixels.size.height];
+	[bg_curtain setScaleX:[Common SCREEN].width/[bg_curtain boundingBox].size.width];
+	[bg_curtain setScaleY:[Common SCREEN].height/[bg_curtain boundingBox].size.height];
 	[menu_ui addChild:left_curtain];
 	[menu_ui addChild:right_curtain];
 	[menu_ui addChild:bg_curtain];
@@ -160,15 +160,15 @@ static float GROUNDLEVEL;
     [disp_root addChild:timebg];
     
     CCSprite *bonesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfobones"]];
-    [bonesbg setPosition:ccp(timebg.position.x, timebg.position.y - timebg.boundingBoxInPixels.size.height - 5)];
+    [bonesbg setPosition:ccp(timebg.position.x, timebg.position.y - [timebg boundingBox].size.height - 5)];
     [disp_root addChild:bonesbg];
     
     CCSprite *livesbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfolives"]];
-    [livesbg setPosition:ccp(bonesbg.position.x,bonesbg.position.y - bonesbg.boundingBoxInPixels.size.height - 5)];
+    [livesbg setPosition:ccp(bonesbg.position.x,bonesbg.position.y - [bonesbg boundingBox].size.height - 5)];
     [disp_root addChild:livesbg];
 	
 	CCSprite *pointsbg = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS] rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"pauseinfoblank"]];
-	[pointsbg setPosition:ccp(bonesbg.position.x,livesbg.position.y - livesbg.boundingBoxInPixels.size.height - 15)];
+	[pointsbg setPosition:ccp(bonesbg.position.x,livesbg.position.y - [livesbg boundingBox].size.height - 15)];
 	[pointsbg setScale:1.3];
 	[disp_root addChild:pointsbg];
 	
@@ -238,13 +238,13 @@ static float GROUNDLEVEL;
 }
 
 -(void)set_curtain_animstart_positions {
-	[left_curtain setPosition:ccp(-left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
-    [right_curtain setPosition:ccp([Common SCREEN].width + left_curtain.boundingBoxInPixels.size.width,[Common SCREEN].height/2.0)];
+	[left_curtain setPosition:ccp(-[left_curtain boundingBox].size.width,[Common SCREEN].height/2.0)];
+    [right_curtain setPosition:ccp([Common SCREEN].width + [left_curtain boundingBox].size.width,[Common SCREEN].height/2.0)];
 	[bg_curtain setPosition:ccp([Common SCREEN].width/2.0,[Common SCREEN].height)];
 	
-	left_curtain_tpos = ccp(left_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
-	right_curtain_tpos = ccp([Common SCREEN].width-right_curtain.boundingBoxInPixels.size.width/2.0,[Common SCREEN].height/2.0);
-	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-bg_curtain.boundingBoxInPixels.size.height*0.15);
+	left_curtain_tpos = ccp([left_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
+	right_curtain_tpos = ccp([Common SCREEN].width-[right_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
+	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-[bg_curtain boundingBox].size.height*0.15);
 }
 
 -(void)open_menu {
@@ -314,7 +314,7 @@ static float GROUNDLEVEL;
 		
 		if (!cage_on_ground) {
 			[cage_base setPosition:CGPointAdd(cage_base.position, ccp(0,-7*[Common get_dt_Scale]))];
-			float cage_groundlevel = GROUNDLEVEL + cage_bottom.boundingBoxInPixels.size.height * 0.5 * 0.7 - 10;
+			float cage_groundlevel = GROUNDLEVEL + [cage_bottom boundingBox].size.height * 0.5 * 0.7 - 10;
 			if (cage_base.position.y <= cage_groundlevel) {
 				cage_on_ground = YES;
 				[self shake_for:20 intensity:4];

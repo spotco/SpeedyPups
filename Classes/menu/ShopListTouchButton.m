@@ -103,10 +103,10 @@
 -(void)set_selected:(BOOL)t {
 	if (t) {
 		tar_scale = 1;
-		[parent_ reorderChild:self z:5];
+		[[self parent] reorderChild:self z:5];
 	} else {
 		tar_scale = 0.85;
-		[parent_ reorderChild:self z:2];
+		[[self parent] reorderChild:self z:2];
 	}
 }
 @end

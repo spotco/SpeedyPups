@@ -26,7 +26,7 @@
 }
 //ccc3(251,232,52)->ccc3(255,156,0)
 -(void)update:(GameEngineLayer *)g {
-    [self setPosition:ccp(position_.x+vx,position_.y+vy)];
+    [self setPosition:ccp([self position].x+vx,[self position].y+vy)];
     ct--;
     [self setOpacity:((int)(ct/SUBCT*255))];
 	float pct = ct/SUBCT;
@@ -65,7 +65,7 @@
 static int _time_since_last_sfx_play = 0;
 
 -(void)update:(GameEngineLayer*)g {
-    [self setPosition:ccp(position_.x+vx,position_.y+vy)];
+    [self setPosition:ccp([self position].x+vx,[self position].y+vy)];
     ct--;
 	if (_time_since_last_sfx_play > 0) {
 		_time_since_last_sfx_play--;
@@ -77,23 +77,23 @@ static int _time_since_last_sfx_play = 0;
 			_time_since_last_sfx_play = 10;
 		}
         for (float i = 0; i < M_PI * 2; i+= (M_PI*2)/14) {
-            [g add_particle:[SubFireworksParticleA cons_x:position_.x
-														y:position_.y
+            [g add_particle:[SubFireworksParticleA cons_x:[self position].x
+														y:[self position].y
 													   vx:cosf(i+float_random(-0.2, 0.2))*6
 													   vy:sinf(i+float_random(-0.2, 0.2))*6]];
 			
-            [g add_particle:[SubFireworksParticleA cons_x:position_.x
-														y:position_.y
+            [g add_particle:[SubFireworksParticleA cons_x:[self position].x
+														y:[self position].y
 													   vx:cosf(i+float_random(-0.2, 0.2))*4
 													   vy:sinf(i+float_random(-0.2, 0.2))*4]];
 			
-            [g add_particle:[SubFireworksParticleA cons_x:position_.x
-														y:position_.y
+            [g add_particle:[SubFireworksParticleA cons_x:[self position].x
+														y:[self position].y
 													   vx:cosf(i+float_random(-0.2, 0.2))*2
 													   vy:sinf(i+float_random(-0.2, 0.2))*2]];
 			
-            [g add_particle:[SubFireworksParticleA cons_x:position_.x
-														y:position_.y
+            [g add_particle:[SubFireworksParticleA cons_x:[self position].x
+														y:[self position].y
 													   vx:cosf(i+float_random(-0.2, 0.2))*0.5
 													   vy:sinf(i+float_random(-0.2, 0.2))*0.5]];
         }
@@ -117,14 +117,14 @@ static int _time_since_last_sfx_play = 0;
 	vel = ccp(float_random(-0.5,0.5),float_random(9,10));
 	acel = ccp(float_random(-0.1,0.1),float_random(-0.2, -0.1));
 	[self setScale:float_random(0.4, 0.9)];
-	[self setScaleY:scaleY_*1.25];
+	[self setScaleY:[self scaleY]*1.25];
 	[self setColor:[Common color_from:ccc3(251,232,52) to:ccc3(255,156,0) pct:1-ct/FWGFCT]];
 	[self setPosition:CGPointAdd(pt, ccp(float_random(-5, 5),0))];
 	return self;
 }
 -(void)update:(GameEngineLayer*)g {
 	ct--;
-	[self setPosition:CGPointAdd(position_, vel)];
+	[self setPosition:CGPointAdd([self position], vel)];
 	[self setColor:[Common color_from:ccc3(251,232,52) to:ccc3(255,156,0) pct:1-ct/FWGFCT]];
 	[self setOpacity:
 	 ct>10?150+105*(ct/FWGFCT):171*(ct/10.0)

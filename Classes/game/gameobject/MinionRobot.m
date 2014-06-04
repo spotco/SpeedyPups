@@ -54,17 +54,17 @@
 			vy = 0;
 			
 		} else {
-			[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+			[self setPosition:CGPointAdd([self position], ccp(vx,vy))];
 			vx = 0;
 			vy -= 0.5 * [Common get_dt_Scale];
 		
 		}
 		
-	} else if (player.position.x < position_.x && current_island != NULL && !busted) {
+	} else if (player.position.x < [self position].x && current_island != NULL && !busted) {
         vx = 0;
 		vy = float_random(10, 11);
 		current_island = NULL;
-		[self setPosition:CGPointAdd(position_, ccp(vx * [Common get_dt_Scale],vy * [Common get_dt_Scale]))];
+		[self setPosition:CGPointAdd([self position], ccp(vx * [Common get_dt_Scale],vy * [Common get_dt_Scale]))];
 		
     }
     
@@ -88,8 +88,8 @@
         
         int ptcnt = arc4random_uniform(4)+4;
         for(float i = 0; i < ptcnt; i++) {
-            [g add_particle:[BrokenMachineParticle cons_x:position_.x
-                                                        y:position_.y
+            [g add_particle:[BrokenMachineParticle cons_x:[self position].x
+                                                        y:[self position].y
                                                        vx:float_random(-5, 5)
                                                        vy:float_random(-3, 10)]];
         }
@@ -111,8 +111,8 @@
         
         int ptcnt = arc4random_uniform(4)+4;
         for(float i = 0; i < ptcnt; i++) {
-            [g add_particle:[BrokenMachineParticle cons_x:position_.x
-                                                            y:position_.y
+            [g add_particle:[BrokenMachineParticle cons_x:[self position].x
+                                                            y:[self position].y
                                                            vx:float_random(-5, 5) 
                                                            vy:float_random(-3, 10)]];
         }
@@ -133,14 +133,14 @@
 
     }
 	
-	if (position_.y < starting_pos.y - 4000) {
-		[self setPosition:ccp(position_.x,starting_pos.y)];
+	if ([self position].y < starting_pos.y - 4000) {
+		[self setPosition:ccp([self position].x,starting_pos.y)];
 		vy = 0;
 	}
 }
 
 -(BOOL)has_hit_ground:(GameEngineLayer*)g rtv_ins:(CGPoint*)rtins rtv_isl:(Island**)rtisl {
-    line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, ccp(vx,vy))];
+    line_seg mv = [Common cons_line_seg_a:[self position] b:CGPointAdd([self position], ccp(vx,vy))];
     for (Island* i in g.islands) {
         line_seg li = [i get_line_seg];
         CGPoint ins = [Common line_seg_intersection_a:li b:mv];
@@ -169,7 +169,7 @@
 }
 
 -(HitRect)get_hit_rect {
-	return [Common hitrect_cons_x1:position_.x-20 y1:position_.y wid:50 hei:80];
+	return [Common hitrect_cons_x1:[self position].x-20 y1:[self position].y wid:50 hei:80];
 }
 
 -(void)animmode_normal {[bodyimg setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMY_ROBOT idname:@"robot"]];}

@@ -51,10 +51,10 @@
 
 -(HitRect)get_hit_rect {
 	Vec3D normal_vec = [VecLib scale:[VecLib normalize:[VecLib cross:[VecLib Z_VEC] with:dir_vec]] by:[VecLib length:dir_vec]];
-	float xmin = MIN(position_.x, MIN(position_.x+normal_vec.x, MIN(position_.x+dir_vec.x, position_.x+normal_vec.x+dir_vec.x)));
-	float xmax = MAX(position_.x, MAX(position_.x+normal_vec.x, MAX(position_.x+dir_vec.x, position_.x+normal_vec.x+dir_vec.x)));
-	float ymin = MIN(position_.y, MIN(position_.y+normal_vec.y, MIN(position_.y+dir_vec.y, position_.y+normal_vec.y+dir_vec.y)));
-	float ymax = MAX(position_.y, MAX(position_.y+normal_vec.y, MAX(position_.y+dir_vec.y, position_.y+normal_vec.y+dir_vec.y)));
+	float xmin = MIN([self position].x, MIN([self position].x+normal_vec.x, MIN([self position].x+dir_vec.x, [self position].x+normal_vec.x+dir_vec.x)));
+	float xmax = MAX([self position].x, MAX([self position].x+normal_vec.x, MAX([self position].x+dir_vec.x, [self position].x+normal_vec.x+dir_vec.x)));
+	float ymin = MIN([self position].y, MIN([self position].y+normal_vec.y, MIN([self position].y+dir_vec.y, [self position].y+normal_vec.y+dir_vec.y)));
+	float ymax = MAX([self position].y, MAX([self position].y+normal_vec.y, MAX([self position].y+dir_vec.y, [self position].y+normal_vec.y+dir_vec.y)));
 	return [Common hitrect_cons_x1:xmin y1:ymin x2:xmax y2:ymax];
 }
 

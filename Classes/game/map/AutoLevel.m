@@ -34,30 +34,6 @@
         [self remove_all_ahead_but_current:e.pt];
         [self shift_queue_into_current];
 	}
-		
-	/*
-    } else if (e.type == GEventType_BOSS1_DEFEATED) {
-		[cur_state to_labexit_mode];
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
-        [self remove_all_ahead_but_current:e.pt];
-        [tglayer follow_player];
-		
-	} else if (e.type == GEventType_BOSS2_DEFEATED) {
-		[cur_state to_labexit_mode];
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
-        [self remove_all_ahead_but_current:e.pt];
-        [tglayer follow_player];
-		
-	} else if (e.type == GEventType_BOSS3_DEFEATED) {
-		[cur_state to_labexit_mode];
-        [GEventDispatcher push_event:[[GEvent cons_type:GEventType_CHECKPOINT] add_pt:e.pt]];
-        [self remove_all_ahead_but_current:e.pt];
-		[self shift_queue_into_current];
-        [tglayer follow_player];
-		//[GEventDispatcher immediate_event:[GEvent cons_type:GEventType_BOSS3_DEFEATED_POST_UPDATE]];
-		
-	}
-	*/
 }
 
 -(void)game_quit {

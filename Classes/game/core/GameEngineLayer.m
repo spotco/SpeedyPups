@@ -122,6 +122,10 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
+	
+	[self setScaleX:1];
+	[self setScaleY:1];
+	
 	first_update = NO;
 	score = [ScoreManager cons];
 	world_mode = [GameWorldMode cons_worldnum:world];
@@ -186,7 +190,7 @@
 	shake_intensity = 0;
 	
     float tmp;
-    [camera_ centerX:&tmp centerY:&defcey centerZ:&tmp];
+    [[self camera] centerX:&tmp centerY:&defcey centerZ:&tmp];
     current_continue_cost = DEFAULT_CONTINUE_COST;
     player_starting_pos = player_start_pt;
 	[Common unset_dt];
@@ -226,11 +230,11 @@
 	
 	[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
 	float ex,ey,ez,cx,cy,cz;
-	[camera_ eyeX:&ex eyeY:&ey eyeZ:&ez];
-	[camera_ centerX:&cx centerY:&cy centerZ:&cz];
+	[[self camera] eyeX:&ex eyeY:&ey eyeZ:&ez];
+	[[self camera] centerX:&cx centerY:&cy centerZ:&cz];
 	
-	[camera_ setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
-	[camera_ setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
+	[[self camera] setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
+	[[self camera] setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
 	[self follow_player];
 	
 	//dunno why this works lol
@@ -341,8 +345,8 @@
 	CGSize s = [[CCDirector sharedDirector] winSize];
 	CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
 	[self setPosition:ccp(
-		clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY),
-		clampf(halfScreenSize.y-player.position.y,follow_clamp_y_min,follow_clamp_y_max)
+		clampf(halfScreenSize.x-player.position.x,-INFINITY,INFINITY) * [self scaleX],
+		clampf(halfScreenSize.y-player.position.y,follow_clamp_y_min,follow_clamp_y_max) * [self scaleY]
 	)];
 }
 
@@ -393,14 +397,11 @@
     [GEventDispatcher dispatch_events];
     if (current_mode == GameEngineLayerMode_GAMEPLAY) {
 		[self incr_time:[Common get_dt_Scale]];
-		
 		refresh_viewbox_cache = YES;
 		[GameControlImplementation control_update_player:self];
 		[GamePhysicsImplementation player_move:player with_islands:islands];
-		
 		[player update:self];
 		[self check_falloff];
-		
 		[self update_gameobjs];
 		[self update_particles];
 		[self push_added_particles];
@@ -479,11 +480,11 @@
         }
         [GEventDispatcher push_event:[[GEvent cons_type:GEventType_MENU_SCROLLBGUP_PCT] add_f1:scrollup_pct f2:0]];
         float ex,ey,ez,cx,cy,cz;
-        [camera_ eyeX:&ex eyeY:&ey eyeZ:&ez];
-        [camera_ centerX:&cx centerY:&cy centerZ:&cz];
+        [[self camera] eyeX:&ex eyeY:&ey eyeZ:&ez];
+        [[self camera] centerX:&cx centerY:&cy centerZ:&cz];
         
-        [camera_ setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
-        [camera_ setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
+        [[self camera] setEyeX:ex eyeY:defcey+1000*scrollup_pct eyeZ:ez];
+        [[self camera] setCenterX:cx centerY:defcey+1000*scrollup_pct centerZ:cz];
 		[self follow_player];
         
     } else if (current_mode == GameEngineLayerMode_CAMERAFOLLOWTICK) {
@@ -695,6 +696,7 @@
     for(int i = (int)[game_objects count]-1; i>=0 ; i--) {
         GameObject *o = [game_objects objectAtIndex:i];
         [o update:player g:self];
+		
     }
 	[self do_remove_gameobjects];
 }
@@ -753,7 +755,7 @@
     [[CCDirector sharedDirector] resume];
     [BatchDraw clear];
 	
-	[parent_ removeAllChildrenWithCleanup:YES];
+	[[self parent] removeAllChildrenWithCleanup:YES];
 }
 
 
@@ -820,10 +822,10 @@
     
     if (refresh_viewbox_cache) {
         refresh_viewbox_cache = NO;
-        cached_viewbox = [Common hitrect_cons_x1:-self.position.x-[Common SCREEN].width*1.5
-                                              y1:-self.position.y-[Common SCREEN].height*1.5
-                                             wid:[Common SCREEN].width*4.5
-                                             hei:[Common SCREEN].height*4.5];
+        cached_viewbox = [Common hitrect_cons_x1:(-self.position.x-[Common SCREEN].width*1.5)*1/[self scaleX]
+                                              y1:(-self.position.y-[Common SCREEN].height*1.5)*1/[self scaleY]
+                                             wid:[Common SCREEN].width*4.5*1/[self scaleX]
+                                             hei:[Common SCREEN].height*4.5*1/[self scaleX]];
     }
     return cached_viewbox;
 }
@@ -914,7 +916,7 @@ static bool _began_hold_clockbutton = NO;
     if (![GameMain GET_DRAW_HITBOX]) {
         return;
     }
-    glColor4ub(255,0,0,100);
+    //glColor4ub(255,0,0,100);
     glLineWidth(1.0f);
     HitRect re = [player get_hit_rect]; 
     CGPoint *verts = [Common hitrect_get_pts:re];
@@ -951,7 +953,7 @@ static bool _began_hold_clockbutton = NO;
 }
 
 -(BGLayer*)get_bg_layer {
-	return (BGLayer*)[parent_ getChildByTag:tBGLAYER];
+	return (BGLayer*)[[self parent] getChildByTag:tBGLAYER];
 }
 
 -(void)cape_in_lock_on_tutorial_end {

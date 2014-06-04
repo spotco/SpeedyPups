@@ -14,9 +14,9 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"filler_goslow"
+#define TESTLEVEL @"shittytest"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
-#define DEBUG_UI NO
+#define DEBUG_UI YES
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
 #define STARTING_LIVES 10
@@ -25,8 +25,11 @@
 
 
 /**
+ touch tracking line jittery and phantom point
+ bgs fix + minimize
+ uis scale properly
+ 
  daily login confirmation with online server, figure out tracking
- apportable
  
  -art ask for:
 	video revamp
@@ -68,6 +71,17 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
+	
+	//[self start_testlevel];
+	
+	
+	LoadingScene *loader = [LoadingScene cons];
+	[self run_scene:loader];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	
 	/*
 	for (int ii = 0; ii < 3; ii++) {
@@ -116,13 +130,6 @@ Stretch goals:
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];
 	//[UserInventory add_coins:25];
-	
-	LoadingScene *loader = [LoadingScene cons];
-	[self run_scene:loader];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 }
 
 +(void)start_introanim {

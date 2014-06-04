@@ -51,8 +51,8 @@
             
             float dvx = cosf(r)*8+float_random(0, 1);
             float dvy = sinf(r)*8+float_random(0, 1);
-            [g add_particle:[JumpPadParticle cons_x:position_.x 
-                                                  y:position_.y
+            [g add_particle:[JumpPadParticle cons_x:[self position].x
+                                                  y:[self position].y
                                                  vx:dvx
                                                  vy:dvy]];
         }
@@ -173,7 +173,8 @@
     
     Vec3D tangent = [VecLib cross:vec with:[VecLib Z_VEC]];
     float tar_rad = -[VecLib get_angle_in_rad:tangent];
-    rotation_ = [Common rad_to_deg:tar_rad];
+    //rotation_ = [Common rad_to_deg:tar_rad];
+	[self setRotation:[Common rad_to_deg:tar_rad]];
 }
 
 -(void)dealloc {

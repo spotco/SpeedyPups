@@ -15,7 +15,7 @@
 
 -(void)update:(CapeGameEngineLayer *)g {
 	if (!active)return;
-	if (g.player.position.x > position_.x) {
+	if (g.player.position.x > [self position].x) {
 		active = NO;
 		[g do_tutorial_anim];
 	}

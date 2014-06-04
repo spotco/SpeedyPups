@@ -56,7 +56,7 @@
 
 -(void)update:(GameEngineLayer *)g {
     [super update:g];
-    [self setRotation:rotation_+5];
+	[self setRotation:[self rotation]+5];
 }
 
 -(id)set_scale:(float)sc {

@@ -23,16 +23,17 @@
 	[add_to addChild:divider];
 	
 	clipper = [ClippingNode node];
+	
 	CGPoint clipper_l_anchor = ccp(
-			parent.position.x - parent.boundingBoxInPixels.size.width/2.0,
-			parent.position.y - parent.boundingBoxInPixels.size.height/2.0
+			parent.position.x - [parent boundingBox].size.width/2.0,
+			parent.position.y - [parent boundingBox].size.height/2.0
 	);
 	
 	[clipper setClippingRegion:CGRectMake(
 										  clipper_l_anchor.x + 10,
 										  clipper_l_anchor.y + 13,
-										  parent.boundingBoxInPixels.size.width * 0.4 - 20,
-										  parent.boundingBoxInPixels.size.height * 0.96 - 20
+										  [parent boundingBox].size.width * 0.4 - 20,
+										  [parent boundingBox].size.height * 0.96 - 20
 										  )];
 	clipperholder = [CCSprite node];
 	

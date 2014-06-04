@@ -1,6 +1,6 @@
 #import "MapLoader.h"
 
-#import "CJSONDeserializer.h"
+#import "JSONKit.h"
 #import "GameItemCommon.h"
 
 #import "LineIsland.h"
@@ -80,9 +80,7 @@ static NSMutableDictionary* cached_json;
     
     NSString *islandFilePath = [[NSBundle mainBundle] pathForResource:map_file_name ofType:DOTMAP];
 	NSString *islandInputStr = [[NSString alloc] initWithContentsOfFile : islandFilePath encoding:NSUTF8StringEncoding error:NULL];
-	NSData *islandData  =  [islandInputStr dataUsingEncoding : NSUTF8StringEncoding];
-    
-    NSDictionary *j_map_data = [[CJSONDeserializer deserializer] deserializeAsDictionary:islandData error:NULL];
+    NSDictionary *j_map_data = [islandInputStr objectFromJSONString];
     [cached_json setValue:j_map_data forKey:map_file_name];
 }
 
@@ -452,7 +450,7 @@ static NSMutableDictionary* cached_json;
 					float y = getflt(j_object, @"y");
 					[map.game_objects addObject:[CheckPoint cons_x:x y:y]];
 				} else {
-					NSLog((NSString*)[j_object objectForKey:@"label"]);
+					NSLog(@"%@",[j_object objectForKey:@"label"]);
 				}
 			}
 		}

@@ -78,11 +78,22 @@
 }
 
 -(void)draw {
+	
     glBindTexture(GL_TEXTURE_2D, tex);
 	glVertexPointer(2, GL_FLOAT, 0, pvtx);
 	glTexCoordPointer(2, GL_FLOAT, 0, ptex);
     glColorPointer(4, GL_UNSIGNED_BYTE, 0, pclr);
     glDrawArrays(GL_TRIANGLES, 0, batch_ct);
+	
+	/*
+	ccGLBindTexture2D( tex );
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position | kCCVertexAttribFlag_TexCoords);
+	glVertexAttribPointer(kCCVertexAttrib_Position, 2, GL_FLOAT, GL_FALSE, sizeof(fCGPoint), pvtx);
+	glVertexAttribPointer(kCCVertexAttrib_TexCoords, 2, GL_FLOAT, GL_FALSE, sizeof(fCGPoint), ptex);
+	glDrawArrays(GL_TRIANGLES, 0, batch_ct);
+	*/
 }
 
 -(void)dealloc {
@@ -138,8 +149,13 @@ static NSMutableArray* z_bucket;
 
 -(void)draw {
     [super draw];
-    NSArray* jobs = [z_bucket objectAtIndex:zOrder_];
+    NSArray* jobs = [z_bucket objectAtIndex:[self zOrder]];
     if (jobs) {
+		/*
+		CCGLProgram *prog = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionTexture];
+		[prog use];
+		[prog setUniformsForBuiltins];
+		*/
         for (BatchJob *job in jobs) {
             [job draw];
         }

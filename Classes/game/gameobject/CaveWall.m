@@ -27,8 +27,8 @@
     
     for (int i = 0; i < 4; i++) {
         tex.tex_pts[i] = fccp(
-			(tex.tri_pts[i].x+position_.x)/tex.texture.pixelsWide,
-			-(tex.tri_pts[i].y+position_.y)/tex.texture.pixelsHigh
+			(tex.tri_pts[i].x+[self position].x)/tex.texture.pixelsWide,
+			-(tex.tri_pts[i].y+[self position].y)/tex.texture.pixelsHigh
 		);
     }
 }
@@ -45,7 +45,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x y1:position_.y wid:wid hei:hei];
+    return [Common hitrect_cons_x1:[self position].x y1:[self position].y wid:wid hei:hei];
 }
 
 -(void)set_active:(BOOL)t_active {

@@ -35,7 +35,7 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x y1:position_.y wid:100 hei:1000];
+    return [Common hitrect_cons_x1:[self position].x y1:[self position].y wid:100 hei:1000];
 }
 
 -(void)notify_challenge_mode:(ChallengeInfo *)c {
@@ -58,7 +58,7 @@
 	
 	if (procced) {
 		if (particlect%40==0) {
-			CGPoint center = CGPointAdd(position_,ccp(float_random(-30, 30),0));
+			CGPoint center = CGPointAdd([self position],ccp(float_random(-30, 30),0));
 			for(int i = 0; i < 5; i++) {
 				[g add_particle:[FireworksParticleA cons_x:center.x
 														 y:center.y
@@ -69,8 +69,8 @@
 		}
 		
 		if (particlect%3==0) {
-			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd(position_, ccp(200,0))]];
-			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd(position_, ccp(320,0))]];
+			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd([self position], ccp(200,0))]];
+			[g add_particle:[FireworksGroundFlower cons_pt:CGPointAdd([self position], ccp(320,0))]];
 		}
 		particlect++;
 	}

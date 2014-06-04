@@ -40,8 +40,8 @@
 -(void)particle_effect:(GameEngineLayer*)g {
     for(int i = 0; i < 6; i++) {
         float spd = float_random(4, 10);
-        [g add_particle:[JumpPadParticle cons_x:position_.x 
-                                              y:position_.y
+        [g add_particle:[JumpPadParticle cons_x:[self position].x
+                                              y:[self position].y
                                              vx:-normal_vec.x*spd+float_random(-5, 5)
                                              vy:-normal_vec.y*spd+float_random(-10, 10)]];
     }
@@ -86,10 +86,10 @@
 
 -(void)set_dir:(Vec3D)vec {
     normal_vec = [VecLib cons_x:vec.x y:vec.y z:0];
-    
     Vec3D tangent = [VecLib cross:vec with:[VecLib Z_VEC]];
     float tar_rad = -[VecLib get_angle_in_rad:tangent] - M_PI/2;
-    rotation_ = [Common rad_to_deg:tar_rad];
+    //rotation_ = [Common rad_to_deg:tar_rad];
+	[self setRotation:[Common rad_to_deg:tar_rad]];
 }
 
 @end

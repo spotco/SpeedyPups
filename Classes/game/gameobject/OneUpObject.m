@@ -16,7 +16,7 @@
 	return self;
 }
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-30 y1:position_.y-30 wid:60 hei:60];
+    return [Common hitrect_cons_x1:[self position].x-30 y1:[self position].y-30 wid:60 hei:60];
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {

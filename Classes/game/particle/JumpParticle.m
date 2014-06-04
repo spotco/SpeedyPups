@@ -74,7 +74,7 @@ static const float MAXSCALE = 2;
     ct--;
 	if (is_relpos) {
 		if (!set_relpos) {
-			rel_pos = ccp(position_.x-g.player.position.x,position_.y-g.player.position.y);
+			rel_pos = ccp([self position].x-g.player.position.x,[self position].y-g.player.position.y);
 			set_relpos = YES;
 		}
 		[self setPosition:CGPointAdd(g.player.position, rel_pos)];

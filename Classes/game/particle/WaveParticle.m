@@ -22,7 +22,7 @@
 
 -(void)cons:(float)tvx vtheta:(float)tvtheta {
     theta = 0;
-    baseline = position_.y;
+    baseline = [self position].y;
     vtheta = tvtheta;
     vx = tvx;
     [self setColor:ccc3(197+arc4random_uniform(20), 225+arc4random_uniform(25), 128+arc4random_uniform(20))];
@@ -32,7 +32,7 @@
 
 -(void)update:(GameEngineLayer*)g{
     theta += vtheta;
-    [self setPosition:ccp(position_.x+vx,baseline+sinf(theta)*30)];
+    [self setPosition:ccp([self position].x+vx,baseline+sinf(theta)*30)];
     [self setOpacity:ct/800.0*255];
     ct--;
 }

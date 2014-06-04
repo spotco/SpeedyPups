@@ -426,28 +426,28 @@
     if (self.next != NULL) {
         
         [self cons_corner_tex];
-        [Common transform_obj:corner_fill by:position_];
+        [Common transform_obj:corner_fill by:[self position]];
         
         
         if (toppts_fill != NULL && toppts_fill.isalloc == 0) {
             [self cons_corner_top];
-            [Common transform_obj:toppts_fill by:position_];
+            [Common transform_obj:toppts_fill by:[self position]];
             toppts_fill.isalloc = 1;
         }
         
         [self cons_corner_line_fill];
-        if (corner_line_fill != NULL) [Common transform_obj:corner_line_fill by:position_];
+        if (corner_line_fill != NULL) [Common transform_obj:corner_line_fill by:[self position]];
     }
     
     if (!has_transformed_renderpts) {
         has_transformed_renderpts = YES;
-        [Common transform_obj:main_fill by:position_];
-        [Common transform_obj:top_fill by:position_];
-        [Common transform_obj:tl_top_corner by:position_];
-        [Common transform_obj:tr_top_corner by:position_];
-        [Common transform_obj:bottom_line_fill by:position_];
-        [Common transform_obj:left_line_fill by:position_];
-        [Common transform_obj:right_line_fill by:position_];
+        [Common transform_obj:main_fill by:[self position]];
+        [Common transform_obj:top_fill by:[self position]];
+        [Common transform_obj:tl_top_corner by:[self position]];
+        [Common transform_obj:tr_top_corner by:[self position]];
+        [Common transform_obj:bottom_line_fill by:[self position]];
+        [Common transform_obj:left_line_fill by:[self position]];
+        [Common transform_obj:right_line_fill by:[self position]];
         
     }
     

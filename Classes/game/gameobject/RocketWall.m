@@ -15,7 +15,7 @@
 }
 
 -(void)update:(Player *)player g:(GameEngineLayer *)g {
-    if (player.position.x - 3000 > position_.x) {
+    if (player.position.x - 3000 > [self position].x) {
         return;
     }
     if (to_remove == NULL) {

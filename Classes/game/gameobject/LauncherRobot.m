@@ -43,7 +43,7 @@
                                   rect:[FileCache get_cgrect_from_plist:TEX_ENEMY_LAUNCHER idname:@"launcher"]];
     dir = [VecLib cons_x:tdir.x y:tdir.y z:0];
     
-    float tara = [self get_tar_angle_deg_self:position_ tar:ccp(position_.x+dir.x,position_.y+dir.y)];
+    float tara = [self get_tar_angle_deg_self:[self position] tar:ccp([self position].x+dir.x,[self position].y+dir.y)];
     if (ABS(tara) > 90) {
         tara+=180;
         [body setScaleX:-DEFAULT_SCALE];
@@ -66,7 +66,7 @@
 }
 
 -(BOOL)has_hit_ground:(GameEngineLayer*)g rtv_ins:(CGPoint*)rtins rtv_isl:(Island**)rtisl {
-    line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, ccp(vx,vy))];
+    line_seg mv = [Common cons_line_seg_a:[self position] b:CGPointAdd([self position], ccp(vx,vy))];
     for (Island* i in g.islands) {
         line_seg li = [i get_line_seg];
         CGPoint ins = [Common line_seg_intersection_a:li b:mv];
@@ -98,7 +98,7 @@
 				vy = 0;
 				
 			} else {
-				[self setPosition:CGPointAdd(position_, ccp(vx,vy))];
+				[self setPosition:CGPointAdd([self position], ccp(vx,vy))];
 				vx = 0;
 				vy -=0.5;
 			
@@ -107,7 +107,7 @@
         return;
     }
     
-    if (position_.x + REMOVE_BEHIND_BUFFER < player.position.x) {
+    if ([self position].x + REMOVE_BEHIND_BUFFER < player.position.x) {
         return;
     }
     
@@ -144,7 +144,7 @@
         [g add_gameobject:r];
         recoilanim_timer = RECOIL_TIME;
 		
-		if (CGPointDist(position_, player.position) < 1200) {
+		if (CGPointDist([self position], player.position) < 1200) {
 			[self play_rocketlaunch_sound];
 		}
 		
@@ -159,7 +159,7 @@
         [self set_anim:ANIM_DEAD];
         int ptcnt = arc4random_uniform(4)+4;
         for(float i = 0; i < ptcnt; i++) {
-            [g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
+            [g add_particle:[BrokenMachineParticle cons_x:[self position].x y:[self position].y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
         }
         [AudioManager playsfx:SFX_BOP];
         
@@ -178,7 +178,7 @@
             [self set_anim:ANIM_DEAD];
             int ptcnt = arc4random_uniform(4)+4;
             for(float i = 0; i < ptcnt; i++) {
-                [g add_particle:[BrokenMachineParticle cons_x:position_.x y:position_.y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
+                [g add_particle:[BrokenMachineParticle cons_x:[self position].x y:[self position].y vx:float_random(-5, 5) vy:float_random(-3, 10)]];
             }
             [AudioManager playsfx:SFX_ROCKBREAK];
             
@@ -206,7 +206,7 @@
 }
 
 -(CGPoint)get_nozzle {
-    CGPoint pos = position_;
+    CGPoint pos = [self position];
     Vec3D v = [VecLib cons_x:dir.x y:dir.y z:0];
     [VecLib scale:v by:110];
     pos = [VecLib transform_pt:pos by:v];
@@ -237,7 +237,7 @@
 }
 
 -(void)set_active:(BOOL)t_active {active = t_active;}
--(HitRect)get_hit_rect {return [Common hitrect_cons_x1:position_.x-50 y1:position_.y-20 wid:100 hei:40];}
+-(HitRect)get_hit_rect {return [Common hitrect_cons_x1:[self position].x-50 y1:[self position].y-20 wid:100 hei:40];}
 
 
 static int sfx_rocket_launch_cooldown = 0;

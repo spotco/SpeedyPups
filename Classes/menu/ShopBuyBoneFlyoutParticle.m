@@ -31,8 +31,8 @@
 -(void)update:(GameEngineLayer *)g {
 	ct--;
 	float pct = 1-ct/MAX_CT;
-	[self setPosition:CGPointAdd(position_, vel)];
-	[self setRotation:rotation_+vr];
+	[self setPosition:CGPointAdd([self position], vel)];
+	[self setRotation:[self rotation]+vr];
 	[self setScale:init_scale+pct*1.2];
 	[self setOpacity:220-pct*220];
 }

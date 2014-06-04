@@ -174,11 +174,14 @@ static NSDictionary* ID_TO_POWERDESC;
     new_player.start_pt = pt;
     new_player.position = new_player.start_pt;
 	
+	//[Common scale_to_screen_expected:player_img];
+	
 	return new_player;
 }
 
 -(id)init {
     self = [super init];
+	
     prevndir = 1;
     cur_scy = 1;
     inair_ct = 0;
@@ -298,7 +301,7 @@ static NSDictionary* ID_TO_POWERDESC;
             self.last_ndir = 1;
         }
         [self start_anim:player_anim_mode_ROCKET];
-        [g add_particle:[RocketParticle cons_x:position_.x-40 y:position_.y+20]];
+        [g add_particle:[RocketParticle cons_x:[self position].x-40 y:[self position].y+20]];
         
     } else if (cur_param_anim_mode == player_anim_mode_HIT) {
 		if (current_island != NULL && current_island.ndir < 0) {
@@ -502,15 +505,15 @@ static NSDictionary* ID_TO_POWERDESC;
             dv=[VecLib scale:dv by:-2.5];
             dv.x += float_random(-3, 3);
             dv.y += float_random(-3, 3);
-            [g add_particle:[StreamParticle cons_x:position_.x y:position_.y vx:dv.x vy:dv.y]];
+            [g add_particle:[StreamParticle cons_x:[self position].x y:[self position].y vx:dv.x vy:dv.y]];
         }
     }
 }
 
 -(void)swingvine_attach_anim {
     //smoothing anim for swingvine attach, see swingvine update (does not force rotation until curanim is _SWING_ANIM
-    if (![Common fuzzyeq_a:rotation_ b:-90 delta:1]) {
-        float dir = [Common shortest_dist_from_cur:rotation_ to:-90]*0.8;
+    if (![Common fuzzyeq_a:[self rotation] b:-90 delta:1]) {
+        float dir = [Common shortest_dist_from_cur:[self rotation] to:-90]*0.8;
         self.rotation += dir;
     } else {
         [self start_anim:player_anim_mode_SWING];
@@ -589,13 +592,15 @@ static int lastswap = 0;
     return current_params;
 }
 -(void) reset {
-    position_ = start_pt;
+	[self setPosition:start_pt];
+    //position_ = start_pt;
     current_island = NULL;
     up_vec = [VecLib cons_x:0 y:1 z:0];
     vx = 0;
     vy = 0;
-    rotation_ = 0;
-    last_ndir = 1;
+    //rotation_ = 0;
+    [self setRotation:0];
+	last_ndir = 1;
     floating = NO;
     dashing = NO;
     dead = NO;
@@ -657,7 +662,7 @@ static int lastswap = 0;
 }
 
 -(HitRect)get_jump_rect {
-    return [Common hitrect_cons_x1:position_.x-25 y1:position_.y wid:50 hei:4];
+    return [Common hitrect_cons_x1:[self position].x-25 y1:[self position].y wid:50 hei:4];
 }
 
 BOOL refresh_hitrect = YES;

@@ -234,13 +234,13 @@
 						   score:strf("Score \u00B7 %d",[game_engine_layer.score get_score])
 					   highscore:[ScoreManager get_world_highscore:game_engine_layer.world_mode.cur_world] < [game_engine_layer.score get_score]];
     [self set_this_visible:pauseui];
-    [[CCDirector sharedDirector] pause];
+    //[[CCDirector sharedDirector] pause];
 }
 
 -(void)unpause {
     [GEventDispatcher push_event:[GEvent cons_type:GEventType_UNPAUSE]];
     [self set_this_visible:ingameui];
-    [[CCDirector sharedDirector] resume];
+    //[[CCDirector sharedDirector] resume];
 }
 
 -(void)exit_to_menu {

@@ -48,15 +48,15 @@
 	
 	clipper = [ClippingNode node];
 	CGPoint clipper_l_anchor = ccp(
-		tabbedpane.position.x - tabbedpane.boundingBoxInPixels.size.width/2.0,
-		tabbedpane.position.y - tabbedpane.boundingBoxInPixels.size.height/2.0
+		tabbedpane.position.x - [tabbedpane boundingBox].size.width/2.0,
+		tabbedpane.position.y - [tabbedpane boundingBox].size.height/2.0
 	);
 	
 	[clipper setClippingRegion:CGRectMake(
 		clipper_l_anchor.x + 10,
 	    clipper_l_anchor.y + 13,
-		tabbedpane.boundingBoxInPixels.size.width * 0.4 - 20,
-		tabbedpane.boundingBoxInPixels.size.height * 0.96 - 20
+		[tabbedpane boundingBox].size.width * 0.4 - 20,
+		[tabbedpane boundingBox].size.height * 0.96 - 20
 	)];
 	clipperholder = [CCSprite node];
 	
@@ -286,7 +286,7 @@
 }
 
 -(void)update {
-	if (!visible_) return;
+	if (![self visible]) return;
 	CGPoint neupos = CGPointAdd(ccp(0,vy), clipperholder.position);
 	neupos.y = clampf(neupos.y, clippedholder_y_min, clippedholder_y_max);
 	[clipperholder setPosition:neupos];
@@ -369,7 +369,7 @@
 }
 
 -(void)touch_move:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	if (!is_scroll) return;
 	CGPoint ydelta = ccp(0,-last_scroll_pt.y+pt.y);
 	last_scroll_pt = pt;
@@ -382,7 +382,7 @@
 }
 
 -(void)touch_end:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	is_scroll = NO;
 }
 

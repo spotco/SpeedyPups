@@ -18,7 +18,7 @@
     return self;
 }
 -(void)update:(GameEngineLayer *)g {
-    [self setPosition:CGPointAdd(position_, ccp(vel.x*sc,vel.y*sc))];
+    [self setPosition:CGPointAdd([self position], ccp(vel.x*sc,vel.y*sc))];
     [self setOpacity:255*(ct/15.0)];
     ct--;
 }
@@ -64,7 +64,7 @@
         [body setOpacity:150];
         [body setRotation:body.rotation+25];
         if (ct > 20) {
-            [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
+            [g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
             
             [AudioManager playsfx:SFX_EXPLOSION];
             [g remove_gameobject:self];
@@ -82,7 +82,7 @@
             
         } else {
             [player add_effect:[HitEffect cons_from:[player get_default_params] time:40]];
-            [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
+            [g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
             
             [AudioManager playsfx:SFX_EXPLOSION];
             [g remove_gameobject:self];
@@ -93,7 +93,7 @@
         }
         
     } else if ([self has_hit_ground:g]) {
-        [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
+        [g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
         [AudioManager playsfx:SFX_EXPLOSION];
         [g remove_gameobject:self];
 		
@@ -110,10 +110,10 @@
     }
 }
 -(void)move:(GameEngineLayer*)g {
-    [self setPosition:CGPointAdd(position_, v)];
+    [self setPosition:CGPointAdd([self position], v)];
 }
 -(BOOL)has_hit_ground:(GameEngineLayer*)g {
-    line_seg mv = [Common cons_line_seg_a:position_ b:CGPointAdd(position_, v)];
+    line_seg mv = [Common cons_line_seg_a:[self position] b:CGPointAdd([self position], v)];
     for (Island* i in g.islands) {
         line_seg li = [i get_line_seg];
         CGPoint ins = [Common line_seg_intersection_a:li b:mv];
@@ -128,11 +128,11 @@
 
 -(CGPoint)get_tip {
     float arad = -[Common deg_to_rad:[body rotation]]+45;
-    return ccp(position_.x+cosf(arad)*TIPSCALE*0.65,position_.y+sinf(arad)*TIPSCALE);
+    return ccp([self position].x+cosf(arad)*TIPSCALE*0.65,[self position].y+sinf(arad)*TIPSCALE);
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-20 y1:position_.y-20 wid:40 hei:40];
+    return [Common hitrect_cons_x1:[self position].x-20 y1:[self position].y-20 wid:40 hei:40];
 }
 
 -(int)get_render_ord {
@@ -175,7 +175,7 @@
 
 -(void)move:(GameEngineLayer*)g {
 	player_rel_pos.x += v.x * [Common get_dt_Scale];
-    [self setPosition:ccp(g.player.position.x+player_rel_pos.x,position_.y+v.y * [Common get_dt_Scale])];
+    [self setPosition:ccp(g.player.position.x+player_rel_pos.x,[self position].y+v.y * [Common get_dt_Scale])];
 }
 
 -(void)reset {

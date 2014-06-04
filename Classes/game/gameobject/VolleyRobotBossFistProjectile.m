@@ -150,11 +150,11 @@
 }
 
 -(HitRect)get_hit_rect {
-    return [Common hitrect_cons_x1:position_.x-40 y1:position_.y-40 wid:80 hei:80];
+    return [Common hitrect_cons_x1:[self position].x-40 y1:[self position].y-40 wid:80 hei:80];
 }
 
 -(HitRect)get_small_hit_rect {
-	return [Common hitrect_cons_x1:position_.x-20 y1:position_.y-20 wid:40 hei:40];
+	return [Common hitrect_cons_x1:[self position].x-20 y1:[self position].y-20 wid:40 hei:40];
 }
 
 -(void)force_remove {
@@ -170,13 +170,13 @@
 }
 
 -(void)explosion_effect:(GameEngineLayer*)g {
-	[g add_particle:[[ExplosionParticle cons_x:position_.x y:position_.y] set_scale:1.5]];
+	[g add_particle:[[ExplosionParticle cons_x:[self position].x y:[self position].y] set_scale:1.5]];
 }
 
 #define TIPSCALE 115
 -(CGPoint)get_tip {
     float arad = -[Common deg_to_rad:[self rotation]]+45;
-    return ccp(position_.x+cosf(arad)*TIPSCALE*0.65,position_.y+sinf(arad)*TIPSCALE);
+    return ccp([self position].x+cosf(arad)*TIPSCALE*0.65,[self position].y+sinf(arad)*TIPSCALE);
 }
 
 -(void)check_should_render:(GameEngineLayer *)g { do_render = YES; }

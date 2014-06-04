@@ -88,8 +88,9 @@
     params.cur_dash_count = 1;
     params.time_left = -1;
     
-    rotation_ = 0;
-    movedir = 1;
+    //rotation_ = 0;
+    [self setRotation:0];
+	movedir = 1;
     current_swingvine = NULL;
     floating = NO;
     current_island = NULL;

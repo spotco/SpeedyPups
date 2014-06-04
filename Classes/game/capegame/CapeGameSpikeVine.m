@@ -46,8 +46,8 @@
 -(SATPoly)get_hitpoly {
 	SATPoly rtv = r_hitbox;
 	for(int i = 0; i < rtv.length; i++) {
-		rtv.pts[i].x += position_.x;
-		rtv.pts[i].y += position_.y;
+		rtv.pts[i].x += [self position].x;
+		rtv.pts[i].y += [self position].y;
 	}
 	return rtv;
 }

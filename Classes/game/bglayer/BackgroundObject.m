@@ -1,4 +1,3 @@
-
 #import "Resource.h"
 #import "BackgroundObject.h"
 #import "Common.h"
@@ -7,11 +6,16 @@
 @synthesize scrollspd_x, scrollspd_y;
 
 +(BackgroundObject*) backgroundFromTex:(CCTexture2D *)tex scrollspd_x:(float)spdx scrollspd_y:(float)spdy {
+	
+	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_CLAMP_TO_EDGE};
+    [tex setTexParameters:&par];
+	
     BackgroundObject *bg = [BackgroundObject spriteWithTexture:tex];
     bg.scrollspd_x = spdx;
     bg.scrollspd_y = spdy;
     bg.anchorPoint = CGPointZero;
     bg.position = CGPointZero;
+	
     return bg;
 }
 

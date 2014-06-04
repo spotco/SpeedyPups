@@ -7,8 +7,10 @@
 -(id)init{
     self=[super init];
     self.isTouchEnabled = YES;
+	//m = [CCMotionStreak streakWithFade:0.2 minSeg:5 width:5 color:ccc3(255,255,255) texture:[Resource get_tex:TEX_BLANK]];
     m = [CCMotionStreak streakWithFade:0.2 minSeg:5 image:[Resource get_tex:TEX_BLANK] width:5 length:15 color:ccc4(255,255,255,255)];
-    touchb = [CCSprite spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
+    
+	touchb = [CCSprite spriteWithTexture:[Resource get_tex:TEX_PARTICLES] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES idname:@"grey_particle"]];
     [self addChild:touchb];
     [touchb setOpacity:0];
     [GEventDispatcher add_listener:self];

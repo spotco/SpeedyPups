@@ -39,7 +39,7 @@
 	[periscope setScaleX:-1];
 	return self;
 }
--(void)update:(CGPoint)player_pos {
+-(void)water_update:(CGPoint)player_pos {
 	player_pos.x *= 1.1;
 	float xpos = ((int)(player_pos.x))%body.texture.pixelsWide + ((player_pos.x) - ((int)(player_pos.x)));
 	[body setTextureRect:CGRectMake(
@@ -153,7 +153,7 @@ static CGPoint last_pos;
 	
 	fgwater.offset += (220-fgwater.offset)/10.0;
 	[fgwater setPosition:ccp(player.position.x,groundlevel-fgwater.offset)];
-	[fgwater update:player.position];
+	[fgwater water_update:player.position];
 	CCSprite *periscope = fgwater.periscope;
 	[periscope setVisible:NO];
 	

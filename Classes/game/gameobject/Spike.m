@@ -47,7 +47,7 @@
 			for (float i = M_PI*0.1; i < M_PI*0.9; i+=M_PI/12) {
 				CGPoint vel = ccp(cosf(i),sinf(i));
 				float scale = float_random(2, 8);
-				[g add_particle:[BreakableWallRockParticle cons_spike_x:position_.x y:position_.y vx:vel.x*scale vy:vel.y*scale]];
+				[g add_particle:[BreakableWallRockParticle cons_spike_x:[self position].x y:[self position].y vx:vel.x*scale vy:vel.y*scale]];
 			}
 			[AudioManager playsfx:SFX_SPIKEBREAK];
 			

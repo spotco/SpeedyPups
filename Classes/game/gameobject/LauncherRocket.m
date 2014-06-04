@@ -102,10 +102,10 @@
     dv =[VecLib scale:dv by:-1];
     dv =[VecLib scale:dv by:90];
     ct+=[Common get_dt_Scale];
-    ((int)ct)%PARTICLE_FREQ==0?[g add_particle:[[RocketLaunchParticle cons_x:position_.x+dv.x y:position_.y+dv.y vx:-v.x vy:-v.y] set_scale:trail_scale]]:0;
+    ((int)ct)%PARTICLE_FREQ==0?[g add_particle:[[RocketLaunchParticle cons_x:[self position].x+dv.x y:[self position].y+dv.y vx:-v.x vy:-v.y] set_scale:trail_scale]]:0;
     
     
-    if (position_.x + REMOVE_BEHIND_BUFFER < player.position.x) {
+    if ([self position].x + REMOVE_BEHIND_BUFFER < player.position.x) {
         kill = YES;
     } else if (remlimit != -1 && ct > remlimit) {
 		[self remove_from:g];
@@ -173,8 +173,8 @@
 	if (already_removed) return;
 	already_removed = YES;
     [AudioManager playsfx:SFX_EXPLOSION];
-    [g add_particle:[ExplosionParticle cons_x:position_.x y:position_.y]];
-    //[LauncherRobot explosion:g at:position_];
+    [g add_particle:[ExplosionParticle cons_x:[self position].x y:[self position].y]];
+    //[LauncherRobot explosion:g at:[self position]];
     //[g remove_gameobject:shadow];
     [g remove_gameobject:self];
 }
@@ -194,7 +194,7 @@
 -(HitRect)get_hit_rect {
 	//float hsc = trail_scale/DEFAULT_SCALE;
 	float hsc = 1;
-	return [Common hitrect_cons_x1:position_.x-30*hsc y1:position_.y-25*hsc wid:60*hsc hei:50*hsc];
+	return [Common hitrect_cons_x1:[self position].x-30*hsc y1:[self position].y-25*hsc wid:60*hsc hei:50*hsc];
 }
 
 @end
@@ -255,7 +255,7 @@ static float _beep_ct = 0;
 		float spd = [VecLib length:[VecLib cons_x:v.x y:v.y z:0]];
 		Vec3D to_player = [VecLib scale:
 						   [VecLib normalize:
-							[VecLib cons_x:player.position.x - position_.x y:player.position.y - position_.y z:0]]
+							[VecLib cons_x:player.position.x - [self position].x y:player.position.y - [self position].y z:0]]
 									 by:spd*0.03];
 		v.x+=to_player.x;
 		v.y+=to_player.y;
@@ -264,9 +264,9 @@ static float _beep_ct = 0;
 		v.x = neu_v.x;
 		v.y = neu_v.y;
 		
-		[self setRotation:[self get_tar_angle_deg_self:position_ tar:ccp(position_.x+v.x,position_.y+v.y)]];
+		[self setRotation:[self get_tar_angle_deg_self:[self position] tar:ccp([self position].x+v.x,[self position].y+v.y)]];
 		
-		if (position_.y + 2000 < player.position.y) {
+		if ([self position].y + 2000 < player.position.y) {
 			[self remove_from:g];
 			return;
 		}
@@ -280,9 +280,9 @@ static float _beep_ct = 0;
 
 -(void)update_position {
     //only for horizontal relative, todo: make general
-    //[self setPosition:ccp(rel_pos.x+player_pos.x,position_.y+v.y)];
+    //[self setPosition:ccp(rel_pos.x+player_pos.x,[self position].y+v.y)];
     actual_pos.x = rel_pos.x+player_pos.x;
-    actual_pos.y = position_.y+v.y * [Common get_dt_Scale];
+    actual_pos.y = [self position].y+v.y * [Common get_dt_Scale];
     [self setPosition:ccp(actual_pos.x+vibration.x,actual_pos.y+vibration.y)];
 }
 

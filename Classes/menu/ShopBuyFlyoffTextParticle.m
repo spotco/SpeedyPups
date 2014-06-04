@@ -26,7 +26,7 @@
 	ct--;
 	float pct = 1-ct/MAX_CT;
 	[self setOpacity:255-pct*255];
-	[self setPosition:CGPointAdd(position_, vel)];
+	[self setPosition:CGPointAdd([self position], vel)];
 }
 
 -(BOOL)should_remove {

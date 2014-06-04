@@ -202,7 +202,7 @@
 }
 
 -(void)update {
-	if (!visible_) return;
+	if (![self visible]) return;
 	CGPoint neupos;
 	if (scroll_left_arrow.pressed) {
 		neupos = CGPointAdd(ccp(7.5,0), clipper_anchor.position);
@@ -243,7 +243,7 @@
 }
 
 -(void)touch_move:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	if (!is_scroll) return;
 	CGPoint ydelta = ccp(-last_scroll_pt.x+pt.x,0);
 	last_scroll_pt = pt;
@@ -260,7 +260,7 @@
 }
 
 -(void)touch_end:(CGPoint)pt {
-	if (!visible_) return;
+	if (![self visible]) return;
 	if (scroll_move_ct < 5) {
 		for (int i = (int)touches.count-1; i>=0; i--) {
 			TouchButton *b = touches[i];

@@ -29,11 +29,11 @@
 }
 
 -(void)update:(GameEngineLayer *)g {
-	[self setPosition:CGPointAdd(position_, ccp(0,4*[Common get_dt_Scale]))];
+	[self setPosition:CGPointAdd([self position], ccp(0,4*[Common get_dt_Scale]))];
 }
 
 -(BOOL)should_remove {
-	return position_.y > [Common SCREEN].height + 100;
+	return [self position].y > [Common SCREEN].height + 100;
 }
 
 @end

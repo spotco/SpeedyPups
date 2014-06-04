@@ -31,7 +31,7 @@
     active = YES;
     activated = NO;
     
-    CCSprite *fillsprite = [CCSprite node];
+    CCSprite *fillsprite = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BLANK]];
     fillsprite.anchorPoint = ccp(0,0);
     fillsprite.color = ccc3(FILL_COLOR);
     [fillsprite setTextureRect:CGRectMake(0, 0, bwidth, bheight)];
@@ -114,19 +114,11 @@
 -(void) draw {
     [super draw];
     if (do_render) {
-        [self draw_renderobj:body n_vtx:4];
+        [Common draw_renderobj:body n_vtx:4];
     }
 }
 
 
--(void)draw_renderobj:(GLRenderObject*)obj n_vtx:(int)n_vtx {
-    glBindTexture(GL_TEXTURE_2D, obj.texture.name);
-	glVertexPointer(2, GL_FLOAT, 0, obj.tri_pts);
-	glTexCoordPointer(2, GL_FLOAT, 0, body_tex_offset);
-    
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-    if (n_vtx == 4)glDrawArrays(GL_TRIANGLES, 1, 3);
-}
 
 -(void)dealloc {
     [self removeAllChildrenWithCleanup:YES];

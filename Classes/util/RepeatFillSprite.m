@@ -10,7 +10,7 @@
 	for (int i = 0; i < rep; i++) {
 		CCSprite *subspr = [CCSprite spriteWithTexture:tex rect:rect];
 		[subspr setAnchorPoint:ccp(0,0)];
-		[subspr setPosition:ccp(i*subspr.boundingBoxInPixels.size.width-i,0)];
+		[subspr setPosition:ccp(i*[subspr boundingBox].size.width-i,0)];
 		[self addChild:subspr];
 	}
 	return self;

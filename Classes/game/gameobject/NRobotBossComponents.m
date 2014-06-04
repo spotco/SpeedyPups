@@ -257,7 +257,7 @@
 	
 	[self setPosition:CGPointAdd(g.player.position, rel_pos)];
 	[self setRotation:self.rotation+20*[Common get_dt_Scale]];
-	if (![Common hitrect_touch:[g get_viewbox] b:[Common hitrect_cons_x1:position_.x y1:position_.y wid:5 hei:5]]) {
+	if (![Common hitrect_touch:[g get_viewbox] b:[Common hitrect_cons_x1:[self position].x y1:[self position].y wid:5 hei:5]]) {
 		off_screen = true;
 	}
 }

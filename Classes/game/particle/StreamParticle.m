@@ -52,7 +52,7 @@
 
 -(id)set_relpos:(CGPoint)player {
 	is_relpos = YES;
-	rel_pos = ccp(position_.x-player.x,position_.y-player.y);
+	rel_pos = ccp([self position].x-player.x,[self position].y-player.y);
 	return self;
 }
 -(id)set_color:(ccColor3B)c {
@@ -71,10 +71,10 @@
 }
 -(void)update:(GameEngineLayer*)g{
     if (is_relpos) {
-		[self setPosition:ccp(g.player.position.x+rel_pos.x,position_.y+vy*[Common get_dt_Scale])];
+		[self setPosition:ccp(g.player.position.x+rel_pos.x,[self position].y+vy*[Common get_dt_Scale])];
 		rel_pos.x += vx * [Common get_dt_Scale];
 	} else {
-		[self setPosition:ccp(position_.x+vx*[Common get_dt_Scale],position_.y+vy*[Common get_dt_Scale])];
+		[self setPosition:ccp([self position].x+vx*[Common get_dt_Scale],[self position].y+vy*[Common get_dt_Scale])];
 	}
 	
 	if (is_vel_rotation_facing) {
