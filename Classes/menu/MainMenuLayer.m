@@ -12,7 +12,7 @@
 #import "MainMenuInventoryLayer.h"
 #import "GameMain.h"
 #import "DailyLoginPrizeManager.h"
-#import "DailyLoginPopup.h"
+#import "ConnectingPopup.h"
 
 @implementation NMenuPage
 -(void)setOpacity:(GLubyte)opacity {
@@ -66,9 +66,36 @@
     self.isTouchEnabled = YES;
     [self schedule:@selector(update:) interval:1.0/60];
 	
-	[DailyLoginPrizeManager menu_popup_check];
+	[DailyLoginPrizeManager daily_popup_web_check:[Common cons_callback:(NSObject*)[MainMenuLayer class] sel:@selector(daily_popup_go)]
+											 fail:[Common cons_callback:(NSObject*)[MainMenuLayer class] sel:@selector(daily_popup_fail)]];
+	BasePopup *p = [ConnectingPopup cons];
+	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.875]
+								 color:ccc3(20,20,20)
+							  fontsize:35
+								   str:@"Connecting..."]];
+	[p addChild:[Common cons_label_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.75]
+								 color:ccc3(20,20,20)
+							  fontsize:15
+								   str:@"Please Wait!"]];
+	[p addChild:[Common cons_bmlabel_pos:[Common pct_of_obj:p pctx:0.5 pcty:0.675]
+								   color:ccc3(200,30,30)
+								fontsize:10
+									 str:@"Connect online to recieve some great daily prizes!"]];
+	[MenuCommon popup:p];
+
+	
+	
 	
     return self;
+}
+
+static BOOL daily_popup_show = NO;
++(void)daily_popup_go {
+	daily_popup_show = YES;
+}
+static BOOL daily_popup_fail = NO;
++(void)daily_popup_fail {
+	daily_popup_fail = YES;
 }
 
 -(void)add_pages {
@@ -83,6 +110,19 @@
 		[ObjectPool print_info];
 		[Resource unload_textures];
 		first_update = YES;
+		
+	} else if (daily_popup_show) {
+		if (current_popup != NULL && [current_popup class] == [ConnectingPopup class])[self popup_close];
+		daily_popup_show = NO;
+		[DailyLoginPrizeManager daily_popup_after_check_show];
+		
+	} else if (daily_popup_fail) {
+		if (current_popup != NULL && [current_popup class] == [ConnectingPopup class])[self popup_close];
+		daily_popup_fail = NO;
+	}
+	
+	if (current_popup != NULL) {
+		[current_popup update];
 	}
 	
     float dx = [self get_target_bg_pt].x - [bg get_fg_pos].x;
@@ -145,23 +185,33 @@
 		}
 		
 	} else if (e.type == GEventType_MENU_POPUP) {
-		for (int i = 0; i < menu_pages.count; i++) {
-			if ([menu_pages[i] visible]) popup_prev_visible = i;
-			[menu_pages[i] setVisible:NO];
+		if (current_popup == NULL) {
+			for (int i = 0; i < menu_pages.count; i++) {
+				if ([menu_pages[i] visible]) popup_prev_visible = i;
+				[menu_pages[i] setVisible:NO];
+			}
+			[self.inventory_layer setVisible:NO];
+			current_popup = [e get_value:@"popup"];
+			[current_popup add_close_button:[Common cons_callback:self sel:@selector(popup_close)]];
+			[self addChild:current_popup];
+		} else {
+			[self popup_close];
+			current_popup = [e get_value:@"popup"];
+			[current_popup add_close_button:[Common cons_callback:self sel:@selector(popup_close)]];
+			[self addChild:current_popup];
+			
 		}
-		[self.inventory_layer setVisible:NO];
-		current_popup = [e get_value:@"popup"];
-		[current_popup add_close_button:[Common cons_callback:self sel:@selector(popup_close)]];
-		[self addChild:current_popup];
 	}
 }
 
 -(void)popup_close {
-	[self removeChild:current_popup cleanup:YES];
-	current_popup = NULL;
-	[menu_pages[popup_prev_visible] setVisible:YES];
+	if (current_popup != NULL) {
+		[self removeChild:current_popup cleanup:YES];
+		current_popup = NULL;
+		[menu_pages[popup_prev_visible] setVisible:YES];
+		[AudioManager playsfx:SFX_MENU_DOWN];
+	}
 	[self.inventory_layer setVisible:YES];
-	[AudioManager playsfx:SFX_MENU_DOWN];
 }
 
 -(CGPoint)grab_gl_coord_touch:(NSSet*)touches {

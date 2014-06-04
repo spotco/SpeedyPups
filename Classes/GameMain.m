@@ -7,7 +7,10 @@
 #import "FreeRunStartAtManager.h"
 #import "LoadingScene.h"
 #import "IntroAnim.h"
+
 #import "CapeGameEngineLayer.h"
+#import "JSONKit.h"
+#import "TrackingUtil.h"
 
 #import "WebRequest.h"
 
@@ -16,7 +19,7 @@
 #define USE_BG YES
 #define TESTLEVEL @"shittytest"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
-#define DEBUG_UI YES
+#define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
 #define BOSS_1_HEALTH NO
 #define STARTING_LIVES 10
@@ -25,11 +28,7 @@
 
 
 /**
- touch tracking line jittery and phantom point
- bgs fix + minimize
- uis scale properly
- 
- daily login confirmation with online server, figure out tracking
+ implement tracking on the basic events
  
  -art ask for:
 	video revamp
@@ -71,9 +70,10 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
+	NSLog(@"UUID:%@",[Common unique_id]);
+	[TrackingUtil track_evt:TrackingEvt_Login];
 	
-	//[self start_testlevel];
-	
+	//[DataStore set_key:@"key_today" str_value:@"topkek"];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
@@ -82,6 +82,9 @@ Stretch goals:
 	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
+	
+	
+	
 	
 	/*
 	for (int ii = 0; ii < 3; ii++) {

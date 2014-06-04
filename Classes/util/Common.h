@@ -2,7 +2,6 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
-long sys_time();
 float drp(float a, float b, float div);
 float lerp(float a, float b, float t);
 #define NSVEnum(val,type) [NSValue value:&val withObjCType:@encode(type)]
@@ -218,4 +217,6 @@ float CGPointDist(CGPoint a,CGPoint b);
 +(void)scale_to_screen_expected:(CCNode*)spr;
 +(void)scale_to_fit_screen_x:(CCNode*)spr;
 +(void)scale_to_fit_screen_y:(CCNode*)spr;
+
++(NSString*)unique_id;
 @end

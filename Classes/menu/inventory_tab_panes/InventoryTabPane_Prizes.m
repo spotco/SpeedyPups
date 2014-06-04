@@ -80,15 +80,16 @@ typedef enum Prize {
 	[self addChild:wheel_label];
 	
 	
-    CGSize actualSize = [@"00000000000000\n00000000000000" sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
-                           constrainedToSize:CGSizeMake(1000, 1000)
-							   lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap];
-	reset_in_disp = [Common cons_bm_multiline_label_str:@""
-												  width:actualSize.width
-											  alignment:UITextAlignmentCenter
-											   fontsize:13];
+	[self addChild:[Common cons_label_pos:[Common pct_of_obj:parent pctx:0.84 pcty:0.86]
+									color:ccc3(20,20,20)
+								 fontsize:14
+									  str:@"Wheel Resets In..."]];
+	
+	reset_in_disp = [Common cons_bmlabel_pos:[Common pct_of_obj:parent pctx:0.84 pcty:0.75]
+									   color:ccc3(200,30,30)
+									fontsize:34
+										 str:@""];
 	[reset_in_disp setColor:ccc3(200,30,30)];
-	[reset_in_disp setPosition:[Common pct_of_obj:parent pctx:0.84 pcty:0.75]];
 	[self addChild:reset_in_disp];
 	
 	CCSprite *bones_disp_bg = [[[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
@@ -419,11 +420,7 @@ typedef enum Prize {
 	CCSprite *light = lights[i_tar];
 	[light setTextureRect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS idname:@"menu_wheel_light_on"]];
 	
-	[reset_in_disp set_label:
-	 [NSString stringWithFormat:@"Wheel resets in\n%@",
-	  [MenuCommon secs_to_prettystr:[DailyLoginPrizeManager get_time_until_new_day]]
-	  ]
-	 ];
+	[reset_in_disp set_label:[MenuCommon secs_to_prettystr:[DailyLoginPrizeManager get_time_until_new_day]]];
 	
 	if (mode == PrizesPaneMode_SPINNING) {
 		[wheel_pointer setRotation:wheel_pointer.rotation + wheel_pointer_vr * [Common get_dt_Scale]];

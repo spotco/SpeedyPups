@@ -264,8 +264,8 @@
     
     
     if ([rect isEqualToString:@"nmenu_blankbutton"]) {
-        [p_a addChild:[CharSelAnim cons_pos:ccp(18,20)]];
-        [p_b addChild:[CharSelAnim cons_pos:ccp(18,20)]];
+        [p_a addChild:[CharSelAnim cons_pos:ccp(18,20) speed:0.2]];
+        [p_b addChild:[CharSelAnim cons_pos:ccp(18,20) speed:0.1]];
     }
     
     [Common set_zoom_pos_align:p_a zoomed:p_b scale:1.2];
@@ -313,6 +313,7 @@
 }
 
 +(NSString*)secs_to_prettystr:(long)secs {
+	if (secs < 0) return @"??? (Please Reconnect to the Internet!)";
 	return strf("%.2d:%.2d:%.2d",(secs/3600)%60,(secs/60)%60, (secs)%60);
 }
 

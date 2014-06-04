@@ -27,6 +27,8 @@
     [self addChild:invmh];
 }
 
+-(void)update {}
+
 -(void)dealloc {
 	[self removeAllChildrenWithCleanup:YES];
 }

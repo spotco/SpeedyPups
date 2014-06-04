@@ -7,10 +7,6 @@
 #include <sys/sysctl.h>
 #import "CoreFoundation/CoreFoundation.h"
 
-long sys_time() {
-	return CFAbsoluteTimeGetCurrent();
-}
-
 float drp(float a, float b, float div) {
 	return a + (b - a) / div;
 }
@@ -540,4 +536,14 @@ bool fm_a_gt_b(double a,double b,double delta) {
 	[spr setScaleY:[Common SCREEN].height/[spr boundingBox].size.height];
 }
 
+#define KEY_UUID @"key_uuid"
++(NSString*)unique_id {
+	if ([DataStore get_str_for_key:KEY_UUID] == NULL) {
+		CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+		NSString *uuid_str = (__bridge_transfer NSString*)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+		CFRelease((CFTypeRef)uuid);
+		[DataStore set_key:KEY_UUID str_value:uuid_str];
+	}
+	return [DataStore get_str_for_key:KEY_UUID];
+}
 @end

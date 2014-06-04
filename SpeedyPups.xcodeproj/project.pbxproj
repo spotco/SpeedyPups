@@ -224,6 +224,8 @@
 		7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5681016FFCE780003F2A5 /* TutorialEnd.m */; };
 		7EAC8080193EB963006400F0 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EAC807E193EB963006400F0 /* JSONKit.h */; };
 		7EAC8081193EB963006400F0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC807F193EB963006400F0 /* JSONKit.m */; };
+		7EAC8088193EEC5C006400F0 /* ConnectingPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC8087193EEC5C006400F0 /* ConnectingPopup.m */; };
+		7EAC808B193EF7D8006400F0 /* TrackingUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC808A193EF7D8006400F0 /* TrackingUtil.m */; };
 		7EAC99C21930A4CA006C3ED2 /* autolevel_start2.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */; };
 		7EAC99C41930A6F9006C3ED2 /* tutorial2_jumpwater.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */; };
 		7EAE854B177FEFE4005AB868 /* labbreakablewall_base.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */; };
@@ -1107,6 +1109,10 @@
 		7EA5681016FFCE780003F2A5 /* TutorialEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialEnd.m; path = tutorial/TutorialEnd.m; sourceTree = "<group>"; };
 		7EAC807E193EB963006400F0 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		7EAC807F193EB963006400F0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		7EAC8086193EEC5C006400F0 /* ConnectingPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectingPopup.h; sourceTree = "<group>"; };
+		7EAC8087193EEC5C006400F0 /* ConnectingPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectingPopup.m; sourceTree = "<group>"; };
+		7EAC8089193EF7D8006400F0 /* TrackingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingUtil.h; sourceTree = "<group>"; };
+		7EAC808A193EF7D8006400F0 /* TrackingUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingUtil.m; sourceTree = "<group>"; };
 		7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = autolevel_start2.map; sourceTree = "<group>"; };
 		7EAC99C31930A6F9006C3ED2 /* tutorial2_jumpwater.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_jumpwater.map; sourceTree = "<group>"; };
 		7EAE8549177FEFE4005AB868 /* labbreakablewall_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = labbreakablewall_base.png; sourceTree = "<group>"; };
@@ -2249,6 +2255,8 @@
 		7E6433B91928C65E00A427EB /* popup */ = {
 			isa = PBXGroup;
 			children = (
+				7EAC8086193EEC5C006400F0 /* ConnectingPopup.h */,
+				7EAC8087193EEC5C006400F0 /* ConnectingPopup.m */,
 				7E6433BA1928C67600A427EB /* BasePopup.h */,
 				7E6433BB1928C67600A427EB /* BasePopup.m */,
 				7E2CEB21192B5B9D00191A1C /* DailyLoginPopup.h */,
@@ -3163,6 +3171,8 @@
 				7E0C6365184C7DFF00D3C4B9 /* RepeatFillSprite.m */,
 				7E44E6DF18FA71880024FA80 /* ObjectPool.h */,
 				7E44E6E018FA71880024FA80 /* ObjectPool.m */,
+				7EAC8089193EF7D8006400F0 /* TrackingUtil.h */,
+				7EAC808A193EF7D8006400F0 /* TrackingUtil.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -4446,6 +4456,7 @@
 				7EB8B48616D9FC0900F58961 /* CaveWall.m in Sources */,
 				7EB8B48716D9FC0900F58961 /* CheckPoint.m in Sources */,
 				7EB8B48816D9FC0900F58961 /* CopterRobot.m in Sources */,
+				7EAC8088193EEC5C006400F0 /* ConnectingPopup.m in Sources */,
 				7E3951C918F52B4E005C72C9 /* AutoLevelState_World3.m in Sources */,
 				7EB8B48916D9FC0900F58961 /* CopterRobotLoader.m in Sources */,
 				7EB8B48A16D9FC0900F58961 /* DogBone.m in Sources */,
@@ -4471,6 +4482,7 @@
 				7EB8B49A16D9FC0900F58961 /* LabExit.m in Sources */,
 				7EB8B49B16D9FC0900F58961 /* LabWall.m in Sources */,
 				7EB8B49C16D9FC0900F58961 /* LauncherRobot.m in Sources */,
+				7EAC808B193EF7D8006400F0 /* TrackingUtil.m in Sources */,
 				7EB8B49D16D9FC0900F58961 /* LauncherRocket.m in Sources */,
 				7EB8B49E16D9FC0900F58961 /* MinionRobot.m in Sources */,
 				7EB8B49F16D9FC0900F58961 /* SpeedUp.m in Sources */,

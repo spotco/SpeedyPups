@@ -5,73 +5,101 @@
 #import "DailyLoginPopup.h"
 #import "MenuCommon.h"
 #import "UserInventory.h"
+#import "WebRequest.h"
+#import "JSONKit.h"
+
+long sys_time() {
+	return CFAbsoluteTimeGetCurrent();
+}
 
 @implementation DailyLoginPrizeManager
 
-#define KEY_LAST_DAY_TIME @"key_last_day_time"
-#define KEY_FIRST_LOGIN @"key_first_login"
-#define KEY_DAILY_PRIZE_TAKEN @"key_daily_prize_taken"
+#define TIME_URL @"http://spotcos.com/SpeedyPups/time.php"
+
+#define KEY_TODAY @"key_today"
+#define KEY_FIRST_LOGIN_PRIZE_TAKEN @"key_first_login_prize_taken"
 #define KEY_DAILY_WHEEL_RESET_TAKEN @"key_daily_wheel_reset_taken"
 #define KEY_COINS_SPAWNED_TODAY @"key_coins_spawned_today"
 #define DAY_TIME 24 * 60 * 60
 
-+(BOOL)daily_prize_open {
-	return [DataStore get_int_for_key:KEY_DAILY_PRIZE_TAKEN] == 0;
-}
-
 +(BOOL)daily_wheel_reset_open {
 	return [DataStore get_int_for_key:KEY_DAILY_WHEEL_RESET_TAKEN] == 0;
-}
-
-+(void)take_daily_prize {
-	[DataStore set_key:KEY_DAILY_PRIZE_TAKEN int_value:1];
 }
 
 +(void)take_daily_wheel_reset {
 	[DataStore set_key:KEY_DAILY_WHEEL_RESET_TAKEN flt_value:1];
 }
 
-+(void)new_day {
-	[DataStore set_long_for_key:KEY_LAST_DAY_TIME long_value:sys_time()];
-	[DataStore set_key:KEY_DAILY_PRIZE_TAKEN int_value:0];
-	[DataStore set_key:KEY_DAILY_WHEEL_RESET_TAKEN int_value:0];
-	[DataStore set_key:KEY_COINS_SPAWNED_TODAY int_value:0];
+static NSString *web_today = NULL;
+static long web_remaining = 0;
+static long timeof_web_remaining = 0;
+
++(void)daily_popup_web_check:(CallBack *)ready fail:(CallBack *)fail {
+	if ([DataStore get_str_for_key:KEY_TODAY] == NULL) {
+		[Common run_callback:ready];
+	}
+	[WebRequest request_to:TIME_URL callback:^(NSString* response, WebRequestStatus status) {
+		if (status == WebRequestStatus_OK) {
+			NSDictionary *json = [response objectFromJSONString];
+			web_remaining = [[json objectForKey:@"remain"] longValue];
+			timeof_web_remaining = sys_time();
+			web_today = [json objectForKey:@"today"];
+			//NSLog(@"time.php request(%@,%lu)",web_today,web_remaining);
+			[Common run_callback:ready];
+			
+		} else if (status == WebRequestStatus_FAIL) {
+			[Common run_callback:fail];
+			
+		}
+	}];
 }
 
 +(long)get_time_until_new_day {
-	return MAX(0,DAY_TIME - (sys_time() - [DataStore get_long_for_key:KEY_LAST_DAY_TIME]));
+	if (timeof_web_remaining == 0) return -1;
+	return web_remaining - (sys_time() - timeof_web_remaining);
 }
 
-+(void)menu_popup_check {
-	if ([self get_time_until_new_day] <= 0) {
-		[self new_day];
++(void)daily_popup_after_check_show {
+	if ([DataStore get_str_for_key:KEY_TODAY] == NULL) {
+		if ([DataStore get_int_for_key:KEY_FIRST_LOGIN_PRIZE_TAKEN] == 0) {
+			[DataStore set_key:KEY_FIRST_LOGIN_PRIZE_TAKEN int_value:1];
+			[self first_login_prize_popup];
+		}
+		if (web_today != NULL) {
+			[DataStore set_key:KEY_TODAY str_value:web_today];
+		}
+		
+	} else if (web_today != NULL) {
+		if (!streq([DataStore get_str_for_key:KEY_TODAY], web_today)){
+			[DataStore set_key:KEY_TODAY str_value:web_today];
+			[self daily_prize_popup];
+			[DataStore set_key:KEY_DAILY_WHEEL_RESET_TAKEN int_value:0];
+			[DataStore set_key:KEY_COINS_SPAWNED_TODAY int_value:0];
+		}
 	}
 	
-	if ([DataStore get_int_for_key:KEY_FIRST_LOGIN] == 0) {
-		[DataStore set_key:KEY_FIRST_LOGIN int_value:1];
-		[self take_daily_prize];
-		
-		BasePopup *p = [DailyLoginPopup cons];
-		[self basepopup:p
-				 add_h1:@"Welcome!"
-					 h2:@"To celebrate your first day, here's 3 coins!"
-					 h3:[DailyLoginPrizeManager get_daily_tip]
-					amt:3];
-		[UserInventory add_coins:3];
-		[MenuCommon popup:p];
-		
-	} else if ([self daily_prize_open]) {
-		[self take_daily_prize];
-		BasePopup *p = [DailyLoginPopup cons];
-		[self basepopup:p
-				 add_h1:@"Welcome back!"
-					 h2:@"For playing today, here's a coin!"
-					 h3:[DailyLoginPrizeManager get_daily_tip]
-					amt:1];
-		[UserInventory add_coins:1];
-		[MenuCommon popup:p];
-		
-	}
+}
+
++(void)first_login_prize_popup {
+	BasePopup *p = [DailyLoginPopup cons];
+	[self basepopup:p
+			 add_h1:@"Welcome!"
+				 h2:@"To celebrate your first day, here's 3 coins!"
+				 h3:[DailyLoginPrizeManager get_daily_tip]
+				amt:3];
+	[UserInventory add_coins:3];
+	[MenuCommon popup:p];
+}
+			   
++(void)daily_prize_popup {
+	BasePopup *p = [DailyLoginPopup cons];
+	[self basepopup:p
+			 add_h1:@"Welcome back!"
+				 h2:@"For playing today, here's a coin!"
+				 h3:[DailyLoginPrizeManager get_daily_tip]
+				amt:1];
+	[UserInventory add_coins:1];
+	[MenuCommon popup:p];
 }
 
 #define KEY_DAILY_TIP @"key_daily_tip"

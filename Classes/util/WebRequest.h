@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "TrackingUtil.h"
 
 typedef enum {
 	WebRequestStatus_OK,
@@ -8,6 +9,6 @@ typedef enum {
 @interface WebRequest : NSObject
 
 +(void)request_to:(NSString*)url callback:(void (^)(NSString* response, WebRequestStatus status))callback;
-+(NSString*)unique_id;
++(void)post_request_to:(NSString*)url vals:(NSDictionary*)vals callback:(void (^)(NSString* response, WebRequestStatus status))callback;
 
 @end
