@@ -56,7 +56,7 @@ static long timeof_web_remaining = 0;
 
 +(long)get_time_until_new_day {
 	if (timeof_web_remaining == 0) return -1;
-	return web_remaining - (sys_time() - timeof_web_remaining);
+	return MAX(0,web_remaining - (sys_time() - timeof_web_remaining));
 }
 
 +(void)daily_popup_after_check_show {

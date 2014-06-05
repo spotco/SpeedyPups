@@ -131,6 +131,36 @@ typedef enum ExtrasPaneMode {
 		if (OWNEXTRA(EXTRAS_ART_WINDOWCLEANER)) ADD_TAB(@"Window", ICON_ART, select_art_window_cleaner);
 		if (OWNEXTRA(EXTRAS_ART_PENGMAKU)) ADD_TAB(@"Pengmaku", ICON_ART, select_art_pengmaku);
 		if (OWNEXTRA(EXTRAS_ART_MOEMOERUSH)) ADD_TAB(@"MoeMoe", ICON_ART, select_art_moemoerush);
+
+		if (OWNEXTRA(EXTRAS_ART_OLDLOGO)) ADD_TAB(@"Old Logo", ICON_ART, select_art_oldlogo);
+		if (OWNEXTRA(EXTRAS_ART_GANG)) ADD_TAB(@"The Gang", ICON_ART, select_art_gang);
+		if (OWNEXTRA(EXTRAS_ART_WORLD4_EARLY)) ADD_TAB(@"World4", ICON_ART, select_art_world4_early);
+		if (OWNEXTRA(EXTRAS_ART_OLDDOG )) ADD_TAB(@"Old Dog", ICON_ART, select_art_olddog);
+		if (OWNEXTRA(EXTRAS_ART_LABASSETS)) ADD_TAB(@"LabStuff", ICON_ART, select_art_labassets);
+		if (OWNEXTRA(EXTRAS_ART_LOGOHEAD)) ADD_TAB(@"LogoHead", ICON_ART, select_art_logohead);
+		if (OWNEXTRA(EXTRAS_ART_LABENTRANCE)) ADD_TAB(@"LabEntr", ICON_ART, select_art_labentrance);
+		if (OWNEXTRA(EXTRAS_ART_INTRO_FRAME1)) ADD_TAB(@"Intro1", ICON_ART, select_art_intro_frame1);
+		if (OWNEXTRA(EXTRAS_ART_DOGS_FINAL)) ADD_TAB(@"DogsFin", ICON_ART, select_art_dogs_final);
+		if (OWNEXTRA(EXTRAS_ART_LAB_FINAL)) ADD_TAB(@"LabFin", ICON_ART, select_art_lab_final);
+		if (OWNEXTRA(EXTRAS_ART_WORLD3_EARLY)) ADD_TAB(@"World3", ICON_ART, select_art_world3_early);
+		if (OWNEXTRA(EXTRAS_ART_SUN)) ADD_TAB(@"Sun", ICON_ART, select_art_sun);
+		if (OWNEXTRA(EXTRAS_ART_WORLD5_EARLY)) ADD_TAB(@"World5", ICON_ART, select_art_world5_early);
+		if (OWNEXTRA(EXTRAS_ART_GOSTRICH )) ADD_TAB(@"Gostrich", ICON_ART, select_art_gostrich);
+		if (OWNEXTRA(EXTRAS_ART_MENU4)) ADD_TAB(@"Menu4", ICON_ART, select_art_menu4);
+		if (OWNEXTRA(EXTRAS_ART_MENU3)) ADD_TAB(@"Menu3", ICON_ART, select_art_menu3);
+		if (OWNEXTRA(EXTRAS_ART_MENU2)) ADD_TAB(@"Menu2", ICON_ART, select_art_menu2);
+		if (OWNEXTRA(EXTRAS_ART_MENU1)) ADD_TAB(@"Menu1", ICON_ART, select_art_menu1);
+		if (OWNEXTRA(EXTRAS_ART_TUTORIAL2)) ADD_TAB(@"Tut2", ICON_ART, select_art_tutorial2);
+		if (OWNEXTRA(EXTRAS_ART_TUTORIAL1)) ADD_TAB(@"Tut1", ICON_ART, select_art_tutorial1);
+		if (OWNEXTRA(EXTRAS_ART_WORLD2_EARLY)) ADD_TAB(@"World2", ICON_ART, select_art_world2_early);
+		if (OWNEXTRA(EXTRAS_ART_WORLD1_EARLY)) ADD_TAB(@"World1", ICON_ART, select_art_world1_early);
+		if (OWNEXTRA(EXTRAS_ART_DOG_FINAL)) ADD_TAB(@"OGFin", ICON_ART, select_art_dog_final);
+		if (OWNEXTRA(EXTRAS_ART_ROBOTS)) ADD_TAB(@"Robots", ICON_ART, select_art_robots);
+		if (OWNEXTRA(EXTRAS_ART_BOSS)) ADD_TAB(@"Boss", ICON_ART, select_art_boss);
+		if (OWNEXTRA(EXTRAS_ART_ITEMS)) ADD_TAB(@"Items", ICON_ART, select_art_items);
+		if (OWNEXTRA(EXTRAS_ART_LAB)) ADD_TAB(@"Lab", ICON_ART, select_art_lab);
+		if (OWNEXTRA(EXTRAS_ART_BIRTHDAY)) ADD_TAB(@"Cake", ICON_ART, select_art_birthday);
+		
 		
 	} else if (cur_mode == ExtrasPaneMode_MUSIC) {
 		if (OWNEXTRA(BGMUSIC_MENU1)) ADD_TAB(@"Menu", ICON_MUSIC, select_music_menu);
@@ -190,6 +220,38 @@ typedef enum ExtrasPaneMode {
 -(void)select_art_moemoerush{ [self select_art:EXTRAS_ART_MOEMOERUSH]; }
 -(void)select_art_pengmaku{ [self select_art:EXTRAS_ART_PENGMAKU]; }
 -(void)select_art_window_cleaner{ [self select_art:EXTRAS_ART_WINDOWCLEANER]; }
+
+-(void)select_art_oldlogo { [self select_art:EXTRAS_ART_OLDLOGO]; }
+-(void)select_art_gang {[self select_art:EXTRAS_ART_GANG];}
+-(void)select_art_world4_early { [self select_art:EXTRAS_ART_WORLD4_EARLY]; }
+-(void)select_art_olddog {[self select_art:EXTRAS_ART_OLDDOG];}
+-(void)select_art_world1_progress {[self select_art:EXTRAS_ART_WORLD1_PROGRESS];}
+-(void)select_art_labassets {[self select_art:EXTRAS_ART_LABASSETS];}
+-(void)select_art_logohead {[self select_art:EXTRAS_ART_LOGOHEAD];}
+-(void)select_art_labentrance {[self select_art:EXTRAS_ART_LABENTRANCE];}
+-(void)select_art_intro_frame1 {[self select_art:EXTRAS_ART_INTRO_FRAME1];}
+-(void)select_art_dogs_final {[self select_art:EXTRAS_ART_DOGS_FINAL];}
+-(void)select_art_lab_final {[self select_art:EXTRAS_ART_LAB_FINAL];}
+-(void)select_art_world3_early {[self select_art:EXTRAS_ART_WORLD3_EARLY];}
+-(void)select_art_sun {[self select_art:EXTRAS_ART_SUN];}
+-(void)select_art_world5_early {[self select_art:EXTRAS_ART_WORLD5_EARLY];}
+-(void)select_art_gostrich {[self select_art:EXTRAS_ART_GOSTRICH];}
+-(void)select_art_menu4 {[self select_art:EXTRAS_ART_MENU4];}
+-(void)select_art_menu3 {[self select_art:EXTRAS_ART_MENU3];}
+-(void)select_art_menu2 {[self select_art:EXTRAS_ART_MENU2];}
+-(void)select_art_menu1 {[self select_art:EXTRAS_ART_MENU1];}
+-(void)select_art_tutorial2 {[self select_art:EXTRAS_ART_TUTORIAL2];}
+-(void)select_art_tutorial1 {[self select_art:EXTRAS_ART_TUTORIAL1];}
+-(void)select_art_world2_early {[self select_art:EXTRAS_ART_WORLD2_EARLY];}
+-(void)select_art_world1_early {[self select_art:EXTRAS_ART_WORLD1_EARLY];}
+-(void)select_art_dog_final {[self select_art:EXTRAS_ART_DOG_FINAL];}
+-(void)select_art_robots {[self select_art:EXTRAS_ART_ROBOTS];}
+-(void)select_art_boss {[self select_art:EXTRAS_ART_BOSS];}
+-(void)select_art_items {[self select_art:EXTRAS_ART_ITEMS];}
+-(void)select_art_lab {[self select_art:EXTRAS_ART_LAB];}
+-(void)select_art_birthday {[self select_art:EXTRAS_ART_BIRTHDAY];}
+
+
 
 -(void)select_sfx_happy{ [self select_sfx:SFX_FANFARE_WIN]; }
 -(void)select_sfx_lose{ [self select_sfx:SFX_FANFARE_LOSE]; }

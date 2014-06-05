@@ -381,7 +381,9 @@ typedef enum Prize {
 	for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/4) {
 		CGPoint vel = ccp(sinf(i),cosf(i));
 		float scale = float_random(5, 7);
-		[self add_particle:[ShopBuyBoneFlyoutParticle cons_pt:spinbutton.position vel:ccp(vel.x*scale,vel.y*scale)]];
+		Particle *p = [ShopBuyBoneFlyoutParticle cons_pt:spinbutton.position vel:ccp(vel.x*scale,vel.y*scale)];
+		[p setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
+		[self add_particle:p];
 	}
 	[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:CGPointAdd(cur_bones_disp.position, ccp(25,60))
 													 text:strf("-%d",SPIN_COST)]];

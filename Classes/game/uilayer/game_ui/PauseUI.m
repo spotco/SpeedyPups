@@ -135,6 +135,7 @@
 }
 
 -(void)update {
+	if (![self visible]) return;
 	[left_curtain setPosition:ccp(
 	  left_curtain.position.x + (left_curtain_tpos.x - left_curtain.position.x)/4.0,
 	  left_curtain.position.y + (left_curtain_tpos.y - left_curtain.position.y)/4.0
@@ -150,10 +151,11 @@
 	if (exit_to_gameover_menu) {
 		[ui_stuff setVisible:NO];
 		if ([Common fuzzyeq_a:bg_curtain.position.y b:bg_curtain_tpos.y delta:1]) {
-			[[CCDirector sharedDirector] resume];
+			//[[CCDirector sharedDirector] resume];
 			[(UILayer*)[self parent] to_gameover_menu];
 			[AudioManager play_jingle];
 		}
+		
 	}
 }
 

@@ -313,7 +313,7 @@
 }
 
 +(NSString*)secs_to_prettystr:(long)secs {
-	if (secs < 0) return @"??? (Please Reconnect to the Internet!)";
+	if (secs < 0) return @"???";
 	return strf("%.2d:%.2d:%.2d",(secs/3600)%60,(secs/60)%60, (secs)%60);
 }
 

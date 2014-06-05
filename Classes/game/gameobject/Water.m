@@ -25,6 +25,16 @@
     bwidth = width;
     bheight = height;
     body = [self cons_drawbody_ofwidth:width];
+	body_offset = [[GLRenderObject alloc] init];
+	body_offset.texture = body.texture;
+	body_offset.isalloc = body.isalloc;
+	body_offset.pts = body.pts;
+	for (int i = 0; i < body.pts; i++) {
+		body_offset.tri_pts[i] = body.tri_pts[i];
+	}
+	
+	[self update_body_tex_offset];
+	
     offset_ct = 0;
     [self update_body_tex_offset];
     
@@ -81,10 +91,10 @@
 }
 
 -(void)update_body_tex_offset {
-    body_tex_offset[0] = fccp(body.tex_pts[0].x+offset_ct, body.tex_pts[0].y);
-    body_tex_offset[1] = fccp(body.tex_pts[1].x+offset_ct, body.tex_pts[1].y);
-    body_tex_offset[2] = fccp(body.tex_pts[2].x+offset_ct, body.tex_pts[2].y);
-    body_tex_offset[3] = fccp(body.tex_pts[3].x+offset_ct, body.tex_pts[3].y);
+    body_offset.tex_pts[0] = fccp(body.tex_pts[0].x+offset_ct, body.tex_pts[0].y);
+    body_offset.tex_pts[1] = fccp(body.tex_pts[1].x+offset_ct, body.tex_pts[1].y);
+    body_offset.tex_pts[2] = fccp(body.tex_pts[2].x+offset_ct, body.tex_pts[2].y);
+    body_offset.tex_pts[3] = fccp(body.tex_pts[3].x+offset_ct, body.tex_pts[3].y);
     offset_ct = offset_ct >= 1 ? ANIM_SPEED : offset_ct + ANIM_SPEED * [Common get_dt_Scale];
 }
 
@@ -114,7 +124,7 @@
 -(void) draw {
     [super draw];
     if (do_render) {
-        [Common draw_renderobj:body n_vtx:4];
+        [Common draw_renderobj:body_offset n_vtx:4];
     }
 }
 
