@@ -10,6 +10,10 @@
 
 @synthesize window;
 
+static GOstrichAppDelegate *inst;
++(GOstrichAppDelegate*)instance { return inst; }
+-(RootViewController*)get_view_controller{ return viewController; }
+
 - (void) removeStartupFlicker
 {
 	//
@@ -33,6 +37,7 @@
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+	inst = self;
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -46,6 +51,7 @@
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
+	viewController.view.hidden = NO;
 	
 	//
 	// Create the EAGLView manually
@@ -89,15 +95,15 @@
 	
 	// make the View Controller a child of the main window
     //REMOVED http://stackoverflow.com/questions/12519917/xcode-4-5-and-ios-6-sdk-orientation
-	//[window addSubview: viewController.view];
+	[window addSubview: viewController.view];
     
+	
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0){
         [window setRootViewController:viewController];
     }
     else{
         [window addSubview:viewController.view];
     }
-
 	
 	[window makeKeyAndVisible];
 
@@ -106,13 +112,13 @@
 	[self removeStartupFlicker];
 	
 	application.idleTimerDisabled = YES;
+	
     [GameMain main];
 }
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     return UIInterfaceOrientationMaskLandscape;
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

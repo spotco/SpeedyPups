@@ -15,6 +15,7 @@
 #import "ExtrasUnlockPopup.h"
 #import "DailyLoginPopup.h"
 #import "Player.h"
+#import "TrackingUtil.h"
 
 typedef enum PrizesPaneMode {
 	PrizesPaneMode_REST,
@@ -377,6 +378,7 @@ typedef enum Prize {
 -(void)spin {
 	if (mode != PrizesPaneMode_REST) return;
 	if ([UserInventory get_current_bones] < SPIN_COST) return;
+	[TrackingUtil track_evt:TrackingEvt_SpinWheel];
 	
 	for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/4) {
 		CGPoint vel = ccp(sinf(i),cosf(i));

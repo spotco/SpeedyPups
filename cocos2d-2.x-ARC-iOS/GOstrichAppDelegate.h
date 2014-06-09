@@ -9,5 +9,6 @@
 }
 
 @property (nonatomic, retain) UIWindow *window;
-
++(GOstrichAppDelegate*)instance;
+-(RootViewController*)get_view_controller;
 @end

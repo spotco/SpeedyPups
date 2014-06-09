@@ -13,6 +13,7 @@
 #import "GameMain.h"
 #import "DailyLoginPrizeManager.h"
 #import "ConnectingPopup.h"
+#import "TrackingUtil.h"
 
 @implementation NMenuPage
 -(void)setOpacity:(GLubyte)opacity {
@@ -172,9 +173,13 @@ static BOOL daily_popup_fail = NO;
         [self exit];
         [GameMain start_game_autolevel];
 		
+		[TrackingUtil track_evt:TrackingEvt_PlayFreeRun val1:[FreeRunStartAtManager name_for_loc:[FreeRunStartAtManager get_starting_loc]]];
+		
     } else if (e.type == GEventType_MENU_PLAY_CHALLENGELEVEL_MODE) {
 		[self exit];
 		[GameMain start_game_challengelevel:[ChallengeRecord get_challenge_number:e.i1]];
+		
+		[TrackingUtil track_evt:TrackingEvt_PlayChallenge val1:strf("%d",e.i1)];
 		
 	} else if (e.type == GEventType_QUIT) {
 		[self exit];

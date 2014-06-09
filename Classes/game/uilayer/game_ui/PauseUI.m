@@ -7,7 +7,23 @@
 #import "UICommon.h"
 #import "UILayer.h"
 
-@implementation PauseUI
+#import "iAds_integration.h"
+
+@implementation PauseUI {
+	iAds_integration *iads;
+}
+
+-(void)onEnter {
+	[super onEnter];
+	iads = [[iAds_integration alloc] init_landscape_bottom];
+	[iads onEnter];
+	[iads setVisible:NO];
+}
+
+-(void)onExit {
+	[iads onExit];
+	[super onExit];
+}
 
 +(PauseUI*)cons {
     return [PauseUI node];
@@ -114,12 +130,6 @@
     CCMenu *pausebuttons = [CCMenu menuWithItems:retrybutton,playbutton,backbutton, nil];
     [pausebuttons setPosition:ccp(0,0)];
     [ui_stuff addChild:pausebuttons];
-    
-    challenge_disp = [Common cons_label_pos:[Common screen_pctwid:0.5 pcthei:0.12]
-                                                   color:ccc3(255,255,255)
-                                                fontsize:18
-                                                     str:@""];
-    [ui_stuff addChild:challenge_disp];
 	
     
 	[UICommon button:playbutton add_desctext:@"unpause" color:ccc3(255,255,255) fntsz:12];
@@ -162,6 +172,7 @@
 -(void)setVisible:(BOOL)visible {
 	[self set_curtain_animstart_positions];
 	[super setVisible:visible];
+	[iads setVisible:visible];
 }
 
 -(void)set_curtain_animstart_positions {
@@ -172,10 +183,6 @@
 	left_curtain_tpos = ccp([left_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
 	right_curtain_tpos = ccp([Common SCREEN].width-[right_curtain boundingBox].size.width/2.0,[Common SCREEN].height/2.0);
 	bg_curtain_tpos = ccp([Common SCREEN].width/2.0,[Common SCREEN].height-[bg_curtain boundingBox].size.height*0.15);
-}
-
--(void)set_challenge_msg:(NSString *)msg {
-    [challenge_disp setString:msg];
 }
 
 -(void)update_labels_lives:(NSString *)lives bones:(NSString *)bones time:(NSString *)time score:(NSString*)score highscore:(BOOL)highscore {

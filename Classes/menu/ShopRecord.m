@@ -9,6 +9,7 @@
 #import "MenuCommon.h" 
 #import "ExtrasUnlockPopup.h"
 #import "DailyLoginPopup.h"
+#import "TrackingUtil.h"
 
 @implementation ItemInfo
 @synthesize tex;
@@ -208,6 +209,7 @@
 
 +(BOOL)buy_shop_item:(NSString *)val price:(int)price {
 	if (price > [UserInventory get_current_coins]) return NO;
+	[TrackingUtil track_evt:TrackingEvt_ShopBuy val1:val];
 	
 	if (streq(val, SHOP_ITEM_MAGNET)) {
 		if ([UserInventory get_item_owned:Item_Magnet]) return NO;

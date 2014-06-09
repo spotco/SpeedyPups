@@ -4,6 +4,7 @@
 #import "Common.h"
 #import "GEventDispatcher.h"
 #import "MainMenuBGLayer.h"
+//#import <iAd/iAd.h>
 
 @class MainMenuInventoryLayer;
 @class BasePopup;
@@ -19,7 +20,7 @@
 -(void)touch_end:(CGPoint)pt;
 @end
 
-@interface MainMenuLayer : CCLayer <GEventListener> {
+@interface MainMenuLayer : CCLayer <GEventListener/*, ADBannerViewDelegate*/ > {
     NSMutableArray* menu_pages;
     int cur_page;
     CGPoint last,dp;

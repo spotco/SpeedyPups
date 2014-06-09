@@ -13,7 +13,8 @@
 #import "DogBone.h"
 #import "FreePupsAnim.h"
 #import "ObjectPool.h"
-#import "ScoreManager.h" 
+#import "ScoreManager.h"
+#import "TrackingUtil.h"
 
 @implementation GameEngineLayer {
 	BOOL first_update;
@@ -573,7 +574,16 @@
 
 -(void)dispatch_event:(GEvent *)e {
     if (e.type == GEventType_QUIT) {
-        [self exit];
+        if ([self get_challenge] == NULL) {
+			[TrackingUtil track_evt:TrackingEvt_GameEnd
+							   val1:[stats get_disp_str_for_stat:GEStat_BONES_COLLECTED g:self]
+							   val2:[stats get_disp_str_for_stat:GEStat_DEATHS g:self]
+							   val3:[NSString stringWithFormat:@"START(%@)_DO(%@)",
+									 [FreeRunStartAtManager name_for_loc:[FreeRunStartAtManager get_starting_loc]],
+									 [stats get_disp_str_for_stat:GEStat_SECTIONS g:self]]];
+		}
+		
+		[self exit];
 		[GEventDispatcher remove_all_listeners];
         [GameMain start_menu];
         

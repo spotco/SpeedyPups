@@ -14,7 +14,8 @@ long sys_time() {
 
 @implementation DailyLoginPrizeManager
 
-#define TIME_URL @"http://spotcos.com/SpeedyPups/time.php"
+//#define TIME_URL @"http://spotcos.com/SpeedyPups/time.php"
+#define TIME_URL @"http://speedypups.com/time.php"
 
 #define KEY_TODAY @"key_today"
 #define KEY_FIRST_LOGIN_PRIZE_TAKEN @"key_first_login_prize_taken"
@@ -44,7 +45,7 @@ static long timeof_web_remaining = 0;
 			web_remaining = [[json objectForKey:@"remain"] longValue];
 			timeof_web_remaining = sys_time();
 			web_today = [json objectForKey:@"today"];
-			//NSLog(@"time.php request(%@,%lu)",web_today,web_remaining);
+			NSLog(@"time.php request(%@,%lu)",web_today,web_remaining);
 			[Common run_callback:ready];
 			
 		} else if (status == WebRequestStatus_FAIL) {

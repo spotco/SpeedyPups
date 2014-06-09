@@ -18,6 +18,7 @@
 #import "ScoreManager.h"
 #import "ScoreComboAnimation.h"
 #import "OneUpParticle.h"
+#import "TrackingUtil.h"
 
 @implementation UILayer
 
@@ -76,11 +77,7 @@
 		[self update];
         
     } else if (e.type == GEventType_CHALLENGE) {
-		ChallengeInfo *cinfo = ((ChallengeInfo*)[e get_value:@"challenge"]);
-        [pauseui set_challenge_msg:
-         [NSString stringWithFormat:@"Challenge: %@",
-         [cinfo to_string]]];
-		
+		ChallengeInfo *cinfo = ((ChallengeInfo*)[e get_value:@"challenge"]);		
 		[ingameui enable_challengedesc_type:cinfo.type];
     
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
@@ -89,6 +86,16 @@
                                 bones:ingameui.bones_disp.string
                                  time:ingameui.time_disp.string
                               secrets:[NSString stringWithFormat:@"%d",[game_engine_layer get_num_secrets]]];
+		
+		int cur_challenge_no = 0;
+		for (int i = 0; i < [ChallengeRecord get_num_challenges]; i++) {
+			if ([ChallengeRecord get_challenge_number:i] == [game_engine_layer get_challenge]) {
+				cur_challenge_no = i;
+				break;
+			}
+		}
+		[TrackingUtil track_evt:TrackingEvt_ChallengeComplete val1:strf("%d",cur_challenge_no)];
+		
 		
     } else if (e.type == GEventType_LOAD_CHALLENGE_COMPLETE_MENU) {
         [self set_this_visible:challengeendui];

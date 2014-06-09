@@ -1,12 +1,4 @@
 //
-//  RootViewController.m
-//  GOstrich
-//
-//  Created by Pingyang He on 4/2/12.
-//  Copyright University of Washington 2012. All rights reserved.
-//
-
-//
 // RootViewController + iAd
 // If you want to support iAd, use this class as the controller of your iAd
 //
@@ -17,7 +9,6 @@
 #import "GameConfig.h"
 
 @implementation RootViewController
-
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
  - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -39,8 +30,6 @@
  - (void)viewDidLoad {
 	 [super viewDidLoad];
  }
-
-
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

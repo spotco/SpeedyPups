@@ -12,6 +12,7 @@
 #import "GameMain.h"
 #import "DailyLoginPrizeManager.h"
 #import "UserInventory.h"
+#import "TrackingUtil.h"
 
 @implementation InventoryTabPane_Settings
 
@@ -152,6 +153,7 @@
 		[DataStore reset_all];
 		[Player set_character:TEX_DOG_RUN_1];
 		[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:0 i2:0]];
+		[TrackingUtil track_evt:TrackingEvt_Reset];
 	}
 }
 
