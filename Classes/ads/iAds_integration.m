@@ -3,6 +3,8 @@
 #import "Common.h"
 #import <iAd/iAd.h>
 
+#import "UserInventory.h"
+
 @implementation iAds_integration {
 	ADBannerView *ad_view;
 	BOOL visible;
@@ -28,10 +30,12 @@
 -(void)setVisible:(BOOL)v {
 	visible = v;
 	ad_view.hidden = !v;
+	if ([UserInventory get_ads_disabled]) ad_view.hidden = YES;
 }
 
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner {
 	ad_view.hidden = !visible;
+	if ([UserInventory get_ads_disabled]) ad_view.hidden = YES;
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
@@ -40,6 +44,7 @@
 
 -(void)bannerViewActionDidFinish:(ADBannerView *)banner {
 	ad_view.hidden = NO && !visible;
+	if ([UserInventory get_ads_disabled]) ad_view.hidden = YES;
 }
 
 -(void)onExit {

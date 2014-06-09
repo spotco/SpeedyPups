@@ -122,4 +122,12 @@ static NSArray *valid_characters;
 	[DataStore set_key:KEY_BGM_MUTED int_value:t];
 }
 
+#define KEY_ADS_DISABLED @"KEY_ADS_DISABLED"
++(void)set_ads_disabled:(BOOL)t {
+	[DataStore set_key:KEY_ADS_DISABLED int_value:t];
+}
++(BOOL)get_ads_disabled {
+	return [DataStore get_int_for_key:KEY_ADS_DISABLED];
+}
+
 @end

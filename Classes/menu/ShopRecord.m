@@ -10,6 +10,7 @@
 #import "ExtrasUnlockPopup.h"
 #import "DailyLoginPopup.h"
 #import "TrackingUtil.h"
+#import "SpeedyPupsIAP.h"
 
 @implementation ItemInfo
 @synthesize tex;
@@ -49,6 +50,29 @@
 	i.val = val;
 	i.short_name = name;
 	return i;
+}
+@end
+
+@implementation IAPItemInfo
+@synthesize iap_price;
+@synthesize iap_identifier;
+
++(IAPItemInfo*)cons_tex:(NSString*)texn
+				 rectid:(NSString*)rectid
+				   name:(NSString*)name
+				   desc:(NSString*)desc
+				  price:(int)price
+					val:(NSString*)val {
+	
+	IAPItemInfo *rtv = [[IAPItemInfo alloc] init];
+	rtv.tex = [Resource get_tex:texn];
+	rtv.rect = [FileCache get_cgrect_from_plist:texn idname:rectid];
+	rtv.name = name;
+	rtv.val = val;
+	rtv.desc = desc;
+	rtv.price = price;
+	rtv.short_name = name;
+	return rtv;
 }
 
 @end
@@ -185,6 +209,35 @@
 }
 
 +(void)fill_realmoney_tab:(NSMutableArray*)a {
+	for (IAPObject *o in [SpeedyPupsIAP get_all_loaded_iaps]) {
+		NSString *rectid = @"coin";
+		if (streq(o.identifier, SPEEDYPUPS_AD_FREE)) {
+			rectid = @"money_icon";
+		}
+		
+		if ([UserInventory get_ads_disabled]) {
+			if (streq(o.identifier, SPEEDYPUPS_AD_FREE)) continue;
+		} else {
+			if (!streq(o.identifier, SPEEDYPUPS_AD_FREE)) continue;
+		}
+		
+		IAPItemInfo *i = [IAPItemInfo cons_tex:TEX_NMENU_ITEMS
+										rectid:rectid
+										  name:o.name
+										  desc:o.desc
+										 price:0
+										   val:o.identifier];
+		
+		i.iap_price = o.price;
+		i.iap_identifier = o.identifier;
+		
+		if ([o.name rangeOfString:@" "].length > 0) {
+			i.short_name = [o.name componentsSeparatedByString:@" "][1];
+		}
+		[a insertObject:i atIndex:0];
+	}
+
+	
 }
 
 +(NSString*)gameitem_to_texid:(GameItem)i upgrade:(BOOL)upgrade {
@@ -211,7 +264,10 @@
 	if (price > [UserInventory get_current_coins]) return NO;
 	[TrackingUtil track_evt:TrackingEvt_ShopBuy val1:val];
 	
-	if (streq(val, SHOP_ITEM_MAGNET)) {
+	if ([[SpeedyPupsIAP get_all_requested_iaps] containsObject:val]) {
+		[[IAPHelper sharedInstance] buyProduct:[SpeedyPupsIAP product_for_key:val]];
+		
+	} else if (streq(val, SHOP_ITEM_MAGNET)) {
 		if ([UserInventory get_item_owned:Item_Magnet]) return NO;
 		[UserInventory set_item:Item_Magnet owned:YES];
 		[UserInventory set_current_gameitem:Item_Magnet];

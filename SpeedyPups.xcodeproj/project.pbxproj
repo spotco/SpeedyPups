@@ -739,6 +739,9 @@
 		7ED052C21946369B00E882BF /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED052C11946369B00E882BF /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7ED052C4194636A900E882BF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED052C3194636A900E882BF /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7ED052C6194636B900E882BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED052C5194636B900E882BF /* SystemConfiguration.framework */; };
+		7ED052C91946388E00E882BF /* AdColony_integration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED052C81946388E00E882BF /* AdColony_integration.m */; };
+		7ED052CD19463EF100E882BF /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED052CC19463EF100E882BF /* IAPHelper.m */; };
+		7ED052D01946477000E882BF /* SpeedyPupsIAP.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED052CF1946477000E882BF /* SpeedyPupsIAP.m */; };
 		7ED0F8BF17B4F981003D0014 /* GameEngineStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0F8BE17B4F981003D0014 /* GameEngineStats.m */; };
 		7ED28FA717124DBD0037B916 /* IngameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FA617124DBD0037B916 /* IngameUI.m */; };
 		7ED28FAA17124DDE0037B916 /* PauseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FA917124DDE0037B916 /* PauseUI.m */; };
@@ -1808,6 +1811,12 @@
 		7ED052C11946369B00E882BF /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7ED052C3194636A900E882BF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7ED052C5194636B900E882BF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7ED052C71946388E00E882BF /* AdColony_integration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColony_integration.h; sourceTree = "<group>"; };
+		7ED052C81946388E00E882BF /* AdColony_integration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColony_integration.m; sourceTree = "<group>"; };
+		7ED052CB19463EF100E882BF /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		7ED052CC19463EF100E882BF /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		7ED052CE1946477000E882BF /* SpeedyPupsIAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedyPupsIAP.h; sourceTree = "<group>"; };
+		7ED052CF1946477000E882BF /* SpeedyPupsIAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeedyPupsIAP.m; sourceTree = "<group>"; };
 		7ED0F8BD17B4F981003D0014 /* GameEngineStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineStats.h; sourceTree = "<group>"; };
 		7ED0F8BE17B4F981003D0014 /* GameEngineStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineStats.m; sourceTree = "<group>"; };
 		7ED28FA517124DBC0037B916 /* IngameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IngameUI.h; path = game_ui/IngameUI.h; sourceTree = "<group>"; };
@@ -2612,6 +2621,8 @@
 				7ED052AF1946351700E882BF /* AdColony.framework */,
 				7EAD2A2E1945A93B00B2BC4A /* iAds_integration.h */,
 				7EAD2A2F1945A93B00B2BC4A /* iAds_integration.m */,
+				7ED052C71946388E00E882BF /* AdColony_integration.h */,
+				7ED052C81946388E00E882BF /* AdColony_integration.m */,
 			);
 			path = ads;
 			sourceTree = "<group>";
@@ -3041,6 +3052,7 @@
 		7EB8B3AC16D9FC0800F58961 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7ED052CA19463EE100E882BF /* iap */,
 				7EAD2A2D1945A92E00B2BC4A /* ads */,
 				7E0C635A184C62DE00D3C4B9 /* intro */,
 				7EEE5B511804CA6700A4A64F /* loading */,
@@ -3882,6 +3894,17 @@
 			name = user;
 			sourceTree = "<group>";
 		};
+		7ED052CA19463EE100E882BF /* iap */ = {
+			isa = PBXGroup;
+			children = (
+				7ED052CB19463EF100E882BF /* IAPHelper.h */,
+				7ED052CC19463EF100E882BF /* IAPHelper.m */,
+				7ED052CE1946477000E882BF /* SpeedyPupsIAP.h */,
+				7ED052CF1946477000E882BF /* SpeedyPupsIAP.m */,
+			);
+			path = iap;
+			sourceTree = "<group>";
+		};
 		7ED28FA417124D930037B916 /* game_ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -4658,6 +4681,7 @@
 				7EB8B49716D9FC0900F58961 /* IslandFill.m in Sources */,
 				7E44E6E118FA71880024FA80 /* ObjectPool.m in Sources */,
 				7E01956E18866491000DCF6D /* InventoryTabPane_Upgrades.m in Sources */,
+				7ED052D01946477000E882BF /* SpeedyPupsIAP.m in Sources */,
 				7EB8B49816D9FC0900F58961 /* JumpPad.m in Sources */,
 				7EB8B49916D9FC0900F58961 /* LabEntrance.m in Sources */,
 				7EB8B49A16D9FC0900F58961 /* LabExit.m in Sources */,
@@ -4713,6 +4737,7 @@
 				7EB8B4C316D9FC0900F58961 /* UIAnim.m in Sources */,
 				7EB8B4C416D9FC0900F58961 /* UIIngameAnimation.m in Sources */,
 				7EB8B4C516D9FC0900F58961 /* UILayer.m in Sources */,
+				7ED052CD19463EF100E882BF /* IAPHelper.m in Sources */,
 				7EB8B4C616D9FC0900F58961 /* GameMain.m in Sources */,
 				7EB8B4C916D9FC0900F58961 /* MainMenuBGLayer.m in Sources */,
 				7EB8B4CA16D9FC0900F58961 /* MainMenuLayer.m in Sources */,
@@ -4805,6 +4830,7 @@
 				7ECADE2417646AF00032A1E6 /* mach_timing.c in Sources */,
 				7ECADE2517646AF00032A1E6 /* NSMutableArray+WeakReferences.m in Sources */,
 				7ECADE2617646AF00032A1E6 /* NSMutableDictionary+WeakReferences.m in Sources */,
+				7ED052C91946388E00E882BF /* AdColony_integration.m in Sources */,
 				7ECADE2717646AF00032A1E6 /* OALAudioFile.m in Sources */,
 				7ECADE2817646AF00032A1E6 /* OALTools.m in Sources */,
 				7EEE955C1776F98500474FD3 /* RocketWall.m in Sources */,

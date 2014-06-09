@@ -14,6 +14,7 @@
 #import "DailyLoginPrizeManager.h"
 #import "ConnectingPopup.h"
 #import "TrackingUtil.h"
+#import "AdColony_integration.h"
 
 @implementation NMenuPage
 -(void)setOpacity:(GLubyte)opacity {
@@ -33,6 +34,8 @@
 }
 @synthesize bg;
 
+static int NTH_MENU = 0;
+
 +(CCScene*)scene {
     CCScene* sc = [CCScene node];
     MainMenuLayer *mm = [MainMenuLayer node];
@@ -44,6 +47,11 @@
     [sc addChild:mb];
     [sc addChild:mm];
     [sc addChild:mm.inventory_layer];
+	
+	if ([AdColony_integration is_ads_loaded] && NTH_MENU > 0) {
+		[AdColony_integration show_ad];
+	}
+	NTH_MENU++;
 	
     return sc;
 }

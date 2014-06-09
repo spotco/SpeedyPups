@@ -91,13 +91,16 @@
 							  fontsize:30
 								   str:@"99999"] anchor_pt:ccp(0,0.5)];
 	[price_disp addChild:itemprice];
-	[price_disp addChild:[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.535 pcty:0.385]
-										  color:ccc3(0,0,0)
-									   fontsize:12
-											str:@"x"]];
-	[price_disp addChild:[[CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
-												rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"coin"]]
-						  pos:[Common pct_of_obj:tabbedpane pctx:0.47 pcty:0.385]]];
+	itemprice_x = [Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.535 pcty:0.385]
+								   color:ccc3(0,0,0)
+								fontsize:12
+									 str:@"x"];
+	[price_disp addChild:itemprice_x];
+	itemprice_icon = [CCSprite spriteWithTexture:[Resource get_tex:TEX_NMENU_ITEMS]
+											rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"coin"]];
+	[itemprice_icon pos:[Common pct_of_obj:tabbedpane pctx:0.47 pcty:0.385]];
+	[price_disp addChild:itemprice_icon];
+						  
 	[tabbedpane addChild:price_disp];
 	buybutton = [TouchButton cons_pt:[Common pct_of_obj:tabbedpane pctx:0.975 pcty:0.025]
 								 tex:[Resource get_tex:TEX_NMENU_ITEMS]
@@ -237,6 +240,18 @@
 	
 	sto_val = tar.sto_info.val;
 	sto_price = tar.sto_info.price;
+	
+	if ([tar.sto_info class] == [IAPItemInfo class]) {
+		[itemprice_x setVisible:NO];
+		[itemprice_icon setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"money_icon"]];
+		itemprice.string = ((IAPItemInfo*)tar.sto_info).iap_price.stringValue;
+		[itemprice setPosition:[Common pct_of_obj:tabbedpane pctx:0.51 pcty:0.385]];
+		
+	} else {
+		[itemprice_x setVisible:YES];
+		[itemprice_icon setTextureRect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"coin"]];
+		[itemprice setPosition:[Common pct_of_obj:tabbedpane pctx:0.555 pcty:0.385]];
+	}
 	
 	if (sto_price > [UserInventory get_current_coins]) {
 		[buybutton setVisible:NO];

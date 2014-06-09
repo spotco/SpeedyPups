@@ -43,6 +43,17 @@ typedef enum {
 				 val:(NSString*)val;
 @end
 
+@interface IAPItemInfo : ItemInfo
+@property(readwrite,assign) NSDecimalNumber *iap_price;
+@property(readwrite,assign) NSString *iap_identifier;
++(IAPItemInfo*)cons_tex:(NSString*)texn
+			  rectid:(NSString*)rectid
+				name:(NSString*)name
+				desc:(NSString*)desc
+			   price:(int)price
+				 val:(NSString*)val;
+@end
+
 @interface ShopRecord : NSObject
 +(NSArray*)get_items_for_tab:(ShopTab)t;
 +(BOOL)buy_shop_item:(NSString *)val price:(int)price;

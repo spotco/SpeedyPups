@@ -14,6 +14,11 @@
 
 #import "WebRequest.h"
 
+#import "AdColony_integration.h"
+#import "SpeedyPupsIAP.h"
+
+#import <StoreKit/StoreKit.h>
+
 @implementation GameMain
 
 #define USE_BG YES
@@ -35,8 +40,6 @@
 
 /**
 Stretch goals:
- figure out in app purchases
- figure out ads
  facebook integration (like game on facebook, reward)
  
  capegame coin at end
@@ -44,11 +47,9 @@ Stretch goals:
  3 lab levels
  3 more cannon levels
  10 more freerun levels
- goober pet
  levels based around armor (armor break spikes)
  
  BUG: armor -> rocket -> end -> swingvine, still in rocket form
- implement challenge of the week, downloadable levels
  **/
 
 +(void)main {
@@ -68,8 +69,10 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	NSLog(@"UUID:%@",[Common unique_id]);
+	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
 	[TrackingUtil track_evt:TrackingEvt_Login];
+	[AdColony_integration preload];
+	[SpeedyPupsIAP preload];
 	
 	//[DataStore set_key:@"key_today" str_value:@"topkek"];
 	
@@ -77,12 +80,9 @@ Stretch goals:
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
-	
-	
-	
 	
 	/*
 	for (int ii = 0; ii < 3; ii++) {
@@ -129,7 +129,7 @@ Stretch goals:
 	//[ChallengeRecord set_beaten_challenge:19 to:YES];
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
-	[UserInventory add_bones:5000];
+	//[UserInventory add_bones:5000];
 	//[UserInventory add_coins:25];
 }
 

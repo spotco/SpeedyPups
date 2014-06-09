@@ -32,4 +32,7 @@
 +(void)set_sfx_muted:(BOOL)t;
 +(void)set_bgm_muted:(BOOL)t;
 
++(void)set_ads_disabled:(BOOL)t;
++(BOOL)get_ads_disabled;
+
 @end

@@ -9,7 +9,11 @@
 	
 	CCLabelBMFont *itemname;
 	CCLabelBMFont *itemdesc;
+	
 	CCLabelBMFont *itemprice;
+	CCNode *itemprice_x;
+	CCSprite *itemprice_icon;
+	
 	CCSprite *price_disp;
 	TouchButton *buybutton;
 	CCLabelTTF *notenoughdisp;

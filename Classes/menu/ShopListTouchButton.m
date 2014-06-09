@@ -61,11 +61,19 @@
 	self.cb = tcb;
 	[self set_selected:NO];
 	
-	[name_disp set_label:info.short_name];
-	[price_disp set_label:strf("%d",info.price)];
-	[disp_sprite setTexture:info.tex];
-	[disp_sprite setTextureRect:info.rect];
-	
+	if ([info class] == [IAPItemInfo class]) {
+		[name_disp set_label:info.short_name];
+		[price_disp set_label:((IAPItemInfo*)info).iap_price.stringValue];
+		[disp_sprite setTexture:info.tex];
+		[disp_sprite setTextureRect:info.rect];
+		
+	} else {
+		[name_disp set_label:info.short_name];
+		[price_disp set_label:strf("%d",info.price)];
+		[disp_sprite setTexture:info.tex];
+		[disp_sprite setTextureRect:info.rect];
+	}
+		
 	return self;
 }
 

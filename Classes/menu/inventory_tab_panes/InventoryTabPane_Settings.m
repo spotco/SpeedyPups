@@ -14,7 +14,9 @@
 #import "UserInventory.h"
 #import "TrackingUtil.h"
 
-@implementation InventoryTabPane_Settings
+@implementation InventoryTabPane_Settings {
+	CCLabelBMFont *version;
+}
 
 +(InventoryTabPane_Settings*)cons:(CCSprite *)parent {
 	return [[InventoryTabPane_Settings node] cons:parent];
@@ -98,7 +100,6 @@
 	}
 	
 	
-	CCLabelBMFont *version;
 	NSString *maxstr = @"000000000000000000000000000000000000\n000000000000000000000000000000000000\n000000000000000000000000000000000000\n000000000000000000000000000000000000\n000000000000000000000000000000000000\n000000000000000000000000000000000000\n";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:13]
 													  constrainedToSize:CGSizeMake(1000, 1000)
@@ -107,12 +108,7 @@
 	[version setColor:ccc3(20,20,20)];
 	[version setPosition:[Common pct_of_obj:parent pctx:0.7 pcty:0.725]];
 	
-	[version setString:[NSString stringWithFormat:
-		@"%@\n%@\n\nUUID:\n%@ ",
-		[GameMain GET_VERSION_STRING],
-		@"Online at (speedypups.com)",
-		[Common unique_id]
-	]];
+	[self setVisible:YES];
 	
 	[self addChild:version];
 	
@@ -124,6 +120,15 @@
 
 -(void)set_pane_open:(BOOL)t {
 	[self setVisible:t];
+	
+	[version setString:[NSString stringWithFormat:
+		@"%@\n%@\n%@\n\nUUID:\n%@ ",
+		[GameMain GET_VERSION_STRING],
+		@"Online at (speedypups.com)",
+		[UserInventory get_ads_disabled]?@"Thanks for buying Ad Free!":@"Unlock Ad Free at the store for $0.99!",
+		[Common unique_id]
+	]];
+	
 }
 
 -(void)toggle_play_bgm {

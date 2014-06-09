@@ -1,5 +1,3 @@
-
-
 #import "cocos2d.h"
 
 #import "GOstrichAppDelegate.h"
