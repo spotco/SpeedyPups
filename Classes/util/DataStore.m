@@ -9,8 +9,10 @@ static NSUserDefaults* store;
 }
 
 +(void)reset_all {
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+	for (NSString* key in [store dictionaryRepresentation].keyEnumerator) {
+		[store removeObjectForKey:key];
+	}
+	[store synchronize];
 }
 
 +(BOOL)isset_key:(NSString*)key {

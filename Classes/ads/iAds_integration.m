@@ -52,5 +52,4 @@
 	[ad_view removeFromSuperview];
 	ad_view = NULL;
 }
-
 @end

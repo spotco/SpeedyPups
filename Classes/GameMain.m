@@ -22,7 +22,7 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"capegame_launcher"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
@@ -33,25 +33,36 @@
 
 
 /**
+trailer footage
+loading anim on IAP wait
+askcontinueui IAP
+facebook integration (like game on facebook, reward)
+capegame bone magnet
+
+2 easy lab levels
+2 hard cannon lab levels
+2 cannon levels
+3 hard cannon levels
+2 armor item levels
+
+challenge with capegame
+challenge with bossrush
+8 more challenges
+
  -art ask for:
+	speedypups adfree
 	video revamp
-	concept art
  **/
 
 /**
 Stretch goals:
- facebook integration (like game on facebook, reward)
- 
- capegame coin at end
- capegame bone magnets
- 3 lab levels
- 3 more cannon levels
- 10 more freerun levels
- levels based around armor (armor break spikes)
- 
  BUG: armor -> rocket -> end -> swingvine, still in rocket form
+ 
+ speedypups HD with cocos2d v2 port
+ apportable android port
  **/
 
+#define KEY_NTH_MENU @"key_nth_menu_adcolony_play"
 +(void)main {
 	[[CCDirector sharedDirector] setDisplayFPS:NO];
 	//[[CCDirector sharedDirector].openGLView setMultipleTouchEnabled:YES];
@@ -69,12 +80,16 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
+	
+	[UserInventory set_ads_disabled:YES];
+	
+	[DataStore set_key:KEY_NTH_MENU int_value:0];
 	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
 	[TrackingUtil track_evt:TrackingEvt_Login];
 	[AdColony_integration preload];
+
 	[SpeedyPupsIAP preload];
 	
-	//[DataStore set_key:@"key_today" str_value:@"topkek"];
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
@@ -149,6 +164,12 @@ Stretch goals:
 
 +(void)start_menu {
 	[self run_scene:[MainMenuLayer scene]];
+	
+	if ([AdColony_integration is_ads_loaded] && [DataStore get_int_for_key:KEY_NTH_MENU] > 0) {
+		[AdColony_integration show_ad];
+	}
+	[DataStore set_key:KEY_NTH_MENU int_value:[DataStore get_int_for_key:KEY_NTH_MENU]+1];
+
 }
 
 +(void)start_testlevel {

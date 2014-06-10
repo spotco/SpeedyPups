@@ -156,6 +156,8 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) {
 		[DataStore reset_all];
+		[UserInventory set_bgm_muted:![AudioManager get_play_bgm]];
+		[UserInventory set_sfx_muted:![AudioManager get_play_sfx]];
 		[Player set_character:TEX_DOG_RUN_1];
 		[GEventDispatcher immediate_event:[[GEvent cons_type:GEventType_QUIT] add_i1:0 i2:0]];
 		[TrackingUtil track_evt:TrackingEvt_Reset];

@@ -236,8 +236,6 @@
 		}
 		[a insertObject:i atIndex:0];
 	}
-
-	
 }
 
 +(NSString*)gameitem_to_texid:(GameItem)i upgrade:(BOOL)upgrade {

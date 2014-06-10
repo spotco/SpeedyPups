@@ -1,12 +1,11 @@
 #import "AdColony_integration.h"
 #import "AudioManager.h"
-
+#import "DataStore.h"
 #import "UserInventory.h"
 
 @implementation AdColony_integration {
 	BOOL sto_play_bgm;
 }
-
 #define DEFAULT_ZONE @"vzfac9afa4884142e1a9"
 
 static AdColony_integration *instance;
@@ -17,7 +16,6 @@ static AdColony_integration *instance;
                          zoneIDs:@[DEFAULT_ZONE]
                         delegate:instance
                          logging:YES];
-	
 }
 +(BOOL)is_ads_loaded {
 	return [AdColony zoneStatusForZone:DEFAULT_ZONE] != ADCOLONY_ZONE_STATUS_LOADING;
@@ -37,5 +35,4 @@ static AdColony_integration *instance;
 	[AudioManager set_play_bgm:sto_play_bgm];
 	[AudioManager playbgm_imm:BGM_GROUP_MENU];
 }
-
 @end

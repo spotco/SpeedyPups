@@ -118,7 +118,7 @@ static NSString *blank = @"";
 	}
 	
 	ui = [CapeGameUILayer cons_g:self];
-	[self addChild:ui z:4];
+	[self addChild:ui z:6];
 	
 	
 	self.isTouchEnabled = YES;
