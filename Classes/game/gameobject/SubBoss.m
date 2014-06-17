@@ -157,7 +157,13 @@ static CGPoint last_pos;
 	CCSprite *periscope = fgwater.periscope;
 	[periscope setVisible:NO];
 	
-	if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && body.visible && !player.dead && current_mode != SubMode_Flyoff && current_mode != SubMode_DeadExplode) {
+	if ([Common hitrect_touch:[self get_hit_rect] b:[player get_hit_rect]] && body.visible && !player.dead) {
+	
+		if (current_mode == SubMode_Flyoff
+			|| current_mode == SubMode_DeadExplode
+			|| current_mode == SubMode_ToRemove
+			|| current_mode == SubMode_DeadAfter) goto NoHit;
+	
 		if (player.dashing || [player is_armored]) {
 			current_mode = SubMode_Flyoff;
 			Vec3D playerdir = [VecLib scale:[VecLib normalized_x:player.vx y:player.vy z:0] by:14];
@@ -183,6 +189,7 @@ static CGPoint last_pos;
 			[g freeze_frame:6];
 		}
 	}
+NoHit:
 	
 	if (current_mode == SubMode_ToRemove) {
 		[g remove_gameobject:self];

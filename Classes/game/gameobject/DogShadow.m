@@ -83,7 +83,9 @@
 }
 @end
 
-@implementation ObjectShadow
+@implementation ObjectShadow {
+	int _last_gameobjects_count;
+}
 
 +(ObjectShadow*)cons_tar:(GameObject *)o {
     return [[ObjectShadow node] cons_tar:o];
@@ -121,6 +123,14 @@
     
     [self setRotation:v.rotation];
     [self update_scale:v];
+	
+	if (g.game_objects.count != _last_gameobjects_count) {
+		if (![g.game_objects containsObject:tar]) {
+			tar = NULL;
+			[g remove_gameobject:self];
+		}
+	}
+	_last_gameobjects_count = (int)g.game_objects.count;
 }
 
 -(void)update_scale:(shadowinfo)v {

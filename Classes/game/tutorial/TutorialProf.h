@@ -15,7 +15,7 @@ typedef enum {
     float vibration_ct;
     TutorialProfState curstate;
     
-    GameObject __unsafe_unretained *shadow;
+    GameObject *shadow;
     
     int ct;
 }

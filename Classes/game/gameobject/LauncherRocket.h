@@ -12,8 +12,6 @@
     float vibration_ct;
 	
 	float trail_scale;
-    
-    //ObjectShadow *shadow;
 	
 	BOOL already_removed;
 }

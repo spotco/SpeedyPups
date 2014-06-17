@@ -845,7 +845,7 @@
 -(int)get_num_secrets { return collected_secrets; }
 
 -(int)get_current_continue_cost {return current_continue_cost;}
--(void)incr_current_continue_cost { /*current_continue_cost*=2;*/ }
+-(void)incr_current_continue_cost { current_continue_cost+=1; }
 
 
 -(void)add_particle:(Particle*)p {

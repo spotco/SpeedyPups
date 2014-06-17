@@ -151,7 +151,7 @@ static long timeof_web_remaining = 0;
 	[DataStore set_key:KEY_COINS_SPAWNED_TODAY int_value:[self coins_spawned_today]+1];
 }
 +(BOOL)conditional_do_coin_level {
-	int som = [self coins_spawned_today] + 1;
+	int som = [self coins_spawned_today] + 2;
 	return int_random(0, som) == 0;
 }
 

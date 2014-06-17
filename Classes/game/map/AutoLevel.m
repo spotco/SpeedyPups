@@ -95,13 +95,9 @@
         [tglayer addChild:i z:[i get_render_ord]];
     }
     
-    [tglayer.game_objects addObjectsFromArray:m.map.game_objects];
     for (GameObject* o in m.map.game_objects) {
-        [tglayer addChild:o z:[o get_render_ord]];
+        [tglayer add_gameobject:o];
     }
-    
-    
-    
 }
 
 -(void)remove_map_section_from_current:(MapSection*)m {
@@ -119,13 +115,12 @@
         [tglayer removeChild:i cleanup:YES];
     }
     
-    [tglayer.game_objects removeObjectsInArray:m.map.game_objects];
-    
     for(GameObject* o in m.map.game_objects) {
         if (tglayer.player.current_swingvine == o) tglayer.player.current_swingvine = NULL;
-        [tglayer removeChild:o cleanup:NO];
-    }
-    
+		[tglayer remove_gameobject:o];
+	}
+    [tglayer do_remove_gameobjects];
+	
     [map_sections removeObject:m];
 }
 

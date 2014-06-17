@@ -99,6 +99,7 @@ typedef enum {
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;
 -(void)remove_gameobject:(GameObject*)o;
+-(void)do_remove_gameobjects;
 
 -(HitRect)get_viewbox;
 -(HitRect)get_world_bounds;

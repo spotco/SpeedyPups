@@ -9,6 +9,9 @@
 @implementation ProfShadow
 +(ObjectShadow*)cons_tar:(GameObject *)o { return [[ProfShadow node] cons_tar:o]; }
 -(void)update_scale:(shadowinfo)v { [super update_scale:v]; [self setScale:self.scale*4]; }
+-(void)dealloc {
+	//NSLog(@"topkek");
+}
 @end
 
 @implementation TutorialProf
@@ -120,6 +123,7 @@
     [((GameEngineLayer*)self.parent) remove_gameobject:shadow];
     [((GameEngineLayer*)self.parent) remove_gameobject:self];
     [GEventDispatcher remove_listener:self];
+	shadow = NULL;
     
 }
 

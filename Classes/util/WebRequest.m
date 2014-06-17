@@ -65,7 +65,7 @@ static NSOperationQueue *request_queue;
 	}
 	
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	NSString *postLength = [NSString stringWithFormat:@"%lu", [postData length]];
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
 	
 	[urlRequest setHTTPMethod:@"POST"];
 	[urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];

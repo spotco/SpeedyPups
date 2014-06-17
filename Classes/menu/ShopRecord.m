@@ -203,7 +203,7 @@
 								   rect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"extrasicon_art"]
 								   name:@"Extra"
 								   desc:@"Unlock a random extra."
-								  price:5
+								  price:1
 									val:random_extra]];
 	}
 }

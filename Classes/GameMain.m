@@ -33,10 +33,6 @@
 
 
 /**
-trailer footage
-loading anim on IAP wait
-askcontinueui IAP
-facebook integration (like game on facebook, reward)
 capegame bone magnet
 
 2 easy lab levels
@@ -45,19 +41,18 @@ capegame bone magnet
 3 hard cannon levels
 2 armor item levels
 
+loading anim on IAP wait
+askcontinueui IAP
+facebook integration (like game on facebook, reward)
+
 challenge with capegame
 challenge with bossrush
 8 more challenges
-
- -art ask for:
-	speedypups adfree
-	video revamp
  **/
 
 /**
 Stretch goals:
  BUG: armor -> rocket -> end -> swingvine, still in rocket form
- 
  speedypups HD with cocos2d v2 port
  apportable android port
  **/
@@ -80,7 +75,6 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	
 	[UserInventory set_ads_disabled:YES];
 	
 	[DataStore set_key:KEY_NTH_MENU int_value:0];
@@ -139,8 +133,11 @@ Stretch goals:
 	[UserInventory unlock_character:TEX_DOG_RUN_5];
 	[UserInventory unlock_character:TEX_DOG_RUN_6];
 	[UserInventory unlock_character:TEX_DOG_RUN_7];
-	*/
 	
+	[UserInventory set_item:Item_Rocket owned:YES];
+	[UserInventory set_item:Item_Shield owned:YES];
+	[UserInventory set_item:Item_Magnet owned:YES];
+	*/
 	//[ChallengeRecord set_beaten_challenge:19 to:YES];
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
