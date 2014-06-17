@@ -272,9 +272,6 @@
 }
 
 -(NSString*)get_level {
-
-	return @"shittytest";
-
 	if (mode == AutoLevelState_COIN) {
 		mode = _coin_goto_mode;
 		[DailyLoginPrizeManager increment_coins_spawned_today];
