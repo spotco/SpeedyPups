@@ -13,9 +13,7 @@
 -(World1BGLayerSet*)cons {
 	bg_objects = [NSMutableArray array];
 	
-	sky = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0];
-	[Common scale_to_fit_screen_x:sky];
-	[Common scale_to_fit_screen_y:sky];
+	sky = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_SKY] scrollspd_x:0 scrollspd_y:0]; 
 	
 	starsbg = [BackgroundObject backgroundFromTex:[Resource get_tex:TEX_BG_STARS] scrollspd_x:0 scrollspd_y:0];
     [starsbg setOpacity:0];
