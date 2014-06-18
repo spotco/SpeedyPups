@@ -8,6 +8,8 @@
 #import "UICommon.h"
 #import "UILayer.h"
 #import "BoneCollectUIAnimation.h"
+#import "SpeedyPupsIAP.h"
+#import "GEventDispatcher.h" 
 
 @implementation AskContinueUI
 
@@ -17,7 +19,6 @@
 
 -(id)init {
     self = [super init];
-    
     ccColor4B c = {50,50,50,220};
     CGSize s = [[UIScreen mainScreen] bounds].size;
     ask_continue_ui = [CCLayerColor layerWithColor:c width:s.height height:s.width];
@@ -139,6 +140,7 @@
     countdown_ct = 10;
 	mod_ct = 1;
 	countdown_disp_scale = 3;
+	actual_cost = cost;
     continue_cost = cost;
 	continue_price_pane_vs = 0.01;
 	
@@ -209,6 +211,8 @@
 	
 }
 
+#define ALERT_TITLE_NOT_ENOUGH @"Not enough coins for a continue!"
+#define ALERT_TITLE_ERROR_CONNECT @"Could not connect to the App Store!"
 -(void)continue_yes {
     if ([UserInventory get_current_coins] >= continue_cost) {
 		[AudioManager todos_remove_all];
@@ -223,11 +227,11 @@
 		curmode = AskContinueUI_YES_TRANSFER_MONEY;
 		
     } else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not enough coins for a continue!"
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_TITLE_NOT_ENOUGH
 														message:@""
 													   delegate:self
-											  cancelButtonTitle:@"Ok :("
-											  otherButtonTitles:nil];
+											  cancelButtonTitle:@"10 Coins for 0.99¢"
+											  otherButtonTitles:@"No thanks...",NULL];
 		[alert show];
 		curmode = AskContinueUI_COUNTDOWN_PAUSED;
 		
@@ -235,8 +239,36 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	//NSLog(@"clique sur bouton:%d",buttonIndex);
-	curmode = AskContinueUI_COUNTDOWN;
+	if (streq(alertView.title, ALERT_TITLE_NOT_ENOUGH)) {
+		if (buttonIndex == 0) {
+			[[IAPHelper sharedInstance] buyProduct:[SpeedyPupsIAP product_for_key:SPEEDYPUPS_10_COINS]];
+			curmode = AskContinueUI_IAP;
+		} else {
+			curmode = AskContinueUI_COUNTDOWN;
+		}
+	} else if (streq(alertView.title, ALERT_TITLE_ERROR_CONNECT)) {
+		curmode = AskContinueUI_COUNTDOWN;
+	}
+}
+
+-(void)dispatch_event:(GEvent*)evt {
+	if (evt.type == GEventType_IAP_SUCCESS) {
+		curmode = AskContinueUI_COUNTDOWN;
+		countdown_ct = 10;
+		[total_disp setString:[NSString stringWithFormat:@"%d",[UserInventory get_current_coins]]];
+		
+	} else if (evt.type == GEventType_IAP_FAIL) {
+		if (evt.i1 == 1) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:ALERT_TITLE_ERROR_CONNECT
+																		message:@""
+																	   delegate:self
+															  cancelButtonTitle:@"Ok"
+															  otherButtonTitles:NULL];
+			[alert show];
+		} else {
+			curmode = AskContinueUI_COUNTDOWN;
+		}
+	}
 }
 
 -(void)update_countdown {
@@ -301,23 +333,21 @@
 	}
 	
 	if (continue_cost > 0) {
-		int neutotal = (int)total_disp.string.integerValue-countdown_ct;
-		int neuprix = (int)continue_price.string.integerValue+countdown_ct;
-		continue_cost-=1;
-		
-		//if (mod_ct%10==0) countdown_ct *= 2;
-		
-		[continue_price setString:[NSString stringWithFormat:@"%d",neuprix]];
-		[total_disp setString:[NSString stringWithFormat:@"%d",neutotal]];
-		
-		BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
-																		 end:CGPointAdd(playericon.position,ccp(-30,15))];
-		[neuanim setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"heart"]];
-		
-		[bone_anims addObject:neuanim];
-		[self addChild:neuanim];
-		[AudioManager playsfx:SFX_BONE];
+		if (mod_ct%10 == 0 || continue_cost == actual_cost) {
+			if (continue_cost == actual_cost) {
+				mod_ct = 1;
+			}
+			continue_cost--;
+			BoneCollectUIAnimation *neuanim = [BoneCollectUIAnimation cons_start:[Common screen_pctwid:0.89 pcthei:0.075]
+																			 end:CGPointAdd(playericon.position,ccp(-30,15))];
+			[neuanim setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"heart"]];
 			
+			[bone_anims addObject:neuanim];
+			[self addChild:neuanim];
+			[AudioManager playsfx:SFX_BONE];
+		}
+		int neutotal = ([UserInventory get_current_coins] + actual_cost) - (actual_cost - continue_cost);
+		[total_disp setString:[NSString stringWithFormat:@"%d",neutotal]];
 		
 		
 	} else if (bone_anims.count != 0) {

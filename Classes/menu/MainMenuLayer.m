@@ -209,6 +209,7 @@ static BOOL daily_popup_fail = NO;
 			[self addChild:current_popup];
 			
 		}
+		
 	}
 }
 

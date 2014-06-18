@@ -375,7 +375,6 @@
 
 -(void)pause {
 	[AudioManager playsfx:SFX_MENU_UP];
-	[[CCDirector sharedDirector] pause];
 	[self set_curtain_animstart_positions];
 	[ingame_ui setVisible:NO];
 	[pause_ui setVisible:YES];
@@ -391,7 +390,6 @@
 
 -(void)retry {
 	[AudioManager playsfx:SFX_MENU_DOWN];
-	[[CCDirector sharedDirector] resume];
 	[update_timer invalidate];
 	[[CCDirector sharedDirector] popScene];
 	
@@ -408,7 +406,6 @@
 
 -(void)unpause {
 	[AudioManager playsfx:SFX_MENU_DOWN];
-	[[CCDirector sharedDirector] resume];
 	[ingame_ui setVisible:YES];
 	[pause_ui setVisible:NO];
 	[cape_game pause:NO];

@@ -1,6 +1,7 @@
 #import "IAPHelper.h"
 #import <StoreKit/StoreKit.h>
-#import "SpeedyPupsIAP.h" 
+#import "SpeedyPupsIAP.h"
+#import "GEventDispatcher.h"
 
 //http://www.raywenderlich.com/21081/introduction-to-in-app-purchases-in-ios-6-tutorial
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
@@ -41,7 +42,7 @@
 }
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    NSLog(@"Loaded list of products...");
+    NSLog(@"IAP Product list loaded");
     _productsRequest = nil;
     NSArray * skProducts = response.products;
     for (SKProduct * skProduct in skProducts) {
@@ -57,7 +58,7 @@
 }
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"Failed to load list of products.");
+    NSLog(@"IAP COULD NOT LOAD LIST OF PRODUCTS (%@)",error.localizedDescription);
     _productsRequest = nil;
     _completionHandler(NO, nil);
     _completionHandler = nil;
@@ -69,8 +70,14 @@
 }
 
 -(void)buyProduct:(SKProduct *)product {
-    NSLog(@"Buying %@...", product.productIdentifier);
-    SKPayment * payment = [SKPayment paymentWithProduct:product];
+	[GEventDispatcher push_event:[GEvent cons_type:GEventType_IAP_BUY]];
+	if (product == NULL) {
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_IAP_FAIL] add_i1:1 i2:0]];
+		NSLog(@"IAP BUY FAIL ITEM NULL");
+		return;
+	}
+    NSLog(@"IAP START BUY %@...", product.productIdentifier);
+	SKPayment *payment = [SKPayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
@@ -92,22 +99,27 @@
 }
 
 -(void)completeTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"completeTransaction...");
-    [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
+    NSLog(@"IAP SUCCESS FOR (%@)",transaction.payment.productIdentifier);
+    [GEventDispatcher push_event:[GEvent cons_type:GEventType_IAP_SUCCESS]];
+	[self provideContentForProductIdentifier:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 -(void)restoreTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"restoreTransaction...");
+    NSLog(@"IAP RESTORE FOR (%@)",transaction.payment.productIdentifier);
     [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
 -(void)failedTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@"failedTransaction...");
+    NSLog(@"IAP FAIL FOR (%@)",transaction.payment.productIdentifier);
+	
     if (transaction.error.code != SKErrorPaymentCancelled) {
-        NSLog(@"Transaction error: %@", transaction.error.description);
-    }
+        NSLog(@"ERROR: %@", transaction.error.description);
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_IAP_FAIL] add_i1:1 i2:0]];
+    } else {
+		[GEventDispatcher push_event:[GEvent cons_type:GEventType_IAP_FAIL]];
+	}
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 

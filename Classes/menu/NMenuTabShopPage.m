@@ -102,19 +102,31 @@
 	[price_disp addChild:itemprice_icon];
 						  
 	[tabbedpane addChild:price_disp];
-	buybutton = [TouchButton cons_pt:[Common pct_of_obj:tabbedpane pctx:0.975 pcty:0.025]
+	
+	buy_button_pane = [CCSprite node];
+	[tabbedpane addChild:buy_button_pane];
+	
+	buybutton = [AnimatedTouchButton cons_pt:[Common pct_of_obj:tabbedpane pctx:0.975 pcty:0.025]
 								 tex:[Resource get_tex:TEX_NMENU_ITEMS]
 							 texrect:[FileCache get_cgrect_from_plist:TEX_NMENU_ITEMS idname:@"buybutton"]
 								  cb:[Common cons_callback:self sel:@selector(buybutton)]];
 	[buybutton setPosition:ccp(buybutton.position.x - buybutton.boundingBox.size.width/2.0, buybutton.position.y + buybutton.boundingBox.size.height/2.0 )];
 	[touches addObject:buybutton];
-	[tabbedpane addChild:buybutton];
-	
+	[buy_button_pane addChild:buybutton];
 	notenoughdisp = [Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.69 pcty:0.15]
 									 color:ccc3(200,30,30)
 								  fontsize:23
 									   str:@"Not enough coins!"];
-	[tabbedpane addChild:notenoughdisp];
+	[buy_button_pane addChild:notenoughdisp];
+	
+	loading_button_pane = [CCSprite node];
+	[loading_button_pane addChild:[Common cons_label_pos:[Common pct_of_obj:tabbedpane pctx:0.69 pcty:0.15]
+									 color:ccc3(200,30,30)
+								  fontsize:23
+									   str:@"Loading..."]];
+	[tabbedpane addChild:loading_button_pane];
+	[buy_button_pane setVisible:YES];
+	[loading_button_pane setVisible:NO];
 	
 	NSString* maxstr = @"aaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaaaaaaaaaa";
     CGSize actualSize = [maxstr sizeWithFont:[UIFont fontWithName:@"Carton Six" size:15]
@@ -297,11 +309,31 @@
     } else if (e.type == GEventType_MENU_TICK && self.visible) {
 		[self update];
 		
+	} else if (e.type == GEventType_IAP_BUY) {
+		[buy_button_pane setVisible:NO];
+		[loading_button_pane setVisible:YES];
+		
+	} else if (e.type == GEventType_IAP_SUCCESS || e.type == GEventType_IAP_FAIL) {
+		[buy_button_pane setVisible:YES];
+		[loading_button_pane setVisible:NO];
+		if (e.type == GEventType_IAP_FAIL) {
+			if (e.i1 == 1) {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not connect to the App Store!"
+																message:@""
+															   delegate:NULL
+													  cancelButtonTitle:@"Ok"
+													  otherButtonTitles:NULL];
+				[alert show];
+			}
+		}
 	}
 }
 
 -(void)update {
 	if (![self visible]) return;
+	
+	for (id obj in touches) if ([obj respondsToSelector:@selector(update)]) [obj update];
+	
 	CGPoint neupos = CGPointAdd(ccp(0,vy), clipperholder.position);
 	neupos.y = clampf(neupos.y, clippedholder_y_min, clippedholder_y_max);
 	[clipperholder setPosition:neupos];
@@ -348,19 +380,14 @@
 }
 
 -(void)buybutton {
-	[buybutton setScale:1.4];
 	if ([ShopRecord buy_shop_item:sto_val price:sto_price]) {
 		CGPoint centre = [buybutton convertToWorldSpace:CGPointZero];
 		centre.x += buybutton.boundingBox.size.width/2.0f;
 		centre.y += buybutton.boundingBox.size.height/2.0f;
-		for (float i = 0; i < 2*M_PI-0.1; i+=M_PI/4) {
-			CGPoint vel = ccp(sinf(i),cosf(i));
-			float scale = float_random(5, 7);
-			[self add_particle:[ShopBuyBoneFlyoutParticle cons_pt:centre vel:ccp(vel.x*scale,vel.y*scale)]];
+		if (sto_price != 0) {
+			centre = [total_disp convertToWorldSpace:CGPointZero];
+			[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:ccp(centre.x+total_disp.boundingBox.size.width/2.0,centre.y+15) text:strf("-%d",sto_price)]];
 		}
-		centre = [total_disp convertToWorldSpace:CGPointZero];
-		[self add_particle:[ShopBuyFlyoffTextParticle cons_pt:ccp(centre.x+total_disp.boundingBox.size.width/2.0,centre.y+15) text:strf("-%d",sto_price)]];
-		
 		[self seltab:current_tab_index tab:cur_selected_tab];
 		[AudioManager playsfx:SFX_BUY];
 		[AudioManager playsfx:SFX_BARK_MID];
@@ -373,10 +400,8 @@
 }
 
 -(void)touch_begin:(CGPoint)pt {
-	for (int i = (int)touches.count-1; i>=0; i--) {
-		TouchButton *b = touches[i];
-		[b touch_begin:pt];
-	}
+	if (!self.visible) return;
+	for (int i = (int)touches.count-1; i >= 0; i--) [(TouchButton*)touches[i] touch_begin:pt];
 	
 	is_scroll = YES;
 	last_scroll_pt = pt;
@@ -397,7 +422,8 @@
 }
 
 -(void)touch_end:(CGPoint)pt {
-	if (![self visible]) return;
+	if (!self.visible) return;
+	for (int i = (int)touches.count-1; i >= 0; i--) [(TouchButton*)touches[i] touch_end:pt];
 	is_scroll = NO;
 }
 

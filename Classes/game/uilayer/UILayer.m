@@ -138,6 +138,9 @@
 		[self update_items];
 		[ingameui animslot_notification];
 		
+	}  else if (e.type == GEventType_IAP_FAIL || e.type == GEventType_IAP_SUCCESS) {
+		if (askcontinueui.visible) [askcontinueui dispatch_event:e];
+		
 	}
 }
 

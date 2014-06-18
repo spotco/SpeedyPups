@@ -7,8 +7,11 @@
 #import "DogBone.h"
 #import "GameEngineLayer.h" 
 #import "ScoreManager.h"
+#import "Vec3D.h"
 
-@implementation CapeGameBone
+@implementation CapeGameBone {
+	BOOL follow;
+}
 
 +(CapeGameBone*)cons_pt:(CGPoint)pt {
 	return [[CapeGameBone node] cons_pt:pt];
@@ -19,11 +22,23 @@
 	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"goldenbone"]];
 	[self setPosition:pt];
 	active = YES;
+	follow = NO;
 	return self;
 }
 
 -(void)update:(CapeGameEngineLayer *)g {
 	if (!active) return;
+	
+	float dist = [Common distanceBetween:[self position] and:g.player.position];
+	if (!follow && dist < 85) {
+        follow = YES;
+    
+	} else if (follow) {
+        Vec3D vel = [VecLib cons_x:g.player.position.x-[self position].x y:g.player.position.y-[self position].y z:0];
+        vel = [VecLib normalize:vel];
+        vel = [VecLib scale:vel by:MAX(12,sqrtf(powf(g.player.vx, 2) + powf(g.player.vy, 2))*1.2)];
+        [self setPosition:ccp([self position].x + vel.x, [self position].y + vel.y)];
+	}
 	
 	if ([Common hitrect_touch:[[g player] get_hitrect] b:[self get_hitrect]]) {
 		[self setVisible:NO];

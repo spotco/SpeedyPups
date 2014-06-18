@@ -38,8 +38,8 @@ static NSMutableArray *iap_objects;
 		[UserInventory set_ads_disabled:YES];
 		[DataStore set_key:IAP_DATASTORE_KEY(SPEEDYPUPS_AD_FREE) int_value:1];
 	
-	} else if (streq(key, SPEEDYPUPS_20_COINS)) {
-		[UserInventory add_coins:20];
+	} else if (streq(key, SPEEDYPUPS_10_COINS)) {
+		[UserInventory add_coins:10];
 	}
 }
 
@@ -53,7 +53,7 @@ static NSMutableArray *iap_objects;
 }
 
 +(NSSet*)get_all_requested_iaps {
-	return [NSSet setWithObjects:SPEEDYPUPS_AD_FREE, SPEEDYPUPS_20_COINS,nil];
+	return [NSSet setWithObjects:SPEEDYPUPS_AD_FREE, SPEEDYPUPS_10_COINS,nil];
 }
 
 +(NSArray*)get_all_loaded_iaps {

@@ -15,6 +15,9 @@
 	CCSprite *itemprice_icon;
 	
 	CCSprite *price_disp;
+	
+	CCSprite *buy_button_pane;
+	CCSprite *loading_button_pane;
 	TouchButton *buybutton;
 	CCLabelTTF *notenoughdisp;
 	

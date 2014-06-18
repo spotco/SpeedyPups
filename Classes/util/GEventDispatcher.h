@@ -70,7 +70,11 @@ typedef enum {
 	
 	GEventType_COMBO_DISP_ANIM,
 	
-	GEventType_MENU_POPUP
+	GEventType_MENU_POPUP,
+	
+	GEventType_IAP_BUY,
+	GEventType_IAP_FAIL,
+	GEventType_IAP_SUCCESS
 } GEventType;
 
 @interface GEvent : NSObject

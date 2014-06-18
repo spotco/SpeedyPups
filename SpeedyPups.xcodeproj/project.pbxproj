@@ -216,6 +216,7 @@
 		7E80D7C1181276AE007E48C5 /* classic_twopath.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C0181276AE007E48C5 /* classic_twopath.map */; };
 		7E80D7C818127B53007E48C5 /* gameloop2_night.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */; };
 		7E80D7C918127B53007E48C5 /* gameloop3.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E80D7C718127B53007E48C5 /* gameloop3.aiff */; };
+		7E81B5091951618A008A9113 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E81B5081951618A008A9113 /* Default@2x.png */; };
 		7E8947F91904B23D00EFB54C /* ScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8947F81904B23D00EFB54C /* ScoreManager.m */; };
 		7E8A53321773F8F2006F6114 /* labintro_tutorialbop.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */; };
 		7E8F478317994067004CA582 /* tutorial_upsidebounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E8F478217994067004CA582 /* tutorial_upsidebounce.map */; };
@@ -750,7 +751,6 @@
 		7ED28FB317124E2E0037B916 /* ChallengeEndUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB217124E2D0037B916 /* ChallengeEndUI.m */; };
 		7ED28FB61712547E0037B916 /* UICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED28FB51712547D0037B916 /* UICommon.m */; };
 		7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */ = {isa = PBXBuildFile; fileRef = 7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */; };
-		7ED3974C1946B0F60085D242 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3974B1946B0F60085D242 /* Default.png */; };
 		7ED3974E1946B1540085D242 /* Spotlight_29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3974D1946B1540085D242 /* Spotlight_29.png */; };
 		7ED397501946B1880085D242 /* Spotlight_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED3974F1946B1880085D242 /* Spotlight_58.png */; };
 		7ED397521946B1B10085D242 /* Spotlight_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED397511946B1B10085D242 /* Spotlight_80.png */; };
@@ -1144,6 +1144,7 @@
 		7E80D7C0181276AE007E48C5 /* classic_twopath.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = classic_twopath.map; sourceTree = "<group>"; };
 		7E80D7C618127B53007E48C5 /* gameloop2_night.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop2_night.aiff; sourceTree = "<group>"; };
 		7E80D7C718127B53007E48C5 /* gameloop3.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = gameloop3.aiff; sourceTree = "<group>"; };
+		7E81B5081951618A008A9113 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		7E8947F71904B23D00EFB54C /* ScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManager.h; sourceTree = "<group>"; };
 		7E8947F81904B23D00EFB54C /* ScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManager.m; sourceTree = "<group>"; };
 		7E8A53311773F8F2006F6114 /* labintro_tutorialbop.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = labintro_tutorialbop.map; path = Resources/levels/labintro_tutorialbop.map; sourceTree = SOURCE_ROOT; };
@@ -1843,7 +1844,6 @@
 		7ED28FB41712547D0037B916 /* UICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICommon.h; sourceTree = "<group>"; };
 		7ED28FB51712547D0037B916 /* UICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICommon.m; sourceTree = "<group>"; };
 		7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = freerun_progress_to_lab.map; sourceTree = "<group>"; };
-		7ED3974B1946B0F60085D242 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7ED3974D1946B1540085D242 /* Spotlight_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_29.png; sourceTree = "<group>"; };
 		7ED3974F1946B1880085D242 /* Spotlight_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_58.png; sourceTree = "<group>"; };
 		7ED397511946B1B10085D242 /* Spotlight_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spotlight_80.png; sourceTree = "<group>"; };
@@ -2193,12 +2193,13 @@
 				7ED397511946B1B10085D242 /* Spotlight_80.png */,
 				7ED3974F1946B1880085D242 /* Spotlight_58.png */,
 				7ED3974D1946B1540085D242 /* Spotlight_29.png */,
-				7ED3974B1946B0F60085D242 /* Default.png */,
 				7E2EB5C919349DDE0049CDFA /* carton_six_13.fnt */,
 				7E2EB5CA19349DDE0049CDFA /* carton_six_13.png */,
 				7E2EB5CB19349DDE0049CDFA /* carton_six_30.fnt */,
 				7E2EB5CC19349DDE0049CDFA /* carton_six_30.png */,
 				7E269C6516DA00DE005F446C /* Carton_Six.ttf */,
+				4512282D17704A760088D298 /* Default-568h@2x.png */,
+				7E81B5081951618A008A9113 /* Default@2x.png */,
 				7E269C6616DA00DE005F446C /* Default.png */,
 				7E269C6716DA00DE005F446C /* fps_images.png */,
 			);
@@ -4028,7 +4029,6 @@
 			isa = PBXGroup;
 			children = (
 				7EBE245A1882948E002FBE1E /* Settings.bundle */,
-				4512282D17704A760088D298 /* Default-568h@2x.png */,
 				7E41B647182C748500CBE9A6 /* Icon-hr.png */,
 				7E269C6416DA00CD005F446C /* internal */,
 				7E269C6016DA0000005F446C /* Icon.png */,
@@ -4356,6 +4356,7 @@
 				7EC8AD3E1872BB86002E3B04 /* cannonmovetrack_edge.png in Resources */,
 				7E0D74ED182CE6CD002F5B9A /* BG3_sky.png in Resources */,
 				7EB8B32E16D9F8E700F58961 /* jumppad_crazyloop.map in Resources */,
+				7E81B5091951618A008A9113 /* Default@2x.png in Resources */,
 				7EB8B32F16D9F8E700F58961 /* jumppad_hiddenislands.map in Resources */,
 				7EB8B33016D9F8E700F58961 /* jumppad_jumpgap.map in Resources */,
 				7E6BD80719410C47005F1A77 /* extras_art_world5_early.png in Resources */,
@@ -4471,7 +4472,6 @@
 				7E6BD7FA19410C47005F1A77 /* extras_art_oldlogo.png in Resources */,
 				7EB97768170261FD00459DEF /* jumppad.png in Resources */,
 				7EB9776B170273F200459DEF /* nmenu_levelselectobj.plist in Resources */,
-				7ED3974C1946B0F60085D242 /* Default.png in Resources */,
 				7EB9776C170273F200459DEF /* nmenu_levelselectobj.png in Resources */,
 				7E6BD81619410C47005F1A77 /* extras_art_birthday.png in Resources */,
 				7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */,
@@ -5081,7 +5081,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -5114,7 +5113,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

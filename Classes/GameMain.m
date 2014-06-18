@@ -33,7 +33,8 @@
 
 
 /**
-capegame bone magnet
+facebook integration (like game on facebook, reward)
+twitter integration
 
 2 easy lab levels
 2 hard cannon lab levels
@@ -41,17 +42,16 @@ capegame bone magnet
 3 hard cannon levels
 2 armor item levels
 
-loading anim on IAP wait
-askcontinueui IAP
-facebook integration (like game on facebook, reward)
-
-challenge with capegame
-challenge with bossrush
-8 more challenges
+--BLOCKED ON LEVEL CREATION
+	challenge with capegame
+	challenge with bossrush
+	8 more challenges
  **/
 
 /**
 Stretch goals:
+ IAP restore & fix
+ 
  BUG: armor -> rocket -> end -> swingvine, still in rocket form
  speedypups HD with cocos2d v2 port
  apportable android port

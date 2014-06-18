@@ -5,8 +5,11 @@ typedef enum {
 	AskContinueUI_COUNTDOWN_PAUSED,
 	AskContinueUI_YES_TRANSFER_MONEY,
 	AskContinueUI_YES_RUNOUT,
-	AskContinueUI_TRANSITION_TO_GAMEOVER
+	AskContinueUI_TRANSITION_TO_GAMEOVER,
+	AskContinueUI_IAP
 } AskContinueUI_MODE;
+
+@class GEvent;
 
 @interface AskContinueUI : CCSprite {
 	CCNode *ask_continue_ui;
@@ -23,6 +26,7 @@ typedef enum {
 	float countdown_disp_scale;
     int countdown_ct;
     int continue_cost;
+	int actual_cost;
 	int actual_next_continue_price;
 	
 	CCSprite *continue_price_pane;
@@ -38,5 +42,6 @@ typedef enum {
 
 +(AskContinueUI*)cons;
 -(void)start_countdown:(int)cost;
+-(void)dispatch_event:(GEvent*)evt;
 
 @end

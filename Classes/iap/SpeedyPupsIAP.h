@@ -3,7 +3,7 @@
 
 
 #define SPEEDYPUPS_AD_FREE @"SpeedyPups_AD_FREE"
-#define SPEEDYPUPS_20_COINS @"SpeedyPups_20_Coins"
+#define SPEEDYPUPS_10_COINS @"SpeedyPups_10_Coins"
 
 @interface SpeedyPupsIAP : NSObject
 +(void)preload;
