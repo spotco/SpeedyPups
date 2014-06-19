@@ -2602,9 +2602,9 @@
 		7E9A784916FC4DB50014B7E0 /* swingvine */ = {
 			isa = PBXGroup;
 			children = (
+				7EB8B24716D9F8E700F58961 /* swingvine_someswings.map */,
 				7EE5971E181E34D9003258E1 /* swingvine_kingofswing.map */,
 				7EF06C0717476E3F009C6102 /* swingvine_hillvine.map */,
-				7EB8B24716D9F8E700F58961 /* swingvine_someswings.map */,
 				7EB8B25116D9F8E700F58961 /* swingvine_bounswindodg.map */,
 				7EB8B25216D9F8E700F58961 /* swingvine_dodgespike.map */,
 				7EB8B25316D9F8E700F58961 /* swingvine_swingbreak.map */,

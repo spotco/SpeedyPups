@@ -22,7 +22,7 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"swingvine_kingofswing"
+#define TESTLEVEL @"swingvine_dodgespike"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
@@ -82,9 +82,9 @@ Stretch goals:
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	
