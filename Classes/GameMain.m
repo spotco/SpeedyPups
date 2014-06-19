@@ -22,7 +22,7 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"swingvine_kingofswing"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
@@ -43,6 +43,8 @@
 	challenge with capegame
 	challenge with bossrush
 	8 more challenges
+ 
+ music compress
  **/
 
 /**

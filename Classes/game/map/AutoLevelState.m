@@ -99,7 +99,8 @@
 			@"swingvine_swingbreak" : @1,
 			@"swingvine_datbounce" : @1,
 			@"swingvine_someswings" : @1,
-			@"swingvine_hillvine" : @1
+			@"swingvine_hillvine" : @1,
+			@"swingvine_kingofswing" : @1
 		},
 		L_WORLD2_JUMPPAD:@{
 			@"jumppad_jumpgap" : @1,
