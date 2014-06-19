@@ -17,12 +17,12 @@
 #import "AdColony_integration.h"
 #import "SpeedyPupsIAP.h"
 
-#import <StoreKit/StoreKit.h>
+#import "iRate.h"
 
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"capegame_launcher"
+#define TESTLEVEL @"shittytest"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
@@ -33,9 +33,6 @@
 
 
 /**
-facebook integration (like game on facebook, reward)
-twitter integration
-
 2 easy lab levels
 2 hard cannon lab levels
 2 cannon levels
@@ -50,9 +47,6 @@ twitter integration
 
 /**
 Stretch goals:
- IAP restore & fix
- 
- BUG: armor -> rocket -> end -> swingvine, still in rocket form
  speedypups HD with cocos2d v2 port
  apportable android port
  **/
@@ -75,7 +69,7 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	[UserInventory set_ads_disabled:YES];
+	//[UserInventory set_ads_disabled:YES];
 	
 	[DataStore set_key:KEY_NTH_MENU int_value:0];
 	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
@@ -84,12 +78,11 @@ Stretch goals:
 
 	[SpeedyPupsIAP preload];
 	
-	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	
@@ -145,6 +138,11 @@ Stretch goals:
 	//[UserInventory add_coins:25];
 }
 
++(void)initialize {
+	[iRate sharedInstance].daysUntilPrompt = 3;
+    [iRate sharedInstance].usesUntilPrompt = 10;
+}
+
 +(void)start_introanim {
 	[GameMain run_scene:[IntroAnim scene]];
 }
@@ -162,7 +160,9 @@ Stretch goals:
 +(void)start_menu {
 	[self run_scene:[MainMenuLayer scene]];
 	
-	if ([AdColony_integration is_ads_loaded] && [DataStore get_int_for_key:KEY_NTH_MENU] > 0) {
+	if ([[iRate sharedInstance] shouldPromptForRating]) {
+		[[iRate sharedInstance] promptForRating];
+	} else if ([AdColony_integration is_ads_loaded] && [DataStore get_int_for_key:KEY_NTH_MENU] > 0) {
 		[AdColony_integration show_ad];
 	}
 	[DataStore set_key:KEY_NTH_MENU int_value:[DataStore get_int_for_key:KEY_NTH_MENU]+1];

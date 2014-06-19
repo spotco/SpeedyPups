@@ -1,8 +1,12 @@
 {
-    "objects": [{"label": "2", "x": 502.5, "type": "checkpoint", "y": 77.5}, {"label": "3", "x": 1115, "dir": {"x": -0.66, "y": 0.75}, "type": "launcherrobot", "y": 167.5}],
-    "start_x": 250,
-    "islands": [{"y2": 80, "x1": 95, "ndir": "left", "y1": 77.5, "ground": "open", "can_fall": true, "x2": 1860.1, "type": "line", "hei": 50}],
-    "start_y": 177.5,
+    "start_x": 144,
     "assert_links": 0,
-    "connect_pts": {"y2": 80, "x1": 95, "x2": 1860.1, "y1": 77.5}
+    "connect_pts": {"y2": 119, "x1": 84, "x2": 954, "y1": 123},
+    "start_y": 226,
+    "objects": [
+        {"label": "1", "x": 684, "type": "dogrocket", "y": 269},
+        {"label": "2", "x": 888, "y": 411, "y2": 251, "x2": 888, "type": "swingvine"},
+        {"label": "3", "x": 373, "type": "itemgen", "y": 265}
+    ],
+    "islands": [{"y2": 119, "x1": 84, "ndir": "left", "y1": 123, "ground": "open", "can_fall": true, "x2": 954, "type": "line", "hei": 50}]
 }

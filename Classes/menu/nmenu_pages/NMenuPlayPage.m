@@ -7,6 +7,9 @@
 #import "UserInventory.h"
 #import "InventoryTabPane_Prizes.h"
 
+#import "FBShare.h"
+#import "TWTShare.h"
+
 @implementation NMenuPlayPage
 
 +(NMenuPlayPage*)cons {
@@ -61,13 +64,33 @@
     [self addChild:birds];
     
     CCMenu *m = [CCMenu menuWithItems:playbutton, nil];
-    [m setPosition:ccp(0,0)];
+    [m setPosition:CGPointZero];
 	[self cons_wheel_button:m];
     [self addChild:m];
+	
+	share_buttons = [CCMenu menuWithItems:NULL];
+	[share_buttons setPosition:CGPointZero];
+	[self addChild:share_buttons];
+	
+	CCMenuItem *fb_button = [MenuCommon item_from:TEX_NMENU_ITEMS
+											 rect:@"facebook"
+											  tar:[FBShare class]
+											  sel:@selector(share)
+											  pos:[Common screen_pctwid:0.01 pcthei:0.99]];
+	[fb_button setScale:0.6];
+	[fb_button setAnchorPoint:ccp(0,1)];
+	[share_buttons addChild:fb_button];
+	CCMenuItem *twt_button = [MenuCommon item_from:TEX_NMENU_ITEMS
+											 rect:@"twitter"
+											  tar:[TWTShare class]
+											  sel:@selector(share)
+											  pos:CGPointAdd(fb_button.position, ccp(fb_button.boundingBox.size.width+5,0))];
+	[twt_button setScale:0.6];
+	[twt_button setAnchorPoint:ccp(0,1)];
+	[share_buttons addChild:twt_button];
+	
     
     rundog = [CCSprite node];
-	
-	
     
     CCMenuItem *freerunmodebutton = [MenuCommon item_from:TEX_NMENU_LEVELSELOBJ
 													 rect:@"infinitemode"
@@ -185,6 +208,7 @@
 }
 
 -(void)wheel_ad_button_conditional_setVisible:(BOOL)tar {
+	[share_buttons setVisible:tar];
 	if ([UserInventory get_current_bones] >= [InventoryTabPane_Prizes get_spin_cost]) {
 		[wheel_ad_button setVisible:tar];
 	} else {

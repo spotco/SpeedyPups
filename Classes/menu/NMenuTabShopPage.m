@@ -312,6 +312,7 @@
 	} else if (e.type == GEventType_IAP_BUY) {
 		[buy_button_pane setVisible:NO];
 		[loading_button_pane setVisible:YES];
+		[self make_scroll_items];
 		
 	} else if (e.type == GEventType_IAP_SUCCESS || e.type == GEventType_IAP_FAIL) {
 		[buy_button_pane setVisible:YES];
@@ -326,6 +327,7 @@
 				[alert show];
 			}
 		}
+		[self make_scroll_items];
 	}
 }
 

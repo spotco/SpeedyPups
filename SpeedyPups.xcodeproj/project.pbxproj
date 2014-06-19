@@ -165,6 +165,10 @@
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
 		7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLoader.m */; };
 		7E60A69E1812910000CC7C07 /* SubBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69D1812910000CC7C07 /* SubBoss.m */; };
+		7E63BF39195291CA006958AC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E63BF38195291CA006958AC /* FacebookSDK.framework */; };
+		7E63BF3C1952957D006958AC /* FBShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E63BF3B1952957D006958AC /* FBShare.m */; };
+		7E63BF401952A43E006958AC /* TWTShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E63BF3F1952A43E006958AC /* TWTShare.m */; };
+		7E63BF461952B4D3006958AC /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E63BF451952B4D3006958AC /* iRate.m */; };
 		7E6433B81928BDB500A427EB /* DailyLoginPrizeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6433B71928BDB500A427EB /* DailyLoginPrizeManager.m */; };
 		7E6433BC1928C67600A427EB /* BasePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6433BB1928C67600A427EB /* BasePopup.m */; };
 		7E6BD7FA19410C47005F1A77 /* extras_art_oldlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BD7DD19410C47005F1A77 /* extras_art_oldlogo.png */; };
@@ -1086,6 +1090,14 @@
 		7E60A69A1812906B00CC7C07 /* SubBossLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBossLoader.m; sourceTree = "<group>"; };
 		7E60A69C1812910000CC7C07 /* SubBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBoss.h; sourceTree = "<group>"; };
 		7E60A69D1812910000CC7C07 /* SubBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBoss.m; sourceTree = "<group>"; };
+		7E63BF38195291CA006958AC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		7E63BF3A1952957D006958AC /* FBShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShare.h; sourceTree = "<group>"; };
+		7E63BF3B1952957D006958AC /* FBShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShare.m; sourceTree = "<group>"; };
+		7E63BF3E1952A43E006958AC /* TWTShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTShare.h; sourceTree = "<group>"; };
+		7E63BF3F1952A43E006958AC /* TWTShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTShare.m; sourceTree = "<group>"; };
+		7E63BF411952A493006958AC /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		7E63BF441952B4D3006958AC /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		7E63BF451952B4D3006958AC /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		7E6433B61928BDB500A427EB /* DailyLoginPrizeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DailyLoginPrizeManager.h; path = user/DailyLoginPrizeManager.h; sourceTree = "<group>"; };
 		7E6433B71928BDB500A427EB /* DailyLoginPrizeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DailyLoginPrizeManager.m; path = user/DailyLoginPrizeManager.m; sourceTree = "<group>"; };
 		7E6433BA1928C67600A427EB /* BasePopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePopup.h; sourceTree = "<group>"; };
@@ -2000,6 +2012,7 @@
 				DC0C4A00154AB4DD00B4B727 /* UIKit.framework in Frameworks */,
 				DC0C49FA154AB4DD00B4B727 /* OpenAL.framework in Frameworks */,
 				7EF8AA4E16D9DB2D009A1FC5 /* libz.dylib in Frameworks */,
+				7E63BF39195291CA006958AC /* FacebookSDK.framework in Frameworks */,
 				DC0C49FE154AB4DD00B4B727 /* AVFoundation.framework in Frameworks */,
 				DC0C4B92154AB57C00B4B727 /* libcocos2d-library.a in Frameworks */,
 				7EF8AA4F16D9DB4E009A1FC5 /* GameKit.framework in Frameworks */,
@@ -2421,6 +2434,34 @@
 				7E94CB001905151700B85545 /* ScoreComboAnimation.m */,
 			);
 			name = ingame_anim;
+			sourceTree = "<group>";
+		};
+		7E63BF37195291CA006958AC /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				7E63BF38195291CA006958AC /* FacebookSDK.framework */,
+				7E63BF3A1952957D006958AC /* FBShare.h */,
+				7E63BF3B1952957D006958AC /* FBShare.m */,
+			);
+			path = facebook;
+			sourceTree = "<group>";
+		};
+		7E63BF3D1952A430006958AC /* twitter */ = {
+			isa = PBXGroup;
+			children = (
+				7E63BF3E1952A43E006958AC /* TWTShare.h */,
+				7E63BF3F1952A43E006958AC /* TWTShare.m */,
+			);
+			path = twitter;
+			sourceTree = "<group>";
+		};
+		7E63BF431952B4D3006958AC /* rating */ = {
+			isa = PBXGroup;
+			children = (
+				7E63BF441952B4D3006958AC /* iRate.h */,
+				7E63BF451952B4D3006958AC /* iRate.m */,
+			);
+			path = rating;
 			sourceTree = "<group>";
 		};
 		7E6433B91928C65E00A427EB /* popup */ = {
@@ -3086,13 +3127,16 @@
 		7EB8B3AC16D9FC0800F58961 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7EB8B45116D9FC0900F58961 /* GameMain.h */,
+				7EB8B45216D9FC0900F58961 /* GameMain.m */,
+				7E63BF431952B4D3006958AC /* rating */,
+				7E63BF3D1952A430006958AC /* twitter */,
+				7E63BF37195291CA006958AC /* facebook */,
 				7ED052CA19463EE100E882BF /* iap */,
 				7EAD2A2D1945A92E00B2BC4A /* ads */,
 				7E0C635A184C62DE00D3C4B9 /* intro */,
 				7EEE5B511804CA6700A4A64F /* loading */,
 				7ECADDCB17646AF00032A1E6 /* ObjectAL (iOS) */,
-				7EB8B45116D9FC0900F58961 /* GameMain.h */,
-				7EB8B45216D9FC0900F58961 /* GameMain.m */,
 				7ECFA69F1706A21300496002 /* user */,
 				7EB8B3AD16D9FC0800F58961 /* game */,
 				7EB8B45316D9FC0900F58961 /* menu */,
@@ -4054,6 +4098,7 @@
 		DC0C49F4154AB4DD00B4B727 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E63BF411952A493006958AC /* Twitter.framework */,
 				7ED052C5194636B900E882BF /* SystemConfiguration.framework */,
 				7ED052C3194636A900E882BF /* StoreKit.framework */,
 				7ED052C11946369B00E882BF /* Social.framework */,
@@ -4697,6 +4742,7 @@
 				7EB8B48116D9FC0900F58961 /* PhysicsEnabledObject.m in Sources */,
 				7E01957B18868546000DCF6D /* InventoryLayerTabScrollList.m in Sources */,
 				7EB8B48216D9FC0900F58961 /* BirdFlock.m in Sources */,
+				7E63BF3C1952957D006958AC /* FBShare.m in Sources */,
 				7EB8B48316D9FC0900F58961 /* Blocker.m in Sources */,
 				7E1A168818A5E1C4001FCD86 /* VolleyRobotBoss.m in Sources */,
 				7EB8B48416D9FC0900F58961 /* BreakableWall.m in Sources */,
@@ -4727,6 +4773,7 @@
 				7E01956E18866491000DCF6D /* InventoryTabPane_Upgrades.m in Sources */,
 				7ED052D01946477000E882BF /* SpeedyPupsIAP.m in Sources */,
 				7EB8B49816D9FC0900F58961 /* JumpPad.m in Sources */,
+				7E63BF401952A43E006958AC /* TWTShare.m in Sources */,
 				7EB8B49916D9FC0900F58961 /* LabEntrance.m in Sources */,
 				7EB8B49A16D9FC0900F58961 /* LabExit.m in Sources */,
 				7EB8B49B16D9FC0900F58961 /* LabWall.m in Sources */,
@@ -4909,6 +4956,7 @@
 				7E0C57A817E6E1E900786CE5 /* CapeTutorialLauncher.m in Sources */,
 				7E908F7C17EFEC3C004DB956 /* World1BGLayerSet.m in Sources */,
 				7E071F2F180296E10003F8AA /* LabHandRail.m in Sources */,
+				7E63BF461952B4D3006958AC /* iRate.m in Sources */,
 				7E908F7F17EFEC53004DB956 /* World2BGLayerSet.m in Sources */,
 				7E0E85771919EE0A001AFC04 /* InventoryTabPane_Prizes.m in Sources */,
 				7E908F8217EFEC6A004DB956 /* Lab1BGLayerSet.m in Sources */,
@@ -5088,6 +5136,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes/ads",
+					"$(PROJECT_DIR)/Classes/facebook",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5120,6 +5169,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes/ads",
+					"$(PROJECT_DIR)/Classes/facebook",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2d-2.x-ARC-iOS/Prefix.pch";

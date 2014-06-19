@@ -42,6 +42,8 @@ typedef enum {
 	CCSprite *highscore_sign_base;
 	
 	CCMenuItemSprite *wheel_ad_button;
+
+	CCMenu *share_buttons;
 }
 
 +(NMenuPlayPage*)cons;

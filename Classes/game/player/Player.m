@@ -277,6 +277,7 @@ static NSDictionary* ID_TO_POWERDESC;
     
     if (current_swingvine != NULL) {
         [self swingvine_attach_anim];
+		[self start_anim:player_anim_mode_SWING];
         
     } else if (cur_param_anim_mode == player_anim_mode_RUN_SLOW || cur_param_anim_mode == player_anim_mode_RUN_MED || cur_param_anim_mode == player_anim_mode_RUN_FAST) {
         [self runanim_update];
