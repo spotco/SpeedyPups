@@ -160,6 +160,7 @@
 		7E511BE917462B0F00B41826 /* easy_breakdetail.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E511BE817462B0F00B41826 /* easy_breakdetail.map */; };
 		7E5147AD17A3B15E0075EFC7 /* freerun_progress.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */; };
 		7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */; };
+		7E5C072419556E5200A6211D /* lab_easyloops.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C072319556E5200A6211D /* lab_easyloops.map */; };
 		7E5CE28F17F8E75400226263 /* capegameloop.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E5CE28E17F8E75400226263 /* capegameloop.aiff */; };
 		7E60A69718128FD900CC7C07 /* subboss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69518128FD900CC7C07 /* subboss.plist */; };
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
@@ -1083,6 +1084,7 @@
 		7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = freerun_progress.map; sourceTree = "<group>"; };
 		7E52834F179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeInfoTitleCardAnimation.h; sourceTree = "<group>"; };
 		7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeInfoTitleCardAnimation.m; sourceTree = "<group>"; };
+		7E5C072319556E5200A6211D /* lab_easyloops.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_easyloops.map; sourceTree = "<group>"; };
 		7E5CE28E17F8E75400226263 /* capegameloop.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = capegameloop.aiff; sourceTree = "<group>"; };
 		7E60A69518128FD900CC7C07 /* subboss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = subboss.plist; sourceTree = "<group>"; };
 		7E60A69618128FD900CC7C07 /* subboss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subboss.png; sourceTree = "<group>"; };
@@ -3581,6 +3583,7 @@
 				7EEE757B187239EA004512E1 /* lab_bounceycannon.map */,
 				7EEE757D18723FFA004512E1 /* lab_minionwallshard.map */,
 				7E74ECF3187D489400C0A5C6 /* lab_cage_cannons.map */,
+				7E5C072319556E5200A6211D /* lab_easyloops.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -4550,6 +4553,7 @@
 				7E05976C18F142E100D9CD74 /* sfx_tutorialdog_in.wav in Resources */,
 				7ECFADF2174228D6009EEBB0 /* easy_curvywater.map in Resources */,
 				7ECFADF417422D1F009EEBB0 /* easy_simplespikes.map in Resources */,
+				7E5C072419556E5200A6211D /* lab_easyloops.map in Resources */,
 				7E94CB0319051D3B00B85545 /* sfx_cheer.wav in Resources */,
 				7EA3B99C1744C61D00139608 /* cloud_ss.plist in Resources */,
 				7EA3B99D1744C61D00139608 /* cloud_ss.png in Resources */,
