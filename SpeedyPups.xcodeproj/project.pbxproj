@@ -162,6 +162,7 @@
 		7E528351179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */; };
 		7E5C072419556E5200A6211D /* lab_easyloops.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C072319556E5200A6211D /* lab_easyloops.map */; };
 		7E5C07261955772600A6211D /* lab_rocketarmy.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C07251955772600A6211D /* lab_rocketarmy.map */; };
+		7E5C0728195596C800A6211D /* lab_rocketarmyhard.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C0727195596C800A6211D /* lab_rocketarmyhard.map */; };
 		7E5CE28F17F8E75400226263 /* capegameloop.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E5CE28E17F8E75400226263 /* capegameloop.aiff */; };
 		7E60A69718128FD900CC7C07 /* subboss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69518128FD900CC7C07 /* subboss.plist */; };
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
@@ -1087,6 +1088,7 @@
 		7E528350179D2E69003DC6AA /* ChallengeInfoTitleCardAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeInfoTitleCardAnimation.m; sourceTree = "<group>"; };
 		7E5C072319556E5200A6211D /* lab_easyloops.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_easyloops.map; sourceTree = "<group>"; };
 		7E5C07251955772600A6211D /* lab_rocketarmy.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_rocketarmy.map; sourceTree = "<group>"; };
+		7E5C0727195596C800A6211D /* lab_rocketarmyhard.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_rocketarmyhard.map; sourceTree = "<group>"; };
 		7E5CE28E17F8E75400226263 /* capegameloop.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = capegameloop.aiff; sourceTree = "<group>"; };
 		7E60A69518128FD900CC7C07 /* subboss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = subboss.plist; sourceTree = "<group>"; };
 		7E60A69618128FD900CC7C07 /* subboss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subboss.png; sourceTree = "<group>"; };
@@ -1191,7 +1193,7 @@
 		7E99416A17F1758300B363F3 /* WebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequest.m; sourceTree = "<group>"; };
 		7E9A784C16FC6D890014B7E0 /* easy_puddles.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_puddles.map; sourceTree = "<group>"; };
 		7E9A784E16FC72D50014B7E0 /* easy_gottagofast.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy_gottagofast.map; sourceTree = "<group>"; };
-		7E9B820619317DBE00F15423 /* prettyss.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prettyss.map; sourceTree = "<group>"; };
+		7E9B820619317DBE00F15423 /* prettyss.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = prettyss.map; path = ../prettyss.map; sourceTree = "<group>"; };
 		7E9B820819318EA500F15423 /* tutorial2_doublejumphover.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_doublejumphover.map; sourceTree = "<group>"; };
 		7E9B820A19319A5100F15423 /* tutorial2_swipeget.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial2_swipeget.map; sourceTree = "<group>"; };
 		7EA3B99A1744C61D00139608 /* cloud_ss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cloud_ss.plist; sourceTree = "<group>"; };
@@ -2894,6 +2896,7 @@
 				7E07524F17A51AD5001FAE5F /* boss1_start.map */,
 				7EB8B23D16D9F8E700F58961 /* boss1_area.map */,
 				7EB8B23C16D9F8E700F58961 /* autolevel_start.map */,
+				7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */,
 				7E5147AC17A3B15E0075EFC7 /* freerun_progress.map */,
 				7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
@@ -2910,8 +2913,6 @@
 				7E9A784716FC4DA10014B7E0 /* filler */,
 				7E9A784616FC4D980014B7E0 /* classic */,
 				7EB8B25516D9F8E700F58961 /* TEST */,
-				7EAC99C11930A4CA006C3ED2 /* autolevel_start2.map */,
-				7E9B820619317DBE00F15423 /* prettyss.map */,
 			);
 			path = levels;
 			sourceTree = "<group>";
@@ -2919,6 +2920,7 @@
 		7EB8B25516D9F8E700F58961 /* TEST */ = {
 			isa = PBXGroup;
 			children = (
+				7E9B820619317DBE00F15423 /* prettyss.map */,
 				7E4A2F5A17043851001BD38C /* tutorial_swipedir.map */,
 				7EB8B24916D9F8E700F58961 /* jumppad_bouncyroom.map */,
 				7EB8B25616D9F8E700F58961 /* bossloadertest.map */,
@@ -3587,6 +3589,7 @@
 				7E74ECF3187D489400C0A5C6 /* lab_cage_cannons.map */,
 				7E5C072319556E5200A6211D /* lab_easyloops.map */,
 				7E5C07251955772600A6211D /* lab_rocketarmy.map */,
+				7E5C0727195596C800A6211D /* lab_rocketarmyhard.map */,
 			);
 			name = lab;
 			sourceTree = "<group>";
@@ -4386,6 +4389,7 @@
 				7EB8B30D16D9F8E700F58961 /* splash_ss.png in Resources */,
 				7EB8B32016D9F8E700F58961 /* autolevel_start.map in Resources */,
 				7EB8B32116D9F8E700F58961 /* boss1_area.map in Resources */,
+				7E5C0728195596C800A6211D /* lab_rocketarmyhard.map in Resources */,
 				7EB8B32216D9F8E700F58961 /* classic_bridgenbwall.map in Resources */,
 				7EB8B32316D9F8E700F58961 /* classic_cavewbwall.map in Resources */,
 				7E6BD80619410C47005F1A77 /* extras_art_sun.png in Resources */,

@@ -26,11 +26,6 @@
 
 -(void)cons_level_defs{
 	tutorial_levels = @[
-		//@"tutorial_jump",
-		//@"tutorial_water",
-		//@"tutorial_doublejump",
-		//@"tutorial_swipeget",
-						
 		@"tutorial2_jumpwater",
 		@"tutorial2_doublejumphover",
 		@"filler_sanicloop",
@@ -48,7 +43,9 @@
 	world2_tutorial_levels = @[
 		@"tutorial_swingvine"
 	];
-	world3_tutorial_levels = @[@"tutorial_cannons"];
+	world3_tutorial_levels = @[
+		@"tutorial_cannons"
+	];
 	
 	levelsets = @{
 		L_FILLER:@{
@@ -150,19 +147,19 @@
 			@"lab_alladat" : @1,
 			@"lab_muhfiller" :@1
 		},
-		L_LAB_3: @{ //TODO -- 1 hard world3 lab levels
+		L_LAB_3: @{
 			@"lab_tube" : @1,
 			@"lab_rocketfever" : @1,
 			@"lab_bounceycannon" : @1,
 			@"lab_cage_cannons" : @1,
-			@"lab_minionwallshard" : @1
+			@"lab_minionwallshard" : @1,
+			@"lab_rocketarmyhard" : @1
 		},
 		L_COIN: @{
 			@"coin_freecoin" : @1
 		},
 		
 		L_AUTOSTART: @{
-			//@"shittytest":@1
 			@"autolevel_start2": @1
 		},
 		L_FREERUN_PROGRESS_WORLD: @{
