@@ -1,19 +1,11 @@
 #import "GameMain.h"
-#import "GameModeCallback.h" 
-#import "FreePupsAnim.h"
-
+#import "GameModeCallback.h"
 #import "UserInventory.h"
 #import "Challenge.h"
 #import "FreeRunStartAtManager.h"
 #import "LoadingScene.h"
 #import "IntroAnim.h"
-
-#import "CapeGameEngineLayer.h"
-#import "JSONKit.h"
 #import "TrackingUtil.h"
-
-#import "WebRequest.h"
-
 #import "AdColony_integration.h"
 #import "SpeedyPupsIAP.h"
 
@@ -22,7 +14,7 @@
 @implementation GameMain
 
 #define USE_BG YES
-#define TESTLEVEL @"shittytest"
+#define TESTLEVEL @"lab_rocketarmy"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI NO
 #define IMMEDIATELY_BOSS NO
@@ -33,16 +25,15 @@
 
 
 /**
-2 easy lab levels
 2 hard cannon lab levels
 2 cannon levels
 3 hard cannon levels
-2 armor item levels
+1 armor item levels
 
---BLOCKED ON LEVEL CREATION
-	challenge with capegame
-	challenge with bossrush
-	8 more challenges
+87 on lab_rocketarmy
+challenge with capegame
+challenge with bossrush
+8 more challenges
  
  music compress
  **/

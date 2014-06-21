@@ -135,11 +135,12 @@
 			@"swingvine_totalmix" : @1
 		},
 		
-		L_LAB_1: @{ //TODO -- 2 easy lab levels, make basicmix & minionwalls easier
+		L_LAB_1: @{
 			@"lab_basicmix" : @1,
 			@"lab_minionwalls" : @1,
 			@"lab_towerfall" :@1,
-			@"lab_easyloops":@1
+			@"lab_easyloops":@1,
+			@"lab_rocketarmy":@1
 		},
 		L_LAB_2: @{
 			@"lab_ezshiz" : @1,
