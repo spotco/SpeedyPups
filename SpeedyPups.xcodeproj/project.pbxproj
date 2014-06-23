@@ -168,6 +168,7 @@
 		7E60A69818128FD900CC7C07 /* subboss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E60A69618128FD900CC7C07 /* subboss.png */; };
 		7E60A69B1812906B00CC7C07 /* SubBossLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69A1812906B00CC7C07 /* SubBossLoader.m */; };
 		7E60A69E1812910000CC7C07 /* SubBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E60A69D1812910000CC7C07 /* SubBoss.m */; };
+		7E62581219580926002A9191 /* cannon_jumprobotbounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E62581119580926002A9191 /* cannon_jumprobotbounce.map */; };
 		7E63BF39195291CA006958AC /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E63BF38195291CA006958AC /* FacebookSDK.framework */; };
 		7E63BF3C1952957D006958AC /* FBShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E63BF3B1952957D006958AC /* FBShare.m */; };
 		7E63BF401952A43E006958AC /* TWTShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E63BF3F1952A43E006958AC /* TWTShare.m */; };
@@ -1096,6 +1097,7 @@
 		7E60A69A1812906B00CC7C07 /* SubBossLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBossLoader.m; sourceTree = "<group>"; };
 		7E60A69C1812910000CC7C07 /* SubBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubBoss.h; sourceTree = "<group>"; };
 		7E60A69D1812910000CC7C07 /* SubBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubBoss.m; sourceTree = "<group>"; };
+		7E62581119580926002A9191 /* cannon_jumprobotbounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_jumprobotbounce.map; sourceTree = "<group>"; };
 		7E63BF38195291CA006958AC /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		7E63BF3A1952957D006958AC /* FBShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShare.h; sourceTree = "<group>"; };
 		7E63BF3B1952957D006958AC /* FBShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShare.m; sourceTree = "<group>"; };
@@ -2183,6 +2185,7 @@
 				7E115AB9182EF73100C18CFD /* cannon_cannonsandrobots.map */,
 				7EEE757918722D50004512E1 /* cannon_cannoncave.map */,
 				7E74ECF5187D4E5D00C0A5C6 /* cannon_jetpackthorns.map */,
+				7E62581119580926002A9191 /* cannon_jumprobotbounce.map */,
 			);
 			name = cannon;
 			sourceTree = "<group>";
@@ -4531,6 +4534,7 @@
 				7E6BD81619410C47005F1A77 /* extras_art_birthday.png in Resources */,
 				7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */,
 				7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */,
+				7E62581219580926002A9191 /* cannon_jumprobotbounce.map in Resources */,
 				7E27D77118641802000FDA3E /* sfx_intro_night.wav in Resources */,
 				7EDD63761703AF6300825887 /* tutorial_water.map in Resources */,
 				7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */,

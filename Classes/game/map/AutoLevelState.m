@@ -118,6 +118,7 @@
 			@"cannon_cannonsandrobots" : @1,
 			@"cannon_cannoncave" : @1,
 			@"cannon_jetpackthorns" : @1,
+			@"cannon_jumprobotbounce" : @1
 		},
 		L_WORLD3_SWINGVINE:@{
 			@"swingvine_bounswindodg" : @1,
