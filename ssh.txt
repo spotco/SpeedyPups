@@ -1,0 +1,3 @@
+ssh spotco@spotcos.com -p 2222
+ssh -i ec2_5_14_2014.pem ec2-user@54.245.123.189
+scp -r -P 2222 spotco@spotcos.com:/home4/spotco/www/music/azure_dreams_ost .
