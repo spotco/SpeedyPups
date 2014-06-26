@@ -206,6 +206,8 @@
 		7E6BD81619410C47005F1A77 /* extras_art_birthday.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6BD7F919410C47005F1A77 /* extras_art_birthday.png */; };
 		7E6D0E491829214200BD1602 /* boss2_start.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D0E481829214200BD1602 /* boss2_start.map */; };
 		7E6E61F4182CA0DA008EFA6F /* test_quick.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6E61F3182CA0DA008EFA6F /* test_quick.map */; };
+		7E6EB374195C02FD003F0C60 /* cannon_clockwork.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6EB373195C02FD003F0C60 /* cannon_clockwork.map */; };
+		7E6EB377195C14C5003F0C60 /* hard_compilation.map in Resources */ = {isa = PBXBuildFile; fileRef = 7E6EB376195C14C5003F0C60 /* hard_compilation.map */; };
 		7E709F1F17E77E0B0005D8F6 /* sfx_fail.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */; };
 		7E709F2217E78AC60005D8F6 /* fanfare_lose.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */; };
 		7E709F2317E78AC60005D8F6 /* fanfare_win.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 7E709F2117E78AC60005D8F6 /* fanfare_win.aiff */; };
@@ -1141,6 +1143,8 @@
 		7E6BD7F919410C47005F1A77 /* extras_art_birthday.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = extras_art_birthday.png; sourceTree = "<group>"; };
 		7E6D0E481829214200BD1602 /* boss2_start.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss2_start.map; sourceTree = "<group>"; };
 		7E6E61F3182CA0DA008EFA6F /* test_quick.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_quick.map; sourceTree = "<group>"; };
+		7E6EB373195C02FD003F0C60 /* cannon_clockwork.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cannon_clockwork.map; sourceTree = "<group>"; };
+		7E6EB376195C14C5003F0C60 /* hard_compilation.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hard_compilation.map; sourceTree = "<group>"; };
 		7E709F1E17E77E0B0005D8F6 /* sfx_fail.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_fail.wav; sourceTree = "<group>"; };
 		7E709F2017E78AC60005D8F6 /* fanfare_lose.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = fanfare_lose.aiff; sourceTree = "<group>"; };
 		7E709F2117E78AC60005D8F6 /* fanfare_win.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = fanfare_win.aiff; sourceTree = "<group>"; };
@@ -2186,6 +2190,7 @@
 				7EEE757918722D50004512E1 /* cannon_cannoncave.map */,
 				7E74ECF5187D4E5D00C0A5C6 /* cannon_jetpackthorns.map */,
 				7E62581119580926002A9191 /* cannon_jumprobotbounce.map */,
+				7E6EB373195C02FD003F0C60 /* cannon_clockwork.map */,
 			);
 			name = cannon;
 			sourceTree = "<group>";
@@ -2488,6 +2493,14 @@
 				7E2EB5E119357BA70049CDFA /* ExtrasUnlockPopup.m */,
 			);
 			name = popup;
+			sourceTree = "<group>";
+		};
+		7E6EB375195C14B2003F0C60 /* hard */ = {
+			isa = PBXGroup;
+			children = (
+				7E6EB376195C14C5003F0C60 /* hard_compilation.map */,
+			);
+			name = hard;
 			sourceTree = "<group>";
 		};
 		7E8947F61904B20900EFB54C /* score */ = {
@@ -2904,6 +2917,7 @@
 				7ED36F4319013B5300DAC318 /* freerun_progress_to_lab.map */,
 				7EB8B24216D9F8E700F58961 /* connector.map */,
 				7E2CEB24192C02A400191A1C /* coin_freecoin.map */,
+				7E6EB375195C14B2003F0C60 /* hard */,
 				7E115AB8182EF71700C18CFD /* cannon */,
 				7EE2455F17E65CAF007D4B4D /* capegame */,
 				7E2C8ADF17D8538200DC08AE /* challenge_only */,
@@ -4475,6 +4489,7 @@
 				7EB8B37016D9F8E700F58961 /* spikes.png in Resources */,
 				7EB8B37116D9F8E700F58961 /* spike_vine_bottom.png in Resources */,
 				7E9B820719317DBE00F15423 /* prettyss.map in Resources */,
+				7E6EB374195C02FD003F0C60 /* cannon_clockwork.map in Resources */,
 				7EB8B37216D9F8E700F58961 /* spike_vine_section.png in Resources */,
 				7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */,
 				7EB8B37316D9F8E700F58961 /* spike_vine_top.png in Resources */,
@@ -4485,6 +4500,7 @@
 				7EB8B37616D9F8E700F58961 /* water.png in Resources */,
 				7EB8B37B16D9F8E700F58961 /* cannonfire_default.plist in Resources */,
 				7E6BD81419410C47005F1A77 /* extras_art_item_concept.png in Resources */,
+				7E6EB377195C14C5003F0C60 /* hard_compilation.map in Resources */,
 				7EB8B37C16D9F8E700F58961 /* cannonfire_default.png in Resources */,
 				7EB8B37D16D9F8E700F58961 /* cannontrail_default.plist in Resources */,
 				7EB8B37E16D9F8E700F58961 /* cannontrail_default.png in Resources */,

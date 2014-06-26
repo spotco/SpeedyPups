@@ -81,7 +81,6 @@
 			@"easy_simplespikes" : @1,
 			@"easy_curvybreak" : @1,
 			@"easy_breakdetail" : @1
-		
 		},
 		L_WORLD1_JUMPPAD:@{
 			@"jumppad_bigjump" : @1,
@@ -113,12 +112,12 @@
 			@"swingvine_bounswindodg" : @1,
 			@"swingvine_morecave" : @1,
 		},
-
 		L_WORLD3_CANNON:@{
 			@"cannon_cannonsandrobots" : @1,
 			@"cannon_cannoncave" : @1,
 			@"cannon_jetpackthorns" : @1,
-			@"cannon_jumprobotbounce" : @1
+			@"cannon_jumprobotbounce" : @1,
+			@"cannon_clockwork" : @1
 		},
 		L_WORLD3_SWINGVINE:@{
 			@"swingvine_bounswindodg" : @1,
@@ -127,10 +126,10 @@
 			@"swingvine_totalmix" : @1,
 		},
 		L_WORLD3_HARD:@{
-			@"classic_twopath" : @1, //TODO -- MAKE THESE NOT SO DUPLICATE!!
-			@"swingvine_awesome" : @1,
-			@"swingvine_bounswindodg" : @1,
-			@"swingvine_totalmix" : @1
+			@"classic_manyoptredux" : @1,
+			@"hard_compilation" : @1,
+			@"swingvine_bounswindodg" : @1, //replace
+			@"swingvine_totalmix" : @1 //replace
 		},
 		
 		L_LAB_1: @{

@@ -13,20 +13,19 @@
 
 @implementation GameMain
 
-#define USE_BG YES
-#define TESTLEVEL @"shittytest"
+#define USE_BG 1
+#define TESTLEVEL @"hard_compilation"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
-#define DEBUG_UI NO
-#define IMMEDIATELY_BOSS NO
-#define BOSS_1_HEALTH NO
+#define DEBUG_UI 0
+#define IMMEDIATELY_BOSS 1
+#define BOSS_1_HEALTH 1
 #define STARTING_LIVES 10
-#define SET_CONSTANT_DT NO
-#define DRAW_HITBOX NO
+#define SET_CONSTANT_DT 0
+#define DRAW_HITBOX 0
 
 
 /**
-2 cannon levels
-3 hard all levels
+2 world3 hard levels
 1 armor item levels
 
 87 on lab_rocketarmy
