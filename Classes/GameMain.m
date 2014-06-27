@@ -14,7 +14,7 @@
 @implementation GameMain
 
 #define USE_BG 1
-#define TESTLEVEL @"hard_sliptwist"
+#define TESTLEVEL @"classic_huegcave"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI 0
 #define IMMEDIATELY_BOSS 0
@@ -25,15 +25,12 @@
 
 
 /**
-2 world3 hard levels
-1 armor item levels
-
 87 on lab_rocketarmy
 challenge with capegame
 challenge with bossrush
 8 more challenges
- 
- music compress
+
+music compress
  **/
 
 /**
@@ -71,9 +68,9 @@ Stretch goals:
 	
 	LoadingScene *loader = [LoadingScene cons];
 	[self run_scene:loader];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	

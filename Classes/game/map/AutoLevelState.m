@@ -63,7 +63,6 @@
 			@"filler_godog" : @1,
 			@"filler_goslow" : @1
 		},
-
 		L_WORLD1_CLASSIC:@{
 			@"classic_trickytreas" : @1,
 			@"classic_bridgenbwall" : @1,
@@ -124,14 +123,15 @@
 			@"swingvine_awesome" : @1,
 			@"swingvine_morecave" : @1,
 			@"swingvine_totalmix" : @1,
+			@"classic_huegcave" : @1
 		},
 		L_WORLD3_HARD:@{
 			@"classic_manyoptredux" : @1,
 			@"hard_compilation" : @1,
 			@"hard_sliptwist" : @1,
-			@"swingvine_totalmix" : @1 //replace
+			@"hard_easypowerup" : @1,
+			@"classic_trickytreas" : @1
 		},
-		
 		L_LAB_1: @{
 			@"lab_basicmix" : @1,
 			@"lab_minionwalls" : @1,
@@ -140,6 +140,7 @@
 			@"lab_rocketarmy":@1
 		},
 		L_LAB_2: @{
+			@"lab_tube" : @1,
 			@"lab_ezshiz" : @1,
 			@"lab_ezrocketshz" : @1,
 			@"lab_clusterphobia" : @1,
@@ -148,7 +149,6 @@
 			@"lab_muhfiller" :@1
 		},
 		L_LAB_3: @{
-			@"lab_tube" : @1,
 			@"lab_rocketfever" : @1,
 			@"lab_bounceycannon" : @1,
 			@"lab_cage_cannons" : @1,
@@ -158,7 +158,6 @@
 		L_COIN: @{
 			@"coin_freecoin" : @1
 		},
-		
 		L_AUTOSTART: @{
 			@"autolevel_start2": @1
 		},
