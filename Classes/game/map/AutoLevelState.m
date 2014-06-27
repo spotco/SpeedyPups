@@ -128,7 +128,7 @@
 		L_WORLD3_HARD:@{
 			@"classic_manyoptredux" : @1,
 			@"hard_compilation" : @1,
-			@"swingvine_bounswindodg" : @1, //replace
+			@"hard_sliptwist" : @1,
 			@"swingvine_totalmix" : @1 //replace
 		},
 		

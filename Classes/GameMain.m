@@ -14,11 +14,11 @@
 @implementation GameMain
 
 #define USE_BG 1
-#define TESTLEVEL @"hard_compilation"
+#define TESTLEVEL @"hard_sliptwist"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI 0
-#define IMMEDIATELY_BOSS 1
-#define BOSS_1_HEALTH 1
+#define IMMEDIATELY_BOSS 0
+#define BOSS_1_HEALTH 0
 #define STARTING_LIVES 10
 #define SET_CONSTANT_DT 0
 #define DRAW_HITBOX 0
@@ -60,7 +60,7 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	//[UserInventory set_ads_disabled:YES];
+	[UserInventory set_ads_disabled:YES];
 	
 	[DataStore set_key:KEY_NTH_MENU int_value:0];
 	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
@@ -102,14 +102,14 @@ Stretch goals:
 	}
 	*/
 	
-	/*
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
-	 [FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	*/
+	
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
+	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
+	
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
