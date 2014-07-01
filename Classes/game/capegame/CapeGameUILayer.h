@@ -20,6 +20,9 @@
 	CGPoint left_curtain_tpos,right_curtain_tpos,bg_curtain_tpos;
 	NSTimer *update_timer;
 	
+	CCSprite *challengedescbg,*challengedescincon;
+	CCLabelBMFont *challengedesc;
+	
 	CCSprite *scoredispbg;
 	CCLabelBMFont *scoredisp;
 	CCLabelBMFont *multdisp;
@@ -32,6 +35,7 @@
 
 -(void)update;
 -(void)do_bone_collect_anim:(CGPoint)start;
+-(void)do_treat_collect_anim:(CGPoint)start;
 -(void)do_tutorial_anim;
 
 -(void)update_pct:(float)pct;

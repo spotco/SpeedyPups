@@ -1,18 +1,25 @@
 #import "DogCape.h"
 #import "AudioManager.h"
 
-@implementation DogCape
-
-+(DogCape*)cons_x:(float)x y:(float)y {
-	return [[DogCape node] cons_pt:ccp(x,y)];
+@implementation DogCape {
+	NSString *_map;
 }
 
--(id)cons_pt:(CGPoint)pt {
++(DogCape*)cons_x:(float)x y:(float)y {
+	return [[DogCape node] cons_pt:ccp(x,y) map:NULL];
+}
+
++(DogCape*)cons_x:(float)x y:(float)y map:(NSString *)map {
+	return [[DogCape node] cons_pt:ccp(x,y) map:map];
+}
+
+-(id)cons_pt:(CGPoint)pt map:(NSString*)map {
 	[self setPosition:pt];
 	[self setTexture:[Resource get_tex:TEX_ITEM_SS]];
 	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ITEM_SS idname:@"pickup_dogcape"]];
 	active = YES;
 	[self setScale:1.5];
+	_map = map;
 	
 	return self;
 }
@@ -23,7 +30,11 @@
 
 -(void)hit {
 	[AudioManager playsfx:SFX_POWERUP];
-	[GEventDispatcher push_event:[GEvent cons_type:GEventType_BEGIN_CAPE_GAME]];
+	if (_map) {
+		[GEventDispatcher push_event:[[GEvent cons_type:GEventType_BEGIN_CAPE_GAME] add_key:@"map" value:_map]];
+	} else {
+		[GEventDispatcher push_event:[GEvent cons_type:GEventType_BEGIN_CAPE_GAME]];
+	}
 	active = NO;
 }
 

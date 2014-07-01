@@ -14,7 +14,7 @@
     "objects": [
         {"label": "0", "x": 2151.7, "y": 301.6, "width": 1101.7, "type": "water", "height": 545.1333333333336},
         {"label": "2", "x": 3208.4, "y": 735, "width": 135, "type": "blocker", "height": 143.33333333333348},
-        {"label": "7", "x": 1430, "type": "dogcape", "y": 897.5},
+        {"x": 1430, "type": "dogcape", "y": 897.5},
         {"label": "8", "x": 3265.1, "type": "tutorialend", "y": 998.8},
         {"label": "(9)gd_img:6", "x": 3318.4, "img": 6, "type": "ground_detail", "y": 900},
         {"label": "(10)gd_img:6", "x": 3578.4, "img": 6, "type": "ground_detail", "y": 896.6},

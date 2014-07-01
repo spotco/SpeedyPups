@@ -118,7 +118,7 @@ static NSMutableArray* event_queue;
 }
 
 -(id)get_value:(NSString*)key {
-    if (!data) [NSException raise:@"data null" format:@"in GEvent get_value"];
+	if (!data) return NULL;
     return [data objectForKey:key];
 }
 

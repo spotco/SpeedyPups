@@ -18,6 +18,7 @@
 
 @implementation GameEngineLayer {
 	BOOL first_update;
+	NSString *capegame_level_to_load;
 }
 
 #define tBGLAYER 2
@@ -123,7 +124,7 @@
     if (particles_tba == NULL) {
         particles_tba = [[NSMutableArray alloc] init];
     }
-	
+	capegame_level_to_load = NULL;
 	[self setScaleX:1];
 	[self setScaleY:1];
 	
@@ -428,7 +429,10 @@
 		
 		runout_ct-=[Common get_dt_Scale];
 		if (runout_ct <= 0) {
-			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:[CapeGameEngineLayer get_level] g:self boss:do_boss_capegame]];
+			[[CCDirector sharedDirector] pushScene:[CapeGameEngineLayer scene_with_level:capegame_level_to_load?capegame_level_to_load:[CapeGameEngineLayer get_level]
+																					   g:self
+																					boss:do_boss_capegame]];
+			capegame_level_to_load = NULL;
 			
 			if (do_boss_capegame) {
 				[AudioManager playbgm_imm:BGM_GROUP_BOSS1];
@@ -650,6 +654,11 @@
 		if ([player is_armored]) {
 			[player end_armored];
 			[player update:self];
+		}
+		if ([e get_value:@"map"]) {
+			capegame_level_to_load = [e get_value:@"map"];
+		} else {
+			capegame_level_to_load = NULL;
 		}
 		current_mode = GameEngineLayerMode_CAPEOUT;
 		[player reset_params];

@@ -170,7 +170,12 @@ static NSMutableDictionary* cached_json;
         } else if ([type isEqualToString:@"dogcape"]) {
             float x = getflt(j_object, @"x");
             float y = getflt(j_object, @"y");
-            [map.game_objects addObject:[DogCape cons_x:x y:y]];
+			if ([j_object objectForKey:@"label"]) {
+				[map.game_objects addObject:[DogCape cons_x:x y:y map:[j_object objectForKey:@"label"]]];
+			} else {
+				[map.game_objects addObject:[DogCape cons_x:x y:y]];
+			}
+            
             
         } else if ([type isEqualToString:@"dogrocket"]) {
             float x = getflt(j_object, @"x");
@@ -330,9 +335,6 @@ static NSMutableDictionary* cached_json;
             [map.game_objects addObject:[LabEntrance cons_pt:ccp(x,y)]];
             
         } else if ([type isEqualToString:@"labexit"]) {
-            //float x = getflt(j_object, @"x");
-            //float y = getflt(j_object, @"y");
-            //[map.game_objects addObject:[LabExit cons_pt:ccp(x,y)]];
 			NSLog(@"ATTEMPTED LABEXIT SOMETHINGS WRONG HERE");
 			
         } else if ([type isEqualToString:@"enemyalert"]) {
@@ -502,6 +504,14 @@ float getflt(NSDictionary* j_object,NSString* key) {
 			[map.game_objects addObject:[CapeGameEnd cons_pt:ccp(x,y)]];
 			
 			
+		} else if (streq(type,@"treat")) {
+			float x = getflt(j_object, @"x");
+			float y = getflt(j_object, @"y");
+			if (cur_mode == MapLoaderMode_CHALLENGE) {
+				[map.game_objects addObject:[CapeGameTreatObject cons_pt:ccp(x,y)]];
+			} else {
+				[map.game_objects addObject:[CapeGameOneUpObject cons_pt:ccp(x,y)]];
+			}
 		}
 	}
 	

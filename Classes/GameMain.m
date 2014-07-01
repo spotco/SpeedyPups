@@ -14,7 +14,7 @@
 @implementation GameMain
 
 #define USE_BG 1
-#define TESTLEVEL @"classic_huegcave"
+#define TESTLEVEL @"capegame_launcher"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define DEBUG_UI 0
 #define IMMEDIATELY_BOSS 0
@@ -25,8 +25,6 @@
 
 
 /**
-87 on lab_rocketarmy
-challenge with capegame
 challenge with bossrush
 8 more challenges
 
@@ -57,7 +55,7 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	[UserInventory set_ads_disabled:YES];
+	//[UserInventory set_ads_disabled:YES];
 	
 	[DataStore set_key:KEY_NTH_MENU int_value:0];
 	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
@@ -99,14 +97,14 @@ Stretch goals:
 	}
 	*/
 	
-	
+	/*
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB1];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB2];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_WORLD3];
 	[FreeRunStartAtManager set_can_start_at:FreeRunStartAt_LAB3];
-	
+	*/
 	/*
 	[UserInventory unlock_character:TEX_DOG_RUN_2];
 	[UserInventory unlock_character:TEX_DOG_RUN_3];
@@ -119,7 +117,7 @@ Stretch goals:
 	[UserInventory set_item:Item_Shield owned:YES];
 	[UserInventory set_item:Item_Magnet owned:YES];
 	*/
-	//[ChallengeRecord set_beaten_challenge:19 to:YES];
+	//[ChallengeRecord set_beaten_challenge:23 to:YES];
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];

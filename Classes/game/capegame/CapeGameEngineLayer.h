@@ -69,6 +69,8 @@ typedef enum {
 -(GameEngineLayer*)get_main_game;
 -(CapeGamePlayer*)player;
 
+-(CapeGameUILayer*)get_ui;
+
 -(void)add_particle:(Particle*)p;
 
 -(void)collect_bone:(CGPoint)screen_pos;

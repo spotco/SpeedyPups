@@ -109,7 +109,11 @@ static NSString *blank = @"";
 		duration = BOSS_INFINITE_DURATION;
 		
 	} else {
+		if ([main_game get_challenge]) {
+			[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
+		}
 		GameMap *map = [MapLoader load_capegame_map:file];
+		[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
 		for (CapeGameObject *o in map.game_objects) {
 			[self add_gameobject:o];
 		}
@@ -400,6 +404,10 @@ static NSString *blank = @"";
 		[self add_particle:p];
 		[AudioManager playsfx:SFX_1UP];
 	}
+}
+
+-(CapeGameUILayer*)get_ui {
+	return ui;
 }
 
 -(void)do_tutorial_anim {

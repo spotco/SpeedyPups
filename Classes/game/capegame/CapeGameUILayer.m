@@ -83,6 +83,31 @@
 	[itemlenbaricon setOpacity:200];
 	[itemlenbarroot addChild:itemlenbaricon];
 	
+	//challenge disp
+	challengedescbg = [[CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
+											  rect:[FileCache get_cgrect_from_plist:TEX_UI_INGAMEUI_SS
+																			 idname:@"challengedescbg"]]
+					   pos:[Common screen_pctwid:0.01 pcthei:0.98]];
+	[challengedescbg setAnchorPoint:ccp(0,1)];
+	[challengedescbg setScaleX:0.8];
+	[challengedescbg setScaleY:0.75];
+	[challengedescbg setOpacity:80];
+	[self addChild:challengedescbg];
+	
+	challengedesc = [Common cons_bmlabel_pos:ccp(0,0) color:ccc3(0, 0, 0) fontsize:25 str:@""];
+	[challengedesc setPosition:[Common pct_of_obj:challengedescbg pctx:0.325 pcty:0.5]];
+	[challengedesc setAnchorPoint:ccp(0,0.5)];
+	[challengedescbg addChild:challengedesc];
+	
+	TexRect *challengetr = [ChallengeRecord get_for:ChallengeType_COLLECT_BONES];
+	challengedescincon = [[CCSprite spriteWithTexture:challengetr.tex rect:challengetr.rect]
+						  pos:[Common pct_of_obj:challengedescbg pctx:0.125 pcty:0.5]];
+	[challengedescincon setAnchorPoint:ccp(0.5,0.5)];
+	[challengedescincon setScale:1.25];
+	
+	[challengedescbg addChild:challengedescincon];
+	[challengedescbg setVisible:NO];
+ 	
 	[self addChild:ingame_ui];
 	
 	uianim_holder = [CCNode node];
@@ -139,6 +164,15 @@
 	disp_icon_pos.y -= 24;
 	time_disp = [self cons_icon_section_pos:disp_icon_pos icon:@"ingame_ui_time_icon"];
 	
+	if ([[g get_main_game] get_challenge]) {
+		ChallengeType type = [[g get_main_game] get_challenge].type;
+		[scoredispbg setVisible:NO];
+		[challengedescbg setVisible:YES];
+		TexRect *challengetr = [ChallengeRecord get_for:type];
+		challengedescincon.texture = challengetr.tex;
+		challengedescincon.textureRect = challengetr.rect;
+		challengedesc.string = @"";
+	}
 	
 	current_disp_score = [cape_game.get_main_game.score get_score];
 	
@@ -304,6 +338,19 @@
 	}
 	last_mult = [[cape_game get_main_game].score get_multiplier];
 	
+	if (challengedescbg.visible) {
+		NSString *tar_str = @"top lel";
+		if ([[cape_game get_main_game] get_challenge].type == ChallengeType_FIND_SECRET) {
+			if ([[cape_game get_main_game] get_num_secrets] >= [[cape_game get_main_game] get_challenge].ct) {
+				[challengedesc setColor:ccc3(0,255,0)];
+			} else {
+				[challengedesc setColor:ccc3(200,30,30)];
+			}
+			tar_str = strf("%i/%i",[[cape_game get_main_game] get_num_secrets],[[cape_game get_main_game] get_challenge].ct);
+		}
+		[challengedesc set_label:tar_str];
+	}
+	
 }
 
 -(void)start_combo_anim:(float)combo {
@@ -365,6 +412,12 @@
     BoneCollectUIAnimation* b = [BoneCollectUIAnimation cons_start:start end:[Common screen_pctwid:0 pcthei:1]];
     [uianim_holder addChild:b];
     [uianims addObject:b];
+}
+
+-(void)do_treat_collect_anim:(CGPoint)start {
+    TreatCollectUIAnimation* c = [TreatCollectUIAnimation cons_start:start end:[Common screen_pctwid:0 pcthei:1]];
+    [uianim_holder addChild:c];
+    [uianims addObject:c];
 }
 
 -(void)do_tutorial_anim {

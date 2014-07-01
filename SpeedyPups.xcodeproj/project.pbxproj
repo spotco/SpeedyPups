@@ -267,6 +267,10 @@
 		7EA5680B16FF8E530003F2A5 /* TutorialProf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680A16FF8E530003F2A5 /* TutorialProf.m */; };
 		7EA5680E16FF9DE90003F2A5 /* TutorialAnim.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */; };
 		7EA5681116FFCE790003F2A5 /* TutorialEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5681016FFCE780003F2A5 /* TutorialEnd.m */; };
+		7EAC302419628C7D00B27206 /* capegame_easy_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC302319628C7D00B27206 /* capegame_easy_challenge.map */; };
+		7EAC302619629A3600B27206 /* capegame_test_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC302519629A3600B27206 /* capegame_test_challenge.map */; };
+		7EAC302819629A4900B27206 /* capegame_creative_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC302719629A4900B27206 /* capegame_creative_challenge.map */; };
+		7EAC302A19629C7F00B27206 /* lab_rocketarmy_challenge.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EAC302919629C7F00B27206 /* lab_rocketarmy_challenge.map */; };
 		7EAC8080193EB963006400F0 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EAC807E193EB963006400F0 /* JSONKit.h */; };
 		7EAC8081193EB963006400F0 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC807F193EB963006400F0 /* JSONKit.m */; };
 		7EAC8088193EEC5C006400F0 /* ConnectingPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC8087193EEC5C006400F0 /* ConnectingPopup.m */; };
@@ -1223,6 +1227,10 @@
 		7EA5680D16FF9DE80003F2A5 /* TutorialAnim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialAnim.m; path = tutorial/TutorialAnim.m; sourceTree = "<group>"; };
 		7EA5680F16FFCE780003F2A5 /* TutorialEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TutorialEnd.h; path = tutorial/TutorialEnd.h; sourceTree = "<group>"; };
 		7EA5681016FFCE780003F2A5 /* TutorialEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TutorialEnd.m; path = tutorial/TutorialEnd.m; sourceTree = "<group>"; };
+		7EAC302319628C7D00B27206 /* capegame_easy_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capegame_easy_challenge.map; sourceTree = "<group>"; };
+		7EAC302519629A3600B27206 /* capegame_test_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capegame_test_challenge.map; sourceTree = "<group>"; };
+		7EAC302719629A4900B27206 /* capegame_creative_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = capegame_creative_challenge.map; sourceTree = "<group>"; };
+		7EAC302919629C7F00B27206 /* lab_rocketarmy_challenge.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lab_rocketarmy_challenge.map; sourceTree = "<group>"; };
 		7EAC807E193EB963006400F0 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		7EAC807F193EB963006400F0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		7EAC8086193EEC5C006400F0 /* ConnectingPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectingPopup.h; sourceTree = "<group>"; };
@@ -2253,6 +2261,10 @@
 			isa = PBXGroup;
 			children = (
 				7E2C8AE017D853B100DC08AE /* lab_alladat_challenge.map */,
+				7EAC302319628C7D00B27206 /* capegame_easy_challenge.map */,
+				7EAC302519629A3600B27206 /* capegame_test_challenge.map */,
+				7EAC302719629A4900B27206 /* capegame_creative_challenge.map */,
+				7EAC302919629C7F00B27206 /* lab_rocketarmy_challenge.map */,
 			);
 			name = challenge_only;
 			sourceTree = "<group>";
@@ -4495,6 +4507,7 @@
 				7EB8B37016D9F8E700F58961 /* spikes.png in Resources */,
 				7EB8B37116D9F8E700F58961 /* spike_vine_bottom.png in Resources */,
 				7E9B820719317DBE00F15423 /* prettyss.map in Resources */,
+				7EAC302A19629C7F00B27206 /* lab_rocketarmy_challenge.map in Resources */,
 				7E6EB374195C02FD003F0C60 /* cannon_clockwork.map in Resources */,
 				7EB8B37216D9F8E700F58961 /* spike_vine_section.png in Resources */,
 				7ED36F4419013B5300DAC318 /* freerun_progress_to_lab.map in Resources */,
@@ -4557,6 +4570,7 @@
 				7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */,
 				7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */,
 				7E62581219580926002A9191 /* cannon_jumprobotbounce.map in Resources */,
+				7EAC302619629A3600B27206 /* capegame_test_challenge.map in Resources */,
 				7E27D77118641802000FDA3E /* sfx_intro_night.wav in Resources */,
 				7EDD63761703AF6300825887 /* tutorial_water.map in Resources */,
 				7EDD637A1703B1B500825887 /* grounddetail_ss.plist in Resources */,
@@ -4571,6 +4585,7 @@
 				7E4A2F6217044908001BD38C /* tutorial_spikevine.map in Resources */,
 				7EC460EF17058BC800656A48 /* ingame_ui_ss.plist in Resources */,
 				7E1A169018A5FDA9001FCD86 /* robotboss.png in Resources */,
+				7EAC302819629A4900B27206 /* capegame_creative_challenge.map in Resources */,
 				7ED3975A1946B91E0085D242 /* Icon-72.png in Resources */,
 				7EC460F017058BC800656A48 /* ingame_ui_ss.png in Resources */,
 				7EC460F4170590E000656A48 /* item_ss.plist in Resources */,
@@ -4673,6 +4688,7 @@
 				7EE3C4A917DA7C0C00DCAF76 /* sfx_big_explosion.wav in Resources */,
 				7EE3C4AA17DA7C0C00DCAF76 /* sfx_bird_fly.wav in Resources */,
 				7EE3C4AC17DA7C0C00DCAF76 /* sfx_bop.wav in Resources */,
+				7EAC302419628C7D00B27206 /* capegame_easy_challenge.map in Resources */,
 				7EE3C4AD17DA7C0C00DCAF76 /* sfx_buy.wav in Resources */,
 				7EE3C4AE17DA7C0C00DCAF76 /* sfx_checkpoint.wav in Resources */,
 				7EE3C4AF17DA7C0C00DCAF76 /* sfx_copter_flyby.wav in Resources */,
