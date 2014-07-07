@@ -391,7 +391,12 @@ static NSUInteger globalOrderOfArrival = 0;
 -(void) addChild: (CCNode*) child z:(NSInteger)z tag:(NSInteger) aTag
 {	
 	NSAssert( child != nil, @"Argument must be non-nil");
-	NSAssert( child.parent == nil, @"child already added. It can't be added again");
+	//NSAssert( child.parent == nil, @"child already added. It can't be added again");
+	
+	if (child.parent != nil) {
+		NSLog(@"child already added. It can't be added again");
+		return;
+	}
 	
 	if( ! children_ )
 		[self childrenAlloc];

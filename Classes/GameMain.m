@@ -13,22 +13,22 @@
 
 @implementation GameMain
 
-#define USE_BG 1
-#define TESTLEVEL @"capegame_launcher"
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
-#define DEBUG_UI 0
-#define IMMEDIATELY_BOSS 0
-#define BOSS_1_HEALTH 0
 #define STARTING_LIVES 10
-#define SET_CONSTANT_DT 0
-#define DRAW_HITBOX 0
+
+#define TESTLEVEL @"tutorial_breakrocks"
+#define USE_BG 1
+
+#define DEBUG_UI		 0
+#define IMMEDIATELY_BOSS 0
+#define BOSS_1_HEALTH	 0
+#define SET_CONSTANT_DT  0
+#define DRAW_HITBOX		 0
 
 
 /**
-challenge with bossrush
-8 more challenges
-
-music compress
+ 8 more challenges
+ music compress
  **/
 
 /**
@@ -68,8 +68,8 @@ Stretch goals:
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	
 	/*
@@ -117,7 +117,7 @@ Stretch goals:
 	[UserInventory set_item:Item_Shield owned:YES];
 	[UserInventory set_item:Item_Magnet owned:YES];
 	*/
-	//[ChallengeRecord set_beaten_challenge:23 to:YES];
+	//[ChallengeRecord set_beaten_challenge:29 to:YES];
 	
 	//[UserInventory set_equipped_gameitem:Item_Shield];
 	//[UserInventory add_bones:5000];

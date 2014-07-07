@@ -108,8 +108,9 @@ static long timeof_web_remaining = 0;
 	int tip = [DataStore get_int_for_key:KEY_DAILY_TIP];
 	NSArray *tips = @[
 		@"Play every day for some great prizes!",
-		@"You'll find more coins on your first few runs of the day!",
-		@"Use coins to continue after a game over, or to buy stuff from the store!",
+		@"Use coins to unlock characters from the store!",
+		@"You'll find the most coins on your first run of the day!",
+		@"Use coins to continue after a game over!",
 		@"Need more coins? Try doing some challenges!",
 		@"Need more coins? Spend your bones on the Wheel of Prizes!"
 	];

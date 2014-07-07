@@ -492,6 +492,8 @@
 		7EB9776E17027D9A00459DEF /* classic_tomslvl1.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9776D17027D9A00459DEF /* classic_tomslvl1.map */; };
 		7EB9777117027E5F00459DEF /* ChallengeModeSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */; };
 		7EB9777317028B9600459DEF /* tutorial_jump.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EB9777217028B9600459DEF /* tutorial_jump.map */; };
+		7EBB02EF196A7E3500D5AC86 /* BossRushAutoLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBB02EE196A7E3500D5AC86 /* BossRushAutoLevel.m */; };
+		7EBB02F3196A83E200D5AC86 /* connector_challenge_bossrush.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB02F2196A83E200D5AC86 /* connector_challenge_bossrush.map */; };
 		7EBC124C1755DD1600645077 /* swingvine_morecave.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124B1755DD1600645077 /* swingvine_morecave.map */; };
 		7EBC124E1755EAA900645077 /* swingvine_datbounce.map in Resources */ = {isa = PBXBuildFile; fileRef = 7EBC124D1755EAA900645077 /* swingvine_datbounce.map */; };
 		7EBC88CB1924A7DE00189559 /* SpinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBC88CA1924A7DE00189559 /* SpinButton.m */; };
@@ -1548,6 +1550,9 @@
 		7EB9776F17027E5F00459DEF /* ChallengeModeSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeModeSelect.h; sourceTree = "<group>"; };
 		7EB9777017027E5F00459DEF /* ChallengeModeSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeModeSelect.m; sourceTree = "<group>"; };
 		7EB9777217028B9600459DEF /* tutorial_jump.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial_jump.map; sourceTree = "<group>"; };
+		7EBB02ED196A7E3500D5AC86 /* BossRushAutoLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BossRushAutoLevel.h; sourceTree = "<group>"; };
+		7EBB02EE196A7E3500D5AC86 /* BossRushAutoLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BossRushAutoLevel.m; sourceTree = "<group>"; };
+		7EBB02F2196A83E200D5AC86 /* connector_challenge_bossrush.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = connector_challenge_bossrush.map; sourceTree = "<group>"; };
 		7EBC124B1755DD1600645077 /* swingvine_morecave.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_morecave.map; sourceTree = "<group>"; };
 		7EBC124D1755EAA900645077 /* swingvine_datbounce.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swingvine_datbounce.map; sourceTree = "<group>"; };
 		7EBC88C91924A7DE00189559 /* SpinButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinButton.h; sourceTree = "<group>"; };
@@ -2265,6 +2270,7 @@
 				7EAC302519629A3600B27206 /* capegame_test_challenge.map */,
 				7EAC302719629A4900B27206 /* capegame_creative_challenge.map */,
 				7EAC302919629C7F00B27206 /* lab_rocketarmy_challenge.map */,
+				7EBB02F2196A83E200D5AC86 /* connector_challenge_bossrush.map */,
 			);
 			name = challenge_only;
 			sourceTree = "<group>";
@@ -3293,6 +3299,8 @@
 				7E3951C518F52B00005C72C9 /* AutoLevelState_World2.m */,
 				7E3951C718F52B4E005C72C9 /* AutoLevelState_World3.h */,
 				7E3951C818F52B4E005C72C9 /* AutoLevelState_World3.m */,
+				7EBB02ED196A7E3500D5AC86 /* BossRushAutoLevel.h */,
+				7EBB02EE196A7E3500D5AC86 /* BossRushAutoLevel.m */,
 			);
 			path = map;
 			sourceTree = "<group>";
@@ -4450,6 +4458,7 @@
 				7EB8B32F16D9F8E700F58961 /* jumppad_hiddenislands.map in Resources */,
 				7EB8B33016D9F8E700F58961 /* jumppad_jumpgap.map in Resources */,
 				7E6BD80719410C47005F1A77 /* extras_art_world5_early.png in Resources */,
+				7EBB02F3196A83E200D5AC86 /* connector_challenge_bossrush.map in Resources */,
 				7EB8B33116D9F8E700F58961 /* jumppad_jumpislands.map in Resources */,
 				7EB8B33216D9F8E700F58961 /* jumppad_launch.map in Resources */,
 				7E0E92461860259900197F7B /* lab_towerfall.map in Resources */,
@@ -4938,6 +4947,7 @@
 				7EBD7610171A7FE500EBEB3C /* GameItemCommon.m in Sources */,
 				7E1A169618A62CD1001FCD86 /* VolleyRobotBossFistProjectile.m in Sources */,
 				7EBD7613171A800E00EBEB3C /* GameModeCallback.m in Sources */,
+				7EBB02EF196A7E3500D5AC86 /* BossRushAutoLevel.m in Sources */,
 				7EBD7618171A855F00EBEB3C /* Coin.m in Sources */,
 				7EBD761B171A8B6B00EBEB3C /* CoinCollectUIAnimation.m in Sources */,
 				7E45DA70172DF8D7009C43DD /* ShopRecord.m in Sources */,
@@ -5207,7 +5217,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "B340DC0F-5207-45C1-AAC5-0DF5F2219D83";
+				PROVISIONING_PROFILE = "5965B162-580A-42B2-8C28-98CA5E15FEAD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -5239,7 +5249,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = SpeedyPups;
-				PROVISIONING_PROFILE = "B340DC0F-5207-45C1-AAC5-0DF5F2219D83";
+				PROVISIONING_PROFILE = "5965B162-580A-42B2-8C28-98CA5E15FEAD";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

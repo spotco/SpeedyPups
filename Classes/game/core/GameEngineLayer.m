@@ -15,6 +15,7 @@
 #import "ObjectPool.h"
 #import "ScoreManager.h"
 #import "TrackingUtil.h"
+#import "BossRushAutoLevel.h"
 
 @implementation GameEngineLayer {
 	BOOL first_update;
@@ -56,7 +57,7 @@
     CCScene* scene = [GameEngineLayer scene_with:@"connector" lives:lives world:world.world_num];
     GameEngineLayer* glayer = (GameEngineLayer*)[scene getChildByTag:tGLAYER];
     AutoLevel* nobj = [AutoLevel cons_with_glayer:glayer startat:world];
-    [glayer.game_objects addObject:nobj];
+	[glayer.game_objects addObject:nobj]; //don't change this
     [glayer addChild:nobj];
     
     UILayer* uil = (UILayer*)[scene getChildByTag:tUILAYER];
@@ -206,6 +207,12 @@
         [o notify_challenge_mode:info];
     }
     challenge = info;
+	
+	if (info.type == ChallengeType_BOSSRUSH) {
+		BossRushAutoLevel *brav = [BossRushAutoLevel cons_with_glayer:self];
+		[self add_gameobject:brav];
+		[brav update:player g:self];
+	}
 }
 
 -(ChallengeInfo*)get_challenge {
@@ -617,8 +624,10 @@
         collected_secrets++;
     
     } else if (e.type == GEventType_CHALLENGE_COMPLETE) {
-        runout_ct = 100;
-        current_mode = GameEngineLayerMode_RUNOUT;
+		if ([self get_challenge].type != ChallengeType_BOSSRUSH) {
+			runout_ct = 100;
+			current_mode = GameEngineLayerMode_RUNOUT;
+		}
         
     } else if (e.type == GEventType_PAUSE) {
 		stored_mode = current_mode;
@@ -680,8 +689,10 @@
 		do_boss_capegame = YES;
 		
 	} else if (e.type == GEventType_BOSS1_DEFEATED || e.type == GEventType_BOSS2_DEFEATED) {
-		current_mode = GameEngineLayerMode_RUNOUT_TO_FREEPUPS;
-		runout_ct = 100;
+		if ([self get_challenge] == NULL) {
+			current_mode = GameEngineLayerMode_RUNOUT_TO_FREEPUPS;
+			runout_ct = 100;
+		}
 		
 	} else if (e.type == GEventType_BOSS3_DEFEATED) {
 		CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
@@ -691,7 +702,21 @@
 		[Player character_bark];
 		
 	} else if (e.type == GEventType_BOSS3_CREDITS_END) {
-		current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		if ([self get_challenge] == NULL) {
+			current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
+		} else {
+            current_mode = GameEngineLayerMode_GAMEEND;
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_CHALLENGE_COMPLETE_MENU]];
+
+			[GEventDispatcher push_event:
+			 [[[GEvent cons_type:GEventType_CHALLENGE_COMPLETE]
+			   add_i1:1 i2:0]
+			  add_key:@"challenge" value:[self get_challenge]]
+			 ];
+			
+			CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
+			[fadeoutlayer setOpacity:0];
+		}
 		
 	}
 }
@@ -745,7 +770,7 @@
 	[ScoreManager set_world:world_mode.cur_world highscore:[score get_score]];
 	
 	for (GameObject *o in game_objects) {
-		if ([o class] == [AutoLevel class]) [(AutoLevel*)o game_quit];
+		if ([[o class] isSubclassOfClass:[AutoLevel class]]) [(AutoLevel*)o game_quit];
 	}
 	
 	for (int i = (int)islands.count-1; i>= 0; i--) {

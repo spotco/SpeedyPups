@@ -10,6 +10,7 @@
 #import "UIEnemyAlert.h"
 #import "UIWaterAlert.h"
 #import "ScoreManager.h"
+#import "BossRushAutoLevel.h"
 
 @implementation MRectCCMenuItemImage
 -(CGRect)rect {
@@ -357,10 +358,26 @@ static int ct  = 0;
 			}
 			
 			last_time = cur_time;
+			
+		} else if (cinfo.type == ChallengeType_BOSSRUSH) {
+			BossRushAutoLevel *tar = NULL;
+			for (GameObject *o in g.game_objects) {
+				if (o.class == [BossRushAutoLevel class]) {
+					tar = (BossRushAutoLevel*)o;
+					break;
+				}
+			}
+			[challengedesc setColor:ccc3(200,30,30)];
+			if (tar) {
+				if ([tar get_display_count] >= 4) {
+					[challengedesc setColor:ccc3(0,255,0)];
+				}
+				tar_str = [NSString stringWithFormat:@"%d/4",[tar get_display_count]];
+			}
 		}
-		if (![tar_str isEqualToString:challengedesc.string]) {
-			[challengedesc setString:tar_str];
-		}
+		
+		[challengedesc set_label:tar_str];
+		
 	} else {
 		[self update_scoredisp:g];
 	}

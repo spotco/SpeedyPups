@@ -13,6 +13,7 @@
 #import "GameEngineLayer.h"
 #import "ScoreManager.h"
 #import "ScoreComboAnimation.h"
+#import "BossRushAutoLevel.h"
 
 @implementation CapeGameUILayer {
 	float last_mult;
@@ -347,6 +348,21 @@
 				[challengedesc setColor:ccc3(200,30,30)];
 			}
 			tar_str = strf("%i/%i",[[cape_game get_main_game] get_num_secrets],[[cape_game get_main_game] get_challenge].ct);
+		} else if ([[cape_game get_main_game] get_challenge].type == ChallengeType_BOSSRUSH) {
+			BossRushAutoLevel *tar = NULL;
+			for (GameObject *o in [cape_game get_main_game].game_objects) {
+				if (o.class == [BossRushAutoLevel class]) {
+					tar = (BossRushAutoLevel*)o;
+					break;
+				}
+			}
+			[challengedesc setColor:ccc3(200,30,30)];
+			if (tar) {
+				if ([tar get_display_count] >= 4) {
+					[challengedesc setColor:ccc3(0,255,0)];
+				}
+				tar_str = [NSString stringWithFormat:@"%d/4",[tar get_display_count]];
+			}
 		}
 		[challengedesc set_label:tar_str];
 	}

@@ -1,6 +1,7 @@
 #import "MapSection.h"
 #import "Island.h"
-#import "GameObject.h" 
+#import "GameObject.h"
+#import "GameEngineLayer.h"
 
 #define DOTMAP @"map"
 
@@ -15,7 +16,13 @@
 }
 
 -(void)cons:(NSString*)name g:(GameEngineLayer*)g {
+	if ([g get_challenge]) {
+		[MapLoader set_maploader_mode:MapLoaderMode_CHALLENGE];
+	}
     map = [MapLoader load_map:name g:g];
+	
+	[MapLoader set_maploader_mode:MapLoaderMode_AUTO];
+	
 	if (map == NULL) {
 		NSLog(@"ERROR::map is null for %@",name);
 	}

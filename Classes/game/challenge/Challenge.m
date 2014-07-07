@@ -38,6 +38,9 @@
     } else if (cc.type == ChallengeType_FIND_SECRET) {
         return @"Find the treat.";
         
+	} else if (cc.type == ChallengeType_BOSSRUSH) {
+		return @"Beat all the bosses!";
+		
     } else {
         return @"ERROR";
     }
@@ -81,7 +84,7 @@ static NSArray* _CHALLENGES;
 		[ChallengeInfo cons_name:@"capegame_creative_challenge" type:ChallengeType_FIND_SECRET ct:1 reward:1],
 		[ChallengeInfo cons_name:@"capegame_creative_challenge" type:ChallengeType_FIND_SECRET ct:1 reward:1],
 		[ChallengeInfo cons_name:@"capegame_creative_challenge" type:ChallengeType_FIND_SECRET ct:1 reward:1],
-		[ChallengeInfo cons_name:@"capegame_creative_challenge" type:ChallengeType_FIND_SECRET ct:1 reward:1]
+		[ChallengeInfo cons_name:@"connector_challenge_bossrush" type:ChallengeType_BOSSRUSH ct:1 reward:5 world:WorldNum_2]
     ];
 }
 
@@ -94,6 +97,8 @@ static NSArray* _CHALLENGES;
 		tar = @"challengeicon_coin";
 	} else if (type == ChallengeType_TIMED) {
 		tar = @"challengeicon_time";
+	} else if (type == ChallengeType_BOSSRUSH) {
+		tar = @"challengeicon_bossrush";
 	}
 	
 	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
@@ -108,6 +113,8 @@ static NSArray* _CHALLENGES;
 		cle = @"preview_find_secrets";
 	} else if (type == ChallengeType_TIMED) {
 		cle = @"preview_timed";
+	} else if (type == ChallengeType_BOSSRUSH) {
+		cle = @"preview_bossrush";
 	}
 	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
 						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];
@@ -121,6 +128,8 @@ static NSArray* _CHALLENGES;
 		cle = @"preview_find_secrets_small";
 	} else if (type == ChallengeType_TIMED) {
 		cle = @"preview_timed_small";
+	} else if (type == ChallengeType_BOSSRUSH) {
+		cle = @"preview_bossrush_small";
 	}
 	return [TexRect cons_tex:[Resource get_tex:TEX_NMENU_LEVELSELOBJ]
 						rect:[FileCache get_cgrect_from_plist:TEX_NMENU_LEVELSELOBJ idname:cle]];

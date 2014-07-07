@@ -65,6 +65,9 @@
 }
 
 -(void)load_into_queue:(NSString*)key { //load map into queue
+	
+	[self checkrep];
+	
     MapSection *m = [MapSection cons_from_name:key g:tglayer];
     if (!has_pos_initial) {
         cur_x = m.map.connect_pts_x1;
@@ -77,6 +80,28 @@
     cur_x = (m.map.connect_pts_x2 - m.map.connect_pts_x1)+cur_x;
     cur_y = (m.map.connect_pts_y2 - m.map.connect_pts_y1)+cur_y;
     [queued_sections addObject:m];
+
+	[self checkrep];
+}
+
+-(void)checkrep {
+	for (NSArray *list in @[map_sections, queued_sections, stored]) {
+		for (MapSection *m in list) {
+			for (NSArray *list2 in @[map_sections, queued_sections, stored]) {
+				for (MapSection *m2 in list2) {
+					if (m2 != m) {
+						for (GameObject *o in m.map.game_objects) {
+							for (GameObject *o2 in m2.map.game_objects) {
+								if (o == o2) {
+									NSLog(@"DUPE GAMEOBJ (%p,%p)",o,o2);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 -(void)shift_queue_into_current { //move top map in queue to current
@@ -98,6 +123,7 @@
     for (GameObject* o in m.map.game_objects) {
         [tglayer add_gameobject:o];
     }
+	
 }
 
 -(void)remove_map_section_from_current:(MapSection*)m {

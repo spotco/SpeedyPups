@@ -34,20 +34,36 @@
 }
 
 -(void)cons_vx:(float)tvx vy:(float)tvy {
+	[self setScale:1];
+	[self setRotation:0];
+	[self setOpacity:255];
 	STREAMPARTICLE_CT_DEFAULT = 40;
     vx = tvx;
     vy = tvy;
     [self setScale:float_random(0.5, 2)];
     ct = (int)STREAMPARTICLE_CT_DEFAULT;
     [self setColor:ccc3(200, 200, 200)];
+	is_relpos = NO;
+	is_vel_rotation_facing = NO;
+	has_set_gravity = NO;
+	has_set_final_color = NO;
+	has_set_render_ord = NO;
 }
 
 -(void)cons {
+	[self setScale:1];
+	[self setRotation:0];
+	[self setOpacity:255];
 	STREAMPARTICLE_CT_DEFAULT = 40;
     vx = float_random(-2, -4);
     vy = float_random(0, 2);
     [self setScale:float_random(0.5, 2)];
     ct = (int)STREAMPARTICLE_CT_DEFAULT;
+	is_relpos = NO;
+	is_vel_rotation_facing = NO;
+	has_set_gravity = NO;
+	has_set_final_color = NO;
+	has_set_render_ord = NO;
 }
 
 -(id)set_relpos:(CGPoint)player {
@@ -57,6 +73,7 @@
 }
 -(id)set_color:(ccColor3B)c {
 	[self setColor:c];
+	[self set_final_color:c];
 	return self;
 }
 -(id)set_scale_x:(float)x y:(float)y {

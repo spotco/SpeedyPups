@@ -152,7 +152,7 @@ static NSDictionary *_tutorial_msglist;
 		@"doublejump" :		@"tap twice to double jump",
 		@"minionhit" :		@"watch out for these guys",
 		@"minionjump" :		@"jump off their heads",
-		@"rockbreak" :		@"swipe to break rocks",
+		@"rockbreak" :		@"swipe in a direction to roll \nand break rocks",
 		@"rockethit" :		@"don't get hit by rockets",
 		@"rocketjump" :		@"jump on the rockets",
 		@"rockhit" :		@"don't touch the rocks",
@@ -164,7 +164,7 @@ static NSDictionary *_tutorial_msglist;
 		@"swingvine" :		@"swing on vines, tap to jump",
 		@"swipe_down" :		@"swipe down to roll downwards",
 		@"swipe_straight" : @"swipe straight to roll straight",
-		@"collectcoin" :	@"swipe to roll and grab bones",
+		@"collectcoin" :	@"swipe in a direction to roll \nand grab bones",
 		@"shot" :			@"tap to launch!"
    };
 }

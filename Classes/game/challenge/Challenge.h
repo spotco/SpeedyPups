@@ -6,7 +6,8 @@ typedef enum {
 	ChallengeType_NONE = 0,
     ChallengeType_COLLECT_BONES = 1,
     ChallengeType_TIMED = 2,
-    ChallengeType_FIND_SECRET = 3
+    ChallengeType_FIND_SECRET = 3,
+	ChallengeType_BOSSRUSH = 4
 } ChallengeType;
 
 @interface ChallengeInfo : NSObject
