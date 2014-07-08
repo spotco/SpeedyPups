@@ -706,13 +706,14 @@
 			current_mode = GameEngineLayerMode_FADEOUT_TO_FREEPUPS;
 		} else {
             current_mode = GameEngineLayerMode_GAMEEND;
-            [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_CHALLENGE_COMPLETE_MENU]];
-
-			[GEventDispatcher push_event:
+			
+			[GEventDispatcher immediate_event:
 			 [[[GEvent cons_type:GEventType_CHALLENGE_COMPLETE]
 			   add_i1:1 i2:0]
 			  add_key:@"challenge" value:[self get_challenge]]
 			 ];
+			
+            [GEventDispatcher push_event:[GEvent cons_type:GEventType_LOAD_CHALLENGE_COMPLETE_MENU]];
 			
 			CCLayerColor *fadeoutlayer = (CCLayerColor*)[self.parent getChildByTag:tFADEOUTLAYER];
 			[fadeoutlayer setOpacity:0];

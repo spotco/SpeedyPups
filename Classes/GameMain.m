@@ -16,7 +16,7 @@
 #define VERSION_STRING @"SpeedyPups BETA - June 2014"
 #define STARTING_LIVES 10
 
-#define TESTLEVEL @"tutorial_breakrocks"
+#define TESTLEVEL @"hard_easypowerup"
 #define USE_BG 1
 
 #define DEBUG_UI		 0
@@ -27,7 +27,7 @@
 
 
 /**
- 8 more challenges
+ youtube button
  music compress
  **/
 
@@ -55,7 +55,7 @@ Stretch goals:
 	} else {
 		[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
 	}
-	//[UserInventory set_ads_disabled:YES];
+	[UserInventory set_ads_disabled:YES];
 	
 	[DataStore set_key:KEY_NTH_MENU int_value:0];
 	NSLog(@"UUID:%@ ADS:%d",[Common unique_id], [UserInventory get_ads_disabled]);
@@ -68,8 +68,8 @@ Stretch goals:
 	[self run_scene:loader];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_testlevel)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_game_autolevel)]];
-	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
-	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
+	[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_introanim)]];
+	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_menu)]];
 	//[loader load_with_callback:[Common cons_callback:(NSObject*)self sel:@selector(start_ccv2_test_scene)]];
 	
 	/*

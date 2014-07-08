@@ -157,6 +157,7 @@ static int current_sound = 0;
     //if (challenge_mode_respawn) {
 	active = YES;
     //}
+	[DogBone reset_play_collect_sound];
 }
 
 @end
