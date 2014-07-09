@@ -16,23 +16,23 @@ typedef enum {
 //afconvert -f caff -d LEI16 DOG_Music_019b.mp3 test.aiff
 
 //bgm_1
-#define BGMUSIC_MENU1 @"menu1.aiff"
-#define BGMUSIC_BOSS1 @"boss1.aiff"
-#define BGMUSIC_LAB1 @"lab1.aiff"
-#define BGMUSIC_JINGLE @"jingle.aiff"
-#define BGMUSIC_CAPEGAMELOOP @"capegameloop.aiff"
-#define BGMUSIC_INTRO @"intro.aiff"
+#define BGMUSIC_MENU1 @"menu1.mp3"
+#define BGMUSIC_BOSS1 @"boss1.mp3"
+#define BGMUSIC_LAB1 @"lab1.mp3"
+#define BGMUSIC_JINGLE @"jingle.mp3"
+#define BGMUSIC_CAPEGAMELOOP @"capegameloop.mp3"
+#define BGMUSIC_INTRO @"intro.mp3"
 
-#define BGMUSIC_GAMELOOP1 @"gameloop1.aiff"
-#define BGMUSIC_GAMELOOP2 @"gameloop2.aiff"
-#define BGMUSIC_GAMELOOP3 @"gameloop3.aiff"
+#define BGMUSIC_GAMELOOP1 @"gameloop1.mp3"
+#define BGMUSIC_GAMELOOP2 @"gameloop2.mp3"
+#define BGMUSIC_GAMELOOP3 @"gameloop3.mp3"
 
 //bgm_2
-#define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.aiff"
-#define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.aiff"
-#define BGMUSIC_GAMELOOP3_NIGHT @"gameloop3_night.aiff"
+#define BGMUSIC_GAMELOOP1_NIGHT @"gameloop1_night.mp3"
+#define BGMUSIC_GAMELOOP2_NIGHT @"gameloop2_night.mp3"
+#define BGMUSIC_GAMELOOP3_NIGHT @"gameloop3_night.mp3"
 
-#define BGMUSIC_INVINCIBLE @"invincible.aiff"
+#define BGMUSIC_INVINCIBLE @"invincible.mp3"
 
 #define SFX_BONE @"sfx_bone_1.wav"
 #define SFX_BONE_2 @"sfx_bone_2.wav"
@@ -79,8 +79,8 @@ typedef enum {
 #define SFX_MENU_UP @"sfx_menu_up.wav" 
 #define SFX_MENU_DOWN @"sfx_menu_down.wav"
 
-#define SFX_FANFARE_WIN @"fanfare_win.aiff"
-#define SFX_FANFARE_LOSE @"fanfare_lose.aiff"
+#define SFX_FANFARE_WIN @"fanfare_win.mp3"
+#define SFX_FANFARE_LOSE @"fanfare_lose.mp3"
 
 #define SFX_INTRO_NIGHT @"sfx_intro_night.wav"
 #define SFX_INTRO_SNORE @"sfx_intro_snore.wav"

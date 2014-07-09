@@ -13,7 +13,7 @@
 
 @implementation GameMain
 
-#define VERSION_STRING @"SpeedyPups BETA - June 2014"
+#define VERSION_STRING @"SpeedyPups NR RC1 - July 2014"
 #define STARTING_LIVES 10
 
 #define TESTLEVEL @"hard_easypowerup"
@@ -24,12 +24,6 @@
 #define BOSS_1_HEALTH	 0
 #define SET_CONSTANT_DT  0
 #define DRAW_HITBOX		 0
-
-
-/**
- youtube button
- music compress
- **/
 
 /**
 Stretch goals:

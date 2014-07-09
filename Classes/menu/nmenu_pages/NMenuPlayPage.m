@@ -88,6 +88,14 @@
 	[twt_button setScale:0.6];
 	[twt_button setAnchorPoint:ccp(0,1)];
 	[share_buttons addChild:twt_button];
+	CCMenuItem *yt_button = [MenuCommon item_from:TEX_NMENU_ITEMS
+											  rect:@"youtube"
+											   tar:[NMenuPlayPage class]
+											   sel:@selector(yt_share)
+											   pos:CGPointAdd(twt_button.position, ccp(twt_button.boundingBox.size.width+5,0))];
+	[yt_button setScale:0.6];
+	[yt_button setAnchorPoint:ccp(0,1)];
+	[share_buttons addChild:yt_button];
 	
     
     rundog = [CCSprite node];
@@ -185,6 +193,8 @@
 
     return self;
 }
+
++(void)yt_share { [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.youtube.com/watch?v=8nMZSDR0zcQ"]]; }
 
 -(void)cons_wheel_button:(CCMenu*)menu {
 	CCSprite *normal = [CCSprite spriteWithTexture:[Resource get_tex:TEX_UI_INGAMEUI_SS]
